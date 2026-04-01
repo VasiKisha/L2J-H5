@@ -27,7 +27,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.ArmorSet;
+import org.l2jmobius.gameserver.data.holders.ArmorSet;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**

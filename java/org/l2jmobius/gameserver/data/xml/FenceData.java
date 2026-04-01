@@ -119,7 +119,7 @@ public class FenceData implements IXmlReader
 	
 	public boolean checkIfFenceBetween(int x, int y, int z, int tx, int ty, int tz, int instanceId)
 	{
-		final WorldRegion region = World.getInstance().getRegion(x, y);
+		final WorldRegion region = World.getInstance().getRegion(x, y, z);
 		final Collection<Fence> fences = region != null ? region.getFences() : null;
 		if ((fences == null) || fences.isEmpty())
 		{

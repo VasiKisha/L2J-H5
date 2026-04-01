@@ -21,10 +21,10 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.Seed;
-import org.l2jmobius.gameserver.model.SeedProduction;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.siege.manor.Seed;
+import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
 /**

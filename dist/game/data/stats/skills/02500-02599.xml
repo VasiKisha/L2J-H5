@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="2500" levels="1" name="Beast Soulshot Compressed Pack">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -13,15 +13,16 @@
 		</conditions>
 		<effects>
 			<effect name="Restoration">
-				<param itemId="6645" itemCount="500" />
+				<itemId>6645</itemId>
+				<itemCount>500</itemCount>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2501" levels="1" name="Beast Spiritshot Compressed Pack">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -30,15 +31,16 @@
 		</conditions>
 		<effects>
 			<effect name="Restoration">
-				<param itemId="6646" itemCount="500" />
+				<itemId>6646</itemId>
+				<itemCount>500</itemCount>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2502" levels="1" name="Blessed Beast Spiritshot Compressed Pack">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -47,21 +49,18 @@
 		</conditions>
 		<effects>
 			<effect name="Restoration">
-				<param itemId="6647" itemCount="500" />
+				<itemId>6647</itemId>
+				<itemCount>500</itemCount>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2504" levels="1" name="Old Agathion">
-		<table name="#extractableItems">
-			6471,20,5094,40,9814,3,9816,4,9817,4,9815,2,57,6000000,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10408" /> <!-- Old Agathion -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10408</itemConsumeId> <!-- Old Agathion -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -69,17 +68,29 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="6471" count="20" /> <!-- Big Red Nimble Fish -->
+						<item id="5094" count="40" /> <!-- Great Codran -->
+						<item id="9814" count="3" /> <!-- Memento Mori -->
+						<item id="9816" count="4" /> <!-- Earth Egg -->
+						<item id="9817" count="4" /> <!-- Nonliving Nucleus -->
+						<item id="9815" count="2" /> <!-- Dragon Heart -->
+						<item id="57" count="6000000" /> <!-- Adena -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2505" levels="1" name="Chant of Combat">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10608" /> <!-- Forgotten Scroll - Chant of Combat -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10608</itemConsumeId> <!-- Forgotten Scroll - Chant of Combat -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -91,18 +102,19 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="1517" skillLevel="1" />
+				<skillId>1517</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2506" levels="1" name="Chant of Critical">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10609" /> <!-- Forgotten Scroll - Chant of Critical -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10609</itemConsumeId> <!-- Forgotten Scroll - Chant of Critical -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -114,18 +126,19 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="1518" skillLevel="1" />
+				<skillId>1518</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2507" levels="1" name="Chant of Blood Awakening">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10610" /> <!-- Forgotten Scroll - Chant of Blood Awakening -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10610</itemConsumeId> <!-- Forgotten Scroll - Chant of Blood Awakening -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -137,50 +150,51 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="1519" skillLevel="1" />
+				<skillId>1519</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2508" levels="1" name="Squash Seed">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10640" /> <!-- Cloned Squash Seed -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="10000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10640</itemConsumeId> <!-- Cloned Squash Seed -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">
-				<param npcId="12774" npcCount="1" despawnDelay="180000" />
+				<npcId>12774</npcId>
+				<npcCount>1</npcCount>
+				<despawnDelay>180000</despawnDelay>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2509" levels="1" name="Large Squash Seed">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10641" /> <!-- Cloned Large Squash Seed -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="10000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10641</itemConsumeId> <!-- Cloned Large Squash Seed -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">
-				<param npcId="12777" npcCount="1" despawnDelay="180000" />
+				<npcId>12777</npcId>
+				<npcCount>1</npcCount>
+				<despawnDelay>180000</despawnDelay>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2510" levels="1" name="Wondrous Cubic">
-		<table name="#extractableItems">
-			10633,1,35;10642,1,16;21096,1,2;21101,1,1;10634,1,16;10643,1,10;21097,1,2;21102,1,1;10635,1,11;10644,1,7;21098,1,1.5;21103,1,0.5;21106,1,10636,1,3.5;10645,1,2.1;21099,1,1;21104,1,0.4;21106,1,10637,1,1.5;10646,1,0.9;21100,1,0.3;21105,1,0.299;21593,1,0.001
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="-1" /> <!-- TODO: Daily Reuse Reset ? -->
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>-1</reuseDelay> <!-- TODO: Daily Reuse Reset ? -->
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -188,66 +202,134 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="35">
+						<item id="10633" count="1" /> <!-- Cube Fragment Armor - D -->
+					</item>
+					<item chance="16">
+						<item id="10642" count="1" /> <!-- Cube Fragment Weapon - D -->
+					</item>
+					<item chance="2">
+						<item id="21096" count="1" /> <!-- Shiny Cube Fragment Armor - D -->
+					</item>
+					<item chance="1">
+						<item id="21101" count="1" /> <!-- Shiny Cube Fragment Weapon - D -->
+					</item>
+					<item chance="16">
+						<item id="10634" count="1" /> <!-- Cube Fragment Armor - C -->
+					</item>
+					<item chance="10">
+						<item id="10643" count="1" /> <!-- Cube Fragment Weapon - C -->
+					</item>
+					<item chance="2">
+						<item id="21097" count="1" /> <!-- Shiny Cube Fragment Armor - C -->
+					</item>
+					<item chance="1">
+						<item id="21102" count="1" /> <!-- Shiny Cube Fragment Weapon - C -->
+					</item>
+					<item chance="11">
+						<item id="10635" count="1" /> <!-- Cube Fragment Armor - B -->
+					</item>
+					<item chance="7">
+						<item id="10644" count="1" /> <!-- Cube Fragment Weapon - B -->
+					</item>
+					<item chance="1.5">
+						<item id="21098" count="1" /> <!-- Shiny Cube Fragment Armor - B -->
+					</item>
+					<item chance="0.5">
+						<item id="21103" count="1" /> <!-- Shiny Cube Fragment Weapon - B -->
+					</item>
+					<item chance="3.5">
+						<item id="21106" count="1" /> <!-- Wondrous Cubic - 1 time use -->
+						<item id="10636" count="1" /> <!-- Cube Fragment Armor - A -->
+					</item>
+					<item chance="2.1">
+						<item id="10645" count="1" /> <!-- Cube Fragment Weapon - A -->
+					</item>
+					<item chance="1">
+						<item id="21099" count="1" /> <!-- Shiny Cube Fragment Armor - A -->
+					</item>
+					<item chance="0.4">
+						<item id="21104" count="1" /> <!-- Shiny Cube Fragment Weapon - A -->
+					</item>
+					<item chance="1.5">
+						<item id="21106" count="1" /> <!-- Wondrous Cubic - 1 time use -->
+						<item id="10637" count="1" /> <!-- Cube Fragment Armor - S -->
+					</item>
+					<item chance="0.9">
+						<item id="10646" count="1" /> <!-- Cube Fragment Weapon - S -->
+					</item>
+					<item chance="0.3">
+						<item id="21100" count="1" /> <!-- Shiny Cube Fragment Armor - S -->
+					</item>
+					<item chance="0.299">
+						<item id="21105" count="1" /> <!-- Shiny Cube Fragment Weapon - S -->
+					</item>
+					<item chance="0.001">
+						<item id="21593" count="1" /> <!-- Ziggo's Jewel -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2511" levels="1" name="Scroll of Transformation - Gatekeeper">
 		<!-- Transformed into a gatekeeper. -->
-		<set name="icon" val="icon.skilltransform3" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="TRANSFORM" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
+		<icon>icon.skilltransform3</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>TRANSFORM</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<param id="107" />
+				<id>107</id>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2512" levels="1" name="Herb of Vampiric Rage">
 		<!-- Allows you to temporarily drain the enemy's HP and add it to your own. Cannot be used with skill-based or long-range attacks. Effect 4. -->
-		<set name="icon" val="BranchSys2.icon.etc_vampiric_rage_herb_i01" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalInstant" val="true" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="VAMPIRIC_ATTACK" />
-		<set name="effectPoint" val="100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="40" />
-		<set name="reuseDelay" val="2000" />
+		<icon>BranchSys2.icon.etc_vampiric_rage_herb_i01</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalInstant>true</abnormalInstant>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>VAMPIRIC_ATTACK</abnormalType>
+		<effectPoint>100</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>40</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
 		<effects>
 			<effect name="Buff">
-				<add stat="absorbDam" val="9" /> <!-- absorb 9% HP from damage inflicted on enemies -->
+				<add stat="absorbDam">9</add> <!-- absorb 9% HP from damage inflicted on enemies -->
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2513" levels="1" name="Herb of Doubt">
 		<!-- Head is enlarged. -->
-		<set name="icon" val="icon.skill2513" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalInstant" val="true" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="BIG_HEAD" />
-		<set name="abnormalVisualEffect" val="BIG_HEAD" />
-		<set name="activateRate" val="0" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="2000" />
-		<set name="trait" val="ETC" />
+		<icon>icon.skill2513</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalInstant>true</abnormalInstant>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>BIG_HEAD</abnormalType>
+		<abnormalVisualEffect>BIG_HEAD</abnormalVisualEffect>
+		<activateRate>0</activateRate>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>2000</reuseDelay>
+		<trait>ETC</trait>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player flyMounted="false" />
@@ -258,101 +340,101 @@
 		</conditions>
 		<effects>
 			<effect name="Buff">
-				<mul stat="regHp" val="2" />
-				<mul stat="regMp" val="2" />
+				<mul stat="regHp">2</mul>
+				<mul stat="regMp">2</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2514" levels="1" name="Herb of Critical Attack - Power">
 		<!-- Critical attack power is temporarily increased. Effect 3. -->
-		<set name="icon" val="BranchSys2.icon.etc_crt_force_herb_i01" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalInstant" val="true" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="CRITICAL_DMG_UP" />
-		<set name="effectPoint" val="100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="48" />
-		<set name="reuseDelay" val="2000" />
+		<icon>BranchSys2.icon.etc_crt_force_herb_i01</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalInstant>true</abnormalInstant>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>CRITICAL_DMG_UP</abnormalType>
+		<effectPoint>100</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>48</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
 		<effects>
 			<effect name="Buff">
-				<mul stat="critDmg" val="1.35" />
+				<mul stat="critDmg">1.35</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2515" levels="1" name="Lucky Clover - D-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2516" levels="1" name="Lucky Clover - C-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2517" levels="1" name="Lucky Clover - B-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2518" levels="1" name="Lucky Clover - A-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2519" levels="1" name="Lucky Clover - S-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2520" levels="1" name="Lucky Clover - D-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2521" levels="1" name="Lucky Clover - C-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2522" levels="1" name="Lucky Clover - B-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2523" levels="1" name="Lucky Clover - A-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2524" levels="1" name="Lucky Clover - S-Grade">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2525" levels="1" name="Scroll to move to Kamael Village">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="10000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12753" /> <!-- Kamael Village Teleportation Scroll -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>10000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12753</itemConsumeId> <!-- Kamael Village Teleportation Scroll -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -363,18 +445,20 @@
 		</conditions>
 		<effects>
 			<effect name="Teleport">
-				<param x="-120050" y="44500" z="360" />
+				<x>-120050</x>
+				<y>44500</y>
+				<z>360</z>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2526" levels="1" name="Evasion Counter">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12768" /> <!-- Forgotten Scroll - Evasion Counter -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12768</itemConsumeId> <!-- Forgotten Scroll - Evasion Counter -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -386,18 +470,19 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="818" skillLevel="1" />
+				<skillId>818</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2527" levels="1" name="Evasion Chance">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12769" /> <!-- Forgotten Scroll - Evasion Chance -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12769</itemConsumeId> <!-- Forgotten Scroll - Evasion Chance -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -409,18 +494,19 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="819" skillLevel="1" />
+				<skillId>819</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2528" levels="1" name="Evasion Haste">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12770" /> <!-- Forgotten Scroll - Evasion Haste -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12770</itemConsumeId> <!-- Forgotten Scroll - Evasion Haste -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -432,18 +518,19 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="820" skillLevel="1" />
+				<skillId>820</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2529" levels="1" name="Shadow Step">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12771" /> <!-- Forgotten Scroll - Shadow Step -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12771</itemConsumeId> <!-- Forgotten Scroll - Shadow Step -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -455,31 +542,32 @@
 		</conditions>
 		<effects>
 			<effect name="SetSkill">
-				<param skillId="821" skillLevel="1" />
+				<skillId>821</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2530" levels="1" name="Recovery Item for Battlefield Use">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12819" /> <!-- Recovery Spellbook for Combat Use -->
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12819</itemConsumeId> <!-- Recovery Spellbook for Combat Use -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="DEATH_PENALTY,-1" />
+				<dispel>DEATH_PENALTY,-1</dispel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2531" levels="1" name="Adventurer's Scroll of Escape">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="20000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10650" /> <!-- Adventurer's Scroll of Escape -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>20000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10650</itemConsumeId> <!-- Adventurer's Scroll of Escape -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -490,21 +578,17 @@
 		</conditions>
 		<effects>
 			<effect name="Escape">
-				<param escapeType="TOWN" />
+				<escapeType>TOWN</escapeType>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2532" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,4,1463,50,2510,50,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12824" /> <!-- Pathfinder Supplies (Level 1) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12824</itemConsumeId> <!-- Pathfinder Supplies (Level 1) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -512,20 +596,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="4" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="50" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="50" /> <!-- Spiritshot (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2533" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,4,1463,100,2510,100,956,1,8623,3,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10836" /> <!-- Pathfinder Supplies (Level 2) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10836</itemConsumeId> <!-- Pathfinder Supplies (Level 2) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -533,20 +621,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="4" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="100" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="100" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="3" /> <!-- Elixir of Life (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2534" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,4,1463,100,2510,100,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12825" /> <!-- Pathfinder Supplies (Level 3) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12825</itemConsumeId> <!-- Pathfinder Supplies (Level 3) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -554,20 +648,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="4" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="100" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="100" /> <!-- Spiritshot (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2535" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,2,1463,150,2510,150,956,1,8623,3,8629,2,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10837" /> <!-- Pathfinder Supplies (Level 4) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10837</itemConsumeId> <!-- Pathfinder Supplies (Level 4) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -575,20 +673,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="2" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="150" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="150" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="3" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="2" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2536" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,5,1463,210,2510,210,956,1,8623,3,8629,3,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10838" /> <!-- Pathfinder Supplies (Level 5) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10838</itemConsumeId> <!-- Pathfinder Supplies (Level 5) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -596,20 +701,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="5" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="210" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="210" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="3" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="3" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2537" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,7,1463,300,2510,300,956,1,955,1,8623,7,8629,7,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10839" /> <!-- Pathfinder Supplies (Level 6) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10839</itemConsumeId> <!-- Pathfinder Supplies (Level 6) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -617,20 +729,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="7" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="300" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="300" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="955" count="1" /> <!-- Scroll: Enchant Weapon (D-Grade) -->
+						<item id="8623" count="7" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="7" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2538" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,5,1463,140,2510,140,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10840" /> <!-- Pathfinder Supplies (Level 7) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10840</itemConsumeId> <!-- Pathfinder Supplies (Level 7) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -638,20 +758,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="5" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="140" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="140" /> <!-- Spiritshot (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2539" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,7,1463,250,2510,250,956,1,8623,5,8629,4,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10841" /> <!-- Pathfinder Supplies (Level 8) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10841</itemConsumeId> <!-- Pathfinder Supplies (Level 8) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -659,20 +783,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="7" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="250" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="250" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="5" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="4" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2540" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,6,1463,200,2510,200,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12826" /> <!-- Pathfinder Supplies (Level 9) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12826</itemConsumeId> <!-- Pathfinder Supplies (Level 9) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -680,20 +811,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="6" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="200" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="200" /> <!-- Spiritshot (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2541" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,11,1463,500,2510,500,956,1,955,1,8623,10,8629,10,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12827" /> <!-- Pathfinder Supplies (Level 10) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12827</itemConsumeId> <!-- Pathfinder Supplies (Level 10) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -701,20 +836,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="11" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="500" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="500" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="955" count="1" /> <!-- Scroll: Enchant Weapon (D-Grade) -->
+						<item id="8623" count="10" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="10" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2542" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,7,1463,400,2510,400,956,1,8623,6,8629,6,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10842" /> <!-- Pathfinder Supplies (Level 11) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10842</itemConsumeId> <!-- Pathfinder Supplies (Level 11) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -722,20 +865,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="7" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="400" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="400" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="6" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="6" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2543" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,9,1463,400,2510,400,956,1,8623,9,8629,8,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10843" /> <!-- Pathfinder Supplies (Level 12) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10843</itemConsumeId> <!-- Pathfinder Supplies (Level 12) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -743,20 +893,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="9" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="400" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="400" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="1" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="8623" count="9" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="8" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2544" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1463,500,2510,500,956,2,955,1,8623,15,8629,15,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10844" /> <!-- Pathfinder Supplies (Level 13) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10844</itemConsumeId> <!-- Pathfinder Supplies (Level 13) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -764,20 +921,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1463" count="500" /> <!-- Soulshot (D-Grade) -->
+						<item id="2510" count="500" /> <!-- Spiritshot (D-Grade) -->
+						<item id="956" count="2" /> <!-- Scroll: Enchant Armor (D-Grade) -->
+						<item id="955" count="1" /> <!-- Scroll: Enchant Weapon (D-Grade) -->
+						<item id="8623" count="15" /> <!-- Elixir of Life (D-Grade) -->
+						<item id="8629" count="15" /> <!-- Elixir of Mental Strength (D-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2545" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,7,1464,150,2511,150,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10845" /> <!-- Pathfinder Supplies (Level 14) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10845</itemConsumeId> <!-- Pathfinder Supplies (Level 14) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -785,20 +950,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="7" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="150" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="150" /> <!-- Spiritshot (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2546" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,5,1464,120,2511,120,952,1,8624,5,8630,4,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10846" /> <!-- Pathfinder Supplies (Level 15) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10846</itemConsumeId> <!-- Pathfinder Supplies (Level 15) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -806,20 +975,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="5" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="120" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="120" /> <!-- Spiritshot (C-Grade) -->
+						<item id="952" count="1" /> <!-- Scroll: Enchant Armor (C-Grade) -->
+						<item id="8624" count="5" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="4" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2547" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,11,1464,150,2511,150,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12828" /> <!-- Pathfinder Supplies (Level 16) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12828</itemConsumeId> <!-- Pathfinder Supplies (Level 16) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -827,20 +1003,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="11" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="150" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="150" /> <!-- Spiritshot (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2548" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,7,1464,300,2511,300,952,1,951,1,8624,7,8630,7,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12829" /> <!-- Pathfinder Supplies (Level 17) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12829</itemConsumeId> <!-- Pathfinder Supplies (Level 17) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -848,20 +1028,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="7" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="300" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="300" /> <!-- Spiritshot (C-Grade) -->
+						<item id="952" count="1" /> <!-- Scroll: Enchant Armor (C-Grade) -->
+						<item id="951" count="1" /> <!-- Scroll: Enchant Weapon (C-Grade) -->
+						<item id="8624" count="7" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="7" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2549" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,6,1464,200,2511,200,8624,7,8630,6,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10847" /> <!-- Pathfinder Supplies (Level 18) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10847</itemConsumeId> <!-- Pathfinder Supplies (Level 18) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -869,20 +1057,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="6" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="200" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="200" /> <!-- Spiritshot (C-Grade) -->
+						<item id="8624" count="7" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="6" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2550" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1464,250,2511,250,952,1,8624,8,8630,7,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10848" /> <!-- Pathfinder Supplies (Level 19) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10848</itemConsumeId> <!-- Pathfinder Supplies (Level 19) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -890,20 +1084,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="250" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="250" /> <!-- Spiritshot (C-Grade) -->
+						<item id="952" count="1" /> <!-- Scroll: Enchant Armor (C-Grade) -->
+						<item id="8624" count="8" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="7" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2551" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1464,350,2511,350,952,2,951,1,8624,10,8630,10,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10849" /> <!-- Pathfinder Supplies (Level 20) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10849</itemConsumeId> <!-- Pathfinder Supplies (Level 20) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -911,20 +1112,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="350" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="350" /> <!-- Spiritshot (C-Grade) -->
+						<item id="952" count="2" /> <!-- Scroll: Enchant Armor (C-Grade) -->
+						<item id="951" count="1" /> <!-- Scroll: Enchant Weapon (C-Grade) -->
+						<item id="8624" count="10" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="10" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2552" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,6,1465,100,2512,100,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10850" /> <!-- Pathfinder Supplies (Level 21) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10850</itemConsumeId> <!-- Pathfinder Supplies (Level 21) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -932,20 +1141,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="6" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="100" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="100" /> <!-- Spiritshot (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2553" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1465,200,2512,200,8625,7,8631,7,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10851" /> <!-- Pathfinder Supplies (Level 22) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10851</itemConsumeId> <!-- Pathfinder Supplies (Level 22) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -953,20 +1166,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="200" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="200" /> <!-- Spiritshot (B-Grade) -->
+						<item id="8625" count="7" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="7" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2554" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,8,1465,120,2512,120,8625,7,8631,7,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12830" /> <!-- Pathfinder Supplies (Level 23) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12830</itemConsumeId> <!-- Pathfinder Supplies (Level 23) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -974,20 +1193,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="8" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="120" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="120" /> <!-- Spiritshot (B-Grade) -->
+						<item id="8625" count="7" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="7" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2555" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,15,1464,300,2511,300,952,2,951,1,8624,15,8630,14,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12831" /> <!-- Pathfinder Supplies (Level 24) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12831</itemConsumeId> <!-- Pathfinder Supplies (Level 24) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -995,20 +1220,28 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="15" /> <!-- Greater Healing Potion -->
+						<item id="1464" count="300" /> <!-- Soulshot (C-Grade) -->
+						<item id="2511" count="300" /> <!-- Spiritshot (C-Grade) -->
+						<item id="952" count="2" /> <!-- Scroll: Enchant Armor (C-Grade) -->
+						<item id="951" count="1" /> <!-- Scroll: Enchant Weapon (C-Grade) -->
+						<item id="8624" count="15" /> <!-- Elixir of Life (C-Grade) -->
+						<item id="8630" count="14" /> <!-- Elixir of Mental Strength (C-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2556" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,4,1465,200,2512,200,948,1,8625,5,8631,5,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10852" /> <!-- Pathfinder Supplies (Level 25) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10852</itemConsumeId> <!-- Pathfinder Supplies (Level 25) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1016,20 +1249,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="4" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="200" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="200" /> <!-- Spiritshot (B-Grade) -->
+						<item id="948" count="1" /> <!-- Scroll: Enchant Armor (B-Grade) -->
+						<item id="8625" count="5" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="5" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2557" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1465,250,2512,250,948,1,8625,6,8631,6,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10853" /> <!-- Pathfinder Supplies (Level 26) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10853</itemConsumeId> <!-- Pathfinder Supplies (Level 26) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1037,20 +1277,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="250" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="250" /> <!-- Spiritshot (B-Grade) -->
+						<item id="948" count="1" /> <!-- Scroll: Enchant Armor (B-Grade) -->
+						<item id="8625" count="6" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="6" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2558" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,15,1465,380,2512,380,948,2,8625,12,8631,12,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10854" /> <!-- Pathfinder Supplies (Level 27) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10854</itemConsumeId> <!-- Pathfinder Supplies (Level 27) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1058,20 +1305,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="15" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="380" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="380" /> <!-- Spiritshot (B-Grade) -->
+						<item id="948" count="2" /> <!-- Scroll: Enchant Armor (B-Grade) -->
+						<item id="8625" count="12" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="12" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2559" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,5,1466,120,2513,120,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10855" /> <!-- Pathfinder Supplies (Level 28) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10855</itemConsumeId> <!-- Pathfinder Supplies (Level 28) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1079,20 +1333,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="5" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="120" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="120" /> <!-- Spiritshot (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2560" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1466,250,2513,250,8626,9,8632,9,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10856" /> <!-- Pathfinder Supplies (Level 29) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10856</itemConsumeId> <!-- Pathfinder Supplies (Level 29) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1100,20 +1358,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="250" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="250" /> <!-- Spiritshot (A-Grade) -->
+						<item id="8626" count="9" /> <!-- Elixir of Life (A-Grade) -->
+						<item id="8632" count="9" /> <!-- Elixir of Mental Strength (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2561" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,5,1466,150,2513,150,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12832" /> <!-- Pathfinder Supplies (Level 30) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12832</itemConsumeId> <!-- Pathfinder Supplies (Level 30) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1121,20 +1385,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="5" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="150" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="150" /> <!-- Spiritshot (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2562" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,4,1465,100,2512,100,947,1,8625,3,8631,3,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12833" /> <!-- Pathfinder Supplies (Level 31) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12833</itemConsumeId> <!-- Pathfinder Supplies (Level 31) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1142,20 +1410,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="4" /> <!-- Greater Healing Potion -->
+						<item id="1465" count="100" /> <!-- Soulshot (B-Grade) -->
+						<item id="2512" count="100" /> <!-- Spiritshot (B-Grade) -->
+						<item id="947" count="1" /> <!-- Scroll: Enchant Weapon (B-Grade) -->
+						<item id="8625" count="3" /> <!-- Elixir of Life (B-Grade) -->
+						<item id="8631" count="3" /> <!-- Elixir of Mental Strength (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2563" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1466,300,2513,300,8626,10,8632,10,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10857" /> <!-- Pathfinder Supplies (Level 32) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10857</itemConsumeId> <!-- Pathfinder Supplies (Level 32) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1163,20 +1438,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="300" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="300" /> <!-- Spiritshot (A-Grade) -->
+						<item id="8626" count="10" /> <!-- Elixir of Life (A-Grade) -->
+						<item id="8632" count="10" /> <!-- Elixir of Mental Strength (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2564" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,3,1466,140,2513,140,730,1,8626,5,8632,5,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10858" /> <!-- Pathfinder Supplies (Level 33) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10858</itemConsumeId> <!-- Pathfinder Supplies (Level 33) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1184,20 +1465,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="3" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="140" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="140" /> <!-- Spiritshot (A-Grade) -->
+						<item id="730" count="1" /> <!-- Scroll: Enchant Armor (A-Grade) -->
+						<item id="8626" count="5" /> <!-- Elixir of Life (A-Grade) -->
+						<item id="8632" count="5" /> <!-- Elixir of Mental Strength (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2565" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,6,1466,250,2513,250,730,2,8626,6,8632,6,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10859" /> <!-- Pathfinder Supplies (Level 34) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10859</itemConsumeId> <!-- Pathfinder Supplies (Level 34) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1205,20 +1493,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="6" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="250" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="250" /> <!-- Spiritshot (A-Grade) -->
+						<item id="730" count="2" /> <!-- Scroll: Enchant Armor (A-Grade) -->
+						<item id="8626" count="6" /> <!-- Elixir of Life (A-Grade) -->
+						<item id="8632" count="6" /> <!-- Elixir of Mental Strength (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2566" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,9,1467,130,2514,130,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10860" /> <!-- Pathfinder Supplies (Level 35) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10860</itemConsumeId> <!-- Pathfinder Supplies (Level 35) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1226,20 +1521,24 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="9" /> <!-- Greater Healing Potion -->
+						<item id="1467" count="130" /> <!-- Soulshot (S-Grade) -->
+						<item id="2514" count="130" /> <!-- Spiritshot (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2567" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1467,350,2514,350,8627,12,8633,11,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10861" /> <!-- Pathfinder Supplies (Level 36) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10861</itemConsumeId> <!-- Pathfinder Supplies (Level 36) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1247,20 +1546,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1467" count="350" /> <!-- Soulshot (S-Grade) -->
+						<item id="2514" count="350" /> <!-- Spiritshot (S-Grade) -->
+						<item id="8627" count="12" /> <!-- Elixir of Life (S-Grade) -->
+						<item id="8633" count="11" /> <!-- Elixir of Mental Strength (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2568" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,10,1466,350,2513,350,730,2,8626,10,8632,10,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="12834" /> <!-- Pathfinder Supplies (Level 37) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>12834</itemConsumeId> <!-- Pathfinder Supplies (Level 37) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1268,20 +1573,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="10" /> <!-- Greater Healing Potion -->
+						<item id="1466" count="350" /> <!-- Soulshot (A-Grade) -->
+						<item id="2513" count="350" /> <!-- Spiritshot (A-Grade) -->
+						<item id="730" count="2" /> <!-- Scroll: Enchant Armor (A-Grade) -->
+						<item id="8626" count="10" /> <!-- Elixir of Life (A-Grade) -->
+						<item id="8632" count="10" /> <!-- Elixir of Mental Strength (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2569" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,12,1467,360,2514,360,8627,12,8633,12,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10862" /> <!-- Pathfinder Supplies (Level 38) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10862</itemConsumeId> <!-- Pathfinder Supplies (Level 38) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1289,20 +1601,26 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="12" /> <!-- Greater Healing Potion -->
+						<item id="1467" count="360" /> <!-- Soulshot (S-Grade) -->
+						<item id="2514" count="360" /> <!-- Spiritshot (S-Grade) -->
+						<item id="8627" count="12" /> <!-- Elixir of Life (S-Grade) -->
+						<item id="8633" count="12" /> <!-- Elixir of Mental Strength (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2570" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,6,1467,140,2514,140,960,1,8627,4,8633,3,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10863" /> <!-- Pathfinder Supplies (Level 39) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10863</itemConsumeId> <!-- Pathfinder Supplies (Level 39) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1310,20 +1628,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="6" /> <!-- Greater Healing Potion -->
+						<item id="1467" count="140" /> <!-- Soulshot (S-Grade) -->
+						<item id="2514" count="140" /> <!-- Spiritshot (S-Grade) -->
+						<item id="960" count="1" /> <!-- Scroll: Enchant Armor (S-Grade) -->
+						<item id="8627" count="4" /> <!-- Elixir of Life (S-Grade) -->
+						<item id="8633" count="3" /> <!-- Elixir of Mental Strength (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2571" levels="1" name="Pathfinder Supplies">
-		<table name="#extractableItems">
-			1539,15,1467,360,2514,360,960,1,8627,11,8633,11,100
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="10864" /> <!-- Pathfinder Supplies (Level 40) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>10864</itemConsumeId> <!-- Pathfinder Supplies (Level 40) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1331,20 +1656,27 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="100">
+						<item id="1539" count="15" /> <!-- Greater Healing Potion -->
+						<item id="1467" count="360" /> <!-- Soulshot (S-Grade) -->
+						<item id="2514" count="360" /> <!-- Spiritshot (S-Grade) -->
+						<item id="960" count="1" /> <!-- Scroll: Enchant Armor (S-Grade) -->
+						<item id="8627" count="11" /> <!-- Elixir of Life (S-Grade) -->
+						<item id="8633" count="11" /> <!-- Elixir of Mental Strength (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2572" levels="1" name="Pathfinder's Reward">
-		<table name="#extractableItems">
-			947,1,3.2
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13003" /> <!-- Pathfinder's Reward (C-Grade) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13003</itemConsumeId> <!-- Pathfinder's Reward (C-Grade) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1352,20 +1684,22 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="3.2">
+						<item id="947" count="1" /> <!-- Scroll: Enchant Weapon (B-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2573" levels="1" name="Pathfinder's Reward">
-		<table name="#extractableItems">
-			729,1,1.6111
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13004" /> <!-- Pathfinder's Reward (C-Grade) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13004</itemConsumeId> <!-- Pathfinder's Reward (C-Grade) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1373,20 +1707,22 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="1.6111">
+						<item id="729" count="1" /> <!-- Scroll: Enchant Weapon (A-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2574" levels="1" name="Pathfinder's Reward">
-		<table name="#extractableItems">
-			959,1,1.14
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13005" /> <!-- Pathfinder's Reward (B-Grade) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13005</itemConsumeId> <!-- Pathfinder's Reward (B-Grade) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1394,20 +1730,22 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="1.14">
+						<item id="959" count="1" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2575" levels="1" name="Pathfinder's Reward">
-		<table name="#extractableItems">
-			9546,1,19.8;9548,1,19.8;9550,1,19.8;959,1,1.98;9442,1,0.1;9443,1,0.1;9444,1,0.1;9445,1,0.1;9446,1,0.1;9447,1,0.1;9448,1,0.1;9449,1,0.1;9450,1,0.1;10252,1,0.1;10253,1,0.1;9532,1,1;9537,1,1;9542,1,1
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13006" /> <!-- Pathfinder's Reward (A-Grade) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13006</itemConsumeId> <!-- Pathfinder's Reward (A-Grade) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1415,20 +1753,73 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="19.8">
+						<item id="9546" count="1" /> <!-- Fire Stone -->
+					</item>
+					<item chance="19.8">
+						<item id="9548" count="1" /> <!-- Earth Stone -->
+					</item>
+					<item chance="19.8">
+						<item id="9550" count="1" /> <!-- Dark Stone -->
+					</item>
+					<item chance="1.98">
+						<item id="959" count="1" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
+					</item>
+					<item chance="0.1">
+						<item id="9442" count="1" /> <!-- Dynasty Sword -->
+					</item>
+					<item chance="0.1">
+						<item id="9443" count="1" /> <!-- Dynasty Blade -->
+					</item>
+					<item chance="0.1">
+						<item id="9444" count="1" /> <!-- Dynasty Phantom -->
+					</item>
+					<item chance="0.1">
+						<item id="9445" count="1" /> <!-- Dynasty Bow -->
+					</item>
+					<item chance="0.1">
+						<item id="9446" count="1" /> <!-- Dynasty Knife -->
+					</item>
+					<item chance="0.1">
+						<item id="9447" count="1" /> <!-- Dynasty Halberd -->
+					</item>
+					<item chance="0.1">
+						<item id="9448" count="1" /> <!-- Dynasty Cudgel -->
+					</item>
+					<item chance="0.1">
+						<item id="9449" count="1" /> <!-- Dynasty Mace -->
+					</item>
+					<item chance="0.1">
+						<item id="9450" count="1" /> <!-- Dynasty Bagh-Nakh -->
+					</item>
+					<item chance="0.1">
+						<item id="10252" count="1" /> <!-- Dynasty Staff -->
+					</item>
+					<item chance="0.1">
+						<item id="10253" count="1" /> <!-- Dynasty Crusher -->
+					</item>
+					<item chance="1">
+						<item id="9532" count="1" /> <!-- Sealed Dynasty Helmet Piece -->
+					</item>
+					<item chance="1">
+						<item id="9537" count="1" /> <!-- Sealed Dynasty Leather Helmet Piece -->
+					</item>
+					<item chance="1">
+						<item id="9542" count="1" /> <!-- Sealed Dynasty Circlet Piece -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2576" levels="1" name="Pathfinder's Reward">
-		<table name="#extractableItems">
-			9546,1,26.4;9548,1,26.4;9550,1,26.4;959,1,3.84;10215,1,0.13;10216,1,0.13;10217,1,0.13;10218,1,0.13;10219,1,0.13;10220,1,0.13;10221,1,0.13;10222,1,0.13;10223,1,0.13
-		</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13007" /> <!-- Pathfinder's Reward (S-Grade) -->
-		<set name="magicLevel" val="1" />
-		<set name="capsuled_items_skill" val="#extractableItems" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13007</itemConsumeId> <!-- Pathfinder's Reward (S-Grade) -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -1436,194 +1827,236 @@
 			</and>
 		</conditions>
 		<effects>
-			<effect name="RestorationRandom" />
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="26.4">
+						<item id="9546" count="1" /> <!-- Fire Stone -->
+					</item>
+					<item chance="26.4">
+						<item id="9548" count="1" /> <!-- Earth Stone -->
+					</item>
+					<item chance="26.4">
+						<item id="9550" count="1" /> <!-- Dark Stone -->
+					</item>
+					<item chance="3.84">
+						<item id="959" count="1" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
+					</item>
+					<item chance="0.13">
+						<item id="10215" count="1" /> <!-- Icarus Sawsword -->
+					</item>
+					<item chance="0.13">
+						<item id="10216" count="1" /> <!-- Icarus Disperser -->
+					</item>
+					<item chance="0.13">
+						<item id="10217" count="1" /> <!-- Icarus Spirit -->
+					</item>
+					<item chance="0.13">
+						<item id="10218" count="1" /> <!-- Icarus Heavy Arms -->
+					</item>
+					<item chance="0.13">
+						<item id="10219" count="1" /> <!-- Icarus Trident -->
+					</item>
+					<item chance="0.13">
+						<item id="10220" count="1" /> <!-- Icarus Hammer -->
+					</item>
+					<item chance="0.13">
+						<item id="10221" count="1" /> <!-- Icarus Hand -->
+					</item>
+					<item chance="0.13">
+						<item id="10222" count="1" /> <!-- Icarus Hall -->
+					</item>
+					<item chance="0.13">
+						<item id="10223" count="1" /> <!-- Icarus Spitter -->
+					</item>
+				</items>
+			</effect>
 		</effects>
 	</skill>
 	<skill id="2577" levels="1" name="Instant Defense">
 		<!-- Becomes invincible momentarily. -->
-		<set name="icon" val="icon.skill1418" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="INVINCIBILITY" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill1418</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>INVINCIBILITY</abnormalType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Invincible" />
 		</effects>
 	</skill>
 	<skill id="2578" levels="1" name="Cure Poison Paralyze">
 		<!-- Cures Poison Paralyze. -->
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="POISON,9" />
+				<dispel>POISON,9</dispel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2579" levels="1" name="Cure Death Clock">
 		<!-- Cures the Incense of Death. -->
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="DEATH_CLACK,1" />
+				<dispel>DEATH_CLACK,1</dispel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2580" levels="1" name="Vitality Replenishing Herb">
 		<!-- Restores Vitality points as you gain Exp. by hunting. -->
-		<set name="icon" val="icon.skilltransform4" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="VP_UP" />
-		<set name="abnormalVisualEffect" val="VP_UP" />
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
-		<set name="reuseDelay" val="2000" />
+		<icon>icon.skilltransform4</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>VP_UP</abnormalType>
+		<abnormalVisualEffect>VP_UP</abnormalVisualEffect>
+		<effectPoint>100</effectPoint>
+		<hitTime>100</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
 		<effects>
 			<effect name="Buff">
-				<sub stat="vitalityConsumeRate" val="10" />
+				<sub stat="vitalityConsumeRate">10</sub>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2581" levels="1" name="not_used">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="2582" levels="1" name="not_used">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="2583" levels="1" name="not_used">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="2584" levels="1" name="Item - Special Sound Crystal">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2585" levels="1" name="Item - Special Sound Crystal">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2586" levels="2" name="Vitality Replenishing Potion">
 		<table name="#value">10000 20000</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="3600000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>3600000</reuseDelay>
 		<effects>
 			<effect name="VitalityPointUp">
-				<param value="#value" />
+				<value>#value</value>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2587" levels="1" name="Increase number of teleport slots.">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13015" /> <!-- My Teleport Spellbook -->
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13015</itemConsumeId> <!-- My Teleport Spellbook -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2588" levels="1" name="My Teleport">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="hitTime" val="20000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<hitTime>20000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2589" levels="1" name="Extra Entrance Pass - Kamaloka (Hall of the Abyss)">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13010" /> <!-- Extra Entrance Pass - Kamaloka (Hall of the Abyss) -->
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13010</itemConsumeId> <!-- Extra Entrance Pass - Kamaloka (Hall of the Abyss) -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2590" levels="1" name="Extra Entrance Pass - Near Kamaloka">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13011" /> <!-- Extra Entrance Pass - Near Kamaloka -->
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13011</itemConsumeId> <!-- Extra Entrance Pass - Near Kamaloka -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2591" levels="1" name="Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss)">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13012" /> <!-- Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) -->
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13012</itemConsumeId> <!-- Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2592" levels="1" name="Quick Healing Potion">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="HealPercent">
-				<param power="30" />
+				<power>30</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2593" levels="1" name="Bow/Crossbow Attack Resistance Potion">
 		<!-- Temporarily increases your tolerance to bow/crossbow attacks. Effect 4. -->
-		<set name="icon" val="icon.etc_potion_red_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="180" />
-		<set name="abnormalType" val="PD_UP_BOW" />
-		<set name="effectPoint" val="40" />
-		<set name="magicLevel" val="1" />
+		<icon>icon.etc_potion_red_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>180</abnormalTime>
+		<abnormalType>PD_UP_BOW</abnormalType>
+		<effectPoint>40</effectPoint>
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
 		<effects>
 			<effect name="DefenceTrait">
-				<param BOW="40" />
-				<param CROSSBOW="20" />
+				<BOW>40</BOW>
+				<CROSSBOW>20</CROSSBOW>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2594" levels="1" name="Pailaka Scroll of Escape">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="20000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13129" /> <!-- Scroll of Escape: Pailaka -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>20000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13129</itemConsumeId> <!-- Scroll of Escape: Pailaka -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -1634,18 +2067,18 @@
 		</conditions>
 		<effects>
 			<effect name="Escape">
-				<param escapeType="TOWN" />
+				<escapeType>TOWN</escapeType>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2595" levels="1" name="Gran Kain's Blessed Scroll of Escape">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="200" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13258" /> <!-- Gran Kain's Blessed Scroll of Escape -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>200</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13258</itemConsumeId> <!-- Gran Kain's Blessed Scroll of Escape -->
+		<magicLevel>1</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -1656,46 +2089,46 @@
 		</conditions>
 		<effects>
 			<effect name="Escape">
-				<param escapeType="TOWN" />
+				<escapeType>TOWN</escapeType>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2596" levels="1" name="Gran Kain's Blessed Scroll of Resurrection">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="PC_BODY" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="600" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="13259" /> <!-- Gran Kain's Blessed Scroll of Resurrection -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>PC_BODY</targetType>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>600</effectRange>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>13259</itemConsumeId> <!-- Gran Kain's Blessed Scroll of Resurrection -->
+		<magicLevel>1</magicLevel>
 		<conditions>
 			<player canResurrect="true" />
 		</conditions>
 		<effects>
 			<effect name="Resurrection">
-				<param power="100" />
+				<power>100</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="2597" levels="1" name="Gran Kain's Echo Crystal - Theme of Journey">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2598" levels="1" name="Gran Kain's Echo Crystal - Theme of Battle">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="2599" levels="1" name="Gran Kain's Echo Crystal - Theme of Love">
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="1" />
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>1</magicLevel>
 	</skill>
 </list>

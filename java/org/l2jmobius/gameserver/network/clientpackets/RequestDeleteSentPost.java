@@ -20,10 +20,10 @@ import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangePostState;
 
 /**
@@ -68,7 +68,7 @@ public class RequestDeleteSentPost extends ClientPacket
 		
 		for (int msgId : _msgIds)
 		{
-			final Message msg = MailManager.getInstance().getMessage(msgId);
+			final MailMessage msg = MailManager.getInstance().getMessage(msgId);
 			if (msg == null)
 			{
 				continue;
@@ -88,6 +88,6 @@ public class RequestDeleteSentPost extends ClientPacket
 			msg.setDeletedBySender();
 		}
 		
-		player.sendPacket(new ExChangePostState(false, _msgIds, Message.DELETED));
+		player.sendPacket(new ExChangePostState(false, _msgIds, MailMessage.DELETED));
 	}
 }

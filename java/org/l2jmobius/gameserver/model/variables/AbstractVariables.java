@@ -127,6 +127,7 @@ public abstract class AbstractVariables extends StatSet
 	protected void trackChange(String name)
 	{
 		_saveLock.lock();
+		
 		try
 		{
 			_hasChanges.compareAndSet(false, true);
@@ -200,6 +201,7 @@ public abstract class AbstractVariables extends StatSet
 	public void remove(String name)
 	{
 		_saveLock.lock();
+		
 		try
 		{
 			_hasChanges.compareAndSet(false, true);

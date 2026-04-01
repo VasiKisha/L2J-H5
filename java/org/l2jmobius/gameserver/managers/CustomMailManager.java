@@ -34,7 +34,6 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.custom.CustomMailManagerConfig;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
@@ -42,6 +41,7 @@ import org.l2jmobius.gameserver.model.item.holders.ItemEnchantHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.network.enums.MessageSenderType;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 
 /**
  * @author Mobius
@@ -70,7 +70,7 @@ public class CustomMailManager
 					{
 						// Create message.
 						final String items = rs.getString("items");
-						final Message msg = new Message(playerId, rs.getString("subject"), rs.getString("message"), MessageSenderType.PLAYER);
+						final MailMessage msg = new MailMessage(playerId, rs.getString("subject"), rs.getString("message"), MessageSenderType.PLAYER);
 						final List<ItemEnchantHolder> itemHolders = new ArrayList<>();
 						for (String str : items.split(";"))
 						{

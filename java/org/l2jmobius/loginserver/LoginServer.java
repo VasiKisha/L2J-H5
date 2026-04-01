@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver;
 
@@ -41,49 +45,117 @@ import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
 import org.l2jmobius.loginserver.ui.Gui;
 
 /**
- * @author KenM
+ * Bootstraps and drives the login server lifecycle.<br>
+ * Coordinates configuration loading, core service initialization and network listener startup.
+ * <ul>
+ * <li>Initializes logging, configuration, database and thread pool.</li>
+ * <li>Loads login controller and game server table.</li>
+ * <li>Registers IP bans and starts listeners for game servers and login clients.</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class LoginServer
 {
+	// Logger.
 	public static final Logger LOGGER = Logger.getLogger(LoginServer.class.getName());
 	
+	// Configuration paths.
+	private static final String LOG_DIRECTORY_NAME = "log";
+	private static final String LOG_CONFIGURATION_PATH = "./log.cfg";
+	private static final String BANNED_IPS_CONFIGURATION_PATH = "./banned_ip.cfg";
+	
+	// Time constants.
+	private static final int MILLISECONDS_PER_HOUR = 3600000;
+	
+	// Process exit codes.
+	private static final int EXIT_CODE_NORMAL_SHUTDOWN = 0;
+	private static final int EXIT_CODE_RESTART_REQUEST = 2;
+	private static final int EXIT_CODE_FATAL_ERROR = 1;
+	
+	// Protocol.
 	public static final int PROTOCOL_REV = 0x0106;
 	
+	// Singleton instance.
 	private static LoginServer _instance;
-	private GameServerListener _gameServerListener;
-	private static int _loginStatus = ServerStatus.STATUS_NORMAL;
 	
-	private LoginServer() throws Exception
+	// Network listeners.
+	private GameServerListener _gameServerListener;
+	
+	// Login server status.
+	private static volatile int _loginStatus = ServerStatus.STATUS_NORMAL;
+	
+	/**
+	 * Creates a new login server instance and initializes all required services.
+	 */
+	private LoginServer()
 	{
-		// GUI.
+		initializeInterfaceLayer();
+		initializeLoggingLayer();
+		initializeCoreServices();
+		initializeSecurityAndBans();
+		configureScheduledRestart();
+		initializeNetworkListeners();
+	}
+	
+	/**
+	 * Initializes interface configuration and optional GUI.
+	 */
+	private void initializeInterfaceLayer()
+	{
 		InterfaceConfig.load();
-		if (InterfaceConfig.ENABLE_GUI)
+		
+		if (!InterfaceConfig.ENABLE_GUI)
 		{
-			System.out.println("LoginServer: Running in GUI mode.");
-			new Gui();
+			return;
 		}
 		
-		// Create log folder.
-		final File logFolder = new File(".", "log");
-		logFolder.mkdir();
-		
-		// Create input stream for log file -- or store file data into memory.
-		try (InputStream is = new FileInputStream(new File("./log.cfg")))
+		System.out.println("LoginServer: Running in GUI mode.");
+		new Gui();
+	}
+	
+	/**
+	 * Initializes logging directory and configuration from file.
+	 */
+	private void initializeLoggingLayer()
+	{
+		final File logDirectory = new File(".", LOG_DIRECTORY_NAME);
+		if (!logDirectory.exists() && !logDirectory.mkdir())
 		{
-			LogManager.getLogManager().readConfiguration(is);
+			LOGGER.warning(getClass().getSimpleName() + ": Unable to create log directory at " + logDirectory.getAbsolutePath() + ".");
+		}
+		
+		final File logConfigurationFile = new File(LOG_CONFIGURATION_PATH);
+		if (!logConfigurationFile.exists())
+		{
+			LOGGER.warning(getClass().getSimpleName() + ": Logging configuration file is missing at " + logConfigurationFile.getAbsolutePath() + ". Using default logging settings.");
+			return;
+		}
+		
+		if (logConfigurationFile.isDirectory())
+		{
+			LOGGER.warning(getClass().getSimpleName() + ": Logging configuration path points to a directory (" + logConfigurationFile.getAbsolutePath() + "). Using default logging settings.");
+			return;
+		}
+		
+		try (InputStream logConfigurationInputStream = new FileInputStream(logConfigurationFile))
+		{
+			LogManager.getLogManager().readConfiguration(logConfigurationInputStream);
 		}
 		catch (IOException e)
 		{
-			LOGGER.warning(getClass().getSimpleName() + ": " + e.getMessage());
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Failed to apply logging configuration from " + logConfigurationFile.getAbsolutePath() + ". Reason: " + e.getMessage(), e);
 		}
-		
-		// Load LoginConfig.
+	}
+	
+	/**
+	 * Initializes configuration, database connectivity, thread pool and login controller.
+	 */
+	private void initializeCoreServices()
+	{
 		LoginConfig.load();
 		
-		// Prepare the database.
 		DatabaseFactory.init();
 		
-		// Initialize ThreadPool.
 		ThreadPool.init();
 		
 		try
@@ -92,94 +164,197 @@ public class LoginServer
 		}
 		catch (GeneralSecurityException e)
 		{
-			LOGGER.log(Level.SEVERE, "FATAL: Failed initializing LoginController. Reason: " + e.getMessage(), e);
-			System.exit(1);
+			LOGGER.log(Level.SEVERE, "FATAL: LoginController initialization failed due to security configuration error. Reason: " + e.getMessage(), e);
+			System.exit(EXIT_CODE_FATAL_ERROR);
 		}
 		
 		GameServerTable.getInstance();
-		
+	}
+	
+	/**
+	 * Initializes security-related resources such as IP bans.
+	 */
+	private void initializeSecurityAndBans()
+	{
 		loadBanFile();
-		
-		if (LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART)
+	}
+	
+	/**
+	 * Configures an optional scheduled restart for the login server based on configuration values.
+	 */
+	private void configureScheduledRestart()
+	{
+		if (!LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART)
 		{
-			LOGGER.info("Scheduled LS restart after " + LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours.");
-			ThreadPool.schedule(() -> shutdown(true), LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
+			return;
 		}
 		
+		final long restartDelayHours = LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME;
+		final long restartDelayMillis = restartDelayHours * MILLISECONDS_PER_HOUR;
+		if (restartDelayMillis <= 0)
+		{
+			LOGGER.warning("Login server restart scheduling is enabled but the computed delay is invalid. Configured hours: " + restartDelayHours + ".");
+			return;
+		}
+		
+		LOGGER.info("Login server restart scheduled in " + restartDelayHours + " hour(s). Computed delay: " + restartDelayMillis + " ms.");
+		ThreadPool.schedule(() -> shutdown(true), restartDelayMillis);
+	}
+	
+	/**
+	 * Starts listeners for game servers and login clients.
+	 */
+	private void initializeNetworkListeners()
+	{
+		startGameServerListener();
+		startLoginClientListener();
+	}
+	
+	/**
+	 * Starts the game server listener socket.
+	 */
+	private void startGameServerListener()
+	{
 		try
 		{
 			_gameServerListener = new GameServerListener();
 			_gameServerListener.start();
-			LOGGER.info("Listening for GameServers on " + LoginConfig.GAME_SERVER_LOGIN_HOST + ":" + LoginConfig.GAME_SERVER_LOGIN_PORT);
+			
+			LOGGER.info("Game server listener is listening on " + LoginConfig.GAME_SERVER_LOGIN_HOST + ":" + LoginConfig.GAME_SERVER_LOGIN_PORT + ".");
 		}
 		catch (IOException e)
 		{
-			LOGGER.log(Level.SEVERE, "FATAL: Failed to start the Game Server Listener. Reason: " + e.getMessage(), e);
-			System.exit(1);
+			LOGGER.log(Level.SEVERE, "FATAL: Game server listener could not be started on " + LoginConfig.GAME_SERVER_LOGIN_HOST + ":" + LoginConfig.GAME_SERVER_LOGIN_PORT + ". Reason: " + e.getMessage(), e);
+			System.exit(EXIT_CODE_FATAL_ERROR);
 		}
-		
-		new ConnectionManager<>(new InetSocketAddress(LoginConfig.LOGIN_BIND_ADDRESS, LoginConfig.PORT_LOGIN), LoginClient::new, new LoginPacketHandler());
-		LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN);
 	}
 	
+	/**
+	 * Starts the login client listener using the generic connection manager.
+	 */
+	private void startLoginClientListener()
+	{
+		try
+		{
+			new ConnectionManager<>(new InetSocketAddress(LoginConfig.LOGIN_BIND_ADDRESS, LoginConfig.PORT_LOGIN), LoginClient::new, new LoginPacketHandler());
+			LOGGER.info(getClass().getSimpleName() + ": Login client listener started on " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN + ".");
+		}
+		catch (IOException e)
+		{
+			LOGGER.log(Level.SEVERE, "FATAL: Login client listener could not be started on " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN + ". Reason: " + e.getMessage(), e);
+			System.exit(EXIT_CODE_FATAL_ERROR);
+		}
+	}
+	
+	/**
+	 * Gets the game server listener instance.
+	 * @return The game server listener instance.
+	 */
 	public GameServerListener getGameServerListener()
 	{
 		return _gameServerListener;
 	}
 	
+	/**
+	 * Loads banned IP definitions from configuration file and registers them into the login controller.
+	 */
 	public void loadBanFile()
 	{
-		final File bannedFile = new File("./banned_ip.cfg");
-		if (bannedFile.exists() && bannedFile.isFile())
+		final File bannedIpConfigurationFile = new File(BANNED_IPS_CONFIGURATION_PATH);
+		if (!bannedIpConfigurationFile.exists() || !bannedIpConfigurationFile.isFile())
 		{
-			try (FileInputStream fis = new FileInputStream(bannedFile);
-				InputStreamReader is = new InputStreamReader(fis);
-				LineNumberReader lnr = new LineNumberReader(is))
-			{
-				lnr.lines().map(String::trim).filter(l -> !l.isEmpty() && (l.charAt(0) != '#')).forEach(lineValue ->
-				{
-					String line = lineValue;
-					String[] parts = line.split("#", 2); // address[ duration][ # comments]
-					line = parts[0];
-					parts = line.split("\\s+"); // Durations might be aligned via multiple spaces.
-					final String address = parts[0];
-					long duration = 0;
-					if (parts.length > 1)
-					{
-						try
-						{
-							duration = Long.parseLong(parts[1]);
-						}
-						catch (NumberFormatException nfe)
-						{
-							LOGGER.warning("Skipped: Incorrect ban duration (" + parts[1] + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
-							return;
-						}
-					}
-					
-					try
-					{
-						LoginController.getInstance().addBanForAddress(address, duration);
-					}
-					catch (Exception e)
-					{
-						LOGGER.warning("Skipped: Invalid address (" + address + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
-					}
-				});
-			}
-			catch (IOException e)
-			{
-				LOGGER.log(Level.WARNING, "Error while reading the bans file (" + bannedFile.getName() + "). Details: " + e.getMessage(), e);
-			}
-			
-			LOGGER.info("Loaded " + LoginController.getInstance().getBannedIps().size() + " IP Bans.");
+			LOGGER.warning("IP bans configuration file (" + bannedIpConfigurationFile.getAbsolutePath() + ") does not exist or is not a regular file. No IP bans have been loaded.");
+			return;
 		}
-		else
+		
+		try (FileInputStream bannedIpFileInputStream = new FileInputStream(bannedIpConfigurationFile);
+			InputStreamReader bannedIpReader = new InputStreamReader(bannedIpFileInputStream);
+			LineNumberReader bannedIpLineReader = new LineNumberReader(bannedIpReader))
 		{
-			LOGGER.warning("IP Bans file (" + bannedFile.getName() + ") is missing or is a directory, skipped.");
+			String rawLine;
+			while ((rawLine = bannedIpLineReader.readLine()) != null)
+			{
+				processBanLine(bannedIpConfigurationFile, bannedIpLineReader, rawLine);
+			}
+		}
+		catch (IOException e)
+		{
+			LOGGER.log(Level.WARNING, "Error while reading IP bans configuration file (" + bannedIpConfigurationFile.getAbsolutePath() + "). Details: " + e.getMessage(), e);
+		}
+		
+		LOGGER.info("Loaded " + LoginController.getInstance().getBannedIps().size() + " IP Bans.");
+	}
+	
+	/**
+	 * Parses and registers a single IP ban definition line.
+	 * @param sourceFile The configuration file being processed.
+	 * @param lineReader The line reader used to obtain the current line number.
+	 * @param rawLine The raw line text to parse.
+	 */
+	private void processBanLine(File sourceFile, LineNumberReader lineReader, String rawLine)
+	{
+		if (rawLine == null)
+		{
+			return;
+		}
+		
+		final String trimmedLine = rawLine.trim();
+		if (trimmedLine.isEmpty())
+		{
+			return;
+		}
+		
+		if (trimmedLine.charAt(0) == '#')
+		{
+			return;
+		}
+		
+		final int commentIndex = trimmedLine.indexOf('#');
+		final String definitionPart = (commentIndex >= 0) ? trimmedLine.substring(0, commentIndex).trim() : trimmedLine;
+		if (definitionPart.isEmpty())
+		{
+			LOGGER.warning("Skipped IP ban entry with empty definition in file (" + sourceFile.getAbsolutePath() + ") at line " + lineReader.getLineNumber() + ".");
+			return;
+		}
+		
+		final String[] tokens = definitionPart.split("\\s+");
+		if (tokens.length == 0)
+		{
+			LOGGER.warning("Skipped IP ban entry with no address token in file (" + sourceFile.getAbsolutePath() + ") at line " + lineReader.getLineNumber() + ".");
+			return;
+		}
+		
+		final String ipAddress = tokens[0];
+		long durationMillis = 0;
+		
+		if (tokens.length > 1)
+		{
+			final String durationToken = tokens[1];
+			try
+			{
+				durationMillis = Long.parseLong(durationToken);
+			}
+			catch (NumberFormatException e)
+			{
+				LOGGER.warning("Skipped IP ban entry due to invalid duration token '" + durationToken + "' in file (" + sourceFile.getAbsolutePath() + ") at line " + lineReader.getLineNumber() + ".");
+				return;
+			}
+		}
+		
+		try
+		{
+			LoginController.getInstance().addBanForAddress(ipAddress, durationMillis);
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning("Skipped IP ban registration for address '" + ipAddress + "' from file (" + sourceFile.getAbsolutePath() + ") at line " + lineReader.getLineNumber() + ". Reason: " + e.getMessage() + ".");
 		}
 	}
 	
+	/**
+	 * Shuts down the login server and optionally signals restart to the wrapper.
+	 * @param restart True to request a restart exit code.
+	 */
 	public void shutdown(boolean restart)
 	{
 		if (DatabaseConfig.BACKUP_DATABASE)
@@ -187,25 +362,41 @@ public class LoginServer
 			DatabaseBackup.performBackup("login");
 		}
 		
-		Runtime.getRuntime().exit(restart ? 2 : 0);
+		Runtime.getRuntime().exit(restart ? EXIT_CODE_RESTART_REQUEST : EXIT_CODE_NORMAL_SHUTDOWN);
 	}
 	
+	/**
+	 * Gets the current login server status.
+	 * @return The current login server status.
+	 */
 	public int getStatus()
 	{
 		return _loginStatus;
 	}
 	
+	/**
+	 * Sets the current login server status.
+	 * @param status The new login server status.
+	 */
 	public void setStatus(int status)
 	{
 		_loginStatus = status;
 	}
 	
+	/**
+	 * Gets the login server singleton instance.
+	 * @return The login server singleton instance.
+	 */
 	public static LoginServer getInstance()
 	{
 		return _instance;
 	}
 	
-	public static void main(String[] args) throws Exception
+	/**
+	 * Application entry point for the login server process.
+	 * @param args The command line arguments.
+	 */
+	public static void main(String[] args)
 	{
 		_instance = new LoginServer();
 	}

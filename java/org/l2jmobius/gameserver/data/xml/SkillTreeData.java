@@ -30,9 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.NavigableMap;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.w3c.dom.Document;
@@ -41,8 +39,6 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.SkillLearn;
-import org.l2jmobius.gameserver.model.SkillLearn.SubClassData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
@@ -55,6 +51,8 @@ import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillLearn;
+import org.l2jmobius.gameserver.model.skill.holders.SkillLearn.SubClassData;
 
 /**
  * This class loads and manage the characters and pledges skills trees.<br>
@@ -82,7 +80,6 @@ public class SkillTreeData implements IXmlReader
 	// ClassId, Map of Skill Hash Code, SkillLearn
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _classSkillTrees = new ConcurrentHashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _completeClassSkillTree = new HashMap<>();
-	private final Map<PlayerClass, NavigableMap<Integer, Integer>> _maxClassSkillLevels = new HashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _transferSkillTrees = new ConcurrentHashMap<>();
 	
 	// Skill Hash Code, SkillLearn
@@ -168,34 +165,6 @@ public class SkillTreeData implements IXmlReader
 			}
 			
 			_completeClassSkillTree.put(entryPlayerClass, skillTree);
-		}
-		
-		// Cache the maximum skill levels each class can learn at every player level.
-		_maxClassSkillLevels.clear();
-		for (Entry<PlayerClass, Map<Integer, SkillLearn>> entry : _completeClassSkillTree.entrySet())
-		{
-			final PlayerClass playerClass = entry.getKey();
-			if (!_maxClassSkillLevels.containsKey(playerClass))
-			{
-				_maxClassSkillLevels.put(playerClass, new TreeMap<>());
-			}
-			
-			final Map<Integer, Integer> playerClassSkillLevels = _maxClassSkillLevels.get(playerClass);
-			for (SkillLearn skillLearn : entry.getValue().values())
-			{
-				final Integer playerLevel = skillLearn.getGetLevel();
-				if (!playerClassSkillLevels.containsKey(playerLevel))
-				{
-					playerClassSkillLevels.put(playerLevel, 0);
-				}
-				
-				final Integer currentMaxLevel = playerClassSkillLevels.get(playerLevel);
-				final Integer skillLevel = skillLearn.getSkillLevel();
-				if (skillLevel > currentMaxLevel)
-				{
-					playerClassSkillLevels.put(playerLevel, skillLevel);
-				}
-			}
 		}
 		
 		// Generate check arrays.
@@ -642,32 +611,31 @@ public class SkillTreeData implements IXmlReader
 			}
 		}
 		
-		final NavigableMap<Integer, Integer> classSkillLevels = _maxClassSkillLevels.get(playerClass);
-		if (classSkillLevels == null)
+		// Keep learning skills until no more are available.
+		Collection<SkillLearn> learnableSkills;
+		Collection<SkillLearn> previousLearnableSkills = null;
+		while (true)
 		{
-			return result.values();
-		}
-		
-		final Entry<Integer, Integer> maxPlayerSkillLevel = classSkillLevels.floorEntry(player.getLevel());
-		if (maxPlayerSkillLevel == null)
-		{
-			return result.values();
-		}
-		
-		Collection<SkillLearn> learnable;
-		for (int i = 0; i < maxPlayerSkillLevel.getValue(); i++)
-		{
-			learnable = getAvailableSkills(player, playerClass, includeByFs, includeAutoGet, includeRequiredItems, result);
-			if (learnable.isEmpty())
+			learnableSkills = getAvailableSkills(player, playerClass, includeByFs, includeAutoGet, includeRequiredItems, result);
+			if (learnableSkills.isEmpty())
 			{
 				break;
 			}
 			
-			for (SkillLearn skillLearn : learnable)
+			// Break if no new skills became learnable since last iteration.
+			if (learnableSkills.equals(previousLearnableSkills))
+			{
+				break;
+			}
+			
+			for (SkillLearn skillLearn : learnableSkills)
 			{
 				final Skill skill = SkillData.getInstance().getSkill(skillLearn.getSkillId(), skillLearn.getSkillLevel());
 				result.put(skill.getId(), skill);
 			}
+			
+			// Store reference for convergence check.
+			previousLearnableSkills = learnableSkills;
 		}
 		
 		return result.values();

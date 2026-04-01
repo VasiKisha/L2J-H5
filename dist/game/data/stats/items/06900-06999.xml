@@ -42,10 +42,9 @@
 			</and>
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="6903" type="EtcItem" name="Music Box M">
@@ -58,7 +57,9 @@
 		<set name="reuse_delay" val="20000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2187-1" /> <!-- Item - Special Sound Crystal -->
+		<skills>
+			<skill id="2187" level="1" /> <!-- Item - Special Sound Crystal -->
+		</skills>
 	</item>
 	<item id="6904" type="EtcItem" name="Party Mask Fabric">
 		<!-- Main ingredient essentially required to make a Party Mask. Can also be sold at ordinary shops. -->
@@ -199,10 +200,6 @@
 		<set name="weight" val="6" />
 		<set name="price" val="2" />
 		<set name="for_npc" val="true" />
-		<stats>
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
-		</stats>
 	</item>
 	<item id="6918" type="Weapon" name="Monster Only (Shield of Silenos)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -214,10 +211,9 @@
 		<set name="price" val="12900" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="6919" type="Weapon" name="Monster Only (Shield of Ketra Orc)">
@@ -231,10 +227,9 @@
 		<set name="price" val="78400" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="142" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">142</stat>
 		</stats>
 	</item>
 	<item id="6920" type="EtcItem" name="Recipe: Greater Fish Oil (100%)">

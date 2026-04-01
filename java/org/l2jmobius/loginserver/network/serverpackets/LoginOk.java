@@ -25,41 +25,55 @@ import org.l2jmobius.loginserver.SessionKey;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
- * <pre>
- * Format: dddddddd
- * f: the session key
- * d: ?
- * d: ?
- * d: ?
- * d: ?
- * d: ?
- * d: ?
- * b: 16 bytes - unknown
- * </pre>
+ * LoginOk packet sent after successful authentication.<br>
+ * Serializes the LoginOk pair along with protocol-reserved values.
+ * <ul>
+ * <li>Opcode 0x03.</li>
+ * <li>Writes two LoginOk integers.</li>
+ * <li>Fills reserved fields and a 16-byte block.</li>
+ * </ul>
+ * author Mobius, BazookaRpm
  */
 public class LoginOk extends LoginServerPacket
 {
-	private final int _loginOk1;
-	private final int _loginOk2;
+	// Constants.
+	private static final int OPCODE_LOGIN_OK = 0x03;
+	private static final int RESERVED_ZERO = 0x00;
+	private static final int RESERVED_VALUE_3EA = 0x000003ea;
+	private static final int RESERVED_BYTES_LEN = 16;
+	private static final byte[] RESERVED_BYTES_16 = new byte[RESERVED_BYTES_LEN];
 	
+	// Session key parts.
+	private final int _loginOkPart1;
+	private final int _loginOkPart2;
+	
+	/**
+	 * Constructs the packet with the LoginOk pair.
+	 * @param sessionKey
+	 */
 	public LoginOk(SessionKey sessionKey)
 	{
-		_loginOk1 = sessionKey.loginOkID1;
-		_loginOk2 = sessionKey.loginOkID2;
+		_loginOkPart1 = sessionKey.getLoginOkID1();
+		_loginOkPart2 = sessionKey.getLoginOkID2();
 	}
 	
+	/**
+	 * Writes the LoginOk packet to the client buffer.
+	 * @param client
+	 * @param buffer
+	 */
 	@Override
 	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		buffer.writeByte(0x03);
-		buffer.writeInt(_loginOk1);
-		buffer.writeInt(_loginOk2);
-		buffer.writeInt(0x00);
-		buffer.writeInt(0x00);
-		buffer.writeInt(0x000003ea);
-		buffer.writeInt(0x00);
-		buffer.writeInt(0x00);
-		buffer.writeInt(0x00);
-		buffer.writeBytes(new byte[16]);
+		buffer.writeByte(OPCODE_LOGIN_OK);
+		buffer.writeInt(_loginOkPart1);
+		buffer.writeInt(_loginOkPart2);
+		buffer.writeInt(RESERVED_ZERO);
+		buffer.writeInt(RESERVED_ZERO);
+		buffer.writeInt(RESERVED_VALUE_3EA);
+		buffer.writeInt(RESERVED_ZERO);
+		buffer.writeInt(RESERVED_ZERO);
+		buffer.writeInt(RESERVED_ZERO);
+		buffer.writeBytes(RESERVED_BYTES_16);
 	}
 }

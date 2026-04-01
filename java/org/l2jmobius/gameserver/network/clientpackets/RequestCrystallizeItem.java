@@ -186,7 +186,7 @@ public class RequestCrystallizeItem extends ClientPacket
 			
 			player.sendPacket(iu); // Sent inventory update for unequip instantly.
 			
-			if (itemToRemove.getEnchantLevel() > 0)
+			if (itemToRemove.isEnchanted())
 			{
 				sm = new SystemMessage(SystemMessageId.THE_EQUIPMENT_S1_S2_HAS_BEEN_REMOVED);
 				sm.addInt(itemToRemove.getEnchantLevel());

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.gameserver.handler.EffectHandler;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 
-import handlers.effecthandlers.*;
+import handlers.skill.effects.*;
 
 /**
  * Effect Master handler.

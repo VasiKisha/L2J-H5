@@ -311,7 +311,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2240-1" /> <!-- Hot Spring Nectar -->
+		<skills>
+			<skill id="2240" level="1" /> <!-- Hot Spring Nectar -->
+		</skills>
 	</item>
 	<item id="8031" type="EtcItem" name="Hot Spring Mineral Water">
 		<!-- Used during the Rainbow Springs Clan Hall Battle, this item may be used on the Hot Springs Yeti. It cannot be exchanged or dropped. -->
@@ -324,7 +326,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2241-1" /> <!-- Hot Spring Mineral Water -->
+		<skills>
+			<skill id="2241" level="1" /> <!-- Hot Spring Mineral Water -->
+		</skills>
 	</item>
 	<item id="8032" type="EtcItem" name="Hot Spring Water">
 		<!-- Used during the Rainbow Springs Clan Hall Battle, this item may be used on the Hot Springs Yeti. It cannot be exchanged or dropped. -->
@@ -337,7 +341,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2242-1" /> <!-- Hot Spring Fountain Water -->
+		<skills>
+			<skill id="2242" level="1" /> <!-- Hot Spring Fountain Water -->
+		</skills>
 	</item>
 	<item id="8033" type="EtcItem" name="Hot Spring Sulfur">
 		<!-- Used during the Rainbow Springs Clan Hall Battle, this item may be used on the Hot Springs Yeti. It cannot be exchanged or dropped. -->
@@ -349,7 +355,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
-		<set name="item_skill" val="2243-1" /> <!-- Hot Spring Sulfur -->
+		<skills>
+			<skill id="2243" level="1" /> <!-- Hot Spring Sulfur -->
+		</skills>
 	</item>
 	<item id="8034" type="EtcItem" name="Rainbow Springs Clan Hall War Decree">
 		<!-- This ticket allows entry to the Rainbow Springs Clan Hall Battle. It is a reward for fishing in Goddard. -->
@@ -595,7 +603,9 @@
 		<set name="material" val="STEEL" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2238-1" /> <!-- Room of Splendor Key -->
+		<skills>
+			<skill id="2238" level="1" /> <!-- Room of Splendor Key -->
+		</skills>
 	</item>
 	<item id="8057" type="EtcItem" name="Silver Hemocyte">
 		<!-- The Ice Queen's pets' favorite food. -->
@@ -636,7 +646,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2260-1" /> <!-- Key of Riddles -->
+		<skills>
+			<skill id="2260" level="1" /> <!-- Key of Riddles -->
+		</skills>
 	</item>
 	<item id="8061" type="EtcItem" name="Scribbled Memo">
 		<!-- Dr. Chaos's research report. -->

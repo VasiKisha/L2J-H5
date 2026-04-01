@@ -31,10 +31,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.AirShipTeleportList;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableAirShip;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
@@ -47,6 +46,35 @@ public class AirShipManager
 	private static final String LOAD_DB = "SELECT * FROM airships";
 	private static final String ADD_DB = "INSERT INTO airships (owner_id,fuel) VALUES (?,?)";
 	private static final String UPDATE_DB = "UPDATE airships SET fuel=? WHERE owner_id=?";
+	
+	private static class AirShipTeleportList
+	{
+		private final int _location;
+		private final int[] _fuel;
+		private final VehiclePathPoint[][] _routes;
+		
+		public AirShipTeleportList(int locationValue, int[] fuelValue, VehiclePathPoint[][] routesValue)
+		{
+			_location = locationValue;
+			_fuel = fuelValue;
+			_routes = routesValue;
+		}
+		
+		public int getLocation()
+		{
+			return _location;
+		}
+		
+		public int[] getFuel()
+		{
+			return _fuel;
+		}
+		
+		public VehiclePathPoint[][] getRoute()
+		{
+			return _routes;
+		}
+	}
 	
 	private CreatureTemplate _airShipTemplate = null;
 	private final Map<Integer, StatSet> _airShipsInfo = new HashMap<>();

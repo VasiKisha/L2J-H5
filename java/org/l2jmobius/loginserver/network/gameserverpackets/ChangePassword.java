@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver.network.gameserverpackets;
 
@@ -22,7 +26,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Collection;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
@@ -32,94 +38,131 @@ import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.GameServerThread;
 
 /**
- * @author Nik
+ * Handles password change requests coming from game servers.<br>
+ * Performs credential verification and persists the updated password hash in the login database.
+ * <ul>
+ * <li>Resolves the session owner GameServerThread for the requested account.</li>
+ * <li>Validates the provided current password hash against the stored value.</li>
+ * <li>Updates the stored hash and replies with the result.</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class ChangePassword extends BaseReadablePacket
 {
+	// Logging.
 	protected static final Logger LOGGER = Logger.getLogger(ChangePassword.class.getName());
 	
+	// Password Hashing.
+	private static final String PASSWORD_DIGEST_ALGORITHM = "SHA";
+	
+	// Database Queries.
+	private static final String SELECT_PASSWORD_SQL = "SELECT password FROM accounts WHERE login=?";
+	private static final String UPDATE_PASSWORD_MATCHING_SQL = "UPDATE accounts SET password=? WHERE login=? AND password=?";
+	
+	// Response Messages.
+	private static final String MSG_INVALID_PASSWORD_DATA = "Invalid password data! Try again.";
+	private static final String MSG_PASSWORD_CHANGED = "You have successfully changed your password!";
+	private static final String MSG_PASSWORD_CHANGE_FAILED = "The password change was unsuccessful!";
+	private static final String MSG_CURRENT_PASSWORD_MISMATCH = "The typed current password doesn't match with your current one.";
+	
+	/**
+	 * Reads the password change request and updates the account password when validation succeeds.<br>
+	 * Sends the result back to the owning game server thread.
+	 * @param decrypt
+	 */
 	public ChangePassword(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // Packet id, it is already processed.
 		
-		final String accountName = readString();
-		final String characterName = readString();
-		final String curpass = readString();
-		final String newpass = readString();
+		final int packetId = readByte();
+		final String loginName = readString();
+		final String playerName = readString();
+		final String currentPassword = readString();
+		final String newPassword = readString();
 		
-		GameServerThread gst = null;
-		final Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
-		for (GameServerInfo gsi : serverList)
+		GameServerThread ownerThread = null;
+		int ownerServerId = 0;
+		
+		final Collection<GameServerInfo> registeredServers = GameServerTable.getInstance().getRegisteredGameServers().values();
+		for (GameServerInfo serverInfo : registeredServers)
 		{
-			if ((gsi.getGameServerThread() != null) && gsi.getGameServerThread().hasAccountOnGameServer(accountName))
+			final GameServerThread serverThread = serverInfo.getGameServerThread();
+			if ((serverThread != null) && serverThread.hasAccountOnGameServer(loginName))
 			{
-				gst = gsi.getGameServerThread();
+				ownerThread = serverThread;
+				ownerServerId = serverInfo.getId();
+				break;
 			}
 		}
 		
-		if (gst == null)
+		if (ownerThread == null)
 		{
+			if (LOGGER.isLoggable(Level.FINER))
+			{
+				LOGGER.finer("Ignored ChangePassword packetId=" + packetId + " for account '" + loginName + "' requested by player '" + playerName + "'.");
+			}
 			return;
 		}
 		
-		if ((curpass == null) || (newpass == null))
+		if ((currentPassword == null) || (newPassword == null))
 		{
-			gst.changePasswordResponse(characterName, "Invalid password data! Try again.");
+			ownerThread.changePasswordResponse(playerName, MSG_INVALID_PASSWORD_DATA);
+			return;
 		}
-		else
+		
+		try
 		{
-			try
+			final MessageDigest digest = MessageDigest.getInstance(PASSWORD_DIGEST_ALGORITHM);
+			final Encoder encoder = Base64.getEncoder();
+			
+			final String currentHash = encoder.encodeToString(digest.digest(currentPassword.getBytes(StandardCharsets.UTF_8)));
+			final String newHash = encoder.encodeToString(digest.digest(newPassword.getBytes(StandardCharsets.UTF_8)));
+			
+			try (Connection con = DatabaseFactory.getConnection())
 			{
-				final MessageDigest md = MessageDigest.getInstance("SHA");
-				final byte[] raw = md.digest(curpass.getBytes(StandardCharsets.UTF_8));
-				final String curpassEnc = Base64.getEncoder().encodeToString(raw);
-				String pass = null;
-				int passUpdated = 0;
-				
-				try (Connection con = DatabaseFactory.getConnection();
-					PreparedStatement ps = con.prepareStatement("SELECT password FROM accounts WHERE login=?"))
+				int updatedRows = 0;
+				try (PreparedStatement updateStatement = con.prepareStatement(UPDATE_PASSWORD_MATCHING_SQL))
 				{
-					ps.setString(1, accountName);
-					try (ResultSet rs = ps.executeQuery())
+					updateStatement.setString(1, newHash);
+					updateStatement.setString(2, loginName);
+					updateStatement.setString(3, currentHash);
+					updatedRows = updateStatement.executeUpdate();
+				}
+				
+				if (updatedRows > 0)
+				{
+					// LOGGER.info("Password changed for account '" + loginName + "' requested by player '" + playerName + "' on GS " + ownerServerId + ".");
+					ownerThread.changePasswordResponse(playerName, MSG_PASSWORD_CHANGED);
+					return;
+				}
+				
+				String storedHash = null;
+				try (PreparedStatement selectStatement = con.prepareStatement(SELECT_PASSWORD_SQL))
+				{
+					selectStatement.setString(1, loginName);
+					try (ResultSet resultSet = selectStatement.executeQuery())
 					{
-						if (rs.next())
+						if (resultSet.next())
 						{
-							pass = rs.getString("password");
+							storedHash = resultSet.getString("password");
 						}
 					}
 				}
 				
-				if (curpassEnc.equals(pass))
+				if (currentHash.equals(storedHash))
 				{
-					final byte[] password = md.digest(newpass.getBytes(StandardCharsets.UTF_8));
-					try (Connection con = DatabaseFactory.getConnection();
-						PreparedStatement ps = con.prepareStatement("UPDATE accounts SET password=? WHERE login=?"))
-					{
-						ps.setString(1, Base64.getEncoder().encodeToString(password));
-						ps.setString(2, accountName);
-						passUpdated = ps.executeUpdate();
-					}
-					
-					LOGGER.info("The password for account " + accountName + " has been changed from " + curpassEnc + " to " + Base64.getEncoder().encodeToString(password));
-					if (passUpdated > 0)
-					{
-						gst.changePasswordResponse(characterName, "You have successfully changed your password!");
-					}
-					else
-					{
-						gst.changePasswordResponse(characterName, "The password change was unsuccessful!");
-					}
+					LOGGER.warning("Password change failed for account '" + loginName + "' requested by player '" + playerName + "' on GS " + ownerServerId + " (0 rows updated).");
+					ownerThread.changePasswordResponse(playerName, MSG_PASSWORD_CHANGE_FAILED);
 				}
 				else
 				{
-					gst.changePasswordResponse(characterName, "The typed current password doesn't match with your current one.");
+					ownerThread.changePasswordResponse(playerName, MSG_CURRENT_PASSWORD_MISMATCH);
 				}
 			}
-			catch (Exception e)
-			{
-				LOGGER.warning("Error while changing password for account " + accountName + " requested by player " + characterName + "! " + e);
-			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Error while changing password for account '" + loginName + "' requested by player '" + playerName + "' on GS " + ownerServerId + " (packetId=" + packetId + ").", e);
 		}
 	}
 }

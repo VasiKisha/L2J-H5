@@ -23,13 +23,13 @@ import java.util.logging.Level;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.stat.VehicleStat;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
@@ -257,7 +257,7 @@ public abstract class Vehicle extends Creature
 	
 	public Location getOustLoc()
 	{
-		return _oustLoc != null ? _oustLoc : MapRegionManager.getInstance().getTeleToLocation(this, TeleportWhereType.TOWN);
+		return _oustLoc != null ? _oustLoc : MapRegionData.getInstance().getTeleToLocation(this, TeleportWhereType.TOWN);
 	}
 	
 	public void oustPlayers()

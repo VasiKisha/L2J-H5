@@ -201,10 +201,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2213-20" /> <!-- Escape - Talking Island Village -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2213" level="20" /> <!-- Escape - Ketra Orc Village -->
+		</skills>
 	</item>
 	<item id="7619" type="EtcItem" name="Scroll of Escape: Varka Silenos Village">
 		<!-- A magical scroll that relocates you to Varka Silenos Village. Cannot be sold in shops. -->
@@ -216,10 +218,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2213-21" /> <!-- Escape - Talking Island Village -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2213" level="21" /> <!-- Escape - Varka Silenos Village -->
+		</skills>
 	</item>
 	<item id="7620" type="EtcItem" name="Trash">
 		<!-- Saint's blood that has power of holiness. -->
@@ -339,7 +343,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2217-1" /> <!-- Item - Quest Treasure Box -->
+		<skills>
+			<skill id="2217" level="1" /> <!-- Item - Quest Treasure Box -->
+		</skills>
 	</item>
 	<item id="7630" type="EtcItem" name="Looted Goods - Blue Cargo box">
 		<!-- Blue Cargo Box looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -351,7 +357,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2217-2" /> <!-- Item - Quest Treasure Box -->
+		<skills>
+			<skill id="2217" level="2" /> <!-- Item - Quest Treasure Box -->
+		</skills>
 	</item>
 	<item id="7631" type="EtcItem" name="Looted Goods - Yellow Cargo box">
 		<!-- Yellow Cargo Box looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -363,7 +371,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2217-3" /> <!-- Item - Quest Treasure Box -->
+		<skills>
+			<skill id="2217" level="3" /> <!-- Item - Quest Treasure Box -->
+		</skills>
 	</item>
 	<item id="7632" type="EtcItem" name="Looted Goods - Red Cargo Box">
 		<!-- Red Crate looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -375,7 +385,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2217-4" /> <!-- Item - Quest Treasure Box -->
+		<skills>
+			<skill id="2217" level="4" /> <!-- Item - Quest Treasure Box -->
+		</skills>
 	</item>
 	<item id="7633" type="EtcItem" name="Looted Goods - Purple Cargo Box">
 		<!-- Purple crate looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -387,7 +399,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2217-5" /> <!-- Item - Quest Treasure Box -->
+		<skills>
+			<skill id="2217" level="5" /> <!-- Item - Quest Treasure Box -->
+		</skills>
 	</item>
 	<item id="7634" type="EtcItem" name="Looted Goods - Brown Pouch">
 		<!-- Pouch looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -399,7 +413,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2219-1" /> <!-- Item - Quest Sac -->
+		<skills>
+			<skill id="2219" level="1" /> <!-- Item - Quest Sac -->
+		</skills>
 	</item>
 	<item id="7635" type="EtcItem" name="Looted Goods - Gray Pouch">
 		<!-- Pouch looted from a trader's wagon. Seems to have valuable goods. Double-click to see the contents. -->
@@ -411,7 +427,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2219-2" /> <!-- Item - Quest Sac -->
+		<skills>
+			<skill id="2219" level="2" /> <!-- Item - Quest Sac -->
+		</skills>
 	</item>
 	<item id="7636" type="EtcItem" name="Booty - Yellow Pouch">
 		<!-- Item discovered in the marsh. Dirty yellow pouch ripped here and there. Double-click to see the contents. -->
@@ -423,7 +441,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2218-1" /> <!-- Item - Quest Sac -->
+		<skills>
+			<skill id="2218" level="1" /> <!-- Item - Quest Sac -->
+		</skills>
 	</item>
 	<item id="7637" type="EtcItem" name="Booty - Brown Pouch">
 		<!-- Item discovered in the marsh. Dirty brown pouch ripped here and there. Double-click to see the contents. -->
@@ -435,7 +455,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2218-2" /> <!-- Item - Quest Sac -->
+		<skills>
+			<skill id="2218" level="2" /> <!-- Item - Quest Sac -->
+		</skills>
 	</item>
 	<item id="7638" type="EtcItem" name="Spellbook - Mass Summon Storm Cubic">
 		<!-- Spellbook needed to learn Mass Summon Storm Cubic. Used by Warlocks. Required level: 40 -->

@@ -199,7 +199,10 @@ public enum Stat
 	REDUCE_DEATH_PENALTY_BY_RAID("reduceDeathPenaltyByRaid"),
 	
 	// Fishing
-	FISHING_EXPERTISE("fishingExpertise");
+	FISHING_EXPERTISE("fishingExpertise"),
+	
+	// Affects the random weapon damage.
+	RANDOM_DAMAGE("randomDamage");
 	
 	public static final int NUM_STATS = values().length;
 	

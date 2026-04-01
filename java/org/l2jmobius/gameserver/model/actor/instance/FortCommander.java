@@ -25,12 +25,12 @@ import java.util.List;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.managers.FortSiegeManager;
-import org.l2jmobius.gameserver.model.FortSiegeSpawn;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.siege.FortSpawnHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -122,8 +122,8 @@ public class FortCommander extends Defender
 		final Spawn spawn = getSpawn();
 		if ((spawn != null) && canTalk())
 		{
-			final List<FortSiegeSpawn> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(getFort().getResidenceId());
-			for (FortSiegeSpawn spawn2 : commanders)
+			final List<FortSpawnHolder> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(getFort().getResidenceId());
+			for (FortSpawnHolder spawn2 : commanders)
 			{
 				if (spawn2.getId() == spawn.getId())
 				{

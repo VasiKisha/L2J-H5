@@ -27,7 +27,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20900,1,1,100;14611,1,1,100" />
+		<capsuled_items>
+			<item id="20900" min="1" max="1" chance="100" /> <!-- Santa Hat - 14-day limited period -->
+			<item id="14611" min="1" max="1" chance="100" /> <!-- Rudolph's Nose -->
+		</capsuled_items>
 	</item>
 	<item id="20902" type="EtcItem" name="Ring of Queen Ant 7-Day Pack">
 		<!-- Wrapped pack containing the Ring of Queen Ant (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -44,7 +47,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20205,1,1,100" />
+		<capsuled_items>
+			<item id="20205" min="1" max="1" chance="100" /> <!-- Queen Ant's Ring (Event) - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20903" type="EtcItem" name="Rose Petal">
 		<!-- Increases HP/MP Regeneration by 20% through rose aroma for 5 minutes. -->
@@ -55,7 +60,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22158-1" /> <!-- Red Rose Herb -->
+		<skills>
+			<skill id="22158" level="1" /> <!-- Red Rose Herb -->
+		</skills>
 	</item>
 	<item id="20904" type="EtcItem" name="Rose Essense">
 		<!-- Rose energy extract is necessary to use the Rose Spirit's special skill. -->
@@ -108,11 +115,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20909" type="EtcItem" name="Hyum Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Hyum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -126,11 +135,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20910" type="EtcItem" name="Rekang Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Rekang. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -144,11 +155,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20911" type="EtcItem" name="Lilias Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Lilias. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -162,11 +175,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20912" type="EtcItem" name="Lapham Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Lapham. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -180,11 +195,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20913" type="EtcItem" name="Mafum Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Mafum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -198,11 +215,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20914" type="EtcItem" name="Improved Rose Spirit Exchange Ticket - 5 hours">
 		<!-- Coupon that can be exchanged for a necklace (5 hour) that summons an Improved Rose Spirit. Can be exchanged through the Dimensional Merchant. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -232,11 +251,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20916" type="EtcItem" name="Improved Hyum Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Hyum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -252,11 +273,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20917" type="EtcItem" name="Improved Rekang Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Rekang. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -272,11 +295,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20918" type="EtcItem" name="Improved Lilias Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Lilias. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -292,11 +317,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20919" type="EtcItem" name="Improved Lapham Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Lapham. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -312,11 +339,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20920" type="EtcItem" name="Improved Mafum Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Mafum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -332,11 +361,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="20921" type="EtcItem" name="Rose Spirit Test Report - 24-hour limited period">
 		<!-- Report in which you can record your findings while testing the Rose Spirit. You can only return it 24 hours after receiving it. It cannot be destroyed. -->
@@ -373,7 +404,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22159-1" /> <!-- Vesper's Mighty Power -->
+		<skills>
+			<skill id="22159" level="1" /> <!-- Vesper's Mighty Power -->
+		</skills>
 	</item>
 	<item id="20924" type="EtcItem" name="Vesper Caster">
 		<!-- 2010 April Fools' Day Vesper Critical Power Herb -->
@@ -385,7 +418,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22160-1" /> <!-- Vesper's Critical Attack Power -->
+		<skills>
+			<skill id="22160" level="1" /> <!-- Vesper's Critical Attack Power -->
+		</skills>
 	</item>
 	<item id="20925" type="EtcItem" name="Vesper Dual Sword">
 		<!-- 2010 April Fools' Day Invincible Vesper Herb -->
@@ -397,7 +432,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22161-1" /> <!-- Invincible Vesper -->
+		<skills>
+			<skill id="22161" level="1" /> <!-- Invincible Vesper -->
+		</skills>
 	</item>
 	<item id="20926" type="EtcItem" name="Mt. Fuji Herb">
 		<!-- Mt. Fuji Herb -->
@@ -410,7 +447,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22162-1" /> <!-- Herb of Mt. Fuji -->
+		<skills>
+			<skill id="22162" level="1" /> <!-- Herb of Mt. Fuji -->
+		</skills>
 	</item>
 	<item id="20927" type="EtcItem" name="Hawk Herb">
 		<!-- Hawk Herb -->
@@ -423,7 +462,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22163-1" /> <!-- Hawk Herb -->
+		<skills>
+			<skill id="22163" level="1" /> <!-- Hawk Herb -->
+		</skills>
 	</item>
 	<item id="20928" type="EtcItem" name="Eggplant Herb">
 		<!-- Eggplant Herb -->
@@ -436,7 +477,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22164-1" /> <!-- Eggplant Herb -->
+		<skills>
+			<skill id="22164" level="1" /> <!-- Eggplant Herb -->
+		</skills>
 	</item>
 	<item id="20929" type="Armor" name="Royal Crown of Vesper">
 		<!-- Crown with Versper's grace. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -586,9 +629,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="619-1" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+			<skill id="619" level="1" type="ON_UNEQUIP" /> <!-- Transform Dispel -->
+		</skills>
 	</item>
 	<item id="20939" type="Armor" name="Jet Bike Mount Bracelet - 30-day limited period">
 		<!-- This item allows you to ride Jet Bike which is the core of Dwarven technology Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -603,9 +648,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="619-1" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+			<skill id="619" level="1" type="ON_UNEQUIP" /> <!-- Transform Dispel -->
+		</skills>
 	</item>
 	<item id="20940" type="Armor" name="Phoenix Agthion Seal Bracelet - Nirvana Rebirth - 7-day limited period">
 		<!-- Bracelet that summons Phoenix Agathion. When Nirvana Rebirth is used, all HP, MP, CP are recovered, and becomes invincible for 5 seconds with the power of Phoenix. Possible to use under HP 30% only. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 12 hours. -->
@@ -621,9 +668,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21191-1;23171-1;23172-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21191" level="1" /> <!-- Release Seal on Agathion - Phoenix -->
+			<skill id="23171" level="1" /> <!-- Phoenix Agathion Cute Trick -->
+			<skill id="23172" level="1" /> <!-- Phoenix Agathion Special Skill - Nirvana Cycle -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20941" type="Armor" name="Phoenix Agthion Seal Bracelet - Oriental Phoenix - 7-day limited period">
 		<!-- Bracelet that summons Phoenix Agathion. When Oriental Phoenix is used, all Debuff is canceled with the power of Phoenix. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 4 hours. -->
@@ -639,9 +691,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21191-1;23171-1;23173-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21191" level="1" /> <!-- Release Seal on Agathion - Phoenix -->
+			<skill id="23171" level="1" /> <!-- Phoenix Agathion Cute Trick -->
+			<skill id="23173" level="1" /> <!-- Phoenix Agathion Special Skill - Mountain Echoes -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20942" type="Armor" name="Fox Mask">
 		<!-- Fox Mask This mask automatically covers your face during battle. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -673,8 +730,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21192-1" /> <!-- Silent Move -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21192" level="1" /> <!-- Silent Move -->
+		</skills>
 	</item>
 	<item id="20944" type="Armor" name="Paiwan Hat">
 		<!-- Traditional Paiwan Hat. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->
@@ -706,8 +765,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21193-1" /> <!-- Guardian Deity's Strength -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21193" level="1" /> <!-- Guardian Deity's Strength -->
+		</skills>
 	</item>
 	<item id="20946" type="EtcItem" name="Jet Bike 7-Day Pack">
 		<!-- A Pack that has Jet Bike (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -723,7 +784,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20938,1,1,100" />
+		<capsuled_items>
+			<item id="20938" min="1" max="1" chance="100" /> <!-- Jet Bike Mount Bracelet - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20947" type="EtcItem" name="Jet Bike 30-Day Pack">
 		<!-- A Pack that has Jet Bike (30 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -739,7 +802,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20939,1,1,100" />
+		<capsuled_items>
+			<item id="20939" min="1" max="1" chance="100" /> <!-- Jet Bike Mount Bracelet - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20948" type="EtcItem" name="Phoenix Agathion 7-Day Pack - Nirvana Rebirth">
 		<!-- A Pack that has Phoenix Agathion (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -756,7 +821,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20940,1,1,100" />
+		<capsuled_items>
+			<item id="20940" min="1" max="1" chance="100" /> <!-- Phoenix Agthion Seal Bracelet - Nirvana Rebirth - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20949" type="EtcItem" name="Phoenix Agathion 7-Day Pack - Oriental Phoenix">
 		<!-- A Pack that has Phoenix Agathion (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -773,7 +840,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20941,1,1,100" />
+		<capsuled_items>
+			<item id="20941" min="1" max="1" chance="100" /> <!-- Phoenix Agthion Seal Bracelet - Oriental Phoenix - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20950" type="EtcItem" name="Fox Mask Pack">
 		<!-- A Pack that has Fox Mask. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -790,7 +859,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20942,1,1,100" />
+		<capsuled_items>
+			<item id="20942" min="1" max="1" chance="100" /> <!-- Fox Mask -->
+		</capsuled_items>
 	</item>
 	<item id="20951" type="EtcItem" name="Fox Mask 7-Day Pack - Silent Move">
 		<!-- A Pack that has Fox Mask (30 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -807,7 +878,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20943,1,1,100" />
+		<capsuled_items>
+			<item id="20943" min="1" max="1" chance="100" /> <!-- Fox Mask - Silent Move - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20952" type="EtcItem" name="Paiwan Hat Pack">
 		<!-- A Pack that has Paiwan Hat. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -824,7 +897,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20944,1,1,100" />
+		<capsuled_items>
+			<item id="20944" min="1" max="1" chance="100" /> <!-- Paiwan Hat -->
+		</capsuled_items>
 	</item>
 	<item id="20953" type="EtcItem" name="Paiwan Hat 7-Day Pack - Power of Guardian Deity">
 		<!-- A Pack that has Paiwan Hat (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -841,7 +916,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20945,1,1,100" />
+		<capsuled_items>
+			<item id="20945" min="1" max="1" chance="100" /> <!-- Paiwan Hat - Power of Guardian Deity - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20954" type="EtcItem" name="Small Placid">
 		<!-- When used, 5000 Soul Avatar Energy is recovered. Can be replenished only when Soul Avatar is on and when the consumed energy is 5000 or more. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -857,7 +934,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22165-1" /> <!-- Energy Replenishing -->
+		<skills>
+			<skill id="22165" level="1" /> <!-- Energy Replenishing -->
+		</skills>
 	</item>
 	<item id="20955" type="EtcItem" name="Medium Placid">
 		<!-- When used, 10000 Soul Avatar Energy is recovered. Can be replenished only when Soul Avatar is on and the consumed energy is 10000 or more. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -873,7 +952,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22166-1" /> <!-- Energy Replenishing -->
+		<skills>
+			<skill id="22166" level="1" /> <!-- Energy Replenishing -->
+		</skills>
 	</item>
 	<item id="20956" type="Armor" name="Agathion Seal Bracelet - Frozen Corpse - Soul Stealth - 7-day limited period">
 		<!-- Bracelet that summons Zombie Agathion. Invisible effect for 5 seconds after resurrection, and will not receive preemptive attack from the monsters for 2 minutes. Moving speed is decreased by 50% while the skill effect is operative. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 12 hours. -->
@@ -889,9 +970,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21133-1;23117-1;23175-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21133" level="1" /> <!-- Release Seal on Agathion - Frozen Corpse -->
+			<skill id="23117" level="1" /> <!-- Frozen Corpse Agathion Cute Trick -->
+			<skill id="23175" level="1" /> <!-- Soul Stealth -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20957" type="EtcItem" name="Zombie Agathion 7-Day Pack - Soul Stealth">
 		<!-- A Pack that has Zombie Agathion (7 days). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -908,7 +994,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20956,1,1,100" />
+		<capsuled_items>
+			<item id="20956" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Frozen Corpse - Soul Stealth - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20958" type="EtcItem" name="April Fools' Day Special Gift - For Event">
 		<!-- The luckiest person will be given a special fortune box on April Fool's Day. What will be inside? -->
@@ -920,7 +1008,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22167-1" /> <!-- April Fool's Day Vesper Weapon Gift -->
+		<skills>
+			<skill id="22167" level="1" /> <!-- April Fool's Day Vesper Weapon Gift -->
+		</skills>
 	</item>
 	<item id="20959" type="EtcItem" name="Royal Crown of Vesper Pack">
 		<!-- Wrapped pack containing a Royal Crown of Vesper. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -937,7 +1027,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20929,1,1,100" />
+		<capsuled_items>
+			<item id="20929" min="1" max="1" chance="100" /> <!-- Royal Crown of Vesper -->
+		</capsuled_items>
 	</item>
 	<item id="20960" type="EtcItem" name="Royal Circlet of Vesper Pack">
 		<!-- Wrapped pack containing a Royal Circlet of Vesper. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -954,7 +1046,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20930,1,1,100" />
+		<capsuled_items>
+			<item id="20930" min="1" max="1" chance="100" /> <!-- Royal Circlet of Vesper -->
+		</capsuled_items>
 	</item>
 	<item id="20961" type="EtcItem" name="Noblesse Oblige Pack">
 		<!-- Wrapped pack containing a Noblesse Oblige. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -971,7 +1065,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20931,1,1,100" />
+		<capsuled_items>
+			<item id="20931" min="1" max="1" chance="100" /> <!-- Noblesse Oblige -->
+		</capsuled_items>
 	</item>
 	<item id="20962" type="EtcItem" name="Royal Crown of Vesper 30-Day Pack">
 		<!-- Wrapped pack containing a Royal Crown of Vesper (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -988,7 +1084,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20932,1,1,100" />
+		<capsuled_items>
+			<item id="20932" min="1" max="1" chance="100" /> <!-- Royal Crown of Vesper - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20963" type="EtcItem" name="Royal Circlet of Vesper 30-Day Pack">
 		<!-- Wrapped pack containing a Royal Circlet of Vesper (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1005,7 +1103,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20933,1,1,100" />
+		<capsuled_items>
+			<item id="20933" min="1" max="1" chance="100" /> <!-- Royal Circlet of Vesper - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20964" type="EtcItem" name="Noblesse Oblige 30-Day Pack">
 		<!-- Wrapped pack containing a Noblesse Oblige (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1022,7 +1122,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20934,1,1,100" />
+		<capsuled_items>
+			<item id="20934" min="1" max="1" chance="100" /> <!-- Noblesse Oblige - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20965" type="EtcItem" name="Royal Crown of Vesper Pack">
 		<!-- Wrapped pack containing a Royal Crown of Vesper. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1039,7 +1141,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20935,1,1,100" />
+		<capsuled_items>
+			<item id="20935" min="1" max="1" chance="100" /> <!-- Royal Crown of Vesper -->
+		</capsuled_items>
 	</item>
 	<item id="20966" type="EtcItem" name="Royal Circlet of Vesper Pack">
 		<!-- Wrapped pack containing a Royal Circlet of Vesper. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1056,7 +1160,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20936,1,1,100" />
+		<capsuled_items>
+			<item id="20936" min="1" max="1" chance="100" /> <!-- Royal Circlet of Vesper -->
+		</capsuled_items>
 	</item>
 	<item id="20967" type="EtcItem" name="Noblesse Oblige Pack">
 		<!-- Wrapped pack containing a Noblesse Oblige. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1073,7 +1179,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20937,1,1,100" />
+		<capsuled_items>
+			<item id="20937" min="1" max="1" chance="100" /> <!-- Noblesse Oblige -->
+		</capsuled_items>
 	</item>
 	<item id="20968" type="Armor" name="Agathion Seal Bracelet - Guangong">
 		<!-- Bracelet that summons the Guangong Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1088,9 +1196,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="unequip_skill" val="3267-1" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="3267-1;21142-1;23123-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21142" level="1" /> <!-- Release Seal on Agathion - Gwangong -->
+			<skill id="23123" level="1" /> <!-- Gwangong Agathion Cute Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20969" type="EtcItem" name="Guangong Agathion Pack">
 		<!-- Wrapped pack containing a Guangong Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1107,7 +1219,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20968,1,1,100" />
+		<capsuled_items>
+			<item id="20968" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Guangong -->
+		</capsuled_items>
 	</item>
 	<item id="20970" type="Armor" name="Agathion Seal Bracelet - Three-headed Dragon - Wind Walk">
 		<!-- Bracelet that summons a cute three-headed dragon. Cannot be exchanged, dropped, or sold. Special skill reuse delay is 1 hour. -->
@@ -1123,8 +1237,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21194-1;23181-1;23182-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21194" level="1" /> <!-- Release Seal on Agathion - Three Heads -->
+			<skill id="23181" level="1" /> <!-- Three Heads Agathion Cute Trick -->
+			<skill id="23182" level="1" /> <!-- Three Heads Agathion Special Skill - Wind Walk -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20971" type="Weapon" name="Trejuo Transformation Stick - Blessed Child Transformation">
 		<!-- Stick that transforms you into the Blessed Child Trejuo. The transformation ends when you de-equip the item. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 4 hour. -->
@@ -1132,8 +1251,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1144,14 +1261,18 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="21195-1" /> <!-- Blessed Child Transformation Skill - Trejuo -->
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21195" level="1" /> <!-- Blessed Child Transformation Skill - Trejuo -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20972" type="Weapon" name="Sujin Transformation Stick - Blessed Child Transformation">
 		<!-- Stick that transforms you into the Blessed Child Sujin. The transformation ends when you de-equip the item. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 4 hour. -->
@@ -1159,8 +1280,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1171,14 +1290,18 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="21196-1" /> <!-- Blessed Child Transformation Skill - Sujin -->
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21196" level="1" /> <!-- Blessed Child Transformation Skill - Sujin -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20973" type="Armor" name="Opera Mask - Liu Bei - Buff of Virtue, Age of the Three Kingdoms">
 		<!-- Mask worn by the actor playing the Liu Bei role in the opera. Can use the Buff of Virtue and the Age of the Three Kingdoms. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->
@@ -1195,7 +1318,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="21197-1;21200-1" /> <!-- Induk's Buff -->
+		<skills>
+			<skill id="21197" level="1" /> <!-- Induk's Buff -->
+			<skill id="21200" level="1" /> <!-- Age of Three Kingdoms -->
+		</skills>
 	</item>
 	<item id="20974" type="Armor" name="Opera Mask - Guan Yu - Silence of Fidelity, Age of the Three Kingdoms">
 		<!-- Mask worn by the actor playing the Guan Yu role in the opera. Can use the Silence of Fidelity and the Age of the Three Kingdoms. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->
@@ -1212,7 +1338,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="21198-1;21200-1" /> <!-- Silence of Loyalty -->
+		<skills>
+			<skill id="21198" level="1" /> <!-- Silence of Loyalty -->
+			<skill id="21200" level="1" /> <!-- Age of Three Kingdoms -->
+		</skills>
 	</item>
 	<item id="20975" type="Armor" name="Opera Mask - Zhang Fei - Vitality of Courage, Age of the Three Kingdoms">
 		<!-- Mask worn by the actor playing the Zhang Fei role in the opera. Can use the Vitality of Courage and the Age of the Three Kingdoms. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->
@@ -1229,7 +1358,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="21199-1;21200-1" /> <!-- Vitality of Excellence -->
+		<skills>
+			<skill id="21199" level="1" /> <!-- Vitality of Excellence -->
+			<skill id="21200" level="1" /> <!-- Age of Three Kingdoms -->
+		</skills>
 	</item>
 	<item id="20976" type="EtcItem" name="Proof of a Warrior - 30-day limited period">
 		<!-- Noble proof representing bravery. Needed to use the Buff of Virtue, Silence of Fidelity, and Vitality of Courage with the opera mask. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1271,7 +1403,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2517-1" /> <!-- Lucky Clover - B-Grade -->
+		<skills>
+			<skill id="2517" level="1" /> <!-- Lucky Clover - B-Grade -->
+		</skills>
 	</item>
 	<item id="20979" type="EtcItem" name="Zhongzi (A-Grade)">
 		<!-- Taiwanese specialty food. Item that raises an A-Grade weapon's enchant rate by 12%. Can only be used on items with 3~9 enchants. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1288,7 +1422,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2518-1" /> <!-- Lucky Clover - A-Grade -->
+		<skills>
+			<skill id="2518" level="1" /> <!-- Lucky Clover - A-Grade -->
+		</skills>
 	</item>
 	<item id="20980" type="EtcItem" name="Zhongzi (S-Grade)">
 		<!-- Taiwanese specialty food. Item that raises a S-Grade weapon's enchant rate by 10%. Can only be used on items with 3~9 enchants. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1305,7 +1441,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2519-1" /> <!-- Lucky Clover - S-Grade -->
+		<skills>
+			<skill id="2519" level="1" /> <!-- Lucky Clover - S-Grade -->
+		</skills>
 	</item>
 	<item id="20981" type="Armor" name="Dragon Boat">
 		<!-- Hat shaped like a dragon boat. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->
@@ -1337,8 +1475,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21201-1" /> <!-- Haste -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21201" level="1" /> <!-- Haste -->
+		</skills>
 	</item>
 	<item id="20983" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Gnosian - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Gnosian. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1355,8 +1495,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21202-1;23201-1;23183-1;23184-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21202" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Gnocian -->
+			<skill id="23201" level="1" /> <!-- Ball Trapping Gnocian Agathion Cute Trick -->
+			<skill id="23183" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Buff of Cheering -->
+			<skill id="23184" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20984" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Orodriel - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Orodriel. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1373,8 +1519,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21203-1;23202-1;23185-1;23186-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21203" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Orodriel -->
+			<skill id="23202" level="1" /> <!-- Ball Trapping Orodriel Agathion Cute Trick -->
+			<skill id="23185" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Buff of Cheering -->
+			<skill id="23186" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20985" type="Armor" name="Agathion Seal Bracelet - Penalty Kick - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons Gnosian and Orodriel who are practicing penalty kicks. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1391,8 +1543,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21204-1;23203-1;23187-1;23188-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21204" level="1" /> <!-- Release Seal on Agathion - Penalty Kick -->
+			<skill id="23203" level="1" /> <!-- Penalty Kick Agathion Cute Trick -->
+			<skill id="23187" level="1" /> <!-- Penalty Kick Agathion Special Skill - Buff of Cheering -->
+			<skill id="23188" level="1" /> <!-- Penalty Kick Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20986" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Gnosian - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Gnosian. Wearing a blue uniform. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1409,8 +1567,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21205-1;23204-1;23189-1;23190-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21205" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Gnocian -->
+			<skill id="23204" level="1" /> <!-- Ball Trapping Gnocian Agathion Cute Trick -->
+			<skill id="23189" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Buff of Cheering -->
+			<skill id="23190" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20987" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Orodriel - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Orodriel. Wearing a blue uniform. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1427,8 +1591,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21206-1;23205-1;23191-1;23192-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21206" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Orodriel -->
+			<skill id="23205" level="1" /> <!-- Ball Trapping Orodriel Agathion Cute Trick -->
+			<skill id="23191" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Buff of Cheering -->
+			<skill id="23192" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20988" type="Armor" name="Agathion Seal Bracelet - Penalty Kick - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons Gnosian and Orodriel who are practicing penalty kicks. All are wearing blue uniforms. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1445,8 +1615,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21207-1;23206-1;23193-1;23194-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21207" level="1" /> <!-- Release Seal on Agathion - Penalty Kick -->
+			<skill id="23206" level="1" /> <!-- Penalty Kick Agathion Cute Trick -->
+			<skill id="23193" level="1" /> <!-- Penalty Kick Agathion Special Skill - Buff of Cheering -->
+			<skill id="23194" level="1" /> <!-- Penalty Kick Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20989" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Gnosian - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Gnosian. Wearing a red uniform. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1463,8 +1639,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21208-1;23207-1;23195-1;23196-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21208" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Gnocian -->
+			<skill id="23207" level="1" /> <!-- Ball Trapping Gnocian Agathion Cute Trick -->
+			<skill id="23195" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Buff of Cheering -->
+			<skill id="23196" level="1" /> <!-- Ball Trapping Gnocian Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20990" type="Armor" name="Agathion Seal Bracelet - Ball Trapping Orodriel - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons a ball-trapping Orodriel. Wearing a red uniform. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1481,8 +1663,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21209-1;23208-1;23197-1;23198-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21209" level="1" /> <!-- Release Seal on Agathion - Ball Trapping Orodriel -->
+			<skill id="23208" level="1" /> <!-- Ball Trapping Orodriel Agathion Cute Trick -->
+			<skill id="23197" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Buff of Cheering -->
+			<skill id="23198" level="1" /> <!-- Ball Trapping Orodriel Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20991" type="Armor" name="Agathion Seal Bracelet - Penalty Kick - Soccer Ball of Cheers, Buff of Cheers">
 		<!-- Bracelet that summons Gnosian and Orodriel who are practicing penalty kicks. All are wearing red uniforms. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
@@ -1499,8 +1687,14 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21210-1;23209-1;23199-1;23200-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21210" level="1" /> <!-- Release Seal on Agathion - Penalty Kick -->
+			<skill id="23209" level="1" /> <!-- Penalty Kick Agathion Cute Trick -->
+			<skill id="23199" level="1" /> <!-- Penalty Kick Agathion Special Skill - Buff of Cheering -->
+			<skill id="23200" level="1" /> <!-- Penalty Kick Agathion Special Skill - Soccer Ball of Cheering -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20992" type="EtcItem" name="Thirst of Victory Quenching Drink">
 		<!-- Refreshing sports drink that immediately quenches thirst. Restores 1000 energy when used while a Ball Trapping Agathion or Penalty Kick Agathion are equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1516,7 +1710,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22168-1" /> <!-- Thirst for Victory Quenching Drink -->
+		<skills>
+			<skill id="22168" level="1" /> <!-- Thirst for Victory Quenching Drink -->
+		</skills>
 	</item>
 	<item id="20993" type="EtcItem" name="Soccer Ball of Cheers">
 		<!-- Soccer ball given as a gift for cheering. When the soccer ball is used, you may obtain a Blessed Weapon Scroll of Enchantment (D~S Grades) with a fixed rate of chance. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1534,7 +1730,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22169-1" /> <!-- Soccer Ball of Cheering Release -->
+		<skills>
+			<skill id="22169" level="1" /> <!-- Soccer Ball of Cheering Release -->
+		</skills>
 	</item>
 	<item id="20994" type="EtcItem" name="Three-headed Dragon Agathion Pack - Wind Walk">
 		<!-- Wrapped pack containing a Three-headed Dragon Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1551,7 +1749,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20970,1,1,100" />
+		<capsuled_items>
+			<item id="20970" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Three-headed Dragon - Wind Walk -->
+		</capsuled_items>
 	</item>
 	<item id="20995" type="EtcItem" name="Liu Bei Opera Mask Pack - Buff of Virtue, Age of the Three Kingdoms">
 		<!-- Wrapped pack containing a Liu Bei Opera Mask. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1568,7 +1768,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20973,1,1,100" />
+		<capsuled_items>
+			<item id="20973" min="1" max="1" chance="100" /> <!-- Opera Mask - Liu Bei - Buff of Virtue, Age of the Three Kingdoms -->
+		</capsuled_items>
 	</item>
 	<item id="20996" type="EtcItem" name="Guan Yu Opera Mask Pack - Silence of Fidelity, Age of the Three Kingdoms">
 		<!-- Wrapped pack containing a Guan Yu Opera Mask. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1585,7 +1787,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20974,1,1,100" />
+		<capsuled_items>
+			<item id="20974" min="1" max="1" chance="100" /> <!-- Opera Mask - Guan Yu - Silence of Fidelity, Age of the Three Kingdoms -->
+		</capsuled_items>
 	</item>
 	<item id="20997" type="EtcItem" name="Zhang Fei Opera Mask Pack - Vitality of Courage, Age of the Three Kingdoms">
 		<!-- Wrapped pack containing a Zhang Fei Opera Mask. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1602,7 +1806,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20975,1,1,100" />
+		<capsuled_items>
+			<item id="20975" min="1" max="1" chance="100" /> <!-- Opera Mask - Zhang Fei - Vitality of Courage, Age of the Three Kingdoms -->
+		</capsuled_items>
 	</item>
 	<item id="20998" type="EtcItem" name="Dragon Boat Pack">
 		<!-- Wrapped pack containing a Dragon Boat. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1619,7 +1825,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20981,1,1,100" />
+		<capsuled_items>
+			<item id="20981" min="1" max="1" chance="100" /> <!-- Dragon Boat -->
+		</capsuled_items>
 	</item>
 	<item id="20999" type="EtcItem" name="Dragon Boat 7-Day Pack - Haste">
 		<!-- Wrapped pack containing a Dragon Boat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1636,6 +1844,8 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20982,1,1,100" />
+		<capsuled_items>
+			<item id="20982" min="1" max="1" chance="100" /> <!-- Dragon Boat - Haste - 7-day limited period -->
+		</capsuled_items>
 	</item>
 </list>

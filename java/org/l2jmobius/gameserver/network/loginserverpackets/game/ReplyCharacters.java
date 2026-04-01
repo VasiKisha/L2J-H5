@@ -1,39 +1,74 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
- * @author mrTJO, mochitto
+ * Reports character count and pending delete timers for an account.<br>
+ * Each pending delete time is serialized as epoch milliseconds.
+ * <ul>
+ * <li>Opcode: 0x08.</li>
+ * <li>Payload: account (String), chars (byte), pendingCount (byte), times (long[]).</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class ReplyCharacters extends BaseWritablePacket
 {
+	// Opcode.
+	private static final int OPCODE = 0x08;
+	
+	// Data.
+	private final String _account;
+	private final int _chars;
+	private final List<Long> _timeToDelete;
+	
+	/**
+	 * @param account account name
+	 * @param chars number of characters
+	 * @param timeToDel pending delete times (epoch ms)
+	 */
 	public ReplyCharacters(String account, int chars, List<Long> timeToDel)
 	{
-		writeByte(0x08);
-		writeString(account);
-		writeByte(chars);
-		writeByte(timeToDel.size());
-		for (long time : timeToDel)
+		_account = (account != null) ? account : "";
+		_chars = chars;
+		_timeToDelete = (timeToDel != null) ? timeToDel : Collections.emptyList();
+	}
+	
+	/**
+	 * Serializes opcode, account, counts and delete timers.
+	 */
+	@Override
+	public void write()
+	{
+		writeByte(OPCODE);
+		writeString(_account);
+		writeByte(_chars);
+		writeByte(_timeToDelete.size());
+		for (Long t : _timeToDelete)
 		{
-			writeLong(time);
+			writeLong((t != null) ? t.longValue() : 0L);
 		}
 	}
 }

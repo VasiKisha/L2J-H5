@@ -1,2 +1,2 @@
 #!/bin/sh
-java -cp ./../libs/*: org.l2jmobius.tools.DatabaseInstaller
+java -jar DatabaseInstaller.jar

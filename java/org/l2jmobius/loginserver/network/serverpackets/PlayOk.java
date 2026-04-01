@@ -24,22 +24,44 @@ import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.loginserver.SessionKey;
 import org.l2jmobius.loginserver.network.LoginClient;
 
+/**
+ * PlayOk packet that authorizes the client to enter the gameserver.<br>
+ * Serializes the PlayOk pair required by the protocol.
+ * <ul>
+ * <li>Opcode 0x07.</li>
+ * <li>Writes two PlayOk integers.</li>
+ * </ul>
+ * author Mobius, BazookaRpm
+ */
 public class PlayOk extends LoginServerPacket
 {
-	private final int _playOk1;
-	private final int _playOk2;
+	// Constants.
+	private static final int OPCODE_PLAY_OK = 0x07;
 	
+	// Session key parts.
+	private final int _playOkPart1;
+	private final int _playOkPart2;
+	
+	/**
+	 * Constructs the packet with the PlayOk pair.
+	 * @param sessionKey
+	 */
 	public PlayOk(SessionKey sessionKey)
 	{
-		_playOk1 = sessionKey.playOkID1;
-		_playOk2 = sessionKey.playOkID2;
+		_playOkPart1 = sessionKey.getPlayOkID1();
+		_playOkPart2 = sessionKey.getPlayOkID2();
 	}
 	
+	/**
+	 * Writes the PlayOk packet to the client buffer.
+	 * @param client
+	 * @param buffer
+	 */
 	@Override
 	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		buffer.writeByte(0x07);
-		buffer.writeInt(_playOk1);
-		buffer.writeInt(_playOk2);
+		buffer.writeByte(OPCODE_PLAY_OK);
+		buffer.writeInt(_playOkPart1);
+		buffer.writeInt(_playOkPart2);
 	}
 }

@@ -24,17 +24,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4203" type="EtcItem" name="Spellbook: Life Leech">
@@ -164,16 +164,16 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2064-1" /> <!-- Scroll of Mana Regeneration -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2064" level="1" /> <!-- Scroll of Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="4219" type="Weapon" name="Dream Sword">
 		<set name="icon" val="icon.weapon_knights_sword_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="BRONZE" />
@@ -187,10 +187,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="31" />
-			<set stat="mAtk" val="21" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">31</stat>
+			<stat type="mAtk">21</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4220" type="Weapon" name="Dream Knife">
@@ -198,8 +200,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -213,11 +213,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="27" />
-			<set stat="mAtk" val="21" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">27</stat>
+			<stat type="mAtk">21</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4221" type="Weapon" name="Ubiquitous Axe">
@@ -225,8 +227,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -240,11 +240,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="31" />
-			<set stat="mAtk" val="21" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">31</stat>
+			<stat type="mAtk">21</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4222" type="Armor" name="Dream Shield">
@@ -261,10 +263,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="4223" type="Armor" name="Ubiquitous Shield">
@@ -281,10 +282,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="4224" type="Armor" name="Dream Armor">
@@ -304,7 +304,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="4225" type="Armor" name="Dream Stockings">
@@ -324,7 +324,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="43" />
+			<stat type="pDef">43</stat>
 		</stats>
 	</item>
 	<item id="4226" type="Armor" name="Dream Gloves">
@@ -340,7 +340,7 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="4227" type="Armor" name="Dream Boots">
@@ -356,7 +356,7 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="4228" type="Armor" name="Ubiquitous Armor">
@@ -376,7 +376,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="4229" type="Armor" name="Ubiquitous Stockings">
@@ -396,7 +396,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="43" />
+			<stat type="pDef">43</stat>
 		</stats>
 	</item>
 	<item id="4230" type="Armor" name="Ubiquitous Gloves">
@@ -412,7 +412,7 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="4231" type="Armor" name="Ubiquitous Boots">
@@ -428,7 +428,7 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="4232" type="EtcItem" name="Dice">
@@ -448,8 +448,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="884" />
@@ -461,13 +459,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<set stat="pAtk" val="148" />
-			<set stat="mAtk" val="68" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">148</stat>
+			<stat type="mAtk">68</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4234" type="Armor" name="Hatchling's Level 65 Armor">
@@ -485,8 +483,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="50" />
-			<add order="0" stat="pDef" val="50" />
+			<stat type="mDef">50</stat>
+			<stat type="pDef">50</stat>
 		</stats>
 	</item>
 	<item id="4235" type="Armor" name="Hatchling's Level 75 Armor">
@@ -504,8 +502,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="58" />
-			<add order="0" stat="pDef" val="58" />
+			<stat type="mDef">58</stat>
+			<stat type="pDef">58</stat>
 		</stats>
 	</item>
 	<item id="4236" type="Armor" name="Gara Item">
@@ -522,8 +520,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="58" />
-			<add order="0" stat="pDef" val="58" />
+			<stat type="mDef">58</stat>
+			<stat type="pDef">58</stat>
 		</stats>
 	</item>
 	<item id="4237" type="Weapon" name="Hatchling's Level 65 Weapon">
@@ -532,8 +530,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -544,10 +540,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="24" />
-			<add stat="mAtk" val="32" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">24</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4238" type="Weapon" name="Hatchling's Level 75 Weapon">
@@ -556,8 +554,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -568,10 +564,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="31" />
-			<add stat="mAtk" val="43" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">31</stat>
+			<stat type="mAtk">43</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="4239" type="EtcItem" name="Blade Mold">

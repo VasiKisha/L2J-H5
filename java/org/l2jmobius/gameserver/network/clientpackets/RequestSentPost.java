@@ -19,10 +19,10 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExReplySentPost;
 
 /**
@@ -47,7 +47,7 @@ public class RequestSentPost extends ClientPacket
 			return;
 		}
 		
-		final Message msg = MailManager.getInstance().getMessage(_msgId);
+		final MailMessage msg = MailManager.getInstance().getMessage(_msgId);
 		if (msg == null)
 		{
 			return;

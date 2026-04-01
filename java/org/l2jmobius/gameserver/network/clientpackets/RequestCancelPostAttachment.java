@@ -19,7 +19,6 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
@@ -28,6 +27,7 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangePostState;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
@@ -60,7 +60,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 			return;
 		}
 		
-		final Message msg = MailManager.getInstance().getMessage(_msgId);
+		final MailMessage msg = MailManager.getInstance().getMessage(_msgId);
 		if (msg == null)
 		{
 			return;
@@ -209,12 +209,12 @@ public class RequestCancelPostAttachment extends ClientPacket
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANCELED_THE_SENT_MAIL);
 			sm.addString(player.getName());
 			receiver.sendPacket(sm);
-			receiver.sendPacket(new ExChangePostState(true, _msgId, Message.DELETED));
+			receiver.sendPacket(new ExChangePostState(true, _msgId, MailMessage.DELETED));
 		}
 		
 		MailManager.getInstance().deleteMessageInDb(_msgId);
 		
-		player.sendPacket(new ExChangePostState(false, _msgId, Message.DELETED));
+		player.sendPacket(new ExChangePostState(false, _msgId, MailMessage.DELETED));
 		player.sendPacket(SystemMessageId.MAIL_SUCCESSFULLY_CANCELLED);
 	}
 }

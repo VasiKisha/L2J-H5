@@ -148,8 +148,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1157" />
@@ -159,16 +157,18 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-11" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="9814" type="EtcItem" name="Memento Mori">
 		<!-- Obtained by attacking a Raid Boss, you can assemble this Crystal of Life and trade it for something useful. -->
@@ -227,13 +227,16 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3318-1;3358-1" /> <!-- Flag Display -->
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
 		<stats>
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtkSpd">325</stat>
 		</stats>
+		<skills>
+			<skill id="3318" level="1" /> <!-- Flag Display -->
+			<skill id="3358" level="1" /> <!-- Flag Equip -->
+		</skills>
 	</item>
 	<item id="9820" type="Armor" name="Shadow Item: Clan Oath Helm">
 		<!-- This Shadow Item contains the mirrored power of a Clan Oath Helm. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -250,7 +253,7 @@
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
 		<stats>
-			<add order="0" stat="pDef" val="37" />
+			<stat type="pDef">37</stat>
 		</stats>
 	</item>
 	<item id="9821" type="Armor" name="Shadow Item: Clan Oath Armor">
@@ -275,7 +278,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="158" />
+			<stat type="pDef">158</stat>
 		</stats>
 	</item>
 	<item id="9822" type="Armor" name="Shadow Item: Clan Oath Gauntlets - Heavy Armor">
@@ -299,7 +302,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9823" type="Armor" name="Shadow Item: Clan Oath Sabaton - Heavy Armor">
@@ -323,7 +326,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9824" type="Armor" name="Shadow Item: Clan Oath Brigandine">
@@ -342,7 +345,7 @@
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
 		<stats>
-			<add order="0" stat="pDef" val="119" />
+			<stat type="pDef">119</stat>
 		</stats>
 	</item>
 	<item id="9825" type="Armor" name="Shadow Item: Clan Oath Leather Gloves - Light Armor">
@@ -360,7 +363,7 @@
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9826" type="Armor" name="Shadow Item: Clan Oath Boots - Light Armor">
@@ -378,7 +381,7 @@
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9827" type="Armor" name="Shadow Item: Clan Oath Aketon">
@@ -403,8 +406,8 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="79" />
-			<add stat="maxMp" val="239" />
+			<stat type="pDef">79</stat>
+			<stat type="maxMp">239</stat>
 		</stats>
 	</item>
 	<item id="9828" type="Armor" name="Shadow Item: Clan Oath Padded Gloves - Robe">
@@ -428,7 +431,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9829" type="Armor" name="Shadow Item: Clan Oath Sandals - Robe">
@@ -452,7 +455,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9830" type="Armor" name="Improved Apella Helm">
@@ -470,8 +473,7 @@
 			<player pledgeClass="5" /> <!-- Baron -->
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="73" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="9831" type="Armor" name="Improved Apella Plate Armor">
@@ -493,8 +495,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="9832" type="Armor" name="Improved Apella Gauntlet - Heavy Armor">
@@ -515,8 +516,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9833" type="Armor" name="Improved Apella Solleret - Heavy Armor">
@@ -537,8 +537,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9834" type="Armor" name="Improved Apella Brigandine">
@@ -557,8 +556,7 @@
 			<player pledgeClass="5" /> <!-- Baron -->
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="220" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="9835" type="Armor" name="Improved Apella Leather Gloves - Light Armor">
@@ -576,8 +574,7 @@
 			<player pledgeClass="5" /> <!-- Baron -->
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9836" type="Armor" name="Improved Apella Boots - Light Armor">
@@ -595,8 +592,7 @@
 			<player pledgeClass="5" /> <!-- Baron -->
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9837" type="Armor" name="Improved Apella Doublet">
@@ -618,9 +614,8 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="9838" type="Armor" name="Improved Apella Silk Gloves - Robe">
@@ -641,8 +636,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9839" type="Armor" name="Improved Apella Sandals - Robe">
@@ -663,8 +657,7 @@
 			</and>
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9840" type="Weapon" name="Shadow Item: Chevalier Rapier">
@@ -673,8 +666,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -690,13 +681,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="111" />
-			<set stat="mAtk" val="68" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">111</stat>
+			<stat type="mAtk">68</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9841" type="Weapon" name="Shadow Item: Riter Schlager">
@@ -705,8 +696,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -722,13 +711,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="132" />
-			<set stat="mAtk" val="68" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">132</stat>
+			<stat type="mAtk">68</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9842" type="Weapon" name="Shadow Item: Ballista">
@@ -737,8 +726,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -755,13 +742,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="155" />
-			<set stat="mAtk" val="68" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">155</stat>
+			<stat type="mAtk">68</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="9843" type="Weapon" name="Shadow Item: Blinzlasher">
@@ -770,8 +757,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -787,13 +772,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="126" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">126</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9844" type="Weapon" name="Shadow Item: Immortal Edge">
@@ -802,8 +787,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -819,13 +802,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="151" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">151</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9845" type="Weapon" name="Shadow Item: Tathlum">
@@ -834,8 +817,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -852,13 +833,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="176" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">176</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="9846" type="Weapon" name="Shadow Item: Military Fleuret">
@@ -867,8 +848,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -884,13 +863,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="159" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">159</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9847" type="Weapon" name="Shadow Item: Innominate Victory">
@@ -899,8 +878,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -916,13 +893,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9848" type="Weapon" name="Shadow Item: Peacemaker">
@@ -931,8 +908,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -949,13 +924,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="221" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">221</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="9849" type="EtcItem" name="Fiery Demon Blood">
@@ -967,8 +942,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2357-1" /> <!-- Fiery Demon Blood -->
 		<set name="auto_destroy_time" val="10" />
+		<skills>
+			<skill id="2357" level="1" /> <!-- Fiery Demon Blood -->
+		</skills>
 	</item>
 	<item id="9850" type="EtcItem" name="Basic Caravan Certificate">
 		<!-- A certificate of friendship with Caravans. -->
@@ -1008,8 +985,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1022,15 +997,17 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3566-2" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="9855" type="Weapon" name="Dynasty Sword - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1038,8 +1015,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1052,15 +1027,17 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="9856" type="Weapon" name="Dynasty Sword - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1068,8 +1045,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1082,15 +1057,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3552-1;3498-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+		</skills>
 	</item>
 	<item id="9857" type="Weapon" name="Dynasty Blade - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. -->
@@ -1098,8 +1076,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1112,15 +1088,17 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3566-2" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="9858" type="Weapon" name="Dynasty Blade - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1128,8 +1106,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1142,15 +1118,17 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="9859" type="Weapon" name="Dynasty Blade - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1158,8 +1136,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1172,15 +1148,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3552-1;3498-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+		</skills>
 	</item>
 	<item id="9860" type="Weapon" name="Dynasty Phantom - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -1188,8 +1167,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1202,15 +1179,17 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="9861" type="Weapon" name="Dynasty Phantom - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. -->
@@ -1218,8 +1197,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1232,15 +1209,17 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="9862" type="Weapon" name="Dynasty Phantom - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -1248,8 +1227,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1262,15 +1239,17 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="9863" type="Weapon" name="Dynasty Bow - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. Decreases MP Consumption 4% during a skill attack. Increases damage inflicted during PvP. -->
@@ -1278,8 +1257,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1294,16 +1271,19 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="item_skill" val="3552-1;8312-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="8312" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="9864" type="Weapon" name="Dynasty Bow - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increases Accuracy by 5.32. Increases damage inflicted during PvP. -->
@@ -1311,8 +1291,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1327,16 +1305,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="item_skill" val="3573-2" /> <!-- Special Ability: Guidance -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="9865" type="Weapon" name="Dynasty Bow - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. -->
@@ -1344,8 +1324,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1360,16 +1338,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="item_skill" val="3567-2" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="9866" type="Weapon" name="Dynasty Knife - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. -->
@@ -1377,8 +1357,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1390,16 +1368,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3567-2" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="9867" type="Weapon" name="Dynasty Knife - Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 5. Increases damage inflicted during PvP. -->
@@ -1407,8 +1387,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1420,16 +1398,19 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3009-8;3552-1" /> <!-- Special Ability: Evasion -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3009" level="8" /> <!-- Special Ability: Evasion -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="9868" type="Weapon" name="Dynasty Knife - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 559 on a critical attack. Increases damage inflicted during PvP. -->
@@ -1437,8 +1418,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1450,16 +1429,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3066-4" /> <!-- Special Ability: Critical Damage -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3066" level="4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="9869" type="Weapon" name="Dynasty Halberd - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases your HP by 15% and increases P. Atk. by 78. Increases damage inflicted during PvP. -->
@@ -1467,8 +1448,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1480,16 +1459,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3600-10" /> <!-- Special Ability: Anger -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3600" level="10" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="9870" type="Weapon" name="Dynasty Halberd - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. There is a 48% chance that Stun effect is applied on a critical attack. Increases damage inflicted during PvP. -->
@@ -1497,8 +1478,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1510,18 +1489,19 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="oncrit_chance" val="48" />
-		<set name="oncrit_skill" val="3070-4" />
-		<set name="item_skill" val="3552-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="2" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3070" level="4" type_chance="48" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Critical Stun -->
+		</skills>
 	</item>
 	<item id="9871" type="Weapon" name="Dynasty Halberd - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1529,8 +1509,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1542,16 +1520,19 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3552-2;3498-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="2" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+		</skills>
 	</item>
 	<item id="9872" type="Weapon" name="Dynasty Cudgel - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases your HP by 15% and increases P. Atk. by 78. Increases damage inflicted during PvP. -->
@@ -1559,8 +1540,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1572,16 +1551,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3057-4" /> <!-- Special Ability: Anger -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3057" level="4" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="9873" type="Weapon" name="Dynasty Cudgel - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1589,8 +1570,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1602,16 +1581,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="9874" type="Weapon" name="Dynasty Cudgel - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 164 when HP drops to 60% or lower. Increases damage inflicted during PvP. -->
@@ -1619,8 +1600,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1632,16 +1611,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3027-7" /> <!-- Special Ability: Rsk. Focus -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3027" level="7" /> <!-- Special Ability: Rsk. Focus -->
+		</skills>
 	</item>
 	<item id="9875" type="Weapon" name="Dynasty Mace - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. -->
@@ -1649,8 +1630,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1663,16 +1642,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="9876" type="Weapon" name="Dynasty Mace - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -1680,8 +1661,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1694,16 +1673,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="9877" type="Weapon" name="Dynasty Mace - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -1711,8 +1692,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1725,16 +1704,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="9878" type="Weapon" name="Dynasty Bagh-Nakh - Rsk. Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 6.8 when HP drops to 60% or lower. Increases damage inflicted during PvP. -->
@@ -1742,8 +1723,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1755,16 +1734,19 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3069-1;3552-1" /> <!-- Special Ability: Rsk. Evasion -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3069" level="1" /> <!-- Special Ability: Rsk. Evasion -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="9879" type="Weapon" name="Dynasty Bagh-Nakh - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases critical attack by 106. Increases damage inflicted during PvP. -->
@@ -1772,8 +1754,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1785,16 +1765,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3565-2" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3565" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="9880" type="Weapon" name="Dynasty Bagh-Nakh - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by 10%. Increases damage inflicted during PvP. -->
@@ -1802,8 +1784,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1815,16 +1795,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3564-2" /> <!-- Special Ability: Haste -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3564" level="2" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="9881" type="EtcItem" name="Diploma">
 		<!-- Take this Diploma to Second Hierarch Perwan. -->
@@ -1848,11 +1830,13 @@
 		<set name="price" val="2000000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="9883" type="Armor" name="Teddy Bear Hat - Big Head">
 		<!-- This fun, bear-shaped hair accessory makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1862,7 +1846,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9884" type="Armor" name="Piggy Hat - Big Head">
 		<!-- This fun, pig-shaped hair accessory makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1872,7 +1858,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9885" type="Armor" name="Jester Hat - Big Head">
 		<!-- This festive, split-top jester hat makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1882,7 +1870,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9886" type="Armor" name="Wizard Hat - Big Head">
 		<!-- This Wizard Hat features a wide brim and bent tip and makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1892,7 +1882,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9887" type="Armor" name="Dapper Cap - Big Head">
 		<!-- This stylish cap features a visor and makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1902,7 +1894,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9888" type="Armor" name="Romantic Chapeau - Big Head">
 		<!-- This extravagant chapeau is adorned with feathers and makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1912,7 +1906,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9889" type="Armor" name="Iron Circlet - Big Head">
 		<!-- An iron circlet that makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -1922,7 +1918,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3404-1" /> <!-- Mysterious Effect -->
+		<skills>
+			<skill id="3404" level="1" /> <!-- Mysterious Effect -->
+		</skills>
 	</item>
 	<item id="9890" type="Armor" name="Teddy Bear Hat - Firework">
 		<!-- A fun, bear-shaped hair accessory. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1932,7 +1930,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9891" type="Armor" name="Piggy Hat - Firework">
 		<!-- A fun, pig-shaped hair accessory. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1942,7 +1942,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9892" type="Armor" name="Jester Hat - Firework">
 		<!-- A festive jester hat with a split top. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1952,7 +1954,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9893" type="Armor" name="Wizard Hat - Firework">
 		<!-- A Wizard Hat with a wide brim and bent tip. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1962,7 +1966,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9894" type="Armor" name="Dapper Cap - Firework">
 		<!-- A stylish cap with a visor. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1972,7 +1978,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9895" type="Armor" name="Romantic Chapeau - Firework">
 		<!-- An extravagant chapeau adorned with feathers. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1982,7 +1990,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9896" type="Armor" name="Iron Circlet - Firework">
 		<!-- A circlet made of iron. You can use active skills, and firecrackers are set off when it is used. Requires 2 hair accessory slots. -->
@@ -1992,7 +2002,9 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
-		<set name="item_skill" val="3405-1" /> <!-- Large Firecracker Effect -->
+		<skills>
+			<skill id="3405" level="1" /> <!-- Large Firecracker Effect -->
+		</skills>
 	</item>
 	<item id="9897" type="EtcItem" name="Scroll of Transformation - Pig">
 		<!-- Scroll of Transformation that transforms you into a pig for 60 minutes. It will have no effect if used while in a transformed state. -->
@@ -2005,7 +2017,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2370-1" /> <!-- Scroll of Transformation - Pig -->
+		<skills>
+			<skill id="2370" level="1" /> <!-- Scroll of Transformation - Pig -->
+		</skills>
 	</item>
 	<item id="9898" type="EtcItem" name="SP Scroll: Highest Grade">
 		<!-- A scroll that can load 500,000 SP. -->
@@ -2018,7 +2032,9 @@
 		<set name="price" val="2000000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2167-4" /> <!-- Scroll of SP -->
+		<skills>
+			<skill id="2167" level="4" /> <!-- Scroll of SP -->
+		</skills>
 	</item>
 	<item id="9899" type="Armor" name="Weight Loss Ring">
 		<!-- Decreases weight when equipped. Effect does not stack with additional Weight Loss Rings. -->
@@ -2029,9 +2045,11 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="25" />
-		<set name="item_skill" val="3406-1" /> <!-- Weight Decrease Ring -->
 		<stats>
-			<add order="0" stat="mDef" val="24" />
+			<stat type="mDef">24</stat>
 		</stats>
+		<skills>
+			<skill id="3406" level="1" /> <!-- Weight Decrease Ring -->
+		</skills>
 	</item>
 </list>

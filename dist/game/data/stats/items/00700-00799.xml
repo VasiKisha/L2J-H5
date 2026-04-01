@@ -119,8 +119,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="50" />
-			<add order="0" stat="pDef" val="75" />
+			<stat type="mDef">50</stat>
+			<stat type="pDef">75</stat>
 		</stats>
 	</item>
 	<item id="710" type="EtcItem" name="Hard Leather Shirt">
@@ -134,8 +134,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="52" />
-			<add order="0" stat="pDef" val="77" />
+			<stat type="mDef">52</stat>
+			<stat type="pDef">77</stat>
 		</stats>
 	</item>
 	<item id="711" type="EtcItem" name="Piece Bone Breastplate">
@@ -149,8 +149,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<add order="0" stat="pDef" val="79" />
+			<stat type="mDef">54</stat>
+			<stat type="pDef">79</stat>
 		</stats>
 	</item>
 	<item id="712" type="EtcItem" name="Half Plate Armor">
@@ -164,8 +164,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="56" />
-			<add order="0" stat="pDef" val="81" />
+			<stat type="mDef">56</stat>
+			<stat type="pDef">81</stat>
 		</stats>
 	</item>
 	<item id="713" type="EtcItem" name="Leather Pants">
@@ -179,8 +179,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="30" />
-			<add order="0" stat="pDef" val="45" />
+			<stat type="mDef">30</stat>
+			<stat type="pDef">45</stat>
 		</stats>
 	</item>
 	<item id="714" type="EtcItem" name="Hard Leather Pants">
@@ -194,8 +194,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="32" />
-			<add order="0" stat="pDef" val="47" />
+			<stat type="mDef">32</stat>
+			<stat type="pDef">47</stat>
 		</stats>
 	</item>
 	<item id="715" type="EtcItem" name="Piece Bone Gaiters">
@@ -209,8 +209,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<add order="0" stat="pDef" val="49" />
+			<stat type="mDef">34</stat>
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="716" type="EtcItem" name="Plate Gaiters">
@@ -224,8 +224,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<add order="0" stat="pDef" val="51" />
+			<stat type="mDef">36</stat>
+			<stat type="pDef">51</stat>
 		</stats>
 	</item>
 	<item id="717" type="EtcItem" name="Leather Gloves">
@@ -239,8 +239,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="20" />
-			<add order="0" stat="pDef" val="30" />
+			<stat type="mDef">20</stat>
+			<stat type="pDef">30</stat>
 		</stats>
 	</item>
 	<item id="718" type="EtcItem" name="Hard Leather Gloves">
@@ -254,8 +254,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="22" />
-			<add order="0" stat="pDef" val="32" />
+			<stat type="mDef">22</stat>
+			<stat type="pDef">32</stat>
 		</stats>
 	</item>
 	<item id="719" type="EtcItem" name="Crafted Leather Gloves">
@@ -269,8 +269,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="24" />
-			<add order="0" stat="pDef" val="34" />
+			<stat type="mDef">24</stat>
+			<stat type="pDef">34</stat>
 		</stats>
 	</item>
 	<item id="720" type="EtcItem" name="Reinforced Gloves">
@@ -284,8 +284,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="26" />
-			<add order="0" stat="pDef" val="36" />
+			<stat type="mDef">26</stat>
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="721" type="EtcItem" name="Leather Boots">
@@ -299,8 +299,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="20" />
-			<add order="0" stat="pDef" val="30" />
+			<stat type="mDef">20</stat>
+			<stat type="pDef">30</stat>
 		</stats>
 	</item>
 	<item id="722" type="EtcItem" name="Hard Leather Boots">
@@ -314,8 +314,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="22" />
-			<add order="0" stat="pDef" val="32" />
+			<stat type="mDef">22</stat>
+			<stat type="pDef">32</stat>
 		</stats>
 	</item>
 	<item id="723" type="EtcItem" name="Crafted Leather Boots">
@@ -329,8 +329,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="24" />
-			<add order="0" stat="pDef" val="34" />
+			<stat type="mDef">24</stat>
+			<stat type="pDef">34</stat>
 		</stats>
 	</item>
 	<item id="724" type="EtcItem" name="Reinforced Boots">
@@ -344,8 +344,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="26" />
-			<add order="0" stat="pDef" val="36" />
+			<stat type="mDef">26</stat>
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="725" type="EtcItem" name="Healing Drug">
@@ -375,7 +375,6 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="10000-1" />
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -383,6 +382,9 @@
 		<conditions msgId="113" addName="1">
 			<player isPvpFlagged="false" />
 		</conditions>
+		<skills>
+			<skill id="10000" level="1" />
+		</skills>
 	</item>
 	<item id="727" type="EtcItem" name="Healing Potion">
 		<!-- A magical, liquid medicine that restores HP for a certain amount of time. -->
@@ -411,7 +413,6 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="10001-1" />
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -419,6 +420,9 @@
 		<conditions msgId="113" addName="1">
 			<player isPvpFlagged="false" />
 		</conditions>
+		<skills>
+			<skill id="10001" level="1" />
+		</skills>
 	</item>
 	<item id="729" type="EtcItem" name="Scroll: Enchant Weapon (A-Grade)">
 		<!-- When enchanted, P. Atk. increases by 4 for A-grade one-handed swords, one-handed blunts, daggers, spears, and other weapons. P. Atk. increases by 5 for two-handed swords, two-handed blunts, dualswords, and two-handed combat weapons. P. Atk. increases by 8 for bows. M. Atk. increases by 3 for all weapons. Starting at +4, P. Atk. / M. Atk. bonus double. Enchanting is safe up to +3. -->
@@ -432,7 +436,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2006-1" /> <!-- Scroll: Enchant Weapon (Grade A) -->
+		<skills>
+			<skill id="2006" level="1" /> <!-- Scroll: Enchant Weapon (Grade A) -->
+		</skills>
 	</item>
 	<item id="730" type="EtcItem" name="Scroll: Enchant Armor (A-Grade)">
 		<!-- When enchanted, P. Def. increases by 1 for A-grade armor and accessories. Starting at +4, P. Def. increases by 3 and a HP bonus is granted. Enchanting is safe up to +3, but one-piece body armor can be safely enchanted up to +4. -->
@@ -446,7 +452,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2007-1" /> <!-- Scroll: Enchant Armor (Grade A) -->
+		<skills>
+			<skill id="2007" level="1" /> <!-- Scroll: Enchant Armor (Grade A) -->
+		</skills>
 	</item>
 	<item id="731" type="EtcItem" name="Crystal Scroll: Enchant Weapon (A-Grade)">
 		<!-- A scroll of enchantment that empowers an A-Grade weapon. -->
@@ -495,11 +503,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2011-1" /> <!-- Haste Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2011" level="1" /> <!-- Haste Potion -->
+		</skills>
 	</item>
 	<item id="735" type="EtcItem" name="Alacrity Potion">
 		<!-- A magical potion that increases Atk. Spd. -->
@@ -514,11 +524,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2012-1" /> <!-- Potion of Alacrity -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2012" level="1" /> <!-- Potion of Alacrity -->
+		</skills>
 	</item>
 	<item id="736" type="EtcItem" name="Scroll of Escape">
 		<!-- A scroll of enchantment that relocates you to the nearest village. -->
@@ -531,7 +543,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2013-1" /> <!-- Scroll of Escape -->
+		<skills>
+			<skill id="2013" level="1" /> <!-- Scroll of Escape -->
+		</skills>
 	</item>
 	<item id="737" type="EtcItem" name="Scroll of Resurrection">
 		<!-- A scroll of enchantment that resuscitates a dead person. -->
@@ -544,7 +558,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2014-1" /> <!-- Scroll of Resurrection -->
+		<skills>
+			<skill id="2014" level="1" /> <!-- Scroll of Resurrection -->
+		</skills>
 	</item>
 	<item id="738" type="Weapon" name="Sword of Solidarity">
 		<!-- A bronze sword crafted long ago in memory of the union between the Humans and the Elves. -->
@@ -552,8 +568,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="BRONZE" />
@@ -562,10 +576,12 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="12" />
-			<set stat="mAtk" val="9" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">12</stat>
+			<stat type="mAtk">9</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="739" type="EtcItem" name="Broken Sword Handle">
@@ -622,8 +638,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -632,10 +646,12 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="14" />
-			<set stat="mAtk" val="11" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">14</stat>
+			<stat type="mAtk">11</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="744" type="Weapon" name="Staff of Sentinel">
@@ -644,8 +660,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -655,11 +669,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
-			<set stat="pAtk" val="13" />
-			<set stat="mAtk" val="15" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">13</stat>
+			<stat type="mAtk">15</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="745" type="EtcItem" name="Cobendell Medicine">
@@ -691,8 +707,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -702,11 +716,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
-			<set stat="pAtk" val="11" />
-			<set stat="mAtk" val="13" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">11</stat>
+			<stat type="mAtk">13</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="748" type="Weapon" name="Gallint's Oak Wand">
@@ -715,8 +731,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -729,11 +743,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
-			<set stat="pAtk" val="10" />
-			<set stat="mAtk" val="11" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">10</stat>
+			<stat type="mAtk">11</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="749" type="Weapon" name="0">
@@ -741,8 +757,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="5" />
@@ -753,13 +767,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<set stat="pAtk" val="21" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">21</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="750" type="EtcItem" name="Kinship Crystal">
@@ -813,8 +827,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -824,11 +836,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
-			<set stat="pAtk" val="13" />
-			<set stat="mAtk" val="14" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">13</stat>
+			<stat type="mAtk">14</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="755" type="EtcItem" name="Colleen's Letter">

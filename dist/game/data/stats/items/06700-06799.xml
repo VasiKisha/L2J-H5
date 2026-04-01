@@ -155,8 +155,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -168,11 +166,13 @@
 		<set name="reuse_delay" val="1500" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="16" />
-			<set stat="mAtk" val="6" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">16</stat>
+			<stat type="mAtk">6</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="6716" type="Weapon" name="Monster Only(Silenos Shaman)">
@@ -180,8 +180,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -192,11 +190,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="11" />
-			<set stat="mAtk" val="12" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">11</stat>
+			<stat type="mAtk">12</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="6717" type="Weapon" name="Monster Only(Einhasad Warrior)">
@@ -204,8 +204,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="FINE_STEEL" />
@@ -215,10 +213,12 @@
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="24" />
-			<set stat="mAtk" val="17" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">24</stat>
+			<stat type="mAtk">17</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="6718" type="Weapon" name="Monster Only(Einhasad Shaman)">
@@ -226,8 +226,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="ADAMANTAITE" />
@@ -237,11 +235,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="24" />
-			<set stat="mAtk" val="17" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">24</stat>
+			<stat type="mAtk">17</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="6719" type="Weapon" name="Monster Only(Ketra Orc Chieftain)">
@@ -249,8 +249,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1912" />
@@ -263,13 +261,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="141" />
-			<set stat="mAtk" val="104" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">141</stat>
+			<stat type="mAtk">104</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="6720" type="Weapon" name="Monster Only(Shadow of Halisha)">
@@ -277,8 +275,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -290,11 +286,13 @@
 		<set name="reuse_delay" val="1500" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="16" />
-			<set stat="mAtk" val="6" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">16</stat>
+			<stat type="mAtk">6</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="6721" type="Weapon" name="Monster Only(Shield of Imperial Warlord Zombie)">
@@ -307,10 +305,9 @@
 		<set name="price" val="39" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="47" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">47</stat>
 		</stats>
 	</item>
 	<item id="6722" type="Weapon" name="Monster Only(Ahrimanes)">
@@ -318,8 +315,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1746" />
@@ -329,24 +324,24 @@
 		<set name="price" val="13100000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3045-14" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="14" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="6723" type="Weapon" name="Monster Only(Vampire Warrior)">
 		<set name="icon" val="icon.weapon_monster_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3272" />
@@ -358,12 +353,12 @@
 		<set name="spiritshots" val="3" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="112" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">112</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="6724" type="Armor" name="Sealed Tateossian Earring">
@@ -379,8 +374,7 @@
 		<set name="price" val="3270000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="6725" type="Armor" name="Sealed Tateossian Ring">
@@ -396,8 +390,7 @@
 		<set name="price" val="2180000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="46" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">46</stat>
 		</stats>
 	</item>
 	<item id="6726" type="Armor" name="Sealed Tateossian Necklace">
@@ -413,8 +406,7 @@
 		<set name="price" val="4361000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="91" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">91</stat>
 		</stats>
 	</item>
 	<item id="6727" type="EtcItem" name="Seed: Alternative Great Coba">
@@ -427,7 +419,9 @@
 		<set name="price" val="1200" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6728" type="EtcItem" name="Seed: Alternative Sea Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -439,7 +433,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6729" type="EtcItem" name="Seed: Alternative Sea Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -451,7 +447,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6730" type="EtcItem" name="Seed: Alternative Sea Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -463,7 +461,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6731" type="EtcItem" name="Seed: Alternative Red Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -475,7 +475,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6732" type="EtcItem" name="Seed: Alternative Red Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -487,7 +489,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6733" type="EtcItem" name="Seed: Alternative Red Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -499,7 +503,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6734" type="EtcItem" name="Seed: Alternative Red Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -511,7 +517,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6735" type="EtcItem" name="Seed: Alternative Red Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -523,7 +531,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6736" type="EtcItem" name="Seed: Alternative Desert Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -535,7 +545,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6737" type="EtcItem" name="Seed: Alternative Desert Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -547,7 +559,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6738" type="EtcItem" name="Seed: Alternative Desert Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -559,7 +573,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6739" type="EtcItem" name="Seed: Alternative Desert Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -571,7 +587,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6740" type="EtcItem" name="Seed: Alternative Desert Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -583,7 +601,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6741" type="EtcItem" name="Seed: Alternative Twin Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -595,7 +615,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6742" type="EtcItem" name="Seed: Alternative Blue Coba">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Alternative Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -607,7 +629,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6743" type="EtcItem" name="Seed: Alternative Blue Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -619,7 +643,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6744" type="EtcItem" name="Seed: Alternative Blue Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -631,7 +657,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6745" type="EtcItem" name="Seed: Alternative Blue Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -643,7 +671,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6746" type="EtcItem" name="Seed: Alternative Blue Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -655,7 +685,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6747" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -667,7 +699,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6748" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -679,7 +713,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6749" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -691,7 +727,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6750" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -703,7 +741,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6751" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -715,7 +755,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6752" type="EtcItem" name="Seed: Alternative Golden Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -727,7 +769,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6753" type="EtcItem" name="Seed: Great Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Great Coba. For best results, a level 80-90 character must plant it on a level 80-90 monster. -->
@@ -739,7 +783,9 @@
 		<set name="price" val="1200" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6754" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -751,7 +797,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6755" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -763,7 +811,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6756" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -775,7 +825,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6757" type="EtcItem" name="Seed: Red Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -787,7 +839,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6758" type="EtcItem" name="Seed: Red Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -799,7 +853,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6759" type="EtcItem" name="Seed: Red Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -811,7 +867,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6760" type="EtcItem" name="Seed: Red Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -823,7 +881,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6761" type="EtcItem" name="Seed: Red Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Red Coba. For best results, a level 65-75 character must plant it on a level 65-75 monster. -->
@@ -835,7 +895,9 @@
 		<set name="price" val="500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6762" type="EtcItem" name="Seed: Desert Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -847,7 +909,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6763" type="EtcItem" name="Seed: Desert Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -859,7 +923,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6764" type="EtcItem" name="Seed: Desert Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -871,7 +937,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6765" type="EtcItem" name="Seed: Desert Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -883,7 +951,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6766" type="EtcItem" name="Seed: Desert Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Desert Coba. For best results, a level 71-81 character must plant it on a level 71-81 monster. -->
@@ -895,7 +965,9 @@
 		<set name="price" val="750" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6767" type="EtcItem" name="Seed: Twin Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -907,7 +979,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6768" type="EtcItem" name="Seed: Blue Coba">
 		<!-- Plant this seed onto a monster in the Gludio area and it will bear the fruit of the Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -919,7 +993,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6769" type="EtcItem" name="Seed: Blue Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -931,7 +1007,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6770" type="EtcItem" name="Seed: Blue Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -943,7 +1021,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6771" type="EtcItem" name="Seed: Blue Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -955,7 +1035,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6772" type="EtcItem" name="Seed: Blue Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Blue Coba. For best results, a level 62-72 character must plant it on a level 62-72 monster. -->
@@ -967,7 +1049,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6773" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Giran area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -979,7 +1063,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6774" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Oren area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -991,7 +1077,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6775" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -1003,7 +1091,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6776" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -1015,7 +1105,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6777" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -1027,7 +1119,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6778" type="EtcItem" name="Seed: Golden Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Golden Coba. For best results, a level 68-78 character must plant it on a level 68-78 monster. -->
@@ -1039,7 +1133,9 @@
 		<set name="price" val="650" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="6779" type="EtcItem" name="Mercenary Posting Ticket (Sword/Stationary)">
 		<!-- Goddard/Sword/Stationary -->

@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 
-import handlers.effecthandlers.CallPc;
+import handlers.skill.effects.CallPc;
 
 /**
  * Castle Court Magician AI.

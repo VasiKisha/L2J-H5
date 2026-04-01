@@ -60,6 +60,11 @@ public class NoblessMaster extends Script
 					return "1003000-3.htm";
 				}
 				
+				if (player.getLevel() < NoblessMasterConfig.NOBLESS_MASTER_LEVEL_REQUIREMENT)
+				{
+					return "1003000-2.htm";
+				}
+				
 				if (NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT > 0)
 				{
 					if (getQuestItemsCount(player, NoblessMasterConfig.NOBLESS_MASTER_ITEM_ID) < NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT)
@@ -74,19 +79,14 @@ public class NoblessMaster extends Script
 					takeItems(player, NoblessMasterConfig.NOBLESS_MASTER_ITEM_ID, NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT);
 				}
 				
-				if (player.getLevel() >= NoblessMasterConfig.NOBLESS_MASTER_LEVEL_REQUIREMENT)
+				if (NoblessMasterConfig.NOBLESS_MASTER_REWARD_TIARA)
 				{
-					if (NoblessMasterConfig.NOBLESS_MASTER_REWARD_TIARA)
-					{
-						giveItems(player, NOBLESS_TIARA, 1);
-					}
-					
-					player.setNoble(true);
-					player.sendPacket(QuestSound.ITEMSOUND_QUEST_FINISH.getPacket());
-					return "1003000-1.htm";
+					giveItems(player, NOBLESS_TIARA, 1);
 				}
 				
-				return "1003000-2.htm";
+				player.setNoble(true);
+				player.sendPacket(QuestSound.ITEMSOUND_QUEST_FINISH.getPacket());
+				return "1003000-1.htm";
 			}
 		}
 		

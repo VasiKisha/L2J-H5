@@ -18,8 +18,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="141" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">141</stat>
 		</stats>
 	</item>
 	<item id="15701" type="Armor" name="Sealed Moirai Leather Legging">
@@ -37,8 +36,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="105" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">105</stat>
 		</stats>
 	</item>
 	<item id="15702" type="Armor" name="Sealed Moirai Stockings">
@@ -59,9 +57,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="70" />
-			<add stat="maxMp" val="392" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">70</stat>
+			<stat type="maxMp">392</stat>
 		</stats>
 	</item>
 	<item id="15703" type="Armor" name="Sealed Moirai Gauntlet">
@@ -81,8 +78,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15704" type="Armor" name="Sealed Moirai Leather Gloves">
@@ -99,8 +95,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15705" type="Armor" name="Sealed Moirai Gloves">
@@ -120,8 +115,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15706" type="Armor" name="Sealed Moirai Boots">
@@ -141,8 +135,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15707" type="Armor" name="Sealed Moirai Leather Boots">
@@ -159,8 +152,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15708" type="Armor" name="Sealed Moirai Shoes">
@@ -180,8 +172,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15709" type="Armor" name="Sealed Moirai Sigil">
@@ -201,9 +192,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="16" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">16</stat>
 		</stats>
 	</item>
 	<item id="15710" type="Armor" name="Sealed Moirai Shield">
@@ -222,10 +212,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="337" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">337</stat>
 		</stats>
 	</item>
 	<item id="15711" type="EtcItem" name="War Veteran Voucher">
@@ -303,7 +292,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9077-1" /> <!-- Open Packaged Book -->
+		<skills>
+			<skill id="9077" level="1" /> <!-- Open Packaged Book -->
+		</skills>
 	</item>
 	<item id="15717" type="Armor" name="Elegia Ring">
 		<!-- Elegia Ring The effect is MP +27. -->
@@ -318,9 +309,8 @@
 		<set name="price" val="10897000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="69" />
-			<add stat="maxMp" val="27" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">69</stat>
+			<stat type="maxMp">27</stat>
 		</stats>
 	</item>
 	<item id="15718" type="Armor" name="Elegia Earring">
@@ -336,9 +326,8 @@
 		<set name="price" val="16346000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="104" />
-			<add stat="maxMp" val="39" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">104</stat>
+			<stat type="maxMp">39</stat>
 		</stats>
 	</item>
 	<item id="15719" type="Armor" name="Elegia Necklace">
@@ -354,9 +343,8 @@
 		<set name="price" val="21795000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="138" />
-			<add stat="maxMp" val="52" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">138</stat>
+			<stat type="maxMp">52</stat>
 		</stats>
 	</item>
 	<item id="15720" type="Armor" name="Vorpal Ring">
@@ -372,9 +360,8 @@
 		<set name="price" val="9088000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="65" />
-			<add stat="maxMp" val="26" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">65</stat>
+			<stat type="maxMp">26</stat>
 		</stats>
 	</item>
 	<item id="15721" type="Armor" name="Vorpal Earring">
@@ -390,9 +377,8 @@
 		<set name="price" val="13633000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="98" />
-			<add stat="maxMp" val="38" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">98</stat>
+			<stat type="maxMp">38</stat>
 		</stats>
 	</item>
 	<item id="15722" type="Armor" name="Vorpal Necklace">
@@ -408,9 +394,8 @@
 		<set name="price" val="18177000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="131" />
-			<add stat="maxMp" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">131</stat>
+			<stat type="maxMp">51</stat>
 		</stats>
 	</item>
 	<item id="15723" type="Armor" name="Moirai Ring">
@@ -426,9 +411,8 @@
 		<set name="price" val="5480000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="61" />
-			<add stat="maxMp" val="24" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">61</stat>
+			<stat type="maxMp">24</stat>
 		</stats>
 	</item>
 	<item id="15724" type="Armor" name="Moirai Earring">
@@ -444,9 +428,8 @@
 		<set name="price" val="8221000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="86" />
-			<add stat="maxMp" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">86</stat>
+			<stat type="maxMp">36</stat>
 		</stats>
 	</item>
 	<item id="15725" type="Armor" name="Moirai Necklace">
@@ -462,9 +445,8 @@
 		<set name="price" val="10961000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="115" />
-			<add stat="maxMp" val="48" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">115</stat>
+			<stat type="maxMp">48</stat>
 		</stats>
 	</item>
 	<item id="15726" type="Armor" name="Sealed Elegia Helmet">
@@ -484,8 +466,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="110" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">110</stat>
 		</stats>
 	</item>
 	<item id="15727" type="Armor" name="Sealed Elegia Leather Helmet">
@@ -502,8 +483,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="110" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">110</stat>
 		</stats>
 	</item>
 	<item id="15728" type="Armor" name="Sealed Elegia Circlet">
@@ -523,8 +503,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="110" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">110</stat>
 		</stats>
 	</item>
 	<item id="15729" type="Armor" name="Sealed Elegia Breastplate">
@@ -545,8 +524,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="257" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">257</stat>
 		</stats>
 	</item>
 	<item id="15730" type="Armor" name="Sealed Elegia Leather Breastplate">
@@ -564,8 +542,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="193" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">193</stat>
 		</stats>
 	</item>
 	<item id="15731" type="Armor" name="Sealed Elegia Tunic">
@@ -586,9 +563,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="129" />
-			<add stat="maxMp" val="661" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">129</stat>
+			<stat type="maxMp">661</stat>
 		</stats>
 	</item>
 	<item id="15732" type="Armor" name="Sealed Elegia Gaiter">
@@ -609,8 +585,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="161" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">161</stat>
 		</stats>
 	</item>
 	<item id="15733" type="Armor" name="Sealed Elegia Leather Legging">
@@ -628,8 +603,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="121" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">121</stat>
 		</stats>
 	</item>
 	<item id="15734" type="Armor" name="Sealed Elegia Stockings">
@@ -650,9 +624,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="80" />
-			<add stat="maxMp" val="439" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">80</stat>
+			<stat type="maxMp">439</stat>
 		</stats>
 	</item>
 	<item id="15735" type="Armor" name="Sealed Elegia Gauntlet">
@@ -672,8 +645,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15736" type="Armor" name="Sealed Elegia Leather Gloves">
@@ -690,8 +662,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15737" type="Armor" name="Sealed Elegia Gloves">
@@ -711,8 +682,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15738" type="Armor" name="Sealed Elegia Boots">
@@ -732,8 +702,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15739" type="Armor" name="Sealed Elegia Leather Boots">
@@ -750,8 +719,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15740" type="Armor" name="Sealed Elegia Shoes">
@@ -771,8 +739,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
 		</stats>
 	</item>
 	<item id="15741" type="Armor" name="Sealed Elegia Shield">
@@ -791,10 +758,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="392" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">392</stat>
 		</stats>
 	</item>
 	<item id="15742" type="Armor" name="Sealed Elegia Sigil">
@@ -814,9 +780,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="21" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">21</stat>
 		</stats>
 	</item>
 	<item id="15743" type="Armor" name="Sealed Vorpal Helmet">
@@ -836,8 +801,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="15744" type="Armor" name="Sealed Vorpal Leather Helmet">
@@ -854,8 +818,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="15745" type="Armor" name="Sealed Vorpal Circlet">
@@ -875,8 +838,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="15746" type="Armor" name="Sealed Vorpal Breastplate">
@@ -897,8 +859,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="249" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">249</stat>
 		</stats>
 	</item>
 	<item id="15747" type="Armor" name="Sealed Vorpal Leather Breastplate">
@@ -916,8 +877,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="187" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">187</stat>
 		</stats>
 	</item>
 	<item id="15748" type="Armor" name="Sealed Vorpal Tunic">
@@ -938,9 +898,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="124" />
-			<add stat="maxMp" val="649" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">124</stat>
+			<stat type="maxMp">649</stat>
 		</stats>
 	</item>
 	<item id="15749" type="Armor" name="Sealed Vorpal Gaiter">
@@ -961,8 +920,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="156" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">156</stat>
 		</stats>
 	</item>
 	<item id="15750" type="Armor" name="Sealed Vorpal Leather Legging">
@@ -980,8 +938,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="117" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">117</stat>
 		</stats>
 	</item>
 	<item id="15751" type="Armor" name="Sealed Vorpal Stockings">
@@ -1002,9 +959,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="427" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">427</stat>
 		</stats>
 	</item>
 	<item id="15752" type="Armor" name="Sealed Vorpal Gauntlet">
@@ -1024,8 +980,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15753" type="Armor" name="Sealed Vorpal Leather Gloves">
@@ -1042,8 +997,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15754" type="Armor" name="Sealed Vorpal Gloves">
@@ -1063,8 +1017,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15755" type="Armor" name="Sealed Vorpal Boots">
@@ -1084,8 +1037,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15756" type="Armor" name="Sealed Vorpal Leather Boots">
@@ -1102,8 +1054,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15757" type="Armor" name="Sealed Vorpal Shoes">
@@ -1123,8 +1074,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="71" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="15758" type="Armor" name="Sealed Vorpal Shield">
@@ -1143,10 +1093,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="379" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">379</stat>
 		</stats>
 	</item>
 	<item id="15759" type="Armor" name="Sealed Vorpal Sigil">
@@ -1166,9 +1115,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="19" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="15760" type="Armor" name="Sealed Elegia Ring">
@@ -1184,8 +1132,7 @@
 		<set name="price" val="7377000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="61" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">61</stat>
 		</stats>
 	</item>
 	<item id="15761" type="Armor" name="Sealed Elegia Earring">
@@ -1201,8 +1148,7 @@
 		<set name="price" val="11066000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="92" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">92</stat>
 		</stats>
 	</item>
 	<item id="15762" type="Armor" name="Sealed Elegia Necklace">
@@ -1218,8 +1164,7 @@
 		<set name="price" val="14755000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="121" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">121</stat>
 		</stats>
 	</item>
 	<item id="15763" type="Armor" name="Sealed Vorpal Ring">
@@ -1235,8 +1180,7 @@
 		<set name="price" val="6152000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="57" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">57</stat>
 		</stats>
 	</item>
 	<item id="15764" type="Armor" name="Sealed Vorpal Earring">
@@ -1252,8 +1196,7 @@
 		<set name="price" val="9229000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="86" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">86</stat>
 		</stats>
 	</item>
 	<item id="15765" type="Armor" name="Sealed Vorpal Necklace">
@@ -1269,8 +1212,7 @@
 		<set name="price" val="12305000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="115" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">115</stat>
 		</stats>
 	</item>
 	<item id="15766" type="Armor" name="Sealed Moirai Ring">
@@ -1286,8 +1228,7 @@
 		<set name="price" val="3710000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">53</stat>
 		</stats>
 	</item>
 	<item id="15767" type="Armor" name="Sealed Moirai Earring">
@@ -1303,8 +1244,7 @@
 		<set name="price" val="5565000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="76" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">76</stat>
 		</stats>
 	</item>
 	<item id="15768" type="Armor" name="Sealed Moirai Necklace">
@@ -1320,8 +1260,7 @@
 		<set name="price" val="7420000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="101" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">101</stat>
 		</stats>
 	</item>
 	<item id="15769" type="EtcItem" name="Sealed Vesper Ring Gem">

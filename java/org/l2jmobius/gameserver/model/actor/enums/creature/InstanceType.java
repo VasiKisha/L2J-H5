@@ -50,7 +50,6 @@ public enum InstanceType
 	QuestGuard(Guard),
 	Monster(Attackable),
 	Chest(Monster),
-	ControllableMob(Monster),
 	FeedableBeast(Monster),
 	TamedBeast(FeedableBeast),
 	FriendlyMob(Attackable),
@@ -114,6 +113,7 @@ public enum InstanceType
 	ClanHallDoorman(Doorman),
 	
 	// Custom
+	ClassMaster(Folk),
 	SchemeBuffer(Npc),
 	EventMob(Npc),
 	UCManagerInstance(Folk);

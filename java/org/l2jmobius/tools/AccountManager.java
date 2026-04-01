@@ -92,6 +92,7 @@ import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.ui.DarkTheme;
+import org.l2jmobius.commons.ui.SplashScreen;
 
 /**
  * @author Skache
@@ -156,6 +157,9 @@ public class AccountManager extends JFrame
 	
 	private void gui()
 	{
+		// Show Splash Screen for 3 seconds.
+		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 3000, this);
+		
 		setTitle("Mobius - Account Manager");
 		setMinimumSize(new Dimension(600, 400));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -199,7 +203,6 @@ public class AccountManager extends JFrame
 		
 		add(_tabPanel);
 		setIconImages(icons);
-		setVisible(true);
 	}
 	
 	private JPanel createAccountPanel()

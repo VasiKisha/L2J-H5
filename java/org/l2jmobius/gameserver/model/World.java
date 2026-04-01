@@ -41,6 +41,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
@@ -75,6 +76,11 @@ public class World
 	public static final int WORLD_X_MAX = ((TILE_X_MAX - TILE_ZERO_COORD_X) + 1) * TILE_SIZE;
 	public static final int WORLD_Y_MAX = ((TILE_Y_MAX - TILE_ZERO_COORD_Y) + 1) * TILE_SIZE;
 	
+	/** Z coordinate limits */
+	public static final int WORLD_Z_MIN = -16000;
+	public static final int WORLD_Z_MAX = 16000;
+	public static final int Z_REGION_SIZE = 2000;
+	
 	/** Calculated offset used so top left region is 0,0 */
 	public static final int OFFSET_X = Math.abs(WORLD_X_MIN >> SHIFT_BY);
 	public static final int OFFSET_Y = Math.abs(WORLD_Y_MIN >> SHIFT_BY);
@@ -82,6 +88,7 @@ public class World
 	/** Number of regions. */
 	private static final int REGIONS_X = (WORLD_X_MAX >> SHIFT_BY) + OFFSET_X;
 	private static final int REGIONS_Y = (WORLD_Y_MAX >> SHIFT_BY) + OFFSET_Y;
+	private static final int REGIONS_Z = (Math.abs(WORLD_Z_MIN) + Math.abs(WORLD_Z_MAX)) / Z_REGION_SIZE;
 	
 	/** Map containing all the players in game. */
 	private static final Map<Integer, Player> _allPlayers = new ConcurrentHashMap<>();
@@ -94,7 +101,7 @@ public class World
 	/** Map with the pets instances and their owner ID. */
 	private static final Map<Integer, Pet> _petsInstance = new ConcurrentHashMap<>();
 	
-	private static final WorldRegion[][] _worldRegions = new WorldRegion[REGIONS_X + 1][REGIONS_Y + 1];
+	private static final WorldRegion[][][] _worldRegions = new WorldRegion[REGIONS_X + 1][REGIONS_Y + 1][REGIONS_Z];
 	
 	/** Constructor of World. */
 	protected World()
@@ -104,7 +111,10 @@ public class World
 		{
 			for (int y = 0; y <= REGIONS_Y; y++)
 			{
-				_worldRegions[x][y] = new WorldRegion(x, y);
+				for (int z = 0; z < REGIONS_Z; z++)
+				{
+					_worldRegions[x][y][z] = new WorldRegion(x, y, z);
+				}
 			}
 		}
 		
@@ -113,21 +123,27 @@ public class World
 		{
 			for (int ry = 0; ry <= REGIONS_Y; ry++)
 			{
-				final List<WorldRegion> surroundingRegions = new ArrayList<>();
-				for (int sx = rx - 1; sx <= (rx + 1); sx++)
+				for (int rz = 0; rz < REGIONS_Z; rz++)
 				{
-					for (int sy = ry - 1; sy <= (ry + 1); sy++)
+					final List<WorldRegion> surroundingRegions = new ArrayList<>();
+					for (int sx = rx - 1; sx <= (rx + 1); sx++)
 					{
-						if (((sx >= 0) && (sx < REGIONS_X) && (sy >= 0) && (sy < REGIONS_Y)))
+						for (int sy = ry - 1; sy <= (ry + 1); sy++)
 						{
-							surroundingRegions.add(_worldRegions[sx][sy]);
+							for (int sz = rz - 1; sz <= (rz + 1); sz++)
+							{
+								if (((sx >= 0) && (sx < REGIONS_X) && (sy >= 0) && (sy < REGIONS_Y) && (sz >= 0) && (sz < REGIONS_Z)))
+								{
+									surroundingRegions.add(_worldRegions[sx][sy][sz]);
+								}
+							}
 						}
 					}
+					
+					WorldRegion[] regionArray = new WorldRegion[surroundingRegions.size()];
+					regionArray = surroundingRegions.toArray(regionArray);
+					_worldRegions[rx][ry][rz].setSurroundingRegions(regionArray);
 				}
-				
-				WorldRegion[] regionArray = new WorldRegion[surroundingRegions.size()];
-				regionArray = surroundingRegions.toArray(regionArray);
-				_worldRegions[rx][ry].setSurroundingRegions(regionArray);
 			}
 		}
 		
@@ -746,7 +762,9 @@ public class World
 	{
 		try
 		{
-			return _worldRegions[(object.getX() >> SHIFT_BY) + OFFSET_X][(object.getY() >> SHIFT_BY) + OFFSET_Y];
+			final int z = object.getZ();
+			final int regionZ = calculateRegionZ(z);
+			return _worldRegions[(object.getX() >> SHIFT_BY) + OFFSET_X][(object.getY() >> SHIFT_BY) + OFFSET_Y][regionZ];
 		}
 		catch (ArrayIndexOutOfBoundsException e) // Precaution. Moved at invalid region?
 		{
@@ -755,24 +773,46 @@ public class World
 		}
 	}
 	
-	public WorldRegion getRegion(int x, int y)
+	public WorldRegion getRegion(int x, int y, int z)
 	{
 		try
 		{
-			return _worldRegions[(x >> SHIFT_BY) + OFFSET_X][(y >> SHIFT_BY) + OFFSET_Y];
+			final int regionZ = calculateRegionZ(z);
+			return _worldRegions[(x >> SHIFT_BY) + OFFSET_X][(y >> SHIFT_BY) + OFFSET_Y][regionZ];
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			LOGGER.warning(getClass().getSimpleName() + ": Incorrect world region X: " + ((x >> SHIFT_BY) + OFFSET_X) + " Y: " + ((y >> SHIFT_BY) + OFFSET_Y));
+			LOGGER.warning(getClass().getSimpleName() + ": Incorrect world region X: " + ((x >> SHIFT_BY) + OFFSET_X) + " Y: " + ((y >> SHIFT_BY) + OFFSET_Y) + " Z: " + calculateRegionZ(z));
 			return null;
 		}
+	}
+	
+	/**
+	 * Calculate the region Z index based on Z coordinate
+	 * @param z The Z coordinate
+	 * @return The region Z index (0-3)
+	 */
+	private int calculateRegionZ(int z)
+	{
+		// Handle values outside the normal range.
+		if (z < WORLD_Z_MIN)
+		{
+			return 0; // Bottom region.
+		}
+		if (z > WORLD_Z_MAX)
+		{
+			return REGIONS_Z - 1; // Top region.
+		}
+		
+		// Calculate the region Z index (0-based).
+		return (z - WORLD_Z_MIN) / Z_REGION_SIZE;
 	}
 	
 	/**
 	 * Returns the whole 3d array containing the world regions used by ZoneData.java to setup zones inside the world regions
 	 * @return
 	 */
-	public WorldRegion[][] getWorldRegions()
+	public WorldRegion[][][] getWorldRegions()
 	{
 		return _worldRegions;
 	}

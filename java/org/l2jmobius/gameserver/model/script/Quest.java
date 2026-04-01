@@ -69,8 +69,6 @@ import org.l2jmobius.gameserver.managers.PcCafePointsManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Message;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -169,11 +167,13 @@ import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.Movie;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -1321,10 +1321,10 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 			LOGGER.log(Level.WARNING, "could not insert char quest:", e);
 		}
 		
-		// events
+		// Events? Remove this?
 		for (String name : ScriptManager.getInstance().getScripts().keySet())
 		{
-			player.processQuestEvent(name, "enter");
+			player.processScriptEvent(name, "enter");
 		}
 	}
 	
@@ -4582,10 +4582,10 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 		// Mail attachments.
 		if (GeneralConfig.ALLOW_MAIL)
 		{
-			final List<Message> inbox = MailManager.getInstance().getInbox(player.getObjectId());
+			final List<MailMessage> inbox = MailManager.getInstance().getInbox(player.getObjectId());
 			for (int itemId : itemIds)
 			{
-				for (Message message : inbox)
+				for (MailMessage message : inbox)
 				{
 					final Mail mail = message.getAttachments();
 					if ((mail != null) && (mail.getItemByItemId(itemId) != null))
@@ -4595,10 +4595,10 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 				}
 			}
 			
-			final List<Message> outbox = MailManager.getInstance().getOutbox(player.getObjectId());
+			final List<MailMessage> outbox = MailManager.getInstance().getOutbox(player.getObjectId());
 			for (int itemId : itemIds)
 			{
-				for (Message message : outbox)
+				for (MailMessage message : outbox)
 				{
 					final Mail mail = message.getAttachments();
 					if ((mail != null) && (mail.getItemByItemId(itemId) != null))

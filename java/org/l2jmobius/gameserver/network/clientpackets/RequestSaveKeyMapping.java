@@ -1,89 +1,67 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.data.xml.UIData;
-import org.l2jmobius.gameserver.model.ActionKey;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.ConnectionState;
 
 /**
- * @author mrTJO
+ * @author Mobius
  */
 public class RequestSaveKeyMapping extends ClientPacket
 {
-	private final Map<Integer, List<ActionKey>> _keyMap = new HashMap<>();
-	private final Map<Integer, List<Integer>> _catMap = new HashMap<>();
+	public static final String SPLIT_VAR = "	";
+	
+	private byte[] _uiKeyMapping;
 	
 	@Override
 	protected void readImpl()
 	{
-		int category = 0;
-		readInt(); // Unknown
-		readInt(); // Unknown
-		final int _tabNum = readInt();
-		for (int i = 0; i < _tabNum; i++)
+		final int dataSize = readInt();
+		if (dataSize > 0)
 		{
-			final int cmd1Size = readByte();
-			for (int j = 0; j < cmd1Size; j++)
-			{
-				UIData.addCategory(_catMap, category, readByte());
-			}
-			
-			category++;
-			
-			final int cmd2Size = readByte();
-			for (int j = 0; j < cmd2Size; j++)
-			{
-				UIData.addCategory(_catMap, category, readByte());
-			}
-			
-			category++;
-			
-			final int cmdSize = readInt();
-			for (int j = 0; j < cmdSize; j++)
-			{
-				final int cmd = readInt();
-				final int key = readInt();
-				final int tgKey1 = readInt();
-				final int tgKey2 = readInt();
-				final int show = readInt();
-				UIData.addKey(_keyMap, i, new ActionKey(i, cmd, key, tgKey1, tgKey2, show));
-			}
+			_uiKeyMapping = readBytes(dataSize);
 		}
-		
-		readInt();
-		readInt();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (!PlayerConfig.STORE_UI_SETTINGS || (player == null) || (getClient().getConnectionState() != ConnectionState.IN_GAME))
+		if (!PlayerConfig.STORE_UI_SETTINGS || //
+			(player == null) || //
+			(_uiKeyMapping == null) || //
+			(getClient().getConnectionState() != ConnectionState.IN_GAME))
 		{
 			return;
 		}
 		
-		player.getUISettings().storeAll(_catMap, _keyMap);
+		final StringBuilder sb = new StringBuilder(_uiKeyMapping.length * 4);
+		for (Byte b : _uiKeyMapping)
+		{
+			sb.append(b).append(SPLIT_VAR);
+		}
+		
+		player.getVariables().set(PlayerVariables.UI_KEY_MAPPING, sb.toString());
 	}
 }

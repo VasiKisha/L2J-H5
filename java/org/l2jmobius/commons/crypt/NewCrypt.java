@@ -21,202 +21,220 @@
 package org.l2jmobius.commons.crypt;
 
 /**
- * Class to use a blowfish cipher with ECB processing.<br>
- * Static methods are present to append/check the checksum of<br>
- * packets exchanged between the following partners:<br>
- * Login Server <-> Game Client<br>
- * Login Server <-> Game Server<br>
- * Also a static method is provided for the initial xor encryption between Login Server <-> Game Client.
+ * Blowfish cipher implementation with ECB processing for L2J packet encryption.<br>
+ * Provides checksum validation and XOR encryption for secure server communication.
+ * <ul>
+ * <li>Packet checksum verification and generation for integrity validation.</li>
+ * <li>XOR pass encryption for initial login server to game client handshake.</li>
+ * <li>Blowfish ECB encryption/decryption for ongoing packet security.</li>
+ * </ul>
  */
 public class NewCrypt
 {
-	private final BlowfishEngine _cipher;
+	// Constants.
+	private static final int BYTES_PER_BLOCK = 4;
+	private static final int CHECKSUM_SIZE = 4;
+	private static final int BLOWFISH_BLOCK_SIZE = 8;
+	private static final int XOR_KEY_OFFSET = 4;
+	private static final int XOR_FINAL_OFFSET = 8;
+	private static final int BYTE_MASK = 0xFF;
+	private static final int SHIFT_8_BITS = 8;
+	private static final int SHIFT_16_BITS = 16;
+	private static final int SHIFT_24_BITS = 24;
+	private static final long MASK_16_BITS = 0xFF00;
+	private static final long MASK_24_BITS = 0xFF0000;
+	private static final long MASK_32_BITS = 0xFF000000;
+	
+	// Encryption Engine.
+	private final BlowfishEngine _blowfishCipher;
 	
 	/**
+	 * Creates new crypt instance with blowfish key bytes.
 	 * @param blowfishKey
 	 */
 	public NewCrypt(byte[] blowfishKey)
 	{
-		_cipher = new BlowfishEngine();
-		_cipher.init(blowfishKey);
+		_blowfishCipher = new BlowfishEngine();
+		_blowfishCipher.init(blowfishKey);
 	}
 	
+	/**
+	 * Creates new crypt instance with string key converted to bytes.
+	 * @param key
+	 */
 	public NewCrypt(String key)
 	{
 		this(key.getBytes());
 	}
 	
 	/**
-	 * Equivalent to calling {@link #verifyChecksum(byte[], int, int)} with parameters (raw, 0, raw.length)
-	 * @param raw data array to be verified
+	 * Verifies packet checksum for entire data array.
+	 * @param rawData data array to be verified
 	 * @return true when the checksum of the data is valid, false otherwise
 	 */
-	public static boolean verifyChecksum(byte[] raw)
+	public static boolean verifyChecksum(byte[] rawData)
 	{
-		return verifyChecksum(raw, 0, raw.length);
+		return verifyChecksum(rawData, 0, rawData.length);
 	}
 	
 	/**
-	 * Method to verify the checksum of a packet received by login server from game client.<br>
-	 * This is also used for game server <-> login server communication.
-	 * @param raw data array to be verified
+	 * Verifies packet checksum for data integrity validation.<br>
+	 * Used for login server to game client and game server communication.
+	 * @param rawData data array to be verified
 	 * @param offset at which offset to start verifying
 	 * @param size number of bytes to verify
 	 * @return true if the checksum of the data is valid, false otherwise
 	 */
-	public static boolean verifyChecksum(byte[] raw, int offset, int size)
+	public static boolean verifyChecksum(byte[] rawData, int offset, int size)
 	{
-		// check if size is multiple of 4 and if there is more then only the checksum
-		if (((size & 3) != 0) || (size <= 4))
+		// Check if size is multiple of 4 and if there is more than only the checksum.
+		if (((size & 3) != 0) || (size <= CHECKSUM_SIZE))
 		{
 			return false;
 		}
 		
-		long chksum = 0;
-		final int count = size - 4;
-		long check = -1;
-		int i;
+		long calculatedChecksum = 0;
+		final int dataLength = size - CHECKSUM_SIZE;
+		long currentBlock = -1;
+		int position;
 		
-		for (i = offset; i < count; i += 4)
+		for (position = offset; position < dataLength; position += BYTES_PER_BLOCK)
 		{
-			check = raw[i] & 0xff;
-			check |= (raw[i + 1] << 8) & 0xff00;
-			check |= (raw[i + 2] << 0x10) & 0xff0000;
-			check |= (raw[i + 3] << 0x18) & 0xff000000;
+			currentBlock = rawData[position] & BYTE_MASK;
+			currentBlock |= (rawData[position + 1] << SHIFT_8_BITS) & MASK_16_BITS;
+			currentBlock |= (rawData[position + 2] << SHIFT_16_BITS) & MASK_24_BITS;
+			currentBlock |= (rawData[position + 3] << SHIFT_24_BITS) & MASK_32_BITS;
 			
-			chksum ^= check;
+			calculatedChecksum ^= currentBlock;
 		}
 		
-		check = raw[i] & 0xff;
-		check |= (raw[i + 1] << 8) & 0xff00;
-		check |= (raw[i + 2] << 0x10) & 0xff0000;
-		check |= (raw[i + 3] << 0x18) & 0xff000000;
+		currentBlock = rawData[position] & BYTE_MASK;
+		currentBlock |= (rawData[position + 1] << SHIFT_8_BITS) & MASK_16_BITS;
+		currentBlock |= (rawData[position + 2] << SHIFT_16_BITS) & MASK_24_BITS;
+		currentBlock |= (rawData[position + 3] << SHIFT_24_BITS) & MASK_32_BITS;
 		
-		return check == chksum;
+		return currentBlock == calculatedChecksum;
 	}
 	
 	/**
-	 * Equivalent to calling {@link #appendChecksum(byte[], int, int)} with parameters (raw, 0, raw.length)
-	 * @param raw data array to compute the checksum from
+	 * Appends packet checksum to entire data array.
+	 * @param rawData data array to compute the checksum from
 	 */
-	public static void appendChecksum(byte[] raw)
+	public static void appendChecksum(byte[] rawData)
 	{
-		appendChecksum(raw, 0, raw.length);
+		appendChecksum(rawData, 0, rawData.length);
 	}
 	
 	/**
-	 * Method to append packet checksum at the end of the packet.
-	 * @param raw data array to compute the checksum from
+	 * Computes and appends packet checksum at the end of the packet.
+	 * @param rawData data array to compute the checksum from
 	 * @param offset offset where to start in the data array
 	 * @param size number of bytes to compute the checksum from
 	 */
-	public static void appendChecksum(byte[] raw, int offset, int size)
+	public static void appendChecksum(byte[] rawData, int offset, int size)
 	{
-		long chksum = 0;
-		final int count = size - 4;
-		long ecx;
-		int i;
+		long calculatedChecksum = 0;
+		final int dataLength = size - CHECKSUM_SIZE;
+		long currentBlock;
+		int position;
 		
-		for (i = offset; i < count; i += 4)
+		for (position = offset; position < dataLength; position += BYTES_PER_BLOCK)
 		{
-			ecx = raw[i] & 0xff;
-			ecx |= (raw[i + 1] << 8) & 0xff00;
-			ecx |= (raw[i + 2] << 0x10) & 0xff0000;
-			ecx |= (raw[i + 3] << 0x18) & 0xff000000;
+			currentBlock = rawData[position] & BYTE_MASK;
+			currentBlock |= (rawData[position + 1] << SHIFT_8_BITS) & MASK_16_BITS;
+			currentBlock |= (rawData[position + 2] << SHIFT_16_BITS) & MASK_24_BITS;
+			currentBlock |= (rawData[position + 3] << SHIFT_24_BITS) & MASK_32_BITS;
 			
-			chksum ^= ecx;
+			calculatedChecksum ^= currentBlock;
 		}
 		
-		ecx = raw[i] & 0xff;
-		ecx |= (raw[i + 1] << 8) & 0xff00;
-		ecx |= (raw[i + 2] << 0x10) & 0xff0000;
-		ecx |= (raw[i + 3] << 0x18) & 0xff000000;
+		currentBlock = rawData[position] & BYTE_MASK;
+		currentBlock |= (rawData[position + 1] << SHIFT_8_BITS) & MASK_16_BITS;
+		currentBlock |= (rawData[position + 2] << SHIFT_16_BITS) & MASK_24_BITS;
+		currentBlock |= (rawData[position + 3] << SHIFT_24_BITS) & MASK_32_BITS;
 		
-		raw[i] = (byte) (chksum & 0xff);
-		raw[i + 1] = (byte) ((chksum >> 0x08) & 0xff);
-		raw[i + 2] = (byte) ((chksum >> 0x10) & 0xff);
-		raw[i + 3] = (byte) ((chksum >> 0x18) & 0xff);
+		rawData[position] = (byte) (calculatedChecksum & BYTE_MASK);
+		rawData[position + 1] = (byte) ((calculatedChecksum >> SHIFT_8_BITS) & BYTE_MASK);
+		rawData[position + 2] = (byte) ((calculatedChecksum >> SHIFT_16_BITS) & BYTE_MASK);
+		rawData[position + 3] = (byte) ((calculatedChecksum >> SHIFT_24_BITS) & BYTE_MASK);
 	}
 	
 	/**
-	 * Packet is first XOR encoded with <code>key</code> then, the last 4 bytes are overwritten with the the XOR "key".<br>
-	 * Thus this assume that there is enough room for the key to fit without overwriting data.
-	 * @param raw The raw bytes to be encrypted
-	 * @param key The 4 bytes (int) XOR key
+	 * Encrypts packet with XOR encoding and appends the XOR key to entire data array.<br>
+	 * Assumes sufficient room exists for the key without overwriting data.
+	 * @param rawData The raw bytes to be encrypted
+	 * @param xorKey The 4 bytes (int) XOR key
 	 */
-	public static void encXORPass(byte[] raw, int key)
+	public static void encXORPass(byte[] rawData, int xorKey)
 	{
-		encXORPass(raw, 0, raw.length, key);
+		encXORPass(rawData, 0, rawData.length, xorKey);
 	}
 	
 	/**
-	 * Packet is first XOR encoded with <code>key</code> then, the last 4 bytes are overwritten with the the XOR "key".<br>
-	 * Thus this assume that there is enough room for the key to fit without overwriting data.
-	 * @param raw The raw bytes to be encrypted
+	 * Encrypts packet with XOR encoding and appends the XOR key to the data.<br>
+	 * Assumes sufficient room exists for the key without overwriting data.
+	 * @param rawData The raw bytes to be encrypted
 	 * @param offset The beginning of the data to be encrypted
 	 * @param size Length of the data to be encrypted
-	 * @param key The 4 bytes (int) XOR key
+	 * @param xorKey The 4 bytes (int) XOR key
 	 */
-	public static void encXORPass(byte[] raw, int offset, int size, int key)
+	public static void encXORPass(byte[] rawData, int offset, int size, int xorKey)
 	{
-		final int stop = size - 8;
-		int pos = 4 + offset;
-		int edx;
-		int ecx = key; // Initial xor key
+		final int endPosition = size - XOR_FINAL_OFFSET;
+		int currentPosition = XOR_KEY_OFFSET + offset;
+		int dataBlock;
+		int encryptionKey = xorKey; // Initial xor key.
 		
-		while (pos < stop)
+		while (currentPosition < endPosition)
 		{
-			edx = raw[pos] & 0xFF;
-			edx |= (raw[pos + 1] & 0xFF) << 8;
-			edx |= (raw[pos + 2] & 0xFF) << 16;
-			edx |= (raw[pos + 3] & 0xFF) << 24;
+			dataBlock = rawData[currentPosition] & BYTE_MASK;
+			dataBlock |= (rawData[currentPosition + 1] & BYTE_MASK) << SHIFT_8_BITS;
+			dataBlock |= (rawData[currentPosition + 2] & BYTE_MASK) << SHIFT_16_BITS;
+			dataBlock |= (rawData[currentPosition + 3] & BYTE_MASK) << SHIFT_24_BITS;
 			
-			ecx += edx;
+			encryptionKey += dataBlock;
 			
-			edx ^= ecx;
+			dataBlock ^= encryptionKey;
 			
-			raw[pos++] = (byte) (edx & 0xFF);
-			raw[pos++] = (byte) ((edx >> 8) & 0xFF);
-			raw[pos++] = (byte) ((edx >> 16) & 0xFF);
-			raw[pos++] = (byte) ((edx >> 24) & 0xFF);
+			rawData[currentPosition++] = (byte) (dataBlock & BYTE_MASK);
+			rawData[currentPosition++] = (byte) ((dataBlock >> SHIFT_8_BITS) & BYTE_MASK);
+			rawData[currentPosition++] = (byte) ((dataBlock >> SHIFT_16_BITS) & BYTE_MASK);
+			rawData[currentPosition++] = (byte) ((dataBlock >> SHIFT_24_BITS) & BYTE_MASK);
 		}
 		
-		raw[pos++] = (byte) (ecx & 0xFF);
-		raw[pos++] = (byte) ((ecx >> 8) & 0xFF);
-		raw[pos++] = (byte) ((ecx >> 16) & 0xFF);
-		raw[pos++] = (byte) ((ecx >> 24) & 0xFF);
+		rawData[currentPosition++] = (byte) (encryptionKey & BYTE_MASK);
+		rawData[currentPosition++] = (byte) ((encryptionKey >> SHIFT_8_BITS) & BYTE_MASK);
+		rawData[currentPosition++] = (byte) ((encryptionKey >> SHIFT_16_BITS) & BYTE_MASK);
+		rawData[currentPosition++] = (byte) ((encryptionKey >> SHIFT_24_BITS) & BYTE_MASK);
 	}
 	
 	/**
-	 * Method to decrypt using Blowfish-Blockcipher in ECB mode.<br>
-	 * The results will be directly placed inside {@code raw} array.<br>
-	 * This method does not do any error checking, since the calling code<br>
-	 * should ensure sizes.
-	 * @param raw the data array to be decrypted
+	 * Decrypts data using Blowfish cipher in ECB mode.<br>
+	 * Results are placed directly inside the raw array without error checking.
+	 * @param rawData the data array to be decrypted
 	 * @param offset the offset at which to start decrypting
 	 * @param size the number of bytes to be decrypted
 	 */
-	public void decrypt(byte[] raw, int offset, int size)
+	public void decrypt(byte[] rawData, int offset, int size)
 	{
-		for (int i = offset; i < (offset + size); i += 8)
+		for (int i = offset; i < (offset + size); i += BLOWFISH_BLOCK_SIZE)
 		{
-			_cipher.decryptBlock(raw, i);
+			_blowfishCipher.decryptBlock(rawData, i);
 		}
 	}
 	
 	/**
-	 * Method to encrypt using Blowfish-Blockcipher in ECB mode.<br>
-	 * The results will be directly placed inside {@code raw} array.<br>
-	 * This method does not do any error checking, since the calling code should ensure sizes.
-	 * @param raw the data array to be decrypted
-	 * @param offset the offset at which to start decrypting
-	 * @param size the number of bytes to be decrypted
+	 * Encrypts data using Blowfish cipher in ECB mode.<br>
+	 * Results are placed directly inside the raw array without error checking.
+	 * @param rawData the data array to be encrypted
+	 * @param offset the offset at which to start encrypting
+	 * @param size the number of bytes to be encrypted
 	 */
-	public void crypt(byte[] raw, int offset, int size)
+	public void crypt(byte[] rawData, int offset, int size)
 	{
-		for (int i = offset; i < (offset + size); i += 8)
+		for (int i = offset; i < (offset + size); i += BLOWFISH_BLOCK_SIZE)
 		{
-			_cipher.encryptBlock(raw, i);
+			_blowfishCipher.encryptBlock(rawData, i);
 		}
 	}
 }

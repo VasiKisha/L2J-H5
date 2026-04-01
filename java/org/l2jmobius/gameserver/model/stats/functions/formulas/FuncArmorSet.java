@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.model.stats.functions.formulas;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.l2jmobius.gameserver.data.holders.ArmorSet;
 import org.l2jmobius.gameserver.data.xml.ArmorSetData;
-import org.l2jmobius.gameserver.model.ArmorSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;

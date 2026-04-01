@@ -26,16 +26,16 @@ import java.util.List;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.model.Augmentation;
-import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.Elementals;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.multisell.Entry;
 import org.l2jmobius.gameserver.model.multisell.Ingredient;
 import org.l2jmobius.gameserver.model.multisell.PreparedListContainer;
+import org.l2jmobius.gameserver.model.options.Augmentation;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
@@ -374,7 +374,7 @@ public class MultiSellChoose extends ClientPacket
 										
 										// get item with the LOWEST enchantment level from the inventory...
 										// +0 is lowest by default...
-										if (itemToTake.getEnchantLevel() > 0)
+										if (itemToTake.isEnchanted())
 										{
 											for (Item item : inventoryContents)
 											{

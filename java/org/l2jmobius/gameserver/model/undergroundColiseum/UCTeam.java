@@ -127,7 +127,7 @@ public class UCTeam
 		}
 	}
 	
-	public void onKill(Player player, final Player killer)
+	public void onKill(Player player, Player killer)
 	{
 		if ((player == null) || (killer == null) || (getParty() == null))
 		{

@@ -83,7 +83,7 @@ public class DatabaseFactory
 			config.setMaxLifetime(600000); // 10 minutes.
 			
 			// Leak Detection.
-			config.setLeakDetectionThreshold(60000); // 1 minute.
+			config.setLeakDetectionThreshold(600000); // 10 minutes.
 			
 			// Pool Name for Identification.
 			config.setPoolName("L2JMobiusPool");

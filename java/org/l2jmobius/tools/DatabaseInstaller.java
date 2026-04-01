@@ -116,8 +116,8 @@ public class DatabaseInstaller extends JFrame
 	
 	private void gui()
 	{
-		// Show Splash Screen for 5 seconds.
-		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 5000, this);
+		// Show Splash Screen for 3 seconds.
+		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 3000, this);
 		
 		setTitle("Mobius - Database Installer");
 		setMinimumSize(new Dimension(620, 400));

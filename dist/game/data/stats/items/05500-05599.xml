@@ -607,7 +607,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2137-1" /> <!-- Summon Regular Tree -->
+		<skills>
+			<skill id="2137" level="1" /> <!-- Summon Regular Tree -->
+		</skills>
 	</item>
 	<item id="5561" type="EtcItem" name="Special Christmas Tree">
 		<!-- Summons a Christmas tree that will increase HP and MP regeneration. This effect is only produced if the Special Christmas Tree is summoned outside of a village. -->
@@ -620,7 +622,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2138-1" /> <!-- Summon Special Tree -->
+		<skills>
+			<skill id="2138" level="1" /> <!-- Summon Special Tree -->
+		</skills>
 	</item>
 	<item id="5562" type="EtcItem" name="Echo Crystal - 1st Carol">
 		<!-- An echo crystal that plays the 1st carol. It disappears after one use. -->
@@ -633,7 +637,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2140-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2140" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5563" type="EtcItem" name="Echo Crystal - 2nd Carol">
 		<!-- An echo crystal that plays the 2nd carol. It disappears after one use. -->
@@ -646,7 +652,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2141-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2141" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5564" type="EtcItem" name="Echo Crystal - 3rd Carol">
 		<!-- An echo crystal that plays the 3rd carol. It disappears after one use. -->
@@ -659,7 +667,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2142-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2142" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5565" type="EtcItem" name="Echo Crystal - 4th Carol">
 		<!-- An echo crystal that plays the 4th carol. It disappears after one use. -->
@@ -672,7 +682,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2143-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2143" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5566" type="EtcItem" name="Echo Crystal - 5th Carol">
 		<!-- An echo crystal that plays the 5th carol. It disappears after one use. -->
@@ -685,7 +697,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2144-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2144" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5567" type="EtcItem" name="Letter of Greetings">
 		<!-- Sla's letter to her disciples. Deliver it to Nyakuri in Dwarven Village. -->
@@ -778,7 +792,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5578" type="EtcItem" name="Green Soul Crystal - Stage 11">
 		<!-- A green crystal that absorbs souls, stage 11. Once saturated, it bestows special abilities to a weapon. Consumes 26 MP. Once a soul stone reaches this stage, it can absorb souls independently. No targeting is necessary. -->
@@ -789,7 +805,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5579" type="EtcItem" name="Blue Soul Crystal - Stage 11">
 		<!-- A blue crystal that absorbs souls, stage 11. Once saturated, it bestows special abilities to a weapon. Consumes 26 MP. Once a soul stone reaches this stage, it can absorb souls independently. No targeting is necessary. -->
@@ -800,7 +818,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5580" type="EtcItem" name="Red Soul Crystal - Stage 12">
 		<!-- A red crystal that absorbs souls, stage 12. Once saturated, it bestows special abilities to a weapon. Consumes 26 MP. Once a soul stone reaches this stage, it can absorb souls independently. No targeting is necessary. -->
@@ -811,7 +831,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5581" type="EtcItem" name="Green Soul Crystal - Stage 12">
 		<!-- A green crystal that absorbs souls, stage 12. Once saturated, it bestows special abilities to a weapon. Consumes 26 MP. Once a soul stone reaches this stage, it can absorb souls independently. No targeting is necessary. -->
@@ -822,7 +844,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5582" type="EtcItem" name="Blue Soul Crystal - Stage 12">
 		<!-- A blue crystal that absorbs souls, stage 12. Once saturated, it bestows special abilities to a weapon. Consumes 26 MP. Once a soul stone reaches this stage, it can absorb souls independently. No targeting is necessary. -->
@@ -833,7 +857,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5583" type="EtcItem" name="Echo Crystal - 6th Carol">
 		<!-- An echo crystal that plays the 6th carol. It disappears after one use. -->
@@ -846,7 +872,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2145-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2145" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5584" type="EtcItem" name="Echo Crystal - 7th Carol">
 		<!-- An echo crystal that plays the 7th carol. It disappears after one use. -->
@@ -859,7 +887,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2146-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2146" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5585" type="EtcItem" name="Echo Crystal - 8th Carol">
 		<!-- An echo crystal that plays the 8th carol. It disappears after one use. -->
@@ -872,7 +902,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2147-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2147" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5586" type="EtcItem" name="Echo Crystal - 9th Carol">
 		<!-- An echo crystal that plays the 9th carol. It disappears after one use. -->
@@ -885,7 +917,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2148-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2148" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5587" type="EtcItem" name="Echo Crystal - 10th Carol">
 		<!-- An echo crystal that plays the 10th carol. It disappears after one use. -->
@@ -898,7 +932,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2149-1" /> <!-- Item - Carol Sound Crystal -->
+		<skills>
+			<skill id="2149" level="1" /> <!-- Item - Carol Sound Crystal -->
+		</skills>
 	</item>
 	<item id="5588" type="EtcItem" name="Tutorial Guide">
 		<!-- A booklet containing general information for the new player. -->
@@ -922,7 +958,9 @@
 		<set name="price" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2165-1" /> <!-- Energy Stone -->
+		<skills>
+			<skill id="2165" level="1" /> <!-- Energy Stone -->
+		</skills>
 	</item>
 	<item id="5590" type="Armor" name="Squeaking Shoes">
 		<!-- Makes a unique sound when walking in them. -->
@@ -947,7 +985,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2166-1" /> <!-- CP Gauge Potion -->
+		<skills>
+			<skill id="2166" level="1" /> <!-- CP Gauge Potion -->
+		</skills>
 	</item>
 	<item id="5592" type="EtcItem" name="Greater CP Potion">
 		<!-- Restores CP by 200. -->
@@ -962,7 +1002,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2166-2" /> <!-- CP Gauge Potion -->
+		<skills>
+			<skill id="2166" level="2" /> <!-- CP Gauge Potion -->
+		</skills>
 	</item>
 	<item id="5593" type="EtcItem" name="SP Scroll (Low-Grade)">
 		<!-- Recharges SP by 500. -->
@@ -975,7 +1017,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2167-1" /> <!-- Scroll of SP -->
+		<skills>
+			<skill id="2167" level="1" /> <!-- Scroll of SP -->
+		</skills>
 	</item>
 	<item id="5594" type="EtcItem" name="SP Scroll (Medium-Grade)">
 		<!-- Recharges SP by 5000. -->
@@ -988,7 +1032,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2167-2" /> <!-- Scroll of SP -->
+		<skills>
+			<skill id="2167" level="2" /> <!-- Scroll of SP -->
+		</skills>
 	</item>
 	<item id="5595" type="EtcItem" name="SP Scroll (High Grade)">
 		<!-- Recharges SP by 100000. -->
@@ -1001,7 +1047,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2167-3" /> <!-- Scroll of SP -->
+		<skills>
+			<skill id="2167" level="3" /> <!-- Scroll of SP -->
+		</skills>
 	</item>
 	<item id="5596" type="Weapon" name="Dasparion's Staff - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. -->
@@ -1009,8 +1057,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1128" />
@@ -1022,16 +1068,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
 		<stats>
-			<set stat="pAtk" val="207" />
-			<set stat="mAtk" val="157" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">207</stat>
+			<stat type="mAtk">157</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="5597" type="Weapon" name="Dasparion's Staff - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -1039,8 +1087,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1128" />
@@ -1052,16 +1098,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
 		<stats>
-			<set stat="pAtk" val="207" />
-			<set stat="mAtk" val="157" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">207</stat>
+			<stat type="mAtk">157</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="5598" type="Weapon" name="Dasparion's Staff - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -1069,8 +1117,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1128" />
@@ -1082,16 +1128,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
 		<stats>
-			<set stat="pAtk" val="207" />
-			<set stat="mAtk" val="157" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">207</stat>
+			<stat type="mAtk">157</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="5599" type="Weapon" name="Meteor Shower - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. -->
@@ -1099,8 +1147,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1128" />
@@ -1111,15 +1157,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3050-1" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 </list>

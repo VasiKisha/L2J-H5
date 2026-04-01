@@ -21,19 +21,19 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.data.holders.AccessLevel;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.managers.MailManager;
-import org.l2jmobius.gameserver.model.AccessLevel;
-import org.l2jmobius.gameserver.model.BlockList;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExNoticePostSent;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
@@ -258,7 +258,7 @@ public class RequestSendPost extends ClientPacket
 			return;
 		}
 		
-		final Message msg = new Message(player.getObjectId(), receiverId, _isCod, _subject, _text, _reqAdena);
+		final MailMessage msg = new MailMessage(player.getObjectId(), receiverId, _isCod, _subject, _text, _reqAdena);
 		if (removeItems(player, msg))
 		{
 			player.setMultiSell(null); // Should not trade during mail.
@@ -269,7 +269,7 @@ public class RequestSendPost extends ClientPacket
 		}
 	}
 	
-	private final boolean removeItems(Player player, Message msg)
+	private final boolean removeItems(Player player, MailMessage msg)
 	{
 		long currentAdena = player.getAdena();
 		long fee = MESSAGE_FEE;

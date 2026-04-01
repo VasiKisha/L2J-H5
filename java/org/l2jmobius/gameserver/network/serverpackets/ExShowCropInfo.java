@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.CropProcure;
-import org.l2jmobius.gameserver.model.Seed;
+import org.l2jmobius.gameserver.model.siege.manor.CropProcure;
+import org.l2jmobius.gameserver.model.siege.manor.Seed;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

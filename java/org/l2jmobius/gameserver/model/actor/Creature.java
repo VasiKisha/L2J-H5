@@ -52,10 +52,12 @@ import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
 import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.enums.CategoryType;
+import org.l2jmobius.gameserver.data.holders.AccessLevel;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
@@ -64,15 +66,10 @@ import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.managers.CaptchaManager;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.AccessLevel;
-import org.l2jmobius.gameserver.model.EffectList;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Spawn;
-import org.l2jmobius.gameserver.model.TimeStamp;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
@@ -80,7 +77,9 @@ import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.actor.holders.creature.EffectList;
 import org.l2jmobius.gameserver.model.actor.holders.creature.InvulSkillHolder;
+import org.l2jmobius.gameserver.model.actor.holders.creature.TimeStamp;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
 import org.l2jmobius.gameserver.model.actor.stat.CreatureStat;
@@ -140,6 +139,7 @@ import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.holders.SkillUseHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
 import org.l2jmobius.gameserver.model.stats.Calculator;
 import org.l2jmobius.gameserver.model.stats.Formulas;
@@ -940,7 +940,7 @@ public abstract class Creature extends WorldObject
 	
 	public void teleToLocation(TeleportWhereType teleportWhere)
 	{
-		teleToLocation(MapRegionManager.getInstance().getTeleToLocation(this, teleportWhere), true);
+		teleToLocation(MapRegionData.getInstance().getTeleToLocation(this, teleportWhere), true);
 	}
 	
 	private boolean canUseRangeWeapon()
@@ -4348,7 +4348,7 @@ public abstract class Creature extends WorldObject
 				final int y = yPrev + y1;
 				if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 				{
-					_move.onGeodataPathIndex = -1;
+					move.onGeodataPathIndex = -1;
 					stopMove(asPlayer().getLastServerPosition());
 					return true;
 				}
@@ -4369,7 +4369,7 @@ public abstract class Creature extends WorldObject
 					final int y = yPrev + y1;
 					if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 					{
-						_move.onGeodataPathIndex = -1;
+						move.onGeodataPathIndex = -1;
 						if (hasAI())
 						{
 							if (getAI().isFollowing())
@@ -4397,7 +4397,7 @@ public abstract class Creature extends WorldObject
 						final int y = yPrev + y1;
 						if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 						{
-							_move.onGeodataPathIndex = -1;
+							move.onGeodataPathIndex = -1;
 							broadcastPacket(new StopMove(this));
 							return true;
 						}
@@ -4422,7 +4422,7 @@ public abstract class Creature extends WorldObject
 								if ((hasDoors && DoorData.getInstance().checkIfDoorsBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId(), false)) //
 									|| (hasFences && FenceData.getInstance().checkIfFenceBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId())))
 								{
-									_move.onGeodataPathIndex = -1;
+									move.onGeodataPathIndex = -1;
 									if (hasAI())
 									{
 										if (getAI().isFollowing())
@@ -4476,7 +4476,7 @@ public abstract class Creature extends WorldObject
 			distFraction = distPassed / delta;
 		}
 		
-		final boolean arrived = distFraction > 1.79;
+		final boolean arrived = distFraction > 1;
 		if (arrived)
 		{
 			// Set the position of the Creature to the destination.
@@ -4484,7 +4484,7 @@ public abstract class Creature extends WorldObject
 		}
 		else
 		{
-			final int newZ = zPrev + (int) ((dz * distFraction) + 0.895);
+			final int newZ = zPrev + (int) ((dz * distFraction) + 0.5);
 			move.xAccurate += dx * distFraction;
 			move.yAccurate += dy * distFraction;
 			
@@ -4733,7 +4733,7 @@ public abstract class Creature extends WorldObject
 		double sin;
 		
 		// Check if a movement offset is defined or no distance to go through
-		if ((offset > 0) || (distance < 1.79))
+		if ((offset > 0) || (distance < 1))
 		{
 			// approximation for moving closer when z coordinates are different
 			// TODO: handle Z axis movement better
@@ -4744,7 +4744,7 @@ public abstract class Creature extends WorldObject
 			}
 			
 			// If no distance to go through, the movement is canceled
-			if ((distance < 1.79) || ((distance - offset) <= 0))
+			if ((distance < 1) || ((distance - offset) <= 0))
 			{
 				// Notify the AI that the Creature is arrived at destination
 				getAI().notifyAction(Action.ARRIVED);
@@ -4792,21 +4792,16 @@ public abstract class Creature extends WorldObject
 				final double originalDistance = distance;
 				final int gtx = (originalX - World.WORLD_X_MIN) >> 4;
 				final int gty = (originalY - World.WORLD_Y_MIN) >> 4;
-				if (isOnGeodataPath())
+				final MoveData currentMove = _move;
+				if ((currentMove != null) && isOnGeodataPath(currentMove))
 				{
-					try
+					if ((gtx == currentMove.geoPathGtx) && (gty == currentMove.geoPathGty))
 					{
-						if ((gtx == _move.geoPathGtx) && (gty == _move.geoPathGty))
-						{
-							sendPacket(ActionFailed.STATIC_PACKET);
-							return;
-						}
-						
-						_move.onGeodataPathIndex = -1; // Set not on geodata path.
+						sendPacket(ActionFailed.STATIC_PACKET);
+						return;
 					}
-					catch (NullPointerException e)
-					{
-					}
+					
+					currentMove.onGeodataPathIndex = -1; // Set not on geodata path.
 				}
 				
 				// Support for player attack with direct movement. Tested at retail on May 11th 2023.
@@ -4833,13 +4828,12 @@ public abstract class Creature extends WorldObject
 					distance = verticalMovementOnly ? Math.pow(dz, 2) : Math.hypot(dx, dy);
 				}
 				
+				// Pathfinding checks.
 				final int pathfindingThreshold = isPlayer() ? 30 : 15;
 				final boolean dangerousFall = isMonster() && (Math.abs(dz) > 100) && (distance < 500);
-				
-				// Pathfinding checks.
 				if (!directMove && (((originalDistance - distance) > pathfindingThreshold) || dangerousFall) && !isAfraid() && !isInVehicle)
 				{
-					// Path calculation -- overrides previous movement check
+					// Path calculation -- overrides previous movement check.
 					move.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceId(), isPlayer());
 					boolean found = (move.geoPath != null) && (move.geoPath.size() > 1);
 					
@@ -4940,7 +4934,7 @@ public abstract class Creature extends WorldObject
 			}
 			
 			// If no distance to go through, the movement is canceled
-			if ((distance < 1.79) && ((GeoEngineConfig.PATHFINDING > 0) || isPlayable()))
+			if ((distance < 1) && ((GeoEngineConfig.PATHFINDING > 0) || isPlayable()))
 			{
 				if (isSummon())
 				{
@@ -6357,18 +6351,18 @@ public abstract class Creature extends WorldObject
 					}
 				}
 				
-				// Mobs in range 1000 see spell
-				World.getInstance().forEachVisibleObjectInRange(player, Npc.class, 1000, npcMob ->
+				// Mobs in range 1000 see spell.
+				World.getInstance().forEachVisibleObjectInRange(player, Npc.class, 1000, npc ->
 				{
-					if (EventDispatcher.getInstance().hasListener(EventType.ON_NPC_SKILL_SEE, npcMob))
+					if (EventDispatcher.getInstance().hasListener(EventType.ON_NPC_SKILL_SEE, npc))
 					{
-						EventDispatcher.getInstance().notifyEventAsync(new OnNpcSkillSee(npcMob, player, skill, targets, isSummon()), npcMob);
+						EventDispatcher.getInstance().notifyEventAsync(new OnNpcSkillSee(npc, player, skill, targets, isSummon()), npc);
 					}
 					
-					// On Skill See logic
-					if (npcMob.isAttackable())
+					// On Skill See logic.
+					if (npc.isAttackable())
 					{
-						final Attackable attackable = npcMob.asAttackable();
+						final Attackable attackable = npc.asAttackable();
 						int skillEffectPoint = skill.getEffectPoint();
 						if (player.hasSummon() && (targets.size() == 1) && targets.contains(player.getSummon()))
 						{
@@ -6380,12 +6374,23 @@ public abstract class Creature extends WorldObject
 							final WorldObject npcTarget = attackable.getTarget();
 							for (WorldObject skillTarget : targets)
 							{
-								if ((npcTarget == skillTarget) || (npcMob == skillTarget))
+								if ((npcTarget == skillTarget) || (npc == skillTarget))
 								{
 									final Creature originalCaster = isSummon() ? this : player;
 									attackable.addDamageHate(originalCaster, 0, (skillEffectPoint * 150) / (attackable.getLevel() + 7));
 								}
 							}
+						}
+						
+						// Players which are 9 levels above a Raid Boss and cast a skill nearby, are silenced with the Raid Curse skill.
+						if (!NpcConfig.RAID_DISABLE_CURSE && attackable.giveRaidCurse() && attackable.isInCombat() && ((player.getLevel() - attackable.getLevel()) > 8))
+						{
+							player.abortAttack();
+							player.abortCast();
+							player.getAI().setIntention(Intention.IDLE);
+							
+							final CommonSkill curse = skill.hasNegativeEffect() ? CommonSkill.RAID_CURSE2 : CommonSkill.RAID_CURSE;
+							curse.getSkill().applyEffects(attackable, player);
 						}
 					}
 				});
@@ -6465,11 +6470,10 @@ public abstract class Creature extends WorldObject
 	 */
 	public double getRandomDamageMultiplier()
 	{
-		final Weapon activeWeapon = getActiveWeaponItem();
 		int random;
-		if (activeWeapon != null)
+		if (getActiveWeaponItem() != null)
 		{
-			random = activeWeapon.getRandomDamage();
+			random = (int) _stat.calcStat(Stat.RANDOM_DAMAGE, 0);
 		}
 		else
 		{

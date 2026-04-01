@@ -108,7 +108,7 @@ public class RequestUnEquipItem extends ClientPacket
 		{
 			SystemMessage sm = null;
 			final Item unequippedItem = unequipped.get(0);
-			if (unequippedItem.getEnchantLevel() > 0)
+			if (unequippedItem.isEnchanted())
 			{
 				sm = new SystemMessage(SystemMessageId.THE_EQUIPMENT_S1_S2_HAS_BEEN_REMOVED);
 				sm.addInt(unequippedItem.getEnchantLevel());

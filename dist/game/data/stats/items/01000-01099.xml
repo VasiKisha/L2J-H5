@@ -9,7 +9,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="1001" type="EtcItem" name="Book of Aklantoth - Part 4">
@@ -687,11 +687,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2031-1" /> <!-- Lesser Healing Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2031" level="1" /> <!-- Lesser Healing Potion -->
+		</skills>
 	</item>
 	<item id="1061" type="EtcItem" name="Greater Healing Potion">
 		<!-- A magical potion that slowly restores HP. High endurance. -->
@@ -706,11 +708,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2032-1" /> <!-- Healing Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2032" level="1" /> <!-- Healing Potion -->
+		</skills>
 	</item>
 	<item id="1062" type="EtcItem" name="Haste Potion">
 		<!-- A magical potion that increases speed. -->
@@ -858,8 +862,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2031-1" /> <!-- Lesser Healing Potion -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2031" level="1" /> <!-- Lesser Healing Potion -->
+		</skills>
 	</item>
 	<item id="1074" type="EtcItem" name="Boat Ticket: Talking Island to Gludin">
 		<!-- Boat Ticket: Depart Talking Island - Arrive Gludin Harbor -->

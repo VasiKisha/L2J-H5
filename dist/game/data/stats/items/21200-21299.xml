@@ -13,7 +13,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22213-1" /> <!-- Mysterious Scroll - Prophecy of Wind -->
+		<skills>
+			<skill id="22213" level="1" /> <!-- Mysterious Scroll - Prophecy of Wind -->
+		</skills>
 	</item>
 	<item id="21201" type="EtcItem" name="Magic Glasses 30-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 magic glasses (30 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -24,7 +26,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21202,1,1,100" />
+		<capsuled_items>
+			<item id="21202" min="1" max="1" chance="100" /> <!-- Magic Glasses - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21202" type="Armor" name="Magic Glasses - 30-day limited period">
 		<!-- Dimensional item. Magic glasses that has MP +10 and M. Def. +70 effect. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -36,11 +40,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21241-1" /> <!-- Magic Glasses -->
 		<set name="time" val="43200" />
 		<stats>
-			<add stat="maxMp" val="10" />
+			<stat type="maxMp">10</stat>
 		</stats>
+		<skills>
+			<skill id="21241" level="1" /> <!-- Magic Glasses -->
+		</skills>
 	</item>
 	<item id="21203" type="EtcItem" name="Queen Ant's Ring 30-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 queen ant's ring (30 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -51,7 +57,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21206,1,1,100" />
+		<capsuled_items>
+			<item id="21206" min="1" max="1" chance="100" /> <!-- Queen Ant's Ring - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21204" type="EtcItem" name="Baium's Ring 30-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Baium's ring (30 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -62,7 +70,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21207,1,1,100" />
+		<capsuled_items>
+			<item id="21207" min="1" max="1" chance="100" /> <!-- Baium's Ring - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21205" type="EtcItem" name="Earring of Zaken 30-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Earring of Zaken (30 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -73,7 +83,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21208,1,1,100" />
+		<capsuled_items>
+			<item id="21208" min="1" max="1" chance="100" /> <!-- Earring of Zaken - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21206" type="Armor" name="Queen Ant's Ring - 30-day limited period">
 		<!-- Dimensional item. MP +21, Resistance to Poison +30%, poison attack rate +30%, accuracy increase, critical damage increase, hold tolerance 20% increase, and hold attack rate 20% increase. Only one effect is applied even when two identical rings are worn. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -86,11 +98,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
+		<skills>
+			<skill id="3562" level="1" /> <!-- Ring of Ant Queen -->
+		</skills>
 	</item>
 	<item id="21207" type="Armor" name="Baium's Ring - 30-day limited period">
 		<!-- Dimensional item. MP +21, Resistance to Poison +40%, poison attack rate +40%, accuracy increase, critical damage increase, hold tolerance +30%, hold attack rate +30%, attack increase, and Casting Spd. increase. Only one effect is applied even when two identical rings are worn. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -103,11 +117,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="3561-1" /> <!-- Ring of Baium -->
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
+		<skills>
+			<skill id="3561" level="1" /> <!-- Ring of Baium -->
+		</skills>
 	</item>
 	<item id="21208" type="Armor" name="Earring of Zaken - 30-day limited period">
 		<!-- Dimensional item. MP +31, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount increase, vampiric rage effect, Resistance to Shock/Mental attacks 20% increase, and Shock/Mental attack rate 20% increase. When equipped with two identical earrings, the effect of only one earring will be applied. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -121,11 +137,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="3559-1" /> <!-- Earring of Zaken -->
 		<stats>
-			<add order="0" stat="mDef" val="71" />
-			<add stat="maxMp" val="31" />
+			<stat type="mDef">71</stat>
+			<stat type="maxMp">31</stat>
 		</stats>
+		<skills>
+			<skill id="3559" level="1" /> <!-- Earring of Zaken -->
+		</skills>
 	</item>
 	<item id="21209" type="EtcItem" name="MP Recovery Potion Pack">
 		<!-- Dimensional item pack. Gift box containing 3 MP recovery (+50%) potions. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -136,7 +154,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21210,3,3,100" />
+		<capsuled_items>
+			<item id="21210" min="3" max="3" chance="100" /> <!-- MP Recovery Potion -->
+		</capsuled_items>
 	</item>
 	<item id="21210" type="EtcItem" name="MP Recovery Potion">
 		<!-- Dimensional item. Magic potion that quickly recovers MP by 50% when used. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -152,7 +172,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22214-1" /> <!-- MP Recovery Potion -->
+		<skills>
+			<skill id="22214" level="1" /> <!-- MP Recovery Potion -->
+		</skills>
 	</item>
 	<item id="21211" type="EtcItem" name="Vitality Replenishing Herb Tea Pack">
 		<!-- Dimensional item pack. Gift box containing 10 Vitality Replenishing Herb Teas. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -163,7 +185,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21212,10,10,100" />
+		<capsuled_items>
+			<item id="21212" min="10" max="10" chance="100" /> <!-- Vitality Replenishing Herb Tea -->
+		</capsuled_items>
 	</item>
 	<item id="21212" type="EtcItem" name="Vitality Replenishing Herb Tea">
 		<!-- Dimensional item. For 30 minutes, energy is replenished when Exp. is acquired through hunting. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -179,7 +203,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22215-1" /> <!-- Vitality Replenishing Herb Tea -->
+		<skills>
+			<skill id="22215" level="1" /> <!-- Vitality Replenishing Herb Tea -->
+		</skills>
 	</item>
 	<item id="21213" type="EtcItem" name="Queen Ant's Ring 180-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 queen ant's ring (180 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -190,7 +216,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21218,1,1,100" />
+		<capsuled_items>
+			<item id="21218" min="1" max="1" chance="100" /> <!-- Queen Ant's Ring - 180-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21214" type="EtcItem" name="Baium's Ring 180-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Baium's ring (180 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -201,7 +229,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21219,1,1,100" />
+		<capsuled_items>
+			<item id="21219" min="1" max="1" chance="100" /> <!-- Baium's Ring - 180-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21215" type="EtcItem" name="Earring of Zaken 180-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Earring of Zaken (180 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -212,7 +242,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21220,1,1,100" />
+		<capsuled_items>
+			<item id="21220" min="1" max="1" chance="100" /> <!-- Earring of Zaken - 180-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21216" type="EtcItem" name="Valakas's Necklace 180-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Valakas's necklace (180 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -223,7 +255,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21221,1,1,100" />
+		<capsuled_items>
+			<item id="21221" min="1" max="1" chance="100" /> <!-- Valakas's Necklace - 180-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21217" type="EtcItem" name="Antharas's Earring 180-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Antharas's earring (180 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -234,7 +268,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21222,1,1,100" />
+		<capsuled_items>
+			<item id="21222" min="1" max="1" chance="100" /> <!-- Antharas's Earring - 180-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="21218" type="Armor" name="Queen Ant's Ring - 180-day limited period">
 		<!-- Dimensional item. MP +21, Resistance to Poison +30%, poison attack rate +30%, accuracy increase, critical damage increase, hold tolerance 20% increase, and hold attack rate 20% increase. Only one effect is applied even when two identical rings are worn. Can be used for 180 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -247,11 +283,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="259200" />
-		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
+		<skills>
+			<skill id="3562" level="1" /> <!-- Ring of Ant Queen -->
+		</skills>
 	</item>
 	<item id="21219" type="Armor" name="Baium's Ring - 180-day limited period">
 		<!-- Dimensional item. MP +21, Resistance to Poison +40%, poison attack rate +40%, accuracy increase, critical damage increase, hold tolerance +30%, hold attack rate +30%, attack increase, and Casting Spd. increase. Only one effect is applied even when two identical rings are worn. Can be used for 180 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -264,11 +302,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="259200" />
-		<set name="item_skill" val="3561-1" /> <!-- Ring of Baium -->
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
+		<skills>
+			<skill id="3561" level="1" /> <!-- Ring of Baium -->
+		</skills>
 	</item>
 	<item id="21220" type="Armor" name="Earring of Zaken - 180-day limited period">
 		<!-- Dimensional item. MP +31, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount increase, vampiric rage effect, Resistance to Shock/Mental attacks 20% increase, and Shock/Mental attack rate 20% increase. When equipped with two identical earrings, the effect of only one earring will be applied. Can be used for 180 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -282,11 +322,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="259200" />
-		<set name="item_skill" val="3559-1" /> <!-- Earring of Zaken -->
 		<stats>
-			<add order="0" stat="mDef" val="71" />
-			<add stat="maxMp" val="31" />
+			<stat type="mDef">71</stat>
+			<stat type="maxMp">31</stat>
 		</stats>
+		<skills>
+			<skill id="3559" level="1" /> <!-- Earring of Zaken -->
+		</skills>
 	</item>
 	<item id="21221" type="Armor" name="Valakas's Necklace - 180-day limited period">
 		<!-- Dimensional item. MP +50, Resistance to Sleep +40%, sleep attack rate +40%, HP +445, reuse delay decrease, P. Atk. and M. Atk. increase, wild magic effect, damage shield effect, and Resistance to Fire increase. Only one effect is applied even when the two identical necklaces are worn. Can be used for 180 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -299,11 +341,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="259200" />
-		<set name="item_skill" val="3557-1" /> <!-- Necklace of Valakas -->
 		<stats>
-			<add order="0" stat="mDef" val="125" />
-			<add stat="maxMp" val="50" />
+			<stat type="mDef">125</stat>
+			<stat type="maxMp">50</stat>
 		</stats>
+		<skills>
+			<skill id="3557" level="1" /> <!-- Necklace of Valakas -->
+		</skills>
 	</item>
 	<item id="21222" type="Armor" name="Antharas's Earring - 180-day limited period">
 		<!-- Dimensional item. MP +37, Resistance to Bleed +40%, Bleed attack rate +40%, heal amount increase, vampiric rage effect, Resistance to Stun/Mental attacks 30%, Stun/Mental attack rate +30%, MP consumption decrease, and Resistance to Earth increase. Only one effect is applied even when the two identical earrings are worn. Can be used for 180 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -316,11 +360,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="259200" />
-		<set name="item_skill" val="3558-1" /> <!-- Earring of Antharas -->
 		<stats>
-			<add order="0" stat="mDef" val="94" />
-			<add stat="maxMp" val="37" />
+			<stat type="mDef">94</stat>
+			<stat type="maxMp">37</stat>
 		</stats>
+		<skills>
+			<skill id="3558" level="1" /> <!-- Earring of Antharas -->
+		</skills>
 	</item>
 	<item id="21223" type="EtcItem" name="Transformation Scroll: Anakim Pack">
 		<!-- Dimensional item pack. Gift box containing 5 Anakim Transformation Scrolls. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -332,7 +378,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21224,5,5,100" />
+		<capsuled_items>
+			<item id="21224" min="5" max="5" chance="100" /> <!-- Transformation Scroll: Anakim -->
+		</capsuled_items>
 	</item>
 	<item id="21224" type="EtcItem" name="Transformation Scroll: Anakim">
 		<!-- Dimensional item. Transformation scroll that transforms you into Anakim for 30 minute(s). No effect if used while transformed. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -347,7 +395,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22216-1" /> <!-- Transformation Scroll - Anakim -->
+		<skills>
+			<skill id="22216" level="1" /> <!-- Transformation Scroll - Anakim -->
+		</skills>
 	</item>
 	<item id="21225" type="EtcItem" name="Sweet Fruit Cocktail Pack">
 		<!-- Dimensional item pack. Gift box containing 3 sweet fruit cocktails. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -358,7 +408,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21227,3,3,100" />
+		<capsuled_items>
+			<item id="21227" min="3" max="3" chance="100" /> <!-- Sweet Fruit Cocktail -->
+		</capsuled_items>
 	</item>
 	<item id="21226" type="EtcItem" name="Sweet Fruit Cocktail Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 3 sweet fruit cocktails. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -370,7 +422,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21228,3,3,100" />
+		<capsuled_items>
+			<item id="21228" min="3" max="3" chance="100" /> <!-- Sweet Fruit Cocktail - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21227" type="EtcItem" name="Sweet Fruit Cocktail">
 		<!-- Dimensional item. Cocktail drink that's flavored with many rare types of fruit. When consumed, one can feel Might, Shield, Wind Walk, Focus, Death Whisper, Guidance, Bless Shield, Blessed Body, Haste, Vampiric Rage, and Berserker Spirit effects for 60 minutes. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -386,7 +440,18 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9011-1;9012-1;9013-1;9014-1;9015-1;9016-1;9017-1;9018-1;9019-1;9020-1" /> <!-- Might -->
+		<skills>
+			<skill id="9011" level="1" /> <!-- Might -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9014" level="1" /> <!-- Focus -->
+			<skill id="9015" level="1" /> <!-- Death Whisper -->
+			<skill id="9016" level="1" /> <!-- Guidance -->
+			<skill id="9017" level="1" /> <!-- Blessed Shield -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9019" level="1" /> <!-- Haste -->
+			<skill id="9020" level="1" /> <!-- Vampiric Rage -->
+		</skills>
 	</item>
 	<item id="21228" type="EtcItem" name="Sweet Fruit Cocktail - Event">
 		<!-- Dimensional item. Cocktail drink that's flavored with many rare types of fruit. When consumed, one can feel Might, Shield, Wind Walk, Focus, Death Whisper, Guidance, Bless Shield, Blessed Body, Haste, Vampiric Rage, and Berserker Spirit effects for 60 minutes. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -403,7 +468,19 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9011-1;9012-1;9013-1;9014-1;9015-1;9016-1;9017-1;9018-1;9019-1;9020-1;9021-1" /> <!-- Might -->
+		<skills>
+			<skill id="9011" level="1" /> <!-- Might -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9014" level="1" /> <!-- Focus -->
+			<skill id="9015" level="1" /> <!-- Death Whisper -->
+			<skill id="9016" level="1" /> <!-- Guidance -->
+			<skill id="9017" level="1" /> <!-- Blessed Shield -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9019" level="1" /> <!-- Haste -->
+			<skill id="9020" level="1" /> <!-- Vampiric Rage -->
+			<skill id="9021" level="1" /> <!-- Berserker Spirit -->
+		</skills>
 	</item>
 	<item id="21229" type="EtcItem" name="Fresh Fruit Cocktail Pack">
 		<!-- Dimensional item pack. Gift box containing 3 fresh fruit cocktails. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -414,7 +491,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21231,3,3,100" />
+		<capsuled_items>
+			<item id="21231" min="3" max="3" chance="100" /> <!-- Fresh Fruit Cocktail -->
+		</capsuled_items>
 	</item>
 	<item id="21230" type="EtcItem" name="Fresh Fruit Cocktail Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 3 fresh fruit cocktails. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -426,7 +505,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21232,3,3,100" />
+		<capsuled_items>
+			<item id="21232" min="3" max="3" chance="100" /> <!-- Fresh Fruit Cocktail - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21231" type="EtcItem" name="Fresh Fruit Cocktail">
 		<!-- Dimensional item. Cocktail drink that's flavored with many rare types of fruit. When consumed, one can feel Berserker Spirit, Blessed Body, Magic Barrier, Shield, Wind Walk, Blessed Soul, Empower, Acumen, and Clarity effects for 60 minutes. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -442,7 +523,17 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9021-1;9018-1;9022-1;9012-1;9013-1;9023-1;9024-1;9025-1;9026-1" /> <!-- Berserker Spirit -->
+		<skills>
+			<skill id="9021" level="1" /> <!-- Berserker Spirit -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9022" level="1" /> <!-- Magic Barrier -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9023" level="1" /> <!-- Blessed Soul -->
+			<skill id="9024" level="1" /> <!-- Empower -->
+			<skill id="9025" level="1" /> <!-- Acumen -->
+			<skill id="9026" level="1" /> <!-- Clarity -->
+		</skills>
 	</item>
 	<item id="21232" type="EtcItem" name="Fresh Fruit Cocktail - Event">
 		<!-- Dimensional item. Cocktail drink that's flavored with many rare types of fruit. When consumed, one can feel Berserker Spirit, Blessed Body, Magic Barrier, Shield, Wind Walk, Blessed Soul, Empower, Acumen, and Clarity effects for 60 minutes. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -459,7 +550,17 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9021-1;9018-1;9022-1;9012-1;9013-1;9023-1;9024-1;9025-1;9026-1" /> <!-- Berserker Spirit -->
+		<skills>
+			<skill id="9021" level="1" /> <!-- Berserker Spirit -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9022" level="1" /> <!-- Magic Barrier -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9023" level="1" /> <!-- Blessed Soul -->
+			<skill id="9024" level="1" /> <!-- Empower -->
+			<skill id="9025" level="1" /> <!-- Acumen -->
+			<skill id="9026" level="1" /> <!-- Clarity -->
+		</skills>
 	</item>
 	<item id="21233" type="EtcItem" name="Fresh Milk Pack">
 		<!-- Dimensional item pack. Gift box containing 3 fresh milks. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -470,7 +571,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21235,3,3,100" />
+		<capsuled_items>
+			<item id="21235" min="3" max="3" chance="100" /> <!-- Fresh Milk -->
+		</capsuled_items>
 	</item>
 	<item id="21234" type="EtcItem" name="Fresh Milk Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 3 fresh milks. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -482,7 +585,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21236,3,3,100" />
+		<capsuled_items>
+			<item id="21236" min="3" max="3" chance="100" /> <!-- Fresh Milk - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21235" type="EtcItem" name="Fresh Milk">
 		<!-- Dimensional Item. Freshly collected milk. When used, you can feel the effects of Might, Haste, Empower, Acumen, Wind Walk, Vampiric Rage, Berserker Spirit, Shield, Focus, Death Whisper, Guidance, Clarity, Wild Magic and Concentration for 1 hour. Cannot be exchanged, dropped or destroyed. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -498,7 +603,22 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2873-1;2875-1;2879-1;2878-1;2874-1;2876-1;2877-1;2885-1;2886-1;2887-1;2888-1;2889-1;2890-1;2891-6" /> <!-- Might -->
+		<skills>
+			<skill id="2873" level="1" /> <!-- Might -->
+			<skill id="2875" level="1" /> <!-- Haste -->
+			<skill id="2879" level="1" /> <!-- Acumen -->
+			<skill id="2878" level="1" /> <!-- Empower -->
+			<skill id="2874" level="1" /> <!-- Wind Walk -->
+			<skill id="2876" level="1" /> <!-- Vampiric Rage -->
+			<skill id="2877" level="1" /> <!-- Berserker Spirit -->
+			<skill id="2885" level="1" /> <!-- Shield -->
+			<skill id="2886" level="1" /> <!-- Focus -->
+			<skill id="2887" level="1" /> <!-- Death Whisper -->
+			<skill id="2888" level="1" /> <!-- Guidance -->
+			<skill id="2889" level="1" /> <!-- Clarity -->
+			<skill id="2890" level="1" /> <!-- Wild Magic -->
+			<skill id="2891" level="6" /> <!-- Concentration -->
+		</skills>
 	</item>
 	<item id="21236" type="EtcItem" name="Fresh Milk - Event">
 		<!-- Dimensional item. Freshly drawn milk. When used, you can feel the effects of Might, Haste, Empower, Acumen, Wind Walk, Vampiric Rage, Berserker Spirit, Shield, Focus, Death Whisper, Guidance, Clarity, Wild Magic and Concentration for 1 hour. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -515,7 +635,22 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2873-1;2875-1;2879-1;2878-1;2874-1;2876-1;2877-1;2885-1;2886-1;2887-1;2888-1;2889-1;2890-1;2891-6" /> <!-- Might -->
+		<skills>
+			<skill id="2873" level="1" /> <!-- Might -->
+			<skill id="2875" level="1" /> <!-- Haste -->
+			<skill id="2879" level="1" /> <!-- Acumen -->
+			<skill id="2878" level="1" /> <!-- Empower -->
+			<skill id="2874" level="1" /> <!-- Wind Walk -->
+			<skill id="2876" level="1" /> <!-- Vampiric Rage -->
+			<skill id="2877" level="1" /> <!-- Berserker Spirit -->
+			<skill id="2885" level="1" /> <!-- Shield -->
+			<skill id="2886" level="1" /> <!-- Focus -->
+			<skill id="2887" level="1" /> <!-- Death Whisper -->
+			<skill id="2888" level="1" /> <!-- Guidance -->
+			<skill id="2889" level="1" /> <!-- Clarity -->
+			<skill id="2890" level="1" /> <!-- Wild Magic -->
+			<skill id="2891" level="6" /> <!-- Concentration -->
+		</skills>
 	</item>
 	<item id="21237" type="EtcItem" name="Super Healthy Juice (HP) Pack">
 		<!-- Dimensional item pack. Gift box containing 3 super healthy juices (HP). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -526,7 +661,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21239,3,3,100" />
+		<capsuled_items>
+			<item id="21239" min="3" max="3" chance="100" /> <!-- Super Healthy Juice (HP) -->
+		</capsuled_items>
 	</item>
 	<item id="21238" type="EtcItem" name="Super Healthy Juice (HP) Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 3 super healthy juices (HP). Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -538,7 +675,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21240,3,3,100" />
+		<capsuled_items>
+			<item id="21240" min="3" max="3" chance="100" /> <!-- Super Healthy Juice (HP) - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21239" type="EtcItem" name="Super Healthy Juice (HP)">
 		<!-- Dimensional Item. Magic juice that instantly fully recovers HP. Cannot be exchanged, dropped or destroyed. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -554,7 +693,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22217-1" /> <!-- Super Healthy Juice (HP) -->
+		<skills>
+			<skill id="22217" level="1" /> <!-- Super Healthy Juice (HP) -->
+		</skills>
 	</item>
 	<item id="21240" type="EtcItem" name="Super Healthy Juice (HP) - Event">
 		<!-- Dimensional item. Magic juice that temporarily recovers stamina in full. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -571,7 +712,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22218-1" /> <!-- Super Healthy Juice (HP) -->
+		<skills>
+			<skill id="22218" level="1" /> <!-- Super Healthy Juice (HP) -->
+		</skills>
 	</item>
 	<item id="21241" type="EtcItem" name="Super Healthy Juice (CP) Pack">
 		<!-- Dimensional item pack. Gift box containing 5 super healthy juices (CP). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -582,7 +725,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21243,5,5,100" />
+		<capsuled_items>
+			<item id="21243" min="5" max="5" chance="100" /> <!-- Super Healthy Juice (CP) -->
+		</capsuled_items>
 	</item>
 	<item id="21242" type="EtcItem" name="Super Healthy Juice (CP) Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 5 super healthy juices (CP). Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -594,7 +739,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21244,5,5,100" />
+		<capsuled_items>
+			<item id="21244" min="5" max="5" chance="100" /> <!-- Super Healthy Juice (CP) - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21243" type="EtcItem" name="Super Healthy Juice (CP)">
 		<!-- Dimensional item. Magic juice that temporarily recovers CP in full. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -610,7 +757,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22219-1" /> <!-- Super Healthy Juice (CP) -->
+		<skills>
+			<skill id="22219" level="1" /> <!-- Super Healthy Juice (CP) -->
+		</skills>
 	</item>
 	<item id="21244" type="EtcItem" name="Super Healthy Juice (CP) - Event">
 		<!-- Dimensional item. Magic juice that temporarily recovers CP in full. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -627,7 +776,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22220-1" /> <!-- Super Healthy Juice (CP) -->
+		<skills>
+			<skill id="22220" level="1" /> <!-- Super Healthy Juice (CP) -->
+		</skills>
 	</item>
 	<item id="21245" type="EtcItem" name="Vitality Replenishing Beverage Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Vitality Replenishing Beverage. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -638,7 +789,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21247,1,1,100" />
+		<capsuled_items>
+			<item id="21247" min="1" max="1" chance="100" /> <!-- Vitality Replenishing Beverage -->
+		</capsuled_items>
 	</item>
 	<item id="21246" type="EtcItem" name="Vitality Replenishing Beverage Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 1 Vitality Replenishing Beverage. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -650,7 +803,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21248,1,1,100" />
+		<capsuled_items>
+			<item id="21248" min="1" max="1" chance="100" /> <!-- Vitality Replenishing Beverage - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21247" type="EtcItem" name="Vitality Replenishing Beverage">
 		<!-- Dimensional item. Vitality is replenished to 100% upon use. Re-use time is 60 minutes. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. -->
@@ -666,7 +821,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22221-1" /> <!-- Vitality Replenishing Beverage -->
+		<skills>
+			<skill id="22221" level="1" /> <!-- Vitality Replenishing Beverage -->
+		</skills>
 	</item>
 	<item id="21248" type="EtcItem" name="Vitality Replenishing Beverage - Event">
 		<!-- Dimensional item. Vitality is replenished to 100% upon use. Re-use time is 60 minutes. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. -->
@@ -682,7 +839,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22222-1" /> <!-- Vitality Replenishing Beverage -->
+		<skills>
+			<skill id="22222" level="1" /> <!-- Vitality Replenishing Beverage -->
+		</skills>
 	</item>
 	<item id="21249" type="EtcItem" name="Vitality Maintainig Potion (30 Minutes) Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Vitality Maintainig Potion. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -693,7 +852,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21251,1,1,100" />
+		<capsuled_items>
+			<item id="21251" min="1" max="1" chance="100" /> <!-- Vitality Maintainig Potion (30 Minutes) -->
+		</capsuled_items>
 	</item>
 	<item id="21250" type="EtcItem" name="Vitality Maintainig Potion (30 Minutes) Pack - Event">
 		<!-- Dimensional item pack. Gift box containing 1 Vitality Maintainig Potion. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -705,7 +866,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="21252,1,1,100" />
+		<capsuled_items>
+			<item id="21252" min="1" max="1" chance="100" /> <!-- Vitality Maintainig Potion (30 Minutes) - Event -->
+		</capsuled_items>
 	</item>
 	<item id="21251" type="EtcItem" name="Vitality Maintainig Potion (30 Minutes)">
 		<!-- Dimensional item. Maintains energy for 30 minutes when used. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -720,7 +883,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22223-1" /> <!-- Vitality Maintaining Potion -->
+		<skills>
+			<skill id="22223" level="1" /> <!-- Vitality Maintaining Potion -->
+		</skills>
 	</item>
 	<item id="21252" type="EtcItem" name="Vitality Maintainig Potion (30 Minutes) - Event">
 		<!-- Dimensional item. Maintains energy for 30 minutes when used. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -736,7 +901,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22224-1" /> <!-- Vitality Maintaining Potion -->
+		<skills>
+			<skill id="22224" level="1" /> <!-- Vitality Maintaining Potion -->
+		</skills>
 	</item>
 	<item id="21253" type="EtcItem" name="Gludio Homemade Cookie Pack">
 		<!-- Dimensional item pack. Gift box containing 5 Gludio Homemade Cookies. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->

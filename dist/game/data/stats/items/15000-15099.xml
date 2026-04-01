@@ -16,7 +16,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="202" />
+			<stat type="pDef">202</stat>
 		</stats>
 	</item>
 	<item id="15001" type="Armor" name="Doom Helmet of Fortune - 30-day limited period">
@@ -34,7 +34,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="66" />
+			<stat type="pDef">66</stat>
 		</stats>
 	</item>
 	<item id="15002" type="Armor" name="Doom Gloves of Fortune - Heavy Armor - 30-day limited period">
@@ -55,7 +55,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="15003" type="Armor" name="Doom Gloves of Fortune - Light Armor - 30-day limited period">
@@ -73,7 +73,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="15004" type="Armor" name="Doom Boots of Fortune - Heavy Armor - 30-day limited period">
@@ -94,7 +94,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="15005" type="Armor" name="Doom Boots of Fortune - Light Armor - 30-day limited period">
@@ -112,7 +112,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="15006" type="Armor" name="Doom Plate Armor of Fortune - 30-day limited period">
@@ -134,7 +134,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="270" />
+			<stat type="pDef">270</stat>
 		</stats>
 	</item>
 	<item id="15007" type="Armor" name="Doom Shield of Fortune - 30-day limited period">
@@ -155,9 +155,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="15008" type="Armor" name="Plate Leather Armor of Fortune - 30-day limited period">
@@ -176,7 +176,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="94" />
+			<stat type="pDef">94</stat>
 		</stats>
 	</item>
 	<item id="15009" type="Armor" name="Plate Leather Gaiters of Fortune - 30-day limited period">
@@ -195,7 +195,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="59" />
+			<stat type="pDef">59</stat>
 		</stats>
 	</item>
 	<item id="15010" type="Armor" name="Plate Leather Boots of Fortune - 30-day limited period">
@@ -213,7 +213,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="32" />
+			<stat type="pDef">32</stat>
 		</stats>
 	</item>
 	<item id="15011" type="Armor" name="Plate Leather Gloves of Fortune - 30-day limited period">
@@ -231,7 +231,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="33" />
+			<stat type="pDef">33</stat>
 		</stats>
 	</item>
 	<item id="15012" type="Armor" name="Full Plate Helmet of Fortune - 30-day limited period">
@@ -249,7 +249,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="58" />
+			<stat type="pDef">58</stat>
 		</stats>
 	</item>
 	<item id="15013" type="Armor" name="Full Plate Armor of Fortune - 30-day limited period">
@@ -271,7 +271,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="239" />
+			<stat type="pDef">239</stat>
 		</stats>
 	</item>
 	<item id="15014" type="Armor" name="Full Plate Boots of Fortune - 30-day limited period">
@@ -289,7 +289,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="39" />
+			<stat type="pDef">39</stat>
 		</stats>
 	</item>
 	<item id="15015" type="Armor" name="Full Plate Gauntlet of Fortune - 30-day limited period">
@@ -307,7 +307,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="39" />
+			<stat type="pDef">39</stat>
 		</stats>
 	</item>
 	<item id="15016" type="Armor" name="Full Plate Shield of Fortune - 30-day limited period">
@@ -328,9 +328,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="203" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">203</stat>
 		</stats>
 	</item>
 	<item id="15017" type="Armor" name="Manticore Skin Shirt of Fortune - 30-day limited period">
@@ -349,7 +349,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="77" />
+			<stat type="pDef">77</stat>
 		</stats>
 	</item>
 	<item id="15018" type="Armor" name="Manticore Skin Gaiters of Fortune - 30-day limited period">
@@ -368,7 +368,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="48" />
+			<stat type="pDef">48</stat>
 		</stats>
 	</item>
 	<item id="15019" type="Armor" name="Manticore Skin Boots of Fortune - 30-day limited period">
@@ -386,7 +386,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="27" />
+			<stat type="pDef">27</stat>
 		</stats>
 	</item>
 	<item id="15020" type="Armor" name="Manticore Skin Gloves of Fortune - 30-day limited period">
@@ -404,7 +404,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="27" />
+			<stat type="pDef">27</stat>
 		</stats>
 	</item>
 	<item id="15021" type="Armor" name="Brigandine of Fortune - 30-day limited period">
@@ -426,7 +426,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="103" />
+			<stat type="pDef">103</stat>
 		</stats>
 	</item>
 	<item id="15022" type="Armor" name="Brigandine Gaiters of Fortune - 30-day limited period">
@@ -448,7 +448,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="15023" type="Armor" name="Brigandine Helmet of Fortune - 30-day limited period">
@@ -466,7 +466,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="15024" type="Armor" name="Brigandine Boots of Fortune - 30-day limited period">
@@ -484,7 +484,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="27" />
+			<stat type="pDef">27</stat>
 		</stats>
 	</item>
 	<item id="15025" type="Armor" name="Brigandine Gauntlet of Fortune - 30-day limited period">
@@ -502,7 +502,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="27" />
+			<stat type="pDef">27</stat>
 		</stats>
 	</item>
 	<item id="15026" type="Armor" name="Brigandine Shield of Fortune - 30-day limited period">
@@ -523,9 +523,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="142" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">142</stat>
 		</stats>
 	</item>
 	<item id="15027" type="Armor" name="Fortune Armor of Nightmare - 30-day limited period">
@@ -547,7 +547,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="15028" type="Armor" name="Fortune Helm of Nightmare - 30-day limited period">
@@ -565,7 +565,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="15029" type="Armor" name="Fortune Gauntlet of Nightmare - Heavy Armor - 30-day limited period">
@@ -586,7 +586,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="15030" type="Armor" name="Fortune Boots of Nightmare - Heavy Armor - 30-day limited period">
@@ -607,7 +607,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="15031" type="Armor" name="Fortune Shield of Nightmare - 30-day limited period">
@@ -628,9 +628,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="256" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">256</stat>
 		</stats>
 	</item>
 	<item id="15032" type="Weapon" name="Sword of Miracles of Fortune - 30-day limited period">
@@ -639,8 +639,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -653,15 +651,19 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="186" />
-			<set stat="mAtk" val="152" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">186</stat>
+			<stat type="mAtk">152</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="15033" type="Weapon" name="Wizard's Tear of Fortune - 30-day limited period">
 		<!-- Casting Spd. increases by 15%. No exchange/drop available -->
@@ -669,8 +671,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -683,15 +683,19 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-1" /> <!-- Special Ability: Acumen -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="155" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">155</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="1" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="15034" type="Weapon" name="Homunkulus's Sword of Fortune - 30-day limited period">
 		<!-- Casting Spd. increases by 15%. No exchange/drop available -->
@@ -699,8 +703,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -713,15 +715,19 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-1" /> <!-- Special Ability: Acumen -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="111" />
-			<set stat="mAtk" val="101" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">111</stat>
+			<stat type="mAtk">101</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="1" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="15035" type="Weapon" name="Fortune Staff of Life - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -729,8 +735,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -746,11 +750,13 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="74" />
-			<set stat="mAtk" val="72" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">74</stat>
+			<stat type="mAtk">72</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15036" type="Weapon" name="Naga Storm of Fortune - 30-day limited period">
@@ -759,8 +765,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -772,16 +776,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3051-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="220" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">220</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3051" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15037" type="Weapon" name="Kris of Fortune - 30-day limited period">
 		<!-- Increases Critical by 71. No exchange/drop available -->
@@ -789,8 +797,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -802,16 +808,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3011-5" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="153" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">153</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3011" level="5" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15038" type="Weapon" name="Dark Screamer of Fortune - 30-day limited period">
 		<!-- Increases Critical by 81. No exchange/drop available -->
@@ -819,8 +829,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -832,16 +840,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3011-3" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="122" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">122</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3011" level="3" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15039" type="Weapon" name="Mithril Dagger of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -849,8 +861,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -865,11 +875,13 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="80" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">80</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15040" type="Weapon" name="Shyeed's Bow of Fortune - 30-day limited period">
@@ -878,8 +890,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -893,16 +903,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3050-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="570" />
-			<set stat="mAtk" val="133" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
+			<stat type="pAtk">570</stat>
+			<stat type="mAtk">133</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15041" type="Weapon" name="Fortune Bow of Peril - 30-day limited period">
 		<!-- During a general attack, MP consumption decreases to 2 with a 42% chance. No exchange/drop available -->
@@ -910,8 +924,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -929,11 +941,13 @@
 		<set name="reduced_mp_consume" val="42,2" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="400" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">400</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="15042" type="Weapon" name="Eminence Bow of Fortune - 30-day limited period">
@@ -942,8 +956,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -961,11 +973,13 @@
 		<set name="reduced_mp_consume" val="42,1" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="323" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">323</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="15043" type="Weapon" name="Light Crossbow of Fortune - 30-day limited period">
@@ -974,8 +988,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -992,11 +1004,13 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="191" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">191</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="15044" type="Weapon" name="Barakiel's Axe of Fortune - 30-day limited period">
@@ -1005,8 +1019,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1018,16 +1030,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3050-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="251" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">251</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15045" type="Weapon" name="Art of Battle Axe of Fortune - 30-day limited period">
 		<!-- Max HP increases by 25%. No exchange/drop available -->
@@ -1035,8 +1051,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1048,16 +1062,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15046" type="Weapon" name="Yaksa Mace of Fortune - 30-day limited period">
 		<!-- Max HP increases by 25%. No exchange/drop available -->
@@ -1065,8 +1083,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1078,16 +1094,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15047" type="Weapon" name="Bonebreaker of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1095,8 +1115,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1111,11 +1129,13 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="92" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">92</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15048" type="Weapon" name="Sirra's Blade of Fortune - 30-day limited period">
@@ -1124,8 +1144,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1137,15 +1155,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-5" /> <!-- Special Ability: Health -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="251" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">251</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="5" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15049" type="Weapon" name="Fortune Sword of Damascus - 30-day limited period">
 		<!-- Increases Critical by 64. No exchange/drop available -->
@@ -1153,8 +1175,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1166,15 +1186,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3010-6" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3010" level="6" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15050" type="Weapon" name="Samurai Longsword of Fortune - 30-day limited period">
 		<!-- Increases Critical by 73. No exchange/drop available -->
@@ -1182,8 +1206,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1195,15 +1217,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3010-4" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3010" level="4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15051" type="Weapon" name="Elven Long Sword of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1211,8 +1237,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1227,10 +1251,12 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="92" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">92</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15052" type="Weapon" name="Fortune Sword of Ipos - 30-day limited period">
@@ -1239,8 +1265,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1252,15 +1276,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3050-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="305" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">305</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15053" type="Weapon" name="Guardian Sword of Fortune - 30-day limited period">
 		<!-- Max HP increases by 25%. No exchange/drop available -->
@@ -1268,8 +1296,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1281,15 +1307,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15054" type="Weapon" name="Berserker Blade of Fortune - 30-day limited period">
 		<!-- Increases Critical by 73. No exchange/drop available -->
@@ -1297,8 +1327,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1310,15 +1338,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3010-4" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3010" level="4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15055" type="Weapon" name="Claymore of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1326,8 +1358,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1342,10 +1372,12 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="112" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">112</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15056" type="Weapon" name="Sobekk's Hurricane of Fortune - 30-day limited period">
@@ -1354,8 +1386,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1367,16 +1397,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3068-3" /> <!-- Special Ability: Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="305" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">305</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3068" level="3" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="15057" type="Weapon" name="Bellion Cestus of Fortune - 30-day limited period">
 		<!-- Atk. Spd. increases by 9% when HP is below 60%. No exchange/drop available -->
@@ -1384,8 +1418,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1397,16 +1429,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3034-6" /> <!-- Special Ability: Rsk. Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3034" level="6" /> <!-- Special Ability: Rsk. Haste -->
+		</skills>
 	</item>
 	<item id="15058" type="Weapon" name="Great Pata of Fortune - 30-day limited period">
 		<!-- Atk. Spd. increases by 11% when HP is below 60%. No exchange/drop available -->
@@ -1414,8 +1450,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;90" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1427,16 +1461,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3034-4" /> <!-- Special Ability: Rsk. Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3034" level="4" /> <!-- Special Ability: Rsk. Haste -->
+		</skills>
 	</item>
 	<item id="15059" type="Weapon" name="Scallop Jamadhr of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1444,8 +1482,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1460,11 +1496,13 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="112" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">112</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15060" type="Weapon" name="Tallum Blade*Damascus of Fortune - 30-day limited period">
@@ -1473,8 +1511,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1482,7 +1518,6 @@
 		<set name="weight" val="1890" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3045-17" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -1490,11 +1525,16 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="305" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">305</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="17" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="15061" type="Weapon" name="Samurai Long Sword*Samurai Long Sword of Fortune - 30-day limited period">
 		<!-- Atk. Spd. increases by 4%. No exchange/drop available -->
@@ -1502,8 +1542,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1511,7 +1549,6 @@
 		<set name="weight" val="2080" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3045-14" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -1519,11 +1556,16 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="14" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="15062" type="Weapon" name="Spirit Sword*Raid Sword of Fortune - 30-day limited period">
 		<!-- Increases Critical by 40. No exchange/drop available -->
@@ -1531,8 +1573,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1540,7 +1580,6 @@
 		<set name="weight" val="2260" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3044-8" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -1548,11 +1587,16 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="8" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15063" type="Weapon" name="Bastard Sword*Elven Sword of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1560,8 +1604,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1576,10 +1618,12 @@
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="107" />
-			<set stat="mAtk" val="51" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">107</stat>
+			<stat type="mAtk">51</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15064" type="Weapon" name="Tiphon's Spear of Fortune - 30-day limited period">
@@ -1588,8 +1632,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;180" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1601,16 +1643,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3552-2" /> <!-- Special Ability: PvP Damage -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="251" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">251</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="2" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="15065" type="Weapon" name="Lance of Fortune - 30-day limited period">
 		<!-- Range increases. No exchange/drop available -->
@@ -1618,8 +1664,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;80;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1631,16 +1675,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="15066" type="Weapon" name="Orcish Poleaxe of Fortune - 30-day limited period">
 		<!-- Attack angle widens. No exchange/drop available -->
@@ -1648,8 +1696,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;180" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1661,16 +1707,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="15067" type="Weapon" name="Glaive of Fortune - 30-day limited period">
 		<!-- No exchange/drop available -->
@@ -1678,8 +1728,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1691,16 +1739,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<stats>
-			<set stat="pAtk" val="92" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">92</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="15068" type="Weapon" name="Durendal of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Increases Critical by 61, and increases damage inflicted during PvP. No exchange/drop available -->
@@ -1708,8 +1760,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1721,19 +1771,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3050-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="272" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
+			<stat type="pAtk">272</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15069" type="Weapon" name="Dismantler of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Max HP increases by 25%. No exchange/drop available -->
@@ -1741,8 +1795,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1754,19 +1806,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="210" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
+			<stat type="pAtk">210</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15070" type="Weapon" name="Saber Tooth of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Increases Critical by 73. No exchange/drop available -->
@@ -1774,8 +1830,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1787,19 +1841,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3010-4" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="169" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
+			<stat type="pAtk">169</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3010" level="4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15071" type="Weapon" name="General's Katzbalger of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. No exchange/drop available -->
@@ -1807,8 +1865,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1826,11 +1882,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="100" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
+			<stat type="pAtk">100</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15072" type="Weapon" name="Éclair Bijou of Fortune - 30-day limited period">
@@ -1839,8 +1897,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1848,24 +1904,28 @@
 		<set name="weight" val="1300" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3068-3" /> <!-- Special Ability: Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3068" level="3" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="15073" type="Weapon" name="Colichemarde of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Increases Atk. Spd. by about 6%, and improves the chance that party members including yourself will get increased P. Atk., M. Atk. and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. No exchange/drop available -->
@@ -1873,8 +1933,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1882,24 +1940,28 @@
 		<set name="weight" val="1350" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3036-6" /> <!-- Special Ability: Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="176" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">176</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3036" level="6" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="15074" type="Weapon" name="Admiral's Estoc of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Increases Atk. Spd. by about 7%, and improves the chance that party members including yourself will get increased P. Atk., M. Atk. and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. No exchange/drop available -->
@@ -1907,8 +1969,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1916,24 +1976,28 @@
 		<set name="weight" val="1380" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3036-4" /> <!-- Special Ability: Haste -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="141" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">141</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3036" level="4" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="15075" type="Weapon" name="Grand Epee of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Improves the chance that party members including yourself will get increased P. Atk., M. Atk. and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. No exchange/drop available -->
@@ -1941,8 +2005,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1950,7 +2012,6 @@
 		<set name="weight" val="1440" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -1961,12 +2022,17 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="83" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">83</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="15076" type="Weapon" name="Screaming Vengeance of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. Increases Critical by 61, and increases damage inflicted during PvP. No exchange/drop available -->
@@ -1974,8 +2040,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1988,19 +2052,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3050-2" /> <!-- Special Ability: Focus -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15077" type="Weapon" name="Hell Hound of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. MP consumption decreases by about 12% during skill use. No exchange/drop available -->
@@ -2008,8 +2076,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -2022,19 +2088,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3360-1" /> <!-- Special Ability: Cheap Shot -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="245" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">245</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="15078" type="Weapon" name="Sharpshooter of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. MP consumption decreases by about 12% during skill use. No exchange/drop available -->
@@ -2042,8 +2112,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -2056,19 +2124,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3360-1" /> <!-- Special Ability: Cheap Shot -->
 		<set name="time" val="43200" />
 		<set name="enchanted" val="4" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="198" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">198</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="15079" type="Weapon" name="Cranequin of Fortune - 30-day limited period">
 		<!-- Kamael Exclusive Weapon. No exchange/drop available -->
@@ -2076,8 +2148,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -2096,11 +2166,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="117" />
-			<set stat="mAtk" val="54" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">117</stat>
+			<stat type="mAtk">54</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="15080" type="Armor" name="Majestic Earring of Fortune - 10-day limited period">
@@ -2118,8 +2190,8 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="63" />
-			<add stat="maxMp" val="25" />
+			<stat type="mDef">63</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
 	</item>
 	<item id="15081" type="Armor" name="Majestic Necklace of Fortune - 10-day limited period">
@@ -2137,8 +2209,8 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="85" />
-			<add stat="maxMp" val="33" />
+			<stat type="mDef">85</stat>
+			<stat type="maxMp">33</stat>
 		</stats>
 	</item>
 	<item id="15082" type="Armor" name="Majestic Ring of Fortune - 10-day limited period">
@@ -2156,8 +2228,8 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="42" />
-			<add stat="maxMp" val="17" />
+			<stat type="mDef">42</stat>
+			<stat type="maxMp">17</stat>
 		</stats>
 	</item>
 	<item id="15083" type="Armor" name="Fortune Earring of Black Ore - 10-day limited period">
@@ -2175,7 +2247,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="15084" type="Armor" name="Fortune Necklace of Black Ore - 10-day limited period">
@@ -2193,7 +2265,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="15085" type="Armor" name="Fortune Ring of Black Ore - 10-day limited period">
@@ -2211,7 +2283,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="15086" type="Armor" name="Fortune Earring of Seal - 10-day limited period">
@@ -2229,7 +2301,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="45" />
+			<stat type="mDef">45</stat>
 		</stats>
 	</item>
 	<item id="15087" type="Armor" name="Fortune Necklace of Seal - 10-day limited period">
@@ -2247,7 +2319,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="64" />
+			<stat type="mDef">64</stat>
 		</stats>
 	</item>
 	<item id="15088" type="Armor" name="Fortune Ring of Seal - 10-day limited period">
@@ -2265,7 +2337,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="32" />
+			<stat type="mDef">32</stat>
 		</stats>
 	</item>
 	<item id="15089" type="Armor" name="Elven Earring of Fortune - 10-day limited period">
@@ -2283,7 +2355,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="15090" type="Armor" name="Elven Earring of Fortune - 10-day limited period">
@@ -2301,7 +2373,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="45" />
+			<stat type="mDef">45</stat>
 		</stats>
 	</item>
 	<item id="15091" type="Armor" name="Elven Ring of Fortune - 10-day limited period">
@@ -2319,7 +2391,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="mDef" val="22" />
+			<stat type="mDef">22</stat>
 		</stats>
 	</item>
 	<item id="15092" type="Armor" name="Dark Crystal Robe of Fortune - 10-day limited period">
@@ -2341,8 +2413,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="139" />
-			<add stat="maxMp" val="665" />
+			<stat type="pDef">139</stat>
+			<stat type="maxMp">665</stat>
 		</stats>
 	</item>
 	<item id="15093" type="Armor" name="Dark Crystal Helmet of Fortune - 10-day limited period">
@@ -2360,7 +2432,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="15094" type="Armor" name="Dark Crystal Gloves of Fortune - Robe - 10-day limited period">
@@ -2381,7 +2453,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="15095" type="Armor" name="Dark Crystal Boots of Fortune - Robe - 10-day limited period">
@@ -2402,7 +2474,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="15096" type="Armor" name="Dark Crystal Shield of Fortune - 10-day limited period">
@@ -2423,9 +2495,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="15097" type="Armor" name="Avadon Robe of Fortune - 10-day limited period">
@@ -2447,8 +2519,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="127" />
-			<add stat="maxMp" val="561" />
+			<stat type="pDef">127</stat>
+			<stat type="maxMp">561</stat>
 		</stats>
 	</item>
 	<item id="15098" type="Armor" name="Avadon Circlet of Fortune - 10-day limited period">
@@ -2466,7 +2538,7 @@
 		<set name="is_depositable" val="false" />
 		<set name="time" val="14400" />
 		<stats>
-			<add order="0" stat="pDef" val="62" />
+			<stat type="pDef">62</stat>
 		</stats>
 	</item>
 	<item id="15099" type="Armor" name="Avadon Gloves of Fortune - Robe - 10-day limited period">
@@ -2487,7 +2559,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 </list>

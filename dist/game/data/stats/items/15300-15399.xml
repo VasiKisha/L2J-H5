@@ -5,8 +5,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -21,10 +19,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15301" type="Weapon" name="Transparent Pole (for NPC)">
@@ -32,8 +32,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -48,11 +46,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
 	</item>
 	<item id="15302" type="Weapon" name="Transparent Bow (for NPC)">
@@ -60,8 +60,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -78,11 +76,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="114" />
-			<set stat="mAtk" val="35" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
+			<stat type="pAtk">114</stat>
+			<stat type="mAtk">35</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="15303" type="Weapon" name="Transparent Claw (for NPC)">
@@ -90,8 +90,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -107,11 +105,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<stats>
-			<set stat="pAtk" val="376" />
-			<set stat="mAtk" val="119" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">376</stat>
+			<stat type="mAtk">119</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15304" type="Weapon" name="Transparent Bowgun (for NPC)">
@@ -119,8 +119,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -139,11 +137,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="64" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">64</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="15305" type="Weapon" name="Transparent Rapier (for NPC)">
@@ -151,8 +151,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -170,11 +168,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="36" />
-			<set stat="mAtk" val="26" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">36</stat>
+			<stat type="mAtk">26</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15306" type="Weapon" name="Transparent Dual Dagger (for NPC)">
@@ -182,8 +182,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALDAGGER" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S80" />
@@ -205,11 +203,13 @@
 			</and>
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="157" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">157</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="15307" type="EtcItem" name="Holy Pomander - Cardinal">
@@ -251,8 +251,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -264,17 +262,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="8357-1" /> <!-- Einhasad's Strike -->
 		<set name="time" val="7200" />
 		<conditions msgId="1518">
 			<player instanceId="112" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="7" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">7</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="8357" level="1" /> <!-- Einhasad's Strike -->
+		</skills>
 	</item>
 	<item id="15311" type="EtcItem" name="Delusion Chamber Invitation">
 		<set name="icon" val="icon.etc_magic_coin_gold_i01" />
@@ -300,7 +302,9 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="8337-1" /> <!-- Weight Up -->
+		<skills>
+			<skill id="8337" level="1" /> <!-- Weight Up -->
+		</skills>
 	</item>
 	<item id="15313" type="Weapon" name="Player Commendation - Forgotten Blade - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Forgotten Blade Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 84 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -308,8 +312,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -322,16 +324,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3566-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15314" type="Weapon" name="Player Commendation - Basalt Battlehammer - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Basalt Battlehammer Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Max HP by 25% additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -339,8 +345,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -353,17 +357,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15315" type="Weapon" name="Player Commendation - Imperial Staff - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Imperial Staff Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases MP Recovery Rate additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -371,8 +379,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -386,17 +392,21 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3576-1" /> <!-- Special Ability: MP Regeneration -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="274" />
-			<set stat="mAtk" val="193" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">274</stat>
+			<stat type="mAtk">193</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3576" level="1" /> <!-- Special Ability: MP Regeneration -->
+		</skills>
 	</item>
 	<item id="15316" type="Weapon" name="Player Commendation - Angel Slayer - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Angel Slayer Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Upon additional Critical, P. Atk. increases by 265, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -404,8 +414,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -418,17 +426,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3572-1" /> <!-- Special Ability: Crtical Damage -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="246" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">246</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3572" level="1" /> <!-- Special Ability: Crtical Damage -->
+		</skills>
 	</item>
 	<item id="15317" type="Weapon" name="Player Commendation - Dragon Hunter Axe - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Dragon Hunter Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases HP recovery power additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -436,8 +448,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -450,17 +460,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3569-1" /> <!-- Special Ability: HP Regeneration -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3569" level="1" /> <!-- Special Ability: HP Regeneration -->
+		</skills>
 	</item>
 	<item id="15318" type="Weapon" name="Player Commendation - Saint Spear - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Saint Spear Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Max HP by 25% additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -468,8 +482,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -482,17 +494,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3013-4" /> <!-- Special Ability: Health -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="15319" type="Weapon" name="Player Commendation - Demon Splinter - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Demon Splinter Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 80 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -500,8 +516,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -514,17 +528,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3565-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3565" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15320" type="Weapon" name="Player Commendation - Heaven's Divider - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Heaven's Divider Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 84 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -532,8 +550,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -546,16 +562,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3566-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15321" type="Weapon" name="Player Commendation - Arcana Macw - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Arcana Mace Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Casting Spd. by 61 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -563,8 +583,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -578,17 +596,21 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="225" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">225</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="15322" type="Weapon" name="Player Commendation - Draconic Bow - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Draconic Bow Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 88 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -596,8 +618,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -612,17 +632,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3567-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3567" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15323" type="Weapon" name="Player Commendation - Laevateinn - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Laevateinn. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Atk. Spd. by about 7% and damage inflicted during PvP. When enchanted to 4 or more, during a critical attack, party members including yourself will receive at a fixed rate increased attack power, magic power, and healing capacity, as well as decreased MP consumption per skill. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -630,8 +654,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -640,12 +662,10 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3564-1" /> <!-- Special Ability: Haste -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
@@ -653,12 +673,18 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="255" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">255</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="15324" type="Weapon" name="Player Commendation - Gram - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Gram. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Critical by 84 and damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -666,8 +692,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -680,7 +704,6 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3566-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
@@ -688,12 +711,17 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15325" type="Weapon" name="Player Commendation - Sarunga - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Sarunga. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Critical by 88 and damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -701,8 +729,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -716,7 +742,6 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="item_skill" val="3567-1" /> <!-- Special Ability: Focus -->
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
@@ -724,12 +749,17 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="356" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
+			<stat type="pAtk">356</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3567" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="15326" type="Weapon" name="Player Commendation - Tallum Blade *Dark Legion's Edge - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Tallum Blade*Dark Legion's Edge. Available to enchant by the enchanted scroll of PC Cafe exclusive weapons. Upon enchanted over 4, Max HP and Max CP increase by 15% and 30% respectively, and the damage during the PvP increases. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -737,8 +767,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -747,7 +775,6 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3570-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -756,11 +783,16 @@
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3570" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Robust Health -->
+		</skills>
 	</item>
 	<item id="15327" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -772,7 +804,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15328" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Schuttgart area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -784,7 +818,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15329" type="EtcItem" name="Seed: Twin Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -796,7 +832,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15330" type="EtcItem" name="Seed: Twin Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -808,7 +846,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15331" type="EtcItem" name="Seed: Twin Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -820,7 +860,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15332" type="EtcItem" name="Seed: Twin Coba">
 		<!-- Plant this seed onto a monster in the Schuttgart area and it will bear the fruit of the Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -832,7 +874,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15333" type="EtcItem" name="Seed: King Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the King Coba. For best results, a level 80+ character must plant the seed on a level 80-90 monster. -->
@@ -844,7 +888,9 @@
 		<set name="price" val="1200" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15334" type="EtcItem" name="Seed: Alternative Sea Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -856,7 +902,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15335" type="EtcItem" name="Seed: Alternative Sea Coba">
 		<!-- Plant this seed onto a monster in the Schuttgart area and it will bear the fruit of the Alternative Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -868,7 +916,9 @@
 		<set name="price" val="900" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15336" type="EtcItem" name="Seed: Alternative Twin Coba">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -880,7 +930,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15337" type="EtcItem" name="Seed: Alternative Twin Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -892,7 +944,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15338" type="EtcItem" name="Seed: Alternative Twin Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -904,7 +958,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15339" type="EtcItem" name="Seed: Alternative Twin Coba">
 		<!-- Plant this seed onto a monster in the Schuttgart area and it will bear the fruit of the Alternative Twin Coba. For best results, a level 77-87 character must plant it on a level 77-87 monster. -->
@@ -916,7 +972,9 @@
 		<set name="price" val="1000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15340" type="EtcItem" name="Seed: Alternative Great Coba">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Alternative King Coba. For best results, a level 80-90 character must plant it on a level 80-90 monster. -->
@@ -928,7 +986,9 @@
 		<set name="price" val="1200" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="15341" type="EtcItem" name="Guiding Tea Leaves">
 		<!-- Tea leaves collected from guiding souls. -->
@@ -942,8 +1002,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -952,15 +1010,19 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="unequip_skill" val="619-1" />
-		<set name="item_skill" val="2994-1" /> <!-- Disguised Half - Aqua Elf -->
 		<set name="time" val="86400" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="2994" level="1" /> <!-- Disguised Half - Aqua Elf -->
+			<skill id="619" level="1" type="ON_UNEQUIP" /> <!-- Transform Dispel -->
+		</skills>
 	</item>
 	<item id="15343" type="EtcItem" name="Aqua Elf Transforming Harp 60-day Pack">
 		<!-- Dimensional item pack. A wrapped pack containing Aqua Elf Transformation Stick (60 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -975,7 +1037,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15342,1,1,100" />
+		<capsuled_items>
+			<item id="15342" min="1" max="1" chance="100" /> <!-- Aqua Elf Transforming Harp - 60-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="15344" type="Weapon" name="Aqua Elf Transforming Harp (Event) - 60-day limited period">
 		<!-- Dimensional item. Transformation stick that turns you into a Aqua Elf Can be used for 60 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -983,8 +1047,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -993,15 +1055,19 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="unequip_skill" val="619-1" />
-		<set name="item_skill" val="2994-1" /> <!-- Disguised Half - Aqua Elf -->
 		<set name="time" val="86400" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="2994" level="1" /> <!-- Disguised Half - Aqua Elf -->
+			<skill id="619" level="1" type="ON_UNEQUIP" /> <!-- Transform Dispel -->
+		</skills>
 	</item>
 	<item id="15345" type="EtcItem" name="Aqua Elf Transforming Harp 60-day Pack">
 		<!-- Dimensional item pack. A wrapped pack containing Aqua Elf Transformation Stick (60 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1016,7 +1082,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15344,1,1,100" />
+		<capsuled_items>
+			<item id="15344" min="1" max="1" chance="100" /> <!-- Aqua Elf Transforming Harp (Event) - 60-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="15346" type="EtcItem" name="Scroll: Enchant Weapon (Grade S) - Exclusive to PC weapons">
 		<!-- Scroll to enchant only the S-grade weapons For PC Cafe. Impossible to use for other weapons. Cannot be exchanged or dropped. -->
@@ -1033,7 +1101,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2999-1" /> <!-- PC room private weapon strengthening order sheet - S grade -->
+		<skills>
+			<skill id="2999" level="1" /> <!-- PC room private weapon strengthening order sheet - S grade -->
+		</skills>
 	</item>
 	<item id="15347" type="EtcItem" name="Scroll: Enchant Weapon (Grade A) - Exclusive to PC weapons">
 		<!-- Scroll to enchant the A-grade weapons For PC Cafe. Impossible to use for other weapons. Cannot be exchanged or dropped. -->
@@ -1050,7 +1120,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2998-1" /> <!-- PC room private weapon strengthening order sheet - A grade -->
+		<skills>
+			<skill id="2998" level="1" /> <!-- PC room private weapon strengthening order sheet - A grade -->
+		</skills>
 	</item>
 	<item id="15348" type="EtcItem" name="Scroll: Enchant Weapon (Grade B) - Exclusive to PC weapons">
 		<!-- Scroll to enchant the B-grade weapons For PC Cafe. Impossible to use for other weapons. Cannot be exchanged or dropped. -->
@@ -1067,7 +1139,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2997-1" /> <!-- PC room private weapon strengthening order sheet - B grade -->
+		<skills>
+			<skill id="2997" level="1" /> <!-- PC room private weapon strengthening order sheet - B grade -->
+		</skills>
 	</item>
 	<item id="15349" type="EtcItem" name="Scroll: Enchant Weapon (Grade C) - Exclusive to PC weapons">
 		<!-- Scroll to enchant the C-grade weapons For PC Cafe. Impossible to use for other weapons. Cannot be exchanged or dropped. -->
@@ -1084,7 +1158,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2996-1" /> <!-- PC room private weapon strengthening order sheet - C grade -->
+		<skills>
+			<skill id="2996" level="1" /> <!-- PC room private weapon strengthening order sheet - C grade -->
+		</skills>
 	</item>
 	<item id="15350" type="EtcItem" name="Scroll: Enchant Weapon (Grade D) - Exclusive to PC weapons">
 		<!-- Scroll to enchant the D-grade weapons For PC Cafe. Impossible to use for other weapons. Cannot be exchanged or dropped. -->
@@ -1101,7 +1177,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2995-1" /> <!-- PC room private weapon strengthening order sheet - D grade -->
+		<skills>
+			<skill id="2995" level="1" /> <!-- PC room private weapon strengthening order sheet - D grade -->
+		</skills>
 	</item>
 	<item id="15351" type="Armor" name="Seal Removal Bracelet_Towbat">
 		<!-- A bracelet to summon Towbat -->
@@ -1117,11 +1195,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8358-1;8359-1;3267-1" /> <!-- Release Seal on Agathion - Towbat -->
+		<skills>
+			<skill id="8358" level="1" /> <!-- Release Seal on Agathion - Towbat -->
+			<skill id="8359" level="1" /> <!-- Notifier -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="15352" type="EtcItem" name="Proof of Time and Space">
-		<!-- Proof of Time and Space to prove one's identity? -->
+		<!-- Proof of Time and Space to prove one's identity‏ -->
 		<set name="icon" val="icon.etc_sign_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="CRYSTAL" />
@@ -1192,8 +1274,20 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9011-1;9012-1;9013-1;9014-1;9015-1;9016-1;9017-1;9018-1;9019-1;9020-1;9021-1" /> <!-- Might -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="9011" level="1" /> <!-- Might -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9014" level="1" /> <!-- Focus -->
+			<skill id="9015" level="1" /> <!-- Death Whisper -->
+			<skill id="9016" level="1" /> <!-- Guidance -->
+			<skill id="9017" level="1" /> <!-- Blessed Shield -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9019" level="1" /> <!-- Haste -->
+			<skill id="9020" level="1" /> <!-- Vampiric Rage -->
+			<skill id="9021" level="1" /> <!-- Berserker Spirit -->
+		</skills>
 	</item>
 	<item id="15357" type="EtcItem" name="Improved Fresh Fruit Cocktail">
 		<!-- Concentrated cocktail drink that's flavored with many rare types of fruit. It has a better effect than the Fresh Fruit Cocktail. When consumed, one can feel Berserker Spirit, Blessed Body, Magic Barrier, Shield, Wind Walk, Blessed Soul, Empower, Acumen, and Clarity effects for a certain amount of time. -->
@@ -1211,8 +1305,18 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9021-1;9022-1;9023-1;9024-1;9025-1;9026-1;9013-1;9018-1;9012-1" /> <!-- Berserker Spirit -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="9021" level="1" /> <!-- Berserker Spirit -->
+			<skill id="9022" level="1" /> <!-- Magic Barrier -->
+			<skill id="9023" level="1" /> <!-- Blessed Soul -->
+			<skill id="9024" level="1" /> <!-- Empower -->
+			<skill id="9025" level="1" /> <!-- Acumen -->
+			<skill id="9026" level="1" /> <!-- Clarity -->
+			<skill id="9013" level="1" /> <!-- Wind Walk -->
+			<skill id="9018" level="1" /> <!-- Blessed Body -->
+			<skill id="9012" level="1" /> <!-- Shield -->
+		</skills>
 	</item>
 	<item id="15358" type="EtcItem" name="Player Commendation Instant Lottery Ticket - 30-day limited period">
 		<!-- Instant lottery with luck worth maximum of 100,000 PC Cafe points Disappears when not using it within 30 days from the day endowed Cannot be exchanged or dropped. -->
@@ -1227,8 +1331,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9027-1" /> <!-- PC cafe personal instant lottery -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="9027" level="1" /> <!-- PC cafe personal instant lottery -->
+		</skills>
 	</item>
 	<item id="15359" type="EtcItem" name="Winning instant lottery ticket - 100,000 PC Points - 30-day limited period">
 		<!-- When you bring it an adventurers' guild member in the town, you will receive 100,000 PC Cafe points. Disappears when winning points are not given within 30 days. Cannot be exchanged or dropped. -->
@@ -1299,7 +1405,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9010-1" /> <!-- Cool air cannon -->
+		<skills>
+			<skill id="9010" level="1" /> <!-- Cool air cannon -->
+		</skills>
 	</item>
 	<item id="15365" type="EtcItem" name="Lucky Cool Pack">
 		<!-- Event item. Fires a cool air cannon to lower the blistering temperature. Looks much luckier than an ordinary cool air cannon. Can be exchanged or dropped. -->
@@ -1310,7 +1418,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9028-1" /> <!-- Cool air cannon of fortune -->
+		<skills>
+			<skill id="9028" level="1" /> <!-- Cool air cannon of fortune -->
+		</skills>
 	</item>
 	<item id="15366" type="EtcItem" name="Watermelon seed">
 		<!-- L2 Big Watermelon Event - Double click to make a young watermelon appear. -->
@@ -1321,7 +1431,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9029-1" /> <!-- Watermelon Seed -->
+		<skills>
+			<skill id="9029" level="1" /> <!-- Watermelon Seed -->
+		</skills>
 	</item>
 	<item id="15367" type="EtcItem" name="Honey Watermelon Seed">
 		<!-- L2 Big Watermelon Event - Double click to make a young honey watermelon appear. -->
@@ -1332,7 +1444,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9030-1" /> <!-- Honey Watermelon Seed -->
+		<skills>
+			<skill id="9030" level="1" /> <!-- Honey Watermelon Seed -->
+		</skills>
 	</item>
 	<item id="15368" type="EtcItem" name="Copied Watermelon Seed">
 		<!-- L2 Big Watermelon Event - Double click to make a young watermelon appear. Cannot be exchanged or dropped. -->
@@ -1346,7 +1460,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9031-1" /> <!-- Copied Watermelon Seed -->
+		<skills>
+			<skill id="9031" level="1" /> <!-- Copied Watermelon Seed -->
+		</skills>
 	</item>
 	<item id="15369" type="EtcItem" name="Copied Honey Watermelon Seed">
 		<!-- L2 Big Watermelon Event - Double click to make a young honey watermelon appear. Cannot be exchanged or dropped. -->
@@ -1360,7 +1476,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9032-1" /> <!-- Copied Honey Watermelon Seed -->
+		<skills>
+			<skill id="9032" level="1" /> <!-- Copied Honey Watermelon Seed -->
+		</skills>
 	</item>
 	<item id="15370" type="EtcItem" name="Special July 7th Package">
 		<!-- Special July 7th package. Contains a Special July 7th parcel. Cannot be dropped, sold, or mailed. Cannot be registered at a private shop. -->
@@ -1376,7 +1494,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15372,1,1,100" />
+		<capsuled_items>
+			<item id="15372" min="1" max="1" chance="100" /> <!-- Special July 7th Parcel -->
+		</capsuled_items>
 	</item>
 	<item id="15371" type="EtcItem" name="July 7th Package">
 		<!-- July 7th package. Contains a July 7th parcel. Cannot be dropped or mailed. Cannot be registered at a private shop. -->
@@ -1392,7 +1512,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15373,1,1,100" />
+		<capsuled_items>
+			<item id="15373" min="1" max="1" chance="100" /> <!-- July 7th Parcel -->
+		</capsuled_items>
 	</item>
 	<item id="15372" type="EtcItem" name="Special July 7th Parcel">
 		<!-- Special July 7th parcel. Contains 5 steamed rice cakes. Improves the chance to receive a bonus limited time item (weaver's multi-colored clothes). Can be exchanged. Cannot be dropped or destroyed. Cannot be registered at a private shop. -->
@@ -1407,7 +1529,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9036-1" /> <!-- Special July 7th Parcel -->
+		<skills>
+			<skill id="9036" level="1" /> <!-- Special July 7th Parcel -->
+		</skills>
 	</item>
 	<item id="15373" type="EtcItem" name="July 7th Parcel">
 		<!-- July 7th parcel. Contains 1 steamed rice cake. Cannot be dropped or destroyed. Cannot be registered at a private shop. -->
@@ -1422,7 +1546,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15379,1,1,100" />
+		<capsuled_items>
+			<item id="15379" min="1" max="1" chance="100" /> <!-- Steamed Rice Cake -->
+		</capsuled_items>
 	</item>
 	<item id="15374" type="EtcItem" name="Special July 7th Package (Event)">
 		<!-- Special July 7th package. Contains a Special July 7th parcel. Cannot be dropped, sold, or mailed. Cannot be registered at a private shop. -->
@@ -1438,7 +1564,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15376,1,1,100" />
+		<capsuled_items>
+			<item id="15376" min="1" max="1" chance="100" /> <!-- Special July 7th Parcel (Event) -->
+		</capsuled_items>
 	</item>
 	<item id="15375" type="EtcItem" name="July 7th Package (Event)">
 		<!-- July 7th package. Contains a July 7th parcel. Cannot be dropped or mailed. Cannot be registered at a private shop. -->
@@ -1454,7 +1582,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15377,1,1,100" />
+		<capsuled_items>
+			<item id="15377" min="1" max="1" chance="100" /> <!-- July 7th Parcel (Event) -->
+		</capsuled_items>
 	</item>
 	<item id="15376" type="EtcItem" name="Special July 7th Parcel (Event)">
 		<!-- Special July 7th parcel. Contains 5 steamed rice cakes. Improves the chance to receive a bonus limited time item (weaver's multi-colored clothes). Can be exchanged. Cannot be dropped or destroyed. Cannot be registered at a private shop. -->
@@ -1469,7 +1599,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9037-1" /> <!-- Special July 7th Parcel (Event) -->
+		<skills>
+			<skill id="9037" level="1" /> <!-- Special July 7th Parcel (Event) -->
+		</skills>
 	</item>
 	<item id="15377" type="EtcItem" name="July 7th Parcel (Event)">
 		<!-- July 7th parcel. Contains 1 steamed rice cake. Cannot be dropped or destroyed. Cannot be registered at a private shop. -->
@@ -1484,7 +1616,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15380,1,1,100" />
+		<capsuled_items>
+			<item id="15380" min="1" max="1" chance="100" /> <!-- Steamed Rice Cake (Event) -->
+		</capsuled_items>
 	</item>
 	<item id="15378" type="EtcItem" name="July 7th Gift Box">
 		<!-- July 7th gift box. Contains a Weaver's Multi-colored Clothes 7-day limited period item. Cannot be dropped, sold, or mailed. Cannot be registered at a private shop. -->
@@ -1500,7 +1634,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="15383,1,1,100" />
+		<capsuled_items>
+			<item id="15383" min="1" max="1" chance="100" /> <!-- Weaver's Multi-colored Clothes - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="15379" type="EtcItem" name="Steamed Rice Cake">
 		<!-- Delicious steamed rice cake. Energy is fully replenished upon use. Re-use time is 60 minutes. Cannot be exchanged, dropped, or destroyed. Cannot be registered at a private shop. -->
@@ -1517,7 +1653,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9038-1" /> <!-- Steamed Rice Cake -->
+		<skills>
+			<skill id="9038" level="1" /> <!-- Steamed Rice Cake -->
+		</skills>
 	</item>
 	<item id="15380" type="EtcItem" name="Steamed Rice Cake (Event)">
 		<!-- Delicious steamed rice cake. Energy is fully replenished upon use. Re-use time is 60 minutes. Cannot be exchanged, dropped, or destroyed. Cannot be registered at a private shop. -->
@@ -1534,7 +1672,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="9039-1" /> <!-- Steamed Rice Cake -->
+		<skills>
+			<skill id="9039" level="1" /> <!-- Steamed Rice Cake -->
+		</skills>
 	</item>
 	<item id="15381" type="EtcItem" name="Event - Herdsman's Love Scroll - Event">
 		<!-- July 7th event. Enchant scroll exclusively for the Weaver's Multi-colored Clothes. Increases the P. Def. and Magic M. Def. of the Weaver's Multi-colored Clothes. Can be safely enchanted to +3, and the item disappears when the enchant fails. When the Weaver's Multi-colored Clothes is enchanted above +4, attributes, STR, CON, INT, and MEN also increase according to the enhancement value. Can only be used during the July 7th event period, and it is deleted in bulk once the event ends. -->
@@ -1547,7 +1687,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="9033-1" /> <!-- Herdsman's Love Scroll -->
+		<skills>
+			<skill id="9033" level="1" /> <!-- Herdsman's Love Scroll -->
+		</skills>
 	</item>
 	<item id="15382" type="EtcItem" name="Event - Vitality Belt Enchant Scroll - Event">
 		<!-- Enchant scroll exclusively for the Vitality Belt. Increases the Vitality Belt's P. Def. and Magic M. Def. Vitality maintenance effect. Vitality maintenance re-use time reduced. Can be safely enchanted to +3, and the item disappears when the enchant fails. When the Vitality Belt is enchanted above +4, vitality maintenance duration increases, and the decreases vitality maintenance re-use time. Can only be used during the Vitality Belt event period, and it s deleted in bulk once the event ends. -->
@@ -1560,7 +1702,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="9034-1" /> <!-- Vitality Belt Enchant Scroll -->
+		<skills>
+			<skill id="9034" level="1" /> <!-- Vitality Belt Enchant Scroll -->
+		</skills>
 	</item>
 	<item id="15383" type="Armor" name="Weaver's Multi-colored Clothes - 7-day limited period">
 		<!-- Weaver's Multi-colored Clothes. Can be enchanted using the Herdsman's Love Scroll. Trade Drop. Cannot be registered at a private shop. -->

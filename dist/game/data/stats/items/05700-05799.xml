@@ -10,7 +10,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5701" type="EtcItem" name="Seed: Alternative Red Codran">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Red Codran. For best results, a level 44-54 character must plant it on a level 44-54 monster. -->
@@ -22,7 +24,9 @@
 		<set name="price" val="40" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5702" type="EtcItem" name="Seed: Alternative Sea Codran">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Alternative Sea Codran. For best results, a level 44-54 character must plant it on a level 44-54 monster. -->
@@ -34,7 +38,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5703" type="EtcItem" name="Lucky Charm">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is 19 or below. -->
@@ -48,15 +54,15 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-1" /> <!-- Raid Blessing -->
+		<skills>
+			<skill id="2168" level="1" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5704" type="Weapon" name="Keshanberk*Keshanberk">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1464" />
@@ -68,12 +74,12 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<set stat="pAtk" val="259" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">259</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5705" type="Weapon" name="Keshanberk*Damascus">
@@ -82,8 +88,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1485" />
@@ -94,15 +98,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-3" />
 		<stats>
-			<set stat="pAtk" val="275" />
-			<set stat="mAtk" val="112" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">275</stat>
+			<stat type="mAtk">112</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="3" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="5706" type="Weapon" name="Damascus*Damascus">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 6. Enhances damage to target during PvP. -->
@@ -110,8 +116,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1659" />
@@ -122,15 +126,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-20" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="20" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="5707" type="EtcItem" name="Record of Seven Signs">
 		<!-- An item used for studying the current situation of the Seven Signs system. -->
@@ -161,8 +167,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5710" type="Armor" name="Zubei's Gauntlets - Heavy Armor">
@@ -181,8 +186,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5711" type="Armor" name="Zubei's Gauntlets - Light Armor">
@@ -198,8 +202,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5712" type="Armor" name="Zubei's Gauntlets - Robe">
@@ -218,8 +221,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5713" type="Armor" name="Sealed Avadon Gloves">
@@ -235,8 +237,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5714" type="Armor" name="Avadon Gloves - Heavy Armor">
@@ -255,8 +256,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5715" type="Armor" name="Avadon Gloves - Light Armor">
@@ -272,8 +272,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5716" type="Armor" name="Avadon Gloves - Robe">
@@ -292,8 +291,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5717" type="Armor" name="Sealed Blue Wolf Gloves">
@@ -309,8 +307,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5718" type="Armor" name="Blue Wolf Gloves - Heavy Armor">
@@ -329,8 +326,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5719" type="Armor" name="Blue Wolf Gloves - Light Armor">
@@ -346,8 +342,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5720" type="Armor" name="Blue Wolf Gloves - Robe">
@@ -366,8 +361,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5721" type="Armor" name="Sealed Doom Gloves">
@@ -383,8 +377,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5722" type="Armor" name="Doom Gloves - Heavy Armor">
@@ -403,8 +396,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5723" type="Armor" name="Doom Gloves - Light Armor">
@@ -420,8 +412,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5724" type="Armor" name="Doom Gloves - Robe">
@@ -440,8 +431,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5725" type="Armor" name="Sealed Zubei's Boots">
@@ -457,8 +447,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5726" type="Armor" name="Zubei's Boots - Heavy Armor">
@@ -477,8 +466,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5727" type="Armor" name="Zubei's Boots - Light Armor">
@@ -494,8 +482,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5728" type="Armor" name="Zubei's Boots - Robe">
@@ -514,8 +501,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5729" type="Armor" name="Sealed Avadon Boots">
@@ -531,8 +517,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5730" type="Armor" name="Avadon Boots - Heavy Armor">
@@ -551,8 +536,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5731" type="Armor" name="Avadon Boots - Light Armor">
@@ -568,8 +552,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5732" type="Armor" name="Avadon Boots - Robe">
@@ -588,8 +571,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5733" type="Armor" name="Sealed Blue Wolf Boots">
@@ -605,8 +587,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5734" type="Armor" name="Blue Wolf Boots - Heavy Armor">
@@ -625,8 +606,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5735" type="Armor" name="Blue Wolf Boots - Light Armor">
@@ -642,8 +622,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5736" type="Armor" name="Blue Wolf Boots - Robe">
@@ -662,8 +641,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5737" type="Armor" name="Sealed Doom Boots">
@@ -679,8 +657,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5738" type="Armor" name="Doom Boots - Heavy Armor">
@@ -699,8 +676,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5739" type="Armor" name="Doom Boots - Light Armor">
@@ -716,8 +692,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5740" type="Armor" name="Doom Boots - Robe">
@@ -736,8 +711,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5741" type="EtcItem" name="Recipe: Sealed Zubei's Gauntlets (100%)">
@@ -1012,8 +986,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5766" type="Armor" name="Dark Crystal Gloves - Light Armor">
@@ -1029,8 +1002,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5767" type="Armor" name="Dark Crystal Gloves - Robe">
@@ -1049,8 +1021,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5768" type="Armor" name="Tallum Gloves - Heavy Armor">
@@ -1069,8 +1040,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5769" type="Armor" name="Tallum Gloves - Light Armor">
@@ -1086,8 +1056,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5770" type="Armor" name="Tallum Gloves - Robe">
@@ -1106,8 +1075,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5771" type="Armor" name="Gauntlets of Nightmare - Heavy Armor">
@@ -1126,8 +1094,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5772" type="Armor" name="Gauntlets of Nightmare - Light Armor">
@@ -1143,8 +1110,7 @@
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5773" type="Armor" name="Gauntlets of Nightmare - Robe">
@@ -1163,8 +1129,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5774" type="Armor" name="Majestic Gauntlets - Heavy Armor">
@@ -1183,8 +1148,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5775" type="Armor" name="Majestic Gauntlets - Light Armor">
@@ -1200,8 +1164,7 @@
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5776" type="Armor" name="Majestic Gauntlets - Robe">
@@ -1220,8 +1183,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5777" type="Armor" name="Dark Crystal Boots - Heavy Armor">
@@ -1240,8 +1202,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5778" type="Armor" name="Dark Crystal Boots - Light Armor">
@@ -1257,8 +1218,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5779" type="Armor" name="Dark Crystal Boots - Robe">
@@ -1277,8 +1237,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5780" type="Armor" name="Tallum Boots - Heavy Armor">
@@ -1297,8 +1256,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5781" type="Armor" name="Tallum Boots - Light Armor">
@@ -1314,8 +1272,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5782" type="Armor" name="Tallum Boots - Robe">
@@ -1334,8 +1291,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5783" type="Armor" name="Boots of Nightmare - Heavy Armor">
@@ -1354,8 +1310,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5784" type="Armor" name="Boots of Nightmare - Light Armor">
@@ -1371,8 +1326,7 @@
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5785" type="Armor" name="Boots of Nightmare - Robe">
@@ -1391,8 +1345,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5786" type="Armor" name="Majestic Boots - Heavy Armor">
@@ -1411,8 +1364,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5787" type="Armor" name="Majestic Boots - Light Armor">
@@ -1428,8 +1380,7 @@
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5788" type="Armor" name="Majestic Boots - Robe">
@@ -1448,8 +1399,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5789" type="EtcItem" name="Soulshot: No Grade for Beginners">
@@ -1464,7 +1414,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2039-1" /> <!-- Soulshot: No Grade -->
+		<skills>
+			<skill id="2039" level="1" /> <!-- Soulshot: No Grade -->
+		</skills>
 	</item>
 	<item id="5790" type="EtcItem" name="Spiritshot: No Grade for Beginners">
 		<!-- A Spiritshot: No Grade for use by newbies. -->
@@ -1478,15 +1430,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SpiritShot" />
-		<set name="item_skill" val="2047-1" /> <!-- Spiritshot: No Grade -->
+		<skills>
+			<skill id="2047" level="1" /> <!-- Spiritshot: No Grade -->
+		</skills>
 	</item>
 	<item id="5791" type="Weapon" name="Tomb Guard A">
 		<set name="icon" val="icon.weapon_monster_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1498,12 +1450,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="78" />
-			<set stat="mAtk" val="39" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">78</stat>
+			<stat type="mAtk">39</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5792" type="Weapon" name="Tomb Guard B">
@@ -1511,8 +1463,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1524,12 +1474,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="78" />
-			<set stat="mAtk" val="39" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">78</stat>
+			<stat type="mAtk">39</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5793" type="Weapon" name="Tomb Savant A">
@@ -1537,8 +1487,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1550,12 +1498,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5794" type="Weapon" name="Tomb Savant B">
@@ -1563,8 +1511,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1576,12 +1522,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5795" type="Weapon" name="Tomb Guard A">
@@ -1589,8 +1535,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1602,12 +1546,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="78" />
-			<set stat="mAtk" val="39" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">78</stat>
+			<stat type="mAtk">39</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5796" type="Weapon" name="Tomb Guard B">
@@ -1615,8 +1559,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -1628,12 +1570,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="78" />
-			<set stat="mAtk" val="39" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">78</stat>
+			<stat type="mAtk">39</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5797" type="Weapon" name="Tomb Savant A">
@@ -1641,8 +1583,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1654,12 +1594,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5798" type="Weapon" name="Tomb Savant B">
@@ -1667,8 +1607,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -1680,12 +1618,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5799" type="Armor" name="Nephilim Lord">
@@ -1700,10 +1638,9 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="142" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">142</stat>
 		</stats>
 	</item>
 </list>

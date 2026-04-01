@@ -35,13 +35,13 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.ConfigReader;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.TowerSpawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Siege;
+import org.l2jmobius.gameserver.model.siege.TowerSpawn;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 public class SiegeManager

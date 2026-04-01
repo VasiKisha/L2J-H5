@@ -6,8 +6,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -18,32 +16,34 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3068-3" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3068" level="3" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10701" type="Weapon" name="Éclair Bijou {PvP} - Health">
-		<!-- Kamael Exclusive Weapon: Sirra's Blade Conversion . <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Kamael Exclusive Weapon: Sirra's Blade Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_greed_stinger_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -54,23 +54,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-5" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="5" /> <!-- Special Ability: Health -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10702" type="Weapon" name="Éclair Bijou {PvP} - Critical Poison">
 		<!-- Kamael Exclusive Weapon: Sirra's Blade Conversion. <Soul Crystal Enhancement>. Has a 15% chance of poisoning a target during a critical attack. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -78,8 +82,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -90,24 +92,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3061-3" />
-		<set name="item_skill" val="3650-1;3552-3" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+			<skill id="3061" level="3" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Critical Poison -->
+		</skills>
 	</item>
 	<item id="10703" type="Weapon" name="Durendal {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Sword of Ipos Conversion. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -115,8 +120,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -130,19 +133,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3050-2" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="272" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">272</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10704" type="Weapon" name="Durendal {PvP} - Haste">
 		<!-- Kamael Exclusive Weapon: Sword of Ipos Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 6%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -150,8 +157,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -165,19 +170,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3068-3" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="272" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">272</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3068" level="3" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10705" type="Weapon" name="Durendal {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Sword of Ipos Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -185,8 +194,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -200,19 +207,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-5" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="272" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">272</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="5" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10706" type="Weapon" name="Screaming Vengeance {PvP} - Cheap Shot">
 		<!-- Kamael Exclusive Weapon: Shyeed's Bow Conversion. <Soul Crystal Enhancement>. When using skills MP consumption is decreased by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -220,8 +231,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -236,19 +245,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3360-1;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="10707" type="Weapon" name="Screaming Vengeance {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Shyeed's Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -256,8 +269,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -272,19 +283,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3050-2" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3050" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10708" type="Weapon" name="Screaming Vengeance {PvP} - Quick Recovery">
 		<!-- Kamael Exclusive Weapon: Shyeed's Bow conversion. <Soul Crystal Enhancement>. Decreases re-use delay by 17%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -292,8 +307,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -308,19 +321,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-3" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="10709" type="Weapon" name="Tallum Blade*Damascus {PvP}">
 		<!-- When enchanted with a two-handed sword, a two-handed blunt weapon or a fighting weapon, its P. Atk. increases more than that of a regular one-handed sword. When enchanted to 4 or more, Atk. Spd. increases by 8%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -328,8 +344,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2157" />
@@ -340,19 +354,22 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-17" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3656-1;3552-3" /> <!-- PvP Weapon - Decrease Range -->
 		<stats>
-			<set stat="pAtk" val="305" />
-			<set stat="mAtk" val="121" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">305</stat>
+			<stat type="mAtk">121</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3045" level="17" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10710" type="Weapon" name="Forgotten Blade {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -360,8 +377,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -375,15 +390,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3564-1" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10711" type="Weapon" name="Forgotten Blade {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -391,8 +410,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -406,15 +423,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10712" type="Weapon" name="Forgotten Blade {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -422,8 +443,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -437,15 +456,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3566-1" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10713" type="Weapon" name="Heavens Divider {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -453,8 +476,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -468,15 +489,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3564-1" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10714" type="Weapon" name="Heavens Divider {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -484,8 +509,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -499,15 +522,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10715" type="Weapon" name="Heavens Divider {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -515,8 +542,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -530,15 +555,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3566-1" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10716" type="Weapon" name="Basalt Battlehammer {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 3% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -546,8 +575,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -561,16 +588,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3568-1" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3568" level="1" /> <!-- Special Ability: HP Drain -->
+		</skills>
 	</item>
 	<item id="10717" type="Weapon" name="Basalt Battlehammer {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -578,8 +609,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -593,16 +622,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10718" type="Weapon" name="Basalt Battlehammer {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -610,8 +643,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -625,16 +656,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3569-1" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3569" level="1" /> <!-- Special Ability: HP Regeneration -->
+		</skills>
 	</item>
 	<item id="10719" type="Weapon" name="Dragon Hunter Axe {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -642,8 +677,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -657,16 +690,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3569-1" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3569" level="1" /> <!-- Special Ability: HP Regeneration -->
+		</skills>
 	</item>
 	<item id="10720" type="Weapon" name="Dragon Hunter Axe {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -674,8 +711,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -689,16 +724,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10721" type="Weapon" name="Dragon Hunter Axe {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 3% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -706,8 +745,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -721,25 +758,27 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3568-1" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3568" level="1" /> <!-- Special Ability: HP Drain -->
+		</skills>
 	</item>
 	<item id="10722" type="Weapon" name="Angel Slayer {PvP} - Critical Damage">
-		<!-- <Soul Crystal Enhancement> . Critical Damage increased by 265. Increases damage in PvP. -->
+		<!-- <Soul Crystal Enhancement>. Critical Damage increased by 265. Increases damage in PvP. -->
 		<set name="icon" val="icon.weapon_angel_slayer_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -753,16 +792,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3572-1" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="246" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">246</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3572" level="1" /> <!-- Special Ability: Crtical Damage -->
+		</skills>
 	</item>
 	<item id="10723" type="Weapon" name="Angel Slayer {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Recovers as HP 3% of the damage inflicted upon the enemy with a close range general attack. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -770,8 +814,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -785,16 +827,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3568-1" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="246" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">246</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3568" level="1" /> <!-- Special Ability: HP Drain -->
+		</skills>
 	</item>
 	<item id="10724" type="Weapon" name="Angel Slayer {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -802,8 +849,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -817,16 +862,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3564-1" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="246" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">246</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10725" type="Weapon" name="Saint Spear {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -834,8 +884,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -849,16 +897,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-4" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10726" type="Weapon" name="Saint Spear {PvP} - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increases Accuracy by 5. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -866,8 +918,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -881,16 +931,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3602-9" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3602" level="9" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="10727" type="Weapon" name="Saint Spear {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -898,8 +952,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -913,16 +965,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3601-9" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3601" level="9" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10728" type="Weapon" name="Demon Splinter {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 80. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -930,8 +986,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -945,16 +999,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3565-1" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3565" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10729" type="Weapon" name="Demon Splinter {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -962,8 +1021,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -977,16 +1034,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3013-3" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10730" type="Weapon" name="Demon Splinter {PvP} - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. Stun effect at a chance of 27% during a critical attack. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -994,8 +1056,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1009,17 +1069,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3571-1" />
-		<set name="item_skill" val="3651-1;3652-1;3552-3" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3571" level="1" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Stun -->
+		</skills>
 	</item>
 	<item id="10731" type="Weapon" name="Arcana Mace {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1027,8 +1091,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1043,16 +1105,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3047-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="225" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">225</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="10732" type="Weapon" name="Arcana Mace {PvP} - MP Regeneration">
 		<!-- <Soul Crystal Enhancement>. MP Recovery Rate increases. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1060,8 +1126,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1076,16 +1140,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3576-1" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="225" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">225</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3576" level="1" /> <!-- Special Ability: MP Regeneration -->
+		</skills>
 	</item>
 	<item id="10733" type="Weapon" name="Arcana Mace {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1093,8 +1161,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1109,16 +1175,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3014-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="225" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">225</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="10734" type="Weapon" name="Imperial Staff {PvP} - Empower">
 		<!-- <Soul Crystal Enhancement>. Increases M. Atk. by 60. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1126,8 +1196,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1142,16 +1210,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3575-1" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="274" />
-			<set stat="mAtk" val="193" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">274</stat>
+			<stat type="mAtk">193</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3575" level="1" /> <!-- Special Ability: Empower -->
+		</skills>
 	</item>
 	<item id="10735" type="Weapon" name="Imperial Staff {PvP} - MP Regeneration">
 		<!-- <Soul Crystal Enhancement>. MP Recovery Rate increases. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1159,8 +1231,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1175,16 +1245,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3576-1" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="274" />
-			<set stat="mAtk" val="193" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">274</stat>
+			<stat type="mAtk">193</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3576" level="1" /> <!-- Special Ability: MP Regeneration -->
+		</skills>
 	</item>
 	<item id="10736" type="Weapon" name="Imperial Staff {PvP} - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Dryad Root is given a 20% chance when using a magic skill on the target. Increases damage inflicted during PvP, and increases Casting Spd. occasionally when being attacked. -->
@@ -1192,8 +1266,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1208,18 +1280,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="onmagic_chance" val="20" />
-		<set name="onmagic_skill" val="3577-1" />
-		<set name="item_skill" val="3654-1;3552-3" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="274" />
-			<set stat="mAtk" val="193" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">274</stat>
+			<stat type="mAtk">193</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3577" level="1" type_chance="20" type="ON_MAGIC_SKILL" /> <!-- Special Ability: Magic Hold -->
+		</skills>
 	</item>
 	<item id="10737" type="Weapon" name="Draconic Bow {PvP} - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. During a general attack, there is a 26% chance that MP consumption will be decreased to 1. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1227,8 +1301,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1244,17 +1316,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-3" /> <!-- PvP Weapon - Rapid Fire -->
 		<set name="reduced_mp_consume" val="26,1" />
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="10738" type="Weapon" name="Draconic Bow {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 88. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1262,8 +1337,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1279,16 +1352,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3567-1" /> <!-- PvP Weapon - Rapid Fire -->
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3567" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10739" type="Weapon" name="Draconic Bow {PvP} - Critical Slow">
 		<!-- <Soul Crystal Enhancement>. Slow effect at a certain rate during a critical attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1296,8 +1373,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1313,26 +1388,27 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3574-1" />
-		<set name="item_skill" val="3655-1;3552-3" /> <!-- PvP Weapon - Rapid Fire -->
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3574" level="1" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Slow -->
+		</skills>
 	</item>
 	<item id="10740" type="Weapon" name="Laevateinn {PvP} - Haste">
-		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion . <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion. <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_leavatein_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1343,32 +1419,34 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3564-1" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="255" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">255</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10741" type="Weapon" name="Laevateinn {PvP} - Health">
-		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion . <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_leavatein_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1379,32 +1457,34 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="255" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">255</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10742" type="Weapon" name="Laevateinn {PvP} - Focus">
-		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion . <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Kamael Exclusive Weapon: Forgotten Blade Conversion. <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_leavatein_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1415,23 +1495,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3566-1" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="255" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">255</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10743" type="Weapon" name="Gram {PvP} - Haste">
 		<!-- Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1439,8 +1523,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1454,19 +1536,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3564-1" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="1" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10744" type="Weapon" name="Gram {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1474,8 +1560,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1489,19 +1573,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10745" type="Weapon" name="Gram {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1509,8 +1597,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1524,28 +1610,30 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3566-1" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10746" type="Weapon" name="Sarunga {PvP} - Cheap Shot">
-		<!-- Kamael Exclusive Weapon: Draconic Bow Conversion. <Soul Crystal Enhancement>when using the . skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
+		<!-- Kamael Exclusive Weapon: Draconic Bow Conversion. <Soul Crystal Enhancement>when using the. skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
 		<set name="icon" val="icon.weapon_sarnga_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1560,19 +1648,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3360-1;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="356" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">356</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="10747" type="Weapon" name="Sarunga {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Draconic Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 88. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1580,8 +1672,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1596,19 +1686,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3567-1" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="356" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">356</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3567" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10748" type="Weapon" name="Sarunga {PvP} - Critical Slow">
 		<!-- Kamael Exclusive Weapon: Draconic Bow Conversion. <Soul Crystal Enhancement>. Slow effect at a certain rate during a critical attack Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1616,8 +1710,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1632,20 +1724,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3574-1" />
-		<set name="item_skill" val="3655-1;3552-3" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="356" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">356</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3574" level="1" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Slow -->
+		</skills>
 	</item>
 	<item id="10749" type="Weapon" name="Tallum Blade*Dark Legion's Edge {PvP}">
 		<!-- When enchanted with a two-handed sword, a two-handed blunt weapon or a fighting weapon, its P. Atk. increases more than that of a regular one-handed sword. When enchanted to 4 or more, Max HP increases by 15% and Max MP increases by 20% and Max CP increases by 30%. Increases damage inflicted during PvP, and decreases the range of bows/crossbows occasionally during an attack. -->
@@ -1653,8 +1748,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1665,19 +1758,22 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3570-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3656-1;3552-3" /> <!-- PvP Weapon - Decrease Range -->
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3570" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Robust Health -->
+		</skills>
 	</item>
 	<item id="10750" type="Weapon" name="Dynasty Sword {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1685,8 +1781,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1700,15 +1794,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3566-2" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10751" type="Weapon" name="Dynasty Sword {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1716,8 +1814,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1731,15 +1827,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10752" type="Weapon" name="Dynasty Sword {PvP} - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1747,8 +1847,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1762,15 +1860,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-3;3498-1" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+		</skills>
 	</item>
 	<item id="10753" type="Weapon" name="Dynasty Blade {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1778,8 +1880,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1793,15 +1893,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3566-2" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10754" type="Weapon" name="Dynasty Blade {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1809,8 +1913,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1824,15 +1926,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10755" type="Weapon" name="Dynasty Blade {PvP} - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1840,8 +1946,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1855,15 +1959,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-3;3498-1" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+		</skills>
 	</item>
 	<item id="10756" type="Weapon" name="Dynasty Cudgel {PvP} - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases HP by 15% while increasing P. Atk. by 78 during a critical attack. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1871,8 +1979,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1886,16 +1992,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3057-4" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3057" level="4" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="10757" type="Weapon" name="Dynasty Cudgel {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1903,8 +2013,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1918,16 +2026,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10758" type="Weapon" name="Dynasty Cudgel {PvP} - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 164 when HP drops to 60% or lower. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1935,8 +2047,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1950,16 +2060,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3027-7" /> <!-- PvP Weapon - CP Drain -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3027" level="7" /> <!-- Special Ability: Rsk. Focus -->
+		</skills>
 	</item>
 	<item id="10759" type="Weapon" name="Dynasty Crusher {PvP} - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases HP by 15% while increasing P. Atk. by 78 during a critical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1967,8 +2081,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -1982,16 +2094,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3057-4" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3057" level="4" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="10760" type="Weapon" name="Dynasty Crusher {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1999,8 +2115,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2014,16 +2128,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10761" type="Weapon" name="Dynasty Crusher {PvP} - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 164 when HP drops to 60% or lower. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2031,8 +2149,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2046,16 +2162,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3027-7" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3027" level="7" /> <!-- Special Ability: Rsk. Focus -->
+		</skills>
 	</item>
 	<item id="10762" type="Weapon" name="Dynasty Knife {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2063,8 +2183,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2078,16 +2196,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3567-2" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10763" type="Weapon" name="Dynasty Knife {PvP} - Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 5. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2095,8 +2218,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2110,16 +2231,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3009-8;3552-3;3651-1;3652-1" /> <!-- Special Ability: Evasion -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3009" level="8" /> <!-- Special Ability: Evasion -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="10764" type="Weapon" name="Dynasty Knife {PvP} - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 559 during a critical attack. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2127,8 +2253,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2142,16 +2266,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3066-4" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="291" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">291</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3066" level="4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="10765" type="Weapon" name="Dynasty Halberd {PvP} - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases your own HP by 15% and increases P. Atk. by 78. Increases damage inflicted during PvP. Has a chance of inflicting additional damage during an attack. -->
@@ -2159,8 +2288,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2174,16 +2301,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3600-10" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3600" level="10" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="10766" type="Weapon" name="Dynasty Halberd {PvP} - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. During a Critical attack, bestows the ability to inflict the stun effect with a 48% chance. Increases damage inflicted during PvP. Has a chance of inflicting additional damage during an attack. -->
@@ -2191,8 +2322,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2206,18 +2335,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_chance" val="48" />
-		<set name="oncrit_skill" val="3070-4" />
-		<set name="item_skill" val="3653-1;3552-4" /> <!-- PvP Weapon - Attack Chance -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3070" level="4" type_chance="48" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Critical Stun -->
+		</skills>
 	</item>
 	<item id="10767" type="Weapon" name="Dynasty Halberd {PvP} - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2225,8 +2356,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2240,16 +2369,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-4;3498-1;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="333" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">333</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="10768" type="Weapon" name="Dynasty Bagh-Nakh {PvP} - Rsk. Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 6.8 when HP drops to 60% or lower. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2257,8 +2390,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2272,16 +2403,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3069-1;3552-3;3651-1;3652-1" /> <!-- Special Ability: Rsk. Evasion -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3069" level="1" /> <!-- Special Ability: Rsk. Evasion -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="10769" type="Weapon" name="Dynasty Bagh-Nakh {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 106. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2289,8 +2425,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2304,16 +2438,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3565-2" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3565" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10770" type="Weapon" name="Dynasty Bagh-Nakh {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by 10%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2321,8 +2460,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2336,16 +2473,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-1;3564-2" /> <!-- PvP Weapon - Cancel -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3564" level="2" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="10771" type="Weapon" name="Dynasty Phantom {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2353,8 +2495,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2369,15 +2509,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3047-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="10772" type="Weapon" name="Dynasty Phantom {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2385,8 +2529,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2401,15 +2543,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3014-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="10773" type="Weapon" name="Dynasty Phantom {PvP} - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2417,8 +2563,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2433,15 +2577,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3048-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="10774" type="Weapon" name="Dynasty Mace {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2449,8 +2597,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2465,16 +2611,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3014-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="10775" type="Weapon" name="Dynasty Mace {PvP} - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2482,8 +2632,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2498,16 +2646,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3048-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="10776" type="Weapon" name="Dynasty Mace {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2515,8 +2667,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2531,16 +2681,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3047-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="267" />
-			<set stat="mAtk" val="202" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">267</stat>
+			<stat type="mAtk">202</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="10777" type="Weapon" name="Dynasty Staff {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2548,8 +2702,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2564,16 +2716,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3014-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="325" />
-			<set stat="mAtk" val="222" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">325</stat>
+			<stat type="mAtk">222</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="10778" type="Weapon" name="Dynasty Staff {PvP} - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2581,8 +2737,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2597,16 +2751,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3048-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="325" />
-			<set stat="mAtk" val="222" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">325</stat>
+			<stat type="mAtk">222</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="10779" type="Weapon" name="Dynasty Staff {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2614,8 +2772,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2630,16 +2786,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3654-1;3552-1;3047-2" /> <!-- PvP Weapon - Casting -->
 		<stats>
-			<set stat="pAtk" val="325" />
-			<set stat="mAtk" val="222" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">325</stat>
+			<stat type="mAtk">222</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="10780" type="Weapon" name="Dynasty Bow {PvP} - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. Decreases MP Consumption 4% during a skill attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -2647,8 +2807,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2664,16 +2822,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-3;8312-1" /> <!-- PvP Weapon - Rapid Fire -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="8312" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="10781" type="Weapon" name="Dynasty Bow {PvP} - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increaes Accuracy by 5.32. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -2681,8 +2843,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2698,16 +2858,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3573-2" /> <!-- PvP Weapon - Rapid Fire -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="10782" type="Weapon" name="Dynasty Bow {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -2715,8 +2879,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2732,16 +2894,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3567-2" /> <!-- PvP Weapon - Rapid Fire -->
 		<stats>
-			<set stat="pAtk" val="654" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">654</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10783" type="Weapon" name="Dynasty Rapier {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Dynasty Sword Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -2749,8 +2915,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2761,23 +2925,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3566-2" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="302" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">302</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10784" type="Weapon" name="Dynasty Rapier {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Dynasty Sword Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -2785,8 +2953,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2797,23 +2963,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-1;3013-3" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="302" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">302</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10785" type="Weapon" name="Dynasty Rapier {PvP} - Light">
 		<!-- Kamael Exclusive Weapon: Dynasty Sword Conversion. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -2821,8 +2991,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2833,23 +3001,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3650-1;3552-3;3498-1" /> <!-- PvP Weapon - CP Drain -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="302" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">302</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10786" type="Weapon" name="Dynasty Ancient Sword {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Dynasty Blade Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2857,8 +3029,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2872,19 +3042,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3566-2" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="361" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">361</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10787" type="Weapon" name="Dynasty Ancient Sword {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Dynasty Blade Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2892,8 +3066,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2907,19 +3079,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3653-1;3552-1;3013-3" /> <!-- PvP Weapon - Attack Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="361" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">361</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="10788" type="Weapon" name="Dynasty Ancient Sword {PvP} - Light">
 		<!-- Kamael Exclusive Weapon: Dynasty Blade Conversion. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2927,8 +3103,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2942,19 +3116,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3498-1;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="361" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">361</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="10789" type="Weapon" name="Dynasty Crossbow {PvP} - Cheap Shot">
 		<!-- Kamael Exclusive Weapon: Dynasty Bow Conversion. <Soul Crystal Enhancement>. When using skills MP consumption is decreased by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -2962,8 +3140,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -2978,19 +3154,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3360-1;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="401" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">401</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="10790" type="Weapon" name="Dynasty Crossbow {PvP} - Guidance">
 		<!-- Kamael Exclusive Weapon: Dynasty Bow Conversion. <Soul Crystal Enhancement>. Increaes Accuracy by 5.32. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -2998,8 +3178,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -3014,19 +3192,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3573-2" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="401" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">401</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="10791" type="Weapon" name="Dynasty Crossbow {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Dynasty Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -3034,8 +3216,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -3050,27 +3230,29 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3655-1;3552-1;3567-2" /> <!-- PvP Weapon - Rapid Fire -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="401" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">401</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10792" type="Weapon" name="Dynasty Dual Sword {PvP}">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -3081,19 +3263,22 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3411-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3656-1;3552-3" /> <!-- PvP Weapon - Decrease Range -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3411" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10793" type="Armor" name="Armor of Nightmare {PvP}">
 		<!-- Full body armor. -->
@@ -3115,8 +3300,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="10794" type="Armor" name="Majestic Plate Armor {PvP}">
@@ -3139,8 +3323,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="10795" type="Armor" name="Leather Armor of Nightmare {PvP}">
@@ -3160,8 +3343,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="10796" type="Armor" name="Majestic Leather Armor {PvP}">
@@ -3181,8 +3363,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="10797" type="Armor" name="Robe of Nightmare {PvP}">
@@ -3205,9 +3386,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="10798" type="Armor" name="Majestic Robe {PvP}">
@@ -3227,9 +3407,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="10799" type="Armor" name="Imperial Crusader Breastplate {PvP}">
@@ -3251,8 +3430,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="205" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">205</stat>
 		</stats>
 	</item>
 </list>

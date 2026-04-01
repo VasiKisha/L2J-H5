@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 
 /**
  * This class holds parameter, specific to certain NPCs.<br>

@@ -38,14 +38,14 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.DimensionalRift;
-import org.l2jmobius.gameserver.model.DimensionalRiftRoom;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.sevensigns.DimensionalRift;
+import org.l2jmobius.gameserver.model.sevensigns.DimensionalRiftRoom;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**

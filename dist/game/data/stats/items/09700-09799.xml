@@ -12,7 +12,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2360-1" /> <!-- Water Dragon Claw -->
+		<skills>
+			<skill id="2360" level="1" /> <!-- Water Dragon Claw -->
+		</skills>
 	</item>
 	<item id="9701" type="EtcItem" name="Sealed Magic Field Key">
 		<!-- This key can seal a Magic Field. -->
@@ -25,7 +27,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-8" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="8" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="9702" type="EtcItem" name="Caravaner's Remedy">
 		<!-- This can cool down the heat of the Hellbound Desert. -->
@@ -41,8 +45,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2341-1" /> <!-- Caravan's Secret Medicine -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2341" level="1" /> <!-- Caravan's Secret Medicine -->
+		</skills>
 	</item>
 	<item id="9703" type="EtcItem" name="Gate Key: Kamael">
 		<!-- This key can open the Kamaelic Gate. -->
@@ -52,7 +58,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2343-1" /> <!-- Gate Key of Kamael -->
+		<skills>
+			<skill id="2343" level="1" /> <!-- Gate Key of Kamael -->
+		</skills>
 	</item>
 	<item id="9704" type="EtcItem" name="Gate Key: Archives">
 		<!-- This key can open the Gate to the Archives. -->
@@ -62,7 +70,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2344-1" /> <!-- Gate Key of Records -->
+		<skills>
+			<skill id="2344" level="1" /> <!-- Gate Key of Records -->
+		</skills>
 	</item>
 	<item id="9705" type="EtcItem" name="Gate Key: Observation">
 		<!-- This key can open the Observation Gate. -->
@@ -72,7 +82,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2345-1" /> <!-- Gate Key of Observation -->
+		<skills>
+			<skill id="2345" level="1" /> <!-- Gate Key of Observation -->
+		</skills>
 	</item>
 	<item id="9706" type="EtcItem" name="Gate Key: Spicula">
 		<!-- This key can open the Spiculan Gate. -->
@@ -82,7 +94,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2346-1" /> <!-- Gate Key of Specula -->
+		<skills>
+			<skill id="2346" level="1" /> <!-- Gate Key of Specula -->
+		</skills>
 	</item>
 	<item id="9707" type="EtcItem" name="Gate Key: Harkilgamed">
 		<!-- This key can open the Harkilgamed Gate. -->
@@ -92,7 +106,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2347-1" /> <!-- Enuma Elish Key -->
+		<skills>
+			<skill id="2347" level="1" /> <!-- Enuma Elish Key -->
+		</skills>
 	</item>
 	<item id="9708" type="EtcItem" name="Gate Key: Rodenpicula">
 		<!-- This key can open the Rodenpicula Gate. -->
@@ -102,7 +118,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2348-1" /> <!-- Prahnah Key -->
+		<skills>
+			<skill id="2348" level="1" /> <!-- Prahnah Key -->
+		</skills>
 	</item>
 	<item id="9709" type="EtcItem" name="Gate Key: Arviterre">
 		<!-- This key can open the Arviterre Gate. -->
@@ -112,7 +130,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2349-1" /> <!-- Gate Key of Arvitaire -->
+		<skills>
+			<skill id="2349" level="1" /> <!-- Gate Key of Arvitaire -->
+		</skills>
 	</item>
 	<item id="9710" type="EtcItem" name="Gate Key: Katenar">
 		<!-- This key can open the Katenar Gate. -->
@@ -122,7 +142,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2350-1" /> <!-- Leopold Key -->
+		<skills>
+			<skill id="2350" level="1" /> <!-- Leopold Key -->
+		</skills>
 	</item>
 	<item id="9711" type="EtcItem" name="Gate Key: Prediction">
 		<!-- This key can open the Gate of Prediction. -->
@@ -132,7 +154,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2351-1" /> <!-- Gate Key of Prediction -->
+		<skills>
+			<skill id="2351" level="1" /> <!-- Gate Key of Prediction -->
+		</skills>
 	</item>
 	<item id="9712" type="EtcItem" name="Gate Key: Massive Cavern">
 		<!-- This key can open the Massive Cavern Gate. -->
@@ -142,7 +166,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2352-1" /> <!-- Gate Key of Nornil -->
+		<skills>
+			<skill id="2352" level="1" /> <!-- Gate Key of Nornil -->
+		</skills>
 	</item>
 	<item id="9713" type="EtcItem" name="Nornil's Power">
 		<!-- Use it at locations marked in yellow on the map. -->
@@ -154,7 +180,9 @@
 		<set name="reuse_delay" val="1500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2353-1" /> <!-- Nornil's Power -->
+		<skills>
+			<skill id="2353" level="1" /> <!-- Nornil's Power -->
+		</skills>
 	</item>
 	<item id="9714" type="EtcItem" name="Key of the Evil Eye">
 		<!-- The keymaster in town has the key you need to enter the Steel Citadel. -->
@@ -164,7 +192,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2354-1" /> <!-- Gate Key of Darkness -->
+		<skills>
+			<skill id="2354" level="1" /> <!-- Gate Key of Darkness -->
+		</skills>
 	</item>
 	<item id="9715" type="EtcItem" name="Giant Key">
 		<!-- This key is the size of a human arm. What can it be used for? -->
@@ -175,7 +205,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2355-1" /> <!-- Gate Key of Destruction -->
+		<skills>
+			<skill id="2355" level="1" /> <!-- Gate Key of Destruction -->
+		</skills>
 	</item>
 	<item id="9716" type="EtcItem" name="Scroll of Escape: Kamael Village">
 		<!-- This scroll magically relocates you to Kamael Village. -->
@@ -188,10 +220,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-6" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="6" /> <!-- Scroll of Escape to Kamael Village -->
+		</skills>
 	</item>
 	<item id="9717" type="EtcItem" name="Information on Eranus">
 		<!-- Double-click this document for more information on Eranus. -->
@@ -231,8 +265,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -240,17 +272,21 @@
 		<set name="price" val="25500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="12" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
+			<stat type="pAtk">12</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="9721" type="EtcItem" name="Freezer">
 		<!-- This machine can be acquired from Information Broker Mist. Take it to Master Duroga. -->

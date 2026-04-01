@@ -291,6 +291,9 @@
 	<admin command="snoop" description="Snoop on a player's chat." accessLevel="30" />
 	<admin command="gmchat_menu" description="Open the GM chat menu." accessLevel="30" />
 
+	<!-- ADMIN GOTO -->
+	<admin command="goto" description="Teleports you to a given location, player or NPC." accessLevel="30" />
+
 	<!-- ADMIN GRACIA SEEDS -->
 	<admin command="gracia_seeds" description="Show Seed of Destruction and Seed of Infinity status menu." accessLevel="100" />
 	<admin command="kill_tiat" description="Register Tiat kill for Seed of Destruction progress." accessLevel="100" />
@@ -379,25 +382,6 @@
 	<!-- ADMIN FAKE PLAYERS -->
 	<admin command="fakechat" description="Send a fake chat message appearing to come from a fake player." accessLevel="100" />
 
-	<!-- ADMIN MOB GROUP -->
-	<admin command="mobmenu" description="Open the menu to manage mob groups." accessLevel="100" />
-	<admin command="mobgroup_list" description="List all currently available mob groups." accessLevel="100" />
-	<admin command="mobgroup_create" description="Create a new mob group." accessLevel="100" />
-	<admin command="mobgroup_remove" description="Remove an existing mob group." accessLevel="100" />
-	<admin command="mobgroup_delete" description="Delete a mob group permanently." accessLevel="100" />
-	<admin command="mobgroup_spawn" description="Spawn the specified mob group." accessLevel="100" />
-	<admin command="mobgroup_unspawn" description="Unspawn the specified mob group." accessLevel="100" />
-	<admin command="mobgroup_kill" description="Kill all mobs in the selected mob group." accessLevel="100" />
-	<admin command="mobgroup_idle" description="Set the mob group to idle mode." accessLevel="100" />
-	<admin command="mobgroup_attack" description="Command the mob group to attack a specific target." accessLevel="100" />
-	<admin command="mobgroup_rnd" description="Set the mob group to attack random targets." accessLevel="100" />
-	<admin command="mobgroup_return" description="Command the mob group to return to their spawn point." accessLevel="100" />
-	<admin command="mobgroup_follow" description="Command the mob group to follow a specific target." accessLevel="100" />
-	<admin command="mobgroup_casting" description="Set the mob group to casting mode." accessLevel="100" />
-	<admin command="mobgroup_nomove" description="Disable movement for the mob group." accessLevel="100" />
-	<admin command="mobgroup_attackgrp" description="Set the mob group to attack another mob group." accessLevel="100" />
-	<admin command="mobgroup_invul" description="Make the mob group invulnerable to damage." accessLevel="100" />
-
 	<!-- ADMIN ONLINE -->
 	<admin command="online" description="Display a list of all currently online players." accessLevel="100" />
 
@@ -450,6 +434,18 @@
 	<admin command="script_unload" description="Unload specified script (Path/to/script.java)." accessLevel="100" />
 	<admin command="show_quests" description="Displays all quests assigned to the target NPC." accessLevel="100" />
 	<admin command="quest_info" description="Displays detailed information about a specific quest." accessLevel="100" />
+
+	<!-- ADMIN REGIONS -->
+	<admin command="region" description="Show world regions." accessLevel="100" />
+	<admin command="regions" description="Show world regions." accessLevel="100" />
+	<admin command="show_region" description="Show world regions." accessLevel="100" />
+	<admin command="show_regions" description="Show world regions." accessLevel="100" />
+	<admin command="showregion" description="Show world regions." accessLevel="100" />
+	<admin command="showregions" description="Show world regions." accessLevel="100" />
+	<admin command="region_clear" description="Hide world regions." accessLevel="100" />
+	<admin command="regions_clear" description="Hide world regions." accessLevel="100" />
+	<admin command="regionclear" description="Hide world regions." accessLevel="100" />
+	<admin command="regionsclear" description="Hide world regions." accessLevel="100" />
 
 	<!-- ADMIN RELOAD -->
 	<admin command="reload" description="Reload Panel." accessLevel="100" confirmDlg="true" />
@@ -530,6 +526,7 @@
 	<!-- ADMIN SPAWN -->
 	<admin command="show_spawns" description="Display a list of all current spawns in the game world." accessLevel="100" />
 	<admin command="spawn" description="Spawn a specific NPC or monster." accessLevel="100" />
+	<admin command="circlespawn" description="Spawn a specific NPC or monster in a circle from your position." accessLevel="100" />
 	<admin command="spawnat" description="Spawn an NPC or monster at specified coordinates." accessLevel="100" />
 	<admin command="spawn_monster" description="Spawn a monster by ID or name with optional respawn time and count." accessLevel="100" />
 	<admin command="spawn_index" description="Show list of monsters by level for spawning." accessLevel="100" />

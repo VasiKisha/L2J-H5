@@ -20,9 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
-import org.l2jmobius.gameserver.model.CursedWeapon;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.CursedWeapon;
 import org.l2jmobius.gameserver.network.serverpackets.ExCursedWeaponLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ExCursedWeaponLocation.CursedWeaponInfo;
 

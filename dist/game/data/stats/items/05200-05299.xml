@@ -10,7 +10,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-4" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="4" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5201" type="EtcItem" name="Chest Key - Grade 4">
 		<!-- Opens a level 40 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -22,7 +24,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-5" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="5" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5202" type="EtcItem" name="Chest Key - Grade 3">
 		<!-- Opens a level 50 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -34,7 +38,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-6" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="6" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5203" type="EtcItem" name="Chest Key - Grade 2">
 		<!-- Opens a level 60 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -46,7 +52,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-7" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="7" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5204" type="EtcItem" name="Chest Key - Grade 1">
 		<!-- Opens a level 70 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -58,7 +66,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-8" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="8" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5205" type="EtcItem" name="Mercenary Posting Ticket (Sword/Stationary)">
 		<!-- Innadril/Sword/Stationary -->
@@ -184,8 +194,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="58" />
-			<add order="0" stat="pDef" val="71" />
+			<stat type="mDef">58</stat>
+			<stat type="pDef">71</stat>
 		</stats>
 	</item>
 	<item id="5217" type="Weapon" name="Wolf's Level 75 Weapon">
@@ -193,8 +203,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -205,10 +213,12 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="194" />
-			<add stat="mAtk" val="136" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">136</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5218" type="EtcItem" name="Mercenary Posting Ticket (Teleporter2)">
@@ -251,7 +261,9 @@
 		<set name="price" val="25" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5222" type="EtcItem" name="Seed: Blue Cobol">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Blue Cobol. For best results, a level 32-42 character must plant it on a level 32-42 monster. -->
@@ -263,7 +275,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5223" type="EtcItem" name="Seed: Thorn Cobol">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Thorn Cobol. For best results, a level 35-45 character must plant it on a level 35-45 monster. -->
@@ -275,7 +289,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5224" type="EtcItem" name="Seed: Golden Cobol">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Golden Cobol. For best results, a level 38-48 character must plant it on a level 38-48 monster. -->
@@ -287,7 +303,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5225" type="EtcItem" name="Seed: Great Cobol">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Great Cobol. For best results, a level 41-51 character must plant it on a level 41-51 monster. -->
@@ -299,7 +317,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-2" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="2" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5226" type="EtcItem" name="Seed: Red Codran">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Red Codran. For best results, a level 44-54 character must plant it on a level 44-54 monster. -->
@@ -311,7 +331,9 @@
 		<set name="price" val="40" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5227" type="EtcItem" name="Seed: Sea Codran">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Sea Codran. For best results, a level 45-55 character must plant it on a level 45-55 monster. -->
@@ -323,7 +345,9 @@
 		<set name="price" val="50" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="Seed" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5228" type="EtcItem" name="Trash">
 		<set name="icon" val="icon.etc_codran_seed_i00" />
@@ -332,7 +356,9 @@
 		<set name="price" val="250" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5229" type="EtcItem" name="Trash">
 		<set name="icon" val="icon.etc_codran_seed_i00" />
@@ -341,7 +367,9 @@
 		<set name="price" val="1" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2097-3" /> <!-- Sowing -->
+		<skills>
+			<skill id="2097" level="3" /> <!-- Sowing -->
+		</skills>
 	</item>
 	<item id="5230" type="EtcItem" name="Recipe: Mithril Arrow (100%)">
 		<!-- For Dwarves only. The recipe for a Mithril Arrow. Requires Create Item - Skill Level 4. The success rate is 100%. -->
@@ -387,8 +415,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1128" />
@@ -399,15 +425,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-17" />
 		<stats>
-			<set stat="pAtk" val="259" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">259</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="17" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="5234" type="EtcItem" name="Mystery Potion">
 		<!-- Legend says that if you drink this potion your head will grow larger! Believe it if you will! -->
@@ -422,10 +450,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2103-1" /> <!-- Mystery Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2103" level="1" /> <!-- Mystery Potion -->
+		</skills>
 	</item>
 	<item id="5235" type="EtcItem" name="Facelifting Potion - A">
 		<!-- A beauty potion that changes one's facial appearance to Type A. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -439,10 +469,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2122-1" /> <!-- Facelifting Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2122" level="1" /> <!-- Facelifting Potion -->
+		</skills>
 	</item>
 	<item id="5236" type="EtcItem" name="Facelifting Potion - B">
 		<!-- A beauty potion that changes one's facial appearance to Type B. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -456,10 +488,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2123-1" /> <!-- Facelifting Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2123" level="1" /> <!-- Facelifting Potion -->
+		</skills>
 	</item>
 	<item id="5237" type="EtcItem" name="Facelifting Potion - C">
 		<!-- A beauty potion that changes one's facial appearance to Type C. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -473,10 +507,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2124-1" /> <!-- Facelifting Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2124" level="1" /> <!-- Facelifting Potion -->
+		</skills>
 	</item>
 	<item id="5238" type="EtcItem" name="Dye Potion - A">
 		<!-- A beauty potion that changes one's hair color to Type A. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -490,10 +526,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2125-1" /> <!-- Dye Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2125" level="1" /> <!-- Dye Potion -->
+		</skills>
 	</item>
 	<item id="5239" type="EtcItem" name="Dye Potion - B">
 		<!-- A beauty potion that changes one's hair color to Type B. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -507,10 +545,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2126-1" /> <!-- Dye Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2126" level="1" /> <!-- Dye Potion -->
+		</skills>
 	</item>
 	<item id="5240" type="EtcItem" name="Dye Potion - C">
 		<!-- A beauty potion that changes one's hair color to Type C. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -524,10 +564,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2127-1" /> <!-- Dye Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2127" level="1" /> <!-- Dye Potion -->
+		</skills>
 	</item>
 	<item id="5241" type="EtcItem" name="Dye Potion - D">
 		<!-- A beauty potion that changes one's hair color to Type D. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. Cannot be used by Kamaels. -->
@@ -541,13 +583,15 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2128-1" /> <!-- Dye Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
+		<skills>
+			<skill id="2128" level="1" /> <!-- Dye Potion -->
+		</skills>
 	</item>
 	<item id="5242" type="EtcItem" name="Hair Style Change Potion - A">
 		<!-- A beauty potion that changes one's hair style to Type A. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -561,10 +605,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2129-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2129" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5243" type="EtcItem" name="Hair Style Change Potion - B">
 		<!-- A beauty potion that changes one's hair style to Type B. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -578,10 +624,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2130-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2130" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5244" type="EtcItem" name="Hair Style Change Potion - C">
 		<!-- A beauty potion that changes one's hair style to Type C. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -595,10 +643,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2131-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2131" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5245" type="EtcItem" name="Hair Style Change Potion - D">
 		<!-- A beauty potion that changes one's hair style to Type D. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -612,10 +662,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2132-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2132" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5246" type="EtcItem" name="Hair Style Change Potion - E">
 		<!-- A beauty potion that changes one's hair style to Type E. May be used by either male or female characters. The results may be viewed on the Character Creation Screen. -->
@@ -629,10 +681,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2133-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2133" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5247" type="EtcItem" name="Hair Style Change Potion - F">
 		<!-- A beauty potion that changes one's hair style to Type F. May be used only by female characters. The results may be viewed on the Character Creation Screen. -->
@@ -646,10 +700,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2134-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2134" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5248" type="EtcItem" name="Hair Style Change Potion - G">
 		<!-- A beauty potion that changes one's hair style to Type G. May be used only by female characters. The results may be viewed on the Character Creation Screen. -->
@@ -663,10 +719,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2135-1" /> <!-- Hair Style Change Potion -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2135" level="1" /> <!-- Hair Style Change Potion -->
+		</skills>
 	</item>
 	<item id="5249" type="EtcItem" name="Commemorative Item: First Anniversary of Lineage II Service">
 		<!-- After the conclusion of the event, this item is traded for an actual item through a drawing. -->
@@ -688,7 +746,9 @@
 		<set name="weight" val="600" />
 		<set name="price" val="7700" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2104-1" /> <!-- Greater Compressed Package of Soulshots: No-grade -->
+		<skills>
+			<skill id="2104" level="1" /> <!-- Greater Compressed Package of Soulshots: No-grade -->
+		</skills>
 	</item>
 	<item id="5251" type="EtcItem" name="Greater Compressed Package of Soulshots (D-Grade)">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 D-grade soulshots. -->
@@ -699,7 +759,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="11000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2105-1" /> <!-- Greater Compressed Package of Soulshots: D-grade -->
+		<skills>
+			<skill id="2105" level="1" /> <!-- Greater Compressed Package of Soulshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5252" type="EtcItem" name="Greater Compressed Package of Soulshots (C-Grade)">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 C-grade soulshots. -->
@@ -710,7 +772,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="16500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2106-1" /> <!-- Greater Compressed Package of Soulshots: C-grade -->
+		<skills>
+			<skill id="2106" level="1" /> <!-- Greater Compressed Package of Soulshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5253" type="EtcItem" name="Greater Compressed Package of Soulshots (B-Grade)">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 B-grade soulshots. -->
@@ -721,7 +785,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="55000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2107-1" /> <!-- Greater Compressed Package of Soulshots: B-grade -->
+		<skills>
+			<skill id="2107" level="1" /> <!-- Greater Compressed Package of Soulshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5254" type="EtcItem" name="Greater Compressed Package of Soulshots (A-Grade)">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 A-grade soulshots. -->
@@ -732,7 +798,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="88000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2108-1" /> <!-- Greater Compressed Package of Soulshots: A-grade -->
+		<skills>
+			<skill id="2108" level="1" /> <!-- Greater Compressed Package of Soulshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5255" type="EtcItem" name="Greater Compressed Package of Soulshots (S-Grade)">
 		<!-- A small package of compressed soulshots. Upon use, changes into 1000 S-grade soulshots. -->
@@ -743,7 +811,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="120000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2109-1" /> <!-- Greater Compressed Package of Soulshots: S-grade -->
+		<skills>
+			<skill id="2109" level="1" /> <!-- Greater Compressed Package of Soulshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5256" type="EtcItem" name="Greater Compressed Package of Spiritshots (No-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 No-grade spiritshots. -->
@@ -754,7 +824,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="16500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2110-1" /> <!-- Greater Compressed Package of Spiritshots: No-grade -->
+		<skills>
+			<skill id="2110" level="1" /> <!-- Greater Compressed Package of Spiritshots: No-grade -->
+		</skills>
 	</item>
 	<item id="5257" type="EtcItem" name="Greater Compressed Package of Spiritshots (D-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 D-grade spiritshots. -->
@@ -765,7 +837,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="19800" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2111-1" /> <!-- Greater Compressed Package of Spiritshots: D-grade -->
+		<skills>
+			<skill id="2111" level="1" /> <!-- Greater Compressed Package of Spiritshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5258" type="EtcItem" name="Greater Compressed Package of Spiritshots (C-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 C-grade spiritshots. -->
@@ -776,7 +850,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="38500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2112-1" /> <!-- Greater Compressed Package of Spiritshots: C-grade -->
+		<skills>
+			<skill id="2112" level="1" /> <!-- Greater Compressed Package of Spiritshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5259" type="EtcItem" name="Greater Compressed Package of Spiritshots (B-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 B-grade spiritshots. -->
@@ -787,7 +863,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="110000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2113-1" /> <!-- Greater Compressed Package of Spiritshots: B-grade -->
+		<skills>
+			<skill id="2113" level="1" /> <!-- Greater Compressed Package of Spiritshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5260" type="EtcItem" name="Greater Compressed Package of Spiritshots (A-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 A-grade spiritshots. -->
@@ -798,7 +876,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="132000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2114-1" /> <!-- Greater Compressed Package of Spiritshots: A-grade -->
+		<skills>
+			<skill id="2114" level="1" /> <!-- Greater Compressed Package of Spiritshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5261" type="EtcItem" name="Greater Compressed Package of Spiritshots (S-Grade)">
 		<!-- A small package of compressed spiritshots. Upon use, changes into 1000 S-grade spiritshots. -->
@@ -809,7 +889,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="180000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2115-1" /> <!-- Greater Compressed Package of Spiritshots: S-grade -->
+		<skills>
+			<skill id="2115" level="1" /> <!-- Greater Compressed Package of Spiritshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5262" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (No-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 No-grade blessed spiritshots. -->
@@ -820,7 +902,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="38500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2116-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: No-grade -->
+		<skills>
+			<skill id="2116" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: No-grade -->
+		</skills>
 	</item>
 	<item id="5263" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (D-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 D-grade blessed spiritshots. -->
@@ -831,7 +915,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="49500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2117-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: D-grade -->
+		<skills>
+			<skill id="2117" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5264" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (C-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 C-grade blessed spiritshots. -->
@@ -842,7 +928,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="99000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2118-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: C-grade -->
+		<skills>
+			<skill id="2118" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5265" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (B-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 B-grade blessed spiritshots. -->
@@ -853,7 +941,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="269500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2119-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: B-grade -->
+		<skills>
+			<skill id="2119" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5266" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (A-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 A-grade blessed spiritshots. -->
@@ -864,7 +954,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="319000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2120-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: A-grade -->
+		<skills>
+			<skill id="2120" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5267" type="EtcItem" name="Greater Compressed Package of Blessed Spiritshots (S-Grade)">
 		<!-- A small package of compressed blessed spiritshots. Upon use, changes into 1000 S-grade blessed spiritshots. -->
@@ -875,7 +967,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="419000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2121-1" /> <!-- Greater Compressed Package of Blessed Spiritshots: S-grade -->
+		<skills>
+			<skill id="2121" level="1" /> <!-- Greater Compressed Package of Blessed Spiritshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5268" type="EtcItem" name="Recipe: Greater Soulshot (D) Compressed Package (100%)">
 		<!-- For Dwarves only. The recipe for the Greater Compressed Package of Soulshots: Grade D. Requires Create Item - Skill Level 2. The success rate is 100%. -->
@@ -1082,15 +1176,15 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2136-1" /> <!-- Rice Cake -->
+		<skills>
+			<skill id="2136" level="1" /> <!-- Rice Cake -->
+		</skills>
 	</item>
 	<item id="5284" type="Weapon" name="Zweihander">
 		<set name="icon" val="icon.weapon_zweihander_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="BRONZE" />
@@ -1099,10 +1193,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<stats>
-			<set stat="pAtk" val="38" />
-			<set stat="mAtk" val="21" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">38</stat>
+			<stat type="mAtk">21</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5285" type="Weapon" name="Heavy Sword">
@@ -1110,8 +1206,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="582" />
@@ -1124,12 +1218,12 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<set stat="pAtk" val="49" />
-			<set stat="mAtk" val="26" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">49</stat>
+			<stat type="mAtk">26</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5286" type="Weapon" name="Berserker Blade">
@@ -1138,8 +1232,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1885" />
@@ -1152,12 +1244,12 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5287" type="Armor" name="Sealed Dark Crystal breastplate">
@@ -1177,8 +1269,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="171" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">171</stat>
 		</stats>
 	</item>
 	<item id="5288" type="Armor" name="Sealed Dark Crystal Gaiters">
@@ -1198,8 +1289,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="5289" type="Armor" name="Sealed Dark Crystal Helmet">
@@ -1215,8 +1305,7 @@
 		<set name="price" val="1336000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="5290" type="Armor" name="Sealed Dark Crystal Gloves">
@@ -1232,8 +1321,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5291" type="Armor" name="Sealed Dark Crystal Boots">
@@ -1249,8 +1337,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5292" type="Armor" name="Sealed Dark Crystal Shield">
@@ -1269,10 +1356,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="5293" type="Armor" name="Sealed Tallum Plate Armor">
@@ -1292,8 +1378,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="278" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">278</stat>
 		</stats>
 	</item>
 	<item id="5294" type="Armor" name="Sealed Tallum Helmet">
@@ -1309,8 +1394,7 @@
 		<set name="price" val="1336000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="5295" type="Armor" name="Sealed Tallum Gloves">
@@ -1326,8 +1410,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5296" type="Armor" name="Sealed Tallum Boots">
@@ -1343,8 +1426,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5297" type="Armor" name="Sealed Dark Crystal Leather Armor">
@@ -1361,8 +1443,7 @@
 		<set name="price" val="2671000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="128" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">128</stat>
 		</stats>
 	</item>
 	<item id="5298" type="Armor" name="Sealed Dark Crystal Leggings">
@@ -1379,8 +1460,7 @@
 		<set name="price" val="1670000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="80" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">80</stat>
 		</stats>
 	</item>
 	<item id="5299" type="Armor" name="Sealed Gloves of Underworld">
@@ -1396,8 +1476,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="45" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">45</stat>
 		</stats>
 	</item>
 </list>

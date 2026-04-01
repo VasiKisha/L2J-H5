@@ -606,7 +606,9 @@ public class Formulas
 		final double weaponTraitMod = calcWeaponTraitBonus(attacker, target);
 		final double generalTraitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
 		final double attributeMod = calcAttributeBonus(attacker, target, skill);
-		final double weaponMod = attacker.getRandomDamageMultiplier();
+		
+		// Random weapon damage for physical skills (blow).
+		final double weaponMod = PlayerConfig.RANDOMIZE_PHYSICAL_SKILL_DAMAGE ? attacker.getRandomDamageMultiplier() : 1.0;
 		
 		double penaltyMod = 1;
 		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
@@ -684,7 +686,9 @@ public class Formulas
 		// Trait, elements
 		final double generalTraitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
 		final double attributeMod = calcAttributeBonus(attacker, target, skill);
-		final double weaponMod = attacker.getRandomDamageMultiplier();
+		
+		// Random weapon damage for physical skills (backstab).
+		final double weaponMod = PlayerConfig.RANDOMIZE_PHYSICAL_SKILL_DAMAGE ? attacker.getRandomDamageMultiplier() : 1.0;
 		
 		double penaltyMod = 1;
 		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= NpcConfig.MIN_NPC_LEVEL_DMG_PENALTY))
@@ -794,7 +798,12 @@ public class Formulas
 		
 		damage *= calcAttackTraitBonus(attacker, target);
 		
-		// Weapon random damage
+		// Weapon random damage.
+		if (((skill == null) && PlayerConfig.RANDOMIZE_AUTO_ATTACK_DAMAGE) || ((skill != null) && PlayerConfig.RANDOMIZE_PHYSICAL_SKILL_DAMAGE))
+		{
+			damage *= attacker.getRandomDamageMultiplier();
+		}
+		
 		damage *= attacker.getRandomDamageMultiplier();
 		if ((shld > 0) && PlayerConfig.ALT_GAME_SHIELD_BLOCKS)
 		{
@@ -1000,8 +1009,11 @@ public class Formulas
 			}
 		}
 		
-		// Weapon random damage
-		damage *= attacker.getRandomDamageMultiplier();
+		// Weapon random damage.
+		if (PlayerConfig.RANDOMIZE_MAGICAL_SKILL_DAMAGE)
+		{
+			damage *= attacker.getRandomDamageMultiplier();
+		}
 		
 		// PvP bonuses for damage
 		if (isPvP)
@@ -2005,7 +2017,7 @@ public class Formulas
 		}
 		
 		// Debuffs Duration Affected by Resistances.
-		if ((caster != null) && (target != null) && skill.isDebuff())
+		if ((caster != null) && (target != null) && skill.isDebuff() && GeneralConfig.DEBUFF_DURATION_USES_RESISTS)
 		{
 			final double statMod = skill.getBasicProperty().calcBonus(target);
 			final double resMod = calcGeneralTraitBonus(caster, target, skill.getTraitType(), false);

@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.xml.RecipeData;
-import org.l2jmobius.gameserver.model.RecipeList;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.recipe.RecipeList;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeBookItemList;
 
 public class RequestRecipeBookDestroy extends ClientPacket

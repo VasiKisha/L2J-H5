@@ -25,8 +25,8 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
-import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
-import org.l2jmobius.gameserver.model.EnchantSkillLearn;
+import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
+import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

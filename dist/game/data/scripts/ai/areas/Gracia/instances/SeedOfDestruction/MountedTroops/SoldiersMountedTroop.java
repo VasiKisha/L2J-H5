@@ -27,7 +27,6 @@ import java.util.Map.Entry;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Territory;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -41,6 +40,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
+import org.l2jmobius.gameserver.util.PolygonTerritory;
 
 import quests.Q00693_DefeatingDragonkinRemnants.Q00693_DefeatingDragonkinRemnants;
 
@@ -73,8 +73,8 @@ public final class SoldiersMountedTroop extends InstanceScript
 	private static final Location DOORMAN_SPAWN_LOC = new Location(-239504, 219984, -10112, 32767);
 	private static final Location REMNANT_MACHINE_LOC = new Location(-238320, 219983, -10112, 0);
 	
-	private static final Territory _hallZone1 = new Territory(1);
-	private static final Territory _hallZone2 = new Territory(2);
+	private static final PolygonTerritory _hallZone1 = new PolygonTerritory(1);
+	private static final PolygonTerritory _hallZone2 = new PolygonTerritory(2);
 	
 	private static final Map<Integer, Integer> HALL_1_SPAWNS = new HashMap<>();
 	static

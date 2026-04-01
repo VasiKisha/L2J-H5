@@ -658,10 +658,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-1" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="1" /> <!-- Scroll of Escape to Talking Island -->
+		</skills>
 	</item>
 	<item id="7555" type="EtcItem" name="Scroll of Escape: Elven Village">
 		<!-- A magical scroll that relocates you to Elven Village. -->
@@ -673,10 +675,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-2" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="2" /> <!-- Scroll of Escape to Elven Village -->
+		</skills>
 	</item>
 	<item id="7556" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
 		<!-- A magical scroll that relocates you to Dark Elven Village. -->
@@ -688,10 +692,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-3" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="3" /> <!-- Scroll of Escape to Dark Elven Village -->
+		</skills>
 	</item>
 	<item id="7557" type="EtcItem" name="Scroll of Escape: Orc Village">
 		<!-- A magical scroll that relocates you to Orc Village. -->
@@ -703,10 +709,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-4" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="4" /> <!-- Scroll of Escape to Orc Village -->
+		</skills>
 	</item>
 	<item id="7558" type="EtcItem" name="Scroll of Escape: Dwarven Village">
 		<!-- A magical scroll that relocates you to Dwarven Village. -->
@@ -718,10 +726,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-5" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="5" /> <!-- Scroll of Escape to Dwarven Village -->
+		</skills>
 	</item>
 	<item id="7559" type="EtcItem" name="Scroll of Escape: Town of Giran">
 		<!-- A magical scroll that relocates you to Town of Giran. -->
@@ -733,18 +743,18 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2214-10" /> <!-- Scroll of Escape to Talking Island -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2214" level="10" /> <!-- Scroll of Escape to Giran Castle Town -->
+		</skills>
 	</item>
 	<item id="7560" type="Weapon" name="Monster Only (Fishing Rod)">
 		<set name="icon" val="icon.weapon_monster_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="FISHINGROD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="1" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="BONE" />
@@ -755,10 +765,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">1</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
 	</item>
 	<item id="7561" type="EtcItem" name="Fishing Manual">
@@ -930,8 +942,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -947,13 +957,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="7576" type="Weapon" name="Draconic Bow - Cheap Shot">
@@ -962,8 +972,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -978,17 +986,19 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
 		<set name="reduced_mp_consume" val="26,1" />
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="7577" type="Weapon" name="Draconic Bow - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 88. Increases damage inflicted during PvP. -->
@@ -996,8 +1006,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1012,16 +1020,18 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="item_skill" val="3567-1" /> <!-- Special Ability: Focus -->
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3567" level="1" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="7578" type="Weapon" name="Draconic Bow - Critical Slow">
 		<!-- <Soul Crystal Enhancement>. Has a chance of casting Slow on a critical attack. Increases damage inflicted during PvP. -->
@@ -1029,8 +1039,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="2052" />
@@ -1045,18 +1053,19 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<set name="oncrit_chance" val="16" />
-		<set name="oncrit_skill" val="3574-1" />
-		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3574" level="1" type_chance="16" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Slow -->
+		</skills>
 	</item>
 	<item id="7579" type="EtcItem" name="Draconic Bow Shaft">
 		<!-- Main ingredient essentially required for a Dwarf to make a Draconic Bow. Can also be sold at ordinary shops. -->
@@ -1105,11 +1114,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="PetFood" />
-		<set name="item_skill" val="2048-1" /> <!-- Wolves' Food -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP" />
 		</conditions>
+		<skills>
+			<skill id="2048" level="1" /> <!-- Wolves' Food -->
+		</skills>
 	</item>
 	<item id="7583" type="EtcItem" name="Pet Exchange Ticket: Buffalo">
 		<set name="icon" val="icon.etc_ticket_red_i00" />

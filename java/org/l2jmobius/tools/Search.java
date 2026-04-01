@@ -408,11 +408,11 @@ public class Search extends JFrame
 		resultTable.addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent evt)
+			public void mouseClicked(MouseEvent event)
 			{
-				if (SwingUtilities.isRightMouseButton(evt)) // Check for right-click.
+				if (SwingUtilities.isRightMouseButton(event)) // Check for right-click.
 				{
-					final int row = resultTable.rowAtPoint(evt.getPoint()); // Get the row under the mouse pointer.
+					final int row = resultTable.rowAtPoint(event.getPoint()); // Get the row under the mouse pointer.
 					if (row >= 0) // Ensure a valid row is selected.
 					{
 						// Check if the right-clicked row is already selected.
@@ -423,10 +423,10 @@ public class Search extends JFrame
 						
 						// Update the selected file paths.
 						_selectedFilePaths = Arrays.stream(resultTable.getSelectedRows()).mapToObj(selectedRow -> (String) _tableModel.getValueAt(resultTable.convertRowIndexToModel(selectedRow), 0)).collect(Collectors.toList());
-						popupMenu.show(resultTable, evt.getX(), evt.getY()); // Show the context menu.
+						popupMenu.show(resultTable, event.getX(), event.getY()); // Show the context menu.
 					}
 				}
-				else if (evt.getClickCount() == 2) // Check for double-click.
+				else if (event.getClickCount() == 2) // Check for double-click.
 				{
 					final int row = resultTable.getSelectedRow(); // Get the selected row.
 					if (row >= 0) // Ensure a valid row is selected.

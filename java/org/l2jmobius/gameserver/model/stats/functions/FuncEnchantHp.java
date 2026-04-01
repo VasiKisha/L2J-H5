@@ -42,7 +42,7 @@ public class FuncEnchantHp extends AbstractFunction
 		}
 		
 		final Item item = (Item) getFuncOwner();
-		if (item.getEnchantLevel() > 0)
+		if (item.isEnchanted())
 		{
 			return initVal + EnchantItemHPBonusData.getInstance().getHPBonus(item);
 		}

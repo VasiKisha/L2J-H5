@@ -120,7 +120,7 @@ public class ItemManager
 		
 		if ((GeneralConfig.LOG_ITEMS && ((!GeneralConfig.LOG_ITEMS_SMALL_LOG) && (!GeneralConfig.LOG_ITEMS_IDS_ONLY))) || (GeneralConfig.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (GeneralConfig.LOG_ITEMS_IDS_ONLY && GeneralConfig.LOG_ITEMS_IDS_LIST.contains(item.getId())))
 		{
-			if (item.getEnchantLevel() > 0)
+			if (item.isEnchanted())
 			{
 				LOGGER_ITEMS.info(StringUtil.concat("CREATE:", String.valueOf(process), ", item ", String.valueOf(item.getObjectId()), ":+", String.valueOf(item.getEnchantLevel()), " ", item.getTemplate().getName(), "(", String.valueOf(item.getCount()), "), ", String.valueOf(actor), ", ", String.valueOf(reference)));
 			}
@@ -180,7 +180,7 @@ public class ItemManager
 			{
 				if ((GeneralConfig.LOG_ITEMS && ((!GeneralConfig.LOG_ITEMS_SMALL_LOG) && (!GeneralConfig.LOG_ITEMS_IDS_ONLY))) || (GeneralConfig.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (GeneralConfig.LOG_ITEMS_IDS_ONLY && GeneralConfig.LOG_ITEMS_IDS_LIST.contains(item.getId())))
 				{
-					if (item.getEnchantLevel() > 0)
+					if (item.isEnchanted())
 					{
 						LOGGER_ITEMS.info(StringUtil.concat("DELETE:", String.valueOf(process), ", item ", String.valueOf(item.getObjectId()), ":+", String.valueOf(item.getEnchantLevel()), " ", item.getTemplate().getName(), "(", String.valueOf(item.getCount()), "), PrevCount(", String.valueOf(old), "), ", String.valueOf(actor), ", ", String.valueOf(reference)));
 					}

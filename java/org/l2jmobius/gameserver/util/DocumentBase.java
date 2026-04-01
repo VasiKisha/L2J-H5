@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.util;
 
@@ -135,11 +139,13 @@ import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
 
 /**
- * @author mkizub
+ * @author mkizub, Mobius
  */
 public abstract class DocumentBase
 {
 	protected final Logger LOGGER = Logger.getLogger(getClass().getName());
+	
+	private static final Set<String> IGNORED_ELEMENTS = Set.of("param", "conditions", "effect", "add", "sub", "mul", "div", "set", "share", "enchant", "enchanthp", "value");
 	
 	private final File _file;
 	protected final Map<String, String[]> _tables = new HashMap<>();
@@ -247,7 +253,18 @@ public abstract class DocumentBase
 				case "enchant":
 				case "enchanthp":
 				{
-					attachFunc(n, template, name, condition);
+					// Check if we need to handle an alternative format for the "enchant" or "enchanthp" tag.
+					if ((n.getAttributes().getNamedItem("stat") == null) && (n.getAttributes().getNamedItem("val") == null))
+					{
+						// This is the alternative format with element-based stats.
+						processAlternativeFuncFormat(n, template, name, condition);
+					}
+					else
+					{
+						// Standard attribute-based format.
+						attachFunc(n, template, name, condition);
+					}
+					break;
 				}
 			}
 		}
@@ -255,23 +272,49 @@ public abstract class DocumentBase
 	
 	protected void attachFunc(Node n, Object template, String functionName, Condition attachCond)
 	{
-		final Stat stat = Stat.valueOfXml(n.getAttributes().getNamedItem("stat").getNodeValue());
+		final NamedNodeMap attrs = n.getAttributes();
+		final Node statNode = attrs.getNamedItem("stat");
+		if (statNode == null)
+		{
+			return;
+		}
+		
+		final Stat stat = Stat.valueOfXml(statNode.getNodeValue());
 		int order = -1;
-		final Node orderNode = n.getAttributes().getNamedItem("order");
+		final Node orderNode = attrs.getNamedItem("order");
 		if (orderNode != null)
 		{
 			order = Integer.parseInt(orderNode.getNodeValue());
 		}
 		
-		final String valueString = n.getAttributes().getNamedItem("val").getNodeValue();
-		double value;
-		if (valueString.charAt(0) == '#')
+		// Hybrid logic for capturing the value.
+		String valueString = null;
+		final Node valAttr = attrs.getNamedItem("val");
+		if (valAttr != null)
 		{
-			value = Double.parseDouble(getTableValue(valueString));
+			valueString = valAttr.getNodeValue();
 		}
 		else
 		{
-			value = Double.parseDouble(valueString);
+			for (Node child = n.getFirstChild(); child != null; child = child.getNextSibling())
+			{
+				if ((child.getNodeType() == Node.ELEMENT_NODE) && "value".equalsIgnoreCase(child.getNodeName()))
+				{
+					valueString = child.getTextContent().trim();
+					break;
+				}
+			}
+			
+			if ((valueString == null) || valueString.isEmpty())
+			{
+				valueString = n.getTextContent().trim();
+			}
+		}
+		
+		double value = 0;
+		if ((valueString != null) && !valueString.isEmpty())
+		{
+			value = valueString.charAt(0) == '#' ? Double.parseDouble(getTableValue(valueString)) : Double.parseDouble(valueString);
 		}
 		
 		final Condition applyCond = parseCondition(n.getFirstChild(), template);
@@ -284,9 +327,84 @@ public abstract class DocumentBase
 		{
 			((AbstractEffect) template).attach(ft);
 		}
-		else
+	}
+	
+	/**
+	 * Process the alternative stats format for "share", "enchant", and "enchanthp" tags where stats are defined as element nodes.<br>
+	 * For example: &lt;enchant&gt;&lt;pDef&gt;0&lt;/pDef&gt;&lt;/enchant&gt; instead of &lt;enchant stat="pDef" val="0" /&gt;
+	 * @param n the node containing stat elements
+	 * @param template the template to attach stats to
+	 * @param functionName the function name ("share", "enchant" or "enchanthp")
+	 * @param attachCond the condition for attachment
+	 */
+	protected void processAlternativeFuncFormat(Node n, Object template, String functionName, Condition attachCond)
+	{
+		// Process each child element as a stat.
+		Node statNode = n.getFirstChild();
+		while (statNode != null)
 		{
-			throw new RuntimeException("Attaching stat to a non-effect template!!!");
+			// Skip non-element nodes (like whitespace text nodes).
+			if (statNode.getNodeType() == Node.ELEMENT_NODE)
+			{
+				// The element name is the stat name.
+				String statName = statNode.getNodeName();
+				
+				// The element content is the value.
+				String valueString = statNode.getTextContent().trim();
+				
+				// Convert the stat name to a Stat enum value.
+				try
+				{
+					final Stat stat = Stat.valueOfXml(statName);
+					
+					// Parse the value.
+					double value;
+					if ((valueString.length() > 0) && (valueString.charAt(0) == '#'))
+					{
+						value = Double.parseDouble(getTableValue(valueString));
+					}
+					else
+					{
+						value = Double.parseDouble(valueString);
+					}
+					
+					// Use default order (-1).
+					final int order = -1;
+					
+					// Parse any conditions that might be inside the stat element.
+					final Condition applyCond = parseCondition(statNode.getFirstChild(), template);
+					
+					// Create and attach the function template with the original function name (enchant or enchanthp).
+					final FuncTemplate ft = new FuncTemplate(attachCond, applyCond, functionName, order, stat, value);
+					if (template instanceof ItemTemplate)
+					{
+						((ItemTemplate) template).attach(ft);
+					}
+					else if (template instanceof AbstractEffect)
+					{
+						((AbstractEffect) template).attach(ft);
+					}
+					else
+					{
+						throw new RuntimeException("Attaching stat to a non-effect template!!!");
+					}
+				}
+				catch (NumberFormatException e)
+				{
+					LOGGER.warning("Invalid numeric value: '" + valueString + "' for stat: " + statName + ": " + e.getMessage());
+				}
+				catch (IllegalArgumentException e)
+				{
+					LOGGER.warning("Unknown stat name: " + statName + " in alternative " + functionName + " format: " + e.getMessage());
+				}
+				catch (Exception e)
+				{
+					LOGGER.warning("Error processing alternative " + functionName + " format for " + statName + ": " + e.getMessage());
+				}
+			}
+			
+			// Move to the next stat element.
+			statNode = statNode.getNextSibling();
 		}
 	}
 	
@@ -320,8 +438,81 @@ public abstract class DocumentBase
 			set.set("id", ((DoorTemplate) template).getId());
 		}
 		
+		// Process <items> for RestorationRandom effects.
+		if ("RestorationRandom".equals(set.getString("name")))
+		{
+			Node itemsNode = null;
+			for (Node child = n.getFirstChild(); child != null; child = child.getNextSibling())
+			{
+				if ((child.getNodeType() == Node.ELEMENT_NODE) && "items".equals(child.getNodeName()))
+				{
+					itemsNode = child;
+					break;
+				}
+			}
+			
+			if (itemsNode != null)
+			{
+				// Find first element child to determine format.
+				Node firstChild = itemsNode.getFirstChild();
+				while ((firstChild != null) && (firstChild.getNodeType() != Node.ELEMENT_NODE))
+				{
+					firstChild = firstChild.getNextSibling();
+				}
+				
+				// Check if we have level-based format.
+				if ((firstChild != null) && "value".equals(firstChild.getNodeName()))
+				{
+					// Apparently this can only be a Skill.
+					final Skill skill = (Skill) template;
+					
+					// Complex format with multiple level support.
+					for (Node valueNode = itemsNode.getFirstChild(); valueNode != null; valueNode = valueNode.getNextSibling())
+					{
+						if ((valueNode.getNodeType() == Node.ELEMENT_NODE) && "value".equals(valueNode.getNodeName()))
+						{
+							final NamedNodeMap valueAttrs = valueNode.getAttributes();
+							final Node levelAttr = valueAttrs.getNamedItem("level");
+							final int level = levelAttr != null ? Integer.parseInt(levelAttr.getNodeValue()) : 1;
+							if (skill.getLevel() != level)
+							{
+								continue;
+							}
+							
+							// Process all item nodes (with chance attribute).
+							final List<StatSet> items = new ArrayList<>();
+							for (Node itemNode = valueNode.getFirstChild(); itemNode != null; itemNode = itemNode.getNextSibling())
+							{
+								if ((itemNode.getNodeType() == Node.ELEMENT_NODE) && "item".equals(itemNode.getNodeName()))
+								{
+									parseItemNode(itemNode, items);
+								}
+							}
+							
+							parameters.set("items", items);
+						}
+					}
+				}
+				else // Simple format (single level).
+				{
+					// Process all item nodes (with chance attribute).
+					final List<StatSet> items = new ArrayList<>();
+					for (Node itemNode = itemsNode.getFirstChild(); itemNode != null; itemNode = itemNode.getNextSibling())
+					{
+						if ((itemNode.getNodeType() == Node.ELEMENT_NODE) && "item".equals(itemNode.getNodeName()))
+						{
+							parseItemNode(itemNode, items);
+						}
+					}
+					
+					parameters.set("items", items);
+				}
+			}
+		}
+		
 		final AbstractEffect effect = AbstractEffect.createEffect(attachCond, applyCond, set, parameters);
 		parseTemplate(n, effect);
+		
 		if (template instanceof ItemTemplate)
 		{
 			LOGGER.severe("Item " + template + " with effects!!!");
@@ -345,6 +536,61 @@ public abstract class DocumentBase
 	}
 	
 	/**
+	 * Parses an item node from RestorationRandom effect XML and adds it to the items list.
+	 * @param itemNode the node containing item information
+	 * @param items the list to add parsed item data to
+	 */
+	private void parseItemNode(Node itemNode, List<StatSet> items)
+	{
+		final StatSet group = new StatSet();
+		final NamedNodeMap attrs = itemNode.getAttributes();
+		final Node chanceNode = attrs.getNamedItem("chance");
+		float chance = chanceNode != null ? Float.parseFloat(chanceNode.getNodeValue()) : 100f;
+		group.set(".chance", chance);
+		
+		// Process inner item nodes.
+		final List<StatSet> innerItems = new ArrayList<>();
+		for (Node innerNode = itemNode.getFirstChild(); innerNode != null; innerNode = innerNode.getNextSibling())
+		{
+			if ((innerNode.getNodeType() == Node.ELEMENT_NODE) && "item".equals(innerNode.getNodeName()))
+			{
+				final StatSet itemData = new StatSet();
+				final NamedNodeMap itemAttrs = innerNode.getAttributes();
+				
+				// Get item ID (required).
+				final Node idNode = itemAttrs.getNamedItem("id");
+				if (idNode == null)
+				{
+					LOGGER.warning("Missing item ID in RestorationRandom effect");
+					continue;
+				}
+				
+				final int id = Integer.parseInt(idNode.getNodeValue());
+				if (id <= 0)
+				{
+					LOGGER.warning("Invalid item ID found in RestorationRandom effect: " + id);
+					continue;
+				}
+				
+				// Get other attributes with defaults.
+				final Node countNode = itemAttrs.getNamedItem("count");
+				final Node minEnchantNode = itemAttrs.getNamedItem("minEnchant");
+				final Node maxEnchantNode = itemAttrs.getNamedItem("maxEnchant");
+				
+				itemData.set(".id", id);
+				itemData.set(".count", countNode != null ? Long.parseLong(countNode.getNodeValue()) : 1L);
+				itemData.set(".minEnchant", minEnchantNode != null ? Integer.parseInt(minEnchantNode.getNodeValue()) : 0);
+				itemData.set(".maxEnchant", maxEnchantNode != null ? Integer.parseInt(maxEnchantNode.getNodeValue()) : 0);
+				
+				innerItems.add(itemData);
+			}
+		}
+		
+		group.set(".", innerItems);
+		items.add(group);
+	}
+	
+	/**
 	 * Parse effect's parameters.
 	 * @param node the node to start the parsing
 	 * @param template the effect template
@@ -353,7 +599,10 @@ public abstract class DocumentBase
 	private StatSet parseParameters(Node node, Object template)
 	{
 		StatSet parameters = null;
-		Node n = node;
+		Node n;
+		
+		// First pass: Process <param> tags (traditional format).
+		n = node;
 		while ((n != null))
 		{
 			// Parse all parameters.
@@ -375,61 +624,121 @@ public abstract class DocumentBase
 			n = n.getNextSibling();
 		}
 		
+		// Second pass: Process direct named elements as parameters.
+		n = node;
+		
+		// Define elements to ignore (these have special handling elsewhere).
+		while ((n != null))
+		{
+			if ((n.getNodeType() == Node.ELEMENT_NODE) && !IGNORED_ELEMENTS.contains(n.getNodeName().toLowerCase()))
+			{
+				if (parameters == null)
+				{
+					parameters = new StatSet();
+				}
+				
+				// Extract parameter name (element name) and value (element content).
+				final String name = n.getNodeName();
+				
+				// Check if this element contains level-specific values.
+				if (hasLevelSpecificValues(n))
+				{
+					// Parse level-specific values into a map.
+					final Map<Integer, String> levelValues = parseLevelSpecificValues(n, template);
+					
+					// Resolve to current level's value if template is a Skill.
+					if (template instanceof Skill)
+					{
+						final Skill skill = (Skill) template;
+						final String resolvedValue = levelValues.get(skill.getLevel());
+						if (resolvedValue != null)
+						{
+							parameters.set(name, resolvedValue);
+						}
+					}
+					else if (template instanceof Integer)
+					{
+						// Support for Integer template (level-based parsing).
+						final String resolvedValue = levelValues.get(((Integer) template).intValue());
+						if (resolvedValue != null)
+						{
+							parameters.set(name, resolvedValue);
+						}
+					}
+					else
+					{
+						// If no level info, store the entire map (for backward compatibility).
+						parameters.set(name, levelValues);
+					}
+				}
+				else if (hasOnlyTextContent(n))
+				{
+					// Single value for all levels (no child elements, just text).
+					final String value = n.getTextContent().trim();
+					parameters.set(name, getValue(value, template));
+				}
+				// else: has other child elements, skip it (not a simple parameter).
+			}
+			
+			n = n.getNextSibling();
+		}
+		
 		return parameters == null ? StatSet.EMPTY_STATSET : parameters;
 	}
 	
 	protected Condition parseCondition(Node node, Object template)
 	{
 		Node n = node;
-		while ((n != null) && (n.getNodeType() != Node.ELEMENT_NODE))
+		
+		// It skips over text nodes and the <value> tag to focus on the actual condition.
+		while (n != null)
 		{
+			if ((n.getNodeType() == Node.ELEMENT_NODE) && !"value".equalsIgnoreCase(n.getNodeName()))
+			{
+				break;
+			}
+			
 			n = n.getNextSibling();
 		}
 		
-		Condition condition = null;
-		if (n != null)
+		if (n == null)
 		{
-			switch (n.getNodeName().toLowerCase())
+			return null;
+		}
+		
+		switch (n.getNodeName().toLowerCase())
+		{
+			case "and":
 			{
-				case "and":
-				{
-					condition = parseLogicAnd(n, template);
-					break;
-				}
-				case "or":
-				{
-					condition = parseLogicOr(n, template);
-					break;
-				}
-				case "not":
-				{
-					condition = parseLogicNot(n, template);
-					break;
-				}
-				case "player":
-				{
-					condition = parsePlayerCondition(n, template);
-					break;
-				}
-				case "target":
-				{
-					condition = parseTargetCondition(n, template);
-					break;
-				}
-				case "using":
-				{
-					condition = parseUsingCondition(n);
-					break;
-				}
-				case "game":
-				{
-					condition = parseGameCondition(n);
-					break;
-				}
+				return parseLogicAnd(n, template);
+			}
+			case "or":
+			{
+				return parseLogicOr(n, template);
+			}
+			case "not":
+			{
+				return parseLogicNot(n, template);
+			}
+			case "player":
+			{
+				return parsePlayerCondition(n, template);
+			}
+			case "target":
+			{
+				return parseTargetCondition(n, template);
+			}
+			case "using":
+			{
+				return parseUsingCondition(n);
+			}
+			case "game":
+			{
+				return parseGameCondition(n);
 			}
 		}
 		
-		return condition;
+		return null;
 	}
 	
 	protected Condition parseLogicAnd(Node node, Object template)
@@ -1314,9 +1623,33 @@ public abstract class DocumentBase
 	
 	protected void parseBeanSet(Node n, StatSet set, Integer level)
 	{
-		final String name = n.getAttributes().getNamedItem("name").getNodeValue().trim();
-		final String value = n.getAttributes().getNamedItem("val").getNodeValue().trim();
-		final char ch = value.isEmpty() ? ' ' : value.charAt(0);
+		final NamedNodeMap attrs = n.getAttributes();
+		final Node nameNode = attrs.getNamedItem("name");
+		if (nameNode == null)
+		{
+			return;
+		}
+		
+		final String name = nameNode.getNodeValue().trim();
+		String value;
+		
+		// Try the 'val' attribute (old), otherwise get the text from the tag (new).
+		final Node valNode = attrs.getNamedItem("val");
+		if (valNode != null)
+		{
+			value = valNode.getNodeValue().trim();
+		}
+		else
+		{
+			value = n.getTextContent().trim();
+		}
+		
+		if (value.isEmpty())
+		{
+			return;
+		}
+		
+		final char ch = value.charAt(0);
 		if ((ch == '#') || (ch == '-') || Character.isDigit(ch))
 		{
 			set.set(name, getValue(value, level));
@@ -1327,15 +1660,116 @@ public abstract class DocumentBase
 		}
 	}
 	
-	protected void setExtractableSkillData(StatSet set, String value)
+	/**
+	 * Parse an XML element with its value directly inside the element Example: <reuseDelay>3000</reuseDelay>
+	 * @param n the XML node to parse
+	 * @param set the StatSet to store the data into
+	 * @param level the current level
+	 */
+	protected void parseElementValue(Node n, StatSet set, Integer level)
 	{
-		set.set("capsuled_items_skill", value);
+		final String nodeName = n.getNodeName().trim();
+		final String value = n.getTextContent().trim();
+		if (value.isEmpty())
+		{
+			return;
+		}
+		
+		// If the tag is <enchant1 name="power">, the stat is 'power'.
+		final Node nameAttr = n.getAttributes().getNamedItem("name");
+		final String statName = (nameAttr != null) ? nameAttr.getNodeValue().trim() : nodeName;
+		
+		final char ch = value.charAt(0);
+		if ((ch == '#') || (ch == '-') || Character.isDigit(ch))
+		{
+			set.set(statName, getValue(value, level));
+		}
+		else
+		{
+			set.set(statName, value);
+		}
+	}
+	
+	/**
+	 * Check if a node contains only text content (no element children).
+	 * @param node the node to check
+	 * @return true if the node has only text content
+	 */
+	protected boolean hasOnlyTextContent(Node node)
+	{
+		Node child = node.getFirstChild();
+		while (child != null)
+		{
+			if (child.getNodeType() == Node.ELEMENT_NODE)
+			{
+				return false; // Has element children.
+			}
+			
+			child = child.getNextSibling();
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Check if a node contains level-specific value elements.
+	 * @param node the node to check
+	 * @return true if the node has child elements with level attributes
+	 */
+	protected boolean hasLevelSpecificValues(Node node)
+	{
+		Node child = node.getFirstChild();
+		while (child != null)
+		{
+			if ((child.getNodeType() == Node.ELEMENT_NODE) && "value".equals(child.getNodeName()))
+			{
+				final NamedNodeMap attributes = child.getAttributes();
+				if ((attributes != null) && (attributes.getNamedItem("level") != null))
+				{
+					return true;
+				}
+			}
+			
+			child = child.getNextSibling();
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Parse level-specific values from a parameter node.
+	 * @param node the parameter node containing value elements
+	 * @param template the effect template
+	 * @return a map of level to value
+	 */
+	protected Map<Integer, String> parseLevelSpecificValues(Node node, Object template)
+	{
+		final Map<Integer, String> levelValues = new HashMap<>();
+		Node child = node.getFirstChild();
+		while (child != null)
+		{
+			if ((child.getNodeType() == Node.ELEMENT_NODE) && "value".equals(child.getNodeName()))
+			{
+				final NamedNodeMap attributes = child.getAttributes();
+				final Node levelAttr = attributes.getNamedItem("level");
+				if (levelAttr != null)
+				{
+					final int level = Integer.parseInt(levelAttr.getNodeValue());
+					final String value = child.getTextContent().trim();
+					levelValues.put(level, getValue(value, template));
+				}
+			}
+			
+			child = child.getNextSibling();
+		}
+		
+		return levelValues;
 	}
 	
 	protected String getValue(String value, Object template)
 	{
 		// is it a table?
-		if (value.charAt(0) == '#')
+		if ((value != null) && (value.length() > 0) && (value.charAt(0) == '#'))
 		{
 			if (template instanceof Skill)
 			{

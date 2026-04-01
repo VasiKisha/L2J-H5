@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver.network;
 
@@ -37,34 +41,48 @@ import org.l2jmobius.loginserver.network.serverpackets.LoginServerPacket;
 import org.l2jmobius.loginserver.network.serverpackets.PlayFail;
 
 /**
- * Represents a client connected into the LoginServer
- * @author KenM
+ * Represents a client connected to the LoginServer.<br>
+ * Holds session state, cryptographic context, account metadata and server lists.
+ * <ul>
+ * <li>RSA/Blowfish handshake and per-client encryption.</li>
+ * <li>Session id generation and access level tracking.</li>
+ * <li>Lifecycle hooks for connection/disconnection.</li>
+ * </ul>
+ * @author KenM, BazookaRpm
  */
 public class LoginClient extends Client<Connection<LoginClient>>
 {
+	private static final String DEFAULT_IP = "N/A";
+	private static final int DISCONNECT_GRACE_MS = 1000;
+	
 	private final LoginEncryption _encryption;
 	private final ScrambledKeyPair _scrambledPair;
 	private final byte[] _blowfishKey;
-	private String _ip = "N/A";
+	
+	private String _ip = DEFAULT_IP;
+	private final int _sessionId;
+	private final long _connectionStartTime;
+	
 	private String _account;
 	private int _accessLevel;
 	private int _lastServer;
 	private SessionKey _sessionKey;
-	private final int _sessionId;
 	private boolean _joinedGS;
+	private ConnectionState _connectionState = ConnectionState.CONNECTED;
+	
 	private Map<Integer, Integer> _charsOnServers;
 	private Map<Integer, long[]> _charsToDelete;
-	private ConnectionState _connectionState = ConnectionState.CONNECTED;
-	private final long _connectionStartTime;
 	
 	public LoginClient(Connection<LoginClient> connection)
 	{
 		super(connection);
+		
 		_scrambledPair = LoginController.getInstance().getScrambledRSAKeyPair();
 		_blowfishKey = LoginController.getInstance().getBlowfishKey();
 		_ip = connection.getRemoteAddress();
 		_sessionId = Rnd.nextInt();
 		_connectionStartTime = System.currentTimeMillis();
+		
 		_encryption = new LoginEncryption();
 		_encryption.setKey(_blowfishKey);
 		
@@ -118,16 +136,12 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	@Override
 	public void onDisconnection()
 	{
-		// Check if the client has joined the game server.
 		if (!_joinedGS)
 		{
-			// The client has not joined, remove it from the login authenticated clients immediately.
 			LoginController.getInstance().removeAuthedLoginClient(_account);
-			
-			// Give time to other threads to finish client actions.
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(DISCONNECT_GRACE_MS);
 			}
 			catch (InterruptedException e)
 			{
@@ -153,6 +167,16 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	public String getIp()
 	{
 		return _ip;
+	}
+	
+	public int getSessionId()
+	{
+		return _sessionId;
+	}
+	
+	public long getConnectionStartTime()
+	{
+		return _connectionStartTime;
 	}
 	
 	public String getAccount()
@@ -185,16 +209,6 @@ public class LoginClient extends Client<Connection<LoginClient>>
 		return _lastServer;
 	}
 	
-	public int getSessionId()
-	{
-		return _sessionId;
-	}
-	
-	public ScrambledKeyPair getScrambledKeyPair()
-	{
-		return _scrambledPair;
-	}
-	
 	public boolean hasJoinedGS()
 	{
 		return _joinedGS;
@@ -215,9 +229,42 @@ public class LoginClient extends Client<Connection<LoginClient>>
 		return _sessionKey;
 	}
 	
-	public long getConnectionStartTime()
+	public void setCharsOnServ(int servId, int chars)
 	{
-		return _connectionStartTime;
+		if (_charsOnServers == null)
+		{
+			_charsOnServers = new HashMap<>();
+		}
+		_charsOnServers.put(servId, chars);
+	}
+	
+	public Map<Integer, Integer> getCharsOnServ()
+	{
+		return _charsOnServers;
+	}
+	
+	public void serCharsWaitingDelOnServ(int servId, long[] charsToDel)
+	{
+		if (_charsToDelete == null)
+		{
+			_charsToDelete = new HashMap<>();
+		}
+		_charsToDelete.put(servId, charsToDel);
+	}
+	
+	public Map<Integer, long[]> getCharsWaitingDelOnServ()
+	{
+		return _charsToDelete;
+	}
+	
+	public ConnectionState getConnectionState()
+	{
+		return _connectionState;
+	}
+	
+	public void setConnectionState(ConnectionState connectionState)
+	{
+		_connectionState = connectionState;
 	}
 	
 	public void sendPacket(LoginServerPacket packet)
@@ -240,46 +287,6 @@ public class LoginClient extends Client<Connection<LoginClient>>
 		close(new AccountKicked(reason));
 	}
 	
-	public void setCharsOnServ(int servId, int chars)
-	{
-		if (_charsOnServers == null)
-		{
-			_charsOnServers = new HashMap<>();
-		}
-		
-		_charsOnServers.put(servId, chars);
-	}
-	
-	public Map<Integer, Integer> getCharsOnServ()
-	{
-		return _charsOnServers;
-	}
-	
-	public void serCharsWaitingDelOnServ(int servId, long[] charsToDel)
-	{
-		if (_charsToDelete == null)
-		{
-			_charsToDelete = new HashMap<>();
-		}
-		
-		_charsToDelete.put(servId, charsToDel);
-	}
-	
-	public Map<Integer, long[]> getCharsWaitingDelOnServ()
-	{
-		return _charsToDelete;
-	}
-	
-	public ConnectionState getConnectionState()
-	{
-		return _connectionState;
-	}
-	
-	public void setConnectionState(ConnectionState connectionState)
-	{
-		_connectionState = connectionState;
-	}
-	
 	@Override
 	public String toString()
 	{
@@ -292,7 +299,6 @@ public class LoginClient extends Client<Connection<LoginClient>>
 			sb.append("Account: ");
 			sb.append(_account);
 		}
-		
 		if (ip != null)
 		{
 			if (_account != null)

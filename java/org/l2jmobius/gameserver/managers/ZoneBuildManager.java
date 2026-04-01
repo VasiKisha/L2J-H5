@@ -155,7 +155,7 @@ public class ZoneBuildManager
 			sb.append("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../xsd/zones.xsd\">\n");
 			sb.append("\t<zone name=\"").append(player.getName()).append("_Zone_").append(currentTime).append("\" type=\"ScriptZone\" shape=\"NPoly\" minZ=\"").append(locations.get(0).getZ() - 1000).append("\" maxZ=\"").append(locations.get(0).getZ() + 1000).append("\">\n");
 			
-			for (final Location location : locations)
+			for (Location location : locations)
 			{
 				sb.append("\t\t<node X=\"").append(location.getX()).append("\" Y=\"").append(location.getY()).append("\" />\n");
 			}

@@ -518,16 +518,16 @@ public class Shutdown extends Thread
 		GlobalVariablesManager.getInstance().storeMe();
 		LOGGER.info("Global Variables Manager: Variables saved(" + tc.getEstimatedTimeAndRestartCounter() + "ms).");
 		
-		// Save Fishing tournament data
+		// Save Fishing tournament data.
 		if (GeneralConfig.ALT_FISH_CHAMPIONSHIP_ENABLED)
 		{
 			FishingChampionshipManager.getInstance().shutdown();
-			LOGGER.info("Fishing Championship data has been saved.");
+			LOGGER.info("Fishing Championship Manager: Data saved(" + tc.getEstimatedTimeAndRestartCounter() + "ms).");
 		}
 		
 		// Schemes save.
 		SchemeBufferTable.getInstance().saveSchemes();
-		LOGGER.info("SchemeBufferTable data has been saved.");
+		LOGGER.info("SchemeBufferTable: Data saved(" + tc.getEstimatedTimeAndRestartCounter() + "ms).");
 		
 		// Save items on ground before closing
 		if (GeneralConfig.SAVE_DROPPED_ITEM)

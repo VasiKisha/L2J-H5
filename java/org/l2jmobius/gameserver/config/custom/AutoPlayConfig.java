@@ -46,6 +46,7 @@ public class AutoPlayConfig
 	public static boolean AUTO_PLAY_PREMIUM;
 	public static Set<Integer> DISABLED_AUTO_SKILLS = new HashSet<>();
 	public static Set<Integer> DISABLED_AUTO_ITEMS = new HashSet<>();
+	public static Set<Integer> IGNORED_AUTO_PICK_ITEMS = new HashSet<>();
 	public static String AUTO_PLAY_LOGIN_MESSAGE;
 	
 	public static void load()
@@ -78,6 +79,16 @@ public class AutoPlayConfig
 			for (String s : disabledItems.split(","))
 			{
 				DISABLED_AUTO_ITEMS.add(Integer.parseInt(s.trim()));
+			}
+		}
+		
+		IGNORED_AUTO_PICK_ITEMS.clear();
+		final String ignoredAutoPickItems = config.getString("IgnoredAutoPickItems", "").trim();
+		if (!ignoredAutoPickItems.isEmpty())
+		{
+			for (String itemIdString : ignoredAutoPickItems.split(","))
+			{
+				IGNORED_AUTO_PICK_ITEMS.add(Integer.parseInt(itemIdString.trim()));
 			}
 		}
 		

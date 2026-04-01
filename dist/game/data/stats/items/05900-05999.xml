@@ -86,7 +86,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13420,10,10,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13420" min="10" max="10" chance="100" /> <!-- Multi-colored Honey Rice Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5907" type="EtcItem" name="5th Anniversary Gift Box (9 Honey Rice Cake Set)">
 		<!-- Commemorating the 5th anniversary of Lineage II, this wrapped gift box contains 9 multi-colored honey rice cakes and 1 Lineage II Commemorative Mark. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -102,7 +105,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13420,9,9,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13420" min="9" max="9" chance="100" /> <!-- Multi-colored Honey Rice Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5908" type="EtcItem" name="Red Soul Crystal: Stage 13">
 		<!-- Red Crystal that absorbs souls, stage 13. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -113,7 +119,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5909" type="EtcItem" name="5th Anniversary Gift Box (8 Honey Rice Cake Set)">
 		<!-- Commemorating the 5th anniversary of Lineage II, this wrapped gift box contains 8 multi-colored honey rice cakes and 1 Lineage II Commemorative Mark. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -129,7 +137,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13420,8,8,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13420" min="8" max="8" chance="100" /> <!-- Multi-colored Honey Rice Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5910" type="EtcItem" name="5th Anniversary Gift Box (7 Honey Rice Cake Set)">
 		<!-- Commemorating the 5th anniversary of Lineage II, this wrapped gift box contains 7 multi-colored honey rice cakes and 1 Lineage II Commemorative Mark. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -145,7 +156,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13420,7,7,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13420" min="7" max="7" chance="100" /> <!-- Multi-colored Honey Rice Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5911" type="EtcItem" name="Green Soul Crystal: Stage 13">
 		<!-- Green Crystal that absorbs souls, stage 13. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -156,7 +170,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5912" type="EtcItem" name="5th Anniversary Gift Box (6 Honey Rice Cake Set)">
 		<!-- Commemorating the 5th anniversary of Lineage II, this wrapped gift box contains 6 multi-colored honey rice cakes and 1 Lineage II Commemorative Mark. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -172,7 +188,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13420,6,6,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13420" min="6" max="6" chance="100" /> <!-- Multi-colored Honey Rice Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5913" type="EtcItem" name="5th Anniversary Gift Box (3 Honey Wheat Cake Set)">
 		<!-- Commemorating the 5th anniversary of Lineage II, this wrapped gift box contains 3 multi-colored honey wheat cakes and 1 Lineage II Commemorative Mark. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -188,7 +207,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="13421,3,3,100;13419,1,1,100" />
+		<capsuled_items>
+			<item id="13421" min="3" max="3" chance="100" /> <!-- Honey Wheat Cake -->
+			<item id="13419" min="1" max="1" chance="100" /> <!-- Lineage II Commemorative Mark -->
+		</capsuled_items>
 	</item>
 	<item id="5914" type="EtcItem" name="Blue Soul Crystal: Stage 13">
 		<!-- Blue Crystal that absorbs souls, stage 13. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -199,7 +221,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="5915" type="EtcItem" name="Pirate's Treasure Map">
 		<!-- A map that was created after putting together the map pieces found on Alligator Island. It appears to have a mark showing the location of treasure! -->
@@ -218,7 +242,9 @@
 		<set name="price" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2171-1" /> <!-- Spellbook Paper -->
+		<skills>
+			<skill id="2171" level="1" /> <!-- Spellbook Paper -->
+		</skills>
 	</item>
 	<item id="5917" type="EtcItem" name="Kranvel's Spellbook: Chapter of Fire">
 		<!-- Great Magus Kranvel's Spellbook: Chapter of Fire. Collect the Chapters on Fire, Water, Wind and Earth and take all of them to Elder Casian. -->
@@ -424,7 +450,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2172-1" /> <!-- Scroll of Giants -->
+		<skills>
+			<skill id="2172" level="1" /> <!-- Scroll of Giants -->
+		</skills>
 	</item>
 	<item id="5945" type="EtcItem" name="Book: Giants Science and Technology, Chapter 1">
 		<!-- A part of the theory book that describes the science and technology of the Titan era. The 1st of five chapters. -->
@@ -504,7 +532,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2173-1" /> <!-- Book of Giants -->
+		<skills>
+			<skill id="2173" level="1" /> <!-- Book of Giants -->
+		</skills>
 	</item>
 	<item id="5956" type="EtcItem" name="15 Year Old Wine">
 		<!-- A gift from Harlan as a token of gratitude. It is aged 15 years. Average quality wine. -->
@@ -598,7 +628,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2176-1" /> <!-- Ancient Papyrus -->
+		<skills>
+			<skill id="2176" level="1" /> <!-- Ancient Papyrus -->
+		</skills>
 	</item>
 	<item id="5967" type="EtcItem" name="Ancient Blue Papyrus">
 		<!-- A papyrus scroll found in the Tower of Insolence. If you double-click it, you can read its contents. -->
@@ -609,7 +641,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2176-2" /> <!-- Ancient Papyrus -->
+		<skills>
+			<skill id="2176" level="2" /> <!-- Ancient Papyrus -->
+		</skills>
 	</item>
 	<item id="5968" type="EtcItem" name="Ancient Black Papyrus">
 		<!-- A papyrus scroll found in the Tower of Insolence. If you double-click it, you can read its contents. -->
@@ -620,7 +654,9 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2176-3" /> <!-- Ancient Papyrus -->
+		<skills>
+			<skill id="2176" level="3" /> <!-- Ancient Papyrus -->
+		</skills>
 	</item>
 	<item id="5969" type="EtcItem" name="Ancient White Papyrus">
 		<!-- A papyrus scroll found in the Tower of Insolence. If you double-click it, you can read its contents. -->
@@ -631,10 +667,12 @@
 		<set name="price" val="400" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2176-4" /> <!-- Ancient Papyrus -->
+		<skills>
+			<skill id="2176" level="4" /> <!-- Ancient Papyrus -->
+		</skills>
 	</item>
 	<item id="5970" type="EtcItem" name="Ancient Chain Letter">
-		<!-- A mysterious letter found in the Tower of Insolence. Its text reads "if you send this letter to 10 other people, you will have good luck!" -->
+		<!-- A mysterious letter found in the Tower of Insolence. Its text reads "if you send this letter to 10 other people, you will have good luck! -->
 		<set name="icon" val="icon.etc_piece_of_paper_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LIQUID" />

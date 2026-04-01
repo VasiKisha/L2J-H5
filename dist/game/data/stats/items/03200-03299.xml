@@ -769,7 +769,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3264" type="EtcItem" name="Bright's List">
-		<!-- A list of ingredients that Guard Bright has written. "20 mandragora petals, 10 bunches of crimson moss" -->
+		<!-- A list of ingredients that Guard Bright has written. "20 mandragora petals, 10 bunches of crimson moss -->
 		<set name="icon" val="icon.etc_piece_of_paper_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

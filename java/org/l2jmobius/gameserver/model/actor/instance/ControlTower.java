@@ -24,11 +24,11 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Tower;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 
 /**
  * Class for Control Tower instance.

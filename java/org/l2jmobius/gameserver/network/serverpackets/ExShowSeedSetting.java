@@ -22,8 +22,8 @@ import java.util.Set;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.Seed;
-import org.l2jmobius.gameserver.model.SeedProduction;
+import org.l2jmobius.gameserver.model.siege.manor.Seed;
+import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

@@ -6,8 +6,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -21,16 +19,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3569-2;3896-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3569" level="2" /> <!-- Special Ability: HP Regeneration -->
+			<skill id="3896" level="2" /> <!-- Two-handed Blunt Weapon of Haste -->
+		</skills>
 	</item>
 	<item id="16201" type="Weapon" name="Vesper Retributer - Gale {PvP} - Health">
 		<!-- Masterwork Item that increases Atk. Spd. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -38,8 +41,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -53,16 +54,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3013-3;3896-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3896" level="2" /> <!-- Two-handed Blunt Weapon of Haste -->
+		</skills>
 	</item>
 	<item id="16202" type="Weapon" name="Vesper Retributer - Gale {PvP} - HP Drain">
 		<!-- Masterwork Item that increases Atk. Spd. <Soul Crystal Enhancement>. HP recovers by 4% of the damage inflicted on the enemy during a short-range ordinary physical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -70,8 +76,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -85,16 +89,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3568-2;3896-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3568" level="2" /> <!-- Special Ability: HP Drain -->
+			<skill id="3896" level="2" /> <!-- Two-handed Blunt Weapon of Haste -->
+		</skills>
 	</item>
 	<item id="16203" type="Weapon" name="Vesper Caster - Cleverness {PvP} - Acumen">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -102,8 +111,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -118,16 +125,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3047-2;3853-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+			<skill id="3853" level="2" /> <!-- Sword of Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="16204" type="Weapon" name="Vesper Caster - Cleverness {PvP} - MP Regeneration">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Increases MP Recovery Rate. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -135,8 +147,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -151,16 +161,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3576-2;3853-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3576" level="2" /> <!-- Special Ability: MP Regeneration -->
+			<skill id="3853" level="2" /> <!-- Sword of Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="16205" type="Weapon" name="Vesper Caster - Cleverness {PvP} - Mana Up">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -168,8 +183,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -184,16 +197,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3014-2;3853-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+			<skill id="3853" level="2" /> <!-- Sword of Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="16206" type="Weapon" name="Vesper Singer - Hail {PvP} - Empower">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Increases M. Atk. by 151. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -201,8 +219,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -217,16 +233,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3575-2;3899-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="386" />
-			<set stat="mAtk" val="257" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">386</stat>
+			<stat type="mAtk">257</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3575" level="2" /> <!-- Special Ability: Empower -->
+			<skill id="3899" level="3" /> <!-- Staff of Empower -->
+		</skills>
 	</item>
 	<item id="16207" type="Weapon" name="Vesper Singer - Hail {PvP} - MP Regeneration">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. MP's recovery rate increases. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -234,8 +255,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -250,16 +269,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3576-2;3899-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="386" />
-			<set stat="mAtk" val="257" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">386</stat>
+			<stat type="mAtk">257</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3576" level="2" /> <!-- Special Ability: MP Regeneration -->
+			<skill id="3899" level="3" /> <!-- Staff of Empower -->
+		</skills>
 	</item>
 	<item id="16208" type="Weapon" name="Vesper Singer - Hail {PvP} - Magic Hold">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Has a 20% chance of casting Dryad Root when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -267,8 +291,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -283,18 +305,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="onmagic_chance" val="20" />
-		<set name="onmagic_skill" val="3577-2" />
-		<set name="item_skill" val="3552-3;3654-1;3899-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="386" />
-			<set stat="mAtk" val="257" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">386</stat>
+			<stat type="mAtk">257</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3899" level="3" /> <!-- Staff of Empower -->
+			<skill id="3577" level="2" type_chance="20" type="ON_MAGIC_SKILL" /> <!-- Special Ability: Magic Hold -->
+		</skills>
 	</item>
 	<item id="16209" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Cheap Shot">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. MP consumption decreases by 8% during a skill attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -302,8 +327,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -319,16 +342,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3655-1;8312-2;3865-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="724" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">724</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="8312" level="2" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3865" level="1" /> <!-- Bow of Long Shot -->
+		</skills>
 	</item>
 	<item id="16210" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Focus">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. Increases Critical by 133. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -336,8 +364,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -353,16 +379,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3655-1;3567-3;3865-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="724" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">724</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3567" level="3" /> <!-- Special Ability: Focus -->
+			<skill id="3865" level="1" /> <!-- Bow of Long Shot -->
+		</skills>
 	</item>
 	<item id="16211" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Critical Slow">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. Inflicts slow with 33% chance during a critical attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -370,8 +401,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -387,26 +416,28 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3574-3" />
-		<set name="item_skill" val="3552-3;3655-1;3865-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="724" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">724</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3865" level="1" /> <!-- Bow of Long Shot -->
+			<skill id="3574" level="3" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Slow -->
+		</skills>
 	</item>
 	<item id="16212" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Haste">
-		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_vesper_pincer_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -417,32 +448,35 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3564-3;3833-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="359" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">359</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3564" level="3" /> <!-- Special Ability: Haste -->
+			<skill id="3833" level="1" /> <!-- Rapier of Critical Chance -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="16213" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Health">
-		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_vesper_pincer_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -453,32 +487,35 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3013-3;3833-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="359" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">359</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3833" level="1" /> <!-- Rapier of Critical Chance -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="16214" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Focus">
-		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
+		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion. <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
 		<set name="icon" val="icon.weapon_vesper_pincer_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -489,23 +526,28 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;8289-1;3833-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="359" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">359</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="8289" level="1" /> <!-- Special Ability: Focus -->
+			<skill id="3833" level="1" /> <!-- Rapier of Critical Chance -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="16215" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Cheap Shot">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. MP consumption decreases by 12% during skill use. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -513,8 +555,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -529,19 +569,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3655-1;3870-1;3360-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="444" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">444</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3870" level="1" /> <!-- Crossbow of Long Shot -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="16216" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Focus">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. Increases Critical by 133. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -549,8 +594,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -565,19 +608,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3655-1;8289-1;3870-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="444" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">444</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="8289" level="1" /> <!-- Special Ability: Focus -->
+			<skill id="3870" level="1" /> <!-- Crossbow of Long Shot -->
+		</skills>
 	</item>
 	<item id="16217" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Critical Slow">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. Casts Slow at a 24% rate during a critical attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -585,8 +633,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -601,20 +647,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3574-2" />
-		<set name="item_skill" val="3552-3;3655-1;3870-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="444" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">444</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3870" level="1" /> <!-- Crossbow of Long Shot -->
+			<skill id="3574" level="2" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Slow -->
+		</skills>
 	</item>
 	<item id="16218" type="Weapon" name="Vesper Nagan - Gale {PvP} - Haste">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -622,8 +672,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -637,19 +685,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3564-3;3846-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="429" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">429</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3564" level="3" /> <!-- Special Ability: Haste -->
+			<skill id="3846" level="2" /> <!-- Ancient Sword of Haste -->
+		</skills>
 	</item>
 	<item id="16219" type="Weapon" name="Vesper Nagan - Gale {PvP} - Health">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -657,8 +710,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -672,19 +723,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3013-3;3846-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="429" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">429</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3846" level="2" /> <!-- Ancient Sword of Haste -->
+		</skills>
 	</item>
 	<item id="16220" type="Weapon" name="Vesper Nagan - Gale {PvP} - Focus">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -692,8 +748,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -707,19 +761,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3566-3;3846-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="429" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">429</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3566" level="3" /> <!-- Special Ability: Focus -->
+			<skill id="3846" level="2" /> <!-- Ancient Sword of Haste -->
+		</skills>
 	</item>
 	<item id="16221" type="EtcItem" name="Sealed Moirai Helmet of Chaos">
 		<!-- A rare Sealed Moirai Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -733,7 +792,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16222" type="EtcItem" name="Sealed Moirai Leather Helmet of Chaos">
@@ -745,7 +804,7 @@
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16223" type="EtcItem" name="Sealed Moirai Circlet of Chaos">
@@ -760,7 +819,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16224" type="EtcItem" name="Sealed Moirai Breastplate of Chaos">
@@ -776,7 +835,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="225" />
+			<stat type="pDef">225</stat>
 		</stats>
 	</item>
 	<item id="16225" type="EtcItem" name="Sealed Moirai Leather Breastplate of Chaos">
@@ -789,7 +848,7 @@
 		<set name="weight" val="4140" />
 		<set name="price" val="25255000" />
 		<stats>
-			<add order="0" stat="pDef" val="169" />
+			<stat type="pDef">169</stat>
 		</stats>
 	</item>
 	<item id="16226" type="EtcItem" name="Sealed Moirai Tunic of Chaos">
@@ -805,8 +864,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="112" />
-			<add stat="maxMp" val="614" />
+			<stat type="pDef">112</stat>
+			<stat type="maxMp">614</stat>
 		</stats>
 	</item>
 	<item id="16227" type="EtcItem" name="Sealed Moirai Gaiter of Chaos">
@@ -822,7 +881,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="141" />
+			<stat type="pDef">141</stat>
 		</stats>
 	</item>
 	<item id="16228" type="EtcItem" name="Sealed Moirai Leather Legging of Chaos">
@@ -835,7 +894,7 @@
 		<set name="weight" val="1320" />
 		<set name="price" val="15784000" />
 		<stats>
-			<add order="0" stat="pDef" val="105" />
+			<stat type="pDef">105</stat>
 		</stats>
 	</item>
 	<item id="16229" type="EtcItem" name="Sealed Moirai Stockings of Chaos">
@@ -851,8 +910,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="70" />
-			<add stat="maxMp" val="392" />
+			<stat type="pDef">70</stat>
+			<stat type="maxMp">392</stat>
 		</stats>
 	</item>
 	<item id="16230" type="EtcItem" name="Sealed Moirai Gauntlet of Chaos">
@@ -867,7 +926,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16231" type="EtcItem" name="Sealed Moirai Leather Gloves of Chaos">
@@ -879,7 +938,7 @@
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16232" type="EtcItem" name="Sealed Moirai Gloves of Chaos">
@@ -894,7 +953,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16233" type="EtcItem" name="Sealed Moirai Boots of Chaos">
@@ -909,7 +968,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16234" type="EtcItem" name="Sealed Moirai Leather Boots of Chaos">
@@ -921,7 +980,7 @@
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16235" type="EtcItem" name="Sealed Moirai Shoes of Chaos">
@@ -936,7 +995,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16236" type="EtcItem" name="Sealed Moirai Shield of Chaos">
@@ -951,9 +1010,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="337" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">337</stat>
 		</stats>
 	</item>
 	<item id="16237" type="EtcItem" name="Sealed Moirai Sigil of Chaos">
@@ -968,7 +1027,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
+			<stat type="rEvas">-8</stat>
 		</stats>
 	</item>
 	<item id="16238" type="EtcItem" name="Sealed Vesper Helmet of Chaos">
@@ -983,7 +1042,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16239" type="EtcItem" name="Sealed Vesper Leather Helmet of Chaos">
@@ -995,7 +1054,7 @@
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16240" type="EtcItem" name="Sealed Vesper Circlet of Chaos">
@@ -1010,7 +1069,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16241" type="EtcItem" name="Sealed Vesper Breastplate of Chaos">
@@ -1026,7 +1085,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="250" />
+			<stat type="pDef">250</stat>
 		</stats>
 	</item>
 	<item id="16242" type="EtcItem" name="Sealed Vesper Leather Breastplate of Chaos">
@@ -1039,7 +1098,7 @@
 		<set name="weight" val="4140" />
 		<set name="price" val="35000000" />
 		<stats>
-			<add order="0" stat="pDef" val="187" />
+			<stat type="pDef">187</stat>
 		</stats>
 	</item>
 	<item id="16243" type="EtcItem" name="Sealed Moirai Tunic of Chaos">
@@ -1055,8 +1114,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="125" />
-			<add stat="maxMp" val="637" />
+			<stat type="pDef">125</stat>
+			<stat type="maxMp">637</stat>
 		</stats>
 	</item>
 	<item id="16244" type="EtcItem" name="Sealed Vesper Gaiter of Chaos">
@@ -1072,7 +1131,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="156" />
+			<stat type="pDef">156</stat>
 		</stats>
 	</item>
 	<item id="16245" type="EtcItem" name="Sealed Vesper Leather Legging of Chaos">
@@ -1085,7 +1144,7 @@
 		<set name="weight" val="1320" />
 		<set name="price" val="21876000" />
 		<stats>
-			<add order="0" stat="pDef" val="117" />
+			<stat type="pDef">117</stat>
 		</stats>
 	</item>
 	<item id="16246" type="EtcItem" name="Sealed Vesper Stockings of Chaos">
@@ -1101,8 +1160,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="415" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">415</stat>
 		</stats>
 	</item>
 	<item id="16247" type="EtcItem" name="Sealed Vesper Gauntlet of Chaos">
@@ -1117,7 +1176,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16248" type="EtcItem" name="Sealed Vesper Leather Gloves of Chaos">
@@ -1129,7 +1188,7 @@
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16249" type="EtcItem" name="Sealed Vesper Gloves of Chaos">
@@ -1144,7 +1203,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16250" type="EtcItem" name="Sealed Vesper Boots of Chaos">
@@ -1159,7 +1218,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16251" type="EtcItem" name="Sealed Vesper Leather Boots of Chaos">
@@ -1171,7 +1230,7 @@
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16252" type="EtcItem" name="Sealed Vesper Shoes of Chaos">
@@ -1186,7 +1245,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16253" type="EtcItem" name="Sealed Vesper Shield of Chaos">
@@ -1201,9 +1260,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="352" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">352</stat>
 		</stats>
 	</item>
 	<item id="16254" type="EtcItem" name="Sealed Vesper Sigil of Chaos">
@@ -1218,7 +1277,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
+			<stat type="rEvas">-8</stat>
 		</stats>
 	</item>
 	<item id="16255" type="EtcItem" name="Moirai Helmet of Chaos">
@@ -1234,7 +1293,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16256" type="EtcItem" name="Moirai Leather Helmet of Chaos">
@@ -1247,7 +1306,7 @@
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16257" type="EtcItem" name="Moirai Circlet of Chaos">
@@ -1263,7 +1322,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16258" type="EtcItem" name="Moirai Breastplate of Chaos">
@@ -1280,7 +1339,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="238" />
+			<stat type="pDef">238</stat>
 		</stats>
 	</item>
 	<item id="16259" type="EtcItem" name="Moirai Leather Breastplate of Chaos">
@@ -1294,7 +1353,7 @@
 		<set name="weight" val="4140" />
 		<set name="price" val="25255000" />
 		<stats>
-			<add order="0" stat="pDef" val="178" />
+			<stat type="pDef">178</stat>
 		</stats>
 	</item>
 	<item id="16260" type="EtcItem" name="Moirai Tunic of Chaos">
@@ -1311,8 +1370,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="119" />
-			<add stat="maxMp" val="614" />
+			<stat type="pDef">119</stat>
+			<stat type="maxMp">614</stat>
 		</stats>
 	</item>
 	<item id="16261" type="EtcItem" name="Moirai Gaiter of Chaos">
@@ -1329,7 +1388,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="149" />
+			<stat type="pDef">149</stat>
 		</stats>
 	</item>
 	<item id="16262" type="EtcItem" name="Moirai Leather Legging of Chaos">
@@ -1343,7 +1402,7 @@
 		<set name="weight" val="1320" />
 		<set name="price" val="15784000" />
 		<stats>
-			<add order="0" stat="pDef" val="111" />
+			<stat type="pDef">111</stat>
 		</stats>
 	</item>
 	<item id="16263" type="EtcItem" name="Moirai Stockings of Chaos">
@@ -1360,8 +1419,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<add stat="maxMp" val="392" />
+			<stat type="pDef">74</stat>
+			<stat type="maxMp">392</stat>
 		</stats>
 	</item>
 	<item id="16264" type="EtcItem" name="Moirai Gauntlet of Chaos">
@@ -1377,7 +1436,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16265" type="EtcItem" name="Moirai Leather Gloves of Chaos">
@@ -1390,7 +1449,7 @@
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16266" type="EtcItem" name="Moirai Gloves of Chaos">
@@ -1406,7 +1465,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16267" type="EtcItem" name="Moirai Boots of Chaos">
@@ -1422,7 +1481,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16268" type="EtcItem" name="Moirai Leather Boots of Chaos">
@@ -1435,7 +1494,7 @@
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16269" type="EtcItem" name="Moirai Shoes of Chaos">
@@ -1451,7 +1510,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16270" type="EtcItem" name="Moirai Shield of Chaos">
@@ -1467,9 +1526,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="355" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">355</stat>
 		</stats>
 	</item>
 	<item id="16271" type="EtcItem" name="Moirai Sigil of Chaos">
@@ -1486,9 +1545,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="355" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">355</stat>
 		</stats>
 	</item>
 	<item id="16272" type="EtcItem" name="Vesper Helmet of Chaos">
@@ -1504,7 +1563,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16273" type="EtcItem" name="Vesper Leather Helmet of Chaos">
@@ -1517,7 +1576,7 @@
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16274" type="EtcItem" name="Vesper Circlet of Chaos">
@@ -1533,7 +1592,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16275" type="EtcItem" name="Vesper Breastplate of Chaos">
@@ -1550,7 +1609,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="250" />
+			<stat type="pDef">250</stat>
 		</stats>
 	</item>
 	<item id="16276" type="EtcItem" name="Vesper Leather Breastplate of Chaos">
@@ -1564,7 +1623,7 @@
 		<set name="weight" val="4140" />
 		<set name="price" val="35000000" />
 		<stats>
-			<add order="0" stat="pDef" val="187" />
+			<stat type="pDef">187</stat>
 		</stats>
 	</item>
 	<item id="16277" type="EtcItem" name="Vesper Tunic of Chaos">
@@ -1581,8 +1640,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="125" />
-			<add stat="maxMp" val="637" />
+			<stat type="pDef">125</stat>
+			<stat type="maxMp">637</stat>
 		</stats>
 	</item>
 	<item id="16278" type="EtcItem" name="Vesper Gaiter of Chaos">
@@ -1599,7 +1658,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="156" />
+			<stat type="pDef">156</stat>
 		</stats>
 	</item>
 	<item id="16279" type="EtcItem" name="Vesper Leather Legging of Chaos">
@@ -1613,7 +1672,7 @@
 		<set name="weight" val="1320" />
 		<set name="price" val="21876000" />
 		<stats>
-			<add order="0" stat="pDef" val="117" />
+			<stat type="pDef">117</stat>
 		</stats>
 	</item>
 	<item id="16280" type="EtcItem" name="Vesper Stockings of Chaos">
@@ -1630,8 +1689,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="415" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">415</stat>
 		</stats>
 	</item>
 	<item id="16281" type="EtcItem" name="Vesper Gauntlet of Chaos">
@@ -1647,7 +1706,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16282" type="EtcItem" name="Vesper Leather Gloves of Chaos">
@@ -1660,7 +1719,7 @@
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16283" type="EtcItem" name="Vesper Gloves of Chaos">
@@ -1676,7 +1735,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16284" type="EtcItem" name="Vesper Boots of Chaos">
@@ -1692,7 +1751,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16285" type="EtcItem" name="Vesper Leather Boots of Chaos">
@@ -1705,7 +1764,7 @@
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16286" type="EtcItem" name="Vesper Shoes of Chaos">
@@ -1721,7 +1780,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16287" type="EtcItem" name="Vesper Shield of Chaos">
@@ -1737,9 +1796,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="371" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">371</stat>
 		</stats>
 	</item>
 	<item id="16288" type="EtcItem" name="Vesper Sigil of Chaos">
@@ -1756,8 +1815,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="17" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="16289" type="Armor" name="Moirai Helmet">
@@ -1773,14 +1832,15 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8418-1" /> <!-- Moirai Helmet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
+		<skills>
+			<skill id="8418" level="1" /> <!-- Moirai Helmet -->
+		</skills>
 	</item>
 	<item id="16290" type="Armor" name="Moirai Leather Helmet">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to Fire. -->
@@ -1795,11 +1855,12 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8424-1" /> <!-- Moirai Leather Helmet -->
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
+		<skills>
+			<skill id="8424" level="1" /> <!-- Moirai Leather Helmet -->
+		</skills>
 	</item>
 	<item id="16291" type="Armor" name="Moirai Circlet">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to Fire. -->
@@ -1814,14 +1875,15 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8429-1" /> <!-- Moirai Circlet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
+		<skills>
+			<skill id="8429" level="1" /> <!-- Moirai Circlet -->
+		</skills>
 	</item>
 	<item id="16292" type="Armor" name="Moirai Breastplate">
 		<!-- Masterwork Item that increases Atk. Spd., Resistance to Shock, and Resistance to Fire/Water/Wind/Earth. -->
@@ -1837,14 +1899,15 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8419-1" /> <!-- Moirai Cuirass -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="238" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">238</stat>
 		</stats>
+		<skills>
+			<skill id="8419" level="1" /> <!-- Moirai Cuirass -->
+		</skills>
 	</item>
 	<item id="16293" type="Armor" name="Moirai Leather Breastplate">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to Water. -->
@@ -1860,11 +1923,12 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8425-1" /> <!-- Moirai Leather Hauberk -->
 		<stats>
-			<add order="0" stat="pDef" val="178" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">178</stat>
 		</stats>
+		<skills>
+			<skill id="8425" level="1" /> <!-- Moirai Leather Hauberk -->
+		</skills>
 	</item>
 	<item id="16294" type="Armor" name="Moirai Tunic">
 		<!-- Masterwork Item that increases M. Atk., Casting Spd., Resistance to Paralysis, and Resistance to Fire/Water/Wind/Earth. -->
@@ -1880,15 +1944,16 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8430-1" /> <!-- Moirai Jacket -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="119" />
-			<add stat="maxMp" val="614" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">119</stat>
+			<stat type="maxMp">614</stat>
 		</stats>
+		<skills>
+			<skill id="8430" level="1" /> <!-- Moirai Jacket -->
+		</skills>
 	</item>
 	<item id="16295" type="Armor" name="Moirai Gaiter">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to water. -->
@@ -1904,14 +1969,15 @@
 		<set name="price" val="21046000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8420-1" /> <!-- Moirai Gaiter -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="149" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">149</stat>
 		</stats>
+		<skills>
+			<skill id="8420" level="1" /> <!-- Moirai Gaiter -->
+		</skills>
 	</item>
 	<item id="16296" type="Armor" name="Moirai Leather Legging">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to water. -->
@@ -1927,11 +1993,12 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8426-1" /> <!-- Moirai Leather Legging -->
 		<stats>
-			<add order="0" stat="pDef" val="111" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">111</stat>
 		</stats>
+		<skills>
+			<skill id="8426" level="1" /> <!-- Moirai Leather Legging -->
+		</skills>
 	</item>
 	<item id="16297" type="Armor" name="Moirai Stockings">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to water. -->
@@ -1947,15 +2014,16 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8431-1" /> <!-- Moirai Hose -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<add stat="maxMp" val="392" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
+			<stat type="maxMp">392</stat>
 		</stats>
+		<skills>
+			<skill id="8431" level="1" /> <!-- Moirai Hose -->
+		</skills>
 	</item>
 	<item id="16298" type="Armor" name="Moirai Gauntlet">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to wind. -->
@@ -1970,14 +2038,15 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8421-1" /> <!-- Moirai Gauntlet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8421" level="1" /> <!-- Moirai Gauntlet -->
+		</skills>
 	</item>
 	<item id="16299" type="Armor" name="Moirai Leather Gloves">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to wind. -->
@@ -1992,10 +2061,11 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8427-1" /> <!-- Moirai Leather Gloves -->
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8427" level="1" /> <!-- Moirai Leather Gloves -->
+		</skills>
 	</item>
 </list>

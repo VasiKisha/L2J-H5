@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.PremiumItem;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.holders.PremiumItem;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

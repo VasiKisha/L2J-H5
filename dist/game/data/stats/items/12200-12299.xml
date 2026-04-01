@@ -15,7 +15,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="44" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="12201" type="Armor" name="Common Item - Blue Wolf Tunic">
@@ -34,8 +34,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="83" />
-			<add stat="maxMp" val="377" />
+			<stat type="pDef">83</stat>
+			<stat type="maxMp">377</stat>
 		</stats>
 	</item>
 	<item id="12202" type="Armor" name="Common Item - Blue Wolf Helmet">
@@ -50,7 +50,7 @@
 		<set name="weight" val="193" />
 		<set name="price" val="56300" />
 		<stats>
-			<add order="0" stat="pDef" val="66" />
+			<stat type="pDef">66</stat>
 		</stats>
 	</item>
 	<item id="12203" type="Armor" name="Common Item - Blue Wolf Stockings">
@@ -69,8 +69,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="52" />
-			<add stat="maxMp" val="236" />
+			<stat type="pDef">52</stat>
+			<stat type="maxMp">236</stat>
 		</stats>
 	</item>
 	<item id="12204" type="Armor" name="Common Item - Blue Wolf Breastplate">
@@ -89,7 +89,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="166" />
+			<stat type="pDef">166</stat>
 		</stats>
 	</item>
 	<item id="12205" type="Armor" name="Common Item - Stockings of Doom">
@@ -108,8 +108,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="52" />
-			<add stat="maxMp" val="236" />
+			<stat type="pDef">52</stat>
+			<stat type="maxMp">236</stat>
 		</stats>
 	</item>
 	<item id="12206" type="Armor" name="Common Item - Dark Crystal Gaiters">
@@ -128,7 +128,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="12207" type="Armor" name="Common Item - Dark Crystal Gloves - Heavy Armor">
@@ -146,7 +146,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12208" type="Armor" name="Common Item - Dark Crystal Gloves - Tans Armor Use">
@@ -161,7 +161,7 @@
 		<set name="weight" val="193" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12209" type="Armor" name="Common Item - Dark Crystal Gloves - Robe">
@@ -179,7 +179,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12210" type="Armor" name="Common Item - Dark Crystal Leather Armor">
@@ -195,7 +195,7 @@
 		<set name="weight" val="1433" />
 		<set name="price" val="137700" />
 		<stats>
-			<add order="0" stat="pDef" val="128" />
+			<stat type="pDef">128</stat>
 		</stats>
 	</item>
 	<item id="12211" type="Armor" name="Common Item - Dark Crystal Robe">
@@ -214,8 +214,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="139" />
-			<add stat="maxMp" val="665" />
+			<stat type="pDef">139</stat>
+			<stat type="maxMp">665</stat>
 		</stats>
 	</item>
 	<item id="12212" type="Armor" name="Common Item - Dark Crystal Boots - Heavy Armor">
@@ -233,7 +233,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12213" type="Armor" name="Common Item - Dark Crystal Boots - Tans Armor Use">
@@ -248,7 +248,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12214" type="Armor" name="Common Item - Dark Crystal Boots - Robe">
@@ -266,7 +266,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12215" type="Armor" name="Common Item - Dark Crystal Shield">
@@ -284,9 +284,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="12216" type="Armor" name="Common Item - Dark Crystal Helmet">
@@ -301,7 +301,7 @@
 		<set name="weight" val="190" />
 		<set name="price" val="68800" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="12217" type="Armor" name="Common Item - Dark Crystal Breastplate">
@@ -320,7 +320,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="171" />
+			<stat type="pDef">171</stat>
 		</stats>
 	</item>
 	<item id="12218" type="Armor" name="Common Item - Dark Crystal Leggings">
@@ -336,7 +336,7 @@
 		<set name="weight" val="493" />
 		<set name="price" val="86000" />
 		<stats>
-			<add order="0" stat="pDef" val="80" />
+			<stat type="pDef">80</stat>
 		</stats>
 	</item>
 	<item id="12219" type="Armor" name="Common Item - Barbed Shirt">
@@ -351,7 +351,7 @@
 		<set name="weight" val="43" />
 		<set name="price" val="115000" />
 		<stats>
-			<add order="0" stat="pDef" val="23" />
+			<stat type="pDef">23</stat>
 		</stats>
 	</item>
 	<item id="12220" type="Armor" name="Common Item - Sealed Dark Crystal Gaiters">
@@ -370,7 +370,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="12221" type="Armor" name="Common Item - Sealed Dark Crystal Gloves">
@@ -385,7 +385,7 @@
 		<set name="weight" val="193" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12222" type="Armor" name="Common Item - Sealed Dark Crystal Leather Armor">
@@ -401,7 +401,7 @@
 		<set name="weight" val="1433" />
 		<set name="price" val="137700" />
 		<stats>
-			<add order="0" stat="pDef" val="128" />
+			<stat type="pDef">128</stat>
 		</stats>
 	</item>
 	<item id="12223" type="Armor" name="Common Item - Sealed Dark Crystal Robe">
@@ -420,8 +420,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="139" />
-			<add stat="maxMp" val="665" />
+			<stat type="pDef">139</stat>
+			<stat type="maxMp">665</stat>
 		</stats>
 	</item>
 	<item id="12224" type="Armor" name="Common Item - Sealed Dark Crystal Boots">
@@ -436,7 +436,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12225" type="Armor" name="Common Item - Sealed Dark Crystal Shield">
@@ -454,9 +454,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="12226" type="Armor" name="Common Item - Sealed Dark Crystal Helmet">
@@ -471,7 +471,7 @@
 		<set name="weight" val="190" />
 		<set name="price" val="68800" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="12227" type="Armor" name="Common Item - Sealed Dark Crystal Breastplate">
@@ -490,7 +490,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="171" />
+			<stat type="pDef">171</stat>
 		</stats>
 	</item>
 	<item id="12228" type="Armor" name="Common Item - Sealed Dark Crystal Leggings">
@@ -506,7 +506,7 @@
 		<set name="weight" val="493" />
 		<set name="price" val="86000" />
 		<stats>
-			<add order="0" stat="pDef" val="80" />
+			<stat type="pDef">80</stat>
 		</stats>
 	</item>
 	<item id="12229" type="Armor" name="Common Item - Sealed Tallum Gloves">
@@ -521,7 +521,7 @@
 		<set name="weight" val="193" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12230" type="Armor" name="Common Item - Sealed Tallum Leather Armor">
@@ -537,7 +537,7 @@
 		<set name="weight" val="1800" />
 		<set name="price" val="224000" />
 		<stats>
-			<add order="0" stat="pDef" val="209" />
+			<stat type="pDef">209</stat>
 		</stats>
 	</item>
 	<item id="12231" type="Armor" name="Common Item - Sealed Tallum Boots">
@@ -552,7 +552,7 @@
 		<set name="weight" val="377" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12232" type="Armor" name="Common Item - Sealed Tallum Tunic">
@@ -571,8 +571,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="86" />
-			<add stat="maxMp" val="409" />
+			<stat type="pDef">86</stat>
+			<stat type="maxMp">409</stat>
 		</stats>
 	</item>
 	<item id="12233" type="Armor" name="Common Item - Sealed Tallum Plate Armor">
@@ -591,7 +591,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="278" />
+			<stat type="pDef">278</stat>
 		</stats>
 	</item>
 	<item id="12234" type="Armor" name="Common Item - Sealed Tallum Helmet">
@@ -606,7 +606,7 @@
 		<set name="weight" val="190" />
 		<set name="price" val="68800" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="12235" type="Armor" name="Common Item - Sealed Tallum Stockings">
@@ -625,8 +625,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="53" />
-			<add stat="maxMp" val="256" />
+			<stat type="pDef">53</stat>
+			<stat type="maxMp">256</stat>
 		</stats>
 	</item>
 	<item id="12236" type="Armor" name="Common Item - Tallum Gloves - Heavy Armor">
@@ -644,7 +644,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12237" type="Armor" name="Common Item - Tallum Gloves - Tans Armor Use">
@@ -659,7 +659,7 @@
 		<set name="weight" val="193" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12238" type="Armor" name="Common Item - Tallum Gloves - Robe">
@@ -677,7 +677,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12239" type="Armor" name="Common Item - Tallum Leather Armor">
@@ -693,7 +693,7 @@
 		<set name="weight" val="1800" />
 		<set name="price" val="224000" />
 		<stats>
-			<add order="0" stat="pDef" val="209" />
+			<stat type="pDef">209</stat>
 		</stats>
 	</item>
 	<item id="12240" type="Armor" name="Common Item - Tallum Boots - Heavy Armor">
@@ -711,7 +711,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12241" type="Armor" name="Common Item - Tallum Boots - Tans Armor Use">
@@ -726,7 +726,7 @@
 		<set name="weight" val="377" />
 		<set name="price" val="45900" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12242" type="Armor" name="Common Item - Tallum Boots - Robe">
@@ -744,7 +744,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="12243" type="Armor" name="Common Item - Tallum Tunic">
@@ -763,8 +763,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="86" />
-			<add stat="maxMp" val="409" />
+			<stat type="pDef">86</stat>
+			<stat type="maxMp">409</stat>
 		</stats>
 	</item>
 	<item id="12244" type="Armor" name="Common Item - Tallum Plate Armor">
@@ -783,7 +783,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="278" />
+			<stat type="pDef">278</stat>
 		</stats>
 	</item>
 	<item id="12245" type="Armor" name="Common Item - Tallum Helmet">
@@ -798,7 +798,7 @@
 		<set name="weight" val="190" />
 		<set name="price" val="68800" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="12246" type="Armor" name="Common Item - Tallum Stockings">
@@ -817,8 +817,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="53" />
-			<add stat="maxMp" val="256" />
+			<stat type="pDef">53</stat>
+			<stat type="maxMp">256</stat>
 		</stats>
 	</item>
 	<item id="12247" type="Armor" name="Common Item - Majestic Gauntlet - Heavy Armor">
@@ -836,7 +836,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12248" type="Armor" name="Common Item - Majestic Gauntlet - Tans Armor Use">
@@ -851,7 +851,7 @@
 		<set name="weight" val="180" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12249" type="Armor" name="Common Item - Majestic Gauntlet - Robe">
@@ -869,7 +869,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12250" type="Armor" name="Common Item - Majestic Leather Armor">
@@ -885,7 +885,7 @@
 		<set name="weight" val="1783" />
 		<set name="price" val="358000" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="12251" type="Armor" name="Common Item - Majestic Robe">
@@ -904,8 +904,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="12252" type="Armor" name="Common Item - Majestic Boots - Heavy Armor">
@@ -923,7 +923,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12253" type="Armor" name="Common Item - Majestic Boots - Tans Armor Use">
@@ -938,7 +938,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12254" type="Armor" name="Common Item - Majestic Boots - Robe">
@@ -956,7 +956,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12255" type="Armor" name="Common Item - Majestic Circlet">
@@ -971,7 +971,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="110200" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="12256" type="Armor" name="Common Item - Majestic Plate Armor">
@@ -990,7 +990,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="12257" type="Armor" name="Common Item - Sealed Majestic Gauntlet">
@@ -1005,7 +1005,7 @@
 		<set name="weight" val="180" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12258" type="Armor" name="Common Item - Sealed Majestic Leather Armor">
@@ -1021,7 +1021,7 @@
 		<set name="weight" val="1783" />
 		<set name="price" val="358000" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="12259" type="Armor" name="Common Item - Sealed Majestic Robe">
@@ -1040,8 +1040,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="12260" type="Armor" name="Common Item - Sealed Majestic Boots">
@@ -1056,7 +1056,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12261" type="Armor" name="Common Item - Sealed Majestic Circlet">
@@ -1071,7 +1071,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="110200" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="12262" type="Armor" name="Common Item - Sealed Majestic Plate Armor">
@@ -1090,7 +1090,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="12263" type="Armor" name="Common Item - Sealed Armor of Nightmare">
@@ -1109,7 +1109,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="12264" type="Armor" name="Common Item - Sealed Gauntlet of Nightmare">
@@ -1124,7 +1124,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12265" type="Armor" name="Common Item - Sealed Leather Armor of Nightmare">
@@ -1140,7 +1140,7 @@
 		<set name="weight" val="1767" />
 		<set name="price" val="358000" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="12266" type="Armor" name="Common Item - Sealed Robe of Nightmare">
@@ -1159,8 +1159,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="12267" type="Armor" name="Common Item - Sealed Boots of Nightmare">
@@ -1175,7 +1175,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12268" type="Armor" name="Common Item - Sealed Shield of Nightmare">
@@ -1193,9 +1193,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="256" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">256</stat>
 		</stats>
 	</item>
 	<item id="12269" type="Armor" name="Common Item - Sealed Helm of Nightmare">
@@ -1210,7 +1210,7 @@
 		<set name="weight" val="187" />
 		<set name="price" val="110200" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="12270" type="Armor" name="Common Item - Armor of Nightmare">
@@ -1229,7 +1229,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="12271" type="Armor" name="Common Item - Gauntlet of Nightmare - Heavy Armor">
@@ -1247,7 +1247,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12272" type="Armor" name="Common Item - Gauntlet of Nightmare - Tans Armor Use">
@@ -1262,7 +1262,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12273" type="Armor" name="Common Item - Gauntlet of Nightmare - Robe">
@@ -1280,7 +1280,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12274" type="Armor" name="Common Item - Leather Armor of Nightmare">
@@ -1296,7 +1296,7 @@
 		<set name="weight" val="1767" />
 		<set name="price" val="358000" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="12275" type="Armor" name="Common Item - Robe of Nightmare">
@@ -1315,8 +1315,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="147" />
-			<add stat="maxMp" val="718" />
+			<stat type="pDef">147</stat>
+			<stat type="maxMp">718</stat>
 		</stats>
 	</item>
 	<item id="12276" type="Armor" name="Common Item - Boots of Nightmare - Heavy Armor">
@@ -1334,7 +1334,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12277" type="Armor" name="Common Item - Boots of Nightmare - Tans Armor Use">
@@ -1349,7 +1349,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="73500" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12278" type="Armor" name="Common Item - Boots of Nightmare - Robe">
@@ -1367,7 +1367,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="12279" type="Armor" name="Common Item - Shield of Nightmare">
@@ -1385,9 +1385,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="256" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">256</stat>
 		</stats>
 	</item>
 	<item id="12280" type="Armor" name="Common Item - Helm of Nightmare">
@@ -1402,7 +1402,7 @@
 		<set name="weight" val="187" />
 		<set name="price" val="110200" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="12281" type="Armor" name="Common Item - Stripe Barbed Shirt">
@@ -1417,7 +1417,7 @@
 		<set name="weight" val="43" />
 		<set name="price" val="184000" />
 		<stats>
-			<add order="0" stat="pDef" val="26" />
+			<stat type="pDef">26</stat>
 		</stats>
 	</item>
 	<item id="12282" type="Armor" name="Common Item - Draconic Leather Gloves">
@@ -1432,7 +1432,7 @@
 		<set name="weight" val="180" />
 		<set name="price" val="259800" />
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12283" type="Armor" name="Common Item - Draconic Leather Boots">
@@ -1447,7 +1447,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="259800" />
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12284" type="Armor" name="Common Item - Draconic Leather Armor">
@@ -1463,7 +1463,7 @@
 		<set name="weight" val="1650" />
 		<set name="price" val="1267000" />
 		<stats>
-			<add order="0" stat="pDef" val="249" />
+			<stat type="pDef">249</stat>
 		</stats>
 	</item>
 	<item id="12285" type="Armor" name="Common Item - Draconic Leather Helmet">
@@ -1478,7 +1478,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="389700" />
 		<stats>
-			<add order="0" stat="pDef" val="83" />
+			<stat type="pDef">83</stat>
 		</stats>
 	</item>
 	<item id="12286" type="Armor" name="Common Item - Major Arcana Gloves">
@@ -1496,7 +1496,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12287" type="Armor" name="Common Item - Major Arcana Robe">
@@ -1515,8 +1515,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="166" />
-			<add stat="maxMp" val="866" />
+			<stat type="pDef">166</stat>
+			<stat type="maxMp">866</stat>
 		</stats>
 	</item>
 	<item id="12288" type="Armor" name="Common Item - Major Arcana Boots">
@@ -1534,7 +1534,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12289" type="Armor" name="Common Item - Major Arcana Circlet">
@@ -1552,7 +1552,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="83" />
+			<stat type="pDef">83</stat>
 		</stats>
 	</item>
 	<item id="12290" type="Armor" name="Common Item - Mithril Shirt">
@@ -1567,7 +1567,7 @@
 		<set name="weight" val="43" />
 		<set name="price" val="650000" />
 		<stats>
-			<add order="0" stat="pDef" val="28" />
+			<stat type="pDef">28</stat>
 		</stats>
 	</item>
 	<item id="12291" type="Armor" name="Common Item - Sealed Draconic Leather Gloves">
@@ -1582,7 +1582,7 @@
 		<set name="weight" val="180" />
 		<set name="price" val="259800" />
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12292" type="Armor" name="Common Item - Sealed Draconic Leather Boots">
@@ -1597,7 +1597,7 @@
 		<set name="weight" val="370" />
 		<set name="price" val="259800" />
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12293" type="Armor" name="Common Item - Sealed Draconic Leather Armor">
@@ -1613,7 +1613,7 @@
 		<set name="weight" val="1650" />
 		<set name="price" val="1267000" />
 		<stats>
-			<add order="0" stat="pDef" val="236" />
+			<stat type="pDef">236</stat>
 		</stats>
 	</item>
 	<item id="12294" type="Armor" name="Common Item - Sealed Draconic Leather Helmet">
@@ -1628,7 +1628,7 @@
 		<set name="weight" val="183" />
 		<set name="price" val="389700" />
 		<stats>
-			<add order="0" stat="pDef" val="83" />
+			<stat type="pDef">83</stat>
 		</stats>
 	</item>
 	<item id="12295" type="Armor" name="Common Item - Sealed Major Arcana Gloves">
@@ -1646,7 +1646,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12296" type="Armor" name="Common Item - Sealed Major Arcana Robe">
@@ -1665,8 +1665,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="157" />
-			<add stat="maxMp" val="866" />
+			<stat type="pDef">157</stat>
+			<stat type="maxMp">866</stat>
 		</stats>
 	</item>
 	<item id="12297" type="Armor" name="Common Item - Sealed Major Arcana Boots">
@@ -1684,7 +1684,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="55" />
+			<stat type="pDef">55</stat>
 		</stats>
 	</item>
 	<item id="12298" type="Armor" name="Common Item - Sealed Major Arcana Circlet">
@@ -1702,7 +1702,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="83" />
+			<stat type="pDef">83</stat>
 		</stats>
 	</item>
 	<item id="12299" type="Armor" name="Common Item - Sealed Imperial Crusader Gaiters">
@@ -1721,7 +1721,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="121" />
+			<stat type="pDef">121</stat>
 		</stats>
 	</item>
 </list>

@@ -35,6 +35,7 @@ public class DevelopmentConfig
 	private static final String DEVELOPMENT_CONFIG_FILE = "./config/Development.ini";
 	
 	// Constants
+	public static boolean LOG_SERVER_LOAD_TIMES;
 	public static boolean HTML_ACTION_CACHE_DEBUG;
 	public static boolean NO_QUESTS;
 	public static boolean NO_SPAWNS;
@@ -49,6 +50,7 @@ public class DevelopmentConfig
 	public static void load()
 	{
 		final ConfigReader config = new ConfigReader(DEVELOPMENT_CONFIG_FILE);
+		LOG_SERVER_LOAD_TIMES = config.getBoolean("LogServerLoadTimes", false);
 		HTML_ACTION_CACHE_DEBUG = config.getBoolean("HtmlActionCacheDebug", false);
 		NO_QUESTS = config.getBoolean("NoQuests", false);
 		NO_SPAWNS = config.getBoolean("NoSpawns", false);

@@ -416,11 +416,11 @@ public class LogPanel extends JFrame
 					}
 				};
 				
-				worker.addPropertyChangeListener(evt ->
+				worker.addPropertyChangeListener(event ->
 				{
-					if ("progress".equals(evt.getPropertyName()))
+					if ("progress".equals(event.getPropertyName()))
 					{
-						_progressBar.setValue((Integer) evt.getNewValue());
+						_progressBar.setValue((Integer) event.getNewValue());
 					}
 				});
 				

@@ -109,7 +109,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3309" type="EtcItem" name="Alexandria's Book">
-		<!-- A book that contains records on who purchased Aklantoth's Gems. "Magister Iker, Magister Kaira, Trader Lara" -->
+		<!-- A book that contains records on who purchased Aklantoth's Gems. "Magister Iker, Magister Kaira, Trader Lara -->
 		<set name="icon" val="icon.etc_spellbook_gray_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

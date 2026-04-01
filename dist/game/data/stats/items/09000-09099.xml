@@ -6,8 +6,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -20,10 +18,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="175" />
-			<set stat="mAtk" val="78" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">175</stat>
+			<stat type="mAtk">78</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9001" type="Weapon" name="Shadow Item: Great Sword">
@@ -32,8 +32,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -46,10 +44,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9002" type="Weapon" name="Shadow Item: Heavy War Axe">
@@ -58,8 +58,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -72,11 +70,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="175" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">175</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9003" type="Weapon" name="Shadow Item: Sprite's Staff">
@@ -85,8 +85,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -100,11 +98,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="170" />
-			<set stat="mAtk" val="134" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">170</stat>
+			<stat type="mAtk">134</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9004" type="Weapon" name="Shadow Item: Keshanberk">
@@ -113,8 +113,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -127,10 +125,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="175" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">175</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9005" type="Weapon" name="Shadow Item: Sword of Valhalla">
@@ -139,8 +139,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -154,10 +152,12 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="140" />
-			<set stat="mAtk" val="122" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">140</stat>
+			<stat type="mAtk">122</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9006" type="Weapon" name="Shadow Item: Kris">
@@ -166,8 +166,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -180,11 +178,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="153" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">153</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9007" type="Weapon" name="Shadow Item: Arthro Nail">
@@ -193,8 +193,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;52;90" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -207,11 +205,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9008" type="Weapon" name="Shadow Item: Dark Elven Long Bow">
@@ -220,8 +220,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -236,11 +234,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="397" />
-			<set stat="mAtk" val="100" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
+			<stat type="pAtk">397</stat>
+			<stat type="mAtk">100</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="9009" type="Weapon" name="Shadow Item: Sword of Delusion*Sword of Delusion">
@@ -249,8 +249,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -263,10 +261,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9010" type="Weapon" name="Shadow Item: Great Axe">
@@ -275,8 +275,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -287,15 +285,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="175" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">175</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="9011" type="Weapon" name="Shadow Item: Tallum Blade">
 		<!-- This Shadow Item contains the mirrored power of a Tallum Blade. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -303,8 +305,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -317,10 +317,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9012" type="Weapon" name="Shadow Item: Halberd">
@@ -329,8 +331,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -341,15 +341,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="9013" type="Weapon" name="Shadow Item: Dasparion's Staff">
 		<!-- This Shadow Item contains the mirrored power of a Dasparion's Staff. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -357,8 +361,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -372,11 +374,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="207" />
-			<set stat="mAtk" val="157" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">207</stat>
+			<stat type="mAtk">157</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9014" type="Weapon" name="Shadow Item: Bloody Orchid">
@@ -385,8 +389,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -399,11 +401,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="186" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">186</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9015" type="Weapon" name="Shadow Item: Blood Tornado">
@@ -412,8 +416,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -426,11 +428,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="259" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">259</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9016" type="Weapon" name="Shadow Item: Carnage Bow">
@@ -439,8 +443,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -455,11 +457,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="440" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
+			<stat type="pAtk">440</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="9017" type="Weapon" name="Shadow Item: Keshanberk*Keshanberk">
@@ -468,8 +472,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -482,10 +484,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="259" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">259</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9018" type="Weapon" name="Shadow Item: Meteor Shower">
@@ -494,8 +498,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -508,11 +510,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9019" type="Weapon" name="Shadow Item: Inferno Master">
@@ -521,8 +525,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -535,10 +537,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="259" />
-			<set stat="mAtk" val="107" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">259</stat>
+			<stat type="mAtk">107</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9020" type="Weapon" name="Shadow Item: Keshanberk*Damascus">
@@ -547,8 +551,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -556,17 +558,21 @@
 		<set name="weight" val="693" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3013-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="275" />
-			<set stat="mAtk" val="112" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">275</stat>
+			<stat type="mAtk">112</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="9021" type="Weapon" name="Shadow Item: Dragon Slayer">
 		<!-- This Shadow Item contains the mirrored power of a Dragon Slayer. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -574,8 +580,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -588,10 +592,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9022" type="Weapon" name="Shadow Item: Sword of Miracles">
@@ -600,8 +606,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -615,10 +619,12 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="186" />
-			<set stat="mAtk" val="152" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">186</stat>
+			<stat type="mAtk">152</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9023" type="Weapon" name="Shadow Item: Elysian">
@@ -627,8 +633,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -641,11 +645,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9024" type="Weapon" name="Shadow Item: Branch of the Mother Tree">
@@ -654,8 +660,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -669,11 +673,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="226" />
-			<set stat="mAtk" val="167" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">226</stat>
+			<stat type="mAtk">167</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9025" type="Weapon" name="Shadow Item: Soul Separator">
@@ -682,8 +688,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -696,11 +700,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="203" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">203</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9026" type="Weapon" name="Shadow Item: Dragon Grinder">
@@ -709,8 +715,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -723,11 +727,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9027" type="Weapon" name="Shadow Item: Soul Bow">
@@ -736,8 +742,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -752,11 +756,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="528" />
-			<set stat="mAtk" val="125" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
+			<stat type="pAtk">528</stat>
+			<stat type="mAtk">125</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
 	</item>
 	<item id="9028" type="Weapon" name="Shadow Item: Tallum Glaive">
@@ -765,8 +771,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -777,15 +781,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="9029" type="Weapon" name="Shadow Item: Dark Legion's Edge">
 		<!-- This Shadow Item contains the mirrored power of a Dark Legion's Edge. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -793,8 +801,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -807,10 +813,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="9030" type="Armor" name="Shadow Item: Bronze Breastplate">
@@ -830,7 +838,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="9031" type="Armor" name="Shadow Item: Bronze Gaiters">
@@ -850,7 +858,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="43" />
+			<stat type="pDef">43</stat>
 		</stats>
 	</item>
 	<item id="9032" type="Armor" name="Shadow Item: Hard Leather Shirt">
@@ -867,7 +875,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="53" />
+			<stat type="pDef">53</stat>
 		</stats>
 	</item>
 	<item id="9033" type="Armor" name="Shadow Item: Hard Leather Gaiters">
@@ -884,7 +892,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="33" />
+			<stat type="pDef">33</stat>
 		</stats>
 	</item>
 	<item id="9034" type="Armor" name="Shadow Item: Tunic of Magic">
@@ -904,8 +912,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="34" />
-			<add stat="maxMp" val="86" />
+			<stat type="pDef">34</stat>
+			<stat type="maxMp">86</stat>
 		</stats>
 	</item>
 	<item id="9035" type="Armor" name="Shadow Item: Stockings of Magic">
@@ -925,8 +933,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="21" />
-			<add stat="maxMp" val="54" />
+			<stat type="pDef">21</stat>
+			<stat type="maxMp">54</stat>
 		</stats>
 	</item>
 	<item id="9036" type="Armor" name="Shadow Item: Bone Shield">
@@ -945,9 +953,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="9037" type="Armor" name="Shadow Item: Hard Leather Helmet">
@@ -963,7 +971,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="26" />
+			<stat type="pDef">26</stat>
 		</stats>
 	</item>
 	<item id="9038" type="Armor" name="Shadow Item: Boots">
@@ -979,7 +987,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="9039" type="Armor" name="Shadow Item: Bracer">
@@ -995,7 +1003,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="9040" type="Armor" name="Shadow Item: Mithril Breastplate">
@@ -1016,7 +1024,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="95" />
+			<stat type="pDef">95</stat>
 		</stats>
 	</item>
 	<item id="9041" type="Armor" name="Shadow Item: Mithril Gaiters">
@@ -1037,7 +1045,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9042" type="Armor" name="Shadow Item: Gauntlet">
@@ -1054,7 +1062,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9043" type="Armor" name="Shadow Item: Iron Boots">
@@ -1071,7 +1079,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9044" type="Armor" name="Shadow Item: Hoplon">
@@ -1091,9 +1099,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="128" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">128</stat>
 		</stats>
 	</item>
 	<item id="9045" type="Armor" name="Shadow Item: Reinforced Leather Shirt">
@@ -1111,7 +1119,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="9046" type="Armor" name="Shadow Item: Reinforced Leather Gaiters">
@@ -1129,7 +1137,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9047" type="Armor" name="Shadow Item: Reinforced Leather Gloves">
@@ -1146,7 +1154,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9048" type="Armor" name="Shadow Item: Reinforced Leather Boots">
@@ -1163,7 +1171,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9049" type="Armor" name="Shadow Item: Tunic of Knowledge">
@@ -1184,8 +1192,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<add stat="maxMp" val="147" />
+			<stat type="pDef">49</stat>
+			<stat type="maxMp">147</stat>
 		</stats>
 	</item>
 	<item id="9050" type="Armor" name="Shadow Item: Stockings of Knowledge">
@@ -1206,8 +1214,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="30" />
-			<add stat="maxMp" val="92" />
+			<stat type="pDef">30</stat>
+			<stat type="maxMp">92</stat>
 		</stats>
 	</item>
 	<item id="9051" type="Armor" name="Shadow Item: Gloves of Knowledge">
@@ -1224,7 +1232,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9052" type="Armor" name="Shadow Item: Boots of Knowledge">
@@ -1241,7 +1249,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="9053" type="Armor" name="Shadow Item: Helmet">
@@ -1258,7 +1266,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="37" />
+			<stat type="pDef">37</stat>
 		</stats>
 	</item>
 	<item id="9054" type="Armor" name="Shadow Item: Composite Armor">
@@ -1279,7 +1287,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="224" />
+			<stat type="pDef">224</stat>
 		</stats>
 	</item>
 	<item id="9055" type="Armor" name="Shadow Item: Composite Boots">
@@ -1296,7 +1304,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="36" />
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="9056" type="Armor" name="Shadow Item: Composite Shield">
@@ -1316,9 +1324,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="190" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">190</stat>
 		</stats>
 	</item>
 	<item id="9057" type="Armor" name="Shadow Item: Composite Helmet">
@@ -1335,7 +1343,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="54" />
+			<stat type="pDef">54</stat>
 		</stats>
 	</item>
 	<item id="9058" type="Armor" name="Shadow Item: Theca Leather Armor">
@@ -1353,7 +1361,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="106" />
+			<stat type="pDef">106</stat>
 		</stats>
 	</item>
 	<item id="9059" type="Armor" name="Shadow Item: Theca Leather Gaiters">
@@ -1371,7 +1379,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="66" />
+			<stat type="pDef">66</stat>
 		</stats>
 	</item>
 	<item id="9060" type="Armor" name="Shadow Item: Theca Leather Boots">
@@ -1388,7 +1396,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="37" />
+			<stat type="pDef">37</stat>
 		</stats>
 	</item>
 	<item id="9061" type="Armor" name="Shadow Item: Theca Leather Gloves">
@@ -1405,7 +1413,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="37" />
+			<stat type="pDef">37</stat>
 		</stats>
 	</item>
 	<item id="9062" type="Armor" name="Shadow Item: Demon's Tunic">
@@ -1426,8 +1434,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="69" />
-			<add stat="maxMp" val="284" />
+			<stat type="pDef">69</stat>
+			<stat type="maxMp">284</stat>
 		</stats>
 	</item>
 	<item id="9063" type="Armor" name="Shadow Item: Demon's Stockings">
@@ -1448,8 +1456,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="43" />
-			<add stat="maxMp" val="177" />
+			<stat type="pDef">43</stat>
+			<stat type="maxMp">177</stat>
 		</stats>
 	</item>
 	<item id="9064" type="Armor" name="Shadow Item: Demon's Boots">
@@ -1466,7 +1474,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="36" />
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="9065" type="Armor" name="Shadow Item: Demon's Gloves">
@@ -1483,7 +1491,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="36" />
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="9066" type="Armor" name="Shadow Item: Shining Circlet">
@@ -1500,7 +1508,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="54" />
+			<stat type="pDef">54</stat>
 		</stats>
 	</item>
 	<item id="9067" type="Armor" name="Shadow Item: Zubei's Breastplate">
@@ -1521,7 +1529,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="157" />
+			<stat type="pDef">157</stat>
 		</stats>
 	</item>
 	<item id="9068" type="Armor" name="Shadow Item: Zubei's Gaiters">
@@ -1542,7 +1550,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="98" />
+			<stat type="pDef">98</stat>
 		</stats>
 	</item>
 	<item id="9069" type="Armor" name="Shadow Item: Zubei's Helmet">
@@ -1559,7 +1567,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="62" />
+			<stat type="pDef">62</stat>
 		</stats>
 	</item>
 	<item id="9070" type="Armor" name="Shadow Item: Zubei's Shield">
@@ -1579,9 +1587,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="9071" type="Armor" name="Shadow Item: Zubei's Gauntlet">
@@ -1601,7 +1609,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9072" type="Armor" name="Shadow Item: Zubei's Boots">
@@ -1621,7 +1629,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9073" type="Armor" name="Shadow Item: Zubei's Leather Shirt">
@@ -1639,7 +1647,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="117" />
+			<stat type="pDef">117</stat>
 		</stats>
 	</item>
 	<item id="9074" type="Armor" name="Shadow Item: Zubei's Leather Gaiters">
@@ -1657,7 +1665,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="9075" type="Armor" name="Shadow Item: Zubei's Gauntlet">
@@ -1674,7 +1682,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9076" type="Armor" name="Shadow Item: Zubei's Boots">
@@ -1691,7 +1699,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9077" type="Armor" name="Shadow Item: Tunic of Zubei">
@@ -1712,8 +1720,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="345" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">345</stat>
 		</stats>
 	</item>
 	<item id="9078" type="Armor" name="Shadow Item: Stockings of Zubei">
@@ -1734,8 +1742,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
-			<add stat="maxMp" val="216" />
+			<stat type="pDef">49</stat>
+			<stat type="maxMp">216</stat>
 		</stats>
 	</item>
 	<item id="9079" type="Armor" name="Shadow Item: Zubei's Gauntlet">
@@ -1755,7 +1763,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9080" type="Armor" name="Shadow Item: Zubei's Boots">
@@ -1775,7 +1783,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="41" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="9081" type="Armor" name="Shadow Item: Dark Crystal Breastplate">
@@ -1796,7 +1804,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="171" />
+			<stat type="pDef">171</stat>
 		</stats>
 	</item>
 	<item id="9082" type="Armor" name="Shadow Item: Dark Crystal Gaiters">
@@ -1817,7 +1825,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
+			<stat type="pDef">107</stat>
 		</stats>
 	</item>
 	<item id="9083" type="Armor" name="Shadow Item: Dark Crystal Helmet">
@@ -1834,7 +1842,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="69" />
+			<stat type="pDef">69</stat>
 		</stats>
 	</item>
 	<item id="9084" type="Armor" name="Shadow Item: Dark Crystal Shield">
@@ -1854,9 +1862,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="9085" type="Armor" name="Shadow Item: Dark Crystal Gloves">
@@ -1876,7 +1884,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9086" type="Armor" name="Shadow Item: Dark Crystal Boots">
@@ -1896,7 +1904,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9087" type="Armor" name="Shadow Item: Dark Crystal Leather Armor">
@@ -1914,7 +1922,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="128" />
+			<stat type="pDef">128</stat>
 		</stats>
 	</item>
 	<item id="9088" type="Armor" name="Shadow Item: Dark Crystal Leggings">
@@ -1932,7 +1940,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="80" />
+			<stat type="pDef">80</stat>
 		</stats>
 	</item>
 	<item id="9089" type="Armor" name="Shadow Item: Dark Crystal Gloves">
@@ -1949,7 +1957,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9090" type="Armor" name="Shadow Item: Dark Crystal Boots">
@@ -1966,7 +1974,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9091" type="Armor" name="Shadow Item: Dark Crystal Robe">
@@ -1987,8 +1995,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="139" />
-			<add stat="maxMp" val="665" />
+			<stat type="pDef">139</stat>
+			<stat type="maxMp">665</stat>
 		</stats>
 	</item>
 	<item id="9092" type="Armor" name="Shadow Item: Dark Crystal Gloves">
@@ -2008,7 +2016,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9093" type="Armor" name="Shadow Item: Dark Crystal Boots">
@@ -2028,7 +2036,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="46" />
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="9094" type="Armor" name="Shadow Item: Majestic Plate Armor">
@@ -2049,7 +2057,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="9095" type="Armor" name="Shadow Item: Majestic Circlet">
@@ -2066,7 +2074,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="9096" type="Armor" name="Shadow Item: Majestic Gauntlet">
@@ -2086,7 +2094,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9097" type="Armor" name="Shadow Item: Majestic Boots">
@@ -2106,7 +2114,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="9098" type="Armor" name="Shadow Item: Majestic Leather Armor">
@@ -2124,7 +2132,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="9099" type="Armor" name="Shadow Item: Majestic Gauntlet">
@@ -2141,7 +2149,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
 		<stats>
-			<add order="0" stat="pDef" val="49" />
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 </list>

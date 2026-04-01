@@ -587,19 +587,21 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="FINE_STEEL" />
-		<set name="enchant4_skill" val="3045-14" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="14" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="8351" type="EtcItem" name="Black Colored Fish Scale">
 		<!-- Take this high-grade fish scale to a Fishing Guild Member to exchange it for an item or sell it to a regular store. -->
@@ -913,7 +915,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2239-1" /> <!-- Petrifaction Scroll -->
+		<skills>
+			<skill id="2239" level="1" /> <!-- Petrifaction Scroll -->
+		</skills>
 	</item>
 	<item id="8380" type="EtcItem" name="Spellbook: Betray">
 		<!-- Spellbook needed to learn Betray. Used by Warlocks, Elemental Summoners and Phantom Summoners. -->

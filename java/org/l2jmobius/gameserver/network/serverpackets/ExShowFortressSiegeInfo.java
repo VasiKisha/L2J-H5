@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.FortSiegeManager;
-import org.l2jmobius.gameserver.model.FortSiegeSpawn;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.siege.FortSpawnHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -42,7 +42,7 @@ public class ExShowFortressSiegeInfo extends ServerPacket
 	{
 		_fortId = fort.getResidenceId();
 		_size = fort.getFortSize();
-		final List<FortSiegeSpawn> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(_fortId);
+		final List<FortSpawnHolder> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(_fortId);
 		_csize = ((commanders == null) ? 0 : commanders.size());
 		_csize2 = fort.getSiege().getCommanders().size();
 	}

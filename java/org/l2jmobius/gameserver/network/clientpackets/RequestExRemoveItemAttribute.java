@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.Elementals;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExBaseAttributeCancelResult;
@@ -78,7 +78,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 			player.sendInventoryUpdate(iu);
 			SystemMessage sm;
 			final byte realElement = targetItem.isArmor() ? Elementals.getOppositeElement(_element) : _element;
-			if (targetItem.getEnchantLevel() > 0)
+			if (targetItem.isEnchanted())
 			{
 				if (targetItem.isArmor())
 				{

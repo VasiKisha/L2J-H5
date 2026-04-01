@@ -41,8 +41,6 @@ import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.handler.TargetHandler;
-import org.l2jmobius.gameserver.model.ExtractableProductItem;
-import org.l2jmobius.gameserver.model.ExtractableSkill;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -53,7 +51,6 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.enums.ShotType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
@@ -207,8 +204,6 @@ public class Skill
 	private final boolean _excludedFromCheck;
 	private final boolean _simultaneousCast;
 	
-	private ExtractableSkill _extractableItems = null;
-	
 	private final String _icon;
 	
 	private volatile Byte[] _effectTypes;
@@ -329,18 +324,6 @@ public class Skill
 		_canBeDispeled = set.getBoolean("canBeDispeled", true);
 		_excludedFromCheck = set.getBoolean("excludedFromCheck", false);
 		_simultaneousCast = set.getBoolean("simultaneousCast", false);
-		
-		final String capsuled_items = set.getString("capsuled_items_skill", null);
-		if (capsuled_items != null)
-		{
-			if (capsuled_items.isEmpty())
-			{
-				LOGGER.warning("Empty Extractable Item Skill data in Skill Id: " + _id);
-			}
-			
-			_extractableItems = parseExtractableSkill(_id, _level, capsuled_items);
-		}
-		
 		_icon = set.getString("icon", "icon.skill0000");
 		_channelingSkillId = set.getInt("channelingSkillId", 0);
 		_channelingTickInterval = set.getInt("channelingTickInterval", 2) * 1000;
@@ -1646,63 +1629,6 @@ public class Skill
 	}
 	
 	/**
-	 * Parse an extractable skill.
-	 * @param skillId the skill Id
-	 * @param skillLevel the skill level
-	 * @param values the values to parse
-	 * @return the parsed extractable skill
-	 * @author Zoey76
-	 */
-	private ExtractableSkill parseExtractableSkill(int skillId, int skillLevel, String values)
-	{
-		final String[] prodLists = values.split(";");
-		final List<ExtractableProductItem> products = new ArrayList<>();
-		String[] prodData;
-		for (String prodList : prodLists)
-		{
-			prodData = prodList.split(",");
-			if (prodData.length < 3)
-			{
-				LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> wrong seperator!");
-			}
-			
-			List<ItemHolder> items = null;
-			double chance = 0;
-			final int length = prodData.length - 1;
-			try
-			{
-				items = new ArrayList<>(length / 2);
-				for (int j = 0; j < length; j += 2)
-				{
-					final int prodId = Integer.parseInt(prodData[j]);
-					final int quantity = Integer.parseInt(prodData[j + 1]);
-					if ((prodId <= 0) || (quantity <= 0))
-					{
-						LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " wrong production Id: " + prodId + " or wrond quantity: " + quantity + "!");
-					}
-					
-					items.add(new ItemHolder(prodId, quantity));
-				}
-				
-				chance = Double.parseDouble(prodData[length]);
-			}
-			catch (Exception e)
-			{
-				LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> incomplete/invalid production data or wrong seperator!");
-			}
-			
-			products.add(new ExtractableProductItem(items, chance));
-		}
-		
-		if (products.isEmpty())
-		{
-			LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> There are no production items!");
-		}
-		
-		return new ExtractableSkill(SkillData.getSkillHashCode(skillId, skillLevel), products);
-	}
-	
-	/**
 	 * Parses all the abnormal visual effects.
 	 * @param abnormalVisualEffects the abnormal visual effects list
 	 */
@@ -1765,11 +1691,6 @@ public class Skill
 				_abnormalVisualEffects = aves.toArray(new AbnormalVisualEffect[aves.size()]);
 			}
 		}
-	}
-	
-	public ExtractableSkill getExtractableSkill()
-	{
-		return _extractableItems;
 	}
 	
 	/**

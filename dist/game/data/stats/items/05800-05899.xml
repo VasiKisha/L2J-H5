@@ -5,8 +5,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -18,12 +16,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5801" type="Weapon" name="For NPC (Dusk)">
@@ -31,8 +29,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -44,12 +40,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5802" type="Weapon" name="For NPC (Dawn)">
@@ -57,8 +53,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -70,12 +64,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5803" type="EtcItem" name="Lucky Charm (D-Grade)">
@@ -90,10 +84,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-2" /> <!-- Raid Blessing -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2168" level="2" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5804" type="EtcItem" name="Lucky Charm (C-Grade)">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is between 40 and 51. -->
@@ -107,10 +103,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-3" /> <!-- Raid Blessing -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2168" level="3" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5805" type="EtcItem" name="Lucky Charm (B-Grade)">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is between 52 and 60. -->
@@ -124,10 +122,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-4" /> <!-- Raid Blessing -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2168" level="4" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5806" type="EtcItem" name="Lucky Charm (A-Grade)">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is between 61 and 75. -->
@@ -141,10 +141,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-5" /> <!-- Raid Blessing -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2168" level="5" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5807" type="EtcItem" name="Lucky Charm (S-Grade)">
 		<!-- Bestows blessing on its owner such that when the owner dies during a boss/raid war, his/her abilities will not be diminished. This item can only be used on self by a character whose level is 76 or higher. -->
@@ -158,10 +160,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2168-6" /> <!-- Raid Blessing -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2168" level="6" /> <!-- Raid Blessing -->
+		</skills>
 	</item>
 	<item id="5808" type="Armor" name="Party Mask">
 		<!-- Fashion item used to display a unique appearance. -->
@@ -251,20 +255,22 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="5818" type="EtcItem" name="Alternative Dark Coda">
 		<set name="icon" val="icon.etc_coda_i08" />
@@ -597,10 +603,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2177-1" /> <!-- Blessed Scroll of Escape: Clan Hall -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2177" level="1" /> <!-- Blessed Scroll of Escape: Clan Hall -->
+		</skills>
 	</item>
 	<item id="5859" type="EtcItem" name="Blessed Scroll of Escape: Castle">
 		<!-- A magical scroll that transports you to your castle. If you don't belong to a clan that controls a castle, this scroll will have no effect. -->
@@ -613,10 +621,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2178-1" /> <!-- Blessed Scroll of Escape: Castle -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2178" level="1" /> <!-- Blessed Scroll of Escape: Castle -->
+		</skills>
 	</item>
 	<item id="5860" type="EtcItem" name="Lienrik Egg">
 		<!-- Lienrik's egg. It's the item that Pet Manager Rood of Heine asked you to find for him. -->

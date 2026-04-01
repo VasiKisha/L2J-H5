@@ -109,7 +109,9 @@
 		<set name="reuse_delay" val="20000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2069-1" /> <!-- Item - Race Sound Crystal -->
+		<skills>
+			<skill id="2069" level="1" /> <!-- Item - Race Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4412" type="EtcItem" name="Echo Crystal - Theme of Battle">
 		<!-- An echo crystal that plays the theme music of a battle. -->
@@ -121,7 +123,9 @@
 		<set name="reuse_delay" val="24000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2068-1" /> <!-- Item - Race Sound Crystal -->
+		<skills>
+			<skill id="2068" level="1" /> <!-- Item - Race Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4413" type="EtcItem" name="Echo Crystal - Theme of Love">
 		<!-- An echo crystal that plays the theme music of love. May only be used once. -->
@@ -133,7 +137,9 @@
 		<set name="reuse_delay" val="24000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2070-1" /> <!-- Item - Race Sound Crystal -->
+		<skills>
+			<skill id="2070" level="1" /> <!-- Item - Race Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4414" type="EtcItem" name="Echo Crystal - Theme of Solitude">
 		<!-- An echo crystal that plays the theme music of solitude. May only be used once. -->
@@ -145,7 +151,9 @@
 		<set name="reuse_delay" val="20000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2072-1" /> <!-- Item - Race Sound Crystal -->
+		<skills>
+			<skill id="2072" level="1" /> <!-- Item - Race Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4415" type="EtcItem" name="Echo Crystal - Theme of the Feast">
 		<!-- An echo crystal that plays the theme music of a feast. May only be used once. -->
@@ -157,7 +165,9 @@
 		<set name="reuse_delay" val="3000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2071-1" /> <!-- Item - Race Sound Crystal -->
+		<skills>
+			<skill id="2071" level="1" /> <!-- Item - Race Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4416" type="EtcItem" name="Echo Crystal - Theme of Celebration">
 		<!-- An echo crystal that plays the theme music of a celebration. May only be used once. -->
@@ -169,7 +179,9 @@
 		<set name="reuse_delay" val="3000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2073-1" /> <!-- Item - Theme Sound Crystal -->
+		<skills>
+			<skill id="2073" level="1" /> <!-- Item - Theme Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4417" type="EtcItem" name="Echo Crystal - Theme of Comedy">
 		<!-- An echo crystal that plays the theme music of a comedy. May only be used once. -->
@@ -181,7 +193,9 @@
 		<set name="reuse_delay" val="3000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2067-1" /> <!-- Item - Theme Sound Crystal -->
+		<skills>
+			<skill id="2067" level="1" /> <!-- Item - Theme Sound Crystal -->
+		</skills>
 	</item>
 	<item id="4418" type="EtcItem" name="Musical Score - Theme of Celebration">
 		<!-- A musical score containing the theme music of a celebration. If you take it to Maestro Melody, you can have an echo crystal made. -->
@@ -229,11 +243,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="4423" type="EtcItem" name="Dragon Bugle of Star">
 		<!-- A bugle used to summon a Star Strider. This pet uses some of the experience points earned by its master. -->
@@ -245,11 +261,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="4424" type="EtcItem" name="Dragon Bugle of Twilight">
 		<!-- A bugle used to summon a Twilight Strider. This pet uses some of the experience points earned by its master. -->
@@ -261,11 +279,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="4425" type="EtcItem" name="Penitent's Manacles">
 		<!-- The heavy manacles used to summon a Sin Eater. Summoning the Sin Eater consumes all the summoner's Exp. The Sin Eater must be fed Food for Wolves. -->
@@ -281,11 +301,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="4426" type="EtcItem" name="Manacles of Penitent">
 		<!-- Having consumed your sins, the Sin Eater has disappeared, leaving you with this ordinary pair of manacles. To repeat this quest, take them back to the Black Judge. -->

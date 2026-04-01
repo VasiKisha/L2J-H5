@@ -67,6 +67,7 @@ import javax.swing.table.DefaultTableModel;
 import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.ui.DarkTheme;
+import org.l2jmobius.commons.ui.SplashScreen;
 import org.l2jmobius.commons.util.HexUtil;
 import org.l2jmobius.loginserver.GameServerTable;
 
@@ -110,6 +111,9 @@ public class GameServerRegister extends JFrame
 	
 	private void gui()
 	{
+		// Show Splash Screen for 3 seconds.
+		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 3000, this);
+		
 		setTitle("Mobius - Game Server Register");
 		setMinimumSize(new Dimension(500, 300));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -284,7 +288,6 @@ public class GameServerRegister extends JFrame
 		add(mainPanel, BorderLayout.CENTER);
 		
 		setIconImages(icons);
-		setVisible(true);
 	}
 	
 	private void serversList()

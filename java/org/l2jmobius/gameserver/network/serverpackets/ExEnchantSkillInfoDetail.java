@@ -23,10 +23,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
-import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
-import org.l2jmobius.gameserver.model.EnchantSkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
+import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

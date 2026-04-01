@@ -27,7 +27,7 @@ file.Close
 Set file = Nothing
 
 'Generate command.
-command = path & "java " & parameters & " -cp ./../libs/* org.l2jmobius.tools.DatabaseInstaller"
+command = path & "java -jar DatabaseInstaller.jar"
 If window = 1 Then
 	command = "cmd /c start ""L2J Mobius - Database Installer"" " & command
 End If

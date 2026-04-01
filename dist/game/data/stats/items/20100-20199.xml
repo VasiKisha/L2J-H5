@@ -12,8 +12,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="21014-1;21015-1;21016-1" /> <!-- Scissors -->
 		<set name="time" val="1440" />
+		<skills>
+			<skill id="21014" level="1" /> <!-- Scissors -->
+			<skill id="21015" level="1" /> <!-- Rock -->
+			<skill id="21016" level="1" /> <!-- Paper -->
+		</skills>
 	</item>
 	<item id="20101" type="EtcItem" name="Santa Claus' Gift Set">
 		<!-- A gift set given by Santa Claus to show his appreciation. -->
@@ -23,7 +27,11 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="100" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20075,1,1,100;20076,1,1,100;20077,1,1,100" />
+		<capsuled_items>
+			<item id="20075" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Joy - 4-hour limited period -->
+			<item id="20076" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Enjoyment - 4-hour limited period -->
+			<item id="20077" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Luck - 4-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20102" type="EtcItem" name="Santa Claus' Gift Set">
 		<!-- A gift set given by Santa Claus to show his appreciation. -->
@@ -33,7 +41,11 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="100" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20075,1,1,100;20076,1,1,100;20078,1,1,100" />
+		<capsuled_items>
+			<item id="20075" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Joy - 4-hour limited period -->
+			<item id="20076" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Enjoyment - 4-hour limited period -->
+			<item id="20078" min="1" max="1" chance="100" /> <!-- Santa Claus' Gift - Luck - 4-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20103" type="EtcItem" name="Holiday Scroll: Heavy Armor Fighter - 8-hour limited period">
 		<!-- This magical scroll contains buffs for Fighters wearing heavy armor. It can be used once every hour. It cannot be exchanged, dropped or sold. -->
@@ -47,9 +59,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22013-1" /> <!-- Christmas Festival -->
 		<set name="time" val="480" />
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22013" level="1" /> <!-- Christmas Festival -->
+		</skills>
 	</item>
 	<item id="20104" type="EtcItem" name="Holiday Scroll: Light Armor Fighter - 8-hour limited period">
 		<!-- This magical scroll contains buffs for Fighters wearing light armor. It can be used once every hour. It cannot be exchanged, dropped or sold. -->
@@ -63,9 +77,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22014-1" /> <!-- Christmas Festival -->
 		<set name="time" val="480" />
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22014" level="1" /> <!-- Christmas Festival -->
+		</skills>
 	</item>
 	<item id="20105" type="EtcItem" name="Holiday Scroll: Healer - 8-hour limited period">
 		<!-- This magical scroll contains buffs for Healers. It can be used once every hour. It cannot be exchanged, dropped or sold. -->
@@ -79,9 +95,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22015-1" /> <!-- Christmas Festival -->
 		<set name="time" val="480" />
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22015" level="1" /> <!-- Christmas Festival -->
+		</skills>
 	</item>
 	<item id="20106" type="EtcItem" name="Holiday Scroll: Mage - 8-hour limited period">
 		<!-- This magical scroll contains buffs for Mages. It can be used once every hour. It cannot be exchanged, dropped or sold. -->
@@ -95,9 +113,11 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22016-1" /> <!-- Christmas Festival -->
 		<set name="time" val="480" />
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22016" level="1" /> <!-- Christmas Festival -->
+		</skills>
 	</item>
 	<item id="20107" type="EtcItem" name="Santa Claus' Weapon Exchange Ticket - 12-hour limited period">
 		<!-- Allows you to potentially receive a powerful item from one of Santa's Helpers in the village. It cannot be exchanged, dropped or stored in a warehouse. -->
@@ -127,8 +147,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -141,16 +159,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="79" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">79</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21017" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20110" type="Weapon" name="Titan Sword (Event) - 4-hour limited period">
 		<!-- Titan Sword for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -158,8 +178,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -171,16 +189,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="96" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">96</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21018" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20111" type="Weapon" name="Maingauche (Event) - 4-hour limited period">
 		<!-- Maingauche for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -188,8 +208,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -201,17 +219,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="69" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">69</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21019" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20112" type="Weapon" name="Tarbar (Event) - 4-hour limited period">
 		<!-- Tarbar for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -219,8 +239,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -232,17 +250,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="79" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">79</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21020" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20113" type="Weapon" name="Titan Hammer (Event) - 4-hour limited period">
 		<!-- Titan Hammer for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -250,8 +270,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -263,17 +281,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="96" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">96</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21021" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20114" type="Weapon" name="Priest Mace (Event) - 4-hour limited period">
 		<!-- Priest Mace for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -281,8 +301,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -294,17 +312,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="63" />
-			<set stat="mAtk" val="63" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">63</stat>
+			<stat type="mAtk">63</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21022" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20115" type="Weapon" name="Goat Head Staff (Event) - 4-hour limited period">
 		<!-- Goat Head Staff for events. No exchange/drop/sale/warehouse available. No enchantment/storing souls/smelting possible. -->
@@ -312,8 +332,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -325,17 +343,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="77" />
-			<set stat="mAtk" val="63" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">77</stat>
+			<stat type="mAtk">63</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21023" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20116" type="Weapon" name="Bich'Hwa (Event) - 4-hour limited period">
 		<!-- Bich'Hwa for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -343,8 +363,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -356,17 +374,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="96" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">96</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21024" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20117" type="Weapon" name="Strengthened Long Bow (Event) - 4-hour limited period">
 		<!-- Strengthened Long Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -374,8 +394,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -389,17 +407,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="179" />
-			<set stat="mAtk" val="51" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">179</stat>
+			<stat type="mAtk">51</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="21025" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20118" type="Weapon" name="Winged Spear (Event) - 4-hour limited period">
 		<!-- Winged Spear for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -407,8 +427,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -420,17 +438,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="79" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">79</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="21026" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="20119" type="Weapon" name="Artisan's Sword*Artisan's Sword (Event) - 4-hour limited period">
 		<!-- Artisan's Sword*Artisan's Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -438,8 +459,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -451,16 +470,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="96" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">96</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21027" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20120" type="Weapon" name="Epee (Event) - 4-hour limited period">
 		<!-- Epee for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -468,8 +489,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -477,25 +496,27 @@
 		<set name="weight" val="483" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="72" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">72</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21028" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="20121" type="Weapon" name="Katzbalger (Event) - 4-hour limited period">
 		<!-- Katzbalger for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -503,8 +524,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -516,20 +535,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="86" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">86</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21029" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20122" type="Weapon" name="Arm Breaker (Event) - 4-hour limited period">
 		<!-- Arm Breaker for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -537,8 +558,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -551,20 +570,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="100" />
-			<set stat="mAtk" val="47" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">100</stat>
+			<stat type="mAtk">47</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="21030" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20123" type="Weapon" name="Samurai Longsword (Event) - 4-hour limited period">
 		<!-- Samurai Longsword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -572,8 +593,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -585,16 +604,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21017" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20124" type="Weapon" name="Berserker Blade (Event) - 4-hour limited period">
 		<!-- Berserker Blade for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -602,8 +623,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -615,16 +634,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21018" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20125" type="Weapon" name="Crystal Dagger (Event) - 4-hour limited period">
 		<!-- Crystal Dagger for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -632,8 +653,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -645,17 +664,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="136" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">136</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21019" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20126" type="Weapon" name="Yaksa Mace (Event) - 4-hour limited period">
 		<!-- Yaksa Mace for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -663,8 +684,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -676,17 +695,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21020" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20127" type="Weapon" name="Dwarven Hammer (Event) - 4-hour limited period">
 		<!-- Dwarven Hammer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -694,8 +715,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -707,17 +726,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21021" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20128" type="Weapon" name="Ecliptic Axe (Event) - 4-hour limited period">
 		<!-- Ecliptic Axe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -725,8 +746,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -738,17 +757,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="125" />
-			<set stat="mAtk" val="111" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">125</stat>
+			<stat type="mAtk">111</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21022" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20129" type="Weapon" name="Demon's Staff (Event) - 4-hour limited period">
 		<!-- Demon's Staff for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -756,8 +777,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -769,17 +788,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="152" />
-			<set stat="mAtk" val="111" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">152</stat>
+			<stat type="mAtk">111</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21023" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20130" type="Weapon" name="Great Pata (Event) - 4-hour limited period">
 		<!-- Great Pata for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -787,8 +808,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;90" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -800,17 +819,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21024" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20131" type="Weapon" name="Eminence Bow (Event) - 4-hour limited period">
 		<!-- Eminence Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -818,8 +839,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -833,17 +852,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="323" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">323</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="21025" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20132" type="Weapon" name="Orcish Poleaxe (Event) - 4-hour limited period">
 		<!-- Orcish Poleaxe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -851,8 +872,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -864,17 +883,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="156" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">156</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="21026" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="20133" type="Weapon" name="Katana*Katana (Event) - 4-hour limited period">
 		<!-- Katana*Katana for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -882,8 +904,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -891,21 +911,23 @@
 		<set name="weight" val="757" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3045-8" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="190" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">190</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21027" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3045" level="8" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="20134" type="Weapon" name="Admiral's Estoc (Event) - 4-hour limited period">
 		<!-- Admiral's Estoc for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -913,8 +935,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -922,25 +942,27 @@
 		<set name="weight" val="460" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="141" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">141</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21028" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="20135" type="Weapon" name="Saber Tooth (Event) - 4-hour limited period">
 		<!-- Saber Tooth for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -948,8 +970,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -961,20 +981,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="169" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">169</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21029" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20136" type="Weapon" name="Sharpshooter (Event) - 4-hour limited period">
 		<!-- Sharpshooter for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -982,8 +1004,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -996,20 +1016,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="198" />
-			<set stat="mAtk" val="83" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">198</stat>
+			<stat type="mAtk">83</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="21030" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20137" type="Weapon" name="Sword of Damascus (Event) - 4-hour limited period">
 		<!-- Sword of Damascus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1017,8 +1039,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1030,16 +1050,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21017" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20138" type="Weapon" name="Guardian Sword (Event) - 4-hour limited period">
 		<!-- Guardian Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1047,8 +1069,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1060,16 +1080,18 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21018" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20139" type="Weapon" name="Demon's Dagger (Event) - 4-hour limited period">
 		<!-- Demon's Dagger for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1077,8 +1099,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1090,17 +1110,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="170" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">170</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21019" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20140" type="Weapon" name="Art of Battle Axe (Event) - 4-hour limited period">
 		<!-- Art of Battle Axe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1108,8 +1130,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1121,17 +1141,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21020" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20141" type="Weapon" name="Star Buster (Event) - 4-hour limited period">
 		<!-- Star Buster for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1139,8 +1161,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1152,17 +1172,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21021" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20142" type="Weapon" name="Kaim Vanul's Bones (Event) - 4-hour limited period">
 		<!-- Kaim Vanul's Bones for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1170,8 +1192,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1183,17 +1203,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="155" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">155</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21022" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20143" type="Weapon" name="Staff of Evil Spirits (Event) - 4-hour limited period">
 		<!-- Staff of Evil Spirits for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1201,8 +1223,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1214,17 +1234,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="189" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">189</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21023" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20144" type="Weapon" name="Bellion Cestus (Event) - 4-hour limited period">
 		<!-- Bellion Cestus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1232,8 +1254,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1245,17 +1265,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21024" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20145" type="Weapon" name="Bow of Peril (Event) - 4-hour limited period">
 		<!-- Bow of Peril for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1263,8 +1285,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1278,17 +1298,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="400" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">400</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="21025" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20146" type="Weapon" name="Lance (Event) - 4-hour limited period">
 		<!-- Lance for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1296,8 +1318,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1309,17 +1329,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="194" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">194</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="21026" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="20147" type="Weapon" name="Samurai Long Sword*Samurai Long Sword (Event) - 4-hour limited period">
 		<!-- Samurai Longsword*Samurai Long Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1327,8 +1350,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1336,21 +1357,23 @@
 		<set name="weight" val="693" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3045-14" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21027" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3045" level="14" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="20148" type="Weapon" name="Colichemarde (Event) - 4-hour limited period">
 		<!-- Colichemarde for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1358,8 +1381,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1367,25 +1388,27 @@
 		<set name="weight" val="450" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="176" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">176</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21028" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="20149" type="Weapon" name="Dismantler (Event) - 4-hour limited period">
 		<!-- Dismantler for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1393,8 +1416,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1406,20 +1427,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="210" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">210</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21029" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20150" type="Weapon" name="Hell Hound (Event) - 4-hour limited period">
 		<!-- Hell Hound for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1427,8 +1450,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="B" />
@@ -1441,20 +1462,22 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="245" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">245</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="21030" level="1" /> <!-- Christmas Dream Weapon -->
+		</skills>
 	</item>
 	<item id="20151" type="Weapon" name="Dark Legion's Edge (Event) - 4-hour limited period">
 		<!-- Dark Legion's Edge for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1462,8 +1485,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1475,16 +1496,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21017-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21017" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20152" type="Weapon" name="Dragon Slayer (Event) - 4-hour limited period">
 		<!-- Dragon Slayer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1492,8 +1516,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1505,16 +1527,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21018-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21018" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20153" type="Weapon" name="Soul Separator (Event) - 4-hour limited period">
 		<!-- Soul Separator for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1522,8 +1547,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1535,17 +1558,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21019-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="203" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">203</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21019" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20154" type="Weapon" name="Elysian (Event) - 4-hour limited period">
 		<!-- Elysian for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1553,8 +1579,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1566,17 +1590,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21020-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21020" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20155" type="Weapon" name="Doom Crusher (Event) - 4-hour limited period">
 		<!-- Doom Crusher for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1584,8 +1611,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1597,17 +1622,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21021-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21021" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20156" type="Weapon" name="Flaming Dragon Skull (Event) - 4-hour limited period">
 		<!-- Flaming Dragon Skull for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1615,8 +1643,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1628,17 +1654,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21022-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="186" />
-			<set stat="mAtk" val="152" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">186</stat>
+			<stat type="mAtk">152</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21022" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20157" type="Weapon" name="Branch of the Mother Tree (Event) - 4-hour limited period">
 		<!-- Branch of the Mother Tree for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1646,8 +1675,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1659,17 +1686,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21023-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="226" />
-			<set stat="mAtk" val="152" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">226</stat>
+			<stat type="mAtk">152</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21023" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20158" type="Weapon" name="Dragon Grinder (Event) - 4-hour limited period">
 		<!-- Dragon Grinder for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1677,8 +1707,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1690,17 +1718,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21024-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21024" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20159" type="Weapon" name="Soul Bow (Event) - 4-hour limited period">
 		<!-- Soul Bow for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1708,8 +1739,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1723,17 +1752,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21025-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="528" />
-			<set stat="mAtk" val="125" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="227" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">528</stat>
+			<stat type="mAtk">125</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">227</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="21025" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20160" type="Weapon" name="Tallum Glaive (Event) - 4-hour limited period">
 		<!-- Tallum Glaive for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1741,8 +1773,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1754,17 +1784,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21026-1;3552-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="232" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">232</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="21026" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="20161" type="Weapon" name="Damascus*Damascus (Event) - 4-hour limited period">
 		<!-- Damascus*Damascus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1772,8 +1806,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1781,21 +1813,24 @@
 		<set name="weight" val="693" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3046-20" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21027-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="282" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">282</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21027" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3046" level="20" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="20162" type="Weapon" name="Lacerator (Event) - 4-hour limited period">
 		<!-- Lacerator for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1803,8 +1838,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1812,25 +1845,28 @@
 		<set name="weight" val="440" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21028-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="210" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">210</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21028" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="20163" type="Weapon" name="Undertaker (Event) - 4-hour limited period">
 		<!-- Undertaker for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1838,8 +1874,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1851,20 +1885,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21029-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="251" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">251</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21029" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20164" type="Weapon" name="Reaper (Event) - 4-hour limited period">
 		<!-- Reaper for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1872,8 +1909,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="A" />
@@ -1886,20 +1921,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21030-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="294" />
-			<set stat="mAtk" val="114" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">294</stat>
+			<stat type="mAtk">114</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="21030" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20165" type="Weapon" name="Forgotten Blade (Event) - 4-hour limited period">
 		<!-- Forgotten Blade for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1907,8 +1945,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1920,16 +1956,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21017-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21017" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20166" type="Weapon" name="Heaven's Divider (Event) - 4-hour limited period">
 		<!-- Heaven's Divider for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1937,8 +1976,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1950,16 +1987,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21018-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21018" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20167" type="Weapon" name="Angel Slayer (Event) - 4-hour limited period">
 		<!-- Angel Slayer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1967,8 +2007,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -1980,17 +2018,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21019-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="246" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">246</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21019" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20168" type="Weapon" name="Basalt Battlehammer (Event) - 4-hour limited period">
 		<!-- Basalt Battlehammer for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1998,8 +2039,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2011,17 +2050,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21020-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21020" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20169" type="Weapon" name="Dragon Hunter Axe (Event) - 4-hour limited period">
 		<!-- Dragon Hunter Axe for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2029,8 +2071,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2042,17 +2082,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21021-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21021" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20170" type="Weapon" name="Arcana Mace (Event) - 4-hour limited period">
 		<!-- Arcana Mace for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2060,8 +2103,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2073,17 +2114,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21022-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="225" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">225</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21022" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20171" type="Weapon" name="Imperial Staff (Event) - 4-hour limited period">
 		<!-- Imperial Staff for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2091,8 +2135,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2104,17 +2146,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21023-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="274" />
-			<set stat="mAtk" val="175" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">274</stat>
+			<stat type="mAtk">175</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21023" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20172" type="Weapon" name="Demon Splinter (Event) - 4-hour limited period">
 		<!-- Demon Splinter for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2122,8 +2167,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2135,17 +2178,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21024-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21024" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20173" type="Weapon" name="Draconic Bow (Event) - 4-hour limited period">
 		<!-- Draconic Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2153,8 +2199,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2168,17 +2212,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21025-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="581" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">581</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="21025" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20174" type="Weapon" name="Saint Spear (Event) - 4-hour limited period">
 		<!-- Saint Spear for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2186,8 +2233,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2199,17 +2244,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21026-1;3552-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="281" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">281</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="21026" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="20175" type="Weapon" name="Tallum Blade*Dark Legion's Edge (Event) - 4-hour limited period">
 		<!-- Tallum Blade*Dark Legion's Edge for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2217,8 +2266,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2226,21 +2273,24 @@
 		<set name="weight" val="693" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3570-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21027-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<stats>
-			<set stat="pAtk" val="342" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">342</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21027" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3570" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Robust Health -->
+		</skills>
 	</item>
 	<item id="20176" type="Weapon" name="Laevateinn (Event) - 4-hour limited period">
 		<!-- Laevateinn for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2248,8 +2298,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2257,25 +2305,28 @@
 		<set name="weight" val="433" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21028-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="255" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">255</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21028" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="20177" type="Weapon" name="Gram (Event) - 4-hour limited period">
 		<!-- Gram for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2283,8 +2334,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2296,20 +2345,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21029-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="304" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">304</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="21029" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20178" type="Weapon" name="Sarunga (Event) - 4-hour limited period">
 		<!-- Sarunga for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2317,8 +2369,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="S" />
@@ -2331,20 +2381,23 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21030-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="356" />
-			<set stat="mAtk" val="132" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">356</stat>
+			<stat type="mAtk">132</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="21030" level="1" /> <!-- Christmas Dream Weapon -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+		</skills>
 	</item>
 	<item id="20179" type="EtcItem" name="Extra Entrance Pass - Near Kamaloka 5 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Near Kamaloka. -->
@@ -2356,7 +2409,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20027,5,5,100" />
+		<capsuled_items>
+			<item id="20027" min="5" max="5" chance="100" /> <!-- Extra Entrance Pass - Near Kamaloka -->
+		</capsuled_items>
 	</item>
 	<item id="20180" type="EtcItem" name="Extra Entrance Pass - Near Kamaloka 10 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Near Kamaloka. -->
@@ -2368,7 +2423,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20027,10,10,100" />
+		<capsuled_items>
+			<item id="20027" min="10" max="10" chance="100" /> <!-- Extra Entrance Pass - Near Kamaloka -->
+		</capsuled_items>
 	</item>
 	<item id="20181" type="EtcItem" name="My Teleport Spellbook 5 Sheet Pack">
 		<!-- Wrapped pack containing a My Teleport Spellbook. -->
@@ -2380,7 +2437,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20025,5,5,100" />
+		<capsuled_items>
+			<item id="20025" min="5" max="5" chance="100" /> <!-- My Teleport Spellbook -->
+		</capsuled_items>
 	</item>
 	<item id="20182" type="EtcItem" name="My Teleport Spellbook 10 Sheet Pack">
 		<!-- Wrapped pack containing a My Teleport Spellbook. -->
@@ -2392,7 +2451,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20025,10,10,100" />
+		<capsuled_items>
+			<item id="20025" min="10" max="10" chance="100" /> <!-- My Teleport Spellbook -->
+		</capsuled_items>
 	</item>
 	<item id="20183" type="EtcItem" name="My Teleport Flag 5 Sheet Pack">
 		<!-- Wrapped pack containing a My Teleport Flag. -->
@@ -2404,7 +2465,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20033,5,5,100" />
+		<capsuled_items>
+			<item id="20033" min="5" max="5" chance="100" /> <!-- My Teleport Flag -->
+		</capsuled_items>
 	</item>
 	<item id="20184" type="EtcItem" name="My Teleport Flag 10 Sheet Pack">
 		<!-- Wrapped pack containing a My Teleport Flag. -->
@@ -2416,7 +2479,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20033,10,10,100" />
+		<capsuled_items>
+			<item id="20033" min="10" max="10" chance="100" /> <!-- My Teleport Flag -->
+		</capsuled_items>
 	</item>
 	<item id="20185" type="EtcItem" name="Extra Entrance Pass - Kamaloka (Hall of the Abyss) 5 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Kamaloka (Hall of the Abyss). -->
@@ -2428,7 +2493,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20026,5,5,100" />
+		<capsuled_items>
+			<item id="20026" min="5" max="5" chance="100" /> <!-- Extra Entrance Pass - Kamaloka (Hall of the Abyss) -->
+		</capsuled_items>
 	</item>
 	<item id="20186" type="EtcItem" name="Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) 5 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Kamaloka (Labyrinth of the Abyss). -->
@@ -2440,7 +2507,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20028,5,5,100" />
+		<capsuled_items>
+			<item id="20028" min="5" max="5" chance="100" /> <!-- Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) -->
+		</capsuled_items>
 	</item>
 	<item id="20187" type="EtcItem" name="Extra Entrance Pass - Kamaloka (Hall of the Abyss) 10 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Kamaloka (Hall of the Abyss). -->
@@ -2452,7 +2521,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20026,10,10,100" />
+		<capsuled_items>
+			<item id="20026" min="10" max="10" chance="100" /> <!-- Extra Entrance Pass - Kamaloka (Hall of the Abyss) -->
+		</capsuled_items>
 	</item>
 	<item id="20188" type="EtcItem" name="Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) 10 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Kamaloka (Labyrinth of the Abyss). -->
@@ -2464,7 +2535,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20028,10,10,100" />
+		<capsuled_items>
+			<item id="20028" min="10" max="10" chance="100" /> <!-- Extra Entrance Pass - Kamaloka (Labyrinth of the Abyss) -->
+		</capsuled_items>
 	</item>
 	<item id="20189" type="EtcItem" name="Premium Valentine Decoration Pack">
 		<!-- Wrapped pack contains a Premium Valentine Decoration. Cannot be exchanged, dropped or sold. -->
@@ -2480,7 +2553,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20190,1,1,100" />
+		<capsuled_items>
+			<item id="20190" min="1" max="1" chance="100" /> <!-- Premium Valentine Decoration - 15-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20190" type="EtcItem" name="Premium Valentine Decoration - 15-day limited period">
 		<!-- Take this along with a Decadent Valentine Cake to Valentine Messenger Queen of Hearts, and she will create a Heavenly Valentine Cake just for you. Cannot be exchanged, dropped or sold. -->
@@ -2539,7 +2614,9 @@
 		<set name="weight" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22023-1" /> <!-- Shabby Valentine Cake -->
+		<skills>
+			<skill id="22023" level="1" /> <!-- Shabby Valentine Cake -->
+		</skills>
 	</item>
 	<item id="20196" type="EtcItem" name="Velvety Valentine Cake">
 		<!-- A creamy Valentine Cake. With a little more care, you may be able to make a Velvety Valentine Cake. Double-click to see what happens. -->
@@ -2550,7 +2627,9 @@
 		<set name="weight" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22024-1" /> <!-- Ordinary Valentine Cake -->
+		<skills>
+			<skill id="22024" level="1" /> <!-- Ordinary Valentine Cake -->
+		</skills>
 	</item>
 	<item id="20197" type="EtcItem" name="Delectable Valentine Cake">
 		<!-- A yummy and inviting Valentine Cake. With a little more care, you might be able to make a Decadent Valentine Cake. Double-click to see what happens. -->
@@ -2561,7 +2640,9 @@
 		<set name="weight" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22025-1" /> <!-- Delicious Valentine Cake -->
+		<skills>
+			<skill id="22025" level="1" /> <!-- Delicious Valentine Cake -->
+		</skills>
 	</item>
 	<item id="20198" type="EtcItem" name="Decadent Valentine Cake">
 		<!-- This is a perfect Valentine delicacy. Double-clicking this item will yield a special Valentine treat. -->
@@ -2572,7 +2653,9 @@
 		<set name="weight" val="100" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22026-1" /> <!-- Perfect Valentine Cake -->
+		<skills>
+			<skill id="22026" level="1" /> <!-- Perfect Valentine Cake -->
+		</skills>
 	</item>
 	<item id="20199" type="EtcItem" name="Heavenly Valentine Cake - 30-day limited period">
 		<!-- A divine confection made with love and care. Double-click to transform into a fabulous reward. Cannot be exchanged, dropped or sold. -->
@@ -2585,7 +2668,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22027-1" /> <!-- Fantasy Valentine Cake -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="22027" level="1" /> <!-- Fantasy Valentine Cake -->
+		</skills>
 	</item>
 </list>

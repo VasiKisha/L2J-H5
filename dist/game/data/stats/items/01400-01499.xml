@@ -699,7 +699,9 @@
 		<!-- <set name="enchant_enabled" val="true" />NOTE: Retail typo. -->
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2150-1" /> <!-- Soulshot: D-Grade -->
+		<skills>
+			<skill id="2150" level="1" /> <!-- Soulshot: D-Grade -->
+		</skills>
 	</item>
 	<item id="1464" type="EtcItem" name="Soulshot (C-Grade)">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing power of attack. Used with a C-grade weapon. -->
@@ -713,7 +715,9 @@
 		<!-- <set name="enchant_enabled" val="true" />NOTE: Retail typo. -->
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2151-1" /> <!-- Soulshot: C-Grade -->
+		<skills>
+			<skill id="2151" level="1" /> <!-- Soulshot: C-Grade -->
+		</skills>
 	</item>
 	<item id="1465" type="EtcItem" name="Soulshot (B-Grade)">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing power of attack. Used with a B-grade weapon. -->
@@ -727,7 +731,9 @@
 		<!-- <set name="enchant_enabled" val="true" />NOTE: Retail typo. -->
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2152-1" /> <!-- Soulshot: B-Grade -->
+		<skills>
+			<skill id="2152" level="1" /> <!-- Soulshot: B-Grade -->
+		</skills>
 	</item>
 	<item id="1466" type="EtcItem" name="Soulshot (A-Grade)">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing power of attack. Used with an A-grade weapon. -->
@@ -741,7 +747,9 @@
 		<!-- <set name="enchant_enabled" val="true" />NOTE: Retail typo. -->
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2153-1" /> <!-- Soulshot: A-Grade -->
+		<skills>
+			<skill id="2153" level="1" /> <!-- Soulshot: A-Grade -->
+		</skills>
 	</item>
 	<item id="1467" type="EtcItem" name="Soulshot (S-Grade)">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing power of attack. Used with an S-grade weapon. -->
@@ -755,7 +763,9 @@
 		<!-- <set name="enchant_enabled" val="true" />NOTE: Retail typo. -->
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2154-1" /> <!-- Soulshot: S-Grade -->
+		<skills>
+			<skill id="2154" level="1" /> <!-- Soulshot: S-Grade -->
+		</skills>
 	</item>
 	<item id="1468" type="EtcItem" name="Gludin Panacen">
 		<!-- A medicated herb from Gludio. Purchase at the Castle Gludio. -->
@@ -789,8 +799,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;300;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -802,13 +810,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="1472" type="Weapon" name="Dreadbane">
@@ -816,8 +824,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -828,16 +834,18 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<stats>
-			<set stat="pAtk" val="50" />
-			<set stat="mAtk" val="26" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">50</stat>
+			<stat type="mAtk">26</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="1473" type="EtcItem" name="Kasha Wolf Fang">
 		<!-- A fang that is obtained by killing a kasha wolf. Collect fifty and take these to Praetorian Rukain. -->

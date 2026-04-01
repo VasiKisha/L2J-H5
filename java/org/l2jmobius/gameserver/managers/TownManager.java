@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.managers;
 
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.TownZone;
@@ -90,7 +91,7 @@ public class TownManager
 	
 	public static boolean townHasCastleInSiege(int x, int y)
 	{
-		return townHasCastleInSiege(MapRegionManager.getInstance().getMapRegionLocId(x, y));
+		return townHasCastleInSiege(MapRegionData.getInstance().getMapRegionLocId(x, y));
 	}
 	
 	public static TownZone getTown(int townId)

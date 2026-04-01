@@ -6,8 +6,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="803" />
@@ -18,15 +16,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-10" />
 		<stats>
-			<set stat="pAtk" val="204" />
-			<set stat="mAtk" val="89" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">204</stat>
+			<stat type="mAtk">89</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="10" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="2601" type="Weapon" name="Raid Sword*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 146 on a critical attack. -->
@@ -34,8 +34,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="803" />
@@ -46,15 +44,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3042-10" />
 		<stats>
-			<set stat="pAtk" val="204" />
-			<set stat="mAtk" val="89" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">204</stat>
+			<stat type="mAtk">89</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3042" level="10" type="ON_ENCHANT_4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="2602" type="Weapon" name="Raid Sword*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -62,8 +62,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="803" />
@@ -74,15 +72,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-1" />
 		<stats>
-			<set stat="pAtk" val="204" />
-			<set stat="mAtk" val="89" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">204</stat>
+			<stat type="mAtk">89</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="2603" type="Weapon" name="Raid Sword*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 65. -->
@@ -90,8 +90,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="803" />
@@ -102,15 +100,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-10" />
 		<stats>
-			<set stat="pAtk" val="204" />
-			<set stat="mAtk" val="89" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">204</stat>
+			<stat type="mAtk">89</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="10" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2604" type="Weapon" name="Raid Sword*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 6%. -->
@@ -118,8 +118,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="803" />
@@ -130,15 +128,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-10" />
 		<stats>
-			<set stat="pAtk" val="204" />
-			<set stat="mAtk" val="89" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">204</stat>
+			<stat type="mAtk">89</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="10" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2605" type="Weapon" name="Raid Sword*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 43. -->
@@ -146,8 +146,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="979" />
@@ -158,15 +156,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-12" />
 		<stats>
-			<set stat="pAtk" val="220" />
-			<set stat="mAtk" val="94" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">220</stat>
+			<stat type="mAtk">94</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="12" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2606" type="Weapon" name="Caliburs*Caliburs">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 127 on a critical attack. -->
@@ -174,8 +174,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -186,15 +184,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3042-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3042" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="2607" type="Weapon" name="Caliburs*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -202,8 +202,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -214,15 +212,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-1" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="2608" type="Weapon" name="Caliburs*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 54. -->
@@ -230,8 +230,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -242,15 +240,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2609" type="Weapon" name="Caliburs*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 5%. -->
@@ -258,8 +258,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -270,15 +268,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2610" type="Weapon" name="Caliburs*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 4. -->
@@ -286,8 +286,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -298,15 +296,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="2611" type="Weapon" name="Caliburs*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 5%. -->
@@ -314,8 +314,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1164" />
@@ -326,15 +324,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-13" />
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="97" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">97</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="13" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2612" type="Weapon" name="Sword of Limit*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 127 on a critical attack. -->
@@ -342,8 +342,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -354,15 +352,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3042-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3042" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="2613" type="Weapon" name="Sword of Limit*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -370,8 +370,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -382,15 +380,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-1" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="2614" type="Weapon" name="Sword of Limit*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 54. -->
@@ -398,8 +398,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -410,15 +408,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2615" type="Weapon" name="Sword of Limit*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 5%. -->
@@ -426,8 +426,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -438,15 +436,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2616" type="Weapon" name="Sword of Limit*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 3. -->
@@ -454,8 +454,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1164" />
@@ -466,15 +464,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-13" />
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="97" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">97</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="13" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="2617" type="Weapon" name="Sword of Delusion*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 4. -->
@@ -482,8 +482,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -494,15 +492,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3046-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3046" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="2618" type="Weapon" name="Sword of Delusion*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 127 on a critical attack. -->
@@ -510,8 +510,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -522,15 +520,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3042-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3042" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="2619" type="Weapon" name="Sword of Delusion*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -538,8 +538,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -550,15 +548,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-1" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="2620" type="Weapon" name="Sword of Delusion*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 133 on a critical attack. -->
@@ -566,8 +566,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1164" />
@@ -578,15 +576,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3042-13" />
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="97" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">97</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3042" level="13" type="ON_ENCHANT_4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="2621" type="Weapon" name="Sword of Nightmare*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 54. -->
@@ -594,8 +594,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -606,15 +604,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2622" type="Weapon" name="Sword of Nightmare*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 5%. -->
@@ -622,8 +622,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -634,15 +632,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2623" type="Weapon" name="Sword of Nightmare*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -650,8 +650,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1164" />
@@ -662,15 +660,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3013-1" />
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="97" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">97</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3013" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="2624" type="Weapon" name="Tsurugi*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 54. -->
@@ -678,8 +678,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="891" />
@@ -690,15 +688,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-11" />
 		<stats>
-			<set stat="pAtk" val="213" />
-			<set stat="mAtk" val="91" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">213</stat>
+			<stat type="mAtk">91</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="11" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2625" type="Weapon" name="Tsurugi*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 52. -->
@@ -706,8 +706,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1164" />
@@ -718,15 +716,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3044-13" />
 		<stats>
-			<set stat="pAtk" val="228" />
-			<set stat="mAtk" val="97" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">228</stat>
+			<stat type="mAtk">97</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3044" level="13" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="2626" type="Weapon" name="Samurai Long Sword*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 4%. -->
@@ -734,8 +734,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="1346" />
@@ -746,15 +744,17 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3045-14" />
 		<stats>
-			<set stat="pAtk" val="236" />
-			<set stat="mAtk" val="99" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">236</stat>
+			<stat type="mAtk">99</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3045" level="14" type="ON_ENCHANT_4" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="2627" type="EtcItem" name="Mark of Challenger">
 		<!-- A mark given to those who have passed the Trial of the Challenger. An item for occupational change. -->
@@ -1141,7 +1141,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="2659" type="EtcItem" name="Viktor's Request">
-		<!-- A request issued by Trader Viktor. "Please gather 10 medusa scales." -->
+		<!-- A request issued by Trader Viktor. "Please gather 10 medusa scales. -->
 		<set name="icon" val="icon.etc_scroll_of_enchant_armor_i01" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1237,7 +1237,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="2667" type="EtcItem" name="List of Host">
-		<!-- A list of the bezoar hosts. "Marsh stakato drone, Breka orc overlord, ant warrior captain, Leto lizardman warrior" -->
+		<!-- A list of the bezoar hosts. "Marsh stakato drone, Breka orc overlord, ant warrior captain, Leto lizardman warrior -->
 		<set name="icon" val="icon.etc_piece_of_paper_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

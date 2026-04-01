@@ -1033,7 +1033,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="2786" type="EtcItem" name="Leirynn's 1st Order">
-		<!-- A list of orders given by Leirynn. "Slay 10 Delu Shamans and bring back their tokens." -->
+		<!-- A list of orders given by Leirynn. "Slay 10 Delu Shamans and bring back their tokens. -->
 		<set name="icon" val="icon.etc_recipe_blue_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

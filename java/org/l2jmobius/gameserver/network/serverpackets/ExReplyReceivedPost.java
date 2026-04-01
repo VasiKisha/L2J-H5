@@ -19,22 +19,22 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 
 /**
  * @author Migi, DS
  */
 public class ExReplyReceivedPost extends AbstractItemPacket
 {
-	private final Message _msg;
+	private final MailMessage _msg;
 	private Collection<Item> _items = null;
 	
-	public ExReplyReceivedPost(Message msg)
+	public ExReplyReceivedPost(MailMessage msg)
 	{
 		_msg = msg;
 		if (msg.hasAttachments())

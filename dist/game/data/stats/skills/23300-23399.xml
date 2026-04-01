@@ -2,128 +2,128 @@
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="23300" levels="1" name="Ghost Piercing">
 		<!-- Envelops with a specter to inflict 300 dark damage every second for 10 seconds. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="GHOST_PIERCING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="element" val="5" /> <!-- Dark -->
-		<set name="elementPower" val="20" />
-		<set name="isDebuff" val="true" />
-		<set name="isTriggeredSkill" val="true" />
-		<set name="magicLevel" val="83" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>GHOST_PIERCING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<element>5</element> <!-- Dark -->
+		<elementPower>20</elementPower>
+		<isDebuff>true</isDebuff>
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<magicLevel>83</magicLevel>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="300" />
+				<power>300</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23301" levels="1" name="Dimensional Door A">
 		<!-- Summons a dimensional door that moves the PC to the Dimensional Door B. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23302" levels="1" name="Dimensional Door B">
 		<!-- Summons a dimensional door that moves the PC to the Dimensional Door A. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23303" levels="1" name="Move">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23304" levels="1" name="Move">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23305" levels="1" name="Zinenze Agathion - Yunbokhwan">
 		<!-- Restores all HP/MP/CP and becomes invincible for 5 seconds. But can only be used when HP is below 30%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23306" levels="1" name="Zinenze Agathion Cute Trick">
 		<!-- Able to see the summoned Zinenze perform cute tricks. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23307" levels="1" name="Enze Agathion Cute Trick">
 		<!-- Able to see the summoned Enze perform cute tricks. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23308" levels="1" name="Totem's Energy - Body">
 		<!-- Increases HP Recovery Bonus by 30% and decreases damage from the topography by 80% through the mysterious totem's energy. The energy disappears when the totem becomes out of range. -->
-		<set name="icon" val="BranchSys2.icon.totem_of_body" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalTime" val="7" />
-		<set name="affectRange" val="200" />
-		<set name="blockedInOlympiad" val="true" />
+		<icon>BranchSys2.icon.totem_of_body</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalTime>7</abnormalTime>
+		<affectRange>200</affectRange>
+		<blockedInOlympiad>true</blockedInOlympiad>
 		<effects>
 			<effect name="Buff">
-				<mul stat="regHp" val="1.3" />
-				<mul stat="damageZoneVuln" val="80" />
+				<mul stat="regHp">1.3</mul>
+				<mul stat="damageZoneVuln">80</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23309" levels="1" name="Totem's Energy - Spirit">
 		<!-- Increases MP Recovery Bonus by 30% through the mysterious totem's energy. The energy disappears when the totem becomes out of range. -->
-		<set name="icon" val="BranchSys2.icon.totem_of_mind" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalTime" val="7" />
-		<set name="affectRange" val="200" />
-		<set name="blockedInOlympiad" val="true" />
+		<icon>BranchSys2.icon.totem_of_mind</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalTime>7</abnormalTime>
+		<affectRange>200</affectRange>
+		<blockedInOlympiad>true</blockedInOlympiad>
 		<effects>
 			<effect name="Buff">
-				<mul stat="regMp" val="1.3" />
+				<mul stat="regMp">1.3</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23310" levels="1" name="Totem's Energy - Courage">
 		<!-- Increases P. Def. by 15% through the mysterious totem's energy. The energy disappears when the totem becomes out of range. -->
-		<set name="icon" val="BranchSys2.icon.totem_of_bravery" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalTime" val="7" />
-		<set name="affectRange" val="200" />
-		<set name="blockedInOlympiad" val="true" />
+		<icon>BranchSys2.icon.totem_of_bravery</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalTime>7</abnormalTime>
+		<affectRange>200</affectRange>
+		<blockedInOlympiad>true</blockedInOlympiad>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="1.15" />
+				<mul stat="pDef">1.15</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23311" levels="1" name="Totem's Energy - Fortitude">
 		<!-- Increases M. Def. by 25% through the mysterious totem's energy. The energy disappears when the totem becomes out of range. -->
-		<set name="icon" val="BranchSys2.icon.totem_of_fortitude" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalTime" val="7" />
-		<set name="affectRange" val="200" />
-		<set name="blockedInOlympiad" val="true" />
+		<icon>BranchSys2.icon.totem_of_fortitude</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalTime>7</abnormalTime>
+		<affectRange>200</affectRange>
+		<blockedInOlympiad>true</blockedInOlympiad>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mDef" val="1.25" />
+				<mul stat="mDef">1.25</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23312" levels="1" name="Fall of the Dragon">
 		<!-- Nevit's gift to honor those warriors who caused the evil dragon's fall. Increases Nevit's blessing by 3 hour(s). -->
-		<set name="icon" val="BranchSys2.icon.the_fall_of_dragon" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="10800" />
-		<set name="abnormalType" val="VOTE" />
-		<set name="abnormalVisualEffect" val="VP_KEEP" />
-		<set name="canBeDispeled" val="false" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>BranchSys2.icon.the_fall_of_dragon</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>10800</abnormalTime>
+		<abnormalType>VOTE</abnormalType>
+		<abnormalVisualEffect>VP_KEEP</abnormalVisualEffect>
+		<canBeDispeled>false</canBeDispeled>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Buff">
-				<mul stat="vitalityConsumeRate" val="0" />
+				<mul stat="vitalityConsumeRate">0</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -133,8 +133,8 @@
 		<!-- Level 3: Increases Resistance to action-inhibiting attacks by 60%. -->
 		<!-- Level 4: Increases Resistance to action-inhibiting attacks by 80%. -->
 		<!-- Level 5: Increases Resistance to action-inhibiting attacks by 100%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23314" levels="5" name="Control Prohibit Immunity">
 		<!-- Level 1: Increases Resistance to control-inhibiting attacks by 20%. -->
@@ -142,8 +142,8 @@
 		<!-- Level 3: Increases Resistance to control-inhibiting attacks by 60%. -->
 		<!-- Level 4: Increases Resistance to control-inhibiting attacks by 80%. -->
 		<!-- Level 5: Increases Resistance to control-inhibiting attacks by 100%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23315" levels="5" name="Paralysis Immunity Enhance">
 		<!-- Level 1: Increases Resistance to paralysis attacks by 20%. -->
@@ -151,8 +151,8 @@
 		<!-- Level 3: Increases Resistance to paralysis attacks by 60%. -->
 		<!-- Level 4: Increases Resistance to paralysis attacks by 80%. -->
 		<!-- Level 5: Increases Resistance to paralysis attacks by 100%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23316" levels="5" name="Petrification Immunity Enhance">
 		<!-- Level 1: Increases Resistance to petrification attacks by 20%. -->
@@ -160,8 +160,8 @@
 		<!-- Level 3: Increases Resistance to petrification attacks by 60%. -->
 		<!-- Level 4: Increases Resistance to petrification attacks by 80%. -->
 		<!-- Level 5: Increases Resistance to petrification attacks by 100%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23317" levels="5" name="Fear Immunity Enhance">
 		<!-- Level 1: Increases Resistance to fear attacks by 20%. -->
@@ -169,238 +169,238 @@
 		<!-- Level 3: Increases Resistance to fear attacks by 60%. -->
 		<!-- Level 4: Increases Resistance to fear attacks by 80%. -->
 		<!-- Level 5: Increases Resistance to fear attacks by 100%. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23318" levels="1" name="Cat the Ranger Boots">
 		<!-- Recovers the master's HP by 10%. For 1 minute(s), receives power from Cat the Ranger to increase the master's Resistance to debuff attacks by 80%, Resistance to buff canceling attacks by 40%, Speed by 10%, P. Def. by 20%, and M. Def. by 20%. Does not receive preemptive attacks from monsters. Reuse delay 10 minutes. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23319" levels="1" name="Blood Seeker">
 		<!-- HP is decreased momentarily from bleeding. -->
-		<set name="icon" val="BranchSys2.icon.br_wp_Caladbulg_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="activateRate" val="80" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="40" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="power" val="5000" />
-		<set name="reuseDelay" val="10000" />
+		<icon>BranchSys2.icon.br_wp_Caladbulg_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<activateRate>80</activateRate>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>40</castRange>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<power>5000</power>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
-				<param power="105" />
+				<power>105</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23320" levels="1" name="Greedy Throat">
 		<!-- HP is decreased momentarily from bleeding. -->
-		<set name="icon" val="BranchSys2.icon.br_wp_habus_knife_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="activateRate" val="80" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="40" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="10000" />
+		<icon>BranchSys2.icon.br_wp_habus_knife_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<activateRate>80</activateRate>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>40</castRange>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="88" />
+				<power>88</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23321" levels="1" name="Draconic Evolver">
 		<!-- Temporarily inflicted with fear and moves regardless of your own volition. -->
-		<set name="icon" val="BranchSys2.icon.br_wp_tiatenon_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="TURN_FLEE" />
-		<set name="abnormalVisualEffect" val="TURN_FLEE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-800" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>BranchSys2.icon.br_wp_tiatenon_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>TURN_FLEE</abnormalType>
+		<abnormalVisualEffect>TURN_FLEE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>40</castRange>
+		<effectPoint>-800</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>5000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Fear" />
 		</effects>
 	</skill>
 	<skill id="23322" levels="1" name="Demonic Desire">
 		<!-- P. Def. is temporarily decreased. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="PD_DOWN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-800" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>PD_DOWN</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>40</castRange>
+		<effectPoint>-800</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pDef" val="0.77" />
+				<mul stat="pDef">0.77</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23323" levels="1" name="Fury of Darkness">
 		<!-- Temporarily, P. Def. is decreased and you cannot move due to shock. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="9" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-800" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="SHOCK" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>9</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>40</castRange>
+		<effectPoint>-800</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>5000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="Stun">
-				<mul stat="pDef" val="0.77" />
+				<mul stat="pDef">0.77</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23324" levels="1" name="Jet Black Typhoon">
 		<!-- Temporarily, Casting Spd. and wind type attack power are increased. -->
-		<set name="icon" val="BranchSys2.icon.br_wp_wind_of_mardil_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="7" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="CASTING_TIME_DOWN" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="effectPoint" val="800" />
-		<set name="element" val="2" /> <!-- Wind -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="5000" />
+		<icon>BranchSys2.icon.br_wp_wind_of_mardil_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>7</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>CASTING_TIME_DOWN</abnormalType>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<effectPoint>800</effectPoint>
+		<element>2</element> <!-- Wind -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtkSpd" val="1.3" />
+				<mul stat="mAtkSpd">1.3</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="23325" levels="1" name="Enlarge - Luckpy">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23326" levels="1" name="Reduce - Luckpy">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23327" levels="1" name="Boss Test - Weaken">
 		<!-- A skill to test a boss mob - Weaken -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23328" levels="1" name="Boss Test - Strengthen">
 		<!-- A skill to test a boss mob - Strengthen -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23329" levels="1" name="Lantern Agathion's Gift1">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23330" levels="1" name="Lantern Agathion's Gift2">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23331" levels="1" name="Lantern Agathion's Gift3">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23332" levels="1" name="Lantern Agathion's Gift4">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23333" levels="1" name="Agathion's New Year's Wish">
 		<!-- Through the power of the Lantern Agathion, Vitality is maintained and not consumed. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23334" levels="1" name="Lantern Agathion Cute Trick">
 		<!-- Able to see the summoned Lantern's perform cute tricks. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23335" levels="1" name="Agathion's New Year's Wish">
 		<!-- Vitality is maintained with the power of Juju Agathion. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23336" levels="1" name="Juju Agathion Cute Trick">
 		<!-- Summoned Juju performs cute tricks. -->
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23337" levels="1" name="Juju Agathion's Gift 1">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23338" levels="1" name="Juju Agathion's Gift 2">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23339" levels="1" name="Juju Agathion's Gift 3">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 	<skill id="23340" levels="1" name="Juju Agathion's Gift 4">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<operateType>P</operateType>
+		<targetType>NONE</targetType>
 	</skill>
 </list>

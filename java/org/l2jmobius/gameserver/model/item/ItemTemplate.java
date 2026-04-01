@@ -30,7 +30,6 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -38,6 +37,8 @@ import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
 import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemGrade;
+import org.l2jmobius.gameserver.model.item.holders.Elementals;
+import org.l2jmobius.gameserver.model.item.holders.ExtractableProduct;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
@@ -152,10 +153,10 @@ public abstract class ItemTemplate extends ListenersContainer
 		_dropable = set.getBoolean("is_dropable", true);
 		_destroyable = set.getBoolean("is_destroyable", true);
 		_tradeable = set.getBoolean("is_tradable", true);
+		_questItem = set.getBoolean("is_questitem", false);
 		_depositable = set.getBoolean("is_depositable", true);
 		_elementable = set.getBoolean("element_enabled", false);
 		_enchantable = set.getBoolean("enchant_enabled", false);
-		_questItem = set.getBoolean("is_questitem", false);
 		_freightable = set.getBoolean("is_freightable", false);
 		_allowSelfResurrection = set.getBoolean("allow_self_resurrection", false);
 		_isOlyRestricted = set.getBoolean("is_oly_restricted", false);
@@ -167,6 +168,7 @@ public abstract class ItemTemplate extends ListenersContainer
 		_defaultEnchantLevel = set.getInt("enchanted", 0);
 		_reuseDelay = set.getInt("reuse_delay", 0);
 		_sharedReuseGroup = set.getInt("shared_reuse_group", 0);
+		
 		String skills = set.getString("item_skill", null);
 		if (skills != null)
 		{
@@ -700,6 +702,29 @@ public abstract class ItemTemplate extends ListenersContainer
 	}
 	
 	/**
+	 * Checks if a function of the specified class is already attached to this item.
+	 * @param functionClass the class of the function to search for
+	 * @return {@code true} if a function of the specified class exists, {@code false} otherwise
+	 */
+	public boolean hasFunction(Class<? extends AbstractFunction> functionClass)
+	{
+		if ((_funcTemplates == null) || _funcTemplates.isEmpty())
+		{
+			return false;
+		}
+		
+		for (FuncTemplate template : _funcTemplates)
+		{
+			if (template.getClass().equals(functionClass))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Add the FuncTemplate f to the list of functions used with the item
 	 * @param f : FuncTemplate to add
 	 */
@@ -956,6 +981,13 @@ public abstract class ItemTemplate extends ListenersContainer
 	public boolean isPetItem()
 	{
 		return getItemType() == EtcItemType.PET_COLLAR;
+	}
+	
+	/**
+	 * @param extractableProduct
+	 */
+	public void addCapsuledItem(ExtractableProduct extractableProduct)
+	{
 	}
 	
 	public Skill getEnchant4Skill()

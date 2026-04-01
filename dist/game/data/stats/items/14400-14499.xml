@@ -6,8 +6,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -21,16 +19,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3069-1;3552-3;3651-1;3652-1" /> <!-- Special Ability: Rsk. Evasion -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3069" level="1" /> <!-- Special Ability: Rsk. Evasion -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14401" type="Weapon" name="Icarus Hand {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 106. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -38,8 +41,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -53,16 +54,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3565-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3565" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14402" type="Weapon" name="Icarus Hand {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by 10%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -70,8 +76,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -85,16 +89,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3564-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3564" level="2" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14403" type="Weapon" name="Icarus Stinger {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. Increases damage inflicted during PvP. -->
@@ -102,8 +111,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -114,23 +121,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3566-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14404" type="Weapon" name="Icarus Stinger {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. Increases damage inflicted during PvP. -->
@@ -138,8 +149,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -150,23 +159,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14405" type="Weapon" name="Icarus Stinger {PvP} - Light">
 		<!-- Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. Increases damage inflicted during PvP. -->
@@ -174,8 +187,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -186,23 +197,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3552-3;3650-1" /> <!-- Special Ability: Light -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14406" type="Weapon" name="Icarus Wingblade {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -210,8 +225,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -225,19 +238,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3566-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14407" type="Weapon" name="Icarus Wingblade {PvP} - Health">
 		<!-- Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -245,8 +262,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -260,19 +275,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14408" type="Weapon" name="Icarus Wingblade {PvP} - Light">
 		<!-- Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -280,8 +299,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -295,28 +312,29 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14409" type="Weapon" name="Icarus Shooter {PvP} - Cheap Shot">
-		<!-- Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>when using the . skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
+		<!-- Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>when using the. skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
 		<set name="icon" val="icon.weapon_icarus_shooter_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -331,19 +349,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3360-1;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="14410" type="Weapon" name="Icarus Shooter {PvP} - Guidance">
 		<!-- Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>. Increases Accuracy by 5.32. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -351,8 +373,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -367,19 +387,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3655-1;3573-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="14411" type="Weapon" name="Icarus Shooter {PvP} - Focus">
 		<!-- Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -387,8 +411,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -403,19 +425,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3655-1;3567-2" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14412" type="Weapon" name="Icarus Dual Sword - Destruction {PvP}">
 		<!-- Masterwork Item that increases P. Atk. P. Atk. of dual bladed weapons, two-handed swords, two-handed blunt weapons and fighting weapons increases more than the regular one-handed swords when enchanted. When enchanted to 4 or more, increases Critical Attack by 109 and Max HP by 10%. Increases damage inflicted during PvP, and decreases the range of bows/crossbows occasionally during an attack. -->
@@ -423,8 +449,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -435,19 +459,23 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3411-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3835-3;3552-3;3656-1" /> <!-- Dual-Blade Weapon of Might -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3835" level="3" /> <!-- Dual-Blade Weapon of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3411" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14413" type="Weapon" name="Icarus Disperser - Confusion {PvP}">
 		<!-- Masterwork Item that increases evasion. It can bestow one of the following three functions, Focus, Evasion, or Critical Damage. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -455,8 +483,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -470,16 +496,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3858-3;3552-3;3651-1;3652-1" /> <!-- Dagger of Avoid -->
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3858" level="3" /> <!-- Dagger of Avoid -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14414" type="Weapon" name="Icarus Disperser - Confusion {PvP} - Focus">
 		<!-- Masterwork Item that increases evasion. <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -487,8 +518,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -502,16 +531,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3858-3;3552-1;3651-1;3652-1;3567-2" /> <!-- Dagger of Avoid -->
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3858" level="3" /> <!-- Dagger of Avoid -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14415" type="Weapon" name="Icarus Disperser - Confusion {PvP} - Evasion">
 		<!-- Masterwork Item that increases evasion. <Soul Crystal Enhancement>. Increases Evasion by 5. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -519,8 +554,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -534,16 +567,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3009-8;3858-3;3552-3;3651-1;3652-1" /> <!-- Special Ability: Evasion -->
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3009" level="8" /> <!-- Special Ability: Evasion -->
+			<skill id="3858" level="3" /> <!-- Dagger of Avoid -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14416" type="Weapon" name="Icarus Disperser - Confusion {PvP} - Critical Damage">
 		<!-- Masterwork Item that increases evasion. <Soul Crystal Enhancement>. Increases P. Atk. by 559 during a critical attack. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -551,8 +590,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -566,16 +603,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3858-3;3552-1;3651-1;3652-1;3066-4" /> <!-- Dagger of Avoid -->
 		<stats>
-			<set stat="pAtk" val="318" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">318</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3858" level="3" /> <!-- Dagger of Avoid -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3066" level="4" /> <!-- Special Ability: Critical Damage -->
+		</skills>
 	</item>
 	<item id="14417" type="Weapon" name="Icarus Sawsword - Destruction {PvP}">
 		<!-- Masterwork Item that increases P. Atk. It can bestow one of the following three functions, Focus, Health, or Light. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -583,8 +626,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -598,15 +639,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3825-3;3552-3;3650-1" /> <!-- Sword of Might -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3825" level="3" /> <!-- Sword of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+		</skills>
 	</item>
 	<item id="14418" type="Weapon" name="Icarus Sawsword - Destruction {PvP} - Focus">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -614,8 +659,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -629,15 +672,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3825-3;3552-1;3650-1;3566-2" /> <!-- Sword of Might -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3825" level="3" /> <!-- Sword of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14419" type="Weapon" name="Icarus Sawsword - Destruction {PvP} - Health">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -645,8 +693,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -660,15 +706,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3825-3;3552-1;3650-1;3013-3" /> <!-- Sword of Might -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3825" level="3" /> <!-- Sword of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14420" type="Weapon" name="Icarus Sawsword - Destruction {PvP} - Light">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -676,8 +727,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -691,15 +740,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3825-3;3552-3;3650-1" /> <!-- Special Ability: Light -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3825" level="3" /> <!-- Sword of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+		</skills>
 	</item>
 	<item id="14421" type="Weapon" name="Icarus Shooter - Concentration {PvP}">
 		<!-- Masterwork Item that increases the Accuracy. Kamael Exclusive Weapon: Icarus Spitter Conversion. It can bestow one of the following functions, Cheap Shot, Guidance, or Focus. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -707,8 +761,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -723,28 +775,30 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3868-3;3552-3;3655-1" /> <!-- Crossbow of Guidance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3868" level="3" /> <!-- Crossbow of Guidance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="14422" type="Weapon" name="Icarus Shooter - Concentration {PvP} - Cheap Shot">
-		<!-- Masterwork Item that increases the Accuracy. Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>when using the . skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
+		<!-- Masterwork Item that increases the Accuracy. Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>when using the. skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
 		<set name="icon" val="icon.weapon_icarus_shooter_i01" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -759,19 +813,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3868-3;3552-3;3360-1;3655-1" /> <!-- Crossbow of Guidance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3868" level="3" /> <!-- Crossbow of Guidance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3360" level="1" /> <!-- Special Ability: Cheap Shot -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="14423" type="Weapon" name="Icarus Shooter - Concentration {PvP} - Guidance">
 		<!-- Masterwork Item that increases the Accuracy. Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>. Increases Accuracy by 5.32. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -779,8 +838,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -795,19 +852,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3868-3;3552-1;3655-1;3573-2" /> <!-- Crossbow of Guidance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3868" level="3" /> <!-- Crossbow of Guidance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="14424" type="Weapon" name="Icarus Shooter - Concentration {PvP} - Focus">
 		<!-- Masterwork Item that increases the Accuracy. Kamael Exclusive Weapon: Icarus Spitter Conversion. <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -815,8 +877,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -831,19 +891,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3868-3;3552-1;3655-1;3567-2" /> <!-- Crossbow of Guidance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="422" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">422</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3868" level="3" /> <!-- Crossbow of Guidance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14425" type="Weapon" name="Icarus Stinger - Destruction {PvP}">
 		<!-- Masterwork Item that increases P. Atk. Kamael Exclusive Weapon: Icarus Sawsword Conversion. Focus, Health, or Light can be bestowed. When enchanted to 4 or more, there's a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of received heal. -->
@@ -851,8 +916,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -863,23 +926,27 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3830-3;3552-3;3650-1" /> <!-- Rapier of Might -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3830" level="3" /> <!-- Rapier of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14426" type="Weapon" name="Icarus Stinger - Destruction {PvP} - Focus">
 		<!-- Masterwork Item than increases P. Atk. Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. When enchanted to 4 or more, party members including you -->
@@ -887,8 +954,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -899,23 +964,28 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3830-3;3552-1;3650-1;3566-2" /> <!-- Rapier of Might -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3830" level="3" /> <!-- Rapier of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14427" type="Weapon" name="Icarus Stinger - Destruction {PvP} - Health">
 		<!-- Masterwork Item that increases P. Atk. Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. Recovers CP occasionally during an attack. -->
@@ -923,8 +993,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -935,23 +1003,28 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3830-3;3552-1;3650-1;3013-3" /> <!-- Rapier of Might -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3830" level="3" /> <!-- Rapier of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14428" type="Weapon" name="Icarus Stinger - Destruction {PvP} - Light">
 		<!-- Masterwork Item that increases P. Atk. Kamael Exclusive Weapon: Icarus Sawsword Conversion. <Soul Crystal Enhancement>. weight gauge by 20%. Increases damage inflicted during PvP. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. Improves the chance of CP recovery during an attack. -->
@@ -959,8 +1032,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -971,23 +1042,28 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3830-3;3552-3;3650-1" /> <!-- Special Ability: Light -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="329" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">329</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3830" level="3" /> <!-- Rapier of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14429" type="Weapon" name="Icarus Spirit - Nature {PvP}">
 		<!-- Masterwork Item that increases Max MP. It can bestow one of the following three functions, Acumen, Mana Up, or Conversion. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -995,8 +1071,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1011,15 +1085,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3852-3;3552-3;3654-1" /> <!-- Sword of Mana Boost -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3852" level="3" /> <!-- Sword of Mana Boost -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+		</skills>
 	</item>
 	<item id="14430" type="Weapon" name="Icarus Spirit - Nature {PvP} - Acumen">
 		<!-- Masterwork Item that increases Max MP. <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1027,8 +1105,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1043,15 +1119,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3852-3;3552-1;3654-1;3047-2" /> <!-- Sword of Mana Boost -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3852" level="3" /> <!-- Sword of Mana Boost -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="14431" type="Weapon" name="Icarus Spirit - Nature {PvP} - Mana Up">
 		<!-- Masterwork Item that increases Max MP. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1059,8 +1140,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1075,15 +1154,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3852-3;3552-1;3654-1;3014-2" /> <!-- Sword of Mana Boost -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3852" level="3" /> <!-- Sword of Mana Boost -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="14432" type="Weapon" name="Icarus Spirit - Nature {PvP} - Conversion">
 		<!-- Masterwork Item that increases Max MP. <Soul Crystal Enhancement>. Max MP increases by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1091,8 +1175,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1107,15 +1189,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3852-3;3552-1;3654-1;3048-2" /> <!-- Sword of Mana Boost -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3852" level="3" /> <!-- Sword of Mana Boost -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="14433" type="Weapon" name="Icarus Spitter - Concentration {PvP}">
 		<!-- Masterwork Item that increases Accuracy. It can bestow one of the following functions, Cheap Shot, Guidance, or Focus. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1123,8 +1210,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1140,16 +1225,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3863-3;3552-3;3655-1" /> <!-- Bow of Guidance -->
 		<stats>
-			<set stat="pAtk" val="689" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">689</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3863" level="3" /> <!-- Bow of Guidance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="14434" type="Weapon" name="Icarus Spitter - Concentration {PvP} - Cheap Shot">
 		<!-- Masterwork Item that increases Accuracy. <Soul Crystal Enhancement>. Decreases MP Consumption 4% during a skill attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1157,8 +1246,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1174,16 +1261,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3863-3;3552-3;3655-1;8312-1" /> <!-- Bow of Guidance -->
 		<stats>
-			<set stat="pAtk" val="689" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">689</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3863" level="3" /> <!-- Bow of Guidance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="8312" level="1" /> <!-- Special Ability: Cheap Shot -->
+		</skills>
 	</item>
 	<item id="14435" type="Weapon" name="Icarus Spitter - Concentration {PvP} - Guidance">
 		<!-- Masterwork Item that increases the Accuracy. <Soul Crystal Enhancement>. Increases Accuracy by 5.32 during a critical attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1191,8 +1283,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1208,16 +1298,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3863-3;3552-1;3655-1;3573-2" /> <!-- Bow of Guidance -->
 		<stats>
-			<set stat="pAtk" val="689" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">689</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3863" level="3" /> <!-- Bow of Guidance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3573" level="2" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="14436" type="Weapon" name="Icarus Spitter - Concentration {PvP} - Focus">
 		<!-- Masterwork Item that increases the Accuracy. <Soul Crystal Enhancement>. Increases Critical by 116 during a critical attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1225,8 +1320,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1242,16 +1335,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3863-3;3552-1;3655-1;3567-2" /> <!-- Bow of Guidance -->
 		<stats>
-			<set stat="pAtk" val="689" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">689</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3863" level="3" /> <!-- Bow of Guidance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3567" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14437" type="Weapon" name="Icarus Wingblade - Lightning {PvP}">
 		<!-- Masterwork Item than increases Critical Rate. Kamael Exclusive Weapon: Icarus Heavy Arms conversion. It can bestow one of the following three functions, Focus, Health, or Light. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1259,8 +1357,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1274,19 +1370,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3851-2;3552-3;3653-1" /> <!-- Ancient Sword of Critical Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3851" level="2" /> <!-- Ancient Sword of Critical Chance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14438" type="Weapon" name="Icarus Wingblade - Lightning {PvP} - Focus">
 		<!-- Masterwork Item than increases Critical Rate. Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1294,8 +1394,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1309,19 +1407,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3851-2;3552-1;3653-1;3566-2" /> <!-- Ancient Sword of Critical Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3851" level="2" /> <!-- Ancient Sword of Critical Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14439" type="Weapon" name="Icarus Wingblade - Lightning {PvP} - Health">
 		<!-- Masterwork Item than increases Critical Rate. Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1329,8 +1432,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1344,19 +1445,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3851-2;3552-1;3653-1;3013-3" /> <!-- Ancient Sword of Critical Chance -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3851" level="2" /> <!-- Ancient Sword of Critical Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14440" type="Weapon" name="Icarus Wingblade - Lightning {PvP} - Light">
 		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1364,8 +1470,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1379,19 +1483,24 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3851-2;3552-3;3653-1" /> <!-- Special Ability: Light -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="393" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">393</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3851" level="2" /> <!-- Ancient Sword of Critical Chance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14441" type="Weapon" name="Icarus Trident - Thunder {PvP}">
 		<!-- Masterwork Item that increases Critical Damage. Can endow one of the three: Anger, Critical Stun, or Light. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1399,8 +1508,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1414,16 +1521,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3873-2;3552-4;3653-1;3599-1" /> <!-- Polearm of Critical Damage -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3873" level="2" /> <!-- Polearm of Critical Damage -->
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="14442" type="Weapon" name="Icarus Trident - Thunder {PvP} - Anger">
 		<!-- Masterwork Item that increases Critical Damage. <Soul Crystal Enhancement>. One's own HP decreases by 15% and P. Atk. increases by 78. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1431,8 +1543,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1446,16 +1556,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3873-2;3552-1;3653-1;3600-10" /> <!-- Polearm of Critical Damage -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3873" level="2" /> <!-- Polearm of Critical Damage -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3600" level="10" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="14443" type="Weapon" name="Icarus Trident - Thunder {PvP} - Critical Stun">
 		<!-- Masterwork Item that increases Critical Damage. <Soul Crystal Enhancement>. Has a 48% chance of stunning the target during a critical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1463,8 +1578,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1478,17 +1591,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3070-4" />
-		<set name="item_skill" val="3873-2;3552-4;3653-1" /> <!-- Polearm of Critical Damage -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3873" level="2" /> <!-- Polearm of Critical Damage -->
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3070" level="4" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Critical Stun -->
+		</skills>
 	</item>
 	<item id="14444" type="Weapon" name="Icarus Trident - Thunder {PvP} - Light">
 		<!-- Masterwork Item that increases Critical Damage. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1496,8 +1613,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1511,16 +1626,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3873-2;3552-4;3653-1" /> <!-- Special Ability: Light -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3873" level="2" /> <!-- Polearm of Critical Damage -->
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14445" type="Weapon" name="Icarus Hammer - Earth {PvP}">
 		<!-- Masterwork Item that increases Max HP. It can bestow one of the following functions: Anger, Health, or Rsk. Focus. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1528,8 +1648,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1543,16 +1661,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3884-3;3552-3;3650-1" /> <!-- Blunt Weapon of Boost HP -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3884" level="3" /> <!-- Blunt Weapon of Boost HP -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+		</skills>
 	</item>
 	<item id="14446" type="Weapon" name="Icarus Hammer - Earth {PvP} - Anger">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Your own HP decreases by 15% and P. Atk. increases by 78 during a critical attack. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1560,8 +1682,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1575,16 +1695,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3884-3;3552-1;3650-1;3057-4" /> <!-- Blunt Weapon of Boost HP -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3884" level="3" /> <!-- Blunt Weapon of Boost HP -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3057" level="4" /> <!-- Special Ability: Anger -->
+		</skills>
 	</item>
 	<item id="14447" type="Weapon" name="Icarus Hammer - Earth {PvP} - Health">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1592,8 +1717,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1607,16 +1730,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3884-3;3552-1;3650-1;3013-3" /> <!-- Blunt Weapon of Boost HP -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3884" level="3" /> <!-- Blunt Weapon of Boost HP -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14448" type="Weapon" name="Icarus Hammer - Earth {PvP} - Rsk. Focus">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Increases Critical by 164 when HP is 60% or below. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1624,8 +1752,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1639,16 +1765,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3884-3;3552-1;3650-1;3027-7" /> <!-- Blunt Weapon of Boost HP -->
 		<stats>
-			<set stat="pAtk" val="363" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">363</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3884" level="3" /> <!-- Blunt Weapon of Boost HP -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3027" level="7" /> <!-- Special Ability: Rsk. Focus -->
+		</skills>
 	</item>
 	<item id="14449" type="Weapon" name="Icarus Hand - Destruction {PvP}">
 		<!-- Masterwork Item that increases P. Atk. Bestows Rsk. Evasion, Focus, or Haste. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1656,8 +1787,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1671,16 +1800,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3879-3;3552-3;3651-1;3652-1" /> <!-- Fist Weapon of Might -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3879" level="3" /> <!-- Fist Weapon of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14450" type="Weapon" name="Icarus Hand - Destruction {PvP} - Rsk. Evasion">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Increases Evasion by 6.8 when HP is 60% or below. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1688,8 +1822,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1703,16 +1835,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3069-1;3879-3;3552-3;3651-1;3652-1" /> <!-- Special Ability: Rsk. Evasion -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3069" level="1" /> <!-- Special Ability: Rsk. Evasion -->
+			<skill id="3879" level="3" /> <!-- Fist Weapon of Might -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14451" type="Weapon" name="Icarus Hand - Destruction {PvP} - Focus">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Increases Critical by 106. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1720,8 +1858,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1735,16 +1871,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3879-3;3552-1;3651-1;3652-1;3565-2" /> <!-- Fist Weapon of Might -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3879" level="3" /> <!-- Fist Weapon of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3565" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14452" type="Weapon" name="Icarus Hand - Destruction {PvP} - Haste">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Atk. Spd. increases by about 10%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1752,8 +1894,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1767,16 +1907,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3879-3;3552-1;3651-1;3652-1;3564-2" /> <!-- Fist Weapon of Might -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3879" level="3" /> <!-- Fist Weapon of Might -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3564" level="2" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14453" type="Weapon" name="Icarus Heavy Arms - Lightning {PvP}">
 		<!-- Masterwork Item that increases Critical Rate. Can endow one of the three: Focus, Health, or Light. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1784,8 +1930,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1799,15 +1943,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3845-2;3552-3;3653-1" /> <!-- Two-handed Sword of Critical Chance -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3845" level="2" /> <!-- Two-handed Sword of Critical Chance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14454" type="Weapon" name="Icarus Heavy Arms - Lightning {PvP} - Focus">
 		<!-- Masterwork Item that increases Critical Rate. <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1815,8 +1963,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1830,15 +1976,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3845-2;3552-1;3653-1;3566-2" /> <!-- Two-handed Sword of Critical Chance -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3845" level="2" /> <!-- Two-handed Sword of Critical Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3566" level="2" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14455" type="Weapon" name="Icarus Heavy Arms - Lightning {PvP} - Health">
 		<!-- Masterwork Item that increases Critical Rate. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1846,8 +1997,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1861,15 +2010,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3845-2;3552-1;3653-1;3013-3" /> <!-- Two-handed Sword of Critical Chance -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3845" level="2" /> <!-- Two-handed Sword of Critical Chance -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14456" type="Weapon" name="Icarus Heavy Arms - Lightning {PvP} - Light">
 		<!-- Masterwork Item that increases Critical Rate. <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1877,8 +2031,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1892,15 +2044,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3498-1;3845-2;3552-3;3653-1" /> <!-- Special Ability: Light -->
 		<stats>
-			<set stat="pAtk" val="442" />
-			<set stat="mAtk" val="163" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">442</stat>
+			<stat type="mAtk">163</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3498" level="1" /> <!-- Special Ability: Light -->
+			<skill id="3845" level="2" /> <!-- Two-handed Sword of Critical Chance -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14457" type="Weapon" name="Icarus Hall - Hail {PvP}">
 		<!-- Masterwork Item that increases M. Atk. It can bestow one of the following three functions, Mana Up, Conversion, or Acumen. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1908,8 +2065,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1924,16 +2079,20 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3889-3;3552-3;3654-1" /> <!-- Blunt Weapon of Empower -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3889" level="3" /> <!-- Blunt Weapon of Empower -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+		</skills>
 	</item>
 	<item id="14458" type="Weapon" name="Icarus Hall - Hail {PvP} - Mana Up">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1941,8 +2100,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1957,16 +2114,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3889-3;3552-1;3654-1;3014-2" /> <!-- Blunt Weapon of Empower -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3889" level="3" /> <!-- Blunt Weapon of Empower -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="14459" type="Weapon" name="Icarus Hall - Hail {PvP} - Conversion">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Max MP increases by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1974,8 +2136,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -1990,16 +2150,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3889-3;3552-1;3654-1;3048-2" /> <!-- Blunt Weapon of Empower -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3889" level="3" /> <!-- Blunt Weapon of Empower -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3048" level="2" /> <!-- Special Ability: Conversion -->
+		</skills>
 	</item>
 	<item id="14460" type="Weapon" name="Icarus Hall - Hail {PvP} - Acumen">
 		<!-- Masterwork Item that increases the power of magic. <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2007,8 +2172,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="4965" />
@@ -2023,16 +2186,21 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3889-3;3552-1;3654-1;3047-2" /> <!-- Blunt Weapon of Empower -->
 		<stats>
-			<set stat="pAtk" val="290" />
-			<set stat="mAtk" val="217" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">290</stat>
+			<stat type="mAtk">217</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3889" level="3" /> <!-- Blunt Weapon of Empower -->
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="14461" type="Weapon" name="Icarus Dual Daggers {PvP}">
 		<!-- Dual daggers. Has higher P. Atk. than regular one-handed swords when enchanted. When enchanted to 4 or more, increases Critical by 109. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. Can be equipped by Dagger masters above level 81. Increases damage inflicted during PvP. -->
@@ -2040,8 +2208,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALDAGGER" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="5845" />
@@ -2052,11 +2218,9 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="8296-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3651-1;3652-1;3552-3" /> <!-- PvP Weapon - Cancel -->
 		<conditions msgId="1518">
 			<and>
 				<player level="81" />
@@ -2064,14 +2228,20 @@
 			</and>
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="332" />
-			<set stat="mAtk" val="169" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">332</stat>
+			<stat type="mAtk">169</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="8296" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14462" type="Weapon" name="Vesper Dual Sword {PvP}">
 		<!-- P. Atk. of dual bladed weapons, two-handed swords, two-handed blunt weapons and fighting weapons increases more than the regular one-handed swords when enchanted. When enchanted to 4 or more, increases Critical Attack by 109 and Max HP by 10%. Increases damage inflicted during PvP, and has a chance to decrease the range of bows/crossbows during an attack. -->
@@ -2079,8 +2249,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2091,19 +2259,22 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3411-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3656-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3411" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14463" type="Weapon" name="Vesper Cutter {PvP}">
 		<!-- It can bestow one of the following functions: Haste, Focus, or Health. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2111,8 +2282,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2126,15 +2295,18 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14464" type="Weapon" name="Vesper Slasher {PvP}">
 		<!-- It can bestow one of the following three functions: Haste, Focus, or Health. Increases damage inflicted during PvP, and Casting Spd. increases at a fixed rate when being attacked. -->
@@ -2142,8 +2314,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2157,15 +2327,18 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+		</skills>
 	</item>
 	<item id="14465" type="Weapon" name="Vesper Buster {PvP}">
 		<!-- It can bestow one of the following functions: Acumen, Mana Up, or Magic Hold. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2173,8 +2346,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2189,15 +2360,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14466" type="Weapon" name="Vesper Shaper {PvP}">
 		<!-- It can bestow one of the following functions: Critical Damage, HP Drain, or Haste. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2205,8 +2380,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2220,16 +2393,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="346" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">346</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14467" type="Weapon" name="Vesper Fighter {PvP}">
 		<!-- It can bestow one of the following functions: Focus, Health, or Critical Stun. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2237,8 +2414,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2252,16 +2427,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-4;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="4" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14468" type="Weapon" name="Vesper Stormer {PvP}">
 		<!-- It can bestow one of the following functions: Health, Guidance, or Haste. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2269,8 +2447,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2284,16 +2460,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3650-1;3599-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3599" level="1" /> <!-- Polearm Multi-attack -->
+		</skills>
 	</item>
 	<item id="14469" type="Weapon" name="Vesper Avenger {PvP}">
 		<!-- It can bestow one of the following functions: HP Regeneration, HP Drain, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2301,8 +2481,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2316,16 +2494,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3650-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+		</skills>
 	</item>
 	<item id="14470" type="Weapon" name="Vesper Retributer {PvP}">
 		<!-- It can bestow one of the following functions: HP Regeneration, HP Drain, or Health. Increases damage inflicted during PvP, and the chance to increase Casting Spd. when being attacked. -->
@@ -2333,8 +2514,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2348,16 +2527,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+		</skills>
 	</item>
 	<item id="14471" type="Weapon" name="Vesper Caster {PvP}">
 		<!-- It can bestow one of the following functions: Acumen, MP Regeneration, or Mana Up. Increases damage inflicted during PvP, and the chance to increase Casting Spd. when being attacked. -->
@@ -2365,8 +2547,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2381,16 +2561,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+		</skills>
 	</item>
 	<item id="14472" type="Weapon" name="Vesper Singer {PvP}">
 		<!-- It can bestow one of the following functions: Empower, MP Regeneration, or Magic Hold. Increases damage inflicted during PvP, and the chance to increase Atk. Spd. of bows/crossbows during an attack. -->
@@ -2398,8 +2581,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2414,16 +2595,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="386" />
-			<set stat="mAtk" val="257" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">386</stat>
+			<stat type="mAtk">257</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+		</skills>
 	</item>
 	<item id="14473" type="Weapon" name="Vesper Thrower {PvP}">
 		<!-- It can bestow one of the following functions: Cheap Shot, Critical Slow, or Focus. Increases damage inflicted during PvP, and decreases the range of bows/crossbows occasionally during an attack or decreases Resistance to attributes. -->
@@ -2431,8 +2615,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="500" />
 		<set name="damage_range" val="0;0;10;0" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2448,16 +2630,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3656-1;3657-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="724" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="293" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">724</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">293</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">500</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3656" level="1" /> <!-- PvP Weapon - Decrease Range -->
+			<skill id="3657" level="1" /> <!-- PvP Weapon - Decrease Resist -->
+		</skills>
 	</item>
 	<item id="14474" type="Weapon" name="Vesper Pincer {PvP}">
 		<!-- Kamael Exclusive Weapon: Vesper Cutter Conversion. Haste, Focus, or Health can be bestowed. When enchanted to 4 or more, there's a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of received heal and decreased MP consumption per skill during a critical attack. Increases damage inflicted during PvP, and decreases the range of bows/crossbows occasionally during an attack or decreases Resistance to attributes. -->
@@ -2465,8 +2651,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2477,23 +2661,26 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="359" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">359</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3655" level="1" /> <!-- PvP Weapon - Rapid Fire -->
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="14475" type="Weapon" name="Vesper Shooter {PvP}">
 		<!-- Kamael Exclusive Weapon: Vesper Thrower Conversion. Cheap Shot, Critical Slow, or Focus can be bestowed. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2501,8 +2688,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2517,19 +2702,22 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="444" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">444</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+		</skills>
 	</item>
 	<item id="14476" type="Weapon" name="Vesper Nagan {PvP}">
 		<!-- Kamael Exclusive Weapon: Vesper Slasher Conversion. Haste, Focus, or Health can be bestowed. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2537,8 +2725,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2552,19 +2738,23 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="429" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">429</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+		</skills>
 	</item>
 	<item id="14477" type="Weapon" name="Vesper Dual Daggers {PvP}">
 		<!-- Dual daggers, P. Atk. increases by more than regular one-handed swords when enchanted. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. Can be equipped by Dagger Masters above level 81. Increases damage inflicted during PvP. -->
@@ -2572,8 +2762,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALDAGGER" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="8233" />
@@ -2584,11 +2772,9 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="8298-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
 		<conditions msgId="1518">
 			<and>
 				<player level="81" />
@@ -2596,14 +2782,20 @@
 			</and>
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="360" />
-			<set stat="mAtk" val="181" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">360</stat>
+			<stat type="mAtk">181</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="8298" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14478" type="Weapon" name="Vesper Cutter {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2611,8 +2803,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2626,15 +2816,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3564-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3564" level="3" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14479" type="Weapon" name="Vesper Cutter {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2642,8 +2836,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2657,15 +2849,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14480" type="Weapon" name="Vesper Cutter {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2673,8 +2869,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2688,15 +2882,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3566-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3566" level="3" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14481" type="Weapon" name="Vesper Slasher {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2704,8 +2902,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2719,15 +2915,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3564-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3564" level="3" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14482" type="Weapon" name="Vesper Slasher {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2735,8 +2935,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2750,15 +2948,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14483" type="Weapon" name="Vesper Slasher {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2766,8 +2968,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2781,15 +2981,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3566-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3566" level="3" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14484" type="Weapon" name="Vesper Buster {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2797,8 +3001,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2813,15 +3015,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3014-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3014" level="2" /> <!-- Special Ability: Mana Up -->
+		</skills>
 	</item>
 	<item id="14485" type="Weapon" name="Vesper Buster {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2829,8 +3035,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2845,15 +3049,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="item_skill" val="3552-1;3654-1;3047-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3047" level="2" /> <!-- Special Ability: Acumen -->
+		</skills>
 	</item>
 	<item id="14486" type="Weapon" name="Vesper Buster {PvP} - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Has a 20% chance of casting Dryad Root when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2861,8 +3069,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2877,17 +3083,19 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<set name="onmagic_chance" val="20" />
-		<set name="onmagic_skill" val="3577-2" />
-		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="317" />
-			<set stat="mAtk" val="234" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">317</stat>
+			<stat type="mAtk">234</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3654" level="1" /> <!-- PvP Weapon - Casting -->
+			<skill id="3577" level="2" type_chance="20" type="ON_MAGIC_SKILL" /> <!-- Special Ability: Magic Hold -->
+		</skills>
 	</item>
 	<item id="14487" type="Weapon" name="Vesper Shaper {PvP} - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 906 during a critical attack. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -2895,8 +3103,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2910,16 +3116,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3572-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="346" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">346</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3572" level="2" /> <!-- Special Ability: Crtical Damage -->
+		</skills>
 	</item>
 	<item id="14488" type="Weapon" name="Vesper Shaper {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2927,8 +3138,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2942,16 +3151,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3568-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="346" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">346</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3568" level="2" /> <!-- Special Ability: HP Drain -->
+		</skills>
 	</item>
 	<item id="14489" type="Weapon" name="Vesper Shaper {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -2959,8 +3173,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -2974,16 +3186,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3564-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="346" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">346</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3564" level="3" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14490" type="Weapon" name="Vesper Fighter {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 123. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -2991,8 +3208,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3006,16 +3221,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3565-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3565" level="3" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="14491" type="Weapon" name="Vesper Fighter {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -3023,8 +3243,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3038,16 +3256,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3651-1;3652-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14492" type="Weapon" name="Vesper Fighter {PvP} - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. There is about 43% chance of afflicting Stun during a critical attack. Increases damage inflicted during PvP, during an attack, cancels a target's enhanced status by more than 1 occasionally, or decreases a target's Shield Defense. -->
@@ -3055,8 +3278,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3070,17 +3291,21 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="oncrit_skill" val="3571-2" />
-		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="3" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3651" level="1" /> <!-- PvP Weapon - Cancel -->
+			<skill id="3652" level="1" /> <!-- PvP Weapon - Ignore Shield Defense -->
+			<skill id="3571" level="2" type="ON_CRITICAL_SKILL" /> <!-- Special Ability: Crtical Stun -->
+		</skills>
 	</item>
 	<item id="14493" type="Weapon" name="Vesper Stormer {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3088,8 +3313,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3103,16 +3326,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3013-4" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3013" level="4" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14494" type="Weapon" name="Vesper Stormer {PvP} - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increases Accuracy by 75 during a critical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3120,8 +3347,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3135,16 +3360,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3602-10" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3602" level="10" /> <!-- Special Ability: Guidance -->
+		</skills>
 	</item>
 	<item id="14495" type="Weapon" name="Vesper Stormer {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3152,8 +3381,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="POLE" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="80" />
 		<set name="damage_range" val="0;0;66;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3167,16 +3394,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3601-10" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">80</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3601" level="10" /> <!-- Special Ability: Haste -->
+		</skills>
 	</item>
 	<item id="14496" type="Weapon" name="Vesper Avenger {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -3184,8 +3415,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3199,16 +3428,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3568-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3568" level="2" /> <!-- Special Ability: HP Drain -->
+		</skills>
 	</item>
 	<item id="14497" type="Weapon" name="Vesper Avenger {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -3216,8 +3449,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3231,16 +3462,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3013" level="3" /> <!-- Special Ability: Health -->
+		</skills>
 	</item>
 	<item id="14498" type="Weapon" name="Vesper Avenger {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -3248,8 +3483,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3263,16 +3496,20 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3650-1;3569-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="396" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">396</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3650" level="1" /> <!-- PvP Weapon - CP Drain -->
+			<skill id="3569" level="2" /> <!-- Special Ability: HP Regeneration -->
+		</skills>
 	</item>
 	<item id="14499" type="Weapon" name="Vesper Retributer {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3280,8 +3517,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="7050" />
@@ -3295,15 +3530,19 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3552-1;3653-1;3569-2" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="482" />
-			<set stat="mAtk" val="176" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">482</stat>
+			<stat type="mAtk">176</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3653" level="1" /> <!-- PvP Weapon - Attack Chance -->
+			<skill id="3569" level="2" /> <!-- Special Ability: HP Regeneration -->
+		</skills>
 	</item>
 </list>

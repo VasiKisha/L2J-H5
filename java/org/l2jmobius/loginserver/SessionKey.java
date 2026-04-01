@@ -1,58 +1,93 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.loginserver.config.LoginConfig;
 
 /**
- * This class is used to represent session keys used by the client to authenticate in the gameserver<br>
- * A SessionKey is made up of two 8 bytes keys. One is send in the {@link org.l2jmobius.loginserver.network.serverpackets.LoginOk#LoginOk} packet and the other is sent in {@link org.l2jmobius.loginserver.network.serverpackets.PlayOk#PlayOk}
- * @author -Wooden-
+ * Session key used by the client to authenticate against the gameserver.<br>
+ * It holds two 32-bit pairs: PlayOk and LoginOk.
+ * <ul>
+ * <li>Equality may require both pairs depending on {@code LoginConfig.SHOW_LICENCE}.</li>
+ * <li>Lightweight container with no I/O.</li>
+ * <li>Immutable fields for thread safety.</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class SessionKey
 {
-	public int playOkID1;
-	public int playOkID2;
-	public int loginOkID1;
-	public int loginOkID2;
+	// Constants.
+	private static final String LABEL_PLAY_OK = "PlayOk:";
+	private static final String LABEL_LOGIN_OK = "LoginOk:";
+	private static final boolean CHECK_LOGIN_PAIR = LoginConfig.SHOW_LICENCE; // Policy snapshot for equality consistency.
 	
-	public SessionKey(int loginOK1, int loginOK2, int playOK1, int playOK2)
-	{
-		playOkID1 = playOK1;
-		playOkID2 = playOK2;
-		loginOkID1 = loginOK1;
-		loginOkID2 = loginOK2;
-	}
+	// Session key parts.
+	private final int _playOkID1;
+	private final int _playOkID2;
+	private final int _loginOkID1;
+	private final int _loginOkID2;
 	
-	@Override
-	public String toString()
+	/**
+	 * Creates a session key with both pairs.
+	 * @param loginOk1
+	 * @param loginOk2
+	 * @param playOk1
+	 * @param playOk2
+	 */
+	public SessionKey(int loginOk1, int loginOk2, int playOk1, int playOk2)
 	{
-		return "PlayOk: " + playOkID1 + " " + playOkID2 + " LoginOk:" + loginOkID1 + " " + loginOkID2;
-	}
-	
-	public boolean checkLoginPair(int loginOk1, int loginOk2)
-	{
-		return (loginOkID1 == loginOk1) && (loginOkID2 == loginOk2);
+		_playOkID1 = playOk1;
+		_playOkID2 = playOk2;
+		_loginOkID1 = loginOk1;
+		_loginOkID2 = loginOk2;
 	}
 	
 	/**
-	 * Only checks the PlayOk part of the session key if server doesn't show the license when player logs in.
-	 * @param object the SessionKey object
-	 * @return true if keys are equal.
+	 * Returns a textual representation of the key.<br>
+	 * Do not write this value to production logs to avoid exposing session identifiers.
+	 * @return String with both pairs.
+	 */
+	@Override
+	public String toString()
+	{
+		return StringUtil.concat(LABEL_PLAY_OK + " " + _playOkID1 + " " + _playOkID2 + " " + LABEL_LOGIN_OK + _loginOkID1 + " " + _loginOkID2);
+	}
+	
+	/**
+	 * Checks if the given pair matches the stored LoginOk pair.
+	 * @param loginOk1
+	 * @param loginOk2
+	 * @return {@code true} if both values match.
+	 */
+	public boolean checkLoginPair(int loginOk1, int loginOk2)
+	{
+		return (_loginOkID1 == loginOk1) && (_loginOkID2 == loginOk2);
+	}
+	
+	/**
+	 * Compares equality according to the captured licence policy.<br>
+	 * If {@code CHECK_LOGIN_PAIR} is {@code true}, both PlayOk and LoginOk must match; otherwise, only PlayOk.
+	 * @param object
+	 * @return {@code true} if keys match according to policy.
 	 */
 	@Override
 	public boolean equals(Object object)
@@ -67,13 +102,69 @@ public class SessionKey
 			return false;
 		}
 		
-		// When server doesn't show license it doesn't send the LoginOk packet, client doesn't have this part of the key then.
 		final SessionKey key = (SessionKey) object;
-		if (LoginConfig.SHOW_LICENCE)
+		if ((_playOkID1 != key._playOkID1) || (_playOkID2 != key._playOkID2))
 		{
-			return (playOkID1 == key.playOkID1) && (loginOkID1 == key.loginOkID1) && (playOkID2 == key.playOkID2) && (loginOkID2 == key.loginOkID2);
+			return false;
 		}
 		
-		return (playOkID1 == key.playOkID1) && (playOkID2 == key.playOkID2);
+		if (CHECK_LOGIN_PAIR)
+		{
+			return (_loginOkID1 == key._loginOkID1) && (_loginOkID2 == key._loginOkID2);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Hash code consistent with {@link #equals(Object)}.
+	 * @return Hash value.
+	 */
+	@Override
+	public int hashCode()
+	{
+		int h = 17;
+		h = (31 * h) + _playOkID1;
+		h = (31 * h) + _playOkID2;
+		
+		if (CHECK_LOGIN_PAIR)
+		{
+			h = (31 * h) + _loginOkID1;
+			h = (31 * h) + _loginOkID2;
+		}
+		
+		return h;
+	}
+	
+	/**
+	 * @return First PlayOk integer.
+	 */
+	public int getPlayOkID1()
+	{
+		return _playOkID1;
+	}
+	
+	/**
+	 * @return Second PlayOk integer.
+	 */
+	public int getPlayOkID2()
+	{
+		return _playOkID2;
+	}
+	
+	/**
+	 * @return First LoginOk integer.
+	 */
+	public int getLoginOkID1()
+	{
+		return _loginOkID1;
+	}
+	
+	/**
+	 * @return Second LoginOk integer.
+	 */
+	public int getLoginOkID2()
+	{
+		return _loginOkID2;
 	}
 }

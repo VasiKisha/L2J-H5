@@ -4,12 +4,12 @@
 		<!-- Level 1: Turkey's Choice - Scissors. -->
 		<!-- Level 2: Turkey's Choice - Rock. -->
 		<!-- Level 3: Turkey's Choice - Paper. -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<effectPoint>1</effectPoint>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6103" levels="5" name="Showdown with the Turkey - 1 Win">
 		<!-- Level 1: 1st win. -->
@@ -19,227 +19,227 @@
 		<!-- Level 5: 5th consecutive win. -->
 		<table name="#abnormalLevels">1 2 3 4 5</table>
 		<table name="#icons">icon.xmas_pcwin1_i00 icon.xmas_pcwin2_i00 icon.xmas_pcwin3_i00 icon.xmas_pcwin4_i00 icon.xmas_pcwin5_i00</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="EVENT_WIN" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>EVENT_WIN</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6104" levels="1" name="Event Cancel">
 		<!-- Reset score. -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="EVENT_WIN,0" />
+				<dispel>EVENT_WIN,0</dispel>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6105" levels="1" name="Turkey's Mistake">
 		<!-- The stupid turkey's mistake. For 1 hour, increases Max HP by 10%, Max MP by 10%, Max CP by 10%, Speed by 15%, P. Atk. by 10%, M. Atk. by 15%, Critical Rate by 5, Critical Damage by 15%, and the chance of prominent damage occurring through magic damage by 2. -->
-		<set name="icon" val="icon.turkey_buff_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="EVENT_SANTA_REWARD" />
-		<set name="affectRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.turkey_buff_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>EVENT_SANTA_REWARD</abnormalType>
+		<affectRange>400</affectRange>
+		<effectPoint>1</effectPoint>
+		<hitTime>4000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Buff">
-				<mul stat="critDmg" val="1.15" />
+				<mul stat="critDmg">1.15</mul>
 			</effect>
 			<effect name="Buff">
-				<add stat="critRate" val="5" />
+				<add stat="critRate">5</add>
 			</effect>
 			<effect name="Buff">
-				<add stat="mCritRate" val="2" />
+				<add stat="mCritRate">2</add>
 			</effect>
 			<effect name="Buff">
-				<mul stat="mAtk" val="1.15" />
+				<mul stat="mAtk">1.15</mul>
 			</effect>
 			<effect name="MaxCp">
-				<param power="10" />
-				<param type="PER" />
+				<power>10</power>
+				<type>PER</type>
 			</effect>
 			<effect name="MaxHp">
-				<param power="10" />
-				<param type="PER" />
+				<power>10</power>
+				<type>PER</type>
 			</effect>
 			<effect name="ManaHealByLevel">
-				<param power="10" />
-				<param type="PER" />
+				<power>10</power>
+				<type>PER</type>
 			</effect>
 			<effect name="Buff">
-				<mul stat="pAtk" val="1.1" />
+				<mul stat="pAtk">1.1</mul>
 			</effect>
 			<effect name="Buff">
-				<add stat="runSpd" val="15" />
+				<add stat="runSpd">15</add>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6106" levels="1" name="Winter Holiday Festival">
 		<!-- Christmas festival. For 1 hour, increases Max HP by 5%, Max MP by 5%, Max CP by 5%, Speed by 10, P. Atk. by 8%, and M. Atk. by 10%. -->
-		<set name="icon" val="icon.xmas_miracle_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="EVENT_SANTA_REWARD" />
-		<set name="affectRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.xmas_miracle_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>EVENT_SANTA_REWARD</abnormalType>
+		<affectRange>400</affectRange>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtk" val="1.1" />
+				<mul stat="mAtk">1.1</mul>
 			</effect>
 			<effect name="MaxCp">
-				<param power="5" />
-				<param type="PER" />
+				<power>5</power>
+				<type>PER</type>
 			</effect>
 			<effect name="MaxHp">
-				<param power="5" />
-				<param type="PER" />
+				<power>5</power>
+				<type>PER</type>
 			</effect>
 			<effect name="ManaHealByLevel">
-				<param power="5" />
-				<param type="PER" />
+				<power>5</power>
+				<type>PER</type>
 			</effect>
 			<effect name="Buff">
-				<mul stat="pAtk" val="1.08" />
+				<mul stat="pAtk">1.08</mul>
 			</effect>
 			<effect name="Buff">
-				<add stat="runSpd" val="10" />
+				<add stat="runSpd">10</add>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6107" levels="1" name="Winter Holiday Blessing - Gludio">
 		<!-- Christmas Blessing - Registered in Gludio territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6108" levels="1" name="Winter Holiday Blessing - Dion">
 		<!-- Christmas Blessing - Registered in Dion territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6109" levels="1" name="Winter Holiday Blessing - Giran">
 		<!-- Christmas Blessing - Registered in Giran territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6110" levels="1" name="Winter Holiday Blessing - Oren">
 		<!-- Christmas Blessing - Registered in Oren territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6111" levels="1" name="Winter Holiday Blessing - Aden">
 		<!-- Christmas Blessing - Registered in Aden territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6112" levels="1" name="Winter Holiday Blessing - Innadril">
 		<!-- Christmas Blessing - Registered in Innadril territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6113" levels="1" name="Winter Holiday Blessing - Goddard">
 		<!-- Christmas Blessing - Registered in Goddard territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6114" levels="1" name="Winter Holiday Blessing - Rune">
 		<!-- Christmas Blessing - Registered in Rune territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6115" levels="1" name="Winter Holiday Blessing - Schuttgart">
 		<!-- Christmas Blessing - Registered in Schuttgart territory. If the corresponding territory Santa is rescued, you get the chance to receive a gift from Santa. -->
-		<set name="icon" val="icon.skill5762" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="604800" />
-		<set name="abnormalType" val="EVENT_TERRITORY" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.skill5762</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>604800</abnormalTime>
+		<abnormalType>EVENT_TERRITORY</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6116" levels="1" name="Attack Turkey">
 		<!-- Attacks the Turkey -->
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<effectPoint>1</effectPoint>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 	</skill>
 	<skill id="6117" levels="3" name="Choice - Scissors">
 		<!-- Level 1: You have selected Scissors. You cannot move for 30 seconds. -->
@@ -247,52 +247,52 @@
 		<!-- Level 3: You have selected Paper. You cannot move for 30 seconds. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.xmas_gawi_i00 icon.xmas_bawi_i00 icon.xmas_bo_i00</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="EVENT_GAWI" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>EVENT_GAWI</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Root" />
 		</effects>
 	</skill>
 	<skill id="6120" levels="1" name="Santa Claus' Reward">
 		<!-- Santa Claus' reward. For 1 hour, increases Max HP by 10%, Max MP by 10%, Max CP by 10%, Speed by 15%, P. Atk. by 10%, M. Atk. by 15%, Critical Rate by 5, Critical Damage by 15%, and the chance of prominent damage occurring through magic damage by 2. -->
-		<set name="icon" val="icon.etc_pi_gift_box_i04" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="EVENT_SANTA_REWARD" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
+		<icon>icon.etc_pi_gift_box_i04</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>EVENT_SANTA_REWARD</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
 		<effects>
 			<effect name="Buff">
-				<mul stat="maxHp" val="1.1" />
-				<mul stat="maxMp" val="1.1" />
-				<mul stat="maxCp" val="1.1" />
-				<add stat="runSpd" val="15" />
-				<mul stat="pAtk" val="1.1" />
-				<mul stat="mAtk" val="1.15" />
-				<add stat="critRate" val="50" />
-				<mul stat="critDmg" val="1.15" />
-				<add stat="mCritRate" val="2" />
+				<mul stat="maxHp">1.1</mul>
+				<mul stat="maxMp">1.1</mul>
+				<mul stat="maxCp">1.1</mul>
+				<add stat="runSpd">15</add>
+				<mul stat="pAtk">1.1</mul>
+				<mul stat="mAtk">1.15</mul>
+				<add stat="critRate">50</add>
+				<mul stat="critDmg">1.15</mul>
+				<add stat="mCritRate">2</add>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6121" levels="1" name="Agathion's New Year's Gift 1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="coolTime" val="1000" />
-		<set name="hitTime" val="2700" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
-		<set name="reuseDelay" val="86400000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<coolTime>1000</coolTime>
+		<hitTime>2700</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
+		<reuseDelay>86400000</reuseDelay>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -301,18 +301,19 @@
 		</conditions>
 		<effects>
 			<effect name="Restoration">
-				<param itemId="14676" itemCount="1" />
+				<itemId>14676</itemId>
+				<itemCount>1</itemCount>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6122" levels="1" name="Agathion's New Year's Gift 2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="coolTime" val="1000" />
-		<set name="hitTime" val="2700" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
-		<set name="reuseDelay" val="86400000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<coolTime>1000</coolTime>
+		<hitTime>2700</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
+		<reuseDelay>86400000</reuseDelay>
 		<conditions msgId="129">
 			<and>
 				<player invSize="10" />
@@ -321,296 +322,297 @@
 		</conditions>
 		<effects>
 			<effect name="Restoration">
-				<param itemId="14677" itemCount="1" />
+				<itemId>14677</itemId>
+				<itemCount>1</itemCount>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6123" levels="1" name="Agathion's New Year's Wish">
 		<!-- Agathion's New Year's Wish - Vitality is maintained and not consumed. -->
-		<set name="icon" val="icon.etc_pi_gift_box_i03" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="VP_KEEP" />
-		<set name="abnormalVisualEffect" val="VP_KEEP" />
-		<set name="coolTime" val="1000" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
-		<set name="reuseDelay" val="86400000" />
+		<icon>icon.etc_pi_gift_box_i03</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>VP_KEEP</abnormalType>
+		<abnormalVisualEffect>VP_KEEP</abnormalVisualEffect>
+		<coolTime>1000</coolTime>
+		<hitTime>2000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
+		<reuseDelay>86400000</reuseDelay>
 	</skill>
 	<skill id="6124" levels="1" name="Agathion Cute Trick - Saerom">
 		<!-- Able to see the summoned spirit perform cute tricks. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
 		<conditions msgId="2292">
 			<player agathionId="16063" />
 		</conditions>
 	</skill>
 	<skill id="6125" levels="1" name="Paralysis">
 		<!-- A temporary paralysis which prevents movement. -->
-		<set name="icon" val="icon.skill1170" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="PARALYZE" />
-		<set name="abnormalVisualEffect" val="PARALYZE" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="magicLevel" val="40" />
-		<set name="trait" val="PARALYZE" />
+		<icon>icon.skill1170</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>PARALYZE</abnormalType>
+		<abnormalVisualEffect>PARALYZE</abnormalVisualEffect>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<magicLevel>40</magicLevel>
+		<trait>PARALYZE</trait>
 		<effects>
 			<effect name="Paralyze" />
 		</effects>
 	</skill>
 	<skill id="6126" levels="1" name="Paralysis">
 		<!-- A temporary paralysis which prevents movement. -->
-		<set name="icon" val="icon.skill1170" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="PARALYZE" />
-		<set name="abnormalVisualEffect" val="PARALYZE" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="magicLevel" val="40" />
-		<set name="trait" val="PARALYZE" />
+		<icon>icon.skill1170</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>PARALYZE</abnormalType>
+		<abnormalVisualEffect>PARALYZE</abnormalVisualEffect>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<magicLevel>40</magicLevel>
+		<trait>PARALYZE</trait>
 		<effects>
 			<effect name="Paralyze" />
 		</effects>
 	</skill>
 	<skill id="6127" levels="1" name="Anti-limit">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="SELF" />
-		<set name="magicLevel" val="80" />
+		<operateType>P</operateType>
+		<targetType>SELF</targetType>
+		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="BlockAbnormalSlot">
-				<param slot="LIMIT" />
+				<slot>LIMIT</slot>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6128" levels="1" name="Presentation - Cow Rage">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="hitTime" val="3000" />
-		<set name="magicLevel" val="76" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<hitTime>3000</hitTime>
+		<magicLevel>76</magicLevel>
 	</skill>
 	<skill id="6129" levels="1" name="Shock">
 		<!-- A state of instant paralysis caused by the shock -->
-		<set name="icon" val="icon.skill0092" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="9" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="800" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="6000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0092</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>9</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<coolTime>800</coolTime>
+		<effectPoint>-100</effectPoint>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>6000</reuseDelay>
+		<trait>SHOCK</trait>
 	</skill>
 	<skill id="6130" levels="1" name="Curse of the Mutant Animal">
 		<!-- Curse of the Mutant Animal: Temporarily in shock and unable to move. -->
-		<set name="icon" val="icon.skill0092" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="9" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="50" />
-		<set name="affectLimit" val="10-10" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="2000" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="6000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="6000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0092</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>9</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>50</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<basicProperty>CON</basicProperty>
+		<coolTime>2000</coolTime>
+		<effectPoint>-100</effectPoint>
+		<hitTime>6000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>6000</reuseDelay>
+		<trait>SHOCK</trait>
 	</skill>
 	<skill id="6131" levels="1" name="Decrease Spd">
 		<!-- Curse of the Mutant Animal: Speed is decreased momentarily. Effect 1. -->
-		<set name="icon" val="icon.skill1160" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="8000" />
+		<icon>icon.skill1160</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6132" levels="1" name="Decrease Atk. Spd">
 		<!-- Curse of the Mutant Animal: Atk. Spd. is decreased momentarily. Effect 1. -->
-		<set name="icon" val="icon.skill4038" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="ATTACK_TIME_UP" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="8000" />
+		<icon>icon.skill4038</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>ATTACK_TIME_UP</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6133" levels="1" name="Effect of Doubt">
 		<!-- Head is enlarged. -->
-		<set name="icon" val="icon.skill2513" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="1800" />
-		<set name="abnormalType" val="BIG_HEAD" />
-		<set name="abnormalVisualEffect" val="BIG_HEAD" />
-		<set name="activateRate" val="0" />
-		<set name="effectPoint" val="-1" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="95" />
-		<set name="trait" val="ETC" />
+		<icon>icon.skill2513</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1800</abnormalTime>
+		<abnormalType>BIG_HEAD</abnormalType>
+		<abnormalVisualEffect>BIG_HEAD</abnormalVisualEffect>
+		<activateRate>0</activateRate>
+		<effectPoint>-1</effectPoint>
+		<isDebuff>true</isDebuff>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>95</magicLevel>
+		<trait>ETC</trait>
 	</skill>
 	<skill id="6134" levels="1" name="Curse of the Mutant Animal">
 		<!-- Curse of the Mutant Animal: Atk. Spd. and Speed are decreased momentarily. Effect 1. -->
-		<set name="icon" val="icon.skill4038" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="ALL_SPEED_DOWN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="8000" />
+		<icon>icon.skill4038</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>ALL_SPEED_DOWN</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6135" levels="1" name="Mutant Curse">
 		<!-- Curse of the Mutant Animal: Temporarily in shock and unable to move. -->
-		<set name="icon" val="icon.skill0092" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="2" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="50" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="2000" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="6000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="95" />
-		<set name="reuseDelay" val="6000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0092</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>2</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>50</activateRate>
+		<basicProperty>CON</basicProperty>
+		<coolTime>2000</coolTime>
+		<effectPoint>-100</effectPoint>
+		<hitTime>6000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>95</magicLevel>
+		<reuseDelay>6000</reuseDelay>
+		<trait>SHOCK</trait>
 	</skill>
 	<skill id="6136" levels="1" name="Agathion Cute Trick - Juju">
 		<!-- Able to see the summoned spirit perform cute tricks. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
-		<set name="reuseDelay" val="10000" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
+		<reuseDelay>10000</reuseDelay>
 		<conditions msgId="2292">
 			<player agathionId="16064" />
 		</conditions>
 	</skill>
 	<skill id="6137" levels="1" name="Agathion Juju - Effect of Doubt">
 		<!-- Makes the head enlarge. -->
-		<set name="icon" val="icon.skill2513" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="0" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="BIG_HEAD" />
-		<set name="abnormalVisualEffect" val="BIG_HEAD" />
-		<set name="activateRate" val="0" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
-		<set name="reuseDelay" val="10000" />
-		<set name="trait" val="ETC" />
+		<icon>icon.skill2513</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>0</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>BIG_HEAD</abnormalType>
+		<abnormalVisualEffect>BIG_HEAD</abnormalVisualEffect>
+		<activateRate>0</activateRate>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
+		<reuseDelay>10000</reuseDelay>
+		<trait>ETC</trait>
 	</skill>
 	<skill id="6138" levels="1" name="Agathion Juju - Large Firework">
 		<!-- Can set off large firecrackers. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
-		<set name="reuseDelay" val="20000" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
+		<reuseDelay>20000</reuseDelay>
 	</skill>
 	<skill id="6139" levels="1" name="Fake Tears">
 		<!-- For 10 minutes, weapon appearances change through the effect of the "Fake Tears" that were scattered by "Pierre Baguette." But, weapons don't change their abilities. -->
-		<set name="icon" val="icon.etc_water_of_silen_i00" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="WP_CHANGE_EVENT" />
-		<set name="abnormalVisualEffect" val="CHANGE_WP" />
-		<set name="effectPoint" val="100" />
-		<set name="hitTime" val="100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="1" />
-		<set name="reuseDelay" val="2000" />
+		<icon>icon.etc_water_of_silen_i00</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>WP_CHANGE_EVENT</abnormalType>
+		<abnormalVisualEffect>CHANGE_WP</abnormalVisualEffect>
+		<effectPoint>100</effectPoint>
+		<hitTime>100</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>1</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 	</skill>
 	<skill id="6140" levels="3" name="Bog Stride">
 		<table name="#abnormalLevels">1 2 3</table>
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
 	</skill>
 	<skill id="6141" levels="1" name="Swamp's Wish">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="-1" />
-		<set name="abnormalType" val="ATTACK_TIME_UP" />
-		<set name="basicProperty" val="MEN" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>-1</abnormalTime>
+		<abnormalType>ATTACK_TIME_UP</abnormalType>
+		<basicProperty>MEN</basicProperty>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
 	</skill>
 	<skill id="6142" levels="3" name="Tar Trap">
 		<!-- Level 1: You are covered in hot and sticky tar. Your Speed is decreased by 30% for 5 minutes. P. Def. and evasion are decreased by 10%. -->
@@ -619,135 +621,135 @@
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#pDef">0.9 0.8 0.7</table>
 		<table name="#speed">0.7 0.4 0.1</table>
-		<set name="icon" val="icon.skill0770" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="activateRate" val="90" />
-		<set name="basicProperty" val="MEN" />
-		<set name="canBeDispeled" val="false" />
-		<set name="castRange" val="300" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="600" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="-1" />
-		<set name="mpConsume" val="57" />
-		<set name="mpInitialConsume" val="15" />
-		<set name="reuseDelay" val="30000" />
+		<icon>icon.skill0770</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<activateRate>90</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<canBeDispeled>false</canBeDispeled>
+		<castRange>300</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>600</effectRange>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>-1</magicLevel>
+		<mpConsume>57</mpConsume>
+		<mpInitialConsume>15</mpInitialConsume>
+		<reuseDelay>30000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="runSpd" val="#speed" />
-				<mul stat="pDef" val="#pDef" />
-				<mul stat="rEvas" val="#pDef" />
+				<mul stat="runSpd">#speed</mul>
+				<mul stat="pDef">#pDef</mul>
+				<mul stat="rEvas">#pDef</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6143" levels="1" name="Ancient Beam">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="-100" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="82" />
-		<set name="reuseDelay" val="4000" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>-100</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>82</magicLevel>
+		<reuseDelay>4000</reuseDelay>
 	</skill>
 	<skill id="6144" levels="1" name="Ancient Beam">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="-100" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="82" />
-		<set name="reuseDelay" val="4000" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>-100</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>82</magicLevel>
+		<reuseDelay>4000</reuseDelay>
 	</skill>
 	<skill id="6145" levels="1" name="Earthworm's Evil Aura">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
 	</skill>
 	<skill id="6146" levels="1" name="Forfeiture of Will">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="PD_DOWN" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="4000" />
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>PD_DOWN</abnormalType>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<reuseDelay>4000</reuseDelay>
 	</skill>
 	<skill id="6147" levels="1" name="Kasha's Divine Protection">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="DMG_SHIELD" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="59" />
-		<set name="mpInitialConsume" val="15" />
-		<set name="reuseDelay" val="4000" />
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>DMG_SHIELD</abnormalType>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>59</mpConsume>
+		<mpInitialConsume>15</mpInitialConsume>
+		<reuseDelay>4000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<add stat="vengeancePdam" val="70" />
-				<add stat="reflectSkillPhysic" val="70" />
-				<add stat="reflectDam" val="70" />
+				<add stat="vengeancePdam">70</add>
+				<add stat="reflectSkillPhysic">70</add>
+				<add stat="reflectDam">70</add>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6148" levels="1" name="Altar's Curse">
 		<!-- You have been weakened by the Altar's Curse. You probably can't fight in this condition. -->
-		<set name="icon" val="icon.skill1064" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="120" />
-		<set name="abnormalType" val="SILENCE" />
-		<set name="castRange" val="900" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1500" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="-1" />
-		<set name="mpConsume" val="59" />
-		<set name="mpInitialConsume" val="15" />
-		<set name="reuseDelay" val="4000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1064</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>120</abnormalTime>
+		<abnormalType>SILENCE</abnormalType>
+		<castRange>900</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1500</effectRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>-1</magicLevel>
+		<mpConsume>59</mpConsume>
+		<mpInitialConsume>15</mpInitialConsume>
+		<reuseDelay>4000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Mute">
-				<sub stat="accCombat" val="99" />
-				<mul stat="pAtkSpd" val="0.5" />
-				<mul stat="pAtk" val="0.01" />
+				<sub stat="accCombat">99</sub>
+				<mul stat="pAtkSpd">0.5</mul>
+				<mul stat="pAtk">0.01</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6149" levels="1" name="Kasha's Betrayal">
 		<!-- Kasha's Betrayal. For 15 minutes, decreases P. Atk./P. Def./Speed by 50%. -->
-		<set name="icon" val="icon.skill0122" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="900" />
-		<set name="abnormalType" val="MULTI_DEBUFF" />
-		<set name="canBeDispeled" val="false" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="-1" />
+		<icon>icon.skill0122</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>900</abnormalTime>
+		<abnormalType>MULTI_DEBUFF</abnormalType>
+		<canBeDispeled>false</canBeDispeled>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>-1</magicLevel>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pAtk" val="0.5" />
-				<mul stat="pDef" val="0.5" />
-				<mul stat="runSpd" val="0.5" />
+				<mul stat="pAtk">0.5</mul>
+				<mul stat="pDef">0.5</mul>
+				<mul stat="runSpd">0.5</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -755,479 +757,479 @@
 		<!-- Kasha's Curse. Atk. Spd. increases. -->
 		<table name="#icons">icon.skill6151_1 icon.skill6151_2 icon.skill6151_3 icon.skill6151_4</table>
 		<table name="#pAtkSpd">1.02 1.04 1.06 1.08</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="PD_DOWN" />
-		<set name="canBeDispeled" val="false" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>PD_DOWN</abnormalType>
+		<canBeDispeled>false</canBeDispeled>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pAtkSpd" val="#pAtkSpd" />
+				<mul stat="pAtkSpd">#pAtkSpd</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6151" levels="4" name="Kasha's Curse">
 		<!-- Kasha's Curse. Atk. Spd. increases and P. Def. decreases. -->
 		<table name="#icons">icon.skill6151_1 icon.skill6151_2 icon.skill6151_3 icon.skill6151_4</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="PD_DOWN" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>PD_DOWN</abnormalType>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="6152" levels="4" name="Kasha's Yearning">
 		<!-- Kasha's Yearning. P. Atk. increases. -->
 		<table name="#icons">icon.skill6152_1 icon.skill6152_2 icon.skill6152_3 icon.skill6152_4</table>
 		<table name="#pAtk">1.02 1.04 1.06 1.08</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="SIGNAL_A" />
-		<set name="canBeDispeled" val="false" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>SIGNAL_A</abnormalType>
+		<canBeDispeled>false</canBeDispeled>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pAtk" val="#pAtk" />
+				<mul stat="pAtk">#pAtk</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6153" levels="4" name="Kasha's Yearning">
 		<!-- Kasha's Yearning. P. Atk. increases and P. Def. decreases. -->
 		<table name="#icons">icon.skill6152_1 icon.skill6152_2 icon.skill6152_3 icon.skill6152_4</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="SIGNAL_A" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>SIGNAL_A</abnormalType>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="6154" levels="4" name="Kasha's Despair">
 		<!-- Kasha's Despair. Critical rate increases. -->
 		<table name="#icons">icon.skill6154_1 icon.skill6154_2 icon.skill6154_3 icon.skill6154_4</table>
-		<table name="#rCrit">150 200 520 750</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="MAX_HP_DOWN" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="canBeDispeled" val="false" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
-		<set name="trait" val="BLEED" />
+		<table name="#critRate">150 200 520 750</table>
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>MAX_HP_DOWN</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<canBeDispeled>false</canBeDispeled>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="Debuff">
-				<add stat="critRate" val="#rCrit" />
+				<add stat="critRate">#critRate</add>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6155" levels="4" name="Kasha's Despair">
 		<!-- Kasha's Despair. Critical rate increases and P. Def. decreases. -->
 		<table name="#icons">icon.skill6154_1 icon.skill6154_2 icon.skill6154_3 icon.skill6154_4</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="11" />
-		<set name="abnormalType" val="MAX_HP_DOWN" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="-1" />
-		<set name="trait" val="BLEED" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>11</abnormalTime>
+		<abnormalType>MAX_HP_DOWN</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>-1</magicLevel>
+		<trait>BLEED</trait>
 	</skill>
 	<skill id="6166" levels="1" name="Hold">
 		<!-- Temporarily immobilized by the hold. -->
-		<set name="icon" val="icon.skill4047" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="2" />
-		<set name="abnormalType" val="ROOT_MAGICALLY" />
-		<set name="abnormalVisualEffect" val="ROOT" />
-		<set name="activateRate" val="80" />
-		<set name="affectLimit" val="10-10" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="81" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="HOLD" />
+		<icon>icon.skill4047</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>2</abnormalTime>
+		<abnormalType>ROOT_MAGICALLY</abnormalType>
+		<abnormalVisualEffect>ROOT</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>81</magicLevel>
+		<reuseDelay>1000</reuseDelay>
+		<trait>HOLD</trait>
 	</skill>
 	<skill id="6167" levels="12" name="Shock">
 		<!-- A state of instant paralysis caused by the shock -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="1" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="30" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="800" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="10" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>30</activateRate>
+		<basicProperty>CON</basicProperty>
+		<coolTime>800</coolTime>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>10</magicLevel>
+		<trait>SHOCK</trait>
 	</skill>
 	<skill id="6168" levels="12" name="Shock">
 		<!-- A state of instant paralysis caused by the shock -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="1" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="50" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="800" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="10" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>50</activateRate>
+		<basicProperty>CON</basicProperty>
+		<coolTime>800</coolTime>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>10</magicLevel>
+		<trait>SHOCK</trait>
 	</skill>
 	<skill id="6169" levels="1" name="Shyeed's Fury">
 		<!-- Shyeed's cries continue to be heard. Nearby monsters seem to get stronger. -->
-		<set name="icon" val="icon.skill6169" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="PUBLIC_SLOT" />
-		<set name="effectPoint" val="-100" />
-		<set name="isDebuff" val="true" />
-		<set name="magicLevel" val="83" />
+		<icon>icon.skill6169</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>PUBLIC_SLOT</abnormalType>
+		<effectPoint>-100</effectPoint>
+		<isDebuff>true</isDebuff>
+		<magicLevel>83</magicLevel>
 		<effects>
 			<effect name="Debuff" />
 		</effects>
 	</skill>
 	<skill id="6170" levels="1" name="Shyeed's Fury">
-		<set name="icon" val="icon.skill6169" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="MULTI_BUFF" />
-		<set name="effectPoint" val="100" />
-		<set name="magicLevel" val="83" />
+		<icon>icon.skill6169</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>MULTI_BUFF</abnormalType>
+		<effectPoint>100</effectPoint>
+		<magicLevel>83</magicLevel>
 		<effects>
 			<!-- NOTE: Using abnormalLevel 99 instead of 1 due is a irreplaceable buff -->
 			<effect name="Buff">
-				<mul stat="pAtk" val="1.05" />
-				<mul stat="mAtk" val="1.05" />
-				<mul stat="mCritPower" val="1.05" />
-				<mul stat="pAtkSpd" val="1.05" />
-				<mul stat="mAtkSpd" val="1.05" />
+				<mul stat="pAtk">1.05</mul>
+				<mul stat="mAtk">1.05</mul>
+				<mul stat="mCritPower">1.05</mul>
+				<mul stat="pAtkSpd">1.05</mul>
+				<mul stat="mAtkSpd">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6171" levels="1" name="Full Authority">
 		<!-- It feels like something will escape the mouth. The predecessor's strength is full. Overall abilities are increased. -->
-		<set name="icon" val="icon.skill6171" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="ULTIMATE_BUFF" />
-		<set name="effectPoint" val="100" />
-		<set name="magicLevel" val="83" />
+		<icon>icon.skill6171</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>ULTIMATE_BUFF</abnormalType>
+		<effectPoint>100</effectPoint>
+		<magicLevel>83</magicLevel>
 		<effects>
 			<!-- NOTE: Using abnormalLevel 99 instead of 1 due is a irreplaceable buff -->
 			<effect name="Buff">
-				<mul stat="pAtk" val="1.05" />
-				<mul stat="mAtk" val="1.05" />
-				<mul stat="mCritPower" val="1.05" />
-				<mul stat="pAtkSpd" val="1.05" />
-				<mul stat="mAtkSpd" val="1.05" />
+				<mul stat="pAtk">1.05</mul>
+				<mul stat="mAtk">1.05</mul>
+				<mul stat="mCritPower">1.05</mul>
+				<mul stat="pAtkSpd">1.05</mul>
+				<mul stat="mAtkSpd">1.05</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6172" levels="1" name="Presentation - Tyranno">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="SIGNAL_A" />
-		<set name="activateRate" val="-1" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-1000" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="2500" />
-		<set name="magicLevel" val="80" />
-		<set name="power" val="2320" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>SIGNAL_A</abnormalType>
+		<activateRate>-1</activateRate>
+		<castRange>40</castRange>
+		<effectPoint>-1000</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>2500</hitTime>
+		<magicLevel>80</magicLevel>
+		<power>2320</power>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6173" levels="1" name="Presentation - Memorial Service for Repose">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="20000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<hitTime>20000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6174" levels="1" name="Presentation - Incense for Relic">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6175" levels="1" name="Presentation - High Ranking Dawn Priest's Prayer">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="15000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<hitTime>15000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6176" levels="1" name="Presentation - Dawn's Seal Stone">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6177" levels="1" name="Presentation - Anakim's Message">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="6000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<hitTime>6000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6178" levels="1" name="Presentation - Ultimate Seal Motion1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6179" levels="1" name="Presentation - Ultimate Seal Motion2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6180" levels="1" name="Presentation - Lilith Presentation1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="12000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<hitTime>12000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6181" levels="1" name="Presentation - Lilith Presentation2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6182" levels="1" name="Presentation - Lilith Presentation3">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6183" levels="1" name="Presentation - Lilith Presentation4">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6184" levels="1" name="Presentation - Anakim's Presentation1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6185" levels="1" name="Presentation - Anakim's Presentation2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6186" levels="1" name="Presentation - Anakim's Presentation3">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6187" levels="1" name="Presentation - Lilith Battle">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>2500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6188" levels="1" name="Presentation - Lilith's Steward Battle1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="80" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>2500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>80</magicLevel>
 	</skill>
 	<skill id="6189" levels="1" name="Presentation - Lilith's Steward Battle2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="79" />
-		<set name="trait" val="POISON" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>2500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>79</magicLevel>
+		<trait>POISON</trait>
 	</skill>
 	<skill id="6190" levels="1" name="Presentation - Lilith's Bodyguards Battle1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="830" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="trait" val="HOLD" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>830</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>84</magicLevel>
+		<trait>HOLD</trait>
 	</skill>
 	<skill id="6191" levels="1" name="Presentation - Anakim Battle">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="84" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>2000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>84</magicLevel>
 	</skill>
 	<skill id="6192" levels="1" name="Presentation - Anakim's Guardian Battle1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="79" />
-		<set name="reuseDelay" val="8000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>79</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6193" levels="1" name="Presentation - Anakim's Guardian Battle2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="79" />
-		<set name="reuseDelay" val="8000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>79</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6194" levels="1" name="Presentation - Anakim's Guard Battle">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="79" />
-		<set name="reuseDelay" val="8000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>79</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6195" levels="1" name="Presentation - Anakim's Executor Battle">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="79" />
-		<set name="reuseDelay" val="8000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>700</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>79</magicLevel>
+		<reuseDelay>8000</reuseDelay>
 	</skill>
 	<skill id="6196" levels="1" name="Agathion Oink Oink's Ability">
 		<!-- Agathion Oink Oink's Ability - Vitality is maintained and not consumed. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="2" />
-		<set name="abnormalTime" val="3600" />
-		<set name="abnormalType" val="VP_KEEP" />
-		<set name="abnormalVisualEffect" val="VP_KEEP" />
-		<set name="coolTime" val="1000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="-1" />
-		<set name="reuseDelay" val="72000000" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>2</abnormalLevel>
+		<abnormalTime>3600</abnormalTime>
+		<abnormalType>VP_KEEP</abnormalType>
+		<abnormalVisualEffect>VP_KEEP</abnormalVisualEffect>
+		<coolTime>1000</coolTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>-1</magicLevel>
+		<reuseDelay>72000000</reuseDelay>
 	</skill>
 	<skill id="6197" levels="1" name="Agathion Cute Trick - Oink Oink">
 		<!-- Able to see the summoned spirit perform cute tricks. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>3000</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
 		<conditions msgId="2292">
 			<player agathionId="16065" />
 		</conditions>
 	</skill>
 	<skill id="6198" levels="1" name="Agathion Cute Trick - Light of the Dawn">
 		<!-- Able to see the summoned spirit perform cute tricks. -->
-		<set name="icon" val="icon.skill_agathion_cute" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="isMagic" val="2" /> <!-- Static Skill -->
-		<set name="magicLevel" val="55" />
+		<icon>icon.skill_agathion_cute</icon>
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>55</magicLevel>
 	</skill>
 	<skill id="6199" levels="7" name="Tail Strike">
 		<!-- Tail Strike -->
@@ -1235,17 +1237,17 @@
 		<table name="#magicLevel">55 60 65 70 75 80 85</table>
 		<table name="#mpConsume">109 121 131 142 151 159 165</table>
 		<table name="#power">1832 2272 2751 3252 3752 4224 4640</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="FRONT_AREA" />
-		<set name="castRange" val="150" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="500" />
-		<set name="fanRange" val="0,0,150,60" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="power" val="#power" />
-		<set name="reuseDelay" val="6000" />
+		<operateType>A1</operateType>
+		<targetType>FRONT_AREA</targetType>
+		<castRange>150</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>500</effectRange>
+		<fanRange>0,0,150,60</fanRange>
+		<hitTime>2000</hitTime>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<power>#power</power>
+		<reuseDelay>6000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>

@@ -32,9 +32,9 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Spawn;
-import org.l2jmobius.gameserver.model.Territory;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.util.PolygonTerritory;
 
 /**
  * Tar Beetle zone spawn
@@ -147,7 +147,7 @@ public class TarBeetleSpawn implements IXmlReader
 		npc.deleteMe();
 	}
 	
-	private class Zone extends Territory
+	private class Zone extends PolygonTerritory
 	{
 		private List<Zone> _bannedZones;
 		

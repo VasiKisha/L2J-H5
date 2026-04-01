@@ -44,9 +44,6 @@ import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.MercTicketManager;
 import org.l2jmobius.gameserver.managers.SiegeGuardManager;
 import org.l2jmobius.gameserver.managers.SiegeManager;
-import org.l2jmobius.gameserver.model.SiegeScheduleDate;
-import org.l2jmobius.gameserver.model.Spawn;
-import org.l2jmobius.gameserver.model.TowerSpawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -62,6 +59,7 @@ import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiege
 import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeOwnerChange;
 import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeStart;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.RelationChanged;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeInfo;

@@ -13,8 +13,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21053-4" /> <!-- Blessed Soul -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21053" level="4" /> <!-- Blessed Soul -->
+		</skills>
 	</item>
 	<item id="20401" type="Armor" name="Laborer Hat">
 		<!-- Hat that was worn by Reipung. Cannot be exchanged or dropped. -->
@@ -45,7 +47,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20399,1,1,100" />
+		<capsuled_items>
+			<item id="20399" min="1" max="1" chance="100" /> <!-- Laborer Hat - Blessed Body - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20403" type="EtcItem" name="Laborer Hat 7-Day Pack - Bless the Soul">
 		<!-- Wrapped pack containing a Laborer Hat (7 day). Cannot be exchanged or dropped. -->
@@ -62,7 +66,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20400,1,1,100" />
+		<capsuled_items>
+			<item id="20400" min="1" max="1" chance="100" /> <!-- Laborer Hat - Blessed Soul - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20404" type="EtcItem" name="Laborer Hat Pack">
 		<!-- Wrapped pack containing a Laborer Hat. Cannot be exchanged or dropped. -->
@@ -79,7 +85,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20401,1,1,100" />
+		<capsuled_items>
+			<item id="20401" min="1" max="1" chance="100" /> <!-- Laborer Hat -->
+		</capsuled_items>
 	</item>
 	<item id="20405" type="Armor" name="Agathion Seal Bracelet - Majo - Big Head - 7-day limited period">
 		<!-- Bracelet that summons the Majo Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -95,9 +103,15 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21000-1;23000-1;23000-1;23004-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21000" level="1" /> <!-- Release Seal on Agathion - Majo -->
+			<skill id="23000" level="1" /> <!-- Majo Agathion Cute Trick -->
+			<skill id="23000" level="1" /> <!-- Majo Agathion Cute Trick -->
+			<skill id="23004" level="1" /> <!-- Majo Agathion Special Skill - Mysterious Power -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20406" type="Armor" name="Agathion Seal Bracelet - Gold Crown Majo - Resurrection - 7-Day Limited Period">
 		<!-- Bracelet that summons the Gold Crown Majo Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -113,9 +127,15 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21001-1;23001-1;23001-1;23005-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21001" level="1" /> <!-- Release Seal on Agathion - Gold Crown Majo -->
+			<skill id="23001" level="1" /> <!-- Gold Crown Majo Agathion Cute Trick -->
+			<skill id="23001" level="1" /> <!-- Gold Crown Majo Agathion Cute Trick -->
+			<skill id="23005" level="1" /> <!-- Gold Majo Agathion Special Skill - Blessed Resurrection -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20407" type="Armor" name="Agathion Seal Bracelet - Black Crown Majo - Escape - 7-Day Limited Period">
 		<!-- Bracelet that summons the Black Crown Majo Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -131,9 +151,15 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21002-1;23002-1;23002-1;23006-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21002" level="1" /> <!-- Release Seal on Agathion - Black Crown Majo -->
+			<skill id="23002" level="1" /> <!-- Black Crown Majo Agathion Cute Trick -->
+			<skill id="23002" level="1" /> <!-- Black Crown Majo Agathion Cute Trick -->
+			<skill id="23006" level="1" /> <!-- Black Majo Agathion Special Skill - Blessed Escape -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20408" type="Armor" name="Agathion Seal Bracelet - Plaipitak - Big Head - 7-day limited period">
 		<!-- Bracelet that summons the Plaipitak Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -149,9 +175,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21003-1;23003-1;23007-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21003" level="1" /> <!-- Release Seal on Agathion - Plaipitak -->
+			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
+			<skill id="23007" level="1" /> <!-- Plaipitak Agathion Special Skill - Mysterious Power -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20409" type="Armor" name="Agathion Seal Bracelet - Plaipitak - Resurrection - 7-Day Limited Period">
 		<!-- Bracelet that summons the Plaipitak Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -167,9 +198,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21003-1;23003-1;23009-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21003" level="1" /> <!-- Release Seal on Agathion - Plaipitak -->
+			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
+			<skill id="23009" level="1" /> <!-- Plaipitak Agathion Special Skill - Blessed Resurrection -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20410" type="Armor" name="Agathion Seal Bracelet - Plaipitak - Escape - 7-Day Limited Period">
 		<!-- Bracelet that summons the Plaipitak Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -185,9 +221,14 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21003-1;23003-1;23008-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21003" level="1" /> <!-- Release Seal on Agathion - Plaipitak -->
+			<skill id="23003" level="1" /> <!-- Plaipitak Agathion Cute Trick -->
+			<skill id="23008" level="1" /> <!-- Plaipitak Agathion Special Skill - Blessed Escape -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20411" type="Armor" name="Agathion Seal Bracelet - Baby Panda - Big Head - 7-day limited period">
 		<!-- Bracelet that summons the Baby Panda. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -203,9 +244,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21008-1;23013-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21008" level="1" /> <!-- Release Seal on Agathion – Baby Panda -->
+			<skill id="23013" level="1" /> <!-- Baby Panda Agathion Special Skill - Mysterious Power -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20412" type="Armor" name="Agathion Seal Bracelet - Bamboo Panda - Resurrection - 7-Day Limited Period">
 		<!-- Bracelet that summons a Bamboo Panda. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -221,9 +266,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21009-1;23014-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21009" level="1" /> <!-- Release Seal on Agathion – Bamboo Panda -->
+			<skill id="23014" level="1" /> <!-- Bamboo Panda Agathion Special Skill - Blessed Resurrection -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20413" type="Armor" name="Agathion Seal Bracelet - Sexy Panda - Escape - 7-Day Limited Period">
 		<!-- Bracelet that summons the Sexy Panda. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -239,9 +288,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21010-1;23015-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21010" level="1" /> <!-- Release Seal on Agathion – Sexy Panda -->
+			<skill id="23015" level="1" /> <!-- Sexy Panda Agathion Special Skill - Blessed Escape -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20414" type="Armor" name="Horn Rimmed Glasses - Agility - 7-day limited period">
 		<!-- Magic horn-rimmed glasses with mysterious power. Cannot be exchanged, dropped, or sold. -->
@@ -257,8 +310,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21005-3" /> <!-- Agility -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21005" level="3" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20415" type="Armor" name="Afro Hair - Big Head, Firework - 7-day limited period">
 		<!-- Afro style hair. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -274,8 +329,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21006-1;21007-1" /> <!-- Large Fireworks Ability -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21006" level="1" /> <!-- Large Fireworks Ability -->
+			<skill id="21007" level="1" /> <!-- Mysterious Ability -->
+		</skills>
 	</item>
 	<item id="20416" type="Armor" name="Afro Hair - Wind Walk - 7-Day Limited Period">
 		<!-- Afro style hair. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -291,8 +349,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21004-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21004" level="1" /> <!-- Wind Walk -->
+		</skills>
 	</item>
 	<item id="20417" type="Armor" name="Uniform Hat - Blessed Resurrection - 7-day limited period">
 		<!-- A cool uniform hat. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -308,8 +368,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21054-1" /> <!-- Blessed Resurrection -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21054" level="1" /> <!-- Blessed Resurrection -->
+		</skills>
 	</item>
 	<item id="20418" type="Armor" name="Assassin's Bamboo Hat - Wind Walk - 7-Day Limited Period">
 		<!-- Wide brimmed hat made of bamboo. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -325,8 +387,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21055-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21055" level="1" /> <!-- Wind Walk -->
+		</skills>
 	</item>
 	<item id="20419" type="Armor" name="Ruthless Tribe Mask - Agility - 7-day limited period">
 		<!-- Mask worn by the reckless tribe. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -342,8 +406,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21056-3" /> <!-- Agility -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21056" level="3" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20420" type="Armor" name="Ribbon Hairband - Reflect Damage - 7-Day Limited Period">
 		<!-- A large ribbon hair accessory. Exclusive to females. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -359,11 +425,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21057-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="1" />
 		</conditions>
+		<skills>
+			<skill id="21057" level="1" /> <!-- Reflect -->
+		</skills>
 	</item>
 	<item id="20421" type="Armor" name="Visor - Mana Regeneration - 7-Day Limited Period">
 		<!-- Accessory that stylishly covers the eye area. Exclusive to males. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -379,11 +447,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21058-1" /> <!-- Mana Regeneration -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="0" />
 		</conditions>
+		<skills>
+			<skill id="21058" level="1" /> <!-- Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="20422" type="Armor" name="Kat the Cat Hat - Greater Heal - 7-Day Limited Period">
 		<!-- Hat that looks like Kat the Cat. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -399,8 +469,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21059-1" /> <!-- Greater Heal -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21059" level="1" /> <!-- Greater Heal -->
+		</skills>
 	</item>
 	<item id="20423" type="Armor" name="Skull Hat - Death Whisper - 7-Day Limited Period">
 		<!-- Hat that looks like a skull. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -416,8 +488,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21060-1" /> <!-- Death Whisper -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21060" level="1" /> <!-- Death Whisper -->
+		</skills>
 	</item>
 	<item id="20424" type="Armor" name="Afro Hair - Gold - Agility - 7-day limited period">
 		<!-- Afro style hair in gold. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -433,8 +507,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21061-3" /> <!-- Agility -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21061" level="3" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20425" type="Armor" name="Afro Hair - Pink - Wild Magic - 7-Day Limited Period">
 		<!-- Afro style hair in pink. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -450,8 +526,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21062-1" /> <!-- Wild Magic -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21062" level="1" /> <!-- Wild Magic -->
+		</skills>
 	</item>
 	<item id="20426" type="Armor" name="Goggles - Wind Walk - 7-Day Limited Period">
 		<!-- A stylish goggle accessory with a fine silver decoration. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -467,8 +545,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21063-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21063" level="1" /> <!-- Wind Walk -->
+		</skills>
 	</item>
 	<item id="20427" type="Armor" name="Napoleon Hat - Mana Regeneration - 7-Day Limited Period">
 		<!-- A Napoleon Hat accessory that has world conquering energy. Cannot be exchanged, dropped, or sold. -->
@@ -484,8 +564,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21064-1" /> <!-- Mana Regeneration -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21064" level="1" /> <!-- Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="20428" type="Armor" name="Horn Hairband - Reflect Damage - 7-Day Limited Period">
 		<!-- A pink hairband accessory with a cute horn dangling. Exclusive to females. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -501,11 +583,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21065-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="1" />
 		</conditions>
+		<skills>
+			<skill id="21065" level="1" /> <!-- Reflect -->
+		</skills>
 	</item>
 	<item id="20429" type="Armor" name="Black Gem Mask - Vitality - 7-Day Limited Period">
 		<!-- A black gem mask accessory made of luxurious metal material. When equipped, grants a Vitality Maintaining skill that can be used every hour. Can be used for 7 days. Cannot be exchanged or dropped. -->
@@ -520,8 +604,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21066-1" /> <!-- Vitality Replenishing -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21066" level="1" /> <!-- Vitality Replenishing -->
+		</skills>
 	</item>
 	<item id="20430" type="Armor" name="Plastic Hair - Blessed Escape - 7-day limited period">
 		<!-- Plastic Hair. It changes to an attractive pink wig for female/blue wig for male. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -537,8 +623,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21067-1" /> <!-- Blessed Escape -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21067" level="1" /> <!-- Blessed Escape -->
+		</skills>
 	</item>
 	<item id="20431" type="Armor" name="Daisy Hairpin - Resist Unholy - 7-Day Limited Period">
 		<!-- Daisy shaped hairpin Hair accessory exclusive to female. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -554,11 +642,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21068-1" /> <!-- UnResistance to Holy -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="1" />
 		</conditions>
+		<skills>
+			<skill id="21068" level="1" /> <!-- UnResistance to Holy -->
+		</skills>
 	</item>
 	<item id="20432" type="Armor" name="Forget-me-not Hairpin - Wind Walk - 7-Day Limited Period">
 		<!-- Forget-me-not shaped hairpin Hair accessory exclusive to female. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -574,11 +664,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21069-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="1" />
 		</conditions>
+		<skills>
+			<skill id="21069" level="1" /> <!-- Wind Walk -->
+		</skills>
 	</item>
 	<item id="20433" type="Armor" name="Outlaw's Eyepatch - Death Whisper - 7-Day Limited Period">
 		<!-- Purple eyepatch accessory Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -594,8 +686,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21070-1" /> <!-- Death Whisper -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21070" level="1" /> <!-- Death Whisper -->
+		</skills>
 	</item>
 	<item id="20434" type="Armor" name="Pirate's Eyepatch - Agility - 7-day limited period">
 		<!-- Eyepatch accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -611,8 +705,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21071-3" /> <!-- Agility -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21071" level="3" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20435" type="Armor" name="Monocle - Wild Magic - 7-Day Limited Period">
 		<!-- Monocle accessory Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -628,8 +724,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21072-1" /> <!-- Wild Magic -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21072" level="1" /> <!-- Wild Magic -->
+		</skills>
 	</item>
 	<item id="20436" type="Armor" name="Red Mask of Victory - Mana Regeneration - 7-Day Limited Period">
 		<!-- Hair accessory for World Cup Events Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -645,8 +743,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21073-1" /> <!-- Mana Regeneration -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21073" level="1" /> <!-- Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="20437" type="Armor" name="Red Horn of Victory - Reflect Damage - 7-Day Limited Period">
 		<!-- Hair accessory for World Cup Events Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -662,8 +762,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21074-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21074" level="1" /> <!-- Reflect -->
+		</skills>
 	</item>
 	<item id="20438" type="Armor" name="Party Mask - Greater Heal - 7-Day Limited Period">
 		<!-- Fashion item which creates an unique taste. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -679,8 +781,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21075-1" /> <!-- Greater Heal -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21075" level="1" /> <!-- Greater Heal -->
+		</skills>
 	</item>
 	<item id="20439" type="Armor" name="Red Party Mask - Resist Unholy - 7-Day Limited Period">
 		<!-- Fashion item which creates an unique taste. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -695,8 +799,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21076-1" /> <!-- UnResistance to Holy -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21076" level="1" /> <!-- UnResistance to Holy -->
+		</skills>
 	</item>
 	<item id="20440" type="Armor" name="Cat Ears - Wind Walk - 7-Day Limited Period">
 		<!-- Cat ear shaped hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -712,8 +818,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21077-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21077" level="1" /> <!-- Wind Walk -->
+		</skills>
 	</item>
 	<item id="20441" type="Armor" name="Lady's Hair Pin - Death Whisper - 7-Day Limited Period">
 		<!-- Hair accessory exclusive to female. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -729,11 +837,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21078-1" /> <!-- Death Whisper -->
 		<set name="time" val="10080" />
 		<conditions msgId="1518">
 			<player sex="1" />
 		</conditions>
+		<skills>
+			<skill id="21078" level="1" /> <!-- Death Whisper -->
+		</skills>
 	</item>
 	<item id="20442" type="Armor" name="Raccoon Ears - Agility - 7-day limited period">
 		<!-- Raccoon ear shaped hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -749,8 +859,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21079-3" /> <!-- Agility -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21079" level="3" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20443" type="Armor" name="Rabbit Ear - Wild Magic - 7-Day Limited Period">
 		<!-- Bonny Girls Rabbit Ear shaped hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -766,8 +878,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21080-1" /> <!-- Wild Magic -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21080" level="1" /> <!-- Wild Magic -->
+		</skills>
 	</item>
 	<item id="20444" type="Armor" name="Little Angel Wings - Mana Regeneration - 7-Day Limited Period">
 		<!-- Wings shaped hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -783,8 +897,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21081-1" /> <!-- Mana Regeneration -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21081" level="1" /> <!-- Mana Regeneration -->
+		</skills>
 	</item>
 	<item id="20445" type="Armor" name="Fairy's Tentacle - Reflect Damage - 7-Day Limited Period">
 		<!-- Stars attached cute tentacle hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -800,8 +916,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21082-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21082" level="1" /> <!-- Reflect -->
+		</skills>
 	</item>
 	<item id="20446" type="Armor" name="Dandy's Chapeau - Greater Heal - 7-Day Limited Period">
 		<!-- Feather attached nice poke bonnet. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -817,8 +935,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21083-1" /> <!-- Greater Heal -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21083" level="1" /> <!-- Greater Heal -->
+		</skills>
 	</item>
 	<item id="20447" type="Armor" name="Artisan's Goggles - Energy - 7-Day Limited Period">
 		<!-- Large goggles which protect eyes. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -833,8 +953,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21084-1" /> <!-- Vitality Replenishing -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21084" level="1" /> <!-- Vitality Replenishing -->
+		</skills>
 	</item>
 	<item id="20448" type="Armor" name="Darkmane Pacer Mount Bracelet - 7-day limited period">
 		<!-- Can ride a purple maned horse when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -850,9 +972,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="619-1" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+			<skill id="619" level="1" type="ON_UNEQUIP" /> <!-- Transform Dispel -->
+		</skills>
 	</item>
 	<item id="20449" type="Armor" name="Steam Beatle Mount Bracelet - 7-day limited period">
 		<!-- Can mount a steam beatle when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -868,9 +992,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="21051-1" /> <!-- Steam Beetle Mount -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21051" level="1" /> <!-- Steam Beetle Mount -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20450" type="EtcItem" name="Majo Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Majo Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -887,7 +1013,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20405,1,1,100" />
+		<capsuled_items>
+			<item id="20405" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Majo - Big Head - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20451" type="EtcItem" name="Gold Crown Majo Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Gold Crown Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -904,7 +1032,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20406,1,1,100" />
+		<capsuled_items>
+			<item id="20406" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Gold Crown Majo - Resurrection - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20452" type="EtcItem" name="Black Crown Majo Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Black Crown Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -921,7 +1051,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20407,1,1,100" />
+		<capsuled_items>
+			<item id="20407" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Black Crown Majo - Escape - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20453" type="EtcItem" name="Plaipitak Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Plaipitak Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -938,7 +1070,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20408,1,1,100" />
+		<capsuled_items>
+			<item id="20408" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Plaipitak - Big Head - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20454" type="EtcItem" name="Plaipitak Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Plaipitak Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -955,7 +1089,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20409,1,1,100" />
+		<capsuled_items>
+			<item id="20409" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Plaipitak - Resurrection - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20455" type="EtcItem" name="Plaipitak Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Plaipitak Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -972,7 +1108,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20410,1,1,100" />
+		<capsuled_items>
+			<item id="20410" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Plaipitak - Escape - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20456" type="EtcItem" name="Agathion of Baby Panda 7-Day Pack">
 		<!-- Wrapped pack containing a Baby Panda Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -989,7 +1127,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20411,1,1,100" />
+		<capsuled_items>
+			<item id="20411" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Baby Panda - Big Head - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20457" type="EtcItem" name="Bamboo Panda Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Bamboo Panda Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1006,7 +1146,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20412,1,1,100" />
+		<capsuled_items>
+			<item id="20412" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Bamboo Panda - Resurrection - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20458" type="EtcItem" name="Agathion of Sexy Panda 7-Day Pack">
 		<!-- Wrapped pack containing a Sexy Panda Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1023,7 +1165,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20413,1,1,100" />
+		<capsuled_items>
+			<item id="20413" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Sexy Panda - Escape - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20459" type="EtcItem" name="Horn Rimmed Glasses 7-Day Pack">
 		<!-- Wrapped pack containing Horn Rimmed Glasses (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1040,7 +1184,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20414,1,1,100" />
+		<capsuled_items>
+			<item id="20414" min="1" max="1" chance="100" /> <!-- Horn Rimmed Glasses - Agility - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20460" type="EtcItem" name="Afro Hair 7-Day Pack">
 		<!-- Wrapped pack containing Afro Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1057,7 +1203,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20415,1,1,100" />
+		<capsuled_items>
+			<item id="20415" min="1" max="1" chance="100" /> <!-- Afro Hair - Big Head, Firework - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20461" type="EtcItem" name="Afro Hair 7-Day Pack">
 		<!-- Wrapped pack containing Afro Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1074,7 +1222,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20416,1,1,100" />
+		<capsuled_items>
+			<item id="20416" min="1" max="1" chance="100" /> <!-- Afro Hair - Wind Walk - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20462" type="EtcItem" name="Uniform Hat 7-Day Pack">
 		<!-- Wrapped pack containing a Uniform Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1091,7 +1241,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20417,1,1,100" />
+		<capsuled_items>
+			<item id="20417" min="1" max="1" chance="100" /> <!-- Uniform Hat - Blessed Resurrection - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20463" type="EtcItem" name="Assassin's Bamboo Hat 7-Day Pack">
 		<!-- Wrapped pack containing an Assassin's Bamboo Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1108,7 +1260,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20418,1,1,100" />
+		<capsuled_items>
+			<item id="20418" min="1" max="1" chance="100" /> <!-- Assassin's Bamboo Hat - Wind Walk - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20464" type="EtcItem" name="Ruthless Tribe Mask 7-Day Pack">
 		<!-- Wrapped pack containing a Ruthless Tribe Mask (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1125,7 +1279,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20419,1,1,100" />
+		<capsuled_items>
+			<item id="20419" min="1" max="1" chance="100" /> <!-- Ruthless Tribe Mask - Agility - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20465" type="EtcItem" name="Ribbon Hairband 7-Day Pack">
 		<!-- Wrapped pack containing a Ribbon Hairband (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1142,7 +1298,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20420,1,1,100" />
+		<capsuled_items>
+			<item id="20420" min="1" max="1" chance="100" /> <!-- Ribbon Hairband - Reflect Damage - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20466" type="EtcItem" name="Visor 7-Day Pack">
 		<!-- Wrapped pack containing a Visor (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1159,7 +1317,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20421,1,1,100" />
+		<capsuled_items>
+			<item id="20421" min="1" max="1" chance="100" /> <!-- Visor - Mana Regeneration - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20467" type="EtcItem" name="Kat the Cat Hat 7-Day Pack">
 		<!-- Wrapped pack containing a Kat the Cat Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1176,7 +1336,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20422,1,1,100" />
+		<capsuled_items>
+			<item id="20422" min="1" max="1" chance="100" /> <!-- Kat the Cat Hat - Greater Heal - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20468" type="EtcItem" name="Skull Hat 7-Day Pack">
 		<!-- Wrapped pack containing a Skull Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1193,7 +1355,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20423,1,1,100" />
+		<capsuled_items>
+			<item id="20423" min="1" max="1" chance="100" /> <!-- Skull Hat - Death Whisper - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20469" type="EtcItem" name="Gold Afro Hair 7-Day Pack">
 		<!-- Wrapped pack containing Gold Afro Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1210,7 +1374,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20424,1,1,100" />
+		<capsuled_items>
+			<item id="20424" min="1" max="1" chance="100" /> <!-- Afro Hair - Gold - Agility - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20470" type="EtcItem" name="Pink Afro Hair 7-Day Pack">
 		<!-- Wrapped pack containing Pink Afro Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1227,7 +1393,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20425,1,1,100" />
+		<capsuled_items>
+			<item id="20425" min="1" max="1" chance="100" /> <!-- Afro Hair - Pink - Wild Magic - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20471" type="EtcItem" name="Goggle 7-Day Pack">
 		<!-- Wrapped pack containing Goggles (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1244,7 +1412,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20426,1,1,100" />
+		<capsuled_items>
+			<item id="20426" min="1" max="1" chance="100" /> <!-- Goggles - Wind Walk - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20472" type="EtcItem" name="Napoleon Hat 7-Day Pack">
 		<!-- Wrapped pack containing a Napoleon Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1261,7 +1431,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20427,1,1,100" />
+		<capsuled_items>
+			<item id="20427" min="1" max="1" chance="100" /> <!-- Napoleon Hat - Mana Regeneration - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20473" type="EtcItem" name="Horn Hairband 7-Day Pack">
 		<!-- Wrapped pack containing a Horn Hairband (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1278,7 +1450,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20428,1,1,100" />
+		<capsuled_items>
+			<item id="20428" min="1" max="1" chance="100" /> <!-- Horn Hairband - Reflect Damage - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20474" type="EtcItem" name="Black Gem Mask 7-Day Pack">
 		<!-- Wrapped pack containing a Black Gem Mask (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1295,7 +1469,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20429,1,1,100" />
+		<capsuled_items>
+			<item id="20429" min="1" max="1" chance="100" /> <!-- Black Gem Mask - Vitality - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20475" type="EtcItem" name="Plastic Hair 7-Day Pack">
 		<!-- Wrapped pack containing Plastic Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1312,7 +1488,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20430,1,1,100" />
+		<capsuled_items>
+			<item id="20430" min="1" max="1" chance="100" /> <!-- Plastic Hair - Blessed Escape - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20476" type="EtcItem" name="Daisy Hairpin 7-Day Pack">
 		<!-- Wrapped pack containing a Daisy Hairpin (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1329,7 +1507,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20431,1,1,100" />
+		<capsuled_items>
+			<item id="20431" min="1" max="1" chance="100" /> <!-- Daisy Hairpin - Resist Unholy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20477" type="EtcItem" name="Forget-me-not Hairpin 7-Day Pack">
 		<!-- Wrapped pack containing a Forget-me-not Hairpin (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1346,7 +1526,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20432,1,1,100" />
+		<capsuled_items>
+			<item id="20432" min="1" max="1" chance="100" /> <!-- Forget-me-not Hairpin - Wind Walk - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20478" type="EtcItem" name="Outlaw's Eyepatch 7-Day Pack">
 		<!-- Wrapped pack containing an Outlaw's Eyepatch (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1363,7 +1545,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20433,1,1,100" />
+		<capsuled_items>
+			<item id="20433" min="1" max="1" chance="100" /> <!-- Outlaw's Eyepatch - Death Whisper - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20479" type="EtcItem" name="Pirate's Eyepatch 7-Day Pack">
 		<!-- Wrapped pack containing a Pirate's Eyepatch (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1380,7 +1564,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20434,1,1,100" />
+		<capsuled_items>
+			<item id="20434" min="1" max="1" chance="100" /> <!-- Pirate's eyepatch - Agility - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20480" type="EtcItem" name="Monocle 7-Day Pack">
 		<!-- Wrapped pack containing a Monocle (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1397,7 +1583,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20435,1,1,100" />
+		<capsuled_items>
+			<item id="20435" min="1" max="1" chance="100" /> <!-- Monocle - Wild Magic - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20481" type="EtcItem" name="Red Mask of Victory 7-Day Pack">
 		<!-- Wrapped pack containing a Red Mask of Victory (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1414,7 +1602,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20436,1,1,100" />
+		<capsuled_items>
+			<item id="20436" min="1" max="1" chance="100" /> <!-- Red Mask of Victory - Mana Regeneration - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20482" type="EtcItem" name="Red Horn of Victory 7-Day Pack">
 		<!-- Wrapped pack containing a Red Horn of Victory (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1431,7 +1621,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20437,1,1,100" />
+		<capsuled_items>
+			<item id="20437" min="1" max="1" chance="100" /> <!-- Red Horn of Victory - Reflect Damage - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20483" type="EtcItem" name="Party Mask 7-Day Pack">
 		<!-- Wrapped pack containing a Party Mask (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1448,7 +1640,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20438,1,1,100" />
+		<capsuled_items>
+			<item id="20438" min="1" max="1" chance="100" /> <!-- Party Mask - Greater Heal - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20484" type="EtcItem" name="Red Party Mask 7-Day Pack">
 		<!-- Wrapped pack containing a Red Party Mask (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1465,7 +1659,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20439,1,1,100" />
+		<capsuled_items>
+			<item id="20439" min="1" max="1" chance="100" /> <!-- Red Party Mask - Resist Unholy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20485" type="EtcItem" name="Cat Ears 7-Day Pack">
 		<!-- Wrapped pack containing Cat Ears (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1482,7 +1678,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20440,1,1,100" />
+		<capsuled_items>
+			<item id="20440" min="1" max="1" chance="100" /> <!-- Cat Ears - Wind Walk - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20486" type="EtcItem" name="Lady's Hair Pin 7-Day Pack">
 		<!-- Wrapped pack containing a Lady's Hair Pin (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1499,7 +1697,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20441,1,1,100" />
+		<capsuled_items>
+			<item id="20441" min="1" max="1" chance="100" /> <!-- Lady's Hair Pin - Death Whisper - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20487" type="EtcItem" name="Raccoon Ears 7-Day Pack">
 		<!-- Wrapped pack containing Raccoon Ears (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1516,7 +1716,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20442,1,1,100" />
+		<capsuled_items>
+			<item id="20442" min="1" max="1" chance="100" /> <!-- Raccoon Ears - Agility - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20488" type="EtcItem" name="Rabbit Ears 7-Day Pack">
 		<!-- Wrapped pack containing Rabbit Ears (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1533,7 +1735,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20443,1,1,100" />
+		<capsuled_items>
+			<item id="20443" min="1" max="1" chance="100" /> <!-- Rabbit Ear - Wild Magic - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20489" type="EtcItem" name="Little Angel's Wings 7-Day Pack">
 		<!-- Wrapped pack containing a Little Angel's Wings (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1550,7 +1754,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20444,1,1,100" />
+		<capsuled_items>
+			<item id="20444" min="1" max="1" chance="100" /> <!-- Little Angel Wings - Mana Regeneration - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20490" type="EtcItem" name="Fairy's Tentacle 7-Day Pack">
 		<!-- Wrapped pack containing a Fairy's Tentacle (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1567,7 +1773,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20445,1,1,100" />
+		<capsuled_items>
+			<item id="20445" min="1" max="1" chance="100" /> <!-- Fairy's Tentacle - Reflect Damage - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20491" type="EtcItem" name="Dandy's Chapeau 7-Day Pack">
 		<!-- Wrapped pack containing a Dandy's Chapeau (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1584,7 +1792,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20446,1,1,100" />
+		<capsuled_items>
+			<item id="20446" min="1" max="1" chance="100" /> <!-- Dandy's Chapeau - Greater Heal - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20492" type="EtcItem" name="Artisan's Goggles 7-Day Pack">
 		<!-- Wrapped pack containing an Artisan's Goggles (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1601,7 +1811,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20447,1,1,100" />
+		<capsuled_items>
+			<item id="20447" min="1" max="1" chance="100" /> <!-- Artisan's Goggles - Energy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20493" type="EtcItem" name="Darkmane Pacer Mount Bracelet 7-Day Pack">
 		<!-- Wrapped pack containing a Darkmane Pacer Mount Bracelet (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1618,7 +1830,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20448,1,1,100" />
+		<capsuled_items>
+			<item id="20448" min="1" max="1" chance="100" /> <!-- Darkmane Pacer Mount Bracelet - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20494" type="EtcItem" name="Steam Beatle Mount Bracelet 7-Day Pack">
 		<!-- Wrapped pack containing a Steam Beatle Mount Bracelet (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1635,7 +1849,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20449,1,1,100" />
+		<capsuled_items>
+			<item id="20449" min="1" max="1" chance="100" /> <!-- Steam Beatle Mount Bracelet - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20495" type="Armor" name="Agathion Seal Bracelet - Live Event Souvenir">
 		<!-- Dimensional Item. A special thanks for having attended a live Lineage II fan event. Summons the Live Event Souvenir agathion, which contains a surprise inside. Cannot be exchanged, dropped, or sold. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -1651,9 +1867,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="3267-1;21085-1;23067-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21085" level="1" /> <!-- Release Seal on Agathion - Live Event Souvenir -->
+			<skill id="23067" level="1" /> <!-- Live Event Souvenir Agathion Cute Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20496" type="Armor" name="Agathion Seal Bracelet - Pomona - Mental Shield - 7-day limited period">
 		<!-- Bracelet that summons the Pomona Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1669,9 +1889,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21085-1;23068-4" /> <!-- Dismiss Agathion -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21085" level="1" /> <!-- Release Seal on Agathion - Live Event Souvenir -->
+			<skill id="23068" level="4" /> <!-- Pomona Agathion Special Skill - Mental Shield Ability -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20497" type="EtcItem" name="Mother's Wreath (Event) - Blessing of Love - 24-hour limited period">
 		<!-- For events. Wreath containing a mother's love. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1687,8 +1911,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="21086-1" /> <!-- Blessing of Love -->
 		<set name="time" val="1440" />
+		<skills>
+			<skill id="21086" level="1" /> <!-- Blessing of Love -->
+		</skills>
 	</item>
 	<item id="20498" type="EtcItem" name="Mother's Wreath - Blessing of Love - 3-day limited period">
 		<!-- Wreath containing a mother's love. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1704,8 +1930,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="21086-1" /> <!-- Blessing of Love -->
 		<set name="time" val="4320" />
+		<skills>
+			<skill id="21086" level="1" /> <!-- Blessing of Love -->
+		</skills>
 	</item>
 	<item id="20499" type="Armor" name="Feline Queen Hat">
 		<!-- Hat that looks like the Feline Queen. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->

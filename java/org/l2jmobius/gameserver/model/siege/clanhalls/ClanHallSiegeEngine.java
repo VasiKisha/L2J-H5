@@ -34,10 +34,9 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.ConquerableHallSiegeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
-import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -47,6 +46,7 @@ import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.siege.Siegable;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
 import org.l2jmobius.gameserver.model.siege.SiegeClanType;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -454,10 +454,10 @@ public abstract class ClanHallSiegeEngine extends Script implements Siegable
 	public void broadcastNpcSay(Npc npc, ChatType type, NpcStringId messageId)
 	{
 		final NpcSay npcSay = new NpcSay(npc.getObjectId(), type, npc.getId(), messageId);
-		final int sourceRegion = MapRegionManager.getInstance().getMapRegionLocId(npc);
+		final int sourceRegion = MapRegionData.getInstance().getMapRegionLocId(npc);
 		for (Player pc : World.getInstance().getPlayers())
 		{
-			if ((pc != null) && (MapRegionManager.getInstance().getMapRegionLocId(pc) == sourceRegion))
+			if ((pc != null) && (MapRegionData.getInstance().getMapRegionLocId(pc) == sourceRegion))
 			{
 				pc.sendPacket(npcSay);
 			}

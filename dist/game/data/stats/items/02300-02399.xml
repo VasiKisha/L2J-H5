@@ -889,8 +889,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="CLOTH" />
@@ -902,11 +900,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<set stat="pAtk" val="7" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">7</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2369" type="Weapon" name="Squire's Sword">
@@ -914,8 +914,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -927,10 +925,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<set stat="pAtk" val="6" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">6</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2370" type="Weapon" name="Guild Member's Club">
@@ -938,8 +938,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -951,11 +949,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<set stat="pAtk" val="6" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">6</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2371" type="Weapon" name="Fist of Butcher">
@@ -963,8 +963,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;32;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -973,11 +971,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="16" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">16</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2372" type="Weapon" name="Dagger of Adept">
@@ -985,8 +985,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -995,11 +993,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="11" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">11</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2373" type="Weapon" name="Eldritch Staff">
@@ -1007,8 +1007,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;46;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
@@ -1018,11 +1016,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
 		<stats>
-			<set stat="pAtk" val="13" />
-			<set stat="mAtk" val="13" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">13</stat>
+			<stat type="mAtk">13</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2374" type="Weapon" name="Red Sunset Dagger">
@@ -1030,8 +1030,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1040,11 +1038,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="11" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">11</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="2375" type="EtcItem" name="Wolf Collar">
@@ -1056,11 +1056,13 @@
 		<set name="weight" val="10" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="2376" type="Armor" name="Avadon Breastplate">
 		<set name="icon" val="icon.armor_t66_u_i00" />
@@ -1078,8 +1080,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="157" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">157</stat>
 		</stats>
 	</item>
 	<item id="2377" type="Armor" name="Mithril Scale Gaiters">
@@ -1098,8 +1099,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="2378" type="Armor" name="Brigandine Gaiters">
@@ -1118,8 +1118,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="2379" type="Armor" name="Avadon Gaiters">
@@ -1138,8 +1137,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="98" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">98</stat>
 		</stats>
 	</item>
 	<item id="2380" type="Armor" name="Blue Wolf Gaiters">
@@ -1158,8 +1156,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="104" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">104</stat>
 		</stats>
 	</item>
 	<item id="2381" type="Armor" name="Doom Plate Armor">
@@ -1179,8 +1176,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="270" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">270</stat>
 		</stats>
 	</item>
 	<item id="2382" type="Armor" name="Tallum Plate Armor">
@@ -1200,8 +1196,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="278" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">278</stat>
 		</stats>
 	</item>
 	<item id="2383" type="Armor" name="Majestic Plate Armor">
@@ -1221,8 +1216,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="293" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">293</stat>
 		</stats>
 	</item>
 	<item id="2384" type="Armor" name="Zubei's Leather Shirt">
@@ -1238,8 +1232,7 @@
 		<set name="price" val="1197000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="117" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">117</stat>
 		</stats>
 	</item>
 	<item id="2385" type="Armor" name="Dark Crystal Leather Armor">
@@ -1255,8 +1248,7 @@
 		<set name="price" val="2671000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="128" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">128</stat>
 		</stats>
 	</item>
 	<item id="2386" type="Armor" name="Wooden Gaiters">
@@ -1269,7 +1261,7 @@
 		<set name="weight" val="1670" />
 		<set name="price" val="3820" />
 		<stats>
-			<add order="0" stat="pDef" val="29" />
+			<stat type="pDef">29</stat>
 		</stats>
 	</item>
 	<item id="2387" type="Armor" name="Reinforced Mithril Gaiters">
@@ -1285,8 +1277,7 @@
 		<set name="price" val="182100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="56" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">56</stat>
 		</stats>
 	</item>
 	<item id="2388" type="Armor" name="Zubei's Leather Gaiters">
@@ -1302,8 +1293,7 @@
 		<set name="price" val="748300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="73" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">73</stat>
 		</stats>
 	</item>
 	<item id="2389" type="Armor" name="Dark Crystal Leggings">
@@ -1319,8 +1309,7 @@
 		<set name="price" val="1670000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="80" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">80</stat>
 		</stats>
 	</item>
 	<item id="2390" type="Armor" name="Avadon Leather Armor">
@@ -1337,8 +1326,7 @@
 		<set name="price" val="1946000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="191" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">191</stat>
 		</stats>
 	</item>
 	<item id="2391" type="Armor" name="Blue Wolf Leather Armor">
@@ -1355,8 +1343,7 @@
 		<set name="price" val="3017000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="202" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">202</stat>
 		</stats>
 	</item>
 	<item id="2392" type="Armor" name="Leather Armor of Doom">
@@ -1373,8 +1360,7 @@
 		<set name="price" val="3017000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="202" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">202</stat>
 		</stats>
 	</item>
 	<item id="2393" type="Armor" name="Tallum Leather Armor">
@@ -1391,8 +1377,7 @@
 		<set name="price" val="4341000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="209" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">209</stat>
 		</stats>
 	</item>
 	<item id="2394" type="Armor" name="Leather Armor of Nightmare">
@@ -1409,8 +1394,7 @@
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="2395" type="Armor" name="Majestic Leather Armor">
@@ -1427,8 +1411,7 @@
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="220" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">220</stat>
 		</stats>
 	</item>
 	<item id="2396" type="Armor" name="Elven Mithril Tunic">
@@ -1447,9 +1430,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="54" />
-			<add stat="maxMp" val="169" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">54</stat>
+			<stat type="maxMp">169</stat>
 		</stats>
 	</item>
 	<item id="2397" type="Armor" name="Tunic of Zubei">
@@ -1468,9 +1450,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="345" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">345</stat>
 		</stats>
 	</item>
 	<item id="2398" type="Armor" name="Blue Wolf Tunic">
@@ -1489,9 +1470,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="83" />
-			<add stat="maxMp" val="377" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">83</stat>
+			<stat type="maxMp">377</stat>
 		</stats>
 	</item>
 	<item id="2399" type="Armor" name="Tunic of Doom">
@@ -1510,9 +1490,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="83" />
-			<add stat="maxMp" val="377" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">83</stat>
+			<stat type="maxMp">377</stat>
 		</stats>
 	</item>
 </list>

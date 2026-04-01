@@ -113,7 +113,7 @@ public class ValakasTeleporters extends Script
 							if (status == 0)
 							{
 								final GrandBoss valakas = GrandBossManager.getInstance().getBoss(29028);
-								valakasAI().startQuestTimer("beginning", GrandBossConfig.VALAKAS_WAIT_TIME * 60000, valakas, null);
+								valakasAI().startQuestTimer("VALAKAS_START_ENCOUNTER", GrandBossConfig.VALAKAS_WAIT_TIME * 60000, valakas, null);
 								GrandBossManager.getInstance().setStatus(29028, 1);
 							}
 						}

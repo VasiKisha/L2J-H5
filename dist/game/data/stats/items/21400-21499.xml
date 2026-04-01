@@ -38,7 +38,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21404" type="Armor" name="Mount Bracelet - Gold Maned Lion - 7-day limited period (event)">
 		<!-- Dimensional item. Can ride a gold maned lion when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -50,7 +52,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21405" type="Armor" name="Mount Bracelet - Gold Maned Lion - 30-day limited period">
 		<!-- Dimensional item. Can ride a gold maned lion when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -61,7 +65,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21406" type="Armor" name="Mount Bracelet - Gold Maned Lion - 30-day limited period (event)">
 		<!-- Dimensional item. Can ride a gold maned lion when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -73,7 +79,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21407" type="Armor" name="Mount Bracelet - Gold Maned Lion">
 		<!-- Dimensional item. Can ride a gold maned lion when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -84,7 +92,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21408" type="Armor" name="Mount Bracelet - Gold Maned Lion - Event">
 		<!-- Dimensional item. Can ride a gold maned lion when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -96,7 +106,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="21409" type="EtcItem" name="Jet Bike Mount Bracelet 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Jet Bike Mount Bracelet (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -165,7 +177,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21416" type="Armor" name="Mount Bracelet - Jet Bike - 7-day limited period (event)">
 		<!-- Dimensional item. Can ride a Jet Bike when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -178,7 +192,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21417" type="Armor" name="Mount Bracelet - Jet Bike - 30-day limited period">
 		<!-- Dimensional item. Can ride a Jet Bike when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -190,7 +206,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21418" type="Armor" name="Mount Bracelet - Jet Bike - 30-day limited period (event)">
 		<!-- Dimensional item. Can ride a Jet Bike when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -203,7 +221,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21419" type="Armor" name="Mount Bracelet - Jet Bike">
 		<!-- Dimensional item. Can ride a Jet Bike when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -215,7 +235,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21420" type="Armor" name="Mount Bracelet - Jet Bike - Event">
 		<!-- Dimensional item. Can ride a Jet Bike when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -228,7 +250,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="21171-1" /> <!-- Jet Bike Mount -->
+		<skills>
+			<skill id="21171" level="1" /> <!-- Jet Bike Mount -->
+		</skills>
 	</item>
 	<item id="21421" type="EtcItem" name="Color Name Pack">
 		<!-- Dimensional item pack. Gift box containing 1 color name item. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->

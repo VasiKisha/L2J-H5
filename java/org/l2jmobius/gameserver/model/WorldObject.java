@@ -23,9 +23,9 @@ package org.l2jmobius.gameserver.model;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.handler.ActionHandler;
+import org.l2jmobius.gameserver.handler.ActionClickHandler;
 import org.l2jmobius.gameserver.handler.ActionShiftHandler;
-import org.l2jmobius.gameserver.handler.IActionHandler;
+import org.l2jmobius.gameserver.handler.IActionClickHandler;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
@@ -113,7 +113,7 @@ public abstract class WorldObject extends ListenersContainer implements IPositio
 	
 	public void onAction(Player player, boolean interact)
 	{
-		final IActionHandler handler = ActionHandler.getInstance().getHandler(getInstanceType());
+		final IActionClickHandler handler = ActionClickHandler.getInstance().getHandler(getInstanceType());
 		if (handler != null)
 		{
 			handler.onAction(player, this, interact);

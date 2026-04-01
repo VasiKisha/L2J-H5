@@ -33,7 +33,6 @@ import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMoveRe
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class MoveToLocation extends ClientPacket
 {
@@ -163,22 +162,8 @@ public class MoveToLocation extends ClientPacket
 			return;
 		}
 		
-		// Prevent moving to same location. Geodata cell size is 16.
-		final Location targetLocation = new Location(_targetX, _targetY, _targetZ);
-		if (LocationUtil.calculateDistance(player.getLastMoveToPosition(), targetLocation, true, false) < 17)
-		{
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
-		// When player is not attacking or casting set last "move to" position.
-		if (!player.isAttackingOrCastingNow())
-		{
-			player.setLastMoveToPosition(targetLocation);
-		}
-		
 		// Finally move to the target location.
-		player.getAI().setIntention(Intention.MOVE_TO, targetLocation);
+		player.getAI().setIntention(Intention.MOVE_TO, new Location(_targetX, _targetY, _targetZ));
 		
 		// Mobius: Check spawn protections.
 		player.onActionRequest();

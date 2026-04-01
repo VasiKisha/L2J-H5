@@ -46,9 +46,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
 		<set name="is_freightable" val="true" />
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20503" type="Armor" name="Gold Maned Lion Mount Bracelet - 30-day limited period">
 		<!-- Can ride a gold maned lion when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -64,9 +66,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20504" type="Armor" name="Steam Beatle Mount Bracelet - 30-day limited period">
 		<!-- Can mount a steam beatle when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -82,9 +86,11 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="839-1" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+			<skill id="839" level="1" type="ON_UNEQUIP" /> <!-- Dismount -->
+		</skills>
 	</item>
 	<item id="20505" type="EtcItem" name="Pomona Agathion Pack">
 		<!-- Wrapped pack containing a Pomona Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -102,7 +108,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20495,1,1,100" />
+		<capsuled_items>
+			<item id="20495" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet – Live Event Souvenir -->
+		</capsuled_items>
 	</item>
 	<item id="20506" type="EtcItem" name="Pomona Agathion 7-Day Pack">
 		<!-- Wrapped pack containing a Pomona Agathion (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -120,7 +128,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20496,1,1,100" />
+		<capsuled_items>
+			<item id="20496" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet – Pomona - Mental Shield - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20507" type="EtcItem" name="Mother's Wreath 24-Hour Pack (Event)">
 		<!-- Wrapped pack for events containing a Mother's Wreath (24 hours). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -138,7 +148,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20497,1,1,100" />
+		<capsuled_items>
+			<item id="20497" min="1" max="1" chance="100" /> <!-- Mother's Wreath (Event) - Blessing of Love - 24-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20508" type="EtcItem" name="Mother's Wreath 3-Day Pack">
 		<!-- Wrapped pack containing a Mother's Wreath (3 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -156,7 +168,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20498,1,1,100" />
+		<capsuled_items>
+			<item id="20498" min="1" max="1" chance="100" /> <!-- Mother's Wreath - Blessing of Love - 3-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20509" type="EtcItem" name="Feline Queen Hat Pack">
 		<!-- Wrapped pack containing a Feline Queen Hat. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -174,7 +188,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20499,1,1,100" />
+		<capsuled_items>
+			<item id="20499" min="1" max="1" chance="100" /> <!-- Feline Queen Hat -->
+		</capsuled_items>
 	</item>
 	<item id="20510" type="EtcItem" name="Feline King Hat Pack">
 		<!-- Wrapped pack containing a Feline King Hat. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -192,7 +208,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20500,1,1,100" />
+		<capsuled_items>
+			<item id="20500" min="1" max="1" chance="100" /> <!-- Feline King Hat -->
+		</capsuled_items>
 	</item>
 	<item id="20511" type="EtcItem" name="Kai the Cat Hat Pack">
 		<!-- Wrapped pack containing a Kai the Cat Hat. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -210,7 +228,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20501,1,1,100" />
+		<capsuled_items>
+			<item id="20501" min="1" max="1" chance="100" /> <!-- Kai the Cat Hat -->
+		</capsuled_items>
 	</item>
 	<item id="20512" type="EtcItem" name="Gold Maned Lion Mount Bracelet Pack">
 		<!-- Wrapped pack containing a Gold Maned Lion Mount Bracelet. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -228,7 +248,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20502,1,1,100" />
+		<capsuled_items>
+			<item id="20502" min="1" max="1" chance="100" /> <!-- Gold Maned Lion Mount Bracelet -->
+		</capsuled_items>
 	</item>
 	<item id="20513" type="EtcItem" name="Gold Maned Lion Mount Bracelet 30-Day Pack - 30-day limited period">
 		<!-- Wrapped pack containing a Gold Maned Lion Mount Bracelet (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -246,7 +268,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20503,1,1,100" />
+		<capsuled_items>
+			<item id="20503" min="1" max="1" chance="100" /> <!-- Gold Maned Lion Mount Bracelet - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20514" type="EtcItem" name="Steam Beatle Mount Bracelet 30-Day Pack - 30-day limited period">
 		<!-- Wrapped pack containing a Steam Beatle Mount Bracelet (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -264,7 +288,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20504,1,1,100" />
+		<capsuled_items>
+			<item id="20504" min="1" max="1" chance="100" /> <!-- Steam Beatle Mount Bracelet - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20515" type="EtcItem" name="Huge Fortuna Box">
 		<!-- A Divine Weapon Enchant Crystal and a high grade Ancient Weapon Enchant Crystal can be acquired at a constant rate. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -281,7 +307,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22071-1" /> <!-- Huge Fortuna Box -->
+		<skills>
+			<skill id="22071" level="1" /> <!-- Huge Fortuna Box -->
+		</skills>
 	</item>
 	<item id="20516" type="EtcItem" name="Huge Fortuna Cube">
 		<!-- A Divine Armor Enchant Crystal and a high grade Ancient Armor Enchant Crystal can be acquired at a constant rate. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -298,10 +326,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22072-1" /> <!-- Huge Fortuna Cube -->
+		<skills>
+			<skill id="22072" level="1" /> <!-- Huge Fortuna Cube -->
+		</skills>
 	</item>
 	<item id="20517" type="EtcItem" name="Scroll: Enchant Weapon (S-Grade)">
-		<!-- 10% increase in enchant success rate. . Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- 10% increase in enchant success rate. Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_scrl_of_ench_wp_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SCRL_ENCHANT_WP" />
@@ -316,10 +346,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22073-1" /> <!-- Weapon Enchant Scroll - S Grade -->
+		<skills>
+			<skill id="22073" level="1" /> <!-- Weapon Enchant Scroll - S Grade -->
+		</skills>
 	</item>
 	<item id="20518" type="EtcItem" name="Scroll: Enchant Armor (S-Grade)">
-		<!-- 10% increase in enchant success rate. . Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- 10% increase in enchant success rate. Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_scrl_of_ench_am_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="SCRL_ENCHANT_AM" />
@@ -334,10 +366,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22074-1" /> <!-- Armor Enchant Scroll - S Grade -->
+		<skills>
+			<skill id="22074" level="1" /> <!-- Armor Enchant Scroll - S Grade -->
+		</skills>
 	</item>
 	<item id="20519" type="EtcItem" name="Ancient Weapon Enchant Crystal (S-Grade)">
-		<!-- 10% increase in enchant success rate. . When enchant fails, the existing enchant value is retained. . Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot use weapons enchanted by above 16. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- 10% increase in enchant success rate. When enchant fails, the existing enchant value is retained. Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot use weapons enchanted by above 16. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_ancient_cry_of_ench_wp_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="ANCIENT_CRYSTAL_ENCHANT_WP" />
@@ -352,10 +386,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22075-1" /> <!-- Ancient Weapon Enchant Crystal - S grade -->
+		<skills>
+			<skill id="22075" level="1" /> <!-- Ancient Weapon Enchant Crystal - S grade -->
+		</skills>
 	</item>
 	<item id="20520" type="EtcItem" name="Ancient Armor Enchant Crystal (S-Grade)">
-		<!-- 10% increase in enchant success rate. . When enchant fails, the existing enchant value is retained. . Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot use armors enchanted by above 16. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- 10% increase in enchant success rate. When enchant fails, the existing enchant value is retained. Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot use armors enchanted by above 16. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_ancient_cry_of_ench_am_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="ANCIENT_CRYSTAL_ENCHANT_AM" />
@@ -370,10 +406,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22076-1" /> <!-- Ancient Armor Enchant Crystal - S grade -->
+		<skills>
+			<skill id="22076" level="1" /> <!-- Ancient Armor Enchant Crystal - S grade -->
+		</skills>
 	</item>
 	<item id="20521" type="EtcItem" name="Divine Weapon Enchant Crystal (S-Grade)">
-		<!-- Enchant success rate is 100%. . Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- Enchant success rate is 100%. Attack power for S-grade sword, one-handed blunt, one-handed dagger, spear, and other weapons increases by 5 when enchanted. Attack power for sword, two-handed blunt, two-handed dualsword, and combat and dual-handed weapons increases by 6. Attack power for bow weapons increases by 10. Magic power for all weapons increases by 4. Attack and magic power increase two times after +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_holy_cry_of_ench_wp_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="ANCIENT_CRYSTAL_ENCHANT_WP" />
@@ -388,10 +426,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22077-1" /> <!-- Holy Weapon Enchant Crystal - S grade -->
+		<skills>
+			<skill id="22077" level="1" /> <!-- Holy Weapon Enchant Crystal - S grade -->
+		</skills>
 	</item>
 	<item id="20522" type="EtcItem" name="Divine Armor Enchant Crystal (S-Grade)">
-		<!-- Enchant success rate is 100%. . Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
+		<!-- Enchant success rate is 100%. Defense power for Grade S armor or accessory by 1 and by 3 starting from +4. It can be safely enchanted up to +3. For one-piece armor, it can be safely enchanted up to +4. Also increases HP according to level when armor is enchanted above +4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
 		<set name="icon" val="BranchSys.icon.br_holy_cry_of_ench_am_s_i00" />
 		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="etcitem_type" val="ANCIENT_CRYSTAL_ENCHANT_AM" />
@@ -406,7 +446,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22078-1" /> <!-- Divine Armor Enchant Crystal - S grade -->
+		<skills>
+			<skill id="22078" level="1" /> <!-- Divine Armor Enchant Crystal - S grade -->
+		</skills>
 	</item>
 	<item id="20523" type="EtcItem" name="Resist Aqua Scroll">
 		<!-- Increases Resistance to water type attacks by 20%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -424,8 +466,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22079-1" /> <!-- Resist Aqua -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22079" level="1" /> <!-- Resist Aqua -->
+		</skills>
 	</item>
 	<item id="20524" type="EtcItem" name="Resist Wind Scroll">
 		<!-- Increases Resistance to wind type attacks by 20%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -443,8 +487,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22080-1" /> <!-- Resist Wind -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22080" level="1" /> <!-- Resist Wind -->
+		</skills>
 	</item>
 	<item id="20525" type="EtcItem" name="Resist Fire Scroll">
 		<!-- Increases Resistance to fire type attacks by 20%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -462,8 +508,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22081-1" /> <!-- Resist Fire -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22081" level="1" /> <!-- Resist Fire -->
+		</skills>
 	</item>
 	<item id="20526" type="EtcItem" name="Resist Holy Scroll">
 		<!-- Increases Resistance to Holy by 23%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -481,8 +529,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22082-1" /> <!-- Resist Holy -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22082" level="1" /> <!-- Resist Holy -->
+		</skills>
 	</item>
 	<item id="20527" type="EtcItem" name="Resist Unholy Scroll">
 		<!-- Increases Resistance to Dark by 23%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -500,8 +550,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22083-1" /> <!-- Resist Dark -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22083" level="1" /> <!-- Resist Dark -->
+		</skills>
 	</item>
 	<item id="20528" type="EtcItem" name="Mental Shield Scroll">
 		<!-- Increases Resistance to hold/sleep/abnormal mind attacks by 40. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -519,8 +571,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22084-1" /> <!-- Mental Shield -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22084" level="1" /> <!-- Mental Shield -->
+		</skills>
 	</item>
 	<item id="20529" type="EtcItem" name="Focus Scroll">
 		<!-- Increases the power of critical attacks by 30. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -538,8 +592,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22085-1" /> <!-- Focus -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22085" level="1" /> <!-- Focus -->
+		</skills>
 	</item>
 	<item id="20530" type="EtcItem" name="Concentration Scroll">
 		<!-- Decreases damage that is cancelled by magic by 36. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -557,8 +613,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22086-1" /> <!-- Concentration -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22086" level="1" /> <!-- Concentration -->
+		</skills>
 	</item>
 	<item id="20531" type="EtcItem" name="Bless Shield Scroll">
 		<!-- Increases shield defense rate by 15. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -576,8 +634,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22087-1" /> <!-- Bless Shield -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22087" level="1" /> <!-- Bless Shield -->
+		</skills>
 	</item>
 	<item id="20532" type="EtcItem" name="Agility Scroll">
 		<!-- Increases evasion rate by 4. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -595,8 +655,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22088-1" /> <!-- Agility -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22088" level="1" /> <!-- Agility -->
+		</skills>
 	</item>
 	<item id="20533" type="EtcItem" name="Regeneration Scroll">
 		<!-- Increases HP regeneration by 20%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -614,8 +676,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22089-1" /> <!-- Regeneration -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22089" level="1" /> <!-- Regeneration -->
+		</skills>
 	</item>
 	<item id="20534" type="EtcItem" name="Advanced Block Scroll">
 		<!-- Increases Shield P. Def. by 40%. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -633,8 +697,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22090-1" /> <!-- Advanced Block -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="22090" level="1" /> <!-- Advanced Block -->
+		</skills>
 	</item>
 	<item id="20535" type="Armor" name="Steam Beatle Mount Bracelet - 30-day limited period">
 		<!-- Can mount a steam beatle when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -649,8 +715,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="20536" type="Armor" name="Gold-Maned Lion Mount Bracelet - 30-day limited period">
 		<!-- Can mount a gold maned lion when equipped. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -665,8 +733,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="item_skill" val="8262-1" /> <!-- Golden Maned Lion Mount -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8262" level="1" /> <!-- Golden Maned Lion Mount -->
+		</skills>
 	</item>
 	<item id="20537" type="Armor" name="Afro Hair - Energy - 7-Day Limited Period">
 		<!-- Afro style hair. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Energy Reuse Delay 12 hour. Can be stored in a private warehouse. -->
@@ -681,8 +751,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21011-1" /> <!-- Vitality Replenishing -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21011" level="1" /> <!-- Vitality Replenishing -->
+		</skills>
 	</item>
 	<item id="20538" type="Armor" name="Horn Rimmed Glasses - Energy - 7-Day Limited Period">
 		<!-- Magic horn-rimmed glasses with mysterious power. Cannot be exchanged, dropped, or sold. Energy Reuse Delay 12 hour. Can be stored in a private warehouse. -->
@@ -697,8 +769,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21012-1" /> <!-- Vitality Replenishing -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21012" level="1" /> <!-- Vitality Replenishing -->
+		</skills>
 	</item>
 	<item id="20539" type="Armor" name="Assassin's Bamboo Hat - Energy - 7-Day Limited Period">
 		<!-- Wide brimmed hat made of bamboo. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Energy Reuse Delay 12 hour. Can be stored in a private warehouse. -->
@@ -713,8 +787,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21013-1" /> <!-- Vitality Replenishing -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21013" level="1" /> <!-- Vitality Replenishing -->
+		</skills>
 	</item>
 	<item id="20540" type="EtcItem" name="Steam Beatle Mount Bracelet 30-Day Pack">
 		<!-- Wrapped pack containing a Steam Beatle Mount Bracelet (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -731,7 +807,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20535,1,1,100" />
+		<capsuled_items>
+			<item id="20535" min="1" max="1" chance="100" /> <!-- Steam Beatle Mount Bracelet - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20541" type="EtcItem" name="Tawny Maned Lion Mount Bracelet 30-Day Pack">
 		<!-- Wrapped pack containing a Gold Maned Lion Mount Bracelet (30 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -748,7 +826,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20536,1,1,100" />
+		<capsuled_items>
+			<item id="20536" min="1" max="1" chance="100" /> <!-- Gold-Maned Lion Mount Bracelet - 30-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20542" type="EtcItem" name="Afro Hair 7-Day Pack">
 		<!-- Wrapped pack containing Afro Hair (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -765,7 +845,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20537,1,1,100" />
+		<capsuled_items>
+			<item id="20537" min="1" max="1" chance="100" /> <!-- Afro Hair - Energy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20543" type="EtcItem" name="Horn Rimmed Glasses 7-Day Pack">
 		<!-- Wrapped pack containing Horn Rimmed Glasses (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -782,7 +864,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20538,1,1,100" />
+		<capsuled_items>
+			<item id="20538" min="1" max="1" chance="100" /> <!-- Horn Rimmed Glasses - Energy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20544" type="EtcItem" name="Assassin's Bamboo Hat 7-Day Pack">
 		<!-- Wrapped pack containing an Assassin's Bamboo Hat (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -799,7 +883,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20539,1,1,100" />
+		<capsuled_items>
+			<item id="20539" min="1" max="1" chance="100" /> <!-- Assassin's Bamboo Hat - Energy - 7-Day Limited Period -->
+		</capsuled_items>
 	</item>
 	<item id="20545" type="EtcItem" name="Haste Juice">
 		<!-- Delicious beverage made with rare fruits. Atk. Spd. increases by 33% when used. Cannot be exchanged, dropped, or sold. -->
@@ -817,12 +903,14 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2429-1" /> <!-- Haste Juice -->
 		<set name="is_freightable" val="true" />
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2429" level="1" /> <!-- Haste Juice -->
+		</skills>
 	</item>
 	<item id="20546" type="EtcItem" name="Critical Attack Juice">
 		<!-- Delicious beverage made with rare fruits. Critical rate increases by 30% when used. Cannot be exchanged, dropped, or sold. -->
@@ -840,12 +928,14 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2432-1" /> <!-- Critical Attack Juice -->
 		<set name="is_freightable" val="true" />
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2432" level="1" /> <!-- Critical Attack Juice -->
+		</skills>
 	</item>
 	<item id="20547" type="EtcItem" name="Moving Speed Increasing Beverage">
 		<!-- Delicious beverage made with rare fruits. It is very light. Moving speed increases by 33 when used. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -863,12 +953,14 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_premium" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2437-1" /> <!-- Speed Juice -->
 		<set name="is_freightable" val="true" />
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2437" level="1" /> <!-- Speed Juice -->
+		</skills>
 	</item>
 	<item id="20548" type="EtcItem" name="Rune of Experience Points 30%- 5-Hour Pack (Event)">
 		<!-- Dimensional Item. Wrapped pack containing a Rune of Experience Points 30% (5-hour limited period). Timer starts once package is opened. Cannot be exchanged, dropped, or sold. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -885,7 +977,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20335,1,1,100" />
+		<capsuled_items>
+			<item id="20335" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 30% - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20549" type="EtcItem" name="Rune of Experience Points 50% 5 hours pack">
 		<!-- Wrapped pack containing a Rune of Experience Points 50% (5 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -902,7 +996,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20336,1,1,100" />
+		<capsuled_items>
+			<item id="20336" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 50% - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20550" type="EtcItem" name="Rune of Experience Points 30% 10 hours pack">
 		<!-- Wrapped pack containing a Rune of Experience Points 30% (10 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -919,7 +1015,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20337,1,1,100" />
+		<capsuled_items>
+			<item id="20337" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 30% - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20551" type="EtcItem" name="Rune of Experience Points 50% 10 hours pack">
 		<!-- Wrapped pack containing a Rune of Experience Points 50% (10 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -936,7 +1034,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20338,1,1,100" />
+		<capsuled_items>
+			<item id="20338" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 50% - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20552" type="EtcItem" name="Rune of Experience Points 30% 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of Experience Points 30% (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -953,7 +1053,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20339,1,1,100" />
+		<capsuled_items>
+			<item id="20339" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 30% - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20553" type="EtcItem" name="Rune of Experience Points 50% 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of Experience Points 50% (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -970,7 +1072,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20340,1,1,100" />
+		<capsuled_items>
+			<item id="20340" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 50% - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20554" type="EtcItem" name="Rune of SP 30% 5-Hour Pack">
 		<!-- Dimensional Item. Wrapped pack containing a Rune of SP 30% (5 hour). Cannot be exchanged, dropped, or sold. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -987,7 +1091,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20341,1,1,100" />
+		<capsuled_items>
+			<item id="20341" min="1" max="1" chance="100" /> <!-- Rune of SP 30% - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20555" type="EtcItem" name="Rune of SP 50% 5-Hour Pack">
 		<!-- Wrapped pack containing a Rune of SP 50% (5 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1004,7 +1110,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20342,1,1,100" />
+		<capsuled_items>
+			<item id="20342" min="1" max="1" chance="100" /> <!-- Rune of SP 50% - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20556" type="EtcItem" name="Rune of SP 30% 10-Hour Pack">
 		<!-- Wrapped pack containing a Rune of SP 30% (10 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1021,7 +1129,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20343,1,1,100" />
+		<capsuled_items>
+			<item id="20343" min="1" max="1" chance="100" /> <!-- Rune of SP 30% - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20557" type="EtcItem" name="Rune of SP 50% 10-Hour Pack">
 		<!-- Wrapped pack containing a Rune of SP 50% (10 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1038,7 +1148,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20344,1,1,100" />
+		<capsuled_items>
+			<item id="20344" min="1" max="1" chance="100" /> <!-- Rune of SP 50% - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20558" type="EtcItem" name="Rune of SP 30% 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of SP 30% (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1055,7 +1167,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20345,1,1,100" />
+		<capsuled_items>
+			<item id="20345" min="1" max="1" chance="100" /> <!-- Rune of SP 30% - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20559" type="EtcItem" name="Rune of SP 50% 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of SP 50% (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1072,7 +1186,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20346,1,1,100" />
+		<capsuled_items>
+			<item id="20346" min="1" max="1" chance="100" /> <!-- Rune of SP 50% - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20560" type="EtcItem" name="Rune of Crystal Level 3 5-Hour Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 3 (5 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1089,7 +1205,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20347,1,1,100" />
+		<capsuled_items>
+			<item id="20347" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 3 - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20561" type="EtcItem" name="Rune of Crystal Level 5 5-Hour Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 5 (5 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1106,7 +1224,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20348,1,1,100" />
+		<capsuled_items>
+			<item id="20348" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 5 - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20562" type="EtcItem" name="Rune of Crystal Level 3 10-Hour Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 3 (10 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1123,7 +1243,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20349,1,1,100" />
+		<capsuled_items>
+			<item id="20349" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 3 - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20563" type="EtcItem" name="Rune of Crystal Level 5 5-Hour Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 5 (5 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1140,7 +1262,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20350,1,1,100" />
+		<capsuled_items>
+			<item id="20350" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 5 - 10-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20564" type="EtcItem" name="Rune of Crystal Level 3 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 3 (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1157,7 +1281,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20351,1,1,100" />
+		<capsuled_items>
+			<item id="20351" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 3 - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20565" type="EtcItem" name="Rune of Crystal Level 5 7-Day Pack">
 		<!-- Wrapped pack containing a Rune of Crystal Level 5 (7 day). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1174,7 +1300,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20352,1,1,100" />
+		<capsuled_items>
+			<item id="20352" min="1" max="1" chance="100" /> <!-- Rune of Crystal Level 5 - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20566" type="EtcItem" name="Rune of Feather 24-Hour Pack">
 		<!-- Wrapped pack containing a Rune of Feather (24 hour). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1191,7 +1319,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="22066,1,1,100" />
+		<capsuled_items>
+			<item id="22066" min="1" max="1" chance="100" /> <!-- Rune of Feather - 24-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20567" type="Armor" name="Eva's Circlet (event) - 3-day limited period">
 		<!-- Circlet containing the mysterious power of Eva. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. -->
@@ -1206,8 +1336,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21087-1" /> <!-- Berserker Spirit -->
 		<set name="time" val="4320" />
+		<skills>
+			<skill id="21087" level="1" /> <!-- Berserker Spirit -->
+		</skills>
 	</item>
 	<item id="20568" type="Armor" name="Eva's Circlet - 7-day limited period">
 		<!-- Circlet containing the mysterious power of Eva. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. -->
@@ -1223,8 +1355,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21087-1" /> <!-- Berserker Spirit -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="21087" level="1" /> <!-- Berserker Spirit -->
+		</skills>
 	</item>
 	<item id="20569" type="Armor" name="Eva's Circlet">
 		<!-- Circlet containing the mysterious power of Eva. Uses 2 accessory slots. Cannot be exchanged, dropped, or sold. -->
@@ -1255,8 +1389,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22091-1" /> <!-- Eva's Rune -->
 		<set name="time" val="300" />
+		<skills>
+			<skill id="22091" level="1" /> <!-- Eva's Rune -->
+		</skills>
 	</item>
 	<item id="20571" type="EtcItem" name="Eva's Rune (event) - 3-day limited period">
 		<!-- An ancient charm endowed with mysterious symbols. When held in your inventory, grants the user Eva's Rune passive skill. The remaining period decreases even during log-off state. Cannot be exchanged, dropped, or sold. -->
@@ -1271,8 +1407,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22091-1" /> <!-- Eva's Rune -->
 		<set name="time" val="4320" />
+		<skills>
+			<skill id="22091" level="1" /> <!-- Eva's Rune -->
+		</skills>
 	</item>
 	<item id="20572" type="EtcItem" name="Rune of Experience Points 30% - 3-hour limited period">
 		<!-- An ancient charm endowed with mysterious symbols. When held in your inventory, increases acquired Experience Points by 30%. The timer decreases even during log-off state. Only one XP Rune can be applied at any given time regardless of additional XP Runes in ones inventory. Cannot be exchanged, dropped, or sold. -->
@@ -1287,8 +1425,10 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22039-1" /> <!-- Rune of Exp. 30% -->
 		<set name="time" val="180" />
+		<skills>
+			<skill id="22039" level="1" /> <!-- Rune of Exp. 30% -->
+		</skills>
 	</item>
 	<item id="20573" type="EtcItem" name="Small Scroll Chest (Event)">
 		<!-- Mysterious box containing the blessings of Eva. Cannot be exchanged, dropped, or sold. -->
@@ -1303,7 +1443,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22092-1" /> <!-- Scroll Master 1 -->
+		<skills>
+			<skill id="22092" level="1" /> <!-- Scroll Master 1 -->
+		</skills>
 	</item>
 	<item id="20574" type="EtcItem" name="Large Scroll Chest (Event)">
 		<!-- Mysterious box containing the blessings of Eva. Cannot be exchanged, dropped, or sold. -->
@@ -1318,7 +1460,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20341,1,1,100;20392,4,4,100" />
+		<capsuled_items>
+			<item id="20341" min="1" max="1" chance="100" /> <!-- Rune of SP 30% - 5-hour limited period -->
+			<item id="20392" min="4" max="4" chance="100" /> <!-- Vitality Replenishing Potion -->
+		</capsuled_items>
 	</item>
 	<item id="20575" type="EtcItem" name="Chest of Experience (Event)">
 		<!-- Mysterious box containing the blessings of Eva. Cannot be exchanged, dropped, or sold. -->
@@ -1333,7 +1478,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20342,1,1,100;20336,1,1,100" />
+		<capsuled_items>
+			<item id="20342" min="1" max="1" chance="100" /> <!-- Rune of SP 50% - 5-hour limited period -->
+			<item id="20336" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 50% - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20576" type="EtcItem" name="Eva's Circlet 3-Day Pack (Event)">
 		<!-- Dimensional Item. A wrapped package containing an Eva's Rune (3-day limited period). The timer start once the box is opened. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -1345,7 +1493,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20567,1,1,100" />
+		<capsuled_items>
+			<item id="20567" min="1" max="1" chance="100" /> <!-- Eva's Circlet (event) - 3-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20577" type="EtcItem" name="Eva's Circlet 7-Day Pack">
 		<!-- Wrapped pack containing an Eva's Circlet (7 day). Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1362,7 +1512,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20568,1,1,100" />
+		<capsuled_items>
+			<item id="20568" min="1" max="1" chance="100" /> <!-- Eva's Circlet - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20578" type="EtcItem" name="Eva's Circlet Pack">
 		<!-- Wrapped pack containing an Eva's Circlet. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1379,7 +1531,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20569,1,1,100" />
+		<capsuled_items>
+			<item id="20569" min="1" max="1" chance="100" /> <!-- Eva's Circlet -->
+		</capsuled_items>
 	</item>
 	<item id="20579" type="EtcItem" name="Eva's Rune 5-Hour Pack (Event)">
 		<!-- Dimensional Item. A wrapped package containing an Eva's Rune (5-hour limited period). The timer start once the box is opened. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -1391,7 +1545,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20570,1,1,100" />
+		<capsuled_items>
+			<item id="20570" min="1" max="1" chance="100" /> <!-- Eva's Rune (event) - 5-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20580" type="EtcItem" name="Eva's Rune 3-Day Pack (Event)">
 		<!-- Dimensional Item. A wrapped package containing an Eva's Rune (3-day limited period). The timer start once the box is opened. Can be shared between characters on the same account through the Dimensional Merchant. -->
@@ -1403,7 +1559,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20571,1,1,100" />
+		<capsuled_items>
+			<item id="20571" min="1" max="1" chance="100" /> <!-- Eva's Rune (event) - 3-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20581" type="EtcItem" name="Rune of Experience Points 30% - 3-Hour Pack (Event)">
 		<!-- Wrapped package containing a Rune of Experience Points 30% (3-hour limited period). The timer start once the box is opened. Cannot be exchanged, dropped, or sold. -->
@@ -1418,7 +1576,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20572,1,1,100" />
+		<capsuled_items>
+			<item id="20572" min="1" max="1" chance="100" /> <!-- Rune of Experience Points 30% - 3-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20582" type="EtcItem" name="Power Juice">
 		<!-- Delicious beverage made with rare fruits. Increases P. Atk. by 15% for 60 minutes when used. Cannot be exchanged, dropped, or sold. -->
@@ -1436,11 +1596,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2436-1" /> <!-- Power Juice -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2436" level="1" /> <!-- Power Juice -->
+		</skills>
 	</item>
 	<item id="20583" type="EtcItem" name="Blessed Scroll of Escape (event)">
 		<!-- A magical scroll that relocates you to the nearest village. -->
@@ -1453,7 +1615,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22103-1" /> <!-- Blessed Scroll of Escape (Event) -->
+		<skills>
+			<skill id="22103" level="1" /> <!-- Blessed Scroll of Escape (Event) -->
+		</skills>
 	</item>
 	<item id="20584" type="EtcItem" name="Blessed Scroll of Resurrection (event)">
 		<!-- A magical scroll that resurrects a dead character and restores his or her Exp. completely. -->
@@ -1466,7 +1630,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22104-1" /> <!-- Blessed Scroll of Resurrection (Event) -->
+		<skills>
+			<skill id="22104" level="1" /> <!-- Blessed Scroll of Resurrection (Event) -->
+		</skills>
 	</item>
 	<item id="20585" type="EtcItem" name="Seed of Fire (event)">
 		<!-- Double click to summon a Spirit of Fire. -->
@@ -1478,7 +1644,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22095-1" /> <!-- Summon Spirit of Fire -->
+		<skills>
+			<skill id="22095" level="1" /> <!-- Summon Spirit of Fire -->
+		</skills>
 	</item>
 	<item id="20586" type="EtcItem" name="Explosive Seed of Fire (Event)">
 		<!-- Double click to summon an Explosive Spirit of Fire. -->
@@ -1490,7 +1658,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22096-1" /> <!-- Summon Reckless Spirit of Fire -->
+		<skills>
+			<skill id="22096" level="1" /> <!-- Summon Reckless Spirit of Fire -->
+		</skills>
 	</item>
 	<item id="20587" type="EtcItem" name="Weaver Agathion Pack">
 		<!-- Wrapped pack containing a Weaver Agathion. No sale available. Item to be stored in a private warehouse. -->
@@ -1505,7 +1675,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20591,1,1,100" />
+		<capsuled_items>
+			<item id="20591" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Weaver -->
+		</capsuled_items>
 	</item>
 	<item id="20588" type="EtcItem" name="Weaver Agathion 24-Hour Pack - Power of the Golden Calf">
 		<!-- Wrapped pack containing a Weaver Agathion (24 hour). No sale available. Item to be stored in a private warehouse. -->
@@ -1520,7 +1692,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20592,1,1,100" />
+		<capsuled_items>
+			<item id="20592" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Weaver - Power of the Golden Calf - 24-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20589" type="EtcItem" name="Weaver Agathion 3-Day Pack - Power of the Golden Calf">
 		<!-- Wrapped pack containing a Weaver Agathion (3 day). No sale available. Item to be stored in a private warehouse. -->
@@ -1535,7 +1709,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20593,1,1,100" />
+		<capsuled_items>
+			<item id="20593" min="1" max="1" chance="100" /> <!-- Agathion Seal Bracelet - Weaver - Power of the Golden Calf - 3-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20590" type="EtcItem" name="Summon of Love Bracelet 24-Hour Pack (Event)">
 		<!-- Wrapped pack containing a Summon of Love Bracelet (24 hours). Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1550,7 +1726,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20594,1,1,100" />
+		<capsuled_items>
+			<item id="20594" min="1" max="1" chance="100" /> <!-- Summon of Love Bracelet (event) - 24-hour limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20591" type="Armor" name="Agathion Seal Bracelet - Weaver">
 		<!-- Bracelet that summons the Weaver Agathion. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1567,8 +1745,12 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21091-1;23076-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21091" level="1" /> <!-- Release Seal on Agathion - Weaver -->
+			<skill id="23076" level="1" /> <!-- Weaver Agathion Cute Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20592" type="Armor" name="Agathion Seal Bracelet - Weaver - Power of the Golden Calf - 24-hour limited period">
 		<!-- Bracelet that summons the Weaver Agathion. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1584,9 +1766,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21091-1;23077-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="1440" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21091" level="1" /> <!-- Release Seal on Agathion - Weaver -->
+			<skill id="23077" level="1" /> <!-- Weaver Agathion Special Skill - Power of the Golden Calf -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20593" type="Armor" name="Agathion Seal Bracelet - Weaver - Power of the Golden Calf - 3-day limited period">
 		<!-- Bracelet that summons the Weaver Agathion. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1602,9 +1788,13 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;21091-1;23077-1" /> <!-- Dismiss Agathion -->
 		<set name="time" val="4320" />
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="21091" level="1" /> <!-- Release Seal on Agathion - Weaver -->
+			<skill id="23077" level="1" /> <!-- Weaver Agathion Special Skill - Power of the Golden Calf -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="20594" type="Armor" name="Summon of Love Bracelet (event) - 24-hour limited period">
 		<!-- Bracelet that can summon a lover. The summon is possible when the summoner and the one being summoned are all party members who are equipped with the Summon of Love Bracelet. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1618,8 +1808,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
-		<set name="item_skill" val="21088-1" /> <!-- Summon Friend -->
 		<set name="time" val="1440" />
+		<skills>
+			<skill id="21088" level="1" /> <!-- Summon Friend -->
+		</skills>
 	</item>
 	<item id="20595" type="EtcItem" name="Girl's Gift of Gratitude">
 		<!-- Thank you gift that helps the warrior occupation series. -->
@@ -1631,7 +1823,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22097-1" /> <!-- Girl's Gift of Gratitude -->
+		<skills>
+			<skill id="22097" level="1" /> <!-- Girl's Gift of Gratitude -->
+		</skills>
 	</item>
 	<item id="20596" type="EtcItem" name="Boy's Gift of Gratitude">
 		<!-- Thank you gift that helps the wizard occupation series. -->
@@ -1643,7 +1837,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22098-1" /> <!-- Boy's Gift of Gratitude -->
+		<skills>
+			<skill id="22098" level="1" /> <!-- Boy's Gift of Gratitude -->
+		</skills>
 	</item>
 	<item id="20597" type="EtcItem" name="Girl's Soul Ore">
 		<!-- Soul Ore that is consumed for the Weaver Agathion's special skill. Item to be stored in a private warehouse. -->
@@ -1668,7 +1864,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20600,1,1,100" />
+		<capsuled_items>
+			<item id="20600" min="1" max="1" chance="100" /> <!-- Twilight Staff - Dance of Shadow - 7-day limited period -->
+		</capsuled_items>
 	</item>
 	<item id="20599" type="EtcItem" name="Anniversary Hat 7-Day Pack - Soul of Phoenix">
 		<!-- Wrapped pack containing an Anniversary Hat (7 day). Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. -->
@@ -1685,6 +1883,8 @@
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="20601,1,1,100" />
+		<capsuled_items>
+			<item id="20601" min="1" max="1" chance="100" /> <!-- Anniversary Hat - Soul of Phoenix - 7-day limited period -->
+		</capsuled_items>
 	</item>
 </list>

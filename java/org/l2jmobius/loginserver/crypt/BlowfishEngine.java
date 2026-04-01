@@ -1112,7 +1112,7 @@ public class BlowfishEngine
 		setKey(workingKey);
 	}
 	
-	public final void processBlock(Buffer data, int offset) throws IOException
+	public void processBlock(Buffer data, int offset) throws IOException
 	{
 		if (workingKey == null)
 		{

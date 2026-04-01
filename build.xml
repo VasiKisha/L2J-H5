@@ -72,8 +72,9 @@
 
 		<jar destfile="${build.dist.libs}/LoginServer.jar" level="9">
 			<fileset dir="${build.bin}">
-				<exclude name="**/databaseinstaller/**" />
 				<exclude name="**/gameserver/**" />
+				<exclude name="**/tools/DatabaseInstaller**" />
+				<exclude name="**/tools/Search**" />
 			</fileset>
 			<manifest>
 				<attribute name="Build-By" value="${user.name}" />
@@ -85,10 +86,10 @@
 		</jar>
 		<jar destfile="${build.dist.libs}/GameServer.jar" level="9">
 			<fileset dir="${build.bin}">
-				<exclude name="**/databaseinstaller/**" />
 				<exclude name="**/loginserver/**" />
-				<exclude name="**/accountmanager/**" />
-				<exclude name="**/registerserver/**" />
+				<exclude name="**/tools/AccountManager**" />
+				<exclude name="**/tools/DatabaseInstaller**" />
+				<exclude name="**/tools/GameServerRegister**" />
 			</fileset>
 			<manifest>
 				<attribute name="Build-By" value="${user.name}" />
@@ -100,10 +101,12 @@
 		</jar>
 		<jar destfile="${build.dist.databaseinstaller}/DatabaseInstaller.jar" level="9">
 			<fileset dir="${build.bin}">
-				<include name="**/databaseinstaller/**" />
+				<include name="**/commons/config/DatabaseConfig**" />
+				<include name="**/commons/config/InterfaceConfig**" />
+				<include name="**/commons/database/DatabaseFactory**" />
 				<include name="**/commons/ui/**" />
-				<include name="**/commons/util/**" />
-				<include name="**/SQLFilter**" />
+				<include name="**/commons/util/ConfigReader**" />
+				<include name="**/tools/DatabaseInstaller**" />
 			</fileset>
 			<manifest>
 				<attribute name="Build-By" value="${user.name}" />

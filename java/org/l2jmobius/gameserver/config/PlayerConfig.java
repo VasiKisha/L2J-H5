@@ -237,6 +237,9 @@ public class PlayerConfig
 	public static boolean SILENCE_MODE_EXCLUDE;
 	public static boolean ALT_VALIDATE_TRIGGER_SKILLS;
 	public static int PLAYER_MOVEMENT_BLOCK_TIME;
+	public static boolean RANDOMIZE_AUTO_ATTACK_DAMAGE;
+	public static boolean RANDOMIZE_PHYSICAL_SKILL_DAMAGE;
+	public static boolean RANDOMIZE_MAGICAL_SKILL_DAMAGE;
 	public static boolean NEVIT_ENABLED;
 	public static int NEVIT_MAX_POINTS;
 	public static int NEVIT_BONUS_EFFECT_TIME;
@@ -560,6 +563,9 @@ public class PlayerConfig
 		SILENCE_MODE_EXCLUDE = config.getBoolean("SilenceModeExclude", false);
 		ALT_VALIDATE_TRIGGER_SKILLS = config.getBoolean("AltValidateTriggerSkills", false);
 		PLAYER_MOVEMENT_BLOCK_TIME = config.getInt("NpcTalkBlockingTime", 0) * 1000;
+		RANDOMIZE_AUTO_ATTACK_DAMAGE = config.getBoolean("RandomizeAutoAttackDamage", true);
+		RANDOMIZE_PHYSICAL_SKILL_DAMAGE = config.getBoolean("RandomizePhysicalSkillDamage", true);
+		RANDOMIZE_MAGICAL_SKILL_DAMAGE = config.getBoolean("RandomizeMagicalSkillDamage", true);
 		NEVIT_ENABLED = config.getBoolean("NevitEnabled", true);
 		NEVIT_MAX_POINTS = config.getInt("NevitMaxPoints", 7200);
 		NEVIT_BONUS_EFFECT_TIME = config.getInt("NevitBonusEffectTime", 180);

@@ -25,9 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.instance.Boat;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

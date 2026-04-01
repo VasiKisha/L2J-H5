@@ -34,8 +34,8 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.AccessLevel;
-import org.l2jmobius.gameserver.model.AdminCommandAccessRight;
+import org.l2jmobius.gameserver.data.holders.AccessLevel;
+import org.l2jmobius.gameserver.data.holders.AccessRight;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -51,7 +51,7 @@ public class AdminData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(AdminData.class.getName());
 	
 	private final Map<Integer, AccessLevel> _accessLevels = new HashMap<>();
-	private final Map<String, AdminCommandAccessRight> _adminCommandAccessRights = new LinkedHashMap<>();
+	private final Map<String, AccessRight> _adminCommandAccessRights = new LinkedHashMap<>();
 	private final Map<Player, Boolean> _gmList = new ConcurrentHashMap<>();
 	private int _highestLevel = 0;
 	
@@ -99,7 +99,7 @@ public class AdminData implements IXmlReader
 						case "admin":
 						{
 							final StatSet set = new StatSet(parseAttributes(d));
-							final AdminCommandAccessRight command = new AdminCommandAccessRight(set);
+							final AccessRight command = new AccessRight(set);
 							_adminCommandAccessRights.put(command.getCommand(), command);
 							break;
 						}
@@ -156,13 +156,13 @@ public class AdminData implements IXmlReader
 	 */
 	public boolean hasAccess(String adminCommand, AccessLevel accessLevel)
 	{
-		AdminCommandAccessRight accessRight = _adminCommandAccessRights.get(adminCommand);
+		AccessRight accessRight = _adminCommandAccessRights.get(adminCommand);
 		if (accessRight == null)
 		{
 			// Trying to avoid the spam for next time when the GM would try to use the same command.
 			if ((accessLevel.getLevel() > 0) && (accessLevel.getLevel() == _highestLevel))
 			{
-				accessRight = new AdminCommandAccessRight(adminCommand, "", true, accessLevel.getLevel());
+				accessRight = new AccessRight(adminCommand, "", true, accessLevel.getLevel());
 				_adminCommandAccessRights.put(accessRight.getCommand(), accessRight);
 				LOGGER.info(getClass().getSimpleName() + ": No rights defined for admin command " + adminCommand + " auto setting accesslevel: " + accessLevel.getLevel() + " !");
 			}
@@ -183,7 +183,7 @@ public class AdminData implements IXmlReader
 	 */
 	public boolean requireConfirm(String command)
 	{
-		final AdminCommandAccessRight accessRight = _adminCommandAccessRights.get(command);
+		final AccessRight accessRight = _adminCommandAccessRights.get(command);
 		if (accessRight == null)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": No rights defined for admin command " + command + ".");
@@ -321,7 +321,7 @@ public class AdminData implements IXmlReader
 	/**
 	 * @return all admin access rights
 	 */
-	public Collection<AdminCommandAccessRight> getAdminCommandAccessRights()
+	public Collection<AccessRight> getAdminCommandAccessRights()
 	{
 		return _adminCommandAccessRights.values();
 	}

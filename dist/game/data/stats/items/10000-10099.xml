@@ -12,7 +12,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2337-1" /> <!-- Wind Resist Potion -->
+		<skills>
+			<skill id="2337" level="1" /> <!-- Wind Resist Potion -->
+		</skills>
 	</item>
 	<item id="10001" type="EtcItem" name="Dark Potion">
 		<!-- Increases Resistance to dark attacks by 30 for 10 minutes. -->
@@ -26,7 +28,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2340-1" /> <!-- Dark Resist Potion -->
+		<skills>
+			<skill id="2340" level="1" /> <!-- Dark Resist Potion -->
+		</skills>
 	</item>
 	<item id="10002" type="EtcItem" name="Holy Potion">
 		<!-- Increases Resistance to Holy by 30 for 10 minutes. -->
@@ -40,7 +44,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2339-1" /> <!-- Holy Resist Potion -->
+		<skills>
+			<skill id="2339" level="1" /> <!-- Holy Resist Potion -->
+		</skills>
 	</item>
 	<item id="10003" type="Weapon" name="Fleuret">
 		<!-- Kamael Exclusive Weapon: Knight Sword Conversion. When enchanted to 4 or more, it has a chance of increasing P. Atk., M. Atk., and healing power, and of decreaseing MP consumption for skill use for you and your party members during a critical attack. -->
@@ -48,8 +54,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="915" />
@@ -61,19 +65,21 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3426-1" />
 		<conditions msgId="1518">
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="46" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">46</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10004" type="Weapon" name="Dynasty Dual Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more than that of a two-handed sword, blunt or fist weapon. When enchanted by 4 or more charges, Critical Rate will increase by 109, and MaxHP will increase by 10%. Enhances damage done to the target during PvP. -->
@@ -81,8 +87,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="3597" />
@@ -94,16 +98,18 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="enchant4_skill" val="3411-1" />
-		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
 		<stats>
-			<set stat="pAtk" val="405" />
-			<set stat="mAtk" val="151" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">405</stat>
+			<stat type="mAtk">151</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3552" level="1" /> <!-- Special Ability: PvP Damage -->
+			<skill id="3411" level="1" type="ON_ENCHANT_4" /> <!-- Special Ability: Focus -->
+		</skills>
 	</item>
 	<item id="10005" type="Weapon" name="Shadow Item: Fleuret">
 		<!-- A Shadow Item with the power of a Fleuret. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -111,8 +117,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -120,7 +124,6 @@
 		<set name="weight" val="500" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -129,14 +132,17 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="46" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">46</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10006" type="Weapon" name="Shadow Item: Military Talwar">
 		<!-- A Shadow Item with the power of a Military Talwar. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -144,8 +150,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -161,13 +165,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="55" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">55</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="10007" type="Weapon" name="Shadow Item: Hand Crossbow">
@@ -176,8 +180,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="D" />
@@ -194,13 +196,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="64" />
-			<set stat="mAtk" val="32" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">64</stat>
+			<stat type="mAtk">32</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="10008" type="Weapon" name="Shadow Item: Blinzlasher">
@@ -209,8 +211,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="RAPIER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="40" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -218,7 +218,6 @@
 		<set name="weight" val="467" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
@@ -227,14 +226,17 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="126" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="406" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">126</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">406</stat>
+			<stat type="randomDamage">40</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3426" level="1" type="ON_ENCHANT_4" /> <!-- Maximum Ability -->
+		</skills>
 	</item>
 	<item id="10009" type="Weapon" name="Shadow Item: Immortal Edge">
 		<!-- A Shadow Item with the power of an Immortal Edge. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -242,8 +244,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="ANCIENTSWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="15" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -259,13 +259,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="151" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="8" />
-			<add stat="accCombat" val="2" />
-			<set stat="pAtkSpd" val="350" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">151</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">8</stat>
+			<stat type="accCombat">2</stat>
+			<stat type="pAtkSpd">350</stat>
+			<stat type="randomDamage">15</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="10010" type="Weapon" name="Shadow Item: Tathlum">
@@ -274,8 +274,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="CROSSBOW" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="400" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -292,13 +290,13 @@
 			<player races="KAMAEL" />
 		</conditions>
 		<stats>
-			<set stat="pAtk" val="176" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="10" />
-			<add stat="accCombat" val="-1.5" />
-			<set stat="pAtkSpd" val="303" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">176</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">10</stat>
+			<stat type="accCombat">-1.5</stat>
+			<stat type="pAtkSpd">303</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">400</stat>
 		</stats>
 	</item>
 	<item id="10011" type="Weapon" name="Shadow Item - War Axe">
@@ -307,8 +305,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_type" val="C" />
@@ -321,13 +317,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
 		<stats>
-			<set stat="pAtk" val="139" />
-			<set stat="mAtk" val="76" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">139</stat>
+			<stat type="mAtk">76</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="10012" type="EtcItem" name="Scorpion Poison Stinger">
@@ -366,7 +362,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2362-1" /> <!-- Prison Gate Key -->
+		<skills>
+			<skill id="2362" level="1" /> <!-- Prison Gate Key -->
+		</skills>
 	</item>
 	<item id="10016" type="EtcItem" name="Underground Warehouse Key">
 		<!-- Key to open Underground Warehouse. -->
@@ -376,7 +374,9 @@
 		<set name="weight" val="10" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2363-1" /> <!-- Underground Warehouse Key -->
+		<skills>
+			<skill id="2363" level="1" /> <!-- Underground Warehouse Key -->
+		</skills>
 	</item>
 	<item id="10017" type="EtcItem" name="Coral Treasure Chest Key">
 		<!-- Key to open Coral Treasure Chest. -->
@@ -385,7 +385,9 @@
 		<set name="material" val="STEEL" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2400-1" /> <!-- Red Coral Treasure Chest Key -->
+		<skills>
+			<skill id="2400" level="1" /> <!-- Red Coral Treasure Chest Key -->
+		</skills>
 	</item>
 	<item id="10018" type="Armor" name="Agathion Seal Bracelet - Fortress">
 		<!-- A bracelet that can summon Agathion. Wearable only by members of a clan that owns Fortress. This item cannot be exchanged or dropped. -->
@@ -399,12 +401,16 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="5458-1;3361-1;3267-1" /> <!-- Performing Agathion - Fortress -->
 		<set name="equip_condition" val="{{ec_fortress;1}}" />
 		<conditions msgId="1518">
 			<player fort="-1" />
 		</conditions>
+		<skills>
+			<skill id="5458" level="1" /> <!-- Performing Agathion - Fortress -->
+			<skill id="3361" level="1" /> <!-- Release Seal on Agathion - Fortress -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10019" type="Armor" name="Ring Mail Breastplate">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -425,7 +431,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="77" />
+			<stat type="pDef">77</stat>
 		</stats>
 	</item>
 	<item id="10020" type="Armor" name="Iron Plate Gaiters">
@@ -447,7 +453,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="48" />
+			<stat type="pDef">48</stat>
 		</stats>
 	</item>
 	<item id="10021" type="Armor" name="Puma Skin Shirt">
@@ -466,7 +472,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="58" />
+			<stat type="pDef">58</stat>
 		</stats>
 	</item>
 	<item id="10022" type="Armor" name="Puma Skin Gaiters">
@@ -485,7 +491,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="36" />
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="10023" type="Armor" name="Cursed Tunic">
@@ -507,8 +513,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="39" />
-			<add stat="maxMp" val="106" />
+			<stat type="pDef">39</stat>
+			<stat type="maxMp">106</stat>
 		</stats>
 	</item>
 	<item id="10024" type="Armor" name="Cursed Stockings">
@@ -530,8 +536,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="24" />
-			<add stat="maxMp" val="66" />
+			<stat type="pDef">24</stat>
+			<stat type="maxMp">66</stat>
 		</stats>
 	</item>
 	<item id="10025" type="EtcItem" name="Battle Manual - Fallen Arrow">

@@ -532,7 +532,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="3149" type="EtcItem" name="Pushkin's List">
-		<!-- A list given by Blacksmith Pushkin. "10 pure Mithril Ore, 20 ant soldier acid, 20 Wyrm talons" -->
+		<!-- A list given by Blacksmith Pushkin. "10 pure Mithril Ore, 20 ant soldier acid, 20 Wyrm talons -->
 		<set name="icon" val="icon.etc_piece_of_paper_black_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />

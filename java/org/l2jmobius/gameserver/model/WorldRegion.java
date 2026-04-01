@@ -33,6 +33,7 @@ import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.taskmanagers.RandomAnimationTaskManager;
 
 public class WorldRegion
@@ -48,14 +49,16 @@ public class WorldRegion
 	private final ConcurrentHashMap<WorldRegion, Boolean> _surroundingRegionCache = new ConcurrentHashMap<>();
 	private final int _regionX;
 	private final int _regionY;
+	private final int _regionZ;
 	private boolean _active = GeneralConfig.GRIDS_ALWAYS_ON;
 	private ScheduledFuture<?> _neighborsTask = null;
 	private final AtomicInteger _activeNeighbors = new AtomicInteger();
 	
-	public WorldRegion(int regionX, int regionY)
+	public WorldRegion(int regionX, int regionY, int regionZ)
 	{
 		_regionX = regionX;
 		_regionY = regionY;
+		_regionZ = regionZ;
 	}
 	
 	private void switchAI(boolean isOn)
@@ -407,7 +410,7 @@ public class WorldRegion
 			return false;
 		}
 		
-		return _surroundingRegionCache.computeIfAbsent(region, r -> (_regionX >= (r.getRegionX() - 1)) && (_regionX <= (r.getRegionX() + 1)) && (_regionY >= (r.getRegionY() - 1)) && (_regionY <= (r.getRegionY() + 1)));
+		return _surroundingRegionCache.computeIfAbsent(region, r -> (_regionX >= (r.getRegionX() - 1)) && (_regionX <= (r.getRegionX() + 1)) && (_regionY >= (r.getRegionY() - 1)) && (_regionY <= (r.getRegionY() + 1)) && (_regionZ >= (r.getRegionZ() - 1)) && (_regionZ <= (r.getRegionZ() + 1)));
 	}
 	
 	public int getRegionX()
@@ -420,9 +423,14 @@ public class WorldRegion
 		return _regionY;
 	}
 	
+	public int getRegionZ()
+	{
+		return _regionZ;
+	}
+	
 	@Override
 	public String toString()
 	{
-		return "(" + _regionX + ", " + _regionY + ")";
+		return "(" + _regionX + ", " + _regionY + ", " + _regionZ + ")";
 	}
 }

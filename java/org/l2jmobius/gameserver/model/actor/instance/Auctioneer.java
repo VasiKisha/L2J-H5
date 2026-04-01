@@ -30,8 +30,8 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
-import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
@@ -623,7 +623,7 @@ public class Auctioneer extends Npc
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				html.setFile(player, "data/html/auction/location.htm");
-				html.replace("%location%", MapRegionManager.getInstance().getClosestTownName(player));
+				html.replace("%location%", MapRegionData.getInstance().getClosestTownName(player));
 				html.replace("%LOCATION%", getPictureName(player));
 				html.replace("%AGIT_LINK_BACK%", "bypass -h npc_" + getObjectId() + "_start");
 				player.sendPacket(html);
@@ -679,7 +679,7 @@ public class Auctioneer extends Npc
 	
 	private String getPictureName(Player plyr)
 	{
-		final int nearestTownId = MapRegionManager.getInstance().getMapRegionLocId(plyr);
+		final int nearestTownId = MapRegionData.getInstance().getMapRegionLocId(plyr);
 		String nearestTown;
 		
 		switch (nearestTownId)

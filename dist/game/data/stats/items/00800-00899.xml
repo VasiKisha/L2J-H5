@@ -505,7 +505,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="6840" />
 		<stats>
-			<add order="0" stat="mDef" val="19" />
+			<stat type="mDef">19</stat>
 		</stats>
 	</item>
 	<item id="846" type="Armor" name="Coral Earring">
@@ -517,7 +517,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="12300" />
 		<stats>
-			<add order="0" stat="mDef" val="21" />
+			<stat type="mDef">21</stat>
 		</stats>
 	</item>
 	<item id="847" type="Armor" name="Red Crescent Earring">
@@ -532,8 +532,7 @@
 		<set name="price" val="20700" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="24" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">24</stat>
 		</stats>
 	</item>
 	<item id="848" type="Armor" name="Enchanted Earring">
@@ -548,8 +547,7 @@
 		<set name="price" val="32800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="27" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">27</stat>
 		</stats>
 	</item>
 	<item id="849" type="Armor" name="Tiger's Eye Earring">
@@ -564,8 +562,7 @@
 		<set name="price" val="49400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="30" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">30</stat>
 		</stats>
 	</item>
 	<item id="850" type="Armor" name="Elven Earring">
@@ -580,8 +577,7 @@
 		<set name="price" val="71900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="851" type="Armor" name="Omen Beast's Eye Earring">
@@ -596,8 +592,7 @@
 		<set name="price" val="93300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="852" type="Armor" name="Moonstone Earring">
@@ -612,8 +607,7 @@
 		<set name="price" val="119300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="39" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">39</stat>
 		</stats>
 	</item>
 	<item id="853" type="Armor" name="Earring of Protection">
@@ -628,8 +622,7 @@
 		<set name="price" val="150500" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="42" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">42</stat>
 		</stats>
 	</item>
 	<item id="854" type="Armor" name="Earring of Seal">
@@ -644,8 +637,7 @@
 		<set name="price" val="226600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="45" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">45</stat>
 		</stats>
 	</item>
 	<item id="855" type="Armor" name="Nassen's Earring">
@@ -660,8 +652,7 @@
 		<set name="price" val="325800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">48</stat>
 		</stats>
 	</item>
 	<item id="856" type="Armor" name="Adamantite Earring">
@@ -676,8 +667,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="857" type="Armor" name="Blessed Earring">
@@ -692,8 +682,7 @@
 		<set name="price" val="325800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">48</stat>
 		</stats>
 	</item>
 	<item id="858" type="Armor" name="Tateossian Earring">
@@ -709,9 +698,8 @@
 		<set name="price" val="3270000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="71" />
-			<add stat="maxMp" val="31" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">71</stat>
+			<stat type="maxMp">31</stat>
 		</stats>
 	</item>
 	<item id="859" type="Armor" name="Earring of Mana">
@@ -726,8 +714,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="860" type="Armor" name="Sage's Earring">
@@ -742,8 +729,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="861" type="Armor" name="Paradia Earring">
@@ -758,8 +744,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="862" type="Armor" name="Majestic Earring">
@@ -775,9 +760,8 @@
 		<set name="price" val="1498000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="63" />
-			<add stat="maxMp" val="25" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">63</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
 	</item>
 	<item id="863" type="Armor" name="Earring of Solar Eclipse">
@@ -792,8 +776,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="864" type="Armor" name="Earring of Black Ore">
@@ -808,8 +791,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="865" type="Armor" name="Earring of Summoning">
@@ -824,8 +806,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="866" type="Armor" name="Otherworldly Earring">
@@ -840,8 +821,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="867" type="Armor" name="Elemental Earring">
@@ -856,8 +836,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="868" type="Armor" name="Earring of Phantom">
@@ -872,8 +851,7 @@
 		<set name="price" val="1498000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">60</stat>
 		</stats>
 	</item>
 	<item id="869" type="Armor" name="Earring of Grace">
@@ -888,8 +866,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="870" type="Armor" name="Earring of Holy Spirit">
@@ -904,8 +881,7 @@
 		<set name="price" val="711000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="871" type="Armor" name="Phoenix Earring">
@@ -921,9 +897,8 @@
 		<set name="price" val="1005000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
-			<add stat="maxMp" val="20" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">60</stat>
+			<stat type="maxMp">20</stat>
 		</stats>
 	</item>
 	<item id="872" type="Armor" name="Cerberus Earring">
@@ -938,8 +913,7 @@
 		<set name="price" val="1498000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">60</stat>
 		</stats>
 	</item>
 	<item id="873" type="Armor" name="Earring of Aid">
@@ -954,8 +928,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="874" type="Armor" name="Earring of Blessing">
@@ -970,8 +943,7 @@
 		<set name="price" val="465900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="875" type="Armor" name="Ring of Knowledge">
@@ -984,7 +956,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="420" />
 		<stats>
-			<add order="0" stat="mDef" val="9" />
+			<stat type="mDef">9</stat>
 		</stats>
 	</item>
 	<item id="876" type="Armor" name="Ring of Anguish">
@@ -997,7 +969,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1800" />
 		<stats>
-			<add order="0" stat="mDef" val="11" />
+			<stat type="mDef">11</stat>
 		</stats>
 	</item>
 	<item id="877" type="Armor" name="Ring of Wisdom">
@@ -1009,7 +981,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="4560" />
 		<stats>
-			<add order="0" stat="mDef" val="12" />
+			<stat type="mDef">12</stat>
 		</stats>
 	</item>
 	<item id="878" type="Armor" name="Blue Coral Ring">
@@ -1021,7 +993,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="8200" />
 		<stats>
-			<add order="0" stat="mDef" val="14" />
+			<stat type="mDef">14</stat>
 		</stats>
 	</item>
 	<item id="879" type="Armor" name="Enchanted Ring">
@@ -1036,8 +1008,7 @@
 		<set name="price" val="21800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="18" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">18</stat>
 		</stats>
 	</item>
 	<item id="880" type="Armor" name="Black Pearl Ring">
@@ -1052,8 +1023,7 @@
 		<set name="price" val="33000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="20" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">20</stat>
 		</stats>
 	</item>
 	<item id="881" type="Armor" name="Elven Ring">
@@ -1068,8 +1038,7 @@
 		<set name="price" val="47900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="22" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">22</stat>
 		</stats>
 	</item>
 	<item id="882" type="Armor" name="Mithril Ring">
@@ -1084,8 +1053,7 @@
 		<set name="price" val="62200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="24" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">24</stat>
 		</stats>
 	</item>
 	<item id="883" type="Armor" name="Aquastone Ring">
@@ -1100,8 +1068,7 @@
 		<set name="price" val="79500" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="26" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">26</stat>
 		</stats>
 	</item>
 	<item id="884" type="Armor" name="Ring of Protection">
@@ -1116,8 +1083,7 @@
 		<set name="price" val="100300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="28" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">28</stat>
 		</stats>
 	</item>
 	<item id="885" type="Armor" name="Ring of Ages">
@@ -1132,8 +1098,7 @@
 		<set name="price" val="151100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="30" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">30</stat>
 		</stats>
 	</item>
 	<item id="886" type="Armor" name="Ring of Seal">
@@ -1148,8 +1113,7 @@
 		<set name="price" val="217200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="32" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">32</stat>
 		</stats>
 	</item>
 	<item id="887" type="Armor" name="Adamantite Ring">
@@ -1164,8 +1128,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="888" type="Armor" name="Blessed Ring">
@@ -1180,8 +1143,7 @@
 		<set name="price" val="217200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="32" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">32</stat>
 		</stats>
 	</item>
 	<item id="889" type="Armor" name="Tateossian Ring">
@@ -1197,9 +1159,8 @@
 		<set name="price" val="2180000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
 	</item>
 	<item id="890" type="Armor" name="Ring of Devotion">
@@ -1214,8 +1175,7 @@
 		<set name="price" val="13800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="16" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">16</stat>
 		</stats>
 	</item>
 	<item id="891" type="Armor" name="Sage's Ring">
@@ -1230,8 +1190,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="892" type="Armor" name="Paradia Ring">
@@ -1246,8 +1205,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="893" type="Armor" name="Majestic Ring">
@@ -1263,9 +1221,8 @@
 		<set name="price" val="999000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="42" />
-			<add stat="maxMp" val="17" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">42</stat>
+			<stat type="maxMp">17</stat>
 		</stats>
 	</item>
 	<item id="894" type="Armor" name="Ring of Solar Eclipse">
@@ -1280,8 +1237,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="895" type="Armor" name="Ring of Black Ore">
@@ -1296,8 +1252,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="896" type="Armor" name="Ring of Summoning">
@@ -1312,8 +1267,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="897" type="Armor" name="Otherworldly Ring">
@@ -1328,8 +1282,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="898" type="Armor" name="Elemental Ring">
@@ -1344,8 +1297,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="899" type="Armor" name="Ring of Phantom">
@@ -1360,8 +1312,7 @@
 		<set name="price" val="999000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 </list>

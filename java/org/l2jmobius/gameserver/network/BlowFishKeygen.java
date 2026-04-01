@@ -1,66 +1,62 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network;
 
 import org.l2jmobius.commons.util.Rnd;
 
 /**
- * Blowfish keygen for GameServer client connections.
- * @author KenM
+ * Blowfish key generator for GameServer sessions.<br>
+ * Returns a new array of 16 bytes: 8 random + 8 fixed suffix.
+ * @author BazookaRpm
  */
 public class BlowFishKeygen
 {
-	private static final int CRYPT_KEYS_SIZE = 20;
-	private static final byte[][] CRYPT_KEYS = new byte[CRYPT_KEYS_SIZE][16];
-	static
-	{
-		// init the GS encryption keys on class load
-		for (int i = 0; i < CRYPT_KEYS_SIZE; i++)
-		{
-			// randomize the 8 first bytes
-			for (int j = 0; j < CRYPT_KEYS[i].length; j++)
-			{
-				CRYPT_KEYS[i][j] = (byte) Rnd.get(255);
-			}
-			
-			// the last 8 bytes are static
-			CRYPT_KEYS[i][8] = (byte) 0xc8;
-			CRYPT_KEYS[i][9] = (byte) 0x27;
-			CRYPT_KEYS[i][10] = (byte) 0x93;
-			CRYPT_KEYS[i][11] = (byte) 0x01;
-			CRYPT_KEYS[i][12] = (byte) 0xa1;
-			CRYPT_KEYS[i][13] = (byte) 0x6c;
-			CRYPT_KEYS[i][14] = (byte) 0x31;
-			CRYPT_KEYS[i][15] = (byte) 0x97;
-		}
-	}
+	private static final int KEY_LENGTH_BYTES = 16;
+	private static final int RANDOM_PREFIX_LENGTH = 8;
 	
-	// block instantiation
+	private static final byte[] KEY_TAIL_BYTES =
+	{
+		(byte) 0xC8,
+		(byte) 0x27,
+		(byte) 0x93,
+		(byte) 0x01,
+		(byte) 0xA1,
+		(byte) 0x6C,
+		(byte) 0x31,
+		(byte) 0x97
+	};
+	
 	private BlowFishKeygen()
 	{
 	}
 	
 	/**
-	 * Returns a key from this keygen pool, the logical ownership is retained by this keygen.<br>
-	 * Thus when getting a key with interests other then read-only a copy must be performed.
-	 * @return A key from this keygen pool.
+	 * Generate a key Blowfish of 16 bytes.
+	 * @return new array with 8 random bytes followed by the fixed suffix
 	 */
 	public static byte[] getRandomKey()
 	{
-		return CRYPT_KEYS[Rnd.get(CRYPT_KEYS_SIZE)];
+		final byte[] key = new byte[KEY_LENGTH_BYTES];
+		Rnd.nextBytes(key);
+		System.arraycopy(KEY_TAIL_BYTES, 0, key, RANDOM_PREFIX_LENGTH, KEY_TAIL_BYTES.length);
+		return key;
 	}
 }

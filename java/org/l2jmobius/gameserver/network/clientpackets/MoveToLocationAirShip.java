@@ -23,9 +23,9 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 

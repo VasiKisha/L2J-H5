@@ -186,8 +186,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="214" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">214</stat>
 		</stats>
 	</item>
 	<item id="9515" type="Armor" name="Sealed Dynasty Gaiter">
@@ -208,8 +207,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="134" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">134</stat>
 		</stats>
 	</item>
 	<item id="9516" type="Armor" name="Sealed Dynasty Helmet">
@@ -229,8 +227,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="92" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="9517" type="Armor" name="Sealed Dynasty Gauntlets">
@@ -250,8 +247,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9518" type="Armor" name="Sealed Dynasty Boots">
@@ -271,8 +267,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9519" type="Armor" name="Sealed Dynasty Leather Armor">
@@ -290,8 +285,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="161" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">161</stat>
 		</stats>
 	</item>
 	<item id="9520" type="Armor" name="Sealed Dynasty Leather Leggings">
@@ -309,8 +303,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="100" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">100</stat>
 		</stats>
 	</item>
 	<item id="9521" type="Armor" name="Sealed Dynasty Leather Helmet">
@@ -327,8 +320,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="92" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="9522" type="Armor" name="Sealed Dynasty Leather Gloves">
@@ -345,8 +337,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9523" type="Armor" name="Sealed Dynasty Leather Boots">
@@ -363,8 +354,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9524" type="Armor" name="Sealed Dynasty Tunic">
@@ -385,9 +375,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<add stat="maxMp" val="592" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">107</stat>
+			<stat type="maxMp">592</stat>
 		</stats>
 	</item>
 	<item id="9525" type="Armor" name="Sealed Dynasty Stockings">
@@ -408,9 +397,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="67" />
-			<add stat="maxMp" val="370" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">67</stat>
+			<stat type="maxMp">370</stat>
 		</stats>
 	</item>
 	<item id="9526" type="Armor" name="Sealed Dynasty Circlet">
@@ -430,8 +418,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="92" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="9527" type="Armor" name="Sealed Dynasty Gloves">
@@ -451,8 +438,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9528" type="Armor" name="Sealed Dynasty Shoes">
@@ -472,8 +458,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="9529" type="Armor" name="Sealed Dynasty Shield">
@@ -492,10 +477,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="305" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">305</stat>
 		</stats>
 	</item>
 	<item id="9530" type="EtcItem" name="Sealed Dynasty Breast Plate Piece">
@@ -669,7 +653,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2329-1" /> <!-- Fire Stone -->
+		<skills>
+			<skill id="2329" level="1" /> <!-- Fire Stone -->
+		</skills>
 	</item>
 	<item id="9547" type="EtcItem" name="Water Stone">
 		<!-- Water elemental attack attribute increases by 5 when bestowed on a weapon. Fire elemental defense attribute increases by 6 when bestowed on an armor. Attribute Stones can be used up to attribute level 3. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -682,7 +668,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2330-1" /> <!-- Water Stone -->
+		<skills>
+			<skill id="2330" level="1" /> <!-- Water Stone -->
+		</skills>
 	</item>
 	<item id="9548" type="EtcItem" name="Earth Stone">
 		<!-- Earth elemental attack attribute increases by 5 when bestowed on a weapon. Wind elemental defense attribute increases by 6 when bestowed on an armor. Attribute Stones can be used up to attribute level 3. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -695,7 +683,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2332-1" /> <!-- Earth Stone -->
+		<skills>
+			<skill id="2332" level="1" /> <!-- Earth Stone -->
+		</skills>
 	</item>
 	<item id="9549" type="EtcItem" name="Wind Stone">
 		<!-- Wind elemental attack attribute increases by 5 when bestowed on a weapon. Earth elemental defense attribute increases by 6 when bestowed on an armor. Attribute Stones can be used up to attribute level 3. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -708,7 +698,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2331-1" /> <!-- Wind Stone -->
+		<skills>
+			<skill id="2331" level="1" /> <!-- Wind Stone -->
+		</skills>
 	</item>
 	<item id="9550" type="EtcItem" name="Dark Stone">
 		<!-- Dark elemental attack attribute increases by 5 when bestowed on a weapon. Holy elemental defense attribute increases by 6 when bestowed on an armor. Attribute Stones can be used up to attribute level 3. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -721,7 +713,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2334-1" /> <!-- Dark Stone -->
+		<skills>
+			<skill id="2334" level="1" /> <!-- Dark Stone -->
+		</skills>
 	</item>
 	<item id="9551" type="EtcItem" name="Holy Stone">
 		<!-- Holy elemental attack attribute increases by 5 when bestowed on a weapon. Dark elemental defense attribute increases by 6 when bestowed on an armor. Attribute Stones can be used up to attribute level 3. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -734,7 +728,9 @@
 		<set name="price" val="25000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2333-1" /> <!-- Holy Stone -->
+		<skills>
+			<skill id="2333" level="1" /> <!-- Holy Stone -->
+		</skills>
 	</item>
 	<item id="9552" type="EtcItem" name="Fire Crystal">
 		<!-- Fire elemental attack attribute increases by 5 when bestowed on a weapon. Water elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -747,7 +743,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2329-2" /> <!-- Fire Stone -->
+		<skills>
+			<skill id="2329" level="2" /> <!-- Fire Crystal -->
+		</skills>
 	</item>
 	<item id="9553" type="EtcItem" name="Water Crystal">
 		<!-- Water elemental attack attribute increases by 5 when bestowed on a weapon. Fire elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -760,7 +758,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2330-2" /> <!-- Water Stone -->
+		<skills>
+			<skill id="2330" level="2" /> <!-- Water Crystal -->
+		</skills>
 	</item>
 	<item id="9554" type="EtcItem" name="Earth Crystal">
 		<!-- Earth elemental attack attribute increases by 5 when bestowed on a weapon. Wind elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -773,7 +773,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2332-2" /> <!-- Earth Stone -->
+		<skills>
+			<skill id="2332" level="2" /> <!-- Earth Crystal -->
+		</skills>
 	</item>
 	<item id="9555" type="EtcItem" name="Wind Crystal">
 		<!-- Wind elemental attack attribute increases by 5 when bestowed on a weapon. Earth elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -786,7 +788,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2331-2" /> <!-- Wind Stone -->
+		<skills>
+			<skill id="2331" level="2" /> <!-- Wind Crystal -->
+		</skills>
 	</item>
 	<item id="9556" type="EtcItem" name="Dark Crystal">
 		<!-- Dark elemental attack attribute increases by 5 when bestowed on a weapon. Holy elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -799,7 +803,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2334-2" /> <!-- Dark Stone -->
+		<skills>
+			<skill id="2334" level="2" /> <!-- Dark Crystal -->
+		</skills>
 	</item>
 	<item id="9557" type="EtcItem" name="Holy Crystal">
 		<!-- Holy elemental attack attribute increases by 5 when bestowed on a weapon. Dark elemental defense attribute increases by 6 when bestowed on an armor. Attribute Crystals can be used up to attribute level 6. Additionally, a maximum of three types of elemental defense attribute can be bestowed, and one type of elemental attack attribute. Opposite attributes cannot be bestowed together. -->
@@ -812,7 +818,9 @@
 		<set name="price" val="100000" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2333-2" /> <!-- Holy Stone -->
+		<skills>
+			<skill id="2333" level="2" /> <!-- Holy Crystal -->
+		</skills>
 	</item>
 	<item id="9558" type="EtcItem" name="Fire Jewel">
 		<!-- Fire elemental attack attribute increases by % when bestowed on a weapon. Water elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -824,7 +832,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2329-3" /> <!-- Fire Stone -->
+		<skills>
+			<skill id="2329" level="3" /> <!-- Fire Jewel -->
+		</skills>
 	</item>
 	<item id="9559" type="EtcItem" name="Water Jewel">
 		<!-- Water elemental attack attribute increases by % when bestowed on a weapon. Fire elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -836,7 +846,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2330-3" /> <!-- Water Stone -->
+		<skills>
+			<skill id="2330" level="3" /> <!-- Water Jewel -->
+		</skills>
 	</item>
 	<item id="9560" type="EtcItem" name="Earth Jewel">
 		<!-- Earth elemental attack attribute increases by % when bestowed on a weapon. Wind elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -848,7 +860,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2332-3" /> <!-- Earth Stone -->
+		<skills>
+			<skill id="2332" level="3" /> <!-- Earth Jewel -->
+		</skills>
 	</item>
 	<item id="9561" type="EtcItem" name="Wind Jewel">
 		<!-- Wind elemental attack attribute increases by % when bestowed on a weapon. Earth elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -860,7 +874,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2331-3" /> <!-- Wind Stone -->
+		<skills>
+			<skill id="2331" level="3" /> <!-- Wind Jewel -->
+		</skills>
 	</item>
 	<item id="9562" type="EtcItem" name="Dark Jewel">
 		<!-- Dark elemental attack attribute increases by % when bestowed on a weapon. Holy elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -872,7 +888,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2334-3" /> <!-- Dark Stone -->
+		<skills>
+			<skill id="2334" level="3" /> <!-- Dark Jewel -->
+		</skills>
 	</item>
 	<item id="9563" type="EtcItem" name="Holy Jewel">
 		<!-- Holy elemental attack attribute increases by % when bestowed on a weapon. Dark elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 9. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -884,7 +902,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2333-3" /> <!-- Holy Stone -->
+		<skills>
+			<skill id="2333" level="3" /> <!-- Holy Jewel -->
+		</skills>
 	</item>
 	<item id="9564" type="EtcItem" name="Fire Energy">
 		<!-- Fire elemental attack attribute increases by % when bestowed on a weapon. Water elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -896,7 +916,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2329-4" /> <!-- Fire Stone -->
+		<skills>
+			<skill id="2329" level="4" /> <!-- Fire Energy -->
+		</skills>
 	</item>
 	<item id="9565" type="EtcItem" name="Water Energy">
 		<!-- Water elemental attack attribute increases by % when bestowed on a weapon. Fire elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -908,7 +930,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2330-4" /> <!-- Water Stone -->
+		<skills>
+			<skill id="2330" level="4" /> <!-- Water Energy -->
+		</skills>
 	</item>
 	<item id="9566" type="EtcItem" name="Earth Energy">
 		<!-- Earth elemental attack attribute increases by % when bestowed on a weapon. Wind elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -920,7 +944,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2332-4" /> <!-- Earth Stone -->
+		<skills>
+			<skill id="2332" level="4" /> <!-- Earth Energy -->
+		</skills>
 	</item>
 	<item id="9567" type="EtcItem" name="Wind Energy">
 		<!-- Wind elemental attack attribute increases by % when bestowed on a weapon. Earth elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -932,7 +958,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2331-4" /> <!-- Wind Stone -->
+		<skills>
+			<skill id="2331" level="4" /> <!-- Wind Energy -->
+		</skills>
 	</item>
 	<item id="9568" type="EtcItem" name="Dark Energy">
 		<!-- Dark elemental attack attribute increases by % when bestowed on a weapon. Holy elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -944,7 +972,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2334-4" /> <!-- Dark Stone -->
+		<skills>
+			<skill id="2334" level="4" /> <!-- Dark Energy -->
+		</skills>
 	</item>
 	<item id="9569" type="EtcItem" name="Holy Energy">
 		<!-- Holy elemental attack attribute increases by % when bestowed on a weapon. Dark elemental defense attribute increases by % when bestowed on an armor. Attribute Stones can be used up to attribute level 12. Additionally, a maximum of three types of elemental attribute can be bestowed on an armor. Opposite attributes cannot be bestowed together. -->
@@ -956,7 +986,9 @@
 		<set name="weight" val="120" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="EnchantAttribute" />
-		<set name="item_skill" val="2333-4" /> <!-- Holy Stone -->
+		<skills>
+			<skill id="2333" level="4" /> <!-- Holy Energy -->
+		</skills>
 	</item>
 	<item id="9570" type="EtcItem" name="Red Soul Crystal - Stage 14">
 		<!-- Red Crystal that absorbs souls, stage 14. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -967,7 +999,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="9571" type="EtcItem" name="Blue Soul Crystal - Stage 14">
 		<!-- Blue Crystal that absorbs souls, stage 14. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -978,7 +1012,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="9572" type="EtcItem" name="Green Soul Crystal - Stage 14">
 		<!-- Green Crystal that absorbs souls, stage 14. Special abilities can be applied to the weapon when absorbing certain amount of souls. Every time it is used, it consumes 26 of MP. However, the Soul Crystal of this stage absorbs souls by itself, so there is no need for using the Soul Crystal to monsters. -->
@@ -989,7 +1025,9 @@
 		<set name="weight" val="20" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2096-1" /> <!-- Soul Crystal -->
+		<skills>
+			<skill id="2096" level="1" /> <!-- Soul Crystal -->
+		</skills>
 	</item>
 	<item id="9573" type="EtcItem" name="Life Stone - Level 80">
 		<!-- An ordinary mineral that has been petrified by a creature's physical or magical damage. May be used as an ingredient in weapon crafting by characters above level 80. -->
@@ -1049,7 +1087,7 @@
 		<set name="price" val="1300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="6" />
+			<stat type="pDef">6</stat>
 		</stats>
 	</item>
 	<item id="9578" type="Armor" name="Linen Shirt">
@@ -1064,8 +1102,7 @@
 		<set name="price" val="25000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="12" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">12</stat>
 		</stats>
 	</item>
 	<item id="9579" type="Armor" name="Silk Shirt">
@@ -1080,8 +1117,7 @@
 		<set name="price" val="80000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="9580" type="Armor" name="Thin Leather Shirt">
@@ -1096,8 +1132,7 @@
 		<set name="price" val="260000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="21" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">21</stat>
 		</stats>
 	</item>
 	<item id="9581" type="Armor" name="Scale Shirt">
@@ -1112,8 +1147,7 @@
 		<set name="price" val="588000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="23" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">23</stat>
 		</stats>
 	</item>
 	<item id="9582" type="Armor" name="Mithril Shirt">
@@ -1128,8 +1162,7 @@
 		<set name="price" val="1800000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="28" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">28</stat>
 		</stats>
 	</item>
 	<item id="9583" type="Armor" name="Striped Cotton Shirt">
@@ -1142,7 +1175,7 @@
 		<set name="price" val="6100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="8" />
+			<stat type="pDef">8</stat>
 		</stats>
 	</item>
 	<item id="9584" type="Armor" name="Stripe Linen Shirt">
@@ -1157,8 +1190,7 @@
 		<set name="price" val="49000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="14" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">14</stat>
 		</stats>
 	</item>
 	<item id="9585" type="Armor" name="Striped Silk Shirt">
@@ -1173,8 +1205,7 @@
 		<set name="price" val="180000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="19" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="9586" type="Armor" name="Thin Striped Leather Shirt">
@@ -1189,8 +1220,7 @@
 		<set name="price" val="400000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="22" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">22</stat>
 		</stats>
 	</item>
 	<item id="9587" type="Armor" name="Striped Scale Shirt">
@@ -1205,8 +1235,7 @@
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="26" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">26</stat>
 		</stats>
 	</item>
 	<item id="9588" type="Armor" name="Striped Mithril Shirt">
@@ -1221,8 +1250,7 @@
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="30" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">30</stat>
 		</stats>
 	</item>
 	<item id="9589" type="Armor" name="Iron Bracelet">
@@ -1236,7 +1264,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="216000" />
-		<set name="item_skill" val="3322-1" /> <!-- Brass Bracelet -->
+		<skills>
+			<skill id="3322" level="1" /> <!-- Brass Bracelet -->
+		</skills>
 	</item>
 	<item id="9590" type="Armor" name="Bronze Bracelet">
 		<!-- Uses 2 talisman slots when equipped. -->
@@ -1249,7 +1279,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="480000" />
-		<set name="item_skill" val="3323-1" /> <!-- Bronze Bracelet -->
+		<skills>
+			<skill id="3323" level="1" /> <!-- Bronze Bracelet -->
+		</skills>
 	</item>
 	<item id="9591" type="Armor" name="Steel Bracelet">
 		<!-- Uses 3 talisman slots when equipped. -->
@@ -1262,7 +1294,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1144000" />
-		<set name="item_skill" val="3324-1" /> <!-- Steel Bracelet -->
+		<skills>
+			<skill id="3324" level="1" /> <!-- Steel Bracelet -->
+		</skills>
 	</item>
 	<item id="9592" type="Armor" name="Mithril Bracelet">
 		<!-- Uses 4 talisman slots when equipped. -->
@@ -1275,7 +1309,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="3556000" />
-		<set name="item_skill" val="3325-1" /> <!-- Mithril Bracelet -->
+		<skills>
+			<skill id="3325" level="1" /> <!-- Mithril Bracelet -->
+		</skills>
 	</item>
 	<item id="9593" type="EtcItem" name="Yellow Seed of Evil - Shard">
 		<!-- Pieces of Yellow Seed of Evil which were planted into a monster by Beleth. If you take this to Blacksmith Ram, he will exchange it for a useful item. This item cannot be exchanged or dropped. -->
@@ -1348,6 +1384,8 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2440-1" /> <!-- Ancient Tome of the Demon -->
+		<skills>
+			<skill id="2440" level="1" /> <!-- Ancient Tome of the Demon -->
+		</skills>
 	</item>
 </list>

@@ -352,7 +352,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{6}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -360,6 +359,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6835" type="Armor" name="Circlet of Dion">
 		<!-- Torchlight Circlet. Can be worn by the lord of Dion Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -373,7 +375,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{2}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -381,6 +382,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6836" type="Armor" name="Goddard Circlet">
 		<!-- Shield Circlet. Can be worn by the lord of Goddard Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -394,7 +398,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{7}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -402,6 +405,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6837" type="Armor" name="Circlet of Oren">
 		<!-- Tower Circlet. Can be worn by the lord of Oren Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -415,7 +421,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{4}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -423,6 +428,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6838" type="Armor" name="Circlet of Gludio">
 		<!-- Three-Swords Circlet. Can be worn by the lord of Gludio Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -436,7 +444,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{1}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -444,6 +451,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6839" type="Armor" name="Circlet of Giran">
 		<!-- Cross Circlet. Can be worn by the lord of Giran Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -457,7 +467,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{3}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -465,6 +474,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="1" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6840" type="Armor" name="Circlet of Aden">
 		<!-- Lion Circlet. Can be worn by the lord of Aden Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -478,7 +490,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3633-2" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{5}}}" />
 		<conditions msgId="1518">
 			<and>
@@ -486,6 +497,9 @@
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3633" level="2" /> <!-- Residential Shock Immunity -->
+		</skills>
 	</item>
 	<item id="6841" type="Armor" name="The Lord's Crown">
 		<!-- Lord's crown hair accessory. Allows use of Residential Skills when equipped. -->
@@ -498,7 +512,6 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="item_skill" val="3632-1" /> <!-- Clan Gate -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_clan_leader;1}}" />
 		<conditions msgId="1518">
 			<and>
@@ -506,6 +519,9 @@
 				<player pledgeClass="-1" /> <!-- Clan Leader -->
 			</and>
 		</conditions>
+		<skills>
+			<skill id="3632" level="1" /> <!-- Clan Gate -->
+		</skills>
 	</item>
 	<item id="6842" type="Armor" name="Wings of Destiny Circlet">
 		<!-- Hair accessory exclusively used by Heroes. -->

@@ -963,7 +963,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2060-1" /> <!-- Healing Medicine -->
+		<skills>
+			<skill id="2060" level="1" /> <!-- Healing Medicine -->
+		</skills>
 	</item>
 	<item id="3890" type="EtcItem" name="Herald of Slayer">
 		<!-- Certificate showing eligibility to participate in the group to conquer Antharas. Take this and go meet Antharas Watchman Gilmore. -->
@@ -992,8 +994,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="16" />
-			<add order="0" stat="pDef" val="13" />
+			<stat type="mDef">16</stat>
+			<stat type="pDef">13</stat>
 		</stats>
 	</item>
 	<item id="3892" type="Armor" name="Wolf's Hard Leather Armor">
@@ -1011,8 +1013,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="18" />
-			<add order="0" stat="pDef" val="16" />
+			<stat type="mDef">18</stat>
+			<stat type="pDef">16</stat>
 		</stats>
 	</item>
 	<item id="3893" type="Armor" name="Wolf's Wooden Armor">
@@ -1030,8 +1032,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="20" />
-			<add order="0" stat="pDef" val="19" />
+			<stat type="mDef">20</stat>
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="3894" type="Armor" name="Wolf's Ring Mail">
@@ -1049,8 +1051,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="23" />
-			<add order="0" stat="pDef" val="22" />
+			<stat type="mDef">23</stat>
+			<stat type="pDef">22</stat>
 		</stats>
 	</item>
 	<item id="3895" type="Armor" name="Wolf's Bone Armor">
@@ -1068,8 +1070,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="26" />
-			<add order="0" stat="pDef" val="26" />
+			<stat type="mDef">26</stat>
+			<stat type="pDef">26</stat>
 		</stats>
 	</item>
 	<item id="3896" type="Armor" name="Wolf's Scale Mail">
@@ -1087,8 +1089,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="29" />
-			<add order="0" stat="pDef" val="30" />
+			<stat type="mDef">29</stat>
+			<stat type="pDef">30</stat>
 		</stats>
 	</item>
 	<item id="3897" type="Armor" name="Wolf's Bronze Armor">
@@ -1106,8 +1108,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="31" />
-			<add order="0" stat="pDef" val="33" />
+			<stat type="mDef">31</stat>
+			<stat type="pDef">33</stat>
 		</stats>
 	</item>
 	<item id="3898" type="Armor" name="Wolf's Plate Mail">
@@ -1125,8 +1127,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="33" />
-			<add order="0" stat="pDef" val="37" />
+			<stat type="mDef">33</stat>
+			<stat type="pDef">37</stat>
 		</stats>
 	</item>
 	<item id="3899" type="Armor" name="Wolf's Steel Armor">
@@ -1144,8 +1146,8 @@
 			<player categoryType="ALL_WOLF_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<add order="0" stat="pDef" val="40" />
+			<stat type="mDef">36</stat>
+			<stat type="pDef">40</stat>
 		</stats>
 	</item>
 </list>

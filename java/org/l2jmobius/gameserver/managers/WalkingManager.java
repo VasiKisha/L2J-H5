@@ -37,10 +37,10 @@ import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.holders.NpcRoutesHolder;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.NpcWalkerNode;
-import org.l2jmobius.gameserver.model.WalkInfo;
-import org.l2jmobius.gameserver.model.WalkRoute;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.holders.npc.WalkInfo;
+import org.l2jmobius.gameserver.model.actor.holders.npc.WalkNode;
+import org.l2jmobius.gameserver.model.actor.holders.npc.WalkRoute;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.tasks.npc.walker.ArrivedTask;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
@@ -129,7 +129,7 @@ public class WalkingManager implements IXmlReader
 					}
 				}
 				
-				final List<NpcWalkerNode> list = new ArrayList<>();
+				final List<WalkNode> list = new ArrayList<>();
 				for (Node r = d.getFirstChild(); r != null; r = r.getNextSibling())
 				{
 					if (r.getNodeName().equals("point"))
@@ -174,7 +174,7 @@ public class WalkingManager implements IXmlReader
 							}
 						}
 						
-						list.add(new NpcWalkerNode(x, y, z, delay, run, npcString, chatString));
+						list.add(new WalkNode(x, y, z, delay, run, npcString, chatString));
 					}
 					
 					else if (r.getNodeName().equals("target"))
@@ -286,7 +286,7 @@ public class WalkingManager implements IXmlReader
 				if ((npc.getAI().getIntention() == Intention.ACTIVE) || (npc.getAI().getIntention() == Intention.IDLE))
 				{
 					final WalkInfo walk = new WalkInfo(routeName);
-					NpcWalkerNode node = walk.getCurrentNode();
+					WalkNode node = walk.getCurrentNode();
 					
 					// adjust next waypoint, if NPC spawns at first waypoint
 					if ((npc.getX() == node.getX()) && (npc.getY() == node.getY()))
@@ -349,7 +349,7 @@ public class WalkingManager implements IXmlReader
 					}
 					
 					walk.setBlocked(true);
-					final NpcWalkerNode node = walk.getCurrentNode();
+					final WalkNode node = walk.getCurrentNode();
 					if (node.runToLocation())
 					{
 						npc.setRunning();
@@ -457,8 +457,8 @@ public class WalkingManager implements IXmlReader
 			return;
 		}
 		
-		final List<NpcWalkerNode> nodelist = walk.getRoute().getNodeList();
-		final NpcWalkerNode node = nodelist.get(Math.min(walk.getCurrentNodeId(), nodelist.size() - 1));
+		final List<WalkNode> nodelist = walk.getRoute().getNodeList();
+		final WalkNode node = nodelist.get(Math.min(walk.getCurrentNodeId(), nodelist.size() - 1));
 		if (!npc.isInsideRadius2D(node, 10))
 		{
 			return;

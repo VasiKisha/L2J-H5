@@ -20,16 +20,16 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.MailManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 
 /**
  * @author Migi, DS
  */
 public class ExShowSentPostList extends ServerPacket
 {
-	private final List<Message> _outbox;
+	private final List<MailMessage> _outbox;
 	
 	public ExShowSentPostList(int objectId)
 	{
@@ -44,7 +44,7 @@ public class ExShowSentPostList extends ServerPacket
 		if ((_outbox != null) && !_outbox.isEmpty())
 		{
 			buffer.writeInt(_outbox.size());
-			for (Message msg : _outbox)
+			for (MailMessage msg : _outbox)
 			{
 				buffer.writeInt(msg.getId());
 				buffer.writeString(msg.getSubject());

@@ -1,141 +1,64 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import java.util.List;
-
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.ActionKey;
-import org.l2jmobius.gameserver.model.UIKeysSettings;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * @author mrTJO
+ * @author Mobius
  */
 public class ExUISetting extends ServerPacket
 {
-	private final UIKeysSettings _uiSettings;
-	private int buffsize;
-	private int categories;
+	public static final String SPLIT_VAR = "	";
+	
+	private final byte[] _uiKeyMapping;
 	
 	public ExUISetting(Player player)
 	{
-		_uiSettings = player.getUISettings();
-		calcSize();
-	}
-	
-	private void calcSize()
-	{
-		int size = 16; // initial header and footer
-		int category = 0;
-		final int numKeyCt = _uiSettings.getKeys().size();
-		for (int i = 0; i < numKeyCt; i++)
+		if (player.getVariables().hasVariable(PlayerVariables.UI_KEY_MAPPING))
 		{
-			size++;
-			if (_uiSettings.getCategories().containsKey(category))
-			{
-				final List<Integer> catElList1 = _uiSettings.getCategories().get(category);
-				size += catElList1.size();
-			}
-			
-			category++;
-			size++;
-			if (_uiSettings.getCategories().containsKey(category))
-			{
-				final List<Integer> catElList2 = _uiSettings.getCategories().get(category);
-				size += catElList2.size();
-			}
-			
-			category++;
-			size += 4;
-			if (_uiSettings.getKeys().containsKey(i))
-			{
-				final List<ActionKey> keyElList = _uiSettings.getKeys().get(i);
-				size += (keyElList.size() * 20);
-			}
+			_uiKeyMapping = player.getVariables().getByteArray(PlayerVariables.UI_KEY_MAPPING, SPLIT_VAR);
 		}
-		
-		buffsize = size;
-		categories = category;
+		else
+		{
+			_uiKeyMapping = null;
+		}
 	}
 	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.EX_UI_SETTING.writeId(this, buffer);
-		buffer.writeInt(buffsize);
-		buffer.writeInt(categories);
-		int category = 0;
-		final int numKeyCt = _uiSettings.getKeys().size();
-		buffer.writeInt(numKeyCt);
-		for (int i = 0; i < numKeyCt; i++)
+		if (_uiKeyMapping != null)
 		{
-			if (_uiSettings.getCategories().containsKey(category))
-			{
-				final List<Integer> catElList1 = _uiSettings.getCategories().get(category);
-				buffer.writeByte(catElList1.size());
-				for (int cmd : catElList1)
-				{
-					buffer.writeByte(cmd);
-				}
-			}
-			else
-			{
-				buffer.writeByte(0);
-			}
-			
-			category++;
-			if (_uiSettings.getCategories().containsKey(category))
-			{
-				final List<Integer> catElList2 = _uiSettings.getCategories().get(category);
-				buffer.writeByte(catElList2.size());
-				for (int cmd : catElList2)
-				{
-					buffer.writeByte(cmd);
-				}
-			}
-			else
-			{
-				buffer.writeByte(0);
-			}
-			
-			category++;
-			if (_uiSettings.getKeys().containsKey(i))
-			{
-				final List<ActionKey> keyElList = _uiSettings.getKeys().get(i);
-				buffer.writeInt(keyElList.size());
-				for (ActionKey akey : keyElList)
-				{
-					buffer.writeInt(akey.getCommandId());
-					buffer.writeInt(akey.getKeyId());
-					buffer.writeInt(akey.getToogleKey1());
-					buffer.writeInt(akey.getToogleKey2());
-					buffer.writeInt(akey.getShowStatus());
-				}
-			}
-			else
-			{
-				buffer.writeInt(0);
-			}
+			buffer.writeInt(_uiKeyMapping.length);
+			buffer.writeBytes(_uiKeyMapping);
 		}
-		
-		buffer.writeInt(0x11);
-		buffer.writeInt(16);
+		else
+		{
+			buffer.writeInt(0);
+		}
 	}
 }

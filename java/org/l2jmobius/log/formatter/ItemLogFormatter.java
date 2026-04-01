@@ -53,7 +53,7 @@ public class ItemLogFormatter extends Formatter
 				{
 					final Item item = (Item) p;
 					StringUtil.append(output, "item ", String.valueOf(item.getObjectId()), ":");
-					if (item.getEnchantLevel() > 0)
+					if (item.isEnchanted())
 					{
 						StringUtil.append(output, "+", String.valueOf(item.getEnchantLevel()), " ");
 					}

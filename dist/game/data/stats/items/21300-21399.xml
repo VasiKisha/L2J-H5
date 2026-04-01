@@ -316,9 +316,13 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21332" type="Armor" name="Agathion Summon Bracelet - Griffin - 7-day limited period (event)">
 		<!-- Dimensional item. Can summon a Griffin Agathion when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -330,9 +334,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21333" type="Armor" name="Agathion Summon Bracelet - Griffin - 30-day limited period">
 		<!-- Dimensional item. Can summon a Griffin Agathion when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -343,9 +351,13 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21334" type="Armor" name="Agathion Summon Bracelet - Griffin - 30-day limited period (event)">
 		<!-- Dimensional item. Can summon a Griffin Agathion when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -357,9 +369,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21335" type="Armor" name="Agathion Summon Bracelet - Griffin">
 		<!-- Dimensional item. Can summon a Griffin Agathion when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -371,8 +387,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21336" type="Armor" name="Agathion Summon Bracelet - Griffin - Event">
 		<!-- Dimensional item. Can summon a Griffin Agathion when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -385,8 +405,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8255-1;23252-1;3267-1" /> <!-- Release Seal on Agathion - Griffin -->
+		<skills>
+			<skill id="8255" level="1" /> <!-- Release Seal on Agathion - Griffin -->
+			<skill id="23252" level="1" /> <!-- Griffin Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21337" type="EtcItem" name="Cow Agathion 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Cow Agathion Summon Bracelet (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -444,8 +468,10 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21343" type="Armor" name="Agathion Summon Bracelet - Cow - 7-day limited period">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -456,9 +482,11 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21344" type="Armor" name="Agathion Summon Bracelet - Cow - 7-day limited period (event)">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -470,9 +498,11 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21345" type="Armor" name="Agathion Summon Bracelet - Cow - 30-day limited period">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -483,9 +513,11 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21346" type="Armor" name="Agathion Summon Bracelet - Cow - 30-day limited period (event)">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -497,9 +529,11 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21347" type="Armor" name="Agathion Summon Bracelet - Cow">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -511,8 +545,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21348" type="Armor" name="Agathion Summon Bracelet - Cow - Event">
 		<!-- Dimensional item. Can summon a Cow Agathion when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -525,8 +561,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
 		<!-- set name="item_skill" val="" / -->
+		<skills>
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21349" type="EtcItem" name="Tow Agathion 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Tow Agathion Summon Bracelet (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -594,9 +632,12 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21356" type="Armor" name="Agathion Summon Bracelet - Tow - 7-day limited period (event)">
 		<!-- Dimensional item. Can summon a Tow Agathion when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -608,9 +649,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
 		<set name="time" val="10080" />
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21357" type="Armor" name="Agathion Summon Bracelet - Tow - 30-day limited period">
 		<!-- Dimensional item. Can summon a Tow Agathion when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -621,9 +665,12 @@
 		<set name="weight" val="120" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21358" type="Armor" name="Agathion Summon Bracelet - Tow - 30-day limited period (event)">
 		<!-- Dimensional item. Can summon a Tow Agathion when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -635,9 +682,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
 		<set name="time" val="43200" />
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21359" type="Armor" name="Agathion Summon Bracelet - Tow">
 		<!-- Dimensional item. Can summon a Tow Agathion when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -649,8 +699,11 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21360" type="Armor" name="Agathion Summon Bracelet - Tow - Event">
 		<!-- Dimensional item. Can summon a Tow Agathion when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -663,8 +716,11 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="23251-1;3267-1" /> <!-- Tow Agathion Cute Trick -->
+		<skills>
+			<skill id="23251" level="1" /> <!-- Tow Agathion Cute Trick -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="21361" type="EtcItem" name="Aqua Elf Transformation Harp 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 aqua Elf transformation harp (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -729,16 +785,16 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21368" type="Weapon" name="Aqua Elf Transformation Harp - 7-day limited period (event)">
@@ -747,17 +803,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21369" type="Weapon" name="Aqua Elf Transformation Harp - 30-day limited period">
@@ -766,16 +822,16 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21370" type="Weapon" name="Aqua Elf Transformation Harp - 30-day limited period (event)">
@@ -784,17 +840,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21371" type="Weapon" name="Aqua Elf Transformation Harp">
@@ -803,16 +859,16 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21372" type="Weapon" name="Aqua Elf Transformation Harp - Event">
@@ -821,17 +877,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="21373" type="EtcItem" name="Darkmane Pacer Mount Bracelet 7-Day Pack">
@@ -902,7 +958,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21380" type="Armor" name="Mount Bracelet - Darkmane Pacer - 7-day limited period (event)">
 		<!-- Dimensional item. Can ride a Darkmane Pacer when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -915,7 +973,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21381" type="Armor" name="Mount Bracelet - Darkmane Pacer - 30-day limited period">
 		<!-- Dimensional item. Can ride a Darkmane Pacer when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -927,7 +987,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21382" type="Armor" name="Mount Bracelet - Darkmane Pacer - 30-day limited period (event)">
 		<!-- Dimensional item. Can ride a Darkmane Pacer when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -940,7 +1002,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21383" type="Armor" name="Mount Bracelet - Darkmane Pacer">
 		<!-- Dimensional item. Can ride a Darkmane Pacer when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -952,7 +1016,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21384" type="Armor" name="Mount Bracelet - Darkmane Pacer - Event">
 		<!-- Dimensional item. Can ride a Darkmane Pacer when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -965,7 +1031,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8247-1" /> <!-- Mount Darkmane Pacer -->
+		<skills>
+			<skill id="8247" level="1" /> <!-- Mount Darkmane Pacer -->
+		</skills>
 	</item>
 	<item id="21385" type="EtcItem" name="Steam Beatle Mount Bracelet 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Steam Beatle Mount Bracelet (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -1033,7 +1101,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21392" type="Armor" name="Mount Bracelet - Steam Beatle - 7-day limited period (event)">
 		<!-- Dimensional item. Can ride a steam beatle when equipped. Can be used for 7 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -1045,7 +1115,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="10080" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21393" type="Armor" name="Mount Bracelet - Steam Beatle - 30-day limited period">
 		<!-- Dimensional item. Can ride a steam beatle when equipped. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1056,7 +1128,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21394" type="Armor" name="Mount Bracelet - Steam Beatle - 30-day limited period (event)">
 		<!-- Dimensional item. Can ride a steam beatle when equipped. Can be used for 30 days. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -1068,7 +1142,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="time" val="43200" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21395" type="Armor" name="Mount Bracelet - Steam Beatle">
 		<!-- Dimensional item. Can ride a steam beatle when equipped. Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -1079,7 +1155,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21396" type="Armor" name="Mount Bracelet - Steam Beatle - Event">
 		<!-- Dimensional item. Can ride a steam beatle when equipped. Cannot be exchanged, dropped, or destroyed. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->
@@ -1091,7 +1169,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_freightable" val="true" />
-		<set name="item_skill" val="8261-1" /> <!-- Steam Beetle Mount -->
+		<skills>
+			<skill id="8261" level="1" /> <!-- Steam Beetle Mount -->
+		</skills>
 	</item>
 	<item id="21397" type="EtcItem" name="Gold Maned Lion Mount Bracelet 7-Day Pack">
 		<!-- Dimensional item pack. Gift box containing 1 Gold Maned Lion Mount Bracelet (7 day). Cannot be exchanged or dropped. Can be shared between characters within an account through the Dimensional Merchant. Can be stored in a private warehouse. -->

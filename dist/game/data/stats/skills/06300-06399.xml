@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6300" levels="1" name="Self-Destruction">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="350" />
-		<set name="effectPoint" val="-574" />
-		<set name="element" val="1" /> <!-- Water -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="5000" />
-		<set name="isSuicideAttack" val="true" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="123" />
-		<set name="power" val="3194" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>350</affectRange>
+		<effectPoint>-574</effectPoint>
+		<element>1</element> <!-- Water -->
+		<elementPower>20</elementPower>
+		<hitTime>5000</hitTime>
+		<isSuicideAttack>true</isSuicideAttack>
+		<magicLevel>85</magicLevel>
+		<mpConsume>123</mpConsume>
+		<power>3194</power>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
-				<param skillId="6662" skillLevel="1" />
+				<skillId>6662</skillId>
+				<skillLevel>1</skillLevel>
 			</effect>
 		</effects>
 	</skill>
@@ -24,864 +25,864 @@
 		<!-- Level 2: Recovers MP by 30 per second. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#mdot">60 30</table>
-		<set name="icon" val="icon.skill6301" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="FORCE_MEDITATION" />
-		<set name="affectRange" val="350" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="66" />
-		<set name="mpInitialConsume" val="17" />
+		<icon>icon.skill6301</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>FORCE_MEDITATION</abnormalType>
+		<affectRange>350</affectRange>
+		<effectPoint>1</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>66</mpConsume>
+		<mpInitialConsume>17</mpInitialConsume>
 		<effects>
 			<effect name="ManaHealOverTime" ticks="5">
-				<param power="#mdot" />
+				<power>#mdot</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6302" levels="1" name="Cold Air">
 		<!-- Increase P. Def. and M. Def by 15%. -->
-		<set name="icon" val="icon.skill6302" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="20" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="isTriggeredSkill" val="true" />
-		<set name="magicLevel" val="84" />
+		<icon>icon.skill6302</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>20</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<isTriggeredSkill>true</isTriggeredSkill>
+		<magicLevel>84</magicLevel>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="1.15" />
-				<mul stat="mDef" val="1.15" />
+				<mul stat="pDef">1.15</mul>
+				<mul stat="mDef">1.15</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6303" levels="1" name="Trial of the Coup">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6304" levels="1" name="Shock">
 		<!-- Momentarily causes shock and stuns the enemy for 2 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="2" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="reuseDelay" val="4000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>2</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<reuseDelay>4000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="Stun" />
 		</effects>
 	</skill>
 	<skill id="6305" levels="1" name="Sacred Gnosis">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="200" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="4000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>200</affectRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>4000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6306" levels="1" name="Solina Strike">
 		<!-- Causes profuse bleeding for 10 seconds, causing 139 HP damage per second. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="100" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="reuseDelay" val="4000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>100</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<reuseDelay>4000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="139" />
+				<power>139</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6307" levels="1" name="Opus of the Hand">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="180" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="30" />
-		<set name="mpInitialConsume" val="8" />
-		<set name="power" val="120" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>180</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>83</magicLevel>
+		<mpConsume>30</mpConsume>
+		<mpInitialConsume>8</mpInitialConsume>
+		<power>120</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6308" levels="1" name="Opus of the Wave">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="270" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="30" />
-		<set name="mpInitialConsume" val="8" />
-		<set name="power" val="120" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>270</affectRange>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>83</magicLevel>
+		<mpConsume>30</mpConsume>
+		<mpInitialConsume>8</mpInitialConsume>
+		<power>120</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6309" levels="1" name="Pain of the Ascetic">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="180" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="120" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>180</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>83</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>120</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6310" levels="1" name="Loss of Quest">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="59" />
-		<set name="mpInitialConsume" val="15" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>1000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>83</magicLevel>
+		<mpConsume>59</mpConsume>
+		<mpInitialConsume>15</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="TargetCancel">
-				<param chance="80" />
+				<chance>80</chance>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6311" levels="1" name="Solina Thrust">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6312" levels="1" name="Launch Sacred Sword Energy">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="180" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>180</affectRange>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6313" levels="1" name="Solina Bless">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="CLAN" /> <!-- FIXME: Aura Friendly ? -->
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="PD_UP_SPECIAL" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="affectRange" val="200" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="5000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="59" />
-		<set name="mpInitialConsume" val="15" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A2</operateType>
+		<targetType>CLAN</targetType> <!-- FIXME: Aura Friendly ? -->
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>PD_UP_SPECIAL</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<affectRange>200</affectRange>
+		<basicProperty>CON</basicProperty>
+		<coolTime>500</coolTime>
+		<effectPoint>1</effectPoint>
+		<hitTime>5000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>59</mpConsume>
+		<mpInitialConsume>15</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="physicalSkillPower" val="2" />
+				<mul stat="physicalSkillPower">2</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6314" levels="1" name="Sacred Judgement">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="FRONT_AREA" />
-		<set name="affectRange" val="100" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="fanRange" val="0,0,100,0" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="125" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>FRONT_AREA</targetType>
+		<affectRange>100</affectRange>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<fanRange>0,0,100,0</fanRange>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>125</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6315" levels="1" name="Sacred Strike">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<magicLevel>84</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6316" levels="1" name="Accomplish of Authority">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="castRange" val="900" />
-		<set name="effectPoint" val="100" />
-		<set name="effectRange" val="1100" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<castRange>900</castRange>
+		<effectPoint>100</effectPoint>
+		<effectRange>1100</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="HealPercent">
-				<param power="15" />
+				<power>15</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6317" levels="1" name="Sacred Tacit">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="180" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="128" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>180</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>128</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6318" levels="1" name="Divine Shield Protection">
 		<!-- Increases P. Def. by 10% for 3 seconds. -->
-		<set name="icon" val="icon.skill1040" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="CLAN" /> <!-- FIXME: Aura Friendly ? -->
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="affectRange" val="200" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="10000" />
+		<icon>icon.skill1040</icon>
+		<operateType>A2</operateType>
+		<targetType>CLAN</targetType> <!-- FIXME: Aura Friendly ? -->
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<affectRange>200</affectRange>
+		<effectPoint>1</effectPoint>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="1.1" />
+				<mul stat="pDef">1.1</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6319" levels="1" name="Sacred Magic Protection">
 		<!-- Increases M. Def. by 10% for 3 seconds. -->
-		<set name="icon" val="icon.skill6319" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="CLAN" /> <!-- FIXME: Aura Friendly ? -->
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="MD_UP" />
-		<set name="affectRange" val="200" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="10000" />
+		<icon>icon.skill6319</icon>
+		<operateType>A2</operateType>
+		<targetType>CLAN</targetType> <!-- FIXME: Aura Friendly ? -->
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>MD_UP</abnormalType>
+		<affectRange>200</affectRange>
+		<effectPoint>1</effectPoint>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>10000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mDef" val="1.1" />
+				<mul stat="mDef">1.1</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6320" levels="1" name="Summon Sacred Magic Force">
 		<!-- Decreases enemy's P.Def. by 23% for 15 seconds. -->
-		<set name="icon" val="icon.skill6320" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="PD_DOWN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="3000" />
+		<icon>icon.skill6320</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>PD_DOWN</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pDef" val="0.77" />
-				<mul stat="mDef" val="0.77" />
+				<mul stat="pDef">0.77</mul>
+				<mul stat="mDef">0.77</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6321" levels="1" name="Divine Flash">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="150" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="121" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>150</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>121</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6322" levels="1" name="Divine Impact">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="150" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="5000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="121" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>150</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>5000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>121</power>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6323" levels="1" name="Divine Bolt">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="power" val="85" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<power>85</power>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6324" levels="1" name="Divine Strike">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="270" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="power" val="121" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>270</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<power>121</power>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6325" levels="1" name="Divine Nova">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="270" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="5000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="power" val="85" />
-		<set name="reuseDelay" val="5000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>270</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>5000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<power>85</power>
+		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6326" levels="1" name="Martyr's Happiness">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="200" />
-		<set name="castRange" val="40" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="123" />
-		<set name="power" val="20531" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>200</affectRange>
+		<castRange>40</castRange>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<magicLevel>85</magicLevel>
+		<mpConsume>123</mpConsume>
+		<power>20531</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6327" levels="1" name="Sacred Worship">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="11407" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>11407</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6328" levels="1" name="Fighter Judgement">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="270" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="power" val="205" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>270</affectRange>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<power>205</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6329" levels="1" name="Fighter Strike">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="3000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<magicLevel>84</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6330" levels="1" name="Salmon Porridge Attack">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1000" />
-		<set name="magicLevel" val="83" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1000</hitTime>
+		<magicLevel>83</magicLevel>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="HealPercent">
-				<param power="5" />
+				<power>5</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6331" levels="1" name="Camp Fire Tired">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="basicProperty" val="MEN" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<basicProperty>MEN</basicProperty>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pAtkSpd" val="0.7" />
+				<mul stat="pAtkSpd">0.7</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6332" levels="1" name="Camp Fire Full">
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="basicProperty" val="MEN" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="84" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<basicProperty>MEN</basicProperty>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="runSpd" val="0.7" />
-				<mul stat="pAtkSpd" val="0.7" />
+				<mul stat="runSpd">0.7</mul>
+				<mul stat="pAtkSpd">0.7</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6333" levels="1" name="Electric Bolt 1">
 		<!-- Causes bleeding for 3 seconds, draining 200 HP per second. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="1" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>1</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
-				<param power="200" />
+				<power>200</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6334" levels="1" name="Shock">
 		<!-- Momentarily causes shock and stuns the enemy for 4 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="4" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="40" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>4</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>40</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</effects>
 	</skill>
 	<skill id="6335" levels="1" name="Electric Rain 1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="power" val="120" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<power>120</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6336" levels="1" name="Electric Rain 2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="84" />
-		<set name="power" val="121" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>84</magicLevel>
+		<power>121</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="MagicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6337" levels="1" name="Red Slash 1">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>2000</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6338" levels="1" name="Red Slash 2">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>2000</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6339" levels="1" name="Sacred Hammer Attack">
 		<!-- Causes bleeding for 3 seconds, draining 200 HP per second. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AREA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="1" />
-		<set name="affectRange" val="300" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="84" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>AREA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>1</activateRate>
+		<affectRange>300</affectRange>
+		<basicProperty>CON</basicProperty>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>84</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
-				<param power="200" />
+				<power>200</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6340" levels="1" name="Shock">
 		<!-- Momentarily causes shock and stuns the enemy for 4 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="4" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="0" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>4</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>0</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</effects>
 	</skill>
 	<skill id="6341" levels="1" name="Stronghold Water Cannon">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="200" />
-		<set name="castRange" val="600" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="500" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="500" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>200</affectRange>
+		<castRange>600</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>500</hitTime>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>500</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6342" levels="1" name="Trap Over Steam">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AREA" />
-		<set name="affectRange" val="400" />
-		<set name="effectPoint" val="-574" />
-		<set name="hitTime" val="2000" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="123" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>AREA</targetType>
+		<affectRange>400</affectRange>
+		<effectPoint>-574</effectPoint>
+		<hitTime>2000</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>123</mpConsume>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
@@ -892,26 +893,26 @@
 		<table name="#icons">icon.skill6343_1 icon.skill6343_2</table>
 		<table name="#mAtk">1.08 1.15</table>
 		<table name="#pAtk">1.02 1.03</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="TARGET_PARTY" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="SIGNAL_B" />
-		<set name="affectRange" val="1000" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>TARGET_PARTY</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>SIGNAL_B</abnormalType>
+		<affectRange>1000</affectRange>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtk" val="#mAtk" />
-				<mul stat="pAtk" val="#pAtk" />
+				<mul stat="mAtk">#mAtk</mul>
+				<mul stat="pAtk">#pAtk</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -921,27 +922,27 @@
 		<table name="#icons">icon.skill6365_1 icon.skill6365_2</table>
 		<table name="#pmAtkSpd">1.04 1.08</table>
 		<table name="#runSpd">5 10</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="TARGET_PARTY" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="SIGNAL_B" />
-		<set name="affectRange" val="1000" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>TARGET_PARTY</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>SIGNAL_B</abnormalType>
+		<affectRange>1000</affectRange>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtkSpd" val="#pmAtkSpd" />
-				<mul stat="pAtkSpd" val="#pmAtkSpd" />
-				<add stat="runSpd" val="#runSpd" />
+				<mul stat="mAtkSpd">#pmAtkSpd</mul>
+				<mul stat="pAtkSpd">#pmAtkSpd</mul>
+				<add stat="runSpd">#runSpd</add>
 			</effect>
 		</effects>
 	</skill>
@@ -951,28 +952,28 @@
 		<table name="#cAtk">1.05 1.1</table>
 		<table name="#icons">icon.skill6366_1 icon.skill6366_2</table>
 		<table name="#mCritPower">1.02 1.04</table>
-		<table name="#rCrit">1.04 1.08</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="TARGET_PARTY" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="SIGNAL_B" />
-		<set name="affectRange" val="1000" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<table name="#critRate">1.04 1.08</table>
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>TARGET_PARTY</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>SIGNAL_B</abnormalType>
+		<affectRange>1000</affectRange>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="critRate" val="#rCrit" />
-				<mul stat="mCritPower" val="#mCritPower" />
-				<mul stat="critDmg" val="#cAtk" />
+				<mul stat="critRate">#critRate</mul>
+				<mul stat="mCritPower">#mCritPower</mul>
+				<mul stat="critDmg">#cAtk</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -982,20 +983,20 @@
 		<!-- Level 3: Level 3: The energy of Bistakon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6367_1 icon.skill6367_2 icon.skill6367_3</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="10800" />
-		<set name="abnormalType" val="SOA_BUFF1" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>10800</abnormalTime>
+		<abnormalType>SOA_BUFF1</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff" /> <!-- TODO: Remove when support for buffs without effects is finished. -->
 		</effects>
@@ -1006,20 +1007,20 @@
 		<!-- Level 3: Level 3: The energy of Cokrakon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6368_1 icon.skill6368_2 icon.skill6368_3</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="10800" />
-		<set name="abnormalType" val="SOA_BUFF2" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>10800</abnormalTime>
+		<abnormalType>SOA_BUFF2</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff" /> <!-- TODO: Remove when support for buffs without effects is finished. -->
 		</effects>
@@ -1030,66 +1031,66 @@
 		<!-- Level 3: Level 3: The energy of Reptilikon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6369_1 icon.skill6369_2 icon.skill6369_3</table>
-		<set name="icon" val="#icons" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="10800" />
-		<set name="abnormalType" val="SOA_BUFF3" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="900" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>#icons</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>10800</abnormalTime>
+		<abnormalType>SOA_BUFF3</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>900</effectRange>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff" /> <!-- TODO: Remove when support for buffs without effects is finished. -->
 		</effects>
 	</skill>
 	<skill id="6370" levels="1" name="Thunderbolt">
 		<!-- Receive 8 times the normal damage. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="DAMAGE_AMPLIFY" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="150" />
-		<set name="effectPoint" val="-1" />
-		<set name="effectRange" val="300" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>DAMAGE_AMPLIFY</abnormalType>
+		<basicProperty>CON</basicProperty>
+		<castRange>150</castRange>
+		<effectPoint>-1</effectPoint>
+		<effectRange>300</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="mDef" val="0.1" />
+				<mul stat="mDef">0.1</mul>
 			</effect>
 			<effect name="Debuff">
-				<mul stat="pDef" val="0.1" />
+				<mul stat="pDef">0.1</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6371" levels="1" name="Invincibility">
 		<!-- Invincible against standard targets, skills and buffs/debuffs. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="PD_UP_SPECIAL" />
-		<set name="abnormalVisualEffect" val="INVINCIBILITY" />
-		<set name="effectPoint" val="100" />
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="6000" />
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>PD_UP_SPECIAL</abnormalType>
+		<abnormalVisualEffect>INVINCIBILITY</abnormalVisualEffect>
+		<effectPoint>100</effectPoint>
+		<magicLevel>85</magicLevel>
+		<reuseDelay>6000</reuseDelay>
 		<effects>
 			<effect name="Invincible" />
 			<effect name="Buff">
-				<set stat="debuffImmunity" val="1" />
-				<sub stat="cancelVuln" val="100" />
+				<set stat="debuffImmunity">1</set>
+				<sub stat="cancelVuln">100</sub>
 			</effect>
 		</effects>
 	</skill>
@@ -1107,65 +1108,65 @@
 		<table name="#abnormalLvl">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#pAtkSpd">1.02 1.04 1.06 1.08 1.1 1.12 1.14 1.16 1.18 1.2</table>
 		<table name="#physicalSkillPower">2 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9</table>
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="#abnormalLvl" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="SIGNAL_A" />
-		<set name="effectPoint" val="1" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>#abnormalLvl</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>SIGNAL_A</abnormalType>
+		<effectPoint>1</effectPoint>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pAtkSpd" val="#pAtkSpd" />
+				<mul stat="pAtkSpd">#pAtkSpd</mul>
 			</effect>
 			<effect name="Buff">
-				<mul stat="physicalSkillPower" val="#physicalSkillPower" />
+				<mul stat="physicalSkillPower">#physicalSkillPower</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6373" levels="1" name="Thunderbolt">
 		<!-- Receive 8 times the normal damage. -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="DAMAGE_AMPLIFY" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="150" />
-		<set name="effectPoint" val="-1" />
-		<set name="effectRange" val="300" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>DAMAGE_AMPLIFY</abnormalType>
+		<basicProperty>CON</basicProperty>
+		<castRange>150</castRange>
+		<effectPoint>-1</effectPoint>
+		<effectRange>300</effectRange>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="mDef" val="0.1" />
+				<mul stat="mDef">0.1</mul>
 			</effect>
 			<effect name="Debuff">
-				<mul stat="pDef" val="0.1" />
+				<mul stat="pDef">0.1</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6374" levels="1" name="Notification - Thunderbolts">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 	</skill>
 	<skill id="6375" levels="1" name="Notification - Thunderbolts">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="NONE" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A1</operateType>
+		<targetType>NONE</targetType>
+		<effectPoint>1</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 	</skill>
 	<skill id="6376" levels="9" name="Sonic Strike">
 		<!-- Level 1: For 5 minutes, 10% of max HP, 10% of max MP and 20 HP per second decrease from Dopagen's Sonic Strike. -->
@@ -1178,15 +1179,15 @@
 		<!-- Level 8: For 5 minutes, 80% of max HP, 80% of max MP and 160 HP per second decrease from Dopagen's Sonic Strike. -->
 		<!-- Level 9: For 5 minutes, 90% of max HP, 90% of max MP and 180 HP per second decrease from Dopagen's Sonic Strike. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9</table>
-		<set name="icon" val="icon.skill1417" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="300" />
-		<set name="abnormalType" val="MAX_HP_DOWN" />
-		<set name="effectPoint" val="-100" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="-1" />
+		<icon>icon.skill1417</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>300</abnormalTime>
+		<abnormalType>MAX_HP_DOWN</abnormalType>
+		<effectPoint>-100</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>-1</magicLevel>
 	</skill>
 	<skill id="6377" levels="10" name="Assault Boost">
 		<!-- Level 1: Atk. Spd. Increases by 5%. -->
@@ -1200,73 +1201,73 @@
 		<!-- Level 9: Atk. Spd. Increases by 45%. -->
 		<!-- Level 10: Atk. Spd. Increases by 50%. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="ATTACK_TIME_DOWN" />
-		<set name="effectPoint" val="1" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="reuseDelay" val="2000" />
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>ATTACK_TIME_DOWN</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<reuseDelay>2000</reuseDelay>
 	</skill>
 	<skill id="6378" levels="1" name="Earth Shift">
 		<!-- The ground below your feet shakes, making concentration difficult. -->
-		<set name="icon" val="icon.skill0347" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="NONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="VIBRATION" />
-		<set name="activateRate" val="50" />
-		<set name="effectPoint" val="-1000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
+		<icon>icon.skill0347</icon>
+		<operateType>A2</operateType>
+		<targetType>NONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>VIBRATION</abnormalType>
+		<activateRate>50</activateRate>
+		<effectPoint>-1000</effectPoint>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
 	</skill>
 	<skill id="6379" levels="1" name="Blood Spurt">
 		<!-- Profuse bleeding causes you to loss 93 HP per second for 15 seconds. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="FRONT_AREA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="100" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="fanRange" val="0,0,150,120" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="nextActionAttack" val="true" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>FRONT_AREA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>100</activateRate>
+		<basicProperty>CON</basicProperty>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<fanRange>0,0,150,120</fanRange>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<nextActionAttack>true</nextActionAttack>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 	</skill>
 	<skill id="6380" levels="1" name="Bistakon Roar">
 		<!-- Blocks all the enemy's physical/magic skills for 20 seconds. -->
-		<set name="icon" val="icon.skill1336" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="20" />
-		<set name="abnormalType" val="SILENCE_ALL" />
-		<set name="abnormalVisualEffect" val="SILENCE" />
-		<set name="activateRate" val="80" />
-		<set name="affectRange" val="300" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-666" />
-		<set name="fanRange" val="0,0,200,0" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="70" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1336</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>20</abnormalTime>
+		<abnormalType>SILENCE_ALL</abnormalType>
+		<abnormalVisualEffect>SILENCE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<affectRange>300</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-666</effectPoint>
+		<fanRange>0,0,200,0</fanRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>70</mpConsume>
+		<reuseDelay>1000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Mute" />
 			<effect name="PhysicalMute" />
@@ -1275,26 +1276,26 @@
 	<skill id="6381" levels="2" name="Bistakon Soul Beam">
 		<!-- Blocks all the enemy's physical/magic skills for 20 seconds. -->
 		<table name="#abnormalLevels">1 2</table>
-		<set name="icon" val="icon.skill1336" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="20" />
-		<set name="abnormalType" val="SILENCE_ALL" />
-		<set name="abnormalVisualEffect" val="SILENCE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="-666" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="70" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1336</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>20</abnormalTime>
+		<abnormalType>SILENCE_ALL</abnormalType>
+		<abnormalVisualEffect>SILENCE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>700</castRange>
+		<effectPoint>-666</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>70</mpConsume>
+		<reuseDelay>1000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Mute" />
 			<effect name="PhysicalMute" />
@@ -1302,55 +1303,55 @@
 	</skill>
 	<skill id="6382" levels="1" name="Bistakon Rolling Claw">
 		<!-- Profuse bleeding causes you to loss 93 HP per second for 15 seconds. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="100" />
-		<set name="affectRange" val="300" />
-		<set name="basicProperty" val="CON" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="fanRange" val="0,0,200,0" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>100</activateRate>
+		<affectRange>300</affectRange>
+		<basicProperty>CON</basicProperty>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<fanRange>0,0,200,0</fanRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="93" />
+				<power>93</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6383" levels="1" name="Bistakon Deadly Roar">
 		<!-- Blocks all the enemy's physical/magic skills for 20 seconds. -->
-		<set name="icon" val="icon.skill1336" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="20" />
-		<set name="abnormalType" val="SILENCE_ALL" />
-		<set name="abnormalVisualEffect" val="SILENCE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="500" />
-		<set name="effectPoint" val="-666" />
-		<set name="effectRange" val="1000" />
-		<set name="hitTime" val="1000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="70" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1336</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>20</abnormalTime>
+		<abnormalType>SILENCE_ALL</abnormalType>
+		<abnormalVisualEffect>SILENCE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>500</castRange>
+		<effectPoint>-666</effectPoint>
+		<effectRange>1000</effectRange>
+		<hitTime>1000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>70</mpConsume>
+		<reuseDelay>1000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Mute" />
 			<effect name="PhysicalMute" />
@@ -1358,182 +1359,182 @@
 	</skill>
 	<skill id="6384" levels="2" name="Bistakon Deadly Blow">
 		<table name="#power">9125 13688</table>
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="60" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="500" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="#power" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>60</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>500</effectRange>
+		<hitTime>1500</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>#power</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6385" levels="1" name="Bistakon Critical Claw">
 		<!-- Profuse bleeding causes you to loss 93 HP per second for 15 seconds. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="FRONT_AREA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="100" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="150" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="650" />
-		<set name="fanRange" val="0,0,150,100" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>FRONT_AREA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>100</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>150</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>650</effectRange>
+		<fanRange>0,0,150,100</fanRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="95" />
+				<power>95</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6386" levels="1" name="Bistakon Earth Rise">
 		<!-- Momentarily causes shock and stuns the enemy for 3 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="60" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="500" />
-		<set name="hitTime" val="2500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="9125" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>60</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>500</effectRange>
+		<hitTime>2500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>9125</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</effects>
 	</skill>
 	<skill id="6387" levels="1" name="Bistakon Earthquake">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="150" />
-		<set name="baseCritRate" val="15" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-1000" />
-		<set name="element" val="3" /> <!-- Earth -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2000" />
-		<set name="ignoreShld" val="true" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="13688" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>150</affectRange>
+		<baseCritRate>15</baseCritRate>
+		<coolTime>500</coolTime>
+		<effectPoint>-1000</effectPoint>
+		<element>3</element> <!-- Earth -->
+		<elementPower>20</elementPower>
+		<hitTime>2000</hitTime>
+		<ignoreShld>true</ignoreShld>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>13688</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6388" levels="1" name="Bistakon Jump Blow">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="150" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-1000" />
-		<set name="hitTime" val="2500" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="13688" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>150</affectRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-1000</effectPoint>
+		<hitTime>2500</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>13688</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6389" levels="1" name="Cokrakon Sonic Cage">
 		<!-- Speed is decreased by 50%. -->
-		<set name="icon" val="icon.skill0102" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="600" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="castRange" val="700" />
-		<set name="effectPoint" val="1" />
-		<set name="effectRange" val="1200" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
+		<icon>icon.skill0102</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>600</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<castRange>700</castRange>
+		<effectPoint>1</effectPoint>
+		<effectRange>1200</effectRange>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="runSpd" val="0.5" />
+				<mul stat="runSpd">0.5</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6390" levels="1" name="Cokrakon Sonic Explosion">
 		<!-- Casting Speed is decreased by 50%. -->
-		<set name="icon" val="icon.skill1386" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="CASTING_TIME_UP" />
-		<set name="affectRange" val="300" />
-		<set name="effectPoint" val="-1000" />
-		<set name="fanRange" val="0,0,200,0" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="2000" />
+		<icon>icon.skill1386</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>CASTING_TIME_UP</abnormalType>
+		<affectRange>300</affectRange>
+		<effectPoint>-1000</effectPoint>
+		<fanRange>0,0,200,0</fanRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="mAtkSpd" val="0.5" />
+				<mul stat="mAtkSpd">0.5</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6391" levels="1" name="Cokrakon Sonic Slash">
 		<!-- Momentarily causes shock and stuns the enemy for 5 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="5" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="60" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="500" />
-		<set name="hitTime" val="2500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="4563" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>5</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>60</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>500</effectRange>
+		<hitTime>2500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>4563</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
@@ -1541,141 +1542,141 @@
 	</skill>
 	<skill id="6392" levels="1" name="Cokrakon Sonic Shot">
 		<!-- Attack Speed is decreased by 50%. -->
-		<set name="icon" val="icon.skill1104" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="5" />
-		<set name="abnormalType" val="ATTACK_TIME_UP" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="affectRange" val="150" />
-		<set name="basicProperty" val="MEN" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="1000" />
+		<icon>icon.skill1104</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>5</abnormalTime>
+		<abnormalType>ATTACK_TIME_UP</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<affectRange>150</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="pAtkSpd" val="0.5" />
+				<mul stat="pAtkSpd">0.5</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6393" levels="1" name="Cokrakon Sonic Beam">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="900" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="1200" />
-		<set name="hitTime" val="1000" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="13688" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>900</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>1200</effectRange>
+		<hitTime>1000</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>13688</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6394" levels="1" name="Cokrakon Sonic Bomb">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectRange" val="300" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="13688" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>300</affectRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<hitTime>1500</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>13688</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>
 	</skill>
 	<skill id="6395" levels="1" name="Cokrakon Dreadful Clow">
 		<!-- Profuse bleeding causes you to loss 93 HP per second for 15 seconds. -->
-		<set name="icon" val="icon.skill0096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="3" />
-		<set name="abnormalTime" val="15" />
-		<set name="abnormalType" val="BLEEDING" />
-		<set name="abnormalVisualEffect" val="DOT_BLEEDING" />
-		<set name="activateRate" val="100" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="nextActionAttack" val="true" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="BLEED" />
+		<icon>icon.skill0096</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>3</abnormalLevel>
+		<abnormalTime>15</abnormalTime>
+		<abnormalType>BLEEDING</abnormalType>
+		<abnormalVisualEffect>DOT_BLEEDING</abnormalVisualEffect>
+		<activateRate>100</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-574</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<nextActionAttack>true</nextActionAttack>
+		<reuseDelay>1000</reuseDelay>
+		<trait>BLEED</trait>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="93" />
+				<power>93</power>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6396" levels="1" name="Cokrakon Panic">
 		<!-- Frightens the enemy and causes him to flee for 6 seconds. -->
-		<set name="icon" val="icon.skill1169" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="6" />
-		<set name="abnormalType" val="TURN_FLEE" />
-		<set name="abnormalVisualEffect" val="TURN_FLEE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="-574" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1169</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>6</abnormalTime>
+		<abnormalType>TURN_FLEE</abnormalType>
+		<abnormalVisualEffect>TURN_FLEE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>-574</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>1000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Fear" />
 		</effects>
 	</skill>
 	<skill id="6397" levels="1" name="Cokrakon Staggering Blow">
 		<!-- Momentarily causes shock and stuns the enemy for 3 seconds. -->
-		<set name="icon" val="icon.skill0100" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="STUN" />
-		<set name="abnormalVisualEffect" val="STUN" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="40" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="83" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="9125" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="SHOCK" />
+		<icon>icon.skill0100</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>40</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>83</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>9125</power>
+		<reuseDelay>1000</reuseDelay>
+		<trait>SHOCK</trait>
 		<effects>
 			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
@@ -1683,43 +1684,43 @@
 	</skill>
 	<skill id="6398" levels="1" name="Cokrakon Sonic Shout">
 		<!-- Frightens the enemy and causes him to flee for 3 seconds. -->
-		<set name="icon" val="icon.skill1169" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="3" />
-		<set name="abnormalType" val="TURN_FLEE" />
-		<set name="abnormalVisualEffect" val="TURN_FLEE" />
-		<set name="activateRate" val="80" />
-		<set name="affectRange" val="300" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="-100" />
-		<set name="fanRange" val="0,0,200,0" />
-		<set name="hitTime" val="2000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="88" />
-		<set name="mpInitialConsume" val="22" />
-		<set name="reuseDelay" val="1000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1169</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>TURN_FLEE</abnormalType>
+		<abnormalVisualEffect>TURN_FLEE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<affectRange>300</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>-100</effectPoint>
+		<fanRange>0,0,200,0</fanRange>
+		<hitTime>2000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>85</magicLevel>
+		<mpConsume>88</mpConsume>
+		<mpInitialConsume>22</mpInitialConsume>
+		<reuseDelay>1000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="Fear" />
 		</effects>
 	</skill>
 	<skill id="6399" levels="1" name="Cokrakon Dreadful Piercing">
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="60" />
-		<set name="coolTime" val="500" />
-		<set name="effectPoint" val="-100" />
-		<set name="effectRange" val="400" />
-		<set name="hitTime" val="1500" />
-		<set name="magicLevel" val="85" />
-		<set name="mpConsume" val="121" />
-		<set name="power" val="13688" />
-		<set name="reuseDelay" val="1000" />
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>60</castRange>
+		<coolTime>500</coolTime>
+		<effectPoint>-100</effectPoint>
+		<effectRange>400</effectRange>
+		<hitTime>1500</hitTime>
+		<magicLevel>85</magicLevel>
+		<mpConsume>121</mpConsume>
+		<power>13688</power>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="PhysicalDamage" />
 		</effects>

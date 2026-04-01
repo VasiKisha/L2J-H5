@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
-import org.l2jmobius.gameserver.model.EnchantSkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
 
 /**

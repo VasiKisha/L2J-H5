@@ -28,8 +28,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.StringUtil;
-import org.l2jmobius.gameserver.model.SiegeScheduleDate;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.siege.SiegeScheduleDate;
 
 /**
  * @author UnAfraid

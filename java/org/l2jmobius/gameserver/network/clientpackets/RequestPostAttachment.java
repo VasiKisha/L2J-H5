@@ -22,7 +22,6 @@ import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
@@ -31,6 +30,7 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangePostState;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowReceivedPostList;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -99,7 +99,7 @@ public class RequestPostAttachment extends ClientPacket
 			return;
 		}
 		
-		final Message msg = MailManager.getInstance().getMessage(_msgId);
+		final MailMessage msg = MailManager.getInstance().getMessage(_msgId);
 		if (msg == null)
 		{
 			return;
@@ -260,7 +260,7 @@ public class RequestPostAttachment extends ClientPacket
 			sender.sendPacket(sm);
 		}
 		
-		player.sendPacket(new ExChangePostState(true, _msgId, Message.READED));
+		player.sendPacket(new ExChangePostState(true, _msgId, MailMessage.READED));
 		player.sendPacket(SystemMessageId.MAIL_SUCCESSFULLY_RECEIVED);
 		player.sendPacket(new ExShowReceivedPostList(player.getObjectId()));
 	}

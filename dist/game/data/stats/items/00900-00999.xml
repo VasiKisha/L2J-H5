@@ -12,8 +12,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="901" type="Armor" name="Ring of Holy Spirit">
@@ -28,8 +27,7 @@
 		<set name="price" val="474000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="902" type="Armor" name="Phoenix Ring">
@@ -45,9 +43,8 @@
 		<set name="price" val="670000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
-			<add stat="maxMp" val="13" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">40</stat>
+			<stat type="maxMp">13</stat>
 		</stats>
 	</item>
 	<item id="903" type="Armor" name="Cerberus Ring">
@@ -62,8 +59,7 @@
 		<set name="price" val="999000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 	<item id="904" type="Armor" name="Ring of Aid">
@@ -78,8 +74,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="905" type="Armor" name="Ring of Blessing">
@@ -94,8 +89,7 @@
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="906" type="Armor" name="Necklace of Knowledge">
@@ -108,7 +102,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="830" />
 		<stats>
-			<add order="0" stat="mDef" val="18" />
+			<stat type="mDef">18</stat>
 		</stats>
 	</item>
 	<item id="907" type="Armor" name="Necklace of Anguish">
@@ -121,7 +115,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3600" />
 		<stats>
-			<add order="0" stat="mDef" val="21" />
+			<stat type="mDef">21</stat>
 		</stats>
 	</item>
 	<item id="908" type="Armor" name="Necklace of Wisdom">
@@ -133,7 +127,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="9120" />
 		<stats>
-			<add order="0" stat="mDef" val="25" />
+			<stat type="mDef">25</stat>
 		</stats>
 	</item>
 	<item id="909" type="Armor" name="Blue Diamond Necklace">
@@ -145,7 +139,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="16400" />
 		<stats>
-			<add order="0" stat="mDef" val="28" />
+			<stat type="mDef">28</stat>
 		</stats>
 	</item>
 	<item id="910" type="Armor" name="Necklace of Devotion">
@@ -160,8 +154,7 @@
 		<set name="price" val="27600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="32" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">32</stat>
 		</stats>
 	</item>
 	<item id="911" type="Armor" name="Enchanted Necklace">
@@ -176,8 +169,7 @@
 		<set name="price" val="43700" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="912" type="Armor" name="Near Forest Necklace">
@@ -192,8 +184,7 @@
 		<set name="price" val="65900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 	<item id="913" type="Armor" name="Elven Necklace">
@@ -208,8 +199,7 @@
 		<set name="price" val="95800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="45" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">45</stat>
 		</stats>
 	</item>
 	<item id="914" type="Armor" name="Necklace of Darkness">
@@ -224,8 +214,7 @@
 		<set name="price" val="124400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">48</stat>
 		</stats>
 	</item>
 	<item id="915" type="Armor" name="Aquastone Necklace">
@@ -240,8 +229,7 @@
 		<set name="price" val="159000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="52" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">52</stat>
 		</stats>
 	</item>
 	<item id="916" type="Armor" name="Necklace of Protection">
@@ -256,8 +244,7 @@
 		<set name="price" val="200600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="56" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">56</stat>
 		</stats>
 	</item>
 	<item id="917" type="Armor" name="Necklace of Mermaid">
@@ -272,8 +259,7 @@
 		<set name="price" val="302100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">60</stat>
 		</stats>
 	</item>
 	<item id="918" type="Armor" name="Adamantite Necklace">
@@ -288,8 +274,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="919" type="Armor" name="Blessed Necklace">
@@ -304,8 +289,7 @@
 		<set name="price" val="434400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="64" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">64</stat>
 		</stats>
 	</item>
 	<item id="920" type="Armor" name="Tateossian Necklace">
@@ -321,9 +305,8 @@
 		<set name="price" val="4361000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="95" />
-			<add stat="maxMp" val="42" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">95</stat>
+			<stat type="maxMp">42</stat>
 		</stats>
 	</item>
 	<item id="921" type="Armor" name="Necklace of Mana">
@@ -338,8 +321,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="922" type="Armor" name="Sage's Necklace">
@@ -354,8 +336,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="923" type="Armor" name="Paradia Necklace">
@@ -370,8 +351,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="924" type="Armor" name="Majestic Necklace">
@@ -387,9 +367,8 @@
 		<set name="price" val="1998000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="85" />
-			<add stat="maxMp" val="33" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">85</stat>
+			<stat type="maxMp">33</stat>
 		</stats>
 	</item>
 	<item id="925" type="Armor" name="Necklace of Solar Eclipse">
@@ -404,8 +383,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="926" type="Armor" name="Necklace of Black Ore">
@@ -420,8 +398,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="927" type="Armor" name="Necklace of Summoning">
@@ -436,8 +413,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="928" type="Armor" name="Otherworldly Necklace">
@@ -452,8 +428,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="929" type="Armor" name="Elemental Necklace">
@@ -468,8 +443,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="930" type="Armor" name="Necklace of Phantom">
@@ -484,8 +458,7 @@
 		<set name="price" val="1998000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="80" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">80</stat>
 		</stats>
 	</item>
 	<item id="931" type="Armor" name="Necklace of Grace">
@@ -500,8 +473,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="932" type="Armor" name="Necklace of Holy Spirit">
@@ -516,8 +488,7 @@
 		<set name="price" val="948000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="933" type="Armor" name="Phoenix Necklace">
@@ -533,9 +504,8 @@
 		<set name="price" val="1340000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="80" />
-			<add stat="maxMp" val="26" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">80</stat>
+			<stat type="maxMp">26</stat>
 		</stats>
 	</item>
 	<item id="934" type="Armor" name="Cerberus Necklace">
@@ -550,8 +520,7 @@
 		<set name="price" val="1998000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="80" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">80</stat>
 		</stats>
 	</item>
 	<item id="935" type="Armor" name="Necklace of Aid">
@@ -566,8 +535,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="936" type="Armor" name="Necklace of Blessing">
@@ -582,8 +550,7 @@
 		<set name="price" val="621200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="937" type="EtcItem" name="Directions to Ruins">
@@ -684,10 +651,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="69" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">69</stat>
 		</stats>
 	</item>
 	<item id="946" type="Weapon" name="Skeleton Dagger">
@@ -695,8 +661,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -705,11 +669,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<stats>
-			<set stat="pAtk" val="16" />
-			<set stat="mAtk" val="13" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">16</stat>
+			<stat type="mAtk">13</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="947" type="EtcItem" name="Scroll: Enchant Weapon (B-Grade)">
@@ -724,7 +690,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2015-1" /> <!-- Scroll: Enchant Weapon (Grade B) -->
+		<skills>
+			<skill id="2015" level="1" /> <!-- Scroll: Enchant Weapon (Grade B) -->
+		</skills>
 	</item>
 	<item id="948" type="EtcItem" name="Scroll: Enchant Armor (B-Grade)">
 		<!-- When enchanted, P. Def. increases by 1 for B-grade armor and accessories. Starting at +4, P. Def. increases by 3 and a HP bonus is granted. Enchanting is safe up to +3, but one-piece body armor can be safely enchanted up to +4. -->
@@ -738,7 +706,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2016-1" /> <!-- Scroll: Enchant Armor (Grade B) -->
+		<skills>
+			<skill id="2016" level="1" /> <!-- Scroll: Enchant Armor (Grade B) -->
+		</skills>
 	</item>
 	<item id="949" type="EtcItem" name="Crystal Scroll: Enchant Weapon (B-Grade)">
 		<!-- A scroll of enchantment that empowers a B-Grade weapon. -->
@@ -772,7 +742,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2017-1" /> <!-- Scroll: Enchant Weapon (Grade C) -->
+		<skills>
+			<skill id="2017" level="1" /> <!-- Scroll: Enchant Weapon (Grade C) -->
+		</skills>
 	</item>
 	<item id="952" type="EtcItem" name="Scroll: Enchant Armor (C-Grade)">
 		<!-- When enchanted, P. Def. increases by 1 for C-grade armor and accessories. Starting at +4, P. Def. increases by 3 and a HP bonus is granted. Enchanting is safe up to +3, but one-piece body armor can be safely enchanted up to +4. -->
@@ -786,7 +758,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2018-1" /> <!-- Scroll: Enchant Armor (Grade C) -->
+		<skills>
+			<skill id="2018" level="1" /> <!-- Scroll: Enchant Armor (Grade C) -->
+		</skills>
 	</item>
 	<item id="953" type="EtcItem" name="Crystal Scroll: Enchant Weapon (C-Grade)">
 		<!-- A scroll of enchantment that empowers a C-Grade weapon. -->
@@ -820,7 +794,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2019-1" /> <!-- Scroll: Enchant Weapon (Grade D) -->
+		<skills>
+			<skill id="2019" level="1" /> <!-- Scroll: Enchant Weapon (Grade D) -->
+		</skills>
 	</item>
 	<item id="956" type="EtcItem" name="Scroll: Enchant Armor (D-Grade)">
 		<!-- When enchanted, P. Def. increases by 1 for D-grade armor and accessories. Starting at +4, P. Def. increases by 3 and a HP bonus is granted. Enchanting is safe up to +3, but one-piece body armor can be safely enchanted up to +4. -->
@@ -834,7 +810,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2020-1" /> <!-- Scroll: Enchant Armor (Grade D) -->
+		<skills>
+			<skill id="2020" level="1" /> <!-- Scroll: Enchant Armor (Grade D) -->
+		</skills>
 	</item>
 	<item id="957" type="EtcItem" name="Crystal Scroll: Enchant Weapon (D-Grade)">
 		<!-- A scroll of enchantment that empowers a D-Grade weapon. -->
@@ -868,7 +846,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2021-1" /> <!-- Scroll: Enchant Weapon (Grade S) -->
+		<skills>
+			<skill id="2021" level="1" /> <!-- Scroll: Enchant Weapon (Grade S) -->
+		</skills>
 	</item>
 	<item id="960" type="EtcItem" name="Scroll: Enchant Armor (S-Grade)">
 		<!-- When enchanted, P. Def. increases by 1 for S-grade armor and accessories. Starting at +4, P. Def. increases by 3 and a HP bonus is granted. Enchanting is safe up to +3, but one-piece body armor can be safely enchanted up to +4. -->
@@ -882,7 +862,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="2022-1" /> <!-- Scroll: Enchant Armor (Grade S) -->
+		<skills>
+			<skill id="2022" level="1" /> <!-- Scroll: Enchant Armor (Grade S) -->
+		</skills>
 	</item>
 	<item id="961" type="EtcItem" name="Crystal Scroll: Enchant Weapon (S-Grade)">
 		<!-- A scroll of enchantment that empowers a S-Grade weapon. -->
@@ -1054,8 +1036,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="ORIHARUKON" />
@@ -1064,10 +1044,12 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="14" />
-			<set stat="mAtk" val="11" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">14</stat>
+			<stat type="mAtk">11</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="976" type="EtcItem" name="1st Mark of Sentinel">
@@ -1136,8 +1118,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1146,10 +1126,12 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="16" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">16</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="982" type="EtcItem" name="Esrandell's Letter">
@@ -1242,8 +1224,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1252,11 +1232,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="11" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
+			<stat type="pAtk">11</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="990" type="Armor" name="Mandragora Essence">
@@ -1268,7 +1250,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="991" type="Armor" name="Royen's Key">
@@ -1280,7 +1262,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="992" type="Armor" name="Shilen's 1st Mark">
@@ -1292,7 +1274,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="993" type="Armor" name="Shilen's 2nd Mark">
@@ -1304,7 +1286,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="994" type="Armor" name="Eye of Abyss">
@@ -1316,7 +1298,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="995" type="Armor" name="Wanted Poster">
@@ -1328,7 +1310,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="996" type="Armor" name="Alex's Dagger">
@@ -1340,7 +1322,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="997" type="Armor" name="Pinter's Bill">
@@ -1352,7 +1334,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="998" type="Armor" name="Book of Aklantoth - Part 1">
@@ -1364,7 +1346,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="999" type="Armor" name="Book of Aklantoth - Part 2">
@@ -1376,7 +1358,7 @@
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 </list>

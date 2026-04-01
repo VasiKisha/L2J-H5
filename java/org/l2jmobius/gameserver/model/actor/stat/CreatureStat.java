@@ -26,10 +26,9 @@ import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
 import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
-import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.transform.Transform;
-import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.holders.Elementals;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Calculator;
@@ -603,20 +602,19 @@ public class CreatureStat
 	 */
 	public int getPhysicalAttackRange()
 	{
-		final Weapon weapon = _creature.getActiveWeaponItem();
 		final Transform transform = _creature.getTransformation();
 		int baseAttackRange;
 		if (transform != null)
 		{
 			baseAttackRange = transform.getBaseAttackRange(_creature.asPlayer());
 		}
-		else if (weapon != null)
-		{
-			baseAttackRange = weapon.getBaseAttackRange();
-		}
-		else
+		else if (_creature.getActiveWeaponItem() == null)
 		{
 			baseAttackRange = _creature.getTemplate().getBaseAttackRange();
+		}
+		else // Use weapon pAtkRange stat.
+		{
+			baseAttackRange = 0;
 		}
 		
 		return (int) calcStat(Stat.POWER_ATTACK_RANGE, baseAttackRange, null, null);

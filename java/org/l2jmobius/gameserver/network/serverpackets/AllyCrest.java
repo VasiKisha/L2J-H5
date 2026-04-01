@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
-import org.l2jmobius.gameserver.model.Crest;
+import org.l2jmobius.gameserver.model.clan.Crest;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

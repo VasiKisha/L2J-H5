@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.model.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.ExtractableProduct;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.item.holders.ExtractableProduct;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -36,8 +36,10 @@ public class EtcItem extends ItemTemplate
 {
 	private String _handler;
 	private EtcItemType _type;
-	private boolean _isBlessed;
 	private List<ExtractableProduct> _extractableItems;
+	private int _extractableCountMin;
+	private int _extractableCountMax;
+	private boolean _isBlessed;
 	
 	/**
 	 * Constructor for EtcItem.
@@ -80,55 +82,15 @@ public class EtcItem extends ItemTemplate
 		}
 		
 		_handler = set.getString("handler", null); // ! null !
-		_isBlessed = set.getBoolean("blessed", false) || (((getDefaultAction() == ActionType.SPIRITSHOT) || (getDefaultAction() == ActionType.SOULSHOT)) && (getName() != null) && getName().contains("Blessed"));
 		
-		// Extractable
-		final String capsuled_items = set.getString("capsuled_items", null);
-		if (capsuled_items != null)
+		_extractableCountMin = set.getInt("extractableCountMin", 0);
+		_extractableCountMax = set.getInt("extractableCountMax", 0);
+		if (_extractableCountMin > _extractableCountMax)
 		{
-			final String[] split = capsuled_items.split(";");
-			_extractableItems = new ArrayList<>(split.length);
-			for (String part : split)
-			{
-				if (part.trim().isEmpty())
-				{
-					continue;
-				}
-				
-				final String[] data = part.split(",");
-				if (data.length != 4)
-				{
-					LOGGER.info("> Could not parse " + part + " in capsuled_items! item " + this);
-					continue;
-				}
-				
-				final int itemId = Integer.parseInt(data[0]);
-				final int min = Integer.parseInt(data[1]);
-				final int max = Integer.parseInt(data[2]);
-				final double chance = Double.parseDouble(data[3]);
-				if (max < min)
-				{
-					LOGGER.info("> Max amount < Min amount in " + part + ", item " + this);
-					continue;
-				}
-				
-				final ExtractableProduct product = new ExtractableProduct(itemId, min, max, chance);
-				_extractableItems.add(product);
-			}
-			
-			((ArrayList<?>) _extractableItems).trimToSize();
-			
-			// check for handler
-			if (_handler == null)
-			{
-				LOGGER.warning("Item " + this + " define capsuled_items but missing handler.");
-				_handler = "ExtractableItems";
-			}
+			LOGGER.warning("Item " + this + " extractableCountMin is bigger than extractableCountMax!");
 		}
-		else
-		{
-			_extractableItems = null;
-		}
+		
+		_isBlessed = set.getBoolean("blessed", false) || (((getDefaultAction() == ActionType.SPIRITSHOT) || (getDefaultAction() == ActionType.SOULSHOT)) && (getName() != null) && getName().contains("Blessed"));
 	}
 	
 	/**
@@ -167,18 +129,48 @@ public class EtcItem extends ItemTemplate
 	}
 	
 	/**
-	 * @return {@code true} if the item is blessed, {@code false} otherwise.
-	 */
-	public boolean isBlessed()
-	{
-		return _isBlessed;
-	}
-	
-	/**
 	 * @return the extractable items list.
 	 */
 	public List<ExtractableProduct> getExtractableItems()
 	{
 		return _extractableItems;
+	}
+	
+	/**
+	 * @return the minimum count of extractable items
+	 */
+	public int getExtractableCountMin()
+	{
+		return _extractableCountMin;
+	}
+	
+	/**
+	 * @return the maximum count of extractable items
+	 */
+	public int getExtractableCountMax()
+	{
+		return _extractableCountMax;
+	}
+	
+	/**
+	 * @param extractableProduct
+	 */
+	@Override
+	public void addCapsuledItem(ExtractableProduct extractableProduct)
+	{
+		if (_extractableItems == null)
+		{
+			_extractableItems = new ArrayList<>();
+		}
+		
+		_extractableItems.add(extractableProduct);
+	}
+	
+	/**
+	 * @return {@code true} if the item is blessed, {@code false} otherwise.
+	 */
+	public boolean isBlessed()
+	{
+		return _isBlessed;
 	}
 }

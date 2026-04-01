@@ -27,10 +27,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.managers.MailManager;
-import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
@@ -62,7 +62,7 @@ public class MessageDeletionTaskManager implements Runnable
 			final Iterator<Entry<Integer, Long>> iterator = PENDING_MESSAGES.entrySet().iterator();
 			Entry<Integer, Long> entry;
 			Integer messageId;
-			Message message;
+			MailMessage message;
 			
 			while (iterator.hasNext())
 			{

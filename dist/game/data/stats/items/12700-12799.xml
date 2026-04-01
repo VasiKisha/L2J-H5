@@ -9,7 +9,7 @@
 		<set name="weight" val="1090" />
 		<set name="price" val="6099000" />
 		<stats>
-			<add order="0" stat="pDef" val="61" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="12701" type="EtcItem" name="Foundation Sealed Dynasty Leather Helmet">
@@ -21,7 +21,7 @@
 		<set name="weight" val="530" />
 		<set name="price" val="9149000" />
 		<stats>
-			<add order="0" stat="pDef" val="92" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="12702" type="EtcItem" name="Foundation Sealed Dynasty Boots">
@@ -36,7 +36,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="12703" type="EtcItem" name="Foundation Sealed Dynasty Breastplate">
@@ -52,7 +52,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="214" />
+			<stat type="pDef">214</stat>
 		</stats>
 	</item>
 	<item id="12704" type="EtcItem" name="Foundation Sealed Dynasty Shield">
@@ -67,9 +67,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="305" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">305</stat>
 		</stats>
 	</item>
 	<item id="12705" type="EtcItem" name="Foundation Sealed Dynasty Shoes">
@@ -84,7 +84,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="61" />
+			<stat type="pDef">61</stat>
 		</stats>
 	</item>
 	<item id="12706" type="EtcItem" name="Foundation Sealed Dynasty Circlet">
@@ -99,7 +99,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="92" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="12707" type="EtcItem" name="Foundation Sealed Dynasty Tunic">
@@ -115,8 +115,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="107" />
-			<add stat="maxMp" val="592" />
+			<stat type="pDef">107</stat>
+			<stat type="maxMp">592</stat>
 		</stats>
 	</item>
 	<item id="12708" type="EtcItem" name="Foundation Sealed Dynasty Helmet">
@@ -131,7 +131,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="92" />
+			<stat type="pDef">92</stat>
 		</stats>
 	</item>
 	<item id="12709" type="EtcItem" name="Foundation Sealed Dynasty Stockings">
@@ -147,8 +147,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="67" />
-			<add stat="maxMp" val="370" />
+			<stat type="pDef">67</stat>
+			<stat type="maxMp">370</stat>
 		</stats>
 	</item>
 	<item id="12710" type="EtcItem" name="Foundation Adamantite Earring">
@@ -160,7 +160,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="465900" />
 		<stats>
-			<add order="0" stat="mDef" val="51" />
+			<stat type="mDef">51</stat>
 		</stats>
 	</item>
 	<item id="12711" type="EtcItem" name="Foundation Adamantite Necklace">
@@ -172,7 +172,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="621200" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="12712" type="EtcItem" name="Foundation Adamantite Ring">
@@ -184,7 +184,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="310600" />
 		<stats>
-			<add order="0" stat="mDef" val="34" />
+			<stat type="mDef">34</stat>
 		</stats>
 	</item>
 	<item id="12713" type="EtcItem" name="Foundation Earring of Black Ore">
@@ -196,7 +196,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="711000" />
 		<stats>
-			<add order="0" stat="mDef" val="54" />
+			<stat type="mDef">54</stat>
 		</stats>
 	</item>
 	<item id="12714" type="EtcItem" name="Foundation Necklace of Black Ore">
@@ -208,7 +208,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="948000" />
 		<stats>
-			<add order="0" stat="mDef" val="72" />
+			<stat type="mDef">72</stat>
 		</stats>
 	</item>
 	<item id="12715" type="EtcItem" name="Foundation Ring of Black Ore">
@@ -220,7 +220,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="474000" />
 		<stats>
-			<add order="0" stat="mDef" val="36" />
+			<stat type="mDef">36</stat>
 		</stats>
 	</item>
 	<item id="12716" type="EtcItem" name="Foundation Sealed Phoenix Necklace">
@@ -232,7 +232,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1340000" />
 		<stats>
-			<add order="0" stat="mDef" val="76" />
+			<stat type="mDef">76</stat>
 		</stats>
 	</item>
 	<item id="12717" type="EtcItem" name="Foundation Sealed Phoenix Ring">
@@ -244,7 +244,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="670000" />
 		<stats>
-			<add order="0" stat="mDef" val="38" />
+			<stat type="mDef">38</stat>
 		</stats>
 	</item>
 	<item id="12718" type="EtcItem" name="Foundation Sealed Phoenix Earring">
@@ -256,7 +256,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1005000" />
 		<stats>
-			<add order="0" stat="mDef" val="57" />
+			<stat type="mDef">57</stat>
 		</stats>
 	</item>
 	<item id="12719" type="EtcItem" name="Foundation Phoenix Necklace">
@@ -268,7 +268,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1340000" />
 		<stats>
-			<add order="0" stat="mDef" val="76" />
+			<stat type="mDef">76</stat>
 		</stats>
 	</item>
 	<item id="12720" type="EtcItem" name="Foundation Phoenix Ring">
@@ -280,7 +280,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="670000" />
 		<stats>
-			<add order="0" stat="mDef" val="38" />
+			<stat type="mDef">38</stat>
 		</stats>
 	</item>
 	<item id="12721" type="EtcItem" name="Foundation Phoenix Earring">
@@ -292,7 +292,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1005000" />
 		<stats>
-			<add order="0" stat="mDef" val="57" />
+			<stat type="mDef">57</stat>
 		</stats>
 	</item>
 	<item id="12722" type="EtcItem" name="Foundation Majestic Necklace">
@@ -304,7 +304,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1998000" />
 		<stats>
-			<add order="0" stat="mDef" val="80" />
+			<stat type="mDef">80</stat>
 		</stats>
 	</item>
 	<item id="12723" type="EtcItem" name="Foundation Majestic Ring">
@@ -316,7 +316,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="999000" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 	<item id="12724" type="EtcItem" name="Foundation Majestic Earring">
@@ -328,7 +328,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1498000" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
+			<stat type="mDef">60</stat>
 		</stats>
 	</item>
 	<item id="12725" type="EtcItem" name="Foundation Sealed Majestic Necklace">
@@ -340,7 +340,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1998000" />
 		<stats>
-			<add order="0" stat="mDef" val="80" />
+			<stat type="mDef">80</stat>
 		</stats>
 	</item>
 	<item id="12726" type="EtcItem" name="Foundation Sealed Majestic Ring">
@@ -352,7 +352,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="999000" />
 		<stats>
-			<add order="0" stat="mDef" val="40" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 	<item id="12727" type="EtcItem" name="Foundation Sealed Majestic Earring">
@@ -364,7 +364,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1498000" />
 		<stats>
-			<add order="0" stat="mDef" val="60" />
+			<stat type="mDef">60</stat>
 		</stats>
 	</item>
 	<item id="12728" type="EtcItem" name="Foundation Sealed Tateossian Necklace">
@@ -376,7 +376,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="4361000" />
 		<stats>
-			<add order="0" stat="mDef" val="91" />
+			<stat type="mDef">91</stat>
 		</stats>
 	</item>
 	<item id="12729" type="EtcItem" name="Foundation Sealed Tateossian Ring">
@@ -388,7 +388,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2180000" />
 		<stats>
-			<add order="0" stat="mDef" val="46" />
+			<stat type="mDef">46</stat>
 		</stats>
 	</item>
 	<item id="12730" type="EtcItem" name="Foundation Sealed Tateossian Earring">
@@ -400,7 +400,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3270000" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="12731" type="EtcItem" name="Foundation Tateossian Necklace">
@@ -412,7 +412,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="4361000" />
 		<stats>
-			<add order="0" stat="mDef" val="91" />
+			<stat type="mDef">91</stat>
 		</stats>
 	</item>
 	<item id="12732" type="EtcItem" name="Foundation Tateossian Ring">
@@ -424,7 +424,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2180000" />
 		<stats>
-			<add order="0" stat="mDef" val="46" />
+			<stat type="mDef">46</stat>
 		</stats>
 	</item>
 	<item id="12733" type="EtcItem" name="Foundation Tateossian Earring">
@@ -436,7 +436,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3270000" />
 		<stats>
-			<add order="0" stat="mDef" val="68" />
+			<stat type="mDef">68</stat>
 		</stats>
 	</item>
 	<item id="12734" type="EtcItem" name="Foundation Dynasty Necklace">
@@ -448,7 +448,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7942000" />
 		<stats>
-			<add order="0" stat="mDef" val="106" />
+			<stat type="mDef">106</stat>
 		</stats>
 	</item>
 	<item id="12735" type="EtcItem" name="Foundation Dynasty Ring">
@@ -460,7 +460,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3971000" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
+			<stat type="mDef">53</stat>
 		</stats>
 	</item>
 	<item id="12736" type="EtcItem" name="Foundation Dynasty Earring">
@@ -472,7 +472,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5956000" />
 		<stats>
-			<add order="0" stat="mDef" val="79" />
+			<stat type="mDef">79</stat>
 		</stats>
 	</item>
 	<item id="12737" type="EtcItem" name="Foundation Sealed Dynasty Necklace">
@@ -484,7 +484,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7942000" />
 		<stats>
-			<add order="0" stat="mDef" val="106" />
+			<stat type="mDef">106</stat>
 		</stats>
 	</item>
 	<item id="12738" type="EtcItem" name="Foundation Sealed Dynasty Ring">
@@ -496,7 +496,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3971000" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
+			<stat type="mDef">53</stat>
 		</stats>
 	</item>
 	<item id="12739" type="EtcItem" name="Foundation Sealed Dynasty Earring">
@@ -508,7 +508,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5956000" />
 		<stats>
-			<add order="0" stat="mDef" val="79" />
+			<stat type="mDef">79</stat>
 		</stats>
 	</item>
 	<item id="12740" type="Armor" name="Baby Pet Scale Armor">
@@ -525,7 +525,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="112" />
+			<stat type="pDef">112</stat>
 		</stats>
 	</item>
 	<item id="12741" type="Armor" name="Baby Pet Bronze Armor">
@@ -542,7 +542,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="124" />
+			<stat type="pDef">124</stat>
 		</stats>
 	</item>
 	<item id="12742" type="Armor" name="Baby Pet Plate Armor">
@@ -559,7 +559,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="136" />
+			<stat type="pDef">136</stat>
 		</stats>
 	</item>
 	<item id="12743" type="Armor" name="Baby Pet Mithril Armor">
@@ -576,7 +576,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="148" />
+			<stat type="pDef">148</stat>
 		</stats>
 	</item>
 	<item id="12744" type="Armor" name="Baby Pet Oriharukon Armor">
@@ -593,7 +593,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="160" />
+			<stat type="pDef">160</stat>
 		</stats>
 	</item>
 	<item id="12745" type="Armor" name="Baby Pet Orichalcum Armor">
@@ -610,7 +610,7 @@
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="171" />
+			<stat type="pDef">171</stat>
 		</stats>
 	</item>
 	<item id="12746" type="Armor" name="Crystal Pendant">
@@ -626,7 +626,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="22" />
+			<stat type="mDef">22</stat>
 		</stats>
 	</item>
 	<item id="12747" type="Armor" name="Ruby Pendant">
@@ -642,7 +642,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="30" />
+			<stat type="mDef">30</stat>
 		</stats>
 	</item>
 	<item id="12748" type="Armor" name="Sapphire Pendant">
@@ -658,7 +658,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="40" />
+			<stat type="mDef">40</stat>
 		</stats>
 	</item>
 	<item id="12749" type="Armor" name="Diamond Pendant">
@@ -674,7 +674,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="52" />
+			<stat type="mDef">52</stat>
 		</stats>
 	</item>
 	<item id="12750" type="Armor" name="Enria Pendant">
@@ -690,7 +690,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="66" />
+			<stat type="mDef">66</stat>
 		</stats>
 	</item>
 	<item id="12751" type="Armor" name="Thons Pendant">
@@ -706,7 +706,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="80" />
+			<stat type="mDef">80</stat>
 		</stats>
 	</item>
 	<item id="12752" type="Armor" name="Asofe Pendant">
@@ -722,7 +722,7 @@
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="94" />
+			<stat type="mDef">94</stat>
 		</stats>
 	</item>
 	<item id="12753" type="EtcItem" name="Kamael Village Teleportation Scroll">
@@ -737,7 +737,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2525-1" /> <!-- Scroll to move to Kamael Village -->
+		<skills>
+			<skill id="2525" level="1" /> <!-- Scroll to move to Kamael Village -->
+		</skills>
 	</item>
 	<item id="12754" type="EtcItem" name="Accessory Life Stone - Level 46">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 46 and above when augmenting items. -->
@@ -908,7 +910,9 @@
 		<set name="price" val="12500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2526-1" /> <!-- Evasion Counter -->
+		<skills>
+			<skill id="2526" level="1" /> <!-- Evasion Counter -->
+		</skills>
 	</item>
 	<item id="12769" type="EtcItem" name="Forgotten Scroll - Evasion Chance">
 		<!-- Forgotten Scroll to learn Evasion Chance. Used by Plain Walkers. Can be acquired by level 74. -->
@@ -919,7 +923,9 @@
 		<set name="price" val="12500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2527-1" /> <!-- Evasion Chance -->
+		<skills>
+			<skill id="2527" level="1" /> <!-- Evasion Chance -->
+		</skills>
 	</item>
 	<item id="12770" type="EtcItem" name="Forgotten Scroll - Evasion Haste">
 		<!-- Forgotten Scroll to learn Evasion Haste. Treasure Hunter uses it. Can be acquired by level 74. -->
@@ -930,7 +936,9 @@
 		<set name="price" val="12500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2528-1" /> <!-- Evasion Haste -->
+		<skills>
+			<skill id="2528" level="1" /> <!-- Evasion Haste -->
+		</skills>
 	</item>
 	<item id="12771" type="EtcItem" name="Forgotten Scroll - Shadow Step">
 		<!-- Forgotten Scroll to learn the Shadow Step. Treasure Hunter, Plain Walker and Abyss Walker use it. Can be acquired by level 72. -->
@@ -941,7 +949,9 @@
 		<set name="price" val="12500" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2529-1" /> <!-- Shadow Step -->
+		<skills>
+			<skill id="2529" level="1" /> <!-- Shadow Step -->
+		</skills>
 	</item>
 	<item id="12772" type="EtcItem" name="Spellbook - Inquisitor">
 		<!-- Battle Manual needed to learn Inquisitor. Used by Bishops, Elders, and Shillien Elders. Required level: 44 -->
@@ -1017,8 +1027,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="12780" type="Armor" name="Agathion Seal Bracelet - Little Devil">
 		<!-- Bracelet that summons a cute little devil Agathion. Cannot be exchanged or dropped. -->
@@ -1031,8 +1045,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="12781" type="Armor" name="Ol Mahum Hat">
 		<set name="icon" val="icon.accessory_ol_mahum_cap_i00" />
@@ -1208,8 +1226,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1219,10 +1235,12 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="12794" type="Weapon" name="X Stick - 30-day limited period">
@@ -1231,8 +1249,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1242,10 +1258,12 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="12795" type="Weapon" name="Scissors Stick - 30-day limited period">
@@ -1254,8 +1272,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1265,10 +1281,12 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="12796" type="Weapon" name="Rock Stick - 30-day limited period">
@@ -1277,8 +1295,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1288,10 +1304,12 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="12797" type="Weapon" name="Paper Stick - 30-day limited period">
@@ -1300,8 +1318,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1311,10 +1327,12 @@
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="12798" type="Weapon" name="Snowman Transformation Stick">
@@ -1322,8 +1340,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1332,22 +1348,24 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3418" level="1" /> <!-- Active Skill: Transform Pig -->
+		</skills>
 	</item>
 	<item id="12799" type="Weapon" name="Scarecrow Transformation Stick">
 		<set name="icon" val="icon.weapon_scarescow_stick_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1356,13 +1374,17 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
-		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
+		<skills>
+			<skill id="3418" level="1" /> <!-- Active Skill: Transform Pig -->
+		</skills>
 	</item>
 </list>

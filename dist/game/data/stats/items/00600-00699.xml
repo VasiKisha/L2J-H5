@@ -12,8 +12,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="601" type="Armor" name="Sealed Doom Boots">
@@ -28,8 +27,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="602" type="Armor" name="Boots of Pledge">
@@ -44,8 +42,7 @@
 		<set name="price" val="890000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="45" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">45</stat>
 		</stats>
 	</item>
 	<item id="603" type="Armor" name="Divine Boots">
@@ -60,8 +57,7 @@
 		<set name="price" val="275100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="39" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">39</stat>
 		</stats>
 	</item>
 	<item id="604" type="Armor" name="Crafted Leather Gloves">
@@ -76,8 +72,7 @@
 		<set name="price" val="16100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="19" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="605" type="Armor" name="Leather Gauntlets">
@@ -92,8 +87,7 @@
 		<set name="price" val="25600" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="22" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">22</stat>
 		</stats>
 	</item>
 	<item id="606" type="Armor" name="Rip Gauntlets">
@@ -108,8 +102,7 @@
 		<set name="price" val="57400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="27" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">27</stat>
 		</stats>
 	</item>
 	<item id="607" type="Armor" name="Ogre Power Gauntlets">
@@ -124,8 +117,7 @@
 		<set name="price" val="75200" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="29" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">29</stat>
 		</stats>
 	</item>
 	<item id="608" type="Armor" name="Mithril Gauntlets">
@@ -140,8 +132,7 @@
 		<set name="price" val="188800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="36" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">36</stat>
 		</stats>
 	</item>
 	<item id="609" type="Armor" name="Gauntlets of Ghost">
@@ -156,8 +147,7 @@
 		<set name="price" val="275100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="39" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">39</stat>
 		</stats>
 	</item>
 	<item id="610" type="Armor" name="Saint Knight's Gauntlets">
@@ -172,8 +162,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="611" type="Armor" name="Soul Leech Gauntlets">
@@ -188,8 +177,7 @@
 		<set name="price" val="618800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="44" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="612" type="Armor" name="Sealed Zubei's Gauntlets">
@@ -204,8 +192,7 @@
 		<set name="price" val="399100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="41" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="613" type="Armor" name="Sand Dragon Gloves">
@@ -220,8 +207,7 @@
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="48" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">48</stat>
 		</stats>
 	</item>
 	<item id="614" type="Armor" name="Knight's Cloak">
@@ -236,8 +222,7 @@
 		<set name="price" val="20900" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="7" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">7</stat>
 		</stats>
 	</item>
 	<item id="615" type="Armor" name="Cobweb Cloak">
@@ -252,8 +237,7 @@
 		<set name="price" val="33300" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="8" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">8</stat>
 		</stats>
 	</item>
 	<item id="616" type="Armor" name="Cloak of Magic">
@@ -268,8 +252,7 @@
 		<set name="price" val="74700" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="11" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">11</stat>
 		</stats>
 	</item>
 	<item id="617" type="Armor" name="Mithril Cloak">
@@ -284,8 +267,7 @@
 		<set name="price" val="97800" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="11" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">11</stat>
 		</stats>
 	</item>
 	<item id="618" type="Armor" name="Cloak of Self Protection">
@@ -300,8 +282,7 @@
 		<set name="price" val="161000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="13" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">13</stat>
 		</stats>
 	</item>
 	<item id="619" type="Armor" name="(Not In Use) Ancient Cloak">
@@ -316,8 +297,7 @@
 		<set name="price" val="245000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="15" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">15</stat>
 		</stats>
 	</item>
 	<item id="620" type="Armor" name="Cloak of Protection">
@@ -332,8 +312,7 @@
 		<set name="price" val="358000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="16" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">16</stat>
 		</stats>
 	</item>
 	<item id="621" type="Armor" name="Cloak of Hell">
@@ -348,8 +327,7 @@
 		<set name="price" val="804000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="18" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">18</stat>
 		</stats>
 	</item>
 	<item id="622" type="Armor" name="(Not In Use) Holy Spirit's Cloak">
@@ -364,8 +342,7 @@
 		<set name="price" val="1160000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="18" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">18</stat>
 		</stats>
 	</item>
 	<item id="623" type="Armor" name="Divine Cloak">
@@ -380,8 +357,7 @@
 		<set name="price" val="1760000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="19" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="624" type="Armor" name="Cloak of Invisibility">
@@ -394,7 +370,7 @@
 		<set name="price" val="37" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<add order="0" stat="pDef" val="2" />
+			<stat type="pDef">2</stat>
 		</stats>
 	</item>
 	<item id="625" type="Armor" name="Bone Shield">
@@ -409,10 +385,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="90" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">90</stat>
 		</stats>
 	</item>
 	<item id="626" type="Armor" name="Bronze Shield">
@@ -430,10 +405,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="101" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">101</stat>
 		</stats>
 	</item>
 	<item id="627" type="Armor" name="Aspis">
@@ -451,10 +425,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="114" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">114</stat>
 		</stats>
 	</item>
 	<item id="628" type="Armor" name="Hoplon">
@@ -472,10 +445,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="128" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">128</stat>
 		</stats>
 	</item>
 	<item id="629" type="Armor" name="Kite Shield">
@@ -493,10 +465,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="142" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">142</stat>
 		</stats>
 	</item>
 	<item id="630" type="Armor" name="Square Shield">
@@ -514,10 +485,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="154" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">154</stat>
 		</stats>
 	</item>
 	<item id="631" type="Armor" name="Eldarake">
@@ -535,10 +505,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="166" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">166</stat>
 		</stats>
 	</item>
 	<item id="632" type="Armor" name="Knight's Shield">
@@ -556,10 +525,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="178" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">178</stat>
 		</stats>
 	</item>
 	<item id="633" type="Armor" name="Zubei's Shield">
@@ -577,10 +545,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="634" type="Armor" name="Dragon Shield">
@@ -599,10 +566,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="269" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">269</stat>
 		</stats>
 	</item>
 	<item id="635" type="Armor" name="Wolf Shield">
@@ -620,10 +586,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="636" type="Armor" name="Shining Dragon Shield">
@@ -641,10 +606,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="637" type="Armor" name="Shield of Valor">
@@ -662,10 +626,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="638" type="Armor" name="Glorious Shield">
@@ -683,10 +646,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="639" type="Armor" name="Red Flame Shield">
@@ -704,10 +666,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="640" type="Armor" name="Elven Crystal Shield">
@@ -725,10 +686,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="641" type="Armor" name="Dark Crystal Shield">
@@ -746,10 +706,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="243" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">243</stat>
 		</stats>
 	</item>
 	<item id="642" type="Armor" name="Elven Vagian Shield">
@@ -767,10 +726,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="643" type="Armor" name="Dark Vagian Shield">
@@ -788,10 +746,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="644" type="Armor" name="Hell Shield">
@@ -809,10 +766,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="645" type="Armor" name="Art of Shield">
@@ -830,10 +786,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="646" type="Armor" name="Shield of Silence">
@@ -851,10 +806,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="647" type="Armor" name="Gust Shield">
@@ -872,10 +826,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="648" type="Armor" name="Prairie Shield">
@@ -893,10 +846,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="649" type="Armor" name="Shield of Underworld">
@@ -914,10 +866,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="650" type="Armor" name="Shield of Concentration">
@@ -935,10 +886,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="651" type="Armor" name="Ace's Shield">
@@ -956,10 +906,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="652" type="Armor" name="Guardian's Shield">
@@ -977,10 +926,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="653" type="Armor" name="Marksman Shield">
@@ -998,10 +946,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="654" type="Armor" name="Shield of Mana">
@@ -1019,10 +966,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="655" type="Armor" name="Sage's Shield">
@@ -1040,10 +986,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="656" type="Armor" name="Paradia Shield">
@@ -1061,10 +1006,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="657" type="Armor" name="Inferno Shield">
@@ -1082,10 +1026,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="658" type="Armor" name="Shield of Black Ore">
@@ -1103,10 +1046,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="659" type="Armor" name="Shield of Summoning">
@@ -1124,10 +1066,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="660" type="Armor" name="Otherworldly Shield">
@@ -1145,10 +1086,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="661" type="Armor" name="Elemental Shield">
@@ -1166,10 +1106,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="662" type="Armor" name="Shield of Phantom">
@@ -1187,10 +1126,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="663" type="Armor" name="Shield of Grace">
@@ -1208,10 +1146,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="664" type="Armor" name="Shield of Holy Spirit">
@@ -1229,10 +1166,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="665" type="Armor" name="Phoenix Shield">
@@ -1250,10 +1186,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="666" type="Armor" name="Cerberus Shield">
@@ -1271,10 +1206,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="667" type="Armor" name="Shield of Aid">
@@ -1292,10 +1226,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="668" type="Armor" name="Shield of Blessing">
@@ -1313,10 +1246,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="669" type="Armor" name="Flame Shield">
@@ -1334,10 +1266,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="670" type="Armor" name="Shield of Bravery">
@@ -1355,10 +1286,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="671" type="Armor" name="Blood Shield">
@@ -1376,10 +1306,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="672" type="Armor" name="Absolute Shield">
@@ -1397,10 +1326,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="673" type="Armor" name="Avadon Shield">
@@ -1418,10 +1346,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="216" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">216</stat>
 		</stats>
 	</item>
 	<item id="674" type="Armor" name="Divine Shield">
@@ -1439,10 +1366,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="230" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">230</stat>
 		</stats>
 	</item>
 	<item id="675" type="Armor" name="Silk Yarn Undergarment Set">
@@ -1454,7 +1380,7 @@
 		<set name="weight" val="170" />
 		<set name="price" val="1330" />
 		<stats>
-			<add order="0" stat="pDef" val="6" />
+			<stat type="pDef">6</stat>
 		</stats>
 	</item>
 	<item id="676" type="Armor" name="Pure White Undergarment Set">
@@ -1466,7 +1392,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="6150" />
 		<stats>
-			<add order="0" stat="pDef" val="9" />
+			<stat type="pDef">9</stat>
 		</stats>
 	</item>
 	<item id="677" type="Armor" name="One-Piece Swimsuit">
@@ -1481,8 +1407,7 @@
 		<set name="price" val="10400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="10" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">10</stat>
 		</stats>
 	</item>
 	<item id="678" type="Armor" name="Bikini Set">
@@ -1497,8 +1422,7 @@
 		<set name="price" val="16700" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="11" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">11</stat>
 		</stats>
 	</item>
 	<item id="679" type="Armor" name="Cursed Undergarment Set">
@@ -1513,8 +1437,7 @@
 		<set name="price" val="25400" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="12" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">12</stat>
 		</stats>
 	</item>
 	<item id="680" type="Armor" name="Mithril Undergarment Set">
@@ -1529,8 +1452,7 @@
 		<set name="price" val="63100" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="16" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">16</stat>
 		</stats>
 	</item>
 	<item id="681" type="Armor" name="Fascination Undergarment Set">
@@ -1545,8 +1467,7 @@
 		<set name="price" val="80500" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="17" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="682" type="Armor" name="Demon's Undergarment Set">
@@ -1561,8 +1482,7 @@
 		<set name="price" val="179000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="19" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">19</stat>
 		</stats>
 	</item>
 	<item id="683" type="Armor" name="Holy Undergarment Set">
@@ -1577,8 +1497,7 @@
 		<set name="price" val="402000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="22" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">22</stat>
 		</stats>
 	</item>
 	<item id="684" type="Armor" name="Underwear of Rule">
@@ -1593,8 +1512,7 @@
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="24" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">24</stat>
 		</stats>
 	</item>
 	<item id="685" type="Armor" name="Crystal Swimsuit Set">
@@ -1609,8 +1527,7 @@
 		<set name="price" val="1310000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="26" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">26</stat>
 		</stats>
 	</item>
 	<item id="686" type="EtcItem" name="Chair">

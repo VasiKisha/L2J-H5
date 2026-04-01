@@ -108,19 +108,19 @@ public class ManorManager extends Script
 	@RegisterType(ListenerRegisterType.NPC)
 	@Id({35644, 35645, 35319, 35366, 36456, 35512, 35558, 35229, 35230, 35231, 35277, 35103, 35145, 35187})
 	// @formatter:on
-	public void onNpcManorBypass(OnNpcManorBypass evt)
+	public void onNpcManorBypass(OnNpcManorBypass event)
 	{
-		final Player player = evt.getPlayer();
+		final Player player = event.getPlayer();
 		if (CastleManorManager.getInstance().isUnderMaintenance())
 		{
 			player.sendPacket(SystemMessageId.THE_MANOR_SYSTEM_IS_CURRENTLY_UNDER_MAINTENANCE);
 			return;
 		}
 		
-		final Npc npc = evt.getTarget();
+		final Npc npc = event.getTarget();
 		final int templateId = npc.getTemplate().getParameters().getInt("manor_id", -1);
-		final int castleId = (evt.getManorId() == -1) ? templateId : evt.getManorId();
-		switch (evt.getRequest())
+		final int castleId = (event.getManorId() == -1) ? templateId : event.getManorId();
+		switch (event.getRequest())
 		{
 			case 1: // Seed purchase
 			{
@@ -140,12 +140,12 @@ public class ManorManager extends Script
 			}
 			case 3: // Seed info
 			{
-				player.sendPacket(new ExShowSeedInfo(castleId, evt.isNextPeriod(), false));
+				player.sendPacket(new ExShowSeedInfo(castleId, event.isNextPeriod(), false));
 				break;
 			}
 			case 4: // Crop info
 			{
-				player.sendPacket(new ExShowCropInfo(castleId, evt.isNextPeriod(), false));
+				player.sendPacket(new ExShowCropInfo(castleId, event.isNextPeriod(), false));
 				break;
 			}
 			case 5: // Basic info
@@ -160,12 +160,12 @@ public class ManorManager extends Script
 			}
 			case 9: // Edit sales (Crop sales)
 			{
-				player.sendPacket(new ExShowProcureCropDetail(evt.getManorId()));
+				player.sendPacket(new ExShowProcureCropDetail(event.getManorId()));
 				break;
 			}
 			default:
 			{
-				LOGGER.warning(getClass().getSimpleName() + ": " + player + " send unknown request id " + evt.getRequest() + "!");
+				LOGGER.warning(getClass().getSimpleName() + ": " + player + " send unknown request id " + event.getRequest() + "!");
 			}
 		}
 	}

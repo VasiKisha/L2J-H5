@@ -23,10 +23,10 @@ package ai.others.TownPets;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 
 /**
  * Town Pet AI

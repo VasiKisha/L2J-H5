@@ -174,7 +174,7 @@ public class DoorData implements IXmlReader
 		final Collection<Door> doors;
 		if (instanceId < 1)
 		{
-			final WorldRegion region = World.getInstance().getRegion(x, y);
+			final WorldRegion region = World.getInstance().getRegion(x, y, z);
 			if (region != null)
 			{
 				doors = region.getDoors();

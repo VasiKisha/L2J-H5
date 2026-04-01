@@ -261,6 +261,65 @@ public class StringUtil
 	}
 	
 	/**
+	 * Parse a string value to the appropriate data type.
+	 * @param value the string value to parse
+	 * @return the parsed value as Boolean, Long, Integer, Float, Double, or String
+	 */
+	public static Object parseValue(String value)
+	{
+		if (value == null)
+		{
+			return null;
+		}
+		
+		final String val = value.trim();
+		if (val.equalsIgnoreCase("true"))
+		{
+			return Boolean.TRUE;
+		}
+		else if (val.equalsIgnoreCase("false"))
+		{
+			return Boolean.FALSE;
+		}
+		else
+		{
+			try
+			{
+				// Try Long first (to avoid Integer parsing of larger numbers).
+				return Long.valueOf(val);
+			}
+			catch (NumberFormatException e1)
+			{
+				try
+				{
+					// Try Integer.
+					return Integer.valueOf(val);
+				}
+				catch (NumberFormatException e2)
+				{
+					try
+					{
+						// Try Float before Double to get single-precision when possible.
+						return Float.valueOf(val);
+					}
+					catch (NumberFormatException e3)
+					{
+						try
+						{
+							// Try Double.
+							return Double.valueOf(val);
+						}
+						catch (NumberFormatException e4)
+						{
+							return val;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
 	 * Parses a string as an integer, returning a default value if parsing fails.
 	 * @param text the string to parse
 	 * @param defaultValue the value to return if parsing fails

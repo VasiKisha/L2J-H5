@@ -33,7 +33,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22357-1" />
+		<skills>
+			<skill id="22357" level="1" /> <!-- S84 High-Grade Weapon Box -->
+		</skills>
 	</item>
 	<item id="22203" type="EtcItem" name="Vorpal Armor Box - Event">
 		<!-- Box containing a Vorpal armor. Which one could it be? -->
@@ -46,7 +48,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22358-1" />
+		<skills>
+			<skill id="22358" level="1" /> <!-- Vorpal Armor Box -->
+		</skills>
 	</item>
 	<item id="22204" type="EtcItem" name="Attribute Stone Box - Event">
 		<!-- Box containing an Attribute Stone. Which one could it be? -->
@@ -59,7 +63,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22381-1" />
+		<skills>
+			<skill id="22381" level="1" /> <!-- Attribute Ore Box -->
+		</skills>
 	</item>
 	<item id="22205" type="EtcItem" name="Attribute Crystal Box - Event">
 		<!-- Box containing an Attribute Crystal. Which one could it be? -->
@@ -72,7 +78,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22382-1" />
+		<skills>
+			<skill id="22382" level="1" /> <!-- Attribute Crystal Box -->
+		</skills>
 	</item>
 	<item id="22206" type="EtcItem" name="Soul Crystal - Stage 17 Box - Event">
 		<!-- Box containing a Soul Crystal - Stage 17. What color could it be? -->
@@ -85,7 +93,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22355-1" />
+		<skills>
+			<skill id="22355" level="1" /> <!-- Soul Crystal Box - Level 17 -->
+		</skills>
 	</item>
 	<item id="22207" type="EtcItem" name="Soul Crystal - Stage 18 Box - Event">
 		<!-- Box containing a Soul Crystal - Stage 18. What color could it be? -->
@@ -98,7 +108,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="22356-1" />
+		<skills>
+			<skill id="22356" level="1" /> <!-- Soul Crystal Box - Level 18 -->
+		</skills>
 	</item>
 	<item id="22208" type="EtcItem" name="Angry Bunny Necklace Box - Event">
 		<!-- Box containing a 7 day or 30 day Angry Bunny Necklace. Which one could it be? -->
@@ -129,8 +141,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<add order="0" stat="mDef" val="125" />
-			<add stat="maxMp" val="50" />
+			<stat type="mDef">125</stat>
+			<stat type="maxMp">50</stat>
 		</stats>
 	</item>
 	<item id="22212" type="Armor" name="Angry Bunny Earring - 7-day limited period (event)">
@@ -144,8 +156,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<add order="0" stat="mDef" val="94" />
-			<add stat="maxMp" val="37" />
+			<stat type="mDef">94</stat>
+			<stat type="maxMp">37</stat>
 		</stats>
 	</item>
 	<item id="22213" type="Armor" name="Angry Bunny Ring - 7-day limited period (event)">
@@ -159,8 +171,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<add order="0" stat="mDef" val="62" />
-			<add stat="maxMp" val="25" />
+			<stat type="mDef">62</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
 	</item>
 	<item id="22214" type="Armor" name="Angry Bunny Necklace - 30-day limited period (event)">
@@ -174,8 +186,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="mDef" val="125" />
-			<add stat="maxMp" val="50" />
+			<stat type="mDef">125</stat>
+			<stat type="maxMp">50</stat>
 		</stats>
 	</item>
 	<item id="22215" type="Armor" name="Angry Bunny Earring - 30-day limited period (event)">
@@ -189,8 +201,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="mDef" val="94" />
-			<add stat="maxMp" val="37" />
+			<stat type="mDef">94</stat>
+			<stat type="maxMp">37</stat>
 		</stats>
 	</item>
 	<item id="22216" type="Armor" name="Angry Bunny Ring - 30-day limited period (event)">
@@ -204,8 +216,8 @@
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
 		<stats>
-			<add order="0" stat="mDef" val="62" />
-			<add stat="maxMp" val="25" />
+			<stat type="mDef">62</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
 	</item>
 	<item id="22217" type="EtcItem" name="Lantern Agathion's Gift Set - Event">
@@ -237,7 +249,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="22221,3,3,100;22222,3,3,100" />
+		<capsuled_items>
+			<item id="22221" min="3" max="3" chance="100" /> <!-- Scroll: Enchant Weapon of Destruction (S-Grade) - Event -->
+			<item id="22222" min="3" max="3" chance="100" /> <!-- Scroll: Enchant Armor of Destruction (S-Grade) - Event -->
+		</capsuled_items>
 	</item>
 	<item id="22220" type="EtcItem" name="Lantern Agathion's Gift - Event">
 		<!-- Lantern Agathion's gift. Double-click to get a random item. -->
@@ -260,7 +275,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22359-1" /> <!-- Scroll: Enchant Weapon of Destruction (S-Grade) -->
+		<skills>
+			<skill id="22359" level="1" /> <!-- Scroll: Enchant Weapon of Destruction (S-Grade) -->
+		</skills>
 	</item>
 	<item id="22222" type="EtcItem" name="Scroll: Enchant Armor of Destruction (S-Grade) - Event">
 		<!-- When enchanted, increases P. Def. by 1 for S-Grade armor and accessories. Increases by 3 starting from +4. It can safely be enchanted up to +3. For one-piece armor, it can safely be enchanted up to +4. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. When armor is enchanted up to +4, HP increases according to the enchant value. Cannot be used on armor that are +6 or above. -->
@@ -277,7 +294,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22360-1" /> <!-- Scroll: Enchant Armor of Destruction (S-Grade) -->
+		<skills>
+			<skill id="22360" level="1" /> <!-- Scroll: Enchant Armor of Destruction (S-Grade) -->
+		</skills>
 	</item>
 	<item id="22223" type="EtcItem" name="Scroll: Enchant Weapon of Destruction (A-Grade) - Event">
 		<!-- When enchanted, increases P. Atk. by 4 for A-Grade one-handed swords, one-handed blunts, daggers, spears, and other weapons. Increases P. Atk. by 5 for two-handed swords, two-handed blunts, dualswords, and hand-to-hand combat weapons. Increases P. Atk. by 8 for bows. Increases P. Atk. by 3 for all weapons. From +4, P. Atk. and M. Atk. increase by 2 times. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. Cannot be used on weapons that are +15 or above. -->
@@ -294,7 +313,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22361-1" /> <!-- Scroll: Enchant Weapon of Destruction (A-Grade) -->
+		<skills>
+			<skill id="22361" level="1" /> <!-- Scroll: Enchant Weapon of Destruction (A-Grade) -->
+		</skills>
 	</item>
 	<item id="22224" type="EtcItem" name="Scroll: Enchant Armor of Destruction (A-Grade) - Event">
 		<!-- When enchanted, increases P. Def. by 1 for A-Grade armor and accessories. Increases by 3 starting from +4. It can safely be enchanted up to +3. For one-piece armor, it can safely be enchanted up to +4. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. When armor is enchanted up to +4, HP increases according to the enchant value. Cannot be used on armor that are +6 or above. -->
@@ -311,7 +332,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22362-1" /> <!-- Scroll: Enchant Armor of Destruction (A-Grade) -->
+		<skills>
+			<skill id="22362" level="1" /> <!-- Scroll: Enchant Armor of Destruction (A-Grade) -->
+		</skills>
 	</item>
 	<item id="22225" type="EtcItem" name="Scroll: Enchant Weapon of Destruction (B-Grade) - Event">
 		<!-- When enchanted, increases P. Atk. by 3 for B-Grade one-handed swords, one-handed blunts, daggers, spears, and other weapons. Increases P. Atk. by 4 for two-handed swords, two-handed blunts, dualswords, and hand-to-hand combat weapons. Increases P. Atk. by 6 for bows. Increases P. Atk. by 3 for all weapons. From +4, P. Atk. and M. Atk. increase by 2 times. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. Cannot be used on weapons that are +15 or above. -->
@@ -328,7 +351,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22363-1" /> <!-- Scroll: Enchant Weapon of Destruction (B-Grade) -->
+		<skills>
+			<skill id="22363" level="1" /> <!-- Scroll: Enchant Weapon of Destruction (B-Grade) -->
+		</skills>
 	</item>
 	<item id="22226" type="EtcItem" name="Scroll: Enchant Armor of Destruction (B-Grade) - Event">
 		<!-- When enchanted, increases P. Def. by 1 for B-Grade armor and accessories. Increases by 3 starting from +4. It can safely be enchanted up to +3. For one-piece armor, it can safely be enchanted up to +4. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. When armor is enchanted up to +4, HP increases according to the enchant value. Cannot be used on armor that are +6 or above. -->
@@ -345,7 +370,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22364-1" /> <!-- Scroll: Enchant Armor of Destruction (B-Grade) -->
+		<skills>
+			<skill id="22364" level="1" /> <!-- Scroll: Enchant Armor of Destruction (B-Grade) -->
+		</skills>
 	</item>
 	<item id="22227" type="EtcItem" name="Scroll: Enchant Weapon of Destruction (C-Grade) - Event">
 		<!-- When enchanted, increases P. Atk. by 3 for C-Grade one-handed swords, one-handed blunts, daggers, spears, and other weapons. Increases P. Atk. by 4 for two-handed swords, two-handed blunts, dualswords, and hand-to-hand combat weapons. Increases P. Atk. by 6 for bows. Increases P. Atk. by 3 for all weapons. From +4, P. Atk. and M. Atk. increase by 2 times. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. Cannot be used on weapons that are +15 or above. -->
@@ -362,7 +389,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22365-1" /> <!-- Scroll: Enchant Weapon of Destruction (C-Grade) -->
+		<skills>
+			<skill id="22365" level="1" /> <!-- Scroll: Enchant Weapon of Destruction (C-Grade) -->
+		</skills>
 	</item>
 	<item id="22228" type="EtcItem" name="Scroll: Enchant Armor of Destruction (C-Grade) - Event">
 		<!-- When enchanted, increases P. Def. by 1 for C-Grade armor and accessories. Increases by 3 starting from +4. It can safely be enchanted up to +3. For one-piece armor, it can safely be enchanted up to +4. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. When armor is enchanted up to +4, HP increases according to the enchant value. Cannot be used on armor that are +6 or above. -->
@@ -379,7 +408,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22366-1" /> <!-- Scroll: Enchant Armor of Destruction (C-Grade) -->
+		<skills>
+			<skill id="22366" level="1" /> <!-- Scroll: Enchant Armor of Destruction (C-Grade) -->
+		</skills>
 	</item>
 	<item id="22229" type="EtcItem" name="Scroll: Enchant Weapon of Destruction (D-Grade) - Event">
 		<!-- When enchanted, increases P. Atk. by 2 for D-Grade one-handed swords, one-handed blunts, daggers, spears, and other weapons. Increases P. Atk. by 2 for two-handed swords, two-handed blunts, dualswords, and hand-to-hand combat weapons. Increases P. Atk. by 4 for bows. Increases P. Atk. by 2 for all weapons. From +4, P. Atk. and M. Atk. increase by 2 times. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. Cannot be used on weapons that are +15 or above. -->
@@ -396,7 +427,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22367-1" /> <!-- Scroll: Enchant Weapon of Destruction (D-Grade) -->
+		<skills>
+			<skill id="22367" level="1" /> <!-- Scroll: Enchant Weapon of Destruction (D-Grade) -->
+		</skills>
 	</item>
 	<item id="22230" type="EtcItem" name="Scroll: Enchant Armor of Destruction (D-Grade) - Event">
 		<!-- When enchanted, increases P. Def. by 1 for D-Grade armor and accessories. Increases by 3 starting from +4. It can safely be enchanted up to +3. For one-piece armor, it can safely be enchanted up to +4. When enchant fails, the item is not crystallized by the power of the goddess of destruction, and the existing enchant value is maintained. When armor is enchanted up to +4, HP increases according to the enchant value. Cannot be used on armor that are +6 or above. -->
@@ -413,8 +446,10 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="EnchantScrolls" />
-		<set name="item_skill" val="22368-1" /> <!-- Scroll: Enchant Armor of Destruction (D-Grade) -->
 
+		<skills>
+			<skill id="22368" level="1" /> <!-- Scroll: Enchant Armor of Destruction (D-Grade) -->
+		</skills>
 	</item>
 	<item id="22231" type="EtcItem" name="Mysterious Blessed Spiritshot (S-Grade) - Event">
 		<!-- High-level spirit light is infused into a weapon, instantly and greatly increasing its magic power. Can be used on S-grade weapons. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -470,7 +505,7 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<add order="0" stat="mDef" val="7" />
+			<stat type="mDef">7</stat>
 		</stats>
 	</item>
 	<item id="22238" type="EtcItem" name="Scroll: Hair Accessory - Warrior Use">
@@ -516,7 +551,7 @@
 		<set name="bodypart" val="rfinger;lfinger" />
 		<set name="material" val="GOLD" />
 		<stats>
-			<add order="0" stat="mDef" val="7" />
+			<stat type="mDef">7</stat>
 		</stats>
 	</item>
 	<item id="22244" type="EtcItem" name="Mysterious Soulshot (C-Grade)">
@@ -881,17 +916,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="22282" type="EtcItem" name="Sujin Transformation Stick 7-Day Pack - Event">
@@ -906,17 +941,17 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="time" val="10080" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
 		</stats>
 	</item>
 	<item id="22284" type="EtcItem" name="Trejuo Transformation Stick 7-Day Pack - Event">

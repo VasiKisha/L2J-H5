@@ -69,7 +69,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-2" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -77,6 +76,9 @@
 		<conditions>
 			<player clanHall="36, 37, 38, 39, 40, 41, 51, 52, 53, 54, 55, 56, 57" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="2" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10308" type="EtcItem" name="Red Dragon Bugle of Wind">
 		<!-- Trumpet used to summon the Strider of the Red Wind. This takes some of experience which is acquired by the pet master. -->
@@ -91,7 +93,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-2" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -99,6 +100,9 @@
 		<conditions>
 			<player clanHall="36, 37, 38, 39, 40, 41, 51, 52, 53, 54, 55, 56, 57" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="2" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10309" type="EtcItem" name="Red Dragon Bugle of Star">
 		<!-- Trumpet used to summon the Strider of the Red Star. This takes some of experience which is acquired by the pet master. -->
@@ -113,7 +117,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-2" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -121,6 +124,9 @@
 		<conditions>
 			<player clanHall="36, 37, 38, 39, 40, 41, 51, 52, 53, 54, 55, 56, 57" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="2" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10310" type="EtcItem" name="Red Dragon Bugle of Twilight">
 		<!-- Trumpet used to summon the Strider of the Red Dusk. This takes some of experience which is acquired by the pet master. -->
@@ -135,7 +141,6 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-2" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
@@ -143,6 +148,9 @@
 		<conditions>
 			<player clanHall="36, 37, 38, 39, 40, 41, 51, 52, 53, 54, 55, 56, 57" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="2" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10311" type="EtcItem" name="Improved Buffalo Panpipe">
 		<!-- Necklace used to summon an Improved Baby Buffalo. It takes away some of the experience points the Pet Master earns. -->
@@ -154,11 +162,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10312" type="EtcItem" name="Improved Cougar Chime">
 		<!-- Necklace used to summon an Improved Baby Cougar. It takes away some of the experience points the Pet Master earns. -->
@@ -170,11 +180,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10313" type="EtcItem" name="Improved Kookaburra Ocarina">
 		<!-- Necklace used to summon an Improved Baby Kookaburra. It takes away some of the experience points the Pet Master earns. -->
@@ -186,11 +198,13 @@
 		<set name="price" val="2000" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="SummonItems" />
-		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2046" level="1" /> <!-- Wolf's Necklace -->
+		</skills>
 	</item>
 	<item id="10314" type="Armor" name="Ring of Beleth">
 		<!-- MP +38, HP +105, increase M.Def. by 12%, increase Resistance to abnormal mental state by 10, increase abnormal mental state attack chance by 10, increase MP recharge power by 0.23, and increase Resistance to Dark attacks by 30. -->
@@ -204,12 +218,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2400000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="3649-1" /> <!-- Beleth's Ring -->
 		<stats>
-			<add order="0" stat="mDef" val="48" />
-			<add stat="maxMp" val="21" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">48</stat>
+			<stat type="maxMp">21</stat>
 		</stats>
+		<skills>
+			<skill id="3649" level="1" /> <!-- Beleth's Ring -->
+		</skills>
 	</item>
 	<item id="10315" type="Armor" name="Shadow Item - Purple Viking Circlet">
 		<!-- Uses 2 hair accessory slots. This item cannot be exchanged or dropped. Lasts for 500 minutes. -->
@@ -235,8 +250,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1;5538-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="5538" level="1" /> <!-- Little Angel Agathion Special Skill - Firecrackers -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10317" type="Armor" name="Agathion Seal Bracelet - Little Angel - Big Head">
 		<!-- Bracelet that summons a cute little angel Agathion. Cannot be exchanged or dropped. -->
@@ -249,8 +269,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1;5539-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="5539" level="1" /> <!-- Little Angel Agathion Special Skill - Mysterious Power -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10318" type="Armor" name="Agathion Seal Bracelet - Little Angel - Blessed Escape">
 		<!-- Bracelet that summons a cute little angel Agathion. Cannot be exchanged or dropped. -->
@@ -263,8 +288,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1;5540-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="5540" level="1" /> <!-- Little Angel Agathion Special Skill - Blessed Escape -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10319" type="Armor" name="Agathion Seal Bracelet - Little Angel - Resurrection">
 		<!-- Bracelet that summons a cute little angel Agathion. Cannot be exchanged or dropped. -->
@@ -277,8 +307,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1;5541-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="5541" level="1" /> <!-- Little Angel Agathion Special Skill - Blessed Resurrection -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10320" type="Armor" name="Agathion Seal Bracelet - Little Angel">
 		<!-- Bracelet that summons a cute little angel Agathion. Cannot be exchanged or dropped. -->
@@ -291,8 +326,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3423-1;5535-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3423" level="1" /> <!-- Release Seal on Agathion - Little Angel Agathion -->
+			<skill id="5535" level="1" /> <!-- Little Angel Cuteness Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10321" type="Armor" name="Shadow Item - Golden Viking Circlet">
 		<!-- Uses 2 hair accessory slots. This item cannot be exchanged or dropped. Lasts for 500 minutes. -->
@@ -318,8 +357,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1;5542-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="5542" level="1" /> <!-- Little Devil Agathion Special Skill - Firecrackers -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10323" type="Armor" name="Agathion Seal Bracelet - Little Devil - Big Head">
 		<!-- Bracelet that summons the cute little devil Agathion. Cannot be traded or dropped. -->
@@ -332,8 +376,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1;5543-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="5543" level="1" /> <!-- Little Devil Agathion Special Skill - Mysterious Power -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10324" type="Armor" name="Agathion Seal Bracelet - Little Devil - Blessed Escape">
 		<!-- Bracelet that summons the cute little devil Agathion. Cannot be traded or dropped. -->
@@ -346,8 +395,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1;5544-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="5544" level="1" /> <!-- Little Devil Agathion Special Skill - Blessed Escape -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10325" type="Armor" name="Agathion Seal Bracelet - Little Devil - Resurrection">
 		<!-- Bracelet that summons the cute little devil Agathion. Cannot be traded or dropped. -->
@@ -360,8 +414,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1;5545-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="5545" level="1" /> <!-- Little Devil Agathion Special Skill - Blessed Resurrection -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10326" type="Armor" name="Agathion Seal Bracelet - Little Devil">
 		<!-- Bracelet that summons a cute Little Devil Agathion. Cannot be traded or dropped. -->
@@ -374,8 +433,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="3267-1;3424-1;5536-1" /> <!-- Dismiss Agathion -->
+		<skills>
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="3424" level="1" /> <!-- Release Seal on Agathion - Little Devil Agathion -->
+			<skill id="5536" level="1" /> <!-- Little Devil Cuteness Trick -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 	<item id="10327" type="EtcItem" name="Evil Weapon">
 		<!-- Weapon that can only be obtained from the evil spirits created at the Monster Foundry -->
@@ -455,7 +518,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="10334" type="EtcItem" name="Badge - Temple Executor">
-		<!-- Give it to High Priest Sylvain along with the Temple of Einhasad's "Temple Executor" proof of identity and the "Badge - Temple Missionary." -->
+		<!-- Give it to High Priest Sylvain along with the Temple of Einhasad's "Temple Executor" proof of identity and the "Badge - Temple Missionary. -->
 		<set name="icon" val="icon.etc_jewel_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
@@ -510,7 +573,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="10339" type="EtcItem" name="Badge - Temple Missionary">
-		<!-- Give it to High Priest Sylvain along with the Temple of Einhasad's "Temple Missionary" proof of identity and the "Badge - Temple Executor." -->
+		<!-- Give it to High Priest Sylvain along with the Temple of Einhasad's "Temple Missionary" proof of identity and the "Badge - Temple Executor. -->
 		<set name="icon" val="icon.etc_jewel_silver_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
@@ -532,7 +595,7 @@
 		<set name="is_questitem" val="true" />
 	</item>
 	<item id="10341" type="EtcItem" name="Temple Manifesto">
-		<!-- Temple's manifesto describing the only "righteousness" -->
+		<!-- Temple's manifesto describing the only "righteousness -->
 		<set name="icon" val="icon.etc_letter_white_i00" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />

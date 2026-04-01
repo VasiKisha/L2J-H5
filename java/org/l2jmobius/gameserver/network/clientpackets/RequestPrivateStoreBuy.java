@@ -30,13 +30,13 @@ import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.ItemRequest;
-import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.network.PacketLogger;
+import org.l2jmobius.gameserver.network.holders.RequestTrade;
+import org.l2jmobius.gameserver.network.holders.TradeList;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
 public class RequestPrivateStoreBuy extends ClientPacket
@@ -44,7 +44,7 @@ public class RequestPrivateStoreBuy extends ClientPacket
 	private static final int BATCH_LENGTH = 20; // length of the one item
 	
 	private int _storePlayerId;
-	private Set<ItemRequest> _items = null;
+	private Set<RequestTrade> _items = null;
 	
 	@Override
 	protected void readImpl()
@@ -68,7 +68,7 @@ public class RequestPrivateStoreBuy extends ClientPacket
 				return;
 			}
 			
-			_items.add(new ItemRequest(objectId, cnt, price));
+			_items.add(new RequestTrade(objectId, cnt, price));
 		}
 	}
 	

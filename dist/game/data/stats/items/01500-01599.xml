@@ -64,7 +64,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="51" />
 		<stats>
-			<add order="0" stat="mDef" val="15" />
+			<stat type="mDef">15</stat>
 		</stats>
 	</item>
 	<item id="1507" type="Armor" name="Necklace of Valor">
@@ -77,7 +77,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3600" />
 		<stats>
-			<add order="0" stat="mDef" val="21" />
+			<stat type="mDef">21</stat>
 		</stats>
 	</item>
 	<item id="1508" type="Armor" name="Ring of Raccoon">
@@ -90,7 +90,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1800" />
 		<stats>
-			<add order="0" stat="mDef" val="11" />
+			<stat type="mDef">11</stat>
 		</stats>
 	</item>
 	<item id="1509" type="Armor" name="Ring of Firefly">
@@ -103,7 +103,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1800" />
 		<stats>
-			<add order="0" stat="mDef" val="11" />
+			<stat type="mDef">11</stat>
 		</stats>
 	</item>
 	<item id="1510" type="Weapon" name="Butcher's Sword">
@@ -112,8 +112,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -122,10 +120,12 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="13" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">13</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="1511" type="Weapon" name="Silversmith Hammer">
@@ -134,8 +134,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="BLUNT" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="20" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -144,11 +142,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<stats>
-			<set stat="pAtk" val="13" />
-			<set stat="mAtk" val="10" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="379" />
+			<stat type="pAtk">13</stat>
+			<stat type="mAtk">10</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">379</stat>
+			<stat type="randomDamage">20</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="1512" type="EtcItem" name="Spellbook: Confusion">
@@ -396,7 +396,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2036-1" /> <!-- Blessed Scroll of Escape -->
+		<skills>
+			<skill id="2036" level="1" /> <!-- Blessed Scroll of Escape -->
+		</skills>
 	</item>
 	<item id="1539" type="EtcItem" name="Greater Healing Potion">
 		<!-- A magical potion that quickly restores HP. Its effect lasts for 15 seconds. -->
@@ -411,11 +413,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2037-1" /> <!-- Greater Healing Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2037" level="1" /> <!-- Greater Healing Potion -->
+		</skills>
 	</item>
 	<item id="1540" type="EtcItem" name="Quick Healing Potion">
 		<!-- A magical potion that quickly restores HP. -->
@@ -430,11 +434,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2038-1" /> <!-- Quick Healing Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2038" level="1" /> <!-- Quick Healing Potion -->
+		</skills>
 	</item>
 	<item id="1541" type="EtcItem" name="Honey Khandar">
 		<!-- A miraculous medicine made of the mixture of honey and khandar extract. Take this to Centurion Nakusin. -->

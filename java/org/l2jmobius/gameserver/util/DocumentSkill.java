@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.util;
 
@@ -25,6 +29,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -32,7 +37,7 @@ import org.l2jmobius.gameserver.model.skill.EffectScope;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
- * @author mkizub
+ * @author mkizub, Mobius
  */
 public class DocumentSkill extends DocumentBase
 {
@@ -226,85 +231,123 @@ public class DocumentSkill extends DocumentBase
 		{
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
 				{
-					// Extractable item skills by Zoey76
-					if ("capsuled_items_skill".equalsIgnoreCase(n.getAttributes().getNamedItem("name").getNodeValue()))
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.toLowerCase().startsWith("enchant") || nodeName.toLowerCase().endsWith("effects") || nodeName.equalsIgnoreCase("conditions"))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
+				{
+					parseBeanSet(n, _currentSkill.sets[i - 1], i);
+				}
+				else
+				{
+					// Check if this is a direct element value node (like <reuseDelay>3000</reuseDelay>).
+					if (n.getAttributes().getNamedItem("levelValues") != null)
 					{
-						setExtractableSkillData(_currentSkill.sets[i - 1], getTableValue("#extractableItems", i));
+						parseInlineLevelTable(n, _currentSkill.sets[i - 1], i);
 					}
 					else
 					{
-						parseBeanSet(n, _currentSkill.sets[i - 1], i);
+						parseElementValue(n, _currentSkill.sets[i - 1], i);
 					}
 				}
 			}
 		}
 		
+		// --- Enchant Route 1 ---
 		for (int i = 0; i < enchantLevels1; i++)
 		{
 			_currentSkill.enchsets1[i] = new StatSet();
 			_currentSkill.enchsets1[i].set("skill_id", _currentSkill.id);
-			
-			// currentSkill.enchsets1[i] = currentSkill.sets[currentSkill.sets.length-1];
 			_currentSkill.enchsets1[i].set("level", i + 101);
 			_currentSkill.enchsets1[i].set("name", _currentSkill.name);
-			// currentSkill.enchsets1[i].set("skillType", "NOTDONE");
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant1")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets1[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant1".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant1".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets1[i], i + 1);
 				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel1Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets1[i], i + 1, 1);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets1[i], _currentSkill.sets.length);
+					}
+				}
 			}
 		}
 		
-		if (_currentSkill.enchsets1.length != enchantLevels1)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels1 + " levels expected");
-		}
-		
+		// --- Enchant Route 2 ---
 		for (int i = 0; i < enchantLevels2; i++)
 		{
 			_currentSkill.enchsets2[i] = new StatSet();
-			
-			// currentSkill.enchsets2[i] = currentSkill.sets[currentSkill.sets.length-1];
 			_currentSkill.enchsets2[i].set("skill_id", _currentSkill.id);
 			_currentSkill.enchsets2[i].set("level", i + 201);
 			_currentSkill.enchsets2[i].set("name", _currentSkill.name);
-			// currentSkill.enchsets2[i].set("skillType", "NOTDONE");
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant2")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets2[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant2".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant2".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets2[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel2Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets2[i], i + 1, 2);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets2[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets2.length != enchantLevels2)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels2 + " levels expected");
-		}
-		
+		// --- Enchant Route 3 ---
 		for (int i = 0; i < enchantLevels3; i++)
 		{
 			_currentSkill.enchsets3[i] = new StatSet();
@@ -314,26 +357,40 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant3")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets3[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant3".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant3".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets3[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel3Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets3[i], i + 1, 3);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets3[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets3.length != enchantLevels3)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels3 + " levels expected");
-		}
-		
+		// --- Enchant Route 4 ---
 		for (int i = 0; i < enchantLevels4; i++)
 		{
 			_currentSkill.enchsets4[i] = new StatSet();
@@ -343,26 +400,40 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant4")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets4[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant4".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant4".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets4[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel4Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets4[i], i + 1, 4);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets4[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets4.length != enchantLevels4)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels4 + " levels expected");
-		}
-		
+		// --- Enchant Route 5 ---
 		for (int i = 0; i < enchantLevels5; i++)
 		{
 			_currentSkill.enchsets5[i] = new StatSet();
@@ -372,26 +443,40 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant5")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets5[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant5".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant5".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets5[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel5Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets5[i], i + 1, 5);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets5[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets5.length != enchantLevels5)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels5 + " levels expected");
-		}
-		
+		// --- Enchant Route 6 ---
 		for (int i = 0; i < enchantLevels6; i++)
 		{
 			_currentSkill.enchsets6[i] = new StatSet();
@@ -401,26 +486,40 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant6")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets6[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant6".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant6".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets6[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel6Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets6[i], i + 1, 6);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets6[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets6.length != enchantLevels6)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels6 + " levels expected");
-		}
-		
+		// --- Enchant Route 7 ---
 		for (int i = 0; i < enchantLevels7; i++)
 		{
 			_currentSkill.enchsets7[i] = new StatSet();
@@ -430,26 +529,40 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant7")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets7[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant7".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant7".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets7[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel7Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets7[i], i + 1, 7);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets7[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
 		
-		if (_currentSkill.enchsets7.length != enchantLevels7)
-		{
-			throw new RuntimeException("Skill id=" + skillId + " number of levels missmatch, " + enchantLevels7 + " levels expected");
-		}
-		
+		// --- Enchant Route 8 ---
 		for (int i = 0; i < enchantLevels8; i++)
 		{
 			_currentSkill.enchsets8[i] = new StatSet();
@@ -459,17 +572,35 @@ public class DocumentSkill extends DocumentBase
 			
 			for (n = first; n != null; n = n.getNextSibling())
 			{
-				if ("set".equalsIgnoreCase(n.getNodeName()))
+				if (n.getNodeType() != Node.ELEMENT_NODE)
+				{
+					continue;
+				}
+				
+				final String nodeName = n.getNodeName();
+				if (nodeName.equalsIgnoreCase("table") || nodeName.equalsIgnoreCase("conditions") || (nodeName.toLowerCase().startsWith("enchant") && !nodeName.equalsIgnoreCase("enchant8")))
+				{
+					continue;
+				}
+				
+				if ("set".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets8[i], _currentSkill.sets.length);
 				}
-			}
-			
-			for (n = first; n != null; n = n.getNextSibling())
-			{
-				if ("enchant8".equalsIgnoreCase(n.getNodeName()))
+				else if ("enchant8".equalsIgnoreCase(nodeName))
 				{
 					parseBeanSet(n, _currentSkill.enchsets8[i], i + 1);
+				}
+				else if (!nodeName.toLowerCase().endsWith("effects"))
+				{
+					if (n.getAttributes().getNamedItem("subLevel8Values") != null)
+					{
+						parseInlineLevelTable(n, _currentSkill.enchsets8[i], i + 1, 8);
+					}
+					else
+					{
+						parseElementValue(n, _currentSkill.enchsets8[i], _currentSkill.sets.length);
+					}
 				}
 			}
 		}
@@ -1582,6 +1713,63 @@ public class DocumentSkill extends DocumentBase
 		}
 		
 		_currentSkill.skills.addAll(_currentSkill.currentSkills);
+	}
+	
+	/**
+	 * Parse an element with inline level table attributes.<br>
+	 * Example: <mpConsume levelTable="40 45 50 55 60" /> for normal levels Example: <mpConsume subLevelTable1="140 145 150 155 160" /> for enchant route 1
+	 * @param n the XML node to parse
+	 * @param set the StatSet to store the data into
+	 * @param level the current level (1-based)
+	 * @param enchantRoute the enchant route (0 for normal levels, 1-8 for enchant routes)
+	 */
+	protected void parseInlineLevelTable(Node n, StatSet set, int level, int enchantRoute)
+	{
+		final String nodeName = n.getNodeName().trim();
+		final NamedNodeMap attrs = n.getAttributes();
+		
+		// Check main level table attribute.
+		if (enchantRoute == 0)
+		{
+			final Node levelTableNode = attrs.getNamedItem("levelValues");
+			if (levelTableNode != null)
+			{
+				final String tableValue = levelTableNode.getNodeValue().trim();
+				final String[] values = tableValue.split("\\s+");
+				if ((values.length > 0) && (level > 0) && (level <= values.length))
+				{
+					set.set(nodeName, StringUtil.parseValue(values[level - 1]));
+					return;
+				}
+			}
+		}
+		
+		// Check enchant level table attributes.
+		if (enchantRoute > 0)
+		{
+			final Node subLevelNode = attrs.getNamedItem("subLevel" + enchantRoute + "Values");
+			if (subLevelNode != null)
+			{
+				final String tableValue = subLevelNode.getNodeValue().trim();
+				final String[] values = tableValue.split("\\s+");
+				if ((values.length > 0) && (level > 0) && (level <= values.length))
+				{
+					set.set(nodeName, StringUtil.parseValue(values[level - 1]));
+					return;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Parse an element with inline level table attributes for normal levels.
+	 * @param n the XML node to parse
+	 * @param set the StatSet to store the data into
+	 * @param level the current level (1-based)
+	 */
+	protected void parseInlineLevelTable(Node n, StatSet set, int level)
+	{
+		parseInlineLevelTable(n, set, level, 0);
 	}
 	
 	private void makeSkills()

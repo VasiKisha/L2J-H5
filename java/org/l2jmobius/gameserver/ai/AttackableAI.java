@@ -35,9 +35,7 @@ import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
-import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
@@ -47,6 +45,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.npc.AISkillScope;
 import org.l2jmobius.gameserver.model.actor.enums.npc.AIType;
+import org.l2jmobius.gameserver.model.actor.holders.npc.AggroInfo;
 import org.l2jmobius.gameserver.model.actor.instance.FestivalMonster;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyMob;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
@@ -69,6 +68,7 @@ import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.taskmanagers.AttackableThinkTaskManager;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
@@ -885,6 +885,9 @@ public class AttackableAI extends CreatureAI
 		{
 			// Set the AI Intention to ACTIVE
 			setIntention(Intention.ACTIVE);
+			
+			// Lose target and walk to spawn.
+			setTarget(null);
 			
 			if (!_actor.isFakePlayer())
 			{

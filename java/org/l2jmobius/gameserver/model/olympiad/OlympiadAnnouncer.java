@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.model.olympiad;
 
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 

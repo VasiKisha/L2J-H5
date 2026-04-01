@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.model.actor.tasks.npc.walker;
 
 import org.l2jmobius.gameserver.managers.WalkingManager;
-import org.l2jmobius.gameserver.model.WalkInfo;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.holders.npc.WalkInfo;
 
 /**
  * Walker arrive task.

@@ -25,12 +25,12 @@ import static org.l2jmobius.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
-import org.l2jmobius.gameserver.model.ItemRequest;
-import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.network.PacketLogger;
+import org.l2jmobius.gameserver.network.holders.RequestTrade;
+import org.l2jmobius.gameserver.network.holders.TradeList;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
 /**
@@ -41,7 +41,7 @@ public class RequestPrivateStoreSell extends ClientPacket
 	private static final int BATCH_LENGTH = 28; // length of the one item
 	
 	private int _storePlayerId;
-	private ItemRequest[] _items = null;
+	private RequestTrade[] _items = null;
 	
 	@Override
 	protected void readImpl()
@@ -53,7 +53,7 @@ public class RequestPrivateStoreSell extends ClientPacket
 			return;
 		}
 		
-		_items = new ItemRequest[count];
+		_items = new RequestTrade[count];
 		for (int i = 0; i < count; i++)
 		{
 			final int objectId = readInt();
@@ -68,7 +68,7 @@ public class RequestPrivateStoreSell extends ClientPacket
 				return;
 			}
 			
-			_items[i] = new ItemRequest(objectId, itemId, cnt, price);
+			_items[i] = new RequestTrade(objectId, itemId, cnt, price);
 		}
 	}
 	

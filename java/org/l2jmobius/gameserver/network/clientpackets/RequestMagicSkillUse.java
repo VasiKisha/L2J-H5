@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.transform.Transform;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -74,7 +75,7 @@ public class RequestMagicSkillUse extends ClientPacket
 			}
 		}
 		
-		// Get the level of the used skill
+		// Get the level of the used skill.
 		Skill skill = player.getKnownSkill(_magicId);
 		if (skill == null)
 		{
@@ -104,19 +105,21 @@ public class RequestMagicSkillUse extends ClientPacket
 			return;
 		}
 		
-		if ((player.isTransformed() || player.isInStance()) && !player.hasTransformSkill(skill.getId()))
+		// Do not cast non transform skills when transformed.
+		final Transform transform = player.getTransformation();
+		if ((transform != null) && !transform.canUseWeaponStats() && !player.hasTransformSkill(skill.getId()))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		// If Alternate rule Karma punishment is set to true, forbid skill Return to player with Karma
+		// If alternate rule Karma punishment is set to true, forbid teleport to player with Karma.
 		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT && (player.getKarma() > 0) && skill.hasEffectType(EffectType.TELEPORT))
 		{
 			return;
 		}
 		
-		// players mounted on pets cannot use any toggle skills
+		// Players mounted on pets cannot use any toggle skills.
 		if (skill.isToggle() && player.isMounted())
 		{
 			return;

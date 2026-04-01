@@ -321,7 +321,7 @@ public class Gui
 		
 		final JMenuItem mntmAbout = new JMenuItem("About");
 		mntmAbout.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		mntmAbout.addActionListener(_ -> new frmAbout());
+		mntmAbout.addActionListener(_ -> new AboutFrame());
 		mnHelp.add(mntmAbout);
 		
 		// Set icons.

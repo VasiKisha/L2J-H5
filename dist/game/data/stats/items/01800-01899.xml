@@ -354,10 +354,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2040-1" /> <!-- Scroll of Escape: Clan Hall -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2040" level="1" /> <!-- Scroll of Escape: Clan Hall -->
+		</skills>
 	</item>
 	<item id="1830" type="EtcItem" name="Scroll of Escape: Castle">
 		<!-- A scroll that relocates you to your castle. If you don't have a castle, it will relocate you to the nearest village. -->
@@ -370,10 +372,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2041-1" /> <!-- Scroll of Escape: Castle -->
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2041" level="1" /> <!-- Scroll of Escape: Castle -->
+		</skills>
 	</item>
 	<item id="1831" type="EtcItem" name="Antidote">
 		<!-- A reagent that neutralizes poison. -->
@@ -388,8 +392,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2042-1" /> <!-- Antidote -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2042" level="1" /> <!-- Antidote -->
+		</skills>
 	</item>
 	<item id="1832" type="EtcItem" name="Greater Antidote">
 		<!-- A high-quality reagent that neutralizes powerful poison. -->
@@ -404,8 +410,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2043-1" /> <!-- Greater Antidote -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2043" level="1" /> <!-- Greater Antidote -->
+		</skills>
 	</item>
 	<item id="1833" type="EtcItem" name="Bandage">
 		<!-- A medical bandage that stops bleeding when injured. -->
@@ -420,8 +428,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2044-1" /> <!-- Bandage -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2044" level="1" /> <!-- Bandage -->
+		</skills>
 	</item>
 	<item id="1834" type="EtcItem" name="Emergency Dressing">
 		<!-- A medical bandage that stops bleeding fast when severely injured. -->
@@ -436,8 +446,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2045-1" /> <!-- Emergency Dressing -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2045" level="1" /> <!-- Emergency Dressing -->
+		</skills>
 	</item>
 	<item id="1835" type="EtcItem" name="Soulshot: No Grade">
 		<!-- The power of a higher-level spirit is bestowed upon a weapon, temporarily increasing power of attack. Used with a No grade weapon. -->
@@ -449,8 +461,10 @@
 		<set name="price" val="7" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="SoulShots" />
-		<set name="item_skill" val="2039-1" /> <!-- Soulshot: No Grade -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2039" level="1" /> <!-- Soulshot: No Grade -->
+		</skills>
 	</item>
 	<item id="1836" type="EtcItem" name="Kendell's 1st Order">
 		<!-- Punish Kaboo Chief Uoph. He should be somewhere around the ruins over the hill, west of the Elven Village. -->

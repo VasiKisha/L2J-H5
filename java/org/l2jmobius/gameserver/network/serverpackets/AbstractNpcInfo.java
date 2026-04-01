@@ -112,7 +112,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			_isAttackable = cha.isAutoAttackable(attacker);
 			
 			// npc crest of owning clan/ally of castle
-			if (cha.isNpc() && !cha.isMonster() && cha.isInsideZone(ZoneId.TOWN) && (NpcConfig.SHOW_CREST_WITHOUT_QUEST || cha.getCastle().getShowNpcCrest()) && (cha.getCastle().getOwnerId() != 0))
+			if (cha.isNpc() && cha.isTargetable() && cha.isShowName() && !cha.isMonster() && cha.isInsideZone(ZoneId.TOWN) && (NpcConfig.SHOW_CREST_WITHOUT_QUEST || cha.getCastle().getShowNpcCrest()) && (cha.getCastle().getOwnerId() != 0))
 			{
 				final TownZone town = TownManager.getTown(_x, _y, _z);
 				if (town != null)

@@ -36,8 +36,8 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.ConquerableHallSiegeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -1243,10 +1243,10 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			_generated = getRandom(WORLD_LIST.length);
 			final Word word = WORLD_LIST[_generated];
 			final ExShowScreenMessage msg = new ExShowScreenMessage(word.getName(), 5000);
-			final int region = MapRegionManager.getInstance().getMapRegionLocId(_npc.getX(), _npc.getY());
+			final int region = MapRegionData.getInstance().getMapRegionLocId(_npc.getX(), _npc.getY());
 			for (Player player : World.getInstance().getPlayers())
 			{
-				if ((region == MapRegionManager.getInstance().getMapRegionLocId(player.getX(), player.getY())) && LocationUtil.checkIfInRange(750, _npc, player, false))
+				if ((region == MapRegionData.getInstance().getMapRegionLocId(player.getX(), player.getY())) && LocationUtil.checkIfInRange(750, _npc, player, false))
 				{
 					player.sendPacket(msg);
 				}

@@ -179,6 +179,14 @@ public class Transform
 		return _type == TransformType.PURE_STAT;
 	}
 	
+	/**
+	 * @return {@code true} if transform uses equipped weapon stats, {@code false} otherwise
+	 */
+	public boolean canUseWeaponStats()
+	{
+		return (_type == TransformType.COMBAT) || (_type == TransformType.MODE_CHANGE);
+	}
+	
 	public float getCollisionHeight(Player player)
 	{
 		final TransformTemplate template = getTemplate(player);

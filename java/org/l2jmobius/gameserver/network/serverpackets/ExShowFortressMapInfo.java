@@ -20,10 +20,10 @@ import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.FortSiegeManager;
-import org.l2jmobius.gameserver.model.FortSiegeSpawn;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.FortSiege;
+import org.l2jmobius.gameserver.model.siege.FortSpawnHolder;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -34,7 +34,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 {
 	private final Fort _fortress;
 	private final FortSiege _siege;
-	private final List<FortSiegeSpawn> _commanders;
+	private final List<FortSpawnHolder> _commanders;
 	
 	public ExShowFortressMapInfo(Fort fortress)
 	{
@@ -56,7 +56,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 			{
 				case 3:
 				{
-					for (FortSiegeSpawn spawn : _commanders)
+					for (FortSpawnHolder spawn : _commanders)
 					{
 						if (isSpawned(spawn.getId()))
 						{
@@ -72,7 +72,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 				case 4: // TODO: change 4 to 5 once control room supported
 				{
 					int count = 0;
-					for (FortSiegeSpawn spawn : _commanders)
+					for (FortSpawnHolder spawn : _commanders)
 					{
 						count++;
 						if (count == 4)

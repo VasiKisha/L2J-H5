@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.model.groups.matching;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExManagePartyRoomMember;
@@ -153,7 +153,7 @@ public class PartyMatchRoom
 	 */
 	public int getLocation()
 	{
-		return MapRegionManager.getInstance().getMapRegion(_members.get(0)).getBbs();
+		return MapRegionData.getInstance().getBBs(_members.get(0));
 	}
 	
 	public int getMembers()

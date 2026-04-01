@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.data.holders.ElementalItemHolder;
-import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.item.enums.ElementalItemType;
+import org.l2jmobius.gameserver.model.item.holders.Elementals;
 
 /**
  * @author Mobius

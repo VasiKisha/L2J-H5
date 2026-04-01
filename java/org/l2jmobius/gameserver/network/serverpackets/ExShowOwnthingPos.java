@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.TerritoryWard;
+import org.l2jmobius.gameserver.model.siege.TerritoryWard;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 

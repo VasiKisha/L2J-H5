@@ -21,7 +21,7 @@
 package ai.areas.Gracia.vehicles.KeucereusNorthController;
 
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.VehiclePathPoint;
+import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
 import org.l2jmobius.gameserver.network.enums.Movie;
 
 import ai.areas.Gracia.vehicles.AirShipController;

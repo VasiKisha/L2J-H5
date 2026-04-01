@@ -31,8 +31,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 
 public class FortSiegeGuardManager
 {

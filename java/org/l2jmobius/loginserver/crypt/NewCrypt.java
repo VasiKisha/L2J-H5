@@ -25,43 +25,67 @@ import java.io.IOException;
 import org.l2jmobius.commons.network.Buffer;
 
 /**
- * Class to use a blowfish cipher with ECB processing.<br>
- * Static methods are present to append/check the checksum of<br>
- * packets exchanged between the following partners:<br>
- * Login Server <-> Game Client<br>
- * Login Server <-> Game Server<br>
- * Also a static method is provided for the initial xor encryption between Login Server <-> Game Client.
+ * Handles Blowfish cipher encryption with ECB processing for network communication.<br>
+ * Provides packet integrity verification and XOR encryption for secure data exchange.
+ * <ul>
+ * <li>Checksum validation for packet integrity verification.</li>
+ * <li>XOR encryption for initial handshake communication.</li>
+ * <li>Blowfish encryption/decryption for secure packet transmission.</li>
+ * </ul>
  */
 public class NewCrypt
 {
-	private final BlowfishEngine _crypter;
-	private final BlowfishEngine _decrypter;
+	// Constants.
+	private static final int CHECKSUM_SIZE = 4;
+	private static final int XOR_KEY_SIZE = 4;
+	private static final int MINIMUM_PACKET_SIZE = 4;
+	private static final int SIZE_ALIGNMENT_MASK = 3;
+	private static final int XOR_OFFSET_ADJUSTMENT = 8;
 	
+	// Encryption engines.
+	private final BlowfishEngine _encryptionEngine;
+	private final BlowfishEngine _decryptionEngine;
+	
+	/**
+	 * Creates a new crypt instance with byte array key.
+	 * @param blowfishKey the encryption key as byte array
+	 */
 	public NewCrypt(byte[] blowfishKey)
 	{
-		_crypter = new BlowfishEngine();
-		_crypter.init(true, blowfishKey);
-		_decrypter = new BlowfishEngine();
-		_decrypter.init(false, blowfishKey);
+		_encryptionEngine = new BlowfishEngine();
+		_encryptionEngine.init(true, blowfishKey);
+		_decryptionEngine = new BlowfishEngine();
+		_decryptionEngine.init(false, blowfishKey);
 	}
 	
+	/**
+	 * Creates a new crypt instance with string key.
+	 * @param key the encryption key as string
+	 */
 	public NewCrypt(String key)
 	{
 		this(key.getBytes());
 	}
 	
-	public static boolean verifyChecksum(Buffer data, final int offset, final int size)
+	/**
+	 * Verifies packet checksum integrity by comparing calculated XOR checksum with stored value.
+	 * @param data the buffer containing packet data
+	 * @param offset the starting position in buffer
+	 * @param size the total size of data including checksum
+	 * @return true if checksum is valid, false otherwise
+	 */
+	public static boolean verifyChecksum(Buffer data, int offset, int size)
 	{
-		// check if size is multiple of 4 and if there is more then only the checksum
-		if (((size & 3) != 0) || (size <= 4))
+		// Check if size is multiple of 4 and if there is more than only the checksum.
+		if (((size & SIZE_ALIGNMENT_MASK) != 0) || (size <= MINIMUM_PACKET_SIZE))
 		{
 			return false;
 		}
 		
 		long checksum = 0;
-		final int count = size - 4;
+		final int count = size - CHECKSUM_SIZE;
 		int i;
-		for (i = offset; i < count; i += 4)
+		for (i = offset; i < count; i += CHECKSUM_SIZE)
 		{
 			checksum ^= data.readInt(i);
 		}
@@ -69,12 +93,18 @@ public class NewCrypt
 		return data.readInt(i) == checksum;
 	}
 	
-	public static void appendChecksum(Buffer data, final int offset, final int size)
+	/**
+	 * Appends XOR checksum to packet data for integrity verification.
+	 * @param data the buffer containing packet data
+	 * @param offset the starting position in buffer
+	 * @param size the total size including space for checksum
+	 */
+	public static void appendChecksum(Buffer data, int offset, int size)
 	{
 		int checksum = 0;
-		final int count = size - 4;
+		final int count = size - CHECKSUM_SIZE;
 		int i;
-		for (i = offset; i < count; i += 4)
+		for (i = offset; i < count; i += CHECKSUM_SIZE)
 		{
 			checksum ^= data.readInt(i);
 		}
@@ -83,47 +113,62 @@ public class NewCrypt
 	}
 	
 	/**
-	 * Packet is first XOR encoded with <code>key</code> Then, the last 4 bytes are overwritten with the the XOR "key". Thus this assume that there is enough room for the key to fit without overwriting data.
-	 * @param raw The raw bytes to be encrypted
-	 * @param offset The begining of the data to be encrypted
-	 * @param size Length of the data to be encrypted
-	 * @param key The 4 bytes (int) XOR key
+	 * Encrypts packet data using XOR encoding with progressive key modification.<br>
+	 * The XOR key is written to the final 4 bytes of the encrypted data.
+	 * @param rawData the buffer containing raw packet data
+	 * @param offset the beginning of data to encrypt
+	 * @param size the length of data to encrypt
+	 * @param xorKey the initial XOR key value
 	 */
-	public static void encXORPass(Buffer raw, final int offset, final int size, int key)
+	public static void encXORPass(Buffer rawData, int offset, int size, int xorKey)
 	{
-		final int stop = size - 8;
-		int pos = 4 + offset;
-		int edx;
-		int ecx = key; // Initial xor key
-		while (pos < stop)
+		final int stopPosition = size - XOR_OFFSET_ADJUSTMENT;
+		int currentPosition = XOR_KEY_SIZE + offset;
+		int dataValue;
+		int progressiveKey = xorKey; // Initial XOR key.
+		while (currentPosition < stopPosition)
 		{
-			edx = raw.readInt(pos);
-			ecx += edx;
-			edx ^= ecx;
-			raw.writeInt(pos, edx);
-			pos += 4;
+			dataValue = rawData.readInt(currentPosition);
+			progressiveKey += dataValue;
+			dataValue ^= progressiveKey;
+			rawData.writeInt(currentPosition, dataValue);
+			currentPosition += XOR_KEY_SIZE;
 		}
 		
-		raw.writeInt(pos, ecx);
+		rawData.writeInt(currentPosition, progressiveKey);
 	}
 	
-	public synchronized void decrypt(Buffer raw, final int offset, final int size) throws IOException
+	/**
+	 * Decrypts buffer data using Blowfish decryption in ECB mode.
+	 * @param rawData the buffer containing encrypted data
+	 * @param offset the starting position for decryption
+	 * @param size the total size of data to decrypt
+	 * @throws IOException if decryption process fails
+	 */
+	public synchronized void decrypt(Buffer rawData, int offset, int size) throws IOException
 	{
-		final int block = _decrypter.getBlockSize();
-		final int count = size / block;
-		for (int i = 0; i < count; i++)
+		final int blockSize = _decryptionEngine.getBlockSize();
+		final int blockCount = size / blockSize;
+		for (int i = 0; i < blockCount; i++)
 		{
-			_decrypter.processBlock(raw, offset + (i * block));
+			_decryptionEngine.processBlock(rawData, offset + (i * blockSize));
 		}
 	}
 	
-	public void crypt(Buffer raw, final int offset, final int size) throws IOException
+	/**
+	 * Encrypts buffer data using Blowfish encryption in ECB mode.
+	 * @param rawData the buffer containing plaintext data
+	 * @param offset the starting position for encryption
+	 * @param size the total size of data to encrypt
+	 * @throws IOException if encryption process fails
+	 */
+	public synchronized void crypt(Buffer rawData, int offset, int size) throws IOException
 	{
-		int block = _crypter.getBlockSize();
-		int count = size / block;
-		for (int i = 0; i < count; i++)
+		int blockSize = _encryptionEngine.getBlockSize();
+		int blockCount = size / blockSize;
+		for (int i = 0; i < blockCount; i++)
 		{
-			_crypter.processBlock(raw, offset + (i * block));
+			_encryptionEngine.processBlock(rawData, offset + (i * blockSize));
 		}
 	}
 }

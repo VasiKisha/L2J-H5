@@ -13,14 +13,15 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8432-1" /> <!-- Moirai Gloves -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8432" level="1" /> <!-- Moirai Gloves -->
+		</skills>
 	</item>
 	<item id="16301" type="Armor" name="Moirai Boots">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to earth. -->
@@ -35,14 +36,15 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8422-1" /> <!-- Moirai Boots -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8422" level="1" /> <!-- Moirai Boots -->
+		</skills>
 	</item>
 	<item id="16302" type="Armor" name="Moirai Leather Boots">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to earth. -->
@@ -57,11 +59,12 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8428-1" /> <!-- Moirai Leather Boots -->
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8428" level="1" /> <!-- Moirai Leather Boots -->
+		</skills>
 	</item>
 	<item id="16303" type="Armor" name="Moirai Shoes">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to earth. -->
@@ -76,14 +79,15 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8433-1" /> <!-- Moirai Shoes -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
+		<skills>
+			<skill id="8433" level="1" /> <!-- Moirai Shoes -->
+		</skills>
 	</item>
 	<item id="16304" type="Armor" name="Moirai Shield">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -97,16 +101,17 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8423-1" /> <!-- Moirai Shield -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="355" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">355</stat>
 		</stats>
+		<skills>
+			<skill id="8423" level="1" /> <!-- Moirai Shield -->
+		</skills>
 	</item>
 	<item id="16305" type="Armor" name="Moirai Sigil">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -121,15 +126,16 @@
 		<set name="weight" val="920" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8434-1" /> <!-- Moirai Sigil -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="16" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">16</stat>
 		</stats>
+		<skills>
+			<skill id="8434" level="1" /> <!-- Moirai Sigil -->
+		</skills>
 	</item>
 	<item id="16306" type="Armor" name="Vesper Helmet">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -144,14 +150,15 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8435-1" /> <!-- Vesper Helmet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
+		<skills>
+			<skill id="8435" level="1" /> <!-- Vesper Helmet -->
+		</skills>
 	</item>
 	<item id="16307" type="Armor" name="Vesper Leather Helmet">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -166,11 +173,12 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8441-1" /> <!-- Vesper Leather Helmet -->
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
+		<skills>
+			<skill id="8441" level="1" /> <!-- Vesper Leather Helmet -->
+		</skills>
 	</item>
 	<item id="16308" type="Armor" name="Vesper Circlet">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Shock, and decreases Magic Cancel Rate. -->
@@ -185,14 +193,15 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8446-1" /> <!-- Vesper Circlet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
+		<skills>
+			<skill id="8446" level="1" /> <!-- Vesper Circlet -->
+		</skills>
 	</item>
 	<item id="16309" type="Armor" name="Vesper Breastplate">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, and Resistance to Hold. -->
@@ -208,14 +217,15 @@
 		<set name="price" val="46668000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8436-1" /> <!-- Vesper Cuirass -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="250" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">250</stat>
 		</stats>
+		<skills>
+			<skill id="8436" level="1" /> <!-- Vesper Cuirass -->
+		</skills>
 	</item>
 	<item id="16310" type="Armor" name="Vesper Leather Breastplate">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -231,11 +241,12 @@
 		<set name="price" val="35000000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8442-1" /> <!-- Vesper Leather Hauberk -->
 		<stats>
-			<add order="0" stat="pDef" val="187" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">187</stat>
 		</stats>
+		<skills>
+			<skill id="8442" level="1" /> <!-- Vesper Leather Hauberk -->
+		</skills>
 	</item>
 	<item id="16311" type="Armor" name="Vesper Tunic">
 		<!-- Masterwork Item that increases M. Atk., Casting Spd., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -251,15 +262,16 @@
 		<set name="price" val="35000000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8447-1" /> <!-- Vesper Jacket -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="125" />
-			<add stat="maxMp" val="637" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">125</stat>
+			<stat type="maxMp">637</stat>
 		</stats>
+		<skills>
+			<skill id="8447" level="1" /> <!-- Vesper Jacket -->
+		</skills>
 	</item>
 	<item id="16312" type="Armor" name="Vesper Gaiter">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -275,14 +287,15 @@
 		<set name="price" val="29168000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8437-1" /> <!-- Vesper Gaiter -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="156" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">156</stat>
 		</stats>
+		<skills>
+			<skill id="8437" level="1" /> <!-- Vesper Gaiter -->
+		</skills>
 	</item>
 	<item id="16313" type="Armor" name="Vesper Leather Legging">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -298,11 +311,12 @@
 		<set name="price" val="21876000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8443-1" /> <!-- Vesper Leather Legging -->
 		<stats>
-			<add order="0" stat="pDef" val="117" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">117</stat>
 		</stats>
+		<skills>
+			<skill id="8443" level="1" /> <!-- Vesper Leather Legging -->
+		</skills>
 	</item>
 	<item id="16314" type="Armor" name="Vesper Stockings">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -318,15 +332,16 @@
 		<set name="price" val="21876000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8448-1" /> <!-- Vesper Hose -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="78" />
-			<add stat="maxMp" val="415" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">78</stat>
+			<stat type="maxMp">415</stat>
 		</stats>
+		<skills>
+			<skill id="8448" level="1" /> <!-- Vesper Hose -->
+		</skills>
 	</item>
 	<item id="16315" type="Armor" name="Vesper Gauntlet">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -341,14 +356,15 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8438-1" /> <!-- Vesper Gauntlet -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8438" level="1" /> <!-- Vesper Gauntlet -->
+		</skills>
 	</item>
 	<item id="16316" type="Armor" name="Vesper Leather Gloves">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -363,11 +379,12 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8444-1" /> <!-- Vesper Leather Gloves -->
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8444" level="1" /> <!-- Vesper Leather Gloves -->
+		</skills>
 	</item>
 	<item id="16317" type="Armor" name="Vesper Gloves">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -382,14 +399,15 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8449-1" /> <!-- Vesper Gloves -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8449" level="1" /> <!-- Vesper Gloves -->
+		</skills>
 	</item>
 	<item id="16318" type="Armor" name="Vesper Boots">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -404,14 +422,15 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8439-1" /> <!-- Vesper Boots -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8439" level="1" /> <!-- Vesper Boots -->
+		</skills>
 	</item>
 	<item id="16319" type="Armor" name="Vesper Leather Boots">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -426,11 +445,12 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8445-1" /> <!-- Vesper Leather Boots -->
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8445" level="1" /> <!-- Vesper Leather Boots -->
+		</skills>
 	</item>
 	<item id="16320" type="Armor" name="Vesper Shoes">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -445,14 +465,15 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8450-1" /> <!-- Vesper Shoes -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
+		<skills>
+			<skill id="8450" level="1" /> <!-- Vesper Shoes -->
+		</skills>
 	</item>
 	<item id="16321" type="Armor" name="Vesper Shield">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -466,16 +487,17 @@
 		<set name="weight" val="1130" />
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8440-1" /> <!-- Vesper Verteidiger -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="371" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">371</stat>
 		</stats>
+		<skills>
+			<skill id="8440" level="1" /> <!-- Vesper Verteidiger -->
+		</skills>
 	</item>
 	<item id="16322" type="Armor" name="Vesper Sigil">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -490,15 +512,16 @@
 		<set name="weight" val="920" />
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8451-1" /> <!-- Vesper Sigil -->
 		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="17" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">17</stat>
 		</stats>
+		<skills>
+			<skill id="8451" level="1" /> <!-- Vesper Sigil -->
+		</skills>
 	</item>
 	<item id="16323" type="Armor" name="Sealed Moirai Helmet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -517,8 +540,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16324" type="Armor" name="Sealed Moirai Leather Helmet">
@@ -535,8 +557,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16325" type="Armor" name="Sealed Moirai Circlet">
@@ -556,8 +577,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="96" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">96</stat>
 		</stats>
 	</item>
 	<item id="16326" type="Armor" name="Sealed Moirai Breastplate">
@@ -578,8 +598,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="225" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">225</stat>
 		</stats>
 	</item>
 	<item id="16327" type="Armor" name="Sealed Moirai Leather Breastplate">
@@ -597,8 +616,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="169" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">169</stat>
 		</stats>
 	</item>
 	<item id="16328" type="Armor" name="Sealed Moirai Tunic">
@@ -619,9 +637,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="112" />
-			<add stat="maxMp" val="614" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">112</stat>
+			<stat type="maxMp">614</stat>
 		</stats>
 	</item>
 	<item id="16329" type="Armor" name="Sealed Moirai Gaiter">
@@ -642,8 +659,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="141" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">141</stat>
 		</stats>
 	</item>
 	<item id="16330" type="Armor" name="Sealed Moirai Leather Legging">
@@ -661,8 +677,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="105" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">105</stat>
 		</stats>
 	</item>
 	<item id="16331" type="Armor" name="Sealed Moirai Stockings">
@@ -683,9 +698,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="70" />
-			<add stat="maxMp" val="392" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">70</stat>
+			<stat type="maxMp">392</stat>
 		</stats>
 	</item>
 	<item id="16332" type="Armor" name="Sealed Moirai Gauntlet">
@@ -705,8 +719,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16333" type="Armor" name="Sealed Moirai Leather Gloves">
@@ -723,8 +736,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16334" type="Armor" name="Sealed Moirai Gloves">
@@ -744,8 +756,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16335" type="Armor" name="Sealed Moirai Boots">
@@ -765,8 +776,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16336" type="Armor" name="Sealed Moirai Leather Boots">
@@ -783,8 +793,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16337" type="Armor" name="Sealed Moirai Shoes">
@@ -804,8 +813,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="64" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">64</stat>
 		</stats>
 	</item>
 	<item id="16338" type="Armor" name="Sealed Moirai Shield">
@@ -824,10 +832,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="337" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">337</stat>
 		</stats>
 	</item>
 	<item id="16339" type="Armor" name="Sealed Moirai Sigil">
@@ -847,9 +854,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="16" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">16</stat>
 		</stats>
 	</item>
 	<item id="16340" type="Armor" name="Sealed Vesper Helmet">
@@ -869,8 +875,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16341" type="Armor" name="Sealed Vesper Leather Helmet">
@@ -887,8 +892,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16342" type="Armor" name="Sealed Vesper Circlet">
@@ -908,8 +912,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="101" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">101</stat>
 		</stats>
 	</item>
 	<item id="16343" type="Armor" name="Sealed Vesper Breastplate">
@@ -930,8 +933,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="250" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">250</stat>
 		</stats>
 	</item>
 	<item id="16344" type="Armor" name="Sealed Vesper Leather Leather Breastplate">
@@ -949,8 +951,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="187" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">187</stat>
 		</stats>
 	</item>
 	<item id="16345" type="Armor" name="Sealed Vesper Tunic">
@@ -971,9 +972,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="125" />
-			<add stat="maxMp" val="637" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">125</stat>
+			<stat type="maxMp">637</stat>
 		</stats>
 	</item>
 	<item id="16346" type="Armor" name="Sealed Vesper Gaiter">
@@ -994,8 +994,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="148" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">148</stat>
 		</stats>
 	</item>
 	<item id="16347" type="Armor" name="Sealed Vesper Leather Legging">
@@ -1013,8 +1012,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="111" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">111</stat>
 		</stats>
 	</item>
 	<item id="16348" type="Armor" name="Sealed Vesper Stockings">
@@ -1035,9 +1033,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="74" />
-			<add stat="maxMp" val="415" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">74</stat>
+			<stat type="maxMp">415</stat>
 		</stats>
 	</item>
 	<item id="16349" type="Armor" name="Sealed Vesper Gauntlet">
@@ -1057,8 +1054,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16350" type="Armor" name="Sealed Vesper Leather Gloves">
@@ -1075,8 +1071,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16351" type="Armor" name="Sealed Vesper Gloves">
@@ -1096,8 +1091,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16352" type="Armor" name="Sealed Vesper Boots">
@@ -1117,8 +1111,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16353" type="Armor" name="Sealed Vesper Leather Boots">
@@ -1135,8 +1128,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16354" type="Armor" name="Sealed Vesper Shoes">
@@ -1156,8 +1148,7 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<add order="0" stat="pDef" val="68" />
-			<enchant stat="pDef" val="0" />
+			<stat type="pDef">68</stat>
 		</stats>
 	</item>
 	<item id="16355" type="Armor" name="Sealed Vesper Shield">
@@ -1176,10 +1167,9 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<set stat="rShld" val="20" />
-			<set stat="sDef" val="352" />
-			<enchant val="0" stat="sDef" />
+			<stat type="rEvas">-8</stat>
+			<stat type="rShld">20</stat>
+			<stat type="sDef">352</stat>
 		</stats>
 	</item>
 	<item id="16356" type="Armor" name="Sealed Vesper Sigil">
@@ -1199,9 +1189,8 @@
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 		</conditions>
 		<stats>
-			<sub stat="rEvas" val="8" />
-			<add order="0" stat="pDef" val="17" />
-			<enchant stat="pDef" val="0" />
+			<stat type="rEvas">-8</stat>
+			<stat type="pDef">17</stat>
 		</stats>
 	</item>
 	<item id="16357" type="EtcItem" name="Sealed Vesper Ring of Chaos">
@@ -1213,7 +1202,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5142000" />
 		<stats>
-			<add order="0" stat="mDef" val="55" />
+			<stat type="mDef">55</stat>
 		</stats>
 	</item>
 	<item id="16358" type="EtcItem" name="Sealed Vesper Earring of Chaos">
@@ -1225,7 +1214,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7713000" />
 		<stats>
-			<add order="0" stat="mDef" val="83" />
+			<stat type="mDef">83</stat>
 		</stats>
 	</item>
 	<item id="16359" type="EtcItem" name="Sealed Vesper Necklace of Chaos">
@@ -1237,7 +1226,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10284000" />
 		<stats>
-			<add order="0" stat="mDef" val="110" />
+			<stat type="mDef">110</stat>
 		</stats>
 	</item>
 	<item id="16360" type="EtcItem" name="Sealed Moirai Ring of Chaos">
@@ -1249,7 +1238,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3710000" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
+			<stat type="mDef">53</stat>
 		</stats>
 	</item>
 	<item id="16361" type="EtcItem" name="Sealed Moirai Earring of Chaos">
@@ -1261,7 +1250,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5565000" />
 		<stats>
-			<add order="0" stat="mDef" val="76" />
+			<stat type="mDef">76</stat>
 		</stats>
 	</item>
 	<item id="16362" type="EtcItem" name="Sealed Moirai Necklace of Chaos">
@@ -1273,7 +1262,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7420000" />
 		<stats>
-			<add order="0" stat="mDef" val="101" />
+			<stat type="mDef">101</stat>
 		</stats>
 	</item>
 	<item id="16363" type="EtcItem" name="Vesper Ring of Chaos">
@@ -1286,8 +1275,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7596000" />
 		<stats>
-			<add order="0" stat="mDef" val="62" />
-			<add stat="maxMp" val="25" />
+			<stat type="mDef">62</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
 	</item>
 	<item id="16364" type="EtcItem" name="Vesper Earring of Chaos">
@@ -1300,8 +1289,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="11394000" />
 		<stats>
-			<add order="0" stat="mDef" val="94" />
-			<add stat="maxMp" val="37" />
+			<stat type="mDef">94</stat>
+			<stat type="maxMp">37</stat>
 		</stats>
 	</item>
 	<item id="16365" type="EtcItem" name="Vesper Necklace of Chaos">
@@ -1314,8 +1303,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="15192000" />
 		<stats>
-			<add order="0" stat="mDef" val="125" />
-			<add stat="maxMp" val="50" />
+			<stat type="mDef">125</stat>
+			<stat type="maxMp">50</stat>
 		</stats>
 	</item>
 	<item id="16366" type="EtcItem" name="Moirai Ring of Chaos">
@@ -1328,8 +1317,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5480000" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
-			<add stat="maxMp" val="24" />
+			<stat type="mDef">53</stat>
+			<stat type="maxMp">24</stat>
 		</stats>
 	</item>
 	<item id="16367" type="EtcItem" name="Moirai Earring of Chaos">
@@ -1342,8 +1331,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="8221000" />
 		<stats>
-			<add order="0" stat="mDef" val="86" />
-			<add stat="maxMp" val="36" />
+			<stat type="mDef">86</stat>
+			<stat type="maxMp">36</stat>
 		</stats>
 	</item>
 	<item id="16368" type="EtcItem" name="Moirai Necklace of Chaos">
@@ -1356,8 +1345,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10961000" />
 		<stats>
-			<add order="0" stat="mDef" val="115" />
-			<add stat="maxMp" val="48" />
+			<stat type="mDef">115</stat>
+			<stat type="maxMp">48</stat>
 		</stats>
 	</item>
 	<item id="16369" type="Armor" name="Sealed Vesper Ring">
@@ -1373,8 +1362,7 @@
 		<set name="price" val="5142000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="55" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">55</stat>
 		</stats>
 	</item>
 	<item id="16370" type="Armor" name="Sealed Vesper Earring">
@@ -1390,8 +1378,7 @@
 		<set name="price" val="7713000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="83" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">83</stat>
 		</stats>
 	</item>
 	<item id="16371" type="Armor" name="Sealed Vesper Necklace">
@@ -1407,8 +1394,7 @@
 		<set name="price" val="10284000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="110" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">110</stat>
 		</stats>
 	</item>
 	<item id="16372" type="Armor" name="Sealed Moirai Ring">
@@ -1424,8 +1410,7 @@
 		<set name="price" val="3710000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="53" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">53</stat>
 		</stats>
 	</item>
 	<item id="16373" type="Armor" name="Sealed Moirai Earring">
@@ -1441,8 +1426,7 @@
 		<set name="price" val="5565000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="76" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">76</stat>
 		</stats>
 	</item>
 	<item id="16374" type="Armor" name="Sealed Moirai Necklace">
@@ -1458,8 +1442,7 @@
 		<set name="price" val="7420000" />
 		<set name="enchant_enabled" val="true" />
 		<stats>
-			<add order="0" stat="mDef" val="101" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">101</stat>
 		</stats>
 	</item>
 	<item id="16375" type="Armor" name="Vesper Ring">
@@ -1474,12 +1457,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7596000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8457-1" /> <!-- Vesper Ring -->
 		<stats>
-			<add order="0" stat="mDef" val="62" />
-			<add stat="maxMp" val="25" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">62</stat>
+			<stat type="maxMp">25</stat>
 		</stats>
+		<skills>
+			<skill id="8457" level="1" /> <!-- Vesper Ring -->
+		</skills>
 	</item>
 	<item id="16376" type="Armor" name="Vesper Earring">
 		<!-- Masterwork Item that increases MP +37, Resistance to sleep, and Resistance to Hold. -->
@@ -1493,12 +1477,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="11394000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8455-1" /> <!-- Vesper Earring -->
 		<stats>
-			<add order="0" stat="mDef" val="94" />
-			<add stat="maxMp" val="37" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">94</stat>
+			<stat type="maxMp">37</stat>
 		</stats>
+		<skills>
+			<skill id="8455" level="1" /> <!-- Vesper Earring -->
+		</skills>
 	</item>
 	<item id="16377" type="Armor" name="Vesper Necklace">
 		<!-- Masterwork Item that increases MP +50 and Max MP. -->
@@ -1512,12 +1497,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="15192000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8456-1" /> <!-- Vesper Necklace -->
 		<stats>
-			<add order="0" stat="mDef" val="125" />
-			<add stat="maxMp" val="50" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">125</stat>
+			<stat type="maxMp">50</stat>
 		</stats>
+		<skills>
+			<skill id="8456" level="1" /> <!-- Vesper Necklace -->
+		</skills>
 	</item>
 	<item id="16378" type="Armor" name="Moirai Ring">
 		<!-- Masterwork Item that increases MP +24 and Max MP. -->
@@ -1531,12 +1517,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5480000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8454-1" /> <!-- Moirai Ring -->
 		<stats>
-			<add order="0" stat="mDef" val="61" />
-			<add stat="maxMp" val="24" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">61</stat>
+			<stat type="maxMp">24</stat>
 		</stats>
+		<skills>
+			<skill id="8454" level="1" /> <!-- Moirai Ring -->
+		</skills>
 	</item>
 	<item id="16379" type="Armor" name="Moirai Earring">
 		<!-- Masterwork Item that increases MP +36 and Resistance to bleed. -->
@@ -1550,12 +1537,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="8221000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8452-1" /> <!-- Moirai Earring -->
 		<stats>
-			<add order="0" stat="mDef" val="86" />
-			<add stat="maxMp" val="36" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">86</stat>
+			<stat type="maxMp">36</stat>
 		</stats>
+		<skills>
+			<skill id="8452" level="1" /> <!-- Moirai Earring -->
+		</skills>
 	</item>
 	<item id="16380" type="Armor" name="Moirai Necklace">
 		<!-- Masterwork Item that increases MP +48 and Resistance to poison. -->
@@ -1569,12 +1557,13 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10961000" />
 		<set name="enchant_enabled" val="true" />
-		<set name="item_skill" val="8453-1" /> <!-- Moirai Necklace -->
 		<stats>
-			<add order="0" stat="mDef" val="115" />
-			<add stat="maxMp" val="48" />
-			<enchant stat="mDef" val="0" />
+			<stat type="mDef">115</stat>
+			<stat type="maxMp">48</stat>
 		</stats>
+		<skills>
+			<skill id="8453" level="1" /> <!-- Moirai Necklace -->
+		</skills>
 	</item>
 	<item id="16381" type="EtcItem" name="Training Order Paper">
 		<!-- The Sel Mahum Training Officer's Training Order Papers. Take it back to Guard Stan of Oren Village. -->
@@ -1616,7 +1605,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16391,1,1,100" />
+		<capsuled_items>
+			<item id="16391" min="1" max="1" chance="100" /> <!-- Christmas Cake Box -->
+		</capsuled_items>
 	</item>
 	<item id="16384" type="EtcItem" name="Special Christmas Cake Pack">
 		<!-- Special Christmas Cake Pack. Contains a Special Christmas box. Cannot be exchanged, dropped, sold, or mailed. Cannot be stored in a private store. -->
@@ -1632,7 +1623,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16392,1,1,100" />
+		<capsuled_items>
+			<item id="16392" min="1" max="1" chance="100" /> <!-- Special Christmas Cake Box -->
+		</capsuled_items>
 	</item>
 	<item id="16385" type="EtcItem" name="Teddy Boy Gift Box Pack">
 		<!-- Teddy Boy Gift Box Pack. Contains a Teddy Boy Gift box. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1648,7 +1641,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16395,1,1,100" />
+		<capsuled_items>
+			<item id="16395" min="1" max="1" chance="100" /> <!-- Teddy Boy Gift Box -->
+		</capsuled_items>
 	</item>
 	<item id="16386" type="EtcItem" name="Teddy Girl Gift Box Pack">
 		<!-- Teddy Girl Gift Box Pack. Contains a Teddy Girl Gift box. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1664,7 +1659,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16396,1,1,100" />
+		<capsuled_items>
+			<item id="16396" min="1" max="1" chance="100" /> <!-- Teddy Girl Gift Box -->
+		</capsuled_items>
 	</item>
 	<item id="16387" type="EtcItem" name="Christmas Cake Pack (event)">
 		<!-- Christmas Cake Pack. Contains a Christmas Cake box. Cannot be exchanged, dropped, sold, or mailed. Cannot be stored in a private store. -->
@@ -1680,7 +1677,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16393,1,1,100" />
+		<capsuled_items>
+			<item id="16393" min="1" max="1" chance="100" /> <!-- Christmas Cake Box (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16388" type="EtcItem" name="Special Christmas Cake Pack (event)">
 		<!-- Special Christmas Cake Pack. Contains a Special Christmas box. Cannot be exchanged, dropped, sold, or mailed. Cannot be stored in a private store. -->
@@ -1696,7 +1695,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16394,1,1,100" />
+		<capsuled_items>
+			<item id="16394" min="1" max="1" chance="100" /> <!-- Special Christmas Cake Box (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16389" type="EtcItem" name="Teddy Boy Gift Box Pack (event)">
 		<!-- Teddy Boy Gift Box Pack. Contains a Teddy Boy Gift box. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1712,7 +1713,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16397,1,1,100" />
+		<capsuled_items>
+			<item id="16397" min="1" max="1" chance="100" /> <!-- Teddy Boy Gift Box (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16390" type="EtcItem" name="Teddy Girl Gift Box Pack (event)">
 		<!-- Teddy Girl Gift Box Pack. Contains a Teddy Girl Gift box. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1728,7 +1731,9 @@
 		<set name="is_premium" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16398,1,1,100" />
+		<capsuled_items>
+			<item id="16398" min="1" max="1" chance="100" /> <!-- Teddy Girl Gift Box (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16391" type="EtcItem" name="Christmas Cake Box">
 		<!-- Christmas Cake Box. Contains 1 Christmas Cake and 1 White Christmas Wish Candle. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1743,7 +1748,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16403,1,1,100;16404,1,1,100" />
+		<capsuled_items>
+			<item id="16403" min="1" max="1" chance="100" /> <!-- Christmas Cake -->
+			<item id="16404" min="1" max="1" chance="100" /> <!-- White Christmas Wish Candle -->
+		</capsuled_items>
 	</item>
 	<item id="16392" type="EtcItem" name="Special Christmas Cake Box">
 		<!-- Special Christmas Cake Box. Contains 5 Christmas Cake boxes and 1 Santa's Stocking (bonus). Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1758,7 +1766,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16391,5,5,100;16407,1,1,100" />
+		<capsuled_items>
+			<item id="16391" min="5" max="5" chance="100" /> <!-- Christmas Cake Box -->
+			<item id="16407" min="1" max="1" chance="100" /> <!-- Santa's Stocking - Event -->
+		</capsuled_items>
 	</item>
 	<item id="16393" type="EtcItem" name="Christmas Cake Box (event)">
 		<!-- Christmas Cake Box. Contains 1 Christmas Cake and 1 White Christmas Wish Candle. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1773,7 +1784,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16405,1,1,100;16406,1,1,100" />
+		<capsuled_items>
+			<item id="16405" min="1" max="1" chance="100" /> <!-- Christmas Cake (event) -->
+			<item id="16406" min="1" max="1" chance="100" /> <!-- White Christmas Wish Candle (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16394" type="EtcItem" name="Special Christmas Cake Box (event)">
 		<!-- Special Christmas Cake Box. Contains 5 Christmas Cake boxes and 1 Santa's Stocking (bonus). Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1788,7 +1802,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16393,5,5,100;16407,1,1,100" />
+		<capsuled_items>
+			<item id="16393" min="5" max="5" chance="100" /> <!-- Christmas Cake Box (event) -->
+			<item id="16407" min="1" max="1" chance="100" /> <!-- Santa's Stocking - Event -->
+		</capsuled_items>
 	</item>
 	<item id="16395" type="EtcItem" name="Teddy Boy Gift Box">
 		<!-- Teddy Boy Gift Box. Contains 1 Teddy Boy Summon Bracelet and 3 White Christmas Wish Candles. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1803,7 +1820,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16399,1,1,100;16404,3,3,100" />
+		<capsuled_items>
+			<item id="16399" min="1" max="1" chance="100" /> <!-- Teddy Boy Summon Bracelet - Permanent Use -->
+			<item id="16404" min="3" max="3" chance="100" /> <!-- White Christmas Wish Candle -->
+		</capsuled_items>
 	</item>
 	<item id="16396" type="EtcItem" name="Teddy Girl Gift Box">
 		<!-- Teddy Girl Gift Box. Contains 1 Teddy Girl Summon Bracelet and 3 White Christmas Wish Candles. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1818,7 +1838,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16400,1,1,100;16404,3,3,100" />
+		<capsuled_items>
+			<item id="16400" min="1" max="1" chance="100" /> <!-- Teddy Girl Summon Bracelet - Permanent Use -->
+			<item id="16404" min="3" max="3" chance="100" /> <!-- White Christmas Wish Candle -->
+		</capsuled_items>
 	</item>
 	<item id="16397" type="EtcItem" name="Teddy Boy Gift Box (event)">
 		<!-- Teddy Boy Gift Box. Contains 1 Teddy Boy Summon Bracelet and 3 White Christmas Wish Candles. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1833,7 +1856,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16401,1,1,100;16406,3,3,100" />
+		<capsuled_items>
+			<item id="16401" min="1" max="1" chance="100" /> <!-- Teddy Boy Summon Bracelet (event) - Permanent Use -->
+			<item id="16406" min="3" max="3" chance="100" /> <!-- White Christmas Wish Candle (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16398" type="EtcItem" name="Teddy Girl Gift Box (event)">
 		<!-- Teddy Girl Gift Box. Contains 1 Teddy Girl Summon Bracelet and 3 White Christmas Wish Candles. Can be exchanged. Cannot be dropped, destroyed, sold, or registered on Private Store. -->
@@ -1848,7 +1874,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ExtractableItems" />
-		<set name="capsuled_items" val="16402,1,1,100;16406,3,3,100" />
+		<capsuled_items>
+			<item id="16402" min="1" max="1" chance="100" /> <!-- Teddy Girl Summon Bracelet (event) - Permanent Use -->
+			<item id="16406" min="3" max="3" chance="100" /> <!-- White Christmas Wish Candle (event) -->
+		</capsuled_items>
 	</item>
 	<item id="16399" type="Armor" name="Teddy Boy Summon Bracelet - Permanent Use">
 		<!-- Teddy Boy Summon Bracelet. Can summon a Teddy Boy Agathion. Increases the Weight Limit by 3000 when equipped. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -1863,7 +1892,12 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<set name="unequip_skill" val="3267-1" />
-		<set name="item_skill" val="8458-1;8259-1;3267-1;5958-1" /> <!-- Bracelet Weight Gauge Add -->
+		<skills>
+			<skill id="8458" level="1" /> <!-- Bracelet Weight Gauge Add -->
+			<skill id="8259" level="1" /> <!-- Release Seal on Agathion - Girl Teddy Boy -->
+			<skill id="3267" level="1" /> <!-- Dismiss Agathion -->
+			<skill id="5958" level="1" /> <!-- Agathion Cute Trick - Teddy Bear Boy -->
+			<skill id="3267" level="1" type="ON_UNEQUIP" /> <!-- Dismiss Agathion -->
+		</skills>
 	</item>
 </list>

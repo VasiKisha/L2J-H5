@@ -25,9 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.RatesConfig;
+import org.l2jmobius.gameserver.data.holders.PetLevelData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
-import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
@@ -457,6 +457,11 @@ public class PlayerStat extends PlayableStat
 	
 	public boolean canEquipCloak()
 	{
+		if (!getActiveChar().hasEnteredWorld())
+		{
+			return true;
+		}
+		
 		return _cloakSlot;
 	}
 	

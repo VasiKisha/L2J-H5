@@ -37,35 +37,76 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.holders.npc.BuffSkillHolder;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 
+/**
+ * Scheme Buffer NPC handler supporting scheme management and manual buff casting.<br>
+ * Provides extra pages (Buffs/Dances/Songs/etc.) and auto-buff presets without exposing internal groups in the edit UI.
+ * <ul>
+ * <li>Creates, edits, deletes and casts player schemes.</li>
+ * <li>Manually casts skills by category with pagination and target selection.</li>
+ * <li>Applies class-based auto-buffs using MAGE_GROUP / FIGHTER_GROUP.</li>
+ * </ul>
+ * @author Mobius, BazookaRpm
+ */
 public class SchemeBuffer extends Npc
 {
+	// Constants.
 	private static final int PAGE_LIMIT = 6;
+	private static final int SCHEME_NAME_MAX_LENGTH = 14;
+	private static final int TYPES_PER_ROW = 4;
 	
+	// UI widths (avoid overflow with scrollbars).
+	private static final int UI_WIDTH = 256;
+	private static final int UI_HALF_WIDTH = UI_WIDTH / 2; // 128.
+	private static final int ICON_COL_WIDTH = 40;
+	private static final int BTN_COL_WIDTH = 32;
+	private static final int NAME_COL_WIDTH = UI_WIDTH - ICON_COL_WIDTH - BTN_COL_WIDTH; // 184.
+	private static final int FOOTER_SIDE_WIDTH = 70;
+	private static final int PAGE_CENTER_WIDTH = UI_WIDTH - (FOOTER_SIDE_WIDTH * 2); // 116.
+	
+	/**
+	 * Creates a SchemeBuffer instance.
+	 * @param template
+	 */
 	public SchemeBuffer(NpcTemplate template)
 	{
 		super(template);
 	}
 	
+	/**
+	 * Handles Scheme Buffer bypass commands.
+	 * @param player
+	 * @param commandValue
+	 */
 	@Override
 	public void onBypassFeedback(Player player, String commandValue)
 	{
-		// Simple hack to use createscheme bypass with a space.
-		final String command = commandValue.replace("createscheme ", "createscheme;");
+		if ((player == null) || (commandValue == null) || commandValue.isEmpty())
+		{
+			return;
+		}
 		
-		final StringTokenizer st = new StringTokenizer(command, ";");
-		final String currentCommand = st.nextToken();
+		final SchemeBufferTable schemeBufferTable = SchemeBufferTable.getInstance();
+		final SkillData skillData = SkillData.getInstance();
+		
+		final StringTokenizer tokenizer = new StringTokenizer(commandValue.replace("createscheme ", "createscheme;"), ";");
+		if (!tokenizer.hasMoreTokens())
+		{
+			return;
+		}
+		
+		final String currentCommand = tokenizer.nextToken();
+		
 		if (currentCommand.startsWith("menu"))
 		{
-			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-			html.setFile(player, getHtmlPath(getId(), 0));
-			html.replace("%objectId%", getObjectId());
-			player.sendPacket(html);
+			showMainMenu(player);
+			return;
 		}
 		else if (currentCommand.startsWith("cleanup"))
 		{
@@ -77,10 +118,8 @@ public class SchemeBuffer extends Npc
 				summon.stopAllEffects();
 			}
 			
-			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-			html.setFile(player, getHtmlPath(getId(), 0));
-			html.replace("%objectId%", getObjectId());
-			player.sendPacket(html);
+			showMainMenu(player);
+			return;
 		}
 		else if (currentCommand.startsWith("heal"))
 		{
@@ -93,64 +132,134 @@ public class SchemeBuffer extends Npc
 				summon.setCurrentHpMp(summon.getMaxHp(), summon.getMaxMp());
 			}
 			
-			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-			html.setFile(player, getHtmlPath(getId(), 0));
-			html.replace("%objectId%", getObjectId());
-			player.sendPacket(html);
+			showMainMenu(player);
+			return;
 		}
 		else if (currentCommand.startsWith("support"))
 		{
 			showGiveBuffsWindow(player);
+			return;
 		}
 		else if (currentCommand.startsWith("givebuffs"))
 		{
-			final String schemeName = st.nextToken();
-			final int cost = Integer.parseInt(st.nextToken());
-			Creature target = null;
-			if (st.hasMoreTokens())
+			if (!tokenizer.hasMoreTokens())
 			{
-				final String targetType = st.nextToken();
-				if ((targetType != null) && targetType.equalsIgnoreCase("pet"))
-				{
-					target = player.getSummon();
-				}
+				return;
 			}
-			else
+			
+			final String schemeName = tokenizer.nextToken();
+			
+			// Compatibility: keep consuming the bypass cost token, but never trust it.
+			if (tokenizer.hasMoreTokens())
 			{
-				target = player;
+				tokenizer.nextToken();
+			}
+			
+			final Map<String, List<Integer>> playerSchemes = schemeBufferTable.getPlayerSchemes(player.getObjectId());
+			if ((playerSchemes == null) || !playerSchemes.containsKey(schemeName))
+			{
+				player.sendMessage("Invalid scheme name: " + schemeName + ".");
+				showGiveBuffsWindow(player);
+				return;
+			}
+			
+			final List<Integer> scheme = schemeBufferTable.getScheme(player.getObjectId(), schemeName);
+			final int cost = getFee(scheme);
+			
+			Creature target = player;
+			if (tokenizer.hasMoreTokens() && "pet".equalsIgnoreCase(tokenizer.nextToken()))
+			{
+				target = player.getSummon();
 			}
 			
 			if (target == null)
 			{
 				player.sendMessage("You don't have a pet.");
+				return;
 			}
-			else if ((cost == 0) || ((SchemeBufferConfig.BUFFER_ITEM_ID == 57) && player.reduceAdena(ItemProcessType.FEE, cost, this, true)) || ((SchemeBufferConfig.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId(ItemProcessType.FEE, SchemeBufferConfig.BUFFER_ITEM_ID, cost, player, true)))
+			
+			if ((cost == 0) || ((SchemeBufferConfig.BUFFER_ITEM_ID == 57) && player.reduceAdena(ItemProcessType.FEE, cost, this, true)) || ((SchemeBufferConfig.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId(ItemProcessType.FEE, SchemeBufferConfig.BUFFER_ITEM_ID, cost, player, true)))
 			{
-				for (int skillId : SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName))
+				for (int skillId : scheme)
 				{
-					SkillData.getInstance().getSkill(skillId, SchemeBufferTable.getInstance().getAvailableBuff(skillId).getLevel()).applyEffects(this, target);
+					final BuffSkillHolder holder = schemeBufferTable.getAvailableBuff(skillId);
+					if (holder == null)
+					{
+						continue;
+					}
+					
+					final Skill skill = skillData.getSkill(skillId, holder.getLevel());
+					if (skill != null)
+					{
+						skill.applyEffects(this, target);
+					}
 				}
 			}
+			return;
 		}
 		else if (currentCommand.startsWith("editschemes"))
 		{
-			showEditSchemeWindow(player, st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()));
+			if (tokenizer.countTokens() < 3)
+			{
+				return;
+			}
+			
+			final String groupType = tokenizer.nextToken();
+			final String schemeName = tokenizer.nextToken();
+			
+			final Integer page = parseUnsignedInt(tokenizer.nextToken());
+			if (page == null)
+			{
+				return;
+			}
+			
+			showEditSchemeWindow(player, groupType, schemeName, page);
+			return;
 		}
 		else if (currentCommand.startsWith("skill"))
 		{
-			final String groupType = st.nextToken();
-			final String schemeName = st.nextToken();
-			final int skillId = Integer.parseInt(st.nextToken());
-			final int page = Integer.parseInt(st.nextToken());
-			final List<Integer> skills = SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName);
+			if (tokenizer.countTokens() < 4)
+			{
+				return;
+			}
+			
+			final String groupType = tokenizer.nextToken();
+			final String schemeName = tokenizer.nextToken();
+			
+			final Integer skillId = parseUnsignedInt(tokenizer.nextToken());
+			final Integer page = parseUnsignedInt(tokenizer.nextToken());
+			if ((skillId == null) || (page == null))
+			{
+				return;
+			}
+			
+			final Map<String, List<Integer>> playerSchemes = schemeBufferTable.getPlayerSchemes(player.getObjectId());
+			if ((playerSchemes == null) || !playerSchemes.containsKey(schemeName))
+			{
+				player.sendMessage("Invalid scheme name: " + schemeName + ".");
+				showGiveBuffsWindow(player);
+				return;
+			}
+			
+			final List<Integer> schemeSkills = schemeBufferTable.getScheme(player.getObjectId(), schemeName);
+			
 			if (currentCommand.startsWith("skillselect") && !schemeName.equalsIgnoreCase("none"))
 			{
-				final Skill skill = SkillData.getInstance().getSkill(skillId, SkillData.getInstance().getMaxLevel(skillId));
+				final Skill skill = skillData.getSkill(skillId, 1);
+				if (skill == null)
+				{
+					showEditSchemeWindow(player, groupType, schemeName, page);
+					return;
+				}
+				
 				if (skill.isDance())
 				{
-					if (getCountOf(skills, true) < PlayerConfig.DANCES_MAX_AMOUNT)
+					if (getCountOf(schemeSkills, true) < PlayerConfig.DANCES_MAX_AMOUNT)
 					{
-						skills.add(skillId);
+						if (!schemeSkills.contains(skillId))
+						{
+							schemeBufferTable.addSkillToScheme(player.getObjectId(), schemeName, skillId);
+						}
 					}
 					else
 					{
@@ -159,9 +268,12 @@ public class SchemeBuffer extends Npc
 				}
 				else
 				{
-					if (getCountOf(skills, false) < player.getStat().getMaxBuffCount())
+					if (getCountOf(schemeSkills, false) < player.getStat().getMaxBuffCount())
 					{
-						skills.add(skillId);
+						if (!schemeSkills.contains(skillId))
+						{
+							schemeBufferTable.addSkillToScheme(player.getObjectId(), schemeName, skillId);
+						}
 					}
 					else
 					{
@@ -171,133 +283,205 @@ public class SchemeBuffer extends Npc
 			}
 			else if (currentCommand.startsWith("skillunselect"))
 			{
-				skills.remove(Integer.valueOf(skillId));
+				schemeBufferTable.removeSkillFromScheme(player.getObjectId(), schemeName, skillId);
 			}
 			
 			showEditSchemeWindow(player, groupType, schemeName, page);
+			return;
 		}
 		else if (currentCommand.startsWith("createscheme"))
 		{
-			try
+			if (!tokenizer.hasMoreTokens())
 			{
-				final String schemeName = st.nextToken().trim();
-				if (schemeName.length() > 14)
+				player.sendMessage("Scheme's name must contain up to " + SCHEME_NAME_MAX_LENGTH + " chars.");
+				return;
+			}
+			
+			final String schemeName = tokenizer.nextToken().trim();
+			if (schemeName.isEmpty() || (schemeName.length() > SCHEME_NAME_MAX_LENGTH))
+			{
+				player.sendMessage("Scheme's name must contain up to " + SCHEME_NAME_MAX_LENGTH + " chars.");
+				return;
+			}
+			
+			final String normalized = schemeName.replace(" ", "").replace(".", "").replace(",", "").replace("-", "").replace("+", "").replace("!", "").replace("?", "");
+			if (!StringUtil.isAlphaNumeric(normalized))
+			{
+				player.sendMessage("Please use plain alphanumeric characters.");
+				return;
+			}
+			
+			final Map<String, List<Integer>> playerSchemes = schemeBufferTable.getPlayerSchemes(player.getObjectId());
+			if (playerSchemes != null)
+			{
+				if (playerSchemes.size() >= SchemeBufferConfig.BUFFER_MAX_SCHEMES)
 				{
-					player.sendMessage("Scheme's name must contain up to 14 chars.");
+					player.sendMessage("Maximum schemes amount is already reached.");
 					return;
 				}
-				
-				// Simple hack to use spaces, dots, commas, minus, plus, exclamations or question marks.
-				if (!StringUtil.isAlphaNumeric(schemeName.replace(" ", "").replace(".", "").replace(",", "").replace("-", "").replace("+", "").replace("!", "").replace("?", "")))
+				if (playerSchemes.containsKey(schemeName))
 				{
-					player.sendMessage("Please use plain alphanumeric characters.");
+					player.sendMessage("The scheme name already exists: " + schemeName + ".");
 					return;
 				}
-				
-				final Map<String, List<Integer>> schemes = SchemeBufferTable.getInstance().getPlayerSchemes(player.getObjectId());
-				if (schemes != null)
-				{
-					if (schemes.size() == SchemeBufferConfig.BUFFER_MAX_SCHEMES)
-					{
-						player.sendMessage("Maximum schemes amount is already reached.");
-						return;
-					}
-					
-					if (schemes.containsKey(schemeName))
-					{
-						player.sendMessage("The scheme name already exists.");
-						return;
-					}
-				}
-				
-				SchemeBufferTable.getInstance().setScheme(player.getObjectId(), schemeName.trim(), new ArrayList<>());
-				showGiveBuffsWindow(player);
 			}
-			catch (Exception e)
-			{
-				player.sendMessage("Scheme's name must contain up to 14 chars.");
-			}
+			
+			schemeBufferTable.setScheme(player.getObjectId(), schemeName, new ArrayList<>());
+			showGiveBuffsWindow(player);
+			return;
 		}
 		else if (currentCommand.startsWith("deletescheme"))
 		{
-			try
-			{
-				final String schemeName = st.nextToken();
-				final Map<String, List<Integer>> schemes = SchemeBufferTable.getInstance().getPlayerSchemes(player.getObjectId());
-				if ((schemes != null) && schemes.containsKey(schemeName))
-				{
-					schemes.remove(schemeName);
-				}
-			}
-			catch (Exception e)
+			if (!tokenizer.hasMoreTokens())
 			{
 				player.sendMessage("This scheme name is invalid.");
+				showGiveBuffsWindow(player);
+				return;
 			}
 			
+			final String schemeName = tokenizer.nextToken();
+			schemeBufferTable.deleteScheme(player.getObjectId(), schemeName);
 			showGiveBuffsWindow(player);
+			return;
 		}
-	}
-	
-	@Override
-	public String getHtmlPath(int npcId, int value)
-	{
-		String filename = "";
-		if (value == 0)
+		else if (currentCommand.startsWith("manual"))
 		{
-			filename = Integer.toString(npcId);
+			final String category = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "Buffs";
+			
+			int page = 1;
+			if (tokenizer.hasMoreTokens())
+			{
+				final Integer parsed = parseUnsignedInt(tokenizer.nextToken());
+				if (parsed == null)
+				{
+					showMainMenu(player);
+					return;
+				}
+				page = parsed;
+			}
+			
+			final String targetType = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "me";
+			showManualWindow(player, category, page, targetType);
+			return;
 		}
-		else
+		else if (currentCommand.startsWith("castbuff"))
 		{
-			filename = npcId + "-" + value;
+			if (tokenizer.countTokens() < 4)
+			{
+				return;
+			}
+			
+			final Integer skillId = parseUnsignedInt(tokenizer.nextToken());
+			final String category = tokenizer.nextToken();
+			final Integer page = parseUnsignedInt(tokenizer.nextToken());
+			final String targetType = tokenizer.nextToken();
+			if ((skillId == null) || (page == null))
+			{
+				return;
+			}
+			
+			final Creature target = "pet".equalsIgnoreCase(targetType) ? player.getSummon() : player;
+			if (target == null)
+			{
+				player.sendMessage("You don't have a pet.");
+				showManualWindow(player, category, page, targetType);
+				return;
+			}
+			
+			final BuffSkillHolder holder = schemeBufferTable.getAvailableBuff(category, skillId);
+			if (holder != null)
+			{
+				final Skill skill = skillData.getSkill(skillId, holder.getLevel());
+				if (skill != null)
+				{
+					skill.applyEffects(this, target);
+				}
+			}
+			
+			showManualWindow(player, category, page, targetType);
+			return;
+		}
+		else if (currentCommand.startsWith("autobuff"))
+		{
+			final String targetType = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "me";
+			applyAutoBuff(player, targetType);
+			return;
 		}
 		
-		return "data/html/mods/SchemeBuffer/" + filename + ".htm";
+		super.onBypassFeedback(player, commandValue);
 	}
 	
 	/**
-	 * Sends an html packet to player with Give Buffs menu info for player and pet, depending on targetType parameter {player, pet}
-	 * @param player : The player to make checks on.
+	 * Returns the HTML path used by this NPC.
+	 * @param npcId
+	 * @param value
+	 * @return the HTML file path.
+	 */
+	@Override
+	public String getHtmlPath(int npcId, int value)
+	{
+		return "data/html/mods/SchemeBuffer/" + ((value == 0) ? Integer.toString(npcId) : (npcId + "-" + value)) + ".htm";
+	}
+	
+	/**
+	 * Shows the main menu window.
+	 * @param player
+	 */
+	private void showMainMenu(Player player)
+	{
+		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+		html.setFile(player, getHtmlPath(getId(), 0));
+		html.replace("%objectId%", getObjectId());
+		player.sendPacket(html);
+	}
+	
+	/**
+	 * Shows the scheme list and actions window.
+	 * @param player
 	 */
 	private void showGiveBuffsWindow(Player player)
 	{
-		final StringBuilder sb = new StringBuilder(200);
-		final Map<String, List<Integer>> schemes = SchemeBufferTable.getInstance().getPlayerSchemes(player.getObjectId());
-		if ((schemes == null) || schemes.isEmpty())
+		final StringBuilder htmlBuilder = new StringBuilder(200);
+		final Map<String, List<Integer>> playerSchemes = SchemeBufferTable.getInstance().getPlayerSchemes(player.getObjectId());
+		
+		if ((playerSchemes == null) || playerSchemes.isEmpty())
 		{
-			sb.append("<font color=\"LEVEL\">You haven't defined any scheme.</font>");
+			htmlBuilder.append("<font color=\"LEVEL\">You haven't defined any scheme.</font>");
 		}
 		else
 		{
-			for (Entry<String, List<Integer>> scheme : schemes.entrySet())
+			for (Entry<String, List<Integer>> scheme : playerSchemes.entrySet())
 			{
 				final int cost = getFee(scheme.getValue());
-				sb.append("<font color=\"LEVEL\">" + scheme.getKey() + " [" + scheme.getValue().size() + " skill(s)]" + ((cost > 0) ? " - cost: " + NumberFormat.getInstance(Locale.ENGLISH).format(cost) : "") + "</font><br1>");
-				sb.append("<a action=\"bypass -h npc_%objectId%_givebuffs;" + scheme.getKey() + ";" + cost + "\">Use on Me</a>&nbsp;|&nbsp;");
-				sb.append("<a action=\"bypass -h npc_%objectId%_givebuffs;" + scheme.getKey() + ";" + cost + ";pet\">Use on Pet</a>&nbsp;|&nbsp;");
-				sb.append("<a action=\"bypass npc_%objectId%_editschemes;Buffs;" + scheme.getKey() + ";1\">Edit</a>&nbsp;|&nbsp;");
-				sb.append("<a action=\"bypass npc_%objectId%_deletescheme;" + scheme.getKey() + "\">Delete</a><br>");
+				htmlBuilder.append("<font color=\"LEVEL\">").append(scheme.getKey()).append(" [").append(scheme.getValue().size()).append(" skill(s)]").append((cost > 0) ? (" - cost: " + NumberFormat.getInstance(Locale.ENGLISH).format(cost)) : "").append("</font><br1>");
+				
+				htmlBuilder.append("<a action=\"bypass -h npc_%objectId%_givebuffs;").append(scheme.getKey()).append(";").append(cost).append("\">Use on Me</a>&nbsp;|&nbsp;");
+				htmlBuilder.append("<a action=\"bypass -h npc_%objectId%_givebuffs;").append(scheme.getKey()).append(";").append(cost).append(";pet\">Use on Pet</a>&nbsp;|&nbsp;");
+				htmlBuilder.append("<a action=\"bypass -h npc_%objectId%_editschemes;Buffs;").append(scheme.getKey()).append(";1\">Edit</a>&nbsp;|&nbsp;");
+				htmlBuilder.append("<a action=\"bypass -h npc_%objectId%_deletescheme;").append(scheme.getKey()).append("\">Delete</a><br>");
 			}
 		}
 		
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 		html.setFile(player, getHtmlPath(getId(), 1));
-		html.replace("%schemes%", sb.toString());
+		html.replace("%schemes%", htmlBuilder.toString());
 		html.replace("%max_schemes%", SchemeBufferConfig.BUFFER_MAX_SCHEMES);
 		html.replace("%objectId%", getObjectId());
 		player.sendPacket(html);
 	}
 	
 	/**
-	 * This sends an html packet to player with Edit Scheme Menu info. This allows player to edit each created scheme (add/delete skills)
-	 * @param player : The player to make checks on.
-	 * @param groupType : The group of skills to select.
-	 * @param schemeName : The scheme to make check.
-	 * @param page The page.
+	 * Shows the scheme edit window for adding and removing skills.
+	 * @param player
+	 * @param groupType
+	 * @param schemeName
+	 * @param page
 	 */
 	private void showEditSchemeWindow(Player player, String groupType, String schemeName, int page)
 	{
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 		final List<Integer> schemeSkills = SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName);
+		
 		html.setFile(player, getHtmlPath(getId(), 2));
 		html.replace("%schemename%", schemeName);
 		html.replace("%count%", getCountOf(schemeSkills, false) + " / " + player.getStat().getMaxBuffCount() + " buffs, " + getCountOf(schemeSkills, true) + " / " + PlayerConfig.DANCES_MAX_AMOUNT + " dances/songs");
@@ -308,126 +492,346 @@ public class SchemeBuffer extends Npc
 	}
 	
 	/**
-	 * @param player : The player to make checks on.
-	 * @param groupType : The group of skills to select.
-	 * @param schemeName : The scheme to make check.
-	 * @param pageValue The page.
-	 * @return a String representing skills available to selection for a given groupType.
+	 * Shows manual casting window by category with pagination and target selection.
+	 * @param player
+	 * @param category
+	 * @param pageValue
+	 * @param targetType
+	 */
+	private void showManualWindow(Player player, String category, int pageValue, String targetType)
+	{
+		final SchemeBufferTable schemeBufferTable = SchemeBufferTable.getInstance();
+		final SkillData skillData = SkillData.getInstance();
+		
+		List<Integer> skillIds = schemeBufferTable.getSkillsIdsByType(category);
+		if (skillIds.isEmpty())
+		{
+			player.sendMessage("That category doesn't contain any skills.");
+			return;
+		}
+		
+		final int maxPage = HtmlUtil.countPageNumber(skillIds.size(), PAGE_LIMIT);
+		int page = pageValue;
+		if (page > maxPage)
+		{
+			page = maxPage;
+		}
+		if (page < 1)
+		{
+			page = 1;
+		}
+		
+		skillIds = skillIds.subList((page - 1) * PAGE_LIMIT, Math.min(page * PAGE_LIMIT, skillIds.size()));
+		
+		final StringBuilder htmlBuilder = new StringBuilder(skillIds.size() * 200);
+		
+		// Tabs (Me / Pet) - fixed width to avoid clipping.
+		htmlBuilder.append("<table width=\"").append(UI_WIDTH).append("\"><tr>");
+		
+		htmlBuilder.append("<td width=\"").append(UI_HALF_WIDTH).append("\" align=\"center\">");
+		if ("me".equalsIgnoreCase(targetType))
+		{
+			htmlBuilder.append("<font color=\"LEVEL\">Me</font>");
+		}
+		else
+		{
+			htmlBuilder.append("<a action=\"bypass -h npc_").append(getObjectId()).append("_manual;").append(category).append(";").append(page).append(";me\">Me</a>");
+		}
+		htmlBuilder.append("</td>");
+		
+		htmlBuilder.append("<td width=\"").append(UI_HALF_WIDTH).append("\" align=\"center\">");
+		if ("pet".equalsIgnoreCase(targetType))
+		{
+			htmlBuilder.append("<font color=\"LEVEL\">Pet</font>");
+		}
+		else
+		{
+			htmlBuilder.append("<a action=\"bypass -h npc_").append(getObjectId()).append("_manual;").append(category).append(";").append(page).append(";pet\">Pet</a>");
+		}
+		htmlBuilder.append("</td>");
+		
+		htmlBuilder.append("</tr></table><br1>");
+		
+		int row = 0;
+		for (int skillId : skillIds)
+		{
+			final BuffSkillHolder holder = schemeBufferTable.getAvailableBuff(category, skillId);
+			if (holder == null)
+			{
+				continue;
+			}
+			
+			final Skill skill = skillData.getSkill(skillId, holder.getLevel());
+			if (skill == null)
+			{
+				continue;
+			}
+			
+			htmlBuilder.append(((row % 2) == 0) ? "<table width=\"" + UI_WIDTH + "\" bgcolor=\"000000\"><tr>" : "<table width=\"" + UI_WIDTH + "\"><tr>");
+			htmlBuilder.append("<td height=40 width=").append(ICON_COL_WIDTH).append(" align=center><img src=\"").append(skill.getIcon()).append("\" width=32 height=32></td>");
+			htmlBuilder.append("<td width=").append(NAME_COL_WIDTH).append(">").append(skill.getName()).append("<br1>");
+			htmlBuilder.append("<font color=\"B09878\">").append(holder.getDescription()).append("</font></td>");
+			htmlBuilder.append("<td width=").append(BTN_COL_WIDTH).append(" align=center><button action=\"bypass -h npc_").append(getObjectId()).append("_castbuff;").append(skillId).append(";").append(category).append(";").append(page).append(";").append(targetType).append("\" ").append("width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+			htmlBuilder.append("</tr></table>");
+			htmlBuilder.append("<img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1>");
+			row++;
+		}
+		
+		// Footer - fixed width (never 100%).
+		htmlBuilder.append("<br1><img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1><table width=\"").append(UI_WIDTH).append("\" bgcolor=000000><tr>");
+		
+		if (page > 1)
+		{
+			htmlBuilder.append("<td align=left width=").append(FOOTER_SIDE_WIDTH).append("><a action=\"bypass -h npc_").append(getObjectId()).append("_manual;").append(category).append(";").append(page - 1).append(";").append(targetType).append("\">Previous</a></td>");
+		}
+		else
+		{
+			htmlBuilder.append("<td align=left width=").append(FOOTER_SIDE_WIDTH).append(">Previous</td>");
+		}
+		
+		htmlBuilder.append("<td align=center width=").append(PAGE_CENTER_WIDTH).append(">Page ").append(page).append("</td>");
+		
+		if (page < maxPage)
+		{
+			htmlBuilder.append("<td align=right width=").append(FOOTER_SIDE_WIDTH).append("><a action=\"bypass -h npc_").append(getObjectId()).append("_manual;").append(category).append(";").append(page + 1).append(";").append(targetType).append("\">Next</a></td>");
+		}
+		else
+		{
+			htmlBuilder.append("<td align=right width=").append(FOOTER_SIDE_WIDTH).append(">Next</td>");
+		}
+		
+		htmlBuilder.append("</tr></table><img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1>");
+		htmlBuilder.append("<br1><center><a action=\"bypass -h npc_").append(getObjectId()).append("_menu\">Back</a></center>");
+		
+		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
+		html.setFile(player, getHtmlPath(getId(), 3));
+		html.replace("%category%", category);
+		html.replace("%skills%", htmlBuilder.toString());
+		html.replace("%objectId%", getObjectId());
+		player.sendPacket(html);
+	}
+	
+	/**
+	 * Applies auto-buff preset based on player class to player or pet.
+	 * @param player
+	 * @param targetType
+	 */
+	private void applyAutoBuff(Player player, String targetType)
+	{
+		final SchemeBufferTable schemeBufferTable = SchemeBufferTable.getInstance();
+		final SkillData skillData = SkillData.getInstance();
+		
+		final Creature target = "pet".equalsIgnoreCase(targetType) ? player.getSummon() : player;
+		if (target == null)
+		{
+			player.sendMessage("You don't have a pet.");
+			showMainMenu(player);
+			return;
+		}
+		
+		final String category = player.isMageClass() ? "MAGE_GROUP" : "FIGHTER_GROUP";
+		final List<Integer> skillIds = schemeBufferTable.getSkillsIdsByType(category);
+		
+		if (skillIds.isEmpty())
+		{
+			player.sendMessage("Auto buff configuration is not available.");
+			showMainMenu(player);
+			return;
+		}
+		
+		for (int skillId : skillIds)
+		{
+			final BuffSkillHolder holder = schemeBufferTable.getAvailableBuff(category, skillId);
+			if (holder == null)
+			{
+				continue;
+			}
+			
+			final Skill skill = skillData.getSkill(skillId, holder.getLevel());
+			if (skill != null)
+			{
+				skill.applyEffects(this, target);
+			}
+		}
+		
+		player.sendMessage("Auto buff applied successfully!");
+		showMainMenu(player);
+	}
+	
+	/**
+	 * Builds paginated skill list for scheme edit window.
+	 * @param player
+	 * @param groupType
+	 * @param schemeName
+	 * @param pageValue
+	 * @return the HTML fragment.
 	 */
 	private String getGroupSkillList(Player player, String groupType, String schemeName, int pageValue)
 	{
-		// Retrieve the entire skills list based on group type.
-		List<Integer> skills = SchemeBufferTable.getInstance().getSkillsIdsByType(groupType);
-		if (skills.isEmpty())
+		final SchemeBufferTable schemeBufferTable = SchemeBufferTable.getInstance();
+		final SkillData skillData = SkillData.getInstance();
+		
+		List<Integer> skillIds = schemeBufferTable.getSkillsIdsByType(groupType);
+		if (skillIds.isEmpty())
 		{
 			return "That group doesn't contain any skills.";
 		}
 		
-		// Calculate page number.
-		final int max = HtmlUtil.countPageNumber(skills.size(), PAGE_LIMIT);
+		final int maxPage = HtmlUtil.countPageNumber(skillIds.size(), PAGE_LIMIT);
 		int page = pageValue;
-		if (page > max)
+		if (page > maxPage)
 		{
-			page = max;
+			page = maxPage;
+		}
+		if (page < 1)
+		{
+			page = 1;
 		}
 		
-		// Cut skills list up to page number.
-		skills = skills.subList((page - 1) * PAGE_LIMIT, Math.min(page * PAGE_LIMIT, skills.size()));
+		skillIds = skillIds.subList((page - 1) * PAGE_LIMIT, Math.min(page * PAGE_LIMIT, skillIds.size()));
 		
-		final List<Integer> schemeSkills = SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName);
-		final StringBuilder sb = new StringBuilder(skills.size() * 150);
+		final List<Integer> schemeSkills = schemeBufferTable.getScheme(player.getObjectId(), schemeName);
+		final StringBuilder htmlBuilder = new StringBuilder(skillIds.size() * 150);
+		
 		int row = 0;
-		for (int skillId : skills)
+		for (int skillId : skillIds)
 		{
-			sb.append(((row % 2) == 0 ? "<table width=\"280\" bgcolor=\"000000\"><tr>" : "<table width=\"280\"><tr>"));
+			final BuffSkillHolder holder = schemeBufferTable.getAvailableBuff(groupType, skillId);
+			if (holder == null)
+			{
+				continue;
+			}
 			
-			final Skill skill = SkillData.getInstance().getSkill(skillId, 1);
+			final Skill skill = skillData.getSkill(skillId, 1);
+			if (skill == null)
+			{
+				continue;
+			}
+			
+			htmlBuilder.append(((row % 2) == 0) ? "<table width=\"" + UI_WIDTH + "\" bgcolor=\"000000\"><tr>" : "<table width=\"" + UI_WIDTH + "\"><tr>");
+			htmlBuilder.append("<td height=40 width=").append(ICON_COL_WIDTH).append(" align=center><img src=\"").append(skill.getIcon()).append("\" width=32 height=32></td>");
+			htmlBuilder.append("<td width=").append(NAME_COL_WIDTH).append(">").append(skill.getName()).append("<br1><font color=\"B09878\">").append(holder.getDescription()).append("</font></td>");
+			
 			if (schemeSkills.contains(skillId))
 			{
-				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button action=\"bypass npc_%objectId%_skillunselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
+				htmlBuilder.append("<td width=").append(BTN_COL_WIDTH).append(" align=center><button action=\"bypass -h npc_%objectId%_skillunselect;").append(groupType).append(";").append(schemeName).append(";").append(skillId).append(";").append(page).append("\" ").append("width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
 			}
 			else
 			{
-				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button action=\"bypass npc_%objectId%_skillselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+				htmlBuilder.append("<td width=").append(BTN_COL_WIDTH).append(" align=center><button action=\"bypass -h npc_%objectId%_skillselect;").append(groupType).append(";").append(schemeName).append(";").append(skillId).append(";").append(page).append("\" ").append("width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
 			}
 			
-			sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=277 height=1>");
+			htmlBuilder.append("</tr></table><img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1>");
 			row++;
 		}
 		
-		// Build page footer.
-		sb.append("<br><img src=\"L2UI.SquareGray\" width=277 height=1><table width=\"100%\" bgcolor=000000><tr>");
+		// Footer - fixed width (never 100%).
+		htmlBuilder.append("<br1><img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1><table width=\"").append(UI_WIDTH).append("\" bgcolor=000000><tr>");
+		
 		if (page > 1)
 		{
-			sb.append("<td align=left width=70><a action=\"bypass npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page - 1) + "\">Previous</a></td>");
+			htmlBuilder.append("<td align=left width=").append(FOOTER_SIDE_WIDTH).append("><a action=\"bypass -h npc_").append(getObjectId()).append("_editschemes;").append(groupType).append(";").append(schemeName).append(";").append(page - 1).append("\">Previous</a></td>");
 		}
 		else
 		{
-			sb.append("<td align=left width=70>Previous</td>");
+			htmlBuilder.append("<td align=left width=").append(FOOTER_SIDE_WIDTH).append(">Previous</td>");
 		}
 		
-		sb.append("<td align=center width=100>Page " + page + "</td>");
-		if (page < max)
+		htmlBuilder.append("<td align=center width=").append(PAGE_CENTER_WIDTH).append(">Page ").append(page).append("</td>");
+		
+		if (page < maxPage)
 		{
-			sb.append("<td align=right width=70><a action=\"bypass npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page + 1) + "\">Next</a></td>");
+			htmlBuilder.append("<td align=right width=").append(FOOTER_SIDE_WIDTH).append("><a action=\"bypass -h npc_").append(getObjectId()).append("_editschemes;").append(groupType).append(";").append(schemeName).append(";").append(page + 1).append("\">Next</a></td>");
 		}
 		else
 		{
-			sb.append("<td align=right width=70>Next</td>");
+			htmlBuilder.append("<td align=right width=").append(FOOTER_SIDE_WIDTH).append(">Next</td>");
 		}
 		
-		sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=277 height=1>");
-		return sb.toString();
+		htmlBuilder.append("</tr></table><img src=\"L2UI.SquareGray\" width=").append(UI_WIDTH).append(" height=1>");
+		return htmlBuilder.toString();
 	}
 	
 	/**
-	 * @param groupType : The group of skills to select.
-	 * @param schemeName : The scheme to make check.
-	 * @return a string representing all groupTypes available. The group currently on selection isn't linkable.
+	 * Builds the category selector frame for scheme editing.
+	 * @param groupType
+	 * @param schemeName
+	 * @return the HTML fragment.
 	 */
 	private static String getTypesFrame(String groupType, String schemeName)
 	{
-		final StringBuilder sb = new StringBuilder(500);
-		sb.append("<table>");
+		final StringBuilder htmlBuilder = new StringBuilder(500);
+		htmlBuilder.append("<table>");
 		
 		int count = 0;
 		for (String type : SchemeBufferTable.getInstance().getSkillTypes())
 		{
 			if (count == 0)
 			{
-				sb.append("<tr>");
+				htmlBuilder.append("<tr>");
 			}
 			
 			if (groupType.equalsIgnoreCase(type))
 			{
-				sb.append("<td width=65>" + type + "</td>");
+				htmlBuilder.append("<td width=65>").append(type).append("</td>");
 			}
 			else
 			{
-				sb.append("<td width=65><a action=\"bypass npc_%objectId%_editschemes;" + type + ";" + schemeName + ";1\">" + type + "</a></td>");
+				htmlBuilder.append("<td width=65><a action=\"bypass -h npc_%objectId%_editschemes;").append(type).append(";").append(schemeName).append(";1\">").append(type).append("</a></td>");
 			}
 			
 			count++;
-			if (count == 4)
+			if (count == TYPES_PER_ROW)
 			{
-				sb.append("</tr>");
+				htmlBuilder.append("</tr>");
 				count = 0;
 			}
 		}
 		
-		if (!sb.toString().endsWith("</tr>"))
+		if (count != 0)
 		{
-			sb.append("</tr>");
+			htmlBuilder.append("</tr>");
 		}
 		
-		sb.append("</table>");
-		
-		return sb.toString();
+		htmlBuilder.append("</table>");
+		return htmlBuilder.toString();
 	}
 	
 	/**
-	 * @param list : A list of skill ids.
-	 * @return a global fee for all skills contained in list.
+	 * Parses a non-negative integer without exceptions.
+	 * @param value
+	 * @return the parsed value, or {@code null} if invalid or out of range.
+	 */
+	private static Integer parseUnsignedInt(String value)
+	{
+		if ((value == null) || value.isEmpty())
+		{
+			return null;
+		}
+		
+		int result = 0;
+		for (int i = 0; i < value.length(); i++)
+		{
+			final char c = value.charAt(i);
+			if ((c < '0') || (c > '9'))
+			{
+				return null;
+			}
+			
+			final int digit = c - '0';
+			if (result > ((Integer.MAX_VALUE - digit) / 10))
+			{
+				return null;
+			}
+			result = (result * 10) + digit;
+		}
+		return result;
+	}
+	
+	/**
+	 * Computes the total fee for a skill list.
+	 * @param list
+	 * @return the fee.
 	 */
 	private static int getFee(List<Integer> list)
 	{
@@ -437,25 +841,36 @@ public class SchemeBuffer extends Npc
 		}
 		
 		int fee = 0;
-		for (int sk : list)
+		for (int skillId : list)
 		{
-			fee += SchemeBufferTable.getInstance().getAvailableBuff(sk).getPrice();
+			final BuffSkillHolder holder = SchemeBufferTable.getInstance().getAvailableBuff(skillId);
+			if (holder != null)
+			{
+				fee += holder.getPrice();
+			}
 		}
-		
 		return fee;
 	}
 	
+	/**
+	 * Counts skills in a list as dances/songs or non-dances.
+	 * @param skills
+	 * @param dances
+	 * @return the count.
+	 */
 	private static int getCountOf(List<Integer> skills, boolean dances)
 	{
+		final SkillData skillData = SkillData.getInstance();
+		
 		int count = 0;
 		for (int skillId : skills)
 		{
-			if (SkillData.getInstance().getSkill(skillId, 1).isDance() == dances)
+			final Skill skill = skillData.getSkill(skillId, 1);
+			if ((skill != null) && (skill.isDance() == dances))
 			{
 				count++;
 			}
 		}
-		
 		return count;
 	}
 }

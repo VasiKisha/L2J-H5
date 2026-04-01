@@ -1,60 +1,101 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver.network.clientpackets;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.network.ConnectionState;
 import org.l2jmobius.loginserver.network.serverpackets.GGAuth;
 
 /**
- * Format: ddddd
- * @author -Wooden-
+ * Handles the client GameGuard authentication packet.<br>
+ * Validates the received session identifier and advances the connection state when successful.
+ * <ul>
+ * <li>Reads and discards the GameGuard payload integers.</li>
+ * <li>Verifies that the received session id matches the client session id.</li>
+ * <li>Sets {@link ConnectionState#AUTHED_GG} and replies with {@link GGAuth} on success.</li>
+ * <li>Closes the connection with {@link LoginFailReason#REASON_ACCESS_FAILED} on mismatch.</li>
+ * </ul>
+ * Format: ddddd.
+ * @author BazookaRpm
  */
 public class AuthGameGuard extends LoginClientPacket
 {
-	private int _sessionId;
+	private static final Logger LOGGER = Logger.getLogger(AuthGameGuard.class.getName());
 	
+	private static final int GAME_GUARD_PAYLOAD_SIZE = 20;
+	private static final int GAME_GUARD_RESERVED_DWORD_COUNT = 4;
+	
+	private int _receivedSessionId;
+	
+	/**
+	 * Reads and validates the GameGuard authentication payload.<br>
+	 * Expects one session id followed by four reserved integers.
+	 * @return {@code true} if the payload was fully read, {@code false} otherwise.
+	 */
 	@Override
 	protected boolean readImpl()
 	{
-		if (remaining() >= 20)
+		final int remainingBytes = remaining();
+		if (remainingBytes < GAME_GUARD_PAYLOAD_SIZE)
 		{
-			_sessionId = readInt();
-			readInt(); // data1
-			readInt(); // data2
-			readInt(); // data3
-			readInt(); // data4
-			return true;
+			if (LOGGER.isLoggable(Level.FINE))
+			{
+				LOGGER.fine("AuthGameGuard: Invalid payload length " + remainingBytes + " (expected " + GAME_GUARD_PAYLOAD_SIZE + ").");
+			}
+			return false;
 		}
 		
-		return false;
+		_receivedSessionId = readInt();
+		
+		for (int i = 0; i < GAME_GUARD_RESERVED_DWORD_COUNT; i++)
+		{
+			readInt(); // Reserved GameGuard data.
+		}
+		
+		return true;
 	}
 	
+	/**
+	 * Validates the GameGuard session and updates the client connection state.
+	 */
 	@Override
 	public void run()
 	{
-		if (_sessionId == getClient().getSessionId())
+		final int clientSessionId = getClient().getSessionId();
+		if (_receivedSessionId != clientSessionId)
 		{
-			getClient().setConnectionState(ConnectionState.AUTHED_GG);
-			getClient().sendPacket(new GGAuth(getClient().getSessionId()));
-		}
-		else
-		{
+			if (LOGGER.isLoggable(Level.FINE))
+			{
+				LOGGER.fine("AuthGameGuard: Session mismatch. Received=" + _receivedSessionId + ", expected=" + clientSessionId + ".");
+			}
+			
 			getClient().close(LoginFailReason.REASON_ACCESS_FAILED);
+			return;
 		}
+		
+		getClient().setConnectionState(ConnectionState.AUTHED_GG);
+		getClient().sendPacket(new GGAuth(clientSessionId));
 	}
 }

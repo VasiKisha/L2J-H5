@@ -167,7 +167,7 @@ public class RequestDestroyItem extends ClientPacket
 		
 		if (itemToRemove.isEquipped())
 		{
-			if (itemToRemove.getEnchantLevel() > 0)
+			if (itemToRemove.isEnchanted())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.THE_EQUIPMENT_S1_S2_HAS_BEEN_REMOVED);
 				sm.addInt(itemToRemove.getEnchantLevel());

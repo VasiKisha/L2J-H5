@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.loginserver.network.gameserverpackets;
 
@@ -22,143 +26,186 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.GameServerTable;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
-import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.GameServerThread;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler.GameServerState;
 import org.l2jmobius.loginserver.network.loginserverpackets.AuthResponse;
 import org.l2jmobius.loginserver.network.loginserverpackets.LoginServerFail;
 
 /**
- * <pre>
- * Format: cccddb
- * c desired ID
- * c accept alternative ID
- * c reserve Host
- * s ExternalHostName
- * s InetranlHostName
- * d max players
- * d hexid size
- * b hexid
- * </pre>
- * 
- * @author -Wooden-
+ * Authenticates a game server connection and binds it to a registered server entry.<br>
+ * The request publishes the server id, hexId and host pairs used for network routing, then completes registration.
+ * <ul>
+ * <li>Reads and validates packet sizes to avoid oversized allocations.</li>
+ * <li>Matches or registers the server entry and attaches connection metadata.</li>
+ * <li>Replies with AuthResponse and transitions the connection to AUTHED on success.</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class GameServerAuth extends BaseReadablePacket
 {
+	// Logging.
 	protected static final Logger LOGGER = Logger.getLogger(GameServerAuth.class.getName());
 	
-	GameServerThread _server;
-	private final byte[] _hexId;
-	private final int _desiredId;
+	// Packet Limits.
+	private static final int MAX_HEX_ID_BYTES = 64;
+	private static final int MAX_HOST_PAIRS = 32;
+	private static final int HOST_STRINGS_PER_PAIR = 2;
+	
+	// Connection Context.
+	private final GameServerThread _server;
+	
+	// Packet Data.
+	private final int _desiredServerId;
 	private final boolean _acceptAlternativeId;
-	private final int _maxPlayers;
 	private final int _port;
+	private final int _maxPlayers;
+	private final byte[] _hexId;
 	private final String[] _hosts;
 	
+	/**
+	 * Reads the authentication packet and completes the registration process when valid.<br>
+	 * Invalid payload sizes are rejected early to reduce DoS impact.
+	 * @param decrypt
+	 * @param server
+	 */
 	public GameServerAuth(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
 		readByte(); // Packet id, it is already processed.
 		
 		_server = server;
-		_desiredId = readByte();
-		_acceptAlternativeId = readByte() != 0;
-		readByte(); // _hostReserved = readByte() != 0
-		_port = readShort();
-		_maxPlayers = readInt();
-		int size = readInt();
-		_hexId = readBytes(size);
-		size = 2 * readInt();
-		_hosts = new String[size];
-		for (int i = 0; i < size; i++)
+		
+		final int desiredServerId = readByte();
+		final boolean acceptAlternativeId = readByte() != 0;
+		readByte(); // Reserved host flag, it is not used.
+		
+		final int port = readShort();
+		final int maxPlayers = readInt();
+		
+		byte[] hexId = new byte[0];
+		String[] hosts = new String[0];
+		
+		final int hexIdSize = readInt();
+		if ((hexIdSize < 0) || (hexIdSize > MAX_HEX_ID_BYTES))
 		{
-			_hosts[i] = readString();
+			_desiredServerId = desiredServerId;
+			_acceptAlternativeId = acceptAlternativeId;
+			_port = port;
+			_maxPlayers = maxPlayers;
+			_hexId = hexId;
+			_hosts = hosts;
+			
+			LOGGER.warning("Rejected GS auth due to invalid hexIdSize=" + hexIdSize + " for desiredServerId=" + desiredServerId + " (maxHexIdBytes=" + MAX_HEX_ID_BYTES + ").");
+			_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
+			return;
 		}
+		
+		if (hexIdSize != 0)
+		{
+			hexId = readBytes(hexIdSize);
+		}
+		
+		final int hostPairs = readInt();
+		if ((hostPairs < 0) || (hostPairs > MAX_HOST_PAIRS))
+		{
+			_desiredServerId = desiredServerId;
+			_acceptAlternativeId = acceptAlternativeId;
+			_port = port;
+			_maxPlayers = maxPlayers;
+			_hexId = hexId;
+			_hosts = hosts;
+			
+			LOGGER.warning("Rejected GS auth due to invalid hostPairs=" + hostPairs + " for desiredServerId=" + desiredServerId + " (maxHostPairs=" + MAX_HOST_PAIRS + ").");
+			_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
+			return;
+		}
+		
+		final int hostStringCount = hostPairs * HOST_STRINGS_PER_PAIR;
+		if (hostStringCount != 0)
+		{
+			hosts = new String[hostStringCount];
+			for (int i = 0; i < hostStringCount; i++)
+			{
+				hosts[i] = readString();
+			}
+		}
+		
+		_desiredServerId = desiredServerId;
+		_acceptAlternativeId = acceptAlternativeId;
+		_port = port;
+		_maxPlayers = maxPlayers;
+		_hexId = hexId;
+		_hosts = hosts;
 		
 		if (handleRegProcess())
 		{
-			final AuthResponse ar = new AuthResponse(server.getGameServerInfo().getId());
-			server.sendPacket(ar);
-			server.setLoginConnectionState(GameServerState.AUTHED);
+			_server.sendPacket(new AuthResponse(_server.getGameServerInfo().getId()));
+			_server.setLoginConnectionState(GameServerState.AUTHED);
 		}
 	}
 	
 	private boolean handleRegProcess()
 	{
 		final GameServerTable gameServerTable = GameServerTable.getInstance();
-		final int id = _desiredId;
-		final byte[] hexId = _hexId;
+		final int desiredId = _desiredServerId;
 		
-		// Is there a gameserver registered with this id?
-		GameServerInfo gsi = gameServerTable.getRegisteredGameServerById(id);
-		if (gsi != null)
+		final GameServerInfo registeredInfo = gameServerTable.getRegisteredGameServerById(desiredId);
+		if (registeredInfo == null)
 		{
-			// Does the hex id match?
-			if (Arrays.equals(gsi.getHexId(), hexId))
+			if (!LoginConfig.ACCEPT_NEW_GAMESERVER)
 			{
-				// Check to see if this GS is already connected.
-				synchronized (gsi)
-				{
-					if (gsi.isAuthed())
-					{
-						_server.forceClose(LoginServerFail.REASON_ALREADY_LOGGED8IN);
-						return false;
-					}
-					
-					_server.attachGameServerInfo(gsi, _port, _hosts, _maxPlayers);
-				}
-			}
-			else
-			{
-				// There is already a server registered with the desired id and different hex id.
-				// Try to register this one with an alternative id.
-				if (LoginConfig.ACCEPT_NEW_GAMESERVER && _acceptAlternativeId)
-				{
-					gsi = new GameServerInfo(id, hexId, _server);
-					if (gameServerTable.registerWithFirstAvailableId(gsi))
-					{
-						_server.attachGameServerInfo(gsi, _port, _hosts, _maxPlayers);
-						gameServerTable.registerServerOnDB(gsi);
-					}
-					else
-					{
-						_server.forceClose(LoginServerFail.REASON_NO_FREE_ID);
-						return false;
-					}
-				}
-				else
-				{
-					// Server id is already taken, and we cannot get a new one for you.
-					_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
-					return false;
-				}
-			}
-		}
-		else
-		{
-			// Can we register on this id?
-			if (LoginConfig.ACCEPT_NEW_GAMESERVER)
-			{
-				gsi = new GameServerInfo(id, hexId, _server);
-				if (gameServerTable.register(id, gsi))
-				{
-					_server.attachGameServerInfo(gsi, _port, _hosts, _maxPlayers);
-					gameServerTable.registerServerOnDB(gsi);
-				}
-				else
-				{
-					// Some one took this ID meanwhile.
-					_server.forceClose(LoginServerFail.REASON_ID_RESERVED);
-					return false;
-				}
-			}
-			else
-			{
+				LOGGER.info("Rejected GS auth for desiredServerId=" + desiredId + " because new game servers are not accepted.");
 				_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
 				return false;
 			}
+			
+			final GameServerInfo newInfo = new GameServerInfo(desiredId, _hexId, _server);
+			if (!gameServerTable.register(desiredId, newInfo))
+			{
+				LOGGER.info("Rejected GS auth for desiredServerId=" + desiredId + " because the id became reserved during registration.");
+				_server.forceClose(LoginServerFail.REASON_ID_RESERVED);
+				return false;
+			}
+			
+			_server.attachGameServerInfo(newInfo, _port, _hosts, _maxPlayers);
+			gameServerTable.registerServerOnDB(newInfo);
+			return true;
 		}
 		
+		if (Arrays.equals(registeredInfo.getHexId(), _hexId))
+		{
+			synchronized (registeredInfo)
+			{
+				if (registeredInfo.isAuthed())
+				{
+					LOGGER.info("Rejected GS auth for desiredServerId=" + desiredId + " due to already authenticated session.");
+					_server.forceClose(LoginServerFail.REASON_ALREADY_LOGGED8IN);
+					return false;
+				}
+				
+				_server.attachGameServerInfo(registeredInfo, _port, _hosts, _maxPlayers);
+				return true;
+			}
+		}
+		
+		if (!LoginConfig.ACCEPT_NEW_GAMESERVER || !_acceptAlternativeId)
+		{
+			LOGGER.info("Rejected GS auth for desiredServerId=" + desiredId + " due to wrong hexId and no alternative id allowed.");
+			_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
+			return false;
+		}
+		
+		final GameServerInfo alternativeInfo = new GameServerInfo(desiredId, _hexId, _server);
+		if (!gameServerTable.registerWithFirstAvailableId(alternativeInfo))
+		{
+			LOGGER.info("Rejected GS auth for desiredServerId=" + desiredId + " due to no free alternative id available.");
+			_server.forceClose(LoginServerFail.REASON_NO_FREE_ID);
+			return false;
+		}
+		
+		_server.attachGameServerInfo(alternativeInfo, _port, _hosts, _maxPlayers);
+		gameServerTable.registerServerOnDB(alternativeInfo);
 		return true;
 	}
 }

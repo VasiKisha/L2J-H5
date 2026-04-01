@@ -47,23 +47,23 @@
 		<table name="#pAtk">4.5 14 33.5 66.5 90.5 141.5 208.5 247 310 375.5</table>
 		<table name="#ench1patk">418 421 424 427 430 433 436 439 442 445 448 451 454 457 460 463 466 469 472 475 478 481 484 487 490 493 496 499 502 505</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1001" />
-		<set name="operateType" val="T" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalVisualEffect" val="NONE" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1001</icon>
+		<operateType>T</operateType>
+		<targetType>SELF</targetType>
+		<abnormalVisualEffect>NONE</abnormalVisualEffect>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
 		<effects>
 			<effect name="ManaDamOverTime" ticks="5">
-				<param power="#mdot" />
-				<add stat="pAtk" val="#pAtk" />
+				<power>#mdot</power>
+				<add stat="pAtk">#pAtk</add>
 			</effect>
 		</effects>
 		<enchant1effects>
 			<effect name="ManaDamOverTime" ticks="5">
-				<param power="4" />
-				<add stat="pAtk" val="#ench1patk" />
+				<power>4</power>
+				<add stat="pAtk">#ench1patk</add>
 			</effect>
 		</enchant1effects>
 	</skill>
@@ -141,28 +141,28 @@
 		<table name="#ench2mpConsume">160 157 154 152 149 146 143 141 138 135 133 130 127 124 122 119 116 114 111 108 105 103 100 97 95 92 89 86 84 81</table>
 		<table name="#ench2mpInitialConsume">40 39 38 38 37 36 36 35 34 34 33 32 32 31 30 30 29 28 28 27 26 25 25 24 23 23 22 21 21 20</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1002" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="CASTING_TIME_DOWN" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1002</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>CASTING_TIME_DOWN</abnormalType>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtkSpd" val="#mAtkSpd" />
+				<mul stat="mAtkSpd">#mAtkSpd</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -240,29 +240,29 @@
 		<table name="#ench2mpConsume">134 132 130 127 125 123 121 118 116 114 111 109 107 105 102 100 98 95 93 91 89 86 84 82 79 77 75 73 70 68</table>
 		<table name="#ench2mpInitialConsume">34 33 33 32 32 31 30 30 29 29 28 28 27 26 26 25 25 24 23 23 22 22 21 21 20 19 19 18 18 17</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1003" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_CLAN" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PA_UP" />
-		<set name="affectLimit" val="50-50" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1003</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_CLAN</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PA_UP</abnormalType>
+		<affectLimit>50-50</affectLimit>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pAtk" val="#pAtk" />
+				<mul stat="pAtk">#pAtk</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -340,29 +340,29 @@
 		<table name="#ench2mpConsume">160 157 154 152 149 146 143 141 138 135 133 130 127 124 122 119 116 114 111 108 105 103 100 97 95 92 89 86 84 81</table>
 		<table name="#ench2mpInitialConsume">40 39 38 38 37 36 36 35 34 34 33 32 32 31 30 30 29 28 28 27 26 25 25 24 23 23 22 21 21 20</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1004" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_CLAN" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="CASTING_TIME_DOWN" />
-		<set name="affectLimit" val="50-50" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1004</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_CLAN</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>CASTING_TIME_DOWN</abnormalType>
+		<affectLimit>50-50</affectLimit>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtkSpd" val="#mAtkSpd" />
+				<mul stat="mAtkSpd">#mAtkSpd</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -440,29 +440,29 @@
 		<table name="#ench2mpConsume">147 145 142 140 137 135 132 130 127 125 122 120 117 115 112 110 107 105 102 100 97 95 92 90 87 85 82 80 77 75</table>
 		<table name="#ench2mpInitialConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1005" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_CLAN" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="affectLimit" val="50-50" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1005</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_CLAN</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<affectLimit>50-50</affectLimit>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="#pDef" />
+				<mul stat="pDef">#pDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -540,28 +540,28 @@
 		<table name="#ench2mpConsume">147 145 142 140 137 135 132 130 127 125 122 120 117 115 112 110 107 105 102 100 97 95 92 90 87 85 82 80 77 75</table>
 		<table name="#ench2mpInitialConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1006" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MD_UP" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1006</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MD_UP</abnormalType>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mDef" val="#mDef" />
+				<mul stat="mDef">#mDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -639,28 +639,28 @@
 		<table name="#ench2mpConsume">120 118 116 114 112 110 108 106 104 102 100 98 96 94 92 90 88 86 84 82 79 77 75 73 71 69 67 65 63 61</table>
 		<table name="#ench2mpInitialConsume">30 29 29 28 28 27 27 26 26 25 25 24 24 23 23 22 22 21 21 20 20 19 19 18 18 17 17 16 16 15</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1007" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PA_UP" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1007</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PA_UP</abnormalType>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pAtk" val="#pAtk" />
+				<mul stat="pAtk">#pAtk</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -738,29 +738,29 @@
 		<table name="#ench2mpConsume">160 157 154 152 149 146 143 141 138 135 133 130 127 124 122 119 116 114 111 108 105 103 100 97 95 92 89 86 84 81</table>
 		<table name="#ench2mpInitialConsume">40 39 38 38 37 36 36 35 34 34 33 32 32 31 30 30 29 28 28 27 26 25 25 24 23 23 22 21 21 20</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1008" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_CLAN" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MD_UP" />
-		<set name="affectLimit" val="50-50" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1008</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_CLAN</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MD_UP</abnormalType>
+		<affectLimit>50-50</affectLimit>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mDef" val="#mDef" />
+				<mul stat="mDef">#mDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -838,28 +838,28 @@
 		<table name="#ench2mpConsume">109 107 105 103 101 99 98 96 94 92 90 88 86 85 83 81 79 77 75 74 72 70 68 66 64 62 61 59 57 55</table>
 		<table name="#ench2mpInitialConsume">27 27 26 26 25 25 24 24 23 23 22 22 21 21 21 20 20 19 19 18 18 17 17 16 16 15 15 14 14 14</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1009" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1009</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="#pDef" />
+				<mul stat="pDef">#pDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -937,29 +937,29 @@
 		<table name="#ench2mpConsume">23 23 22 22 22 21 21 20 20 20 19 19 18 18 18 17 17 16 16 16 15 15 14 14 14 13 13 12 12 12</table>
 		<table name="#ench2mpInitialConsume">5 5 5 5 5 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1010" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="1000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1010</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>1000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="#pDef" />
+				<mul stat="pDef">#pDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -986,21 +986,21 @@
 		<table name="#magicLevel">3 5 7 10 12 14 16 18 20 23 24 25 28 29 30 33 34 35</table>
 		<table name="#mpConsume">8 10 11 13 15 17 19 21 24 26 28 29 33 35 35 38 40 41</table>
 		<table name="#mpInitialConsume">2 3 3 4 4 5 5 6 6 7 7 8 9 9 9 10 10 11</table>
-		<set name="icon" val="icon.skill1011" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="5000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="3000" />
+		<icon>icon.skill1011</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>5000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="Heal">
-				<param power="#effectPoints" />
+				<power>#effectPoints</power>
 			</effect>
 		</effects>
 	</skill>
@@ -1013,21 +1013,21 @@
 		<table name="#magicLevel">7 35 58</table>
 		<table name="#mpConsume">8 24 44</table>
 		<table name="#mpInitialConsume">2 6 11</table>
-		<set name="icon" val="icon.skill1012" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="4000" />
+		<icon>icon.skill1012</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>4000</reuseDelay>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="#dispelAbnormals" />
+				<dispel>#dispelAbnormals</dispel>
 			</effect>
 		</effects>
 	</skill>
@@ -1133,22 +1133,22 @@
 		<table name="#ench2mpConsume">108 107 106 105 104 103 102 100 99 98 97 96 95 94 93 92 91 90 89 88 87 86 85 84 83 82 81 80 79 78</table>
 		<table name="#ench2mpInitialConsume">27 26 26 26 26 25 25 25 24 24 24 24 23 23 23 23 22 22 22 22 21 21 21 21 20 20 20 20 19 19</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1013" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="6000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="3000" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1013</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>6000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>3000</reuseDelay>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<conditions msgId="113" addName="1">
 			<not>
 				<target active_skill_id="1013" /> <!-- Cannot be used to classes that has Recharge skill -->
@@ -1156,12 +1156,12 @@
 		</conditions>
 		<effects>
 			<effect name="ManaHealByLevel">
-				<param power="#amount" />
+				<power>#amount</power>
 			</effect>
 		</effects>
 		<enchant1effects>
 			<effect name="ManaHealByLevel">
-				<param power="#ench1amount" />
+				<power>#ench1amount</power>
 			</effect>
 		</enchant1effects>
 	</skill>
@@ -1186,21 +1186,21 @@
 		<table name="#magicLevel">10 12 14 16 18 20 23 24 25 28 29 30 33 34 35</table>
 		<table name="#mpConsume">20 22 25 28 32 35 39 41 43 49 52 53 57 59 62</table>
 		<table name="#mpInitialConsume">5 6 7 7 8 9 10 11 11 13 13 14 15 15 16</table>
-		<set name="icon" val="icon.skill1015" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="2000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="1000" />
+		<icon>icon.skill1015</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>2000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>1000</reuseDelay>
 		<effects>
 			<effect name="Heal">
-				<param power="#amount" />
+				<power>#amount</power>
 			</effect>
 		</effects>
 	</skill>
@@ -1219,25 +1219,25 @@
 		<table name="#mpConsume">47 70 97 121 144 156 165 182 191</table>
 		<table name="#mpInitialConsume">12 18 25 31 36 39 42 46 48</table>
 		<table name="#power">0 20 30 40 50 55 60 65 70</table>
-		<set name="icon" val="icon.skill1016" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="PC_BODY" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="6000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="30000" />
+		<icon>icon.skill1016</icon>
+		<operateType>A1</operateType>
+		<targetType>PC_BODY</targetType>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>6000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>30000</reuseDelay>
 		<conditions>
 			<player canResurrect="true" />
 		</conditions>
 		<effects>
 			<effect name="Resurrection">
-				<param power="#power" />
+				<power>#power</power>
 			</effect>
 		</effects>
 	</skill>
@@ -1250,21 +1250,21 @@
 		<table name="#magicLevel">44 52 62</table>
 		<table name="#mpConsume">31 38 44</table>
 		<table name="#mpInitialConsume">8 10 11</table>
-		<set name="icon" val="icon.skill1018" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="4000" />
+		<icon>icon.skill1018</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>4000</reuseDelay>
 		<effects>
 			<effect name="DispelBySlot">
-				<param dispel="#dispelAbnormals" />
+				<dispel>#dispelAbnormals</dispel>
 			</effect>
 		</effects>
 	</skill>
@@ -1366,36 +1366,36 @@
 		<table name="#ench2mpConsume">113 112 111 110 109 108 107 106 105 104 103 102 101 100 99 98 97 96 95 94 93 92 91 90 89 88 87 86 85 84</table>
 		<table name="#ench2mpInitialConsume">28 28 27 27 27 27 26 26 26 26 25 25 25 25 24 24 24 24 23 23 23 23 22 22 22 22 21 21 21 21</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1020" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="3000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="3000" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1020</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>3000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>3000</reuseDelay>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Heal">
-				<param power="#amount" />
+				<power>#amount</power>
 			</effect>
 			<effect name="DispelBySlot">
-				<param dispel="#dispelAbnormals" />
+				<dispel>#dispelAbnormals</dispel>
 			</effect>
 		</effects>
 		<enchant1effects>
 			<effect name="Heal">
-				<param power="#ench1amount" />
+				<power>#ench1amount</power>
 			</effect>
 			<effect name="DispelBySlot">
-				<param dispel="POISON,9;BLEEDING,9" />
+				<dispel>POISON,9;BLEEDING,9</dispel>
 			</effect>
 		</enchant1effects>
 	</skill>
@@ -1419,20 +1419,20 @@
 		<table name="#magicLevel">10 12 14 16 18 20 23 24 25 28 29 30 33 34 35</table>
 		<table name="#mpConsume">26 30 34 38 42 47 52 55 57 66 69 70 76 79 82</table>
 		<table name="#mpInitialConsume">7 8 9 10 11 12 13 14 15 17 18 18 19 20 21</table>
-		<set name="icon" val="icon.skill1027" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="PARTY" />
-		<set name="affectRange" val="1000" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="7000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="6000" />
+		<icon>icon.skill1027</icon>
+		<operateType>A1</operateType>
+		<targetType>PARTY</targetType>
+		<affectRange>1000</affectRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>7000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>6000</reuseDelay>
 		<effects>
 			<effect name="Heal">
-				<param power="#effectPoints" />
+				<power>#effectPoints</power>
 			</effect>
 		</effects>
 	</skill>
@@ -1558,30 +1558,30 @@
 		<table name="#ench2power">88 88 88 88 89 89 89 89 90 90 90 90 91 91 91 91 91 92 92 92 92 93 93 93 93 94 94 94 94 95</table>
 		<table name="#enchElementPower">21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1028" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="power" val="#power" />
-		<set name="reuseDelay" val="1000" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant1 name="power" val="#ench1power" />
-		<enchant2 name="elementPower" val="#ench2ElementPower" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
-		<enchant2 name="power" val="#ench2power" />
-		<enchant3 name="elementPower" val="#enchElementPower" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1028</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<power>#power</power>
+		<reuseDelay>1000</reuseDelay>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant1 name="power">#ench1power</enchant1>
+		<enchant2 name="elementPower">#ench2ElementPower</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
+		<enchant2 name="power">#ench2power</enchant2>
+		<enchant3 name="elementPower">#enchElementPower</enchant3>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
 		<conditions msgId="113" addName="1">
 			<target race="UNDEAD" />
 		</conditions>
@@ -1603,21 +1603,21 @@
 		<table name="#mpConsume">14 16 17 18 20 21 23 24</table>
 		<table name="#mpInitialConsume">4 4 5 5 5 6 6 6</table>
 		<table name="#power">19 21 24 25 28 30 33 36</table>
-		<set name="icon" val="icon.skill1031" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="2500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="power" val="#power" />
-		<set name="reuseDelay" val="1000" />
+		<icon>icon.skill1031</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<elementPower>20</elementPower>
+		<hitTime>2500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<power>#power</power>
+		<reuseDelay>1000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<target race="UNDEAD" />
 		</conditions>
@@ -1731,33 +1731,33 @@
 		<table name="#ench3abnormalLevel">3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6</table>
 		<table name="#ench3Trait_bleed">51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1032" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="RESIST_BLEEDING" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1032</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>RESIST_BLEEDING</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="DefenceTrait">
-				<param BLEED="#trait_bleed" />
+				<BLEED>#trait_bleed</BLEED>
 			</effect>
 		</effects>
 		<enchant3effects>
 			<effect name="DefenceTrait">
-				<param BLEED="#ench3Trait_bleed" />
+				<BLEED>#ench3Trait_bleed</BLEED>
 			</effect>
 		</enchant3effects>
 	</skill>
@@ -1867,35 +1867,35 @@
 		<table name="#ench3abnormalLevel">3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6</table>
 		<table name="#ench3Trait_poison">51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1033" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="RESIST_POISON" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1033</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>RESIST_POISON</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
 		<effects>
 			<effect name="DefenceTrait">
-				<param POISON="#trait_poison" />
+				<POISON>#trait_poison</POISON>
 			</effect>
 		</effects>
 		<enchant3effects>
 			<effect name="DefenceTrait">
-				<param POISON="#ench3Trait_poison" />
+				<POISON>#ench3Trait_poison</POISON>
 			</effect>
 		</enchant3effects>
 	</skill>
@@ -1968,29 +1968,29 @@
 		<table name="#ench2mpConsume">82 79 78 78 75 74 74 71 70 70 67 66 64 63 62 60 59 58 56 55 54 52 51 50 48 47 46 44 43 42</table>
 		<table name="#ench2mpInitialConsume">20 20 20 19 19 19 18 18 18 17 17 17 16 16 16 15 15 15 14 14 14 13 13 13 12 12 11 11 11 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1034" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="AURA" />
-		<set name="affectLimit" val="10-10" />
-		<set name="affectRange" val="200" />
-		<set name="hitTime" val="1500" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="DERANGEMENT" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant1 name="power" val="#ench1Power" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1034</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<affectLimit>10-10</affectLimit>
+		<affectRange>200</affectRange>
+		<hitTime>1500</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<trait>DERANGEMENT</trait>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant1 name="power">#ench1Power</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<conditions msgId="144">
 			<target race="UNDEAD" />
 		</conditions>
 		<effects>
 			<effect name="DeleteHate">
-				<param chance="40" />
+				<chance>40</chance>
 			</effect>
 		</effects>
 	</skill>
@@ -2069,31 +2069,31 @@
 		<table name="#ench2mpConsume">40 39 38 38 37 36 36 35 34 34 33 32 32 31 30 30 29 28 28 27 26 25 25 24 23 23 22 21 21 20</table>
 		<table name="#ench2mpInitialConsume">10 10 10 10 10 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 6 6 6 6 6 6 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1035" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="RESIST_DERANGEMENT" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1035</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>RESIST_DERANGEMENT</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="DefenceTrait">
-				<param HOLD="#traits" />
-				<param SLEEP="#traits" />
-				<param DERANGEMENT="#traits" />
+				<HOLD>#traits</HOLD>
+				<SLEEP>#traits</SLEEP>
+				<DERANGEMENT>#traits</DERANGEMENT>
 			</effect>
 		</effects>
 	</skill>
@@ -2170,29 +2170,29 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1036" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MD_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1036</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MD_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mDef" val="#mDef" />
+				<mul stat="mDef">#mDef</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -2270,29 +2270,29 @@
 		<table name="#ench2mpConsume">30 29 29 28 28 27 27 26 26 25 25 24 24 23 23 22 22 21 21 20 20 19 19 18 18 17 17 16 16 15</table>
 		<table name="#ench2mpInitialConsume">7 7 7 7 7 7 7 6 6 6 6 6 6 6 6 5 5 5 5 5 5 5 4 4 4 4 4 4 4 4</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1040" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PD_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1040</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PD_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pDef" val="#rate" />
+				<mul stat="pDef">#rate</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -2396,35 +2396,35 @@
 		<table name="#ench2mpConsume">201 200 198 196 195 192 191 188 187 185 183 181 180 177 176 175 172 171 168 167 165 163 161 160 157 156 153 152 151 148</table>
 		<table name="#ench3Attack">30 31 32 32 33 34 34 35 36 36 37 38 38 39 40 40 41 42 42 43 44 44 45 46 46 47 48 48 49 50</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1042" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="PARALYZE" />
-		<set name="abnormalVisualEffect" val="PARALYZE" />
-		<set name="activateRate" val="40" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="6000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="8000" />
-		<set name="trait" val="PARALYZE" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant3 name="element" val="4" /> <!-- Holy -->
-		<enchant3 name="elementPower" val="20" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
-		<enchant3 name="power" val="#ench3Attack" />
+		<icon>icon.skill1042</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>PARALYZE</abnormalType>
+		<abnormalVisualEffect>PARALYZE</abnormalVisualEffect>
+		<activateRate>40</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>6000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>8000</reuseDelay>
+		<trait>PARALYZE</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant3 name="element">4</enchant3> <!-- Holy -->
+		<enchant3 name="elementPower">20</enchant3>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
+		<enchant3 name="power">#ench3Attack</enchant3>
 		<conditions msgId="113" addName="1">
 			<target race="UNDEAD" />
 		</conditions>
@@ -2502,30 +2502,30 @@
 		<table name="#ench2mpConsume">17 17 17 16 16 16 15 15 15 15 14 14 14 13 13 13 12 12 12 12 11 11 11 10 10 10 9 9 9 9</table>
 		<table name="#ench2mpInitialConsume">4 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 3 3 3 3 3 3 3 3 2 2 2 2 2 2</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1043" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_MEMBER" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="HOLY_ATTACK" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="243" />
-		<set name="effectRange" val="900" />
-		<set name="element" val="4" /> <!-- Holy -->
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="25" />
-		<set name="mpConsume" val="23" />
-		<set name="mpInitialConsume" val="5" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1043</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_MEMBER</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>HOLY_ATTACK</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>243</effectPoint>
+		<effectRange>900</effectRange>
+		<element>4</element> <!-- Holy -->
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>25</magicLevel>
+		<mpConsume>23</mpConsume>
+		<mpInitialConsume>5</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<add stat="holyPower" val="20" />
+				<add stat="holyPower">20</add>
 			</effect>
 		</effects>
 	</skill>
@@ -2603,29 +2603,29 @@
 		<table name="#ench2mpConsume">40 39 38 38 37 36 36 35 34 34 33 32 32 31 30 30 29 28 28 27 26 25 25 24 23 23 22 21 21 20</table>
 		<table name="#ench2mpInitialConsume">10 10 10 10 10 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 6 6 6 6 6 6 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1044" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="HP_REGEN_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1044</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>HP_REGEN_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="regHp" val="#rate" />
+				<mul stat="regHp">#rate</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -2706,29 +2706,29 @@
 		<table name="#ench2mpConsume">52 51 50 49 47 46 46 45 44 43 42 41 39 38 38 37 36 35 34 33 32 30 30 29 28 27 26 25 24 23</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 13 13 12 12 12 12 12 12 12 12 11 11 11 11 11 11 11 11 10 10 10 10 10 10 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1045" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MAX_HP_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1045</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MAX_HP_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="maxHp" val="#maxHp" />
+				<mul stat="maxHp">#maxHp</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -2806,30 +2806,30 @@
 		<table name="#regMp">1.72 2.16 2.74 3.09</table>
 		<table name="#ench1Power">3.157 3.214 3.271 3.328 3.385 3.442 3.499 3.556 3.613 3.67 3.727 3.784 3.841 3.898 3.955 4.012 4.069 4.126 4.183 4.24 4.297 4.354 4.411 4.468 4.525 4.582 4.639 4.696 4.753 4.81</table>
 		<table name="#ench2AbnormalTimes">1240 1280 1320 1360 1400 1440 1480 1520 1560 1600 1640 1680 1720 1760 1800 1840 1880 1920 1960 2000 2040 2080 2120 2160 2200 2240 2280 2320 2360 2400</table>
-		<set name="icon" val="icon.skill1047" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MP_REGEN_UP" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="itemConsumeCount" val="#itemConsumeCount" />
-		<set name="itemConsumeId" val="3031" /> <!-- Spirit Ore -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
+		<icon>icon.skill1047</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MP_REGEN_UP</abnormalType>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<itemConsumeCount>#itemConsumeCount</itemConsumeCount>
+		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
 		<effects>
 			<effect name="Buff">
-				<add stat="regMp" val="#regMp" />
+				<add stat="regMp">#regMp</add>
 			</effect>
 		</effects>
 		<enchant1effects>
 			<effect name="Buff">
-				<add stat="regMp" val="#ench1Power" />
+				<add stat="regMp">#ench1Power</add>
 			</effect>
 		</enchant1effects>
 	</skill>
@@ -2910,29 +2910,29 @@
 		<table name="#ench2mpConsume">50 49 48 47 45 44 44 44 43 41 40 39 38 36 37 36 35 34 32 31 30 29 30 28 27 26 25 23 22 22</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 13 13 12 12 12 12 12 12 12 12 11 11 11 11 11 11 11 11 10 10 10 10 10 10 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1048" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MAX_MP_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1048</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MAX_MP_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="maxMp" val="#maxMp" />
+				<mul stat="maxMp">#maxMp</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -2941,25 +2941,25 @@
 		<table name="#magicLevel">40 44 48 52 56 58 60 62 64 66 68 70 72 74</table>
 		<table name="#mpConsume">42 47 52 56 61 64 66 69 71 74 76 78 80 82</table>
 		<table name="#mpInitialConsume">11 12 13 14 16 16 17 18 18 19 19 20 20 21</table>
-		<set name="icon" val="icon.skill1049" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AREA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="120" />
-		<set name="abnormalType" val="TURN_PASSIVE" />
-		<set name="activateRate" val="35" />
-		<set name="affectLimit" val="10-10" />
-		<set name="affectRange" val="1000" />
-		<set name="basicProperty" val="MEN" />
-		<set name="hitTime" val="7000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1049</icon>
+		<operateType>A2</operateType>
+		<targetType>AREA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>120</abnormalTime>
+		<abnormalType>TURN_PASSIVE</abnormalType>
+		<activateRate>35</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<affectRange>1000</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<hitTime>7000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<conditions msgId="144">
 			<target race="UNDEAD" />
 		</conditions>
@@ -2973,16 +2973,16 @@
 		<table name="#magicLevel">40 56</table>
 		<table name="#mpConsume">84 122</table>
 		<table name="#mpInitialConsume">21 31</table>
-		<set name="icon" val="icon.skill1050" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="SELF" />
-		<set name="blockedInOlympiad" val="true" />
-		<set name="hitTime" val="#hitTime" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="75000" />
+		<icon>icon.skill1050</icon>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<hitTime>#hitTime</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>75000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<and>
 				<player canEscape="true" />
@@ -2993,7 +2993,7 @@
 		</conditions>
 		<effects>
 			<effect name="Escape">
-				<param escapeType="TOWN" />
+				<escapeType>TOWN</escapeType>
 			</effect>
 		</effects>
 	</skill>
@@ -3003,21 +3003,23 @@
 		<table name="#magicLevel">48 52 56 58 60 62 64 66 68 70 72 74</table>
 		<table name="#mpConsume">35 38 41 43 44 46 48 49 51 52 53 55</table>
 		<table name="#mpInitialConsume">9 10 11 11 11 12 12 13 13 13 14 14</table>
-		<set name="icon" val="icon.skill1056" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="6000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="30000" />
+		<icon>icon.skill1056</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>6000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>30000</reuseDelay>
 		<effects>
 			<effect name="DispelByCategory">
-				<param slot="buff" rate="25" max="5" />
+				<slot>buff</slot>
+				<rate>25</rate>
+				<max>5</max>
 			</effect>
 		</effects>
 	</skill>
@@ -3095,29 +3097,29 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1059" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MA_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1059</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MA_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtk" val="#mAtk" />
+				<mul stat="mAtk">#mAtk</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -3201,36 +3203,36 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1062" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="PARTY_MEMBER" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="BERSERKER" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1062</icon>
+		<operateType>A2</operateType>
+		<targetType>PARTY_MEMBER</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>BERSERKER</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtk" val="#mAtk" />
-				<mul stat="pAtk" val="#pAtk" />
-				<mul stat="mDef" val="#mDef" />
-				<mul stat="pDef" val="#pDef" />
-				<mul stat="mAtkSpd" val="#mAtkSpd" />
-				<mul stat="pAtkSpd" val="#pAtkSpd" />
-				<add stat="runSpd" val="#runSpd" />
-				<sub stat="rEvas" val="#rEvas" />
+				<mul stat="mAtk">#mAtk</mul>
+				<mul stat="pAtk">#pAtk</mul>
+				<mul stat="mDef">#mDef</mul>
+				<mul stat="pDef">#pDef</mul>
+				<mul stat="mAtkSpd">#mAtkSpd</mul>
+				<mul stat="pAtkSpd">#pAtkSpd</mul>
+				<add stat="runSpd">#runSpd</add>
+				<sub stat="rEvas">#rEvas</sub>
 			</effect>
 		</effects>
 	</skill>
@@ -3305,33 +3307,33 @@
 		<table name="#ench2mpConsume">54 54 53 53 52 52 51 51 50 50 49 49 48 48 47 47 46 46 45 45 44 44 43 43 42 42 41 41 40 40</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 13 13 12 12 12 12 12 12 12 12 11 11 11 11 11 11 11 11 10 10 10 10 10 10 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1064" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="SILENCE" />
-		<set name="abnormalVisualEffect" val="SILENCE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="8000" />
-		<set name="trait" val="DERANGEMENT" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1064</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>SILENCE</abnormalType>
+		<abnormalVisualEffect>SILENCE</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>8000</reuseDelay>
+		<trait>DERANGEMENT</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Mute" />
 		</effects>
@@ -3410,29 +3412,29 @@
 		<table name="#ench2mpConsume">27 27 26 26 25 25 24 24 23 23 22 22 21 21 21 20 20 19 19 18 18 17 17 16 16 15 15 14 14 14</table>
 		<table name="#ench2mpInitialConsume">6 6 6 6 6 6 6 6 5 5 5 5 5 5 5 5 5 4 4 4 4 4 4 4 4 3 3 3 3 3</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1068" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="PA_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1068</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>PA_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pAtk" val="#rate" />
+				<mul stat="pAtk">#rate</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -3507,38 +3509,38 @@
 		<table name="#ench2mpConsume">54 54 53 53 52 52 51 51 50 50 49 49 48 48 47 47 46 46 45 45 44 44 43 43 42 42 41 41 40 40</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 13 13 12 12 12 12 12 12 12 12 11 11 11 11 11 11 11 11 10 10 10 10 10 10 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1069" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="SLEEP" />
-		<set name="abnormalVisualEffect" val="SLEEP" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="10000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="removedOnDamage" val="true" />
-		<set name="reuseDelay" val="4000" />
-		<set name="trait" val="SLEEP" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1069</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>SLEEP</abnormalType>
+		<abnormalVisualEffect>SLEEP</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>10000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<removedOnDamage>true</removedOnDamage>
+		<reuseDelay>4000</reuseDelay>
+		<trait>SLEEP</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Sleep" />
 			<effect name="DefenceTrait">
-				<param SLEEP="100" />
+				<SLEEP>100</SLEEP>
 			</effect>
 		</effects>
 	</skill>
@@ -3644,45 +3646,45 @@
 		<table name="#ench2mpInitialConsume">13 13 13 12 12 12 12 11 11 11 11 11 10 10 10 10 9 9 9 9 8 8 8 8 8 7 7 7 7 6</table>
 		<table name="#enchElementPower">2 4 5 7 9 10 12 14 15 17 18 20 22 23 25 27 28 30 32 33 35 36 38 40 41 43 45 46 48 50</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1071" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="ARMOR_WATER" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="900" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1400" />
-		<set name="element" val="1" /> <!-- Water -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1071</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>ARMOR_WATER</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>900</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1400</effectRange>
+		<element>1</element> <!-- Water -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
 		<effects>
 			<effect name="Debuff">
-				<sub stat="waterRes" val="20" />
-				<add stat="fireRes" val="10" />
+				<sub stat="waterRes">20</sub>
+				<add stat="fireRes">10</add>
 			</effect>
 		</effects>
 		<enchant3effects>
 			<effect name="Debuff">
-				<sub stat="waterRes" val="20" />
-				<add stat="fireRes" val="10" />
-				<sub stat="waterPower" val="#enchElementPower" />
+				<sub stat="waterRes">20</sub>
+				<add stat="fireRes">10</add>
+				<sub stat="waterPower">#enchElementPower</sub>
 			</effect>
 		</enchant3effects>
 	</skill>
@@ -3756,39 +3758,39 @@
 		<table name="#ench2mpConsume">77 76 75 74 74 73 72 71 70 70 69 68 67 66 65 65 64 63 62 61 61 60 59 58 57 56 56 55 54 53</table>
 		<table name="#ench2mpInitialConsume">19 19 18 18 18 18 18 17 17 17 17 17 16 16 16 16 16 15 15 15 15 15 14 14 14 14 14 13 13 13</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1072" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AREA" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="SLEEP" />
-		<set name="abnormalVisualEffect" val="SLEEP" />
-		<set name="activateRate" val="40" />
-		<set name="affectLimit" val="9-10" />
-		<set name="affectRange" val="200" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="500" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1000" />
-		<set name="hitTime" val="15000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="removedOnDamage" val="true" />
-		<set name="reuseDelay" val="8000" />
-		<set name="trait" val="SLEEP" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1072</icon>
+		<operateType>A2</operateType>
+		<targetType>AREA</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>SLEEP</abnormalType>
+		<abnormalVisualEffect>SLEEP</abnormalVisualEffect>
+		<activateRate>40</activateRate>
+		<affectLimit>9-10</affectLimit>
+		<affectRange>200</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<castRange>500</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1000</effectRange>
+		<hitTime>15000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<removedOnDamage>true</removedOnDamage>
+		<reuseDelay>8000</reuseDelay>
+		<trait>SLEEP</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Sleep" />
 			<effect name="DefenceTrait">
-				<param SLEEP="100" />
+				<SLEEP>100</SLEEP>
 			</effect>
 		</effects>
 	</skill>
@@ -3864,28 +3866,28 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1073" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="MAX_BREATH_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1073</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>MAX_BREATH_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="breath" val="#breath" />
+				<mul stat="breath">#breath</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -3991,45 +3993,45 @@
 		<table name="#ench2mpInitialConsume">13 13 13 12 12 12 12 11 11 11 11 11 10 10 10 10 9 9 9 9 8 8 8 8 8 7 7 7 7 6</table>
 		<table name="#enchElementPower">2 4 5 7 9 10 12 14 15 17 18 20 22 23 25 27 28 30 32 33 35 36 38 40 41 43 45 46 48 50</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1074" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="4" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="ARMOR_WIND" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="900" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1400" />
-		<set name="element" val="2" /> <!-- Wind -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1074</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>4</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>ARMOR_WIND</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>900</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1400</effectRange>
+		<element>2</element> <!-- Wind -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
 		<effects>
 			<effect name="Debuff">
-				<sub stat="windRes" val="20" />
-				<add stat="earthRes" val="10" />
+				<sub stat="windRes">20</sub>
+				<add stat="earthRes">10</add>
 			</effect>
 		</effects>
 		<enchant3effects>
 			<effect name="Debuff">
-				<sub stat="windRes" val="20" />
-				<add stat="earthRes" val="10" />
-				<sub stat="windPower" val="#enchElementPower" />
+				<sub stat="windRes">20</sub>
+				<add stat="earthRes">10</add>
+				<sub stat="windPower">#enchElementPower</sub>
 			</effect>
 		</enchant3effects>
 	</skill>
@@ -4038,19 +4040,19 @@
 		<table name="#magicLevel">35 40 44 48 52 56 58 60 62 64 66 68 70 72 74</table>
 		<table name="#mpConsume">24 28 31 35 38 41 43 44 46 48 49 51 52 53 55</table>
 		<table name="#mpInitialConsume">6 7 8 9 10 11 11 11 12 12 13 13 13 14 14</table>
-		<set name="icon" val="icon.skill1075" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="DERANGEMENT" />
+		<icon>icon.skill1075</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<reuseDelay>5000</reuseDelay>
+		<trait>DERANGEMENT</trait>
 		<effects>
 			<effect name="DeleteHate">
-				<param chance="80" />
+				<chance>80</chance>
 			</effect>
 		</effects>
 	</skill>
@@ -4122,33 +4124,33 @@
 		<table name="#effectPoints">243 418 495</table>
 		<table name="#mpConsume">18 31 38</table>
 		<table name="#mpInitialConsume">5 8 10</table>
-		<table name="#rCrit">1.2 1.25 1.3</table>
+		<table name="#critRate">1.2 1.25 1.3</table>
 		<table name="#ench1AbnormalTimes">1240 1280 1320 1360 1400 1440 1480 1520 1560 1600 1640 1680 1720 1760 1800 1840 1880 1920 1960 2000 2040 2080 2120 2160 2200 2240 2280 2320 2360 2400</table>
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1077" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="CRITICAL_PROB_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1077</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>CRITICAL_PROB_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="critRate" val="#rCrit" />
+				<mul stat="critRate">#critRate</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -4228,28 +4230,28 @@
 		<table name="#ench2mpConsume">51 50 49 48 47 46 45 45 44 43 42 41 40 39 39 38 37 36 35 34 33 32 32 31 31 30 29 28 27 26</table>
 		<table name="#ench2mpInitialConsume">12 12 12 12 11 11 11 11 11 10 10 10 10 9 9 9 9 9 8 8 8 8 8 7 7 7 7 7 6 6</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1078" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="CANCEL_PROB_DOWN" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1078</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>CANCEL_PROB_DOWN</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<sub stat="cancel" val="#cancel" />
+				<sub stat="cancel">#cancel</sub>
 			</effect>
 		</effects>
 	</skill>
@@ -4358,45 +4360,45 @@
 		<table name="#ench2mpInitialConsume">13 13 13 12 12 12 12 11 11 11 11 11 10 10 10 10 9 9 9 9 8 8 8 8 8 7 7 7 7 6</table>
 		<table name="#enchElementPower">2 4 5 7 9 10 12 14 15 17 18 20 22 23 25 27 28 30 32 33 35 36 38 40 41 43 45 46 48 50</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1083" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="ARMOR_FIRE" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="#castRange" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="#effectRange" />
-		<set name="element" val="0" /> <!-- Fire -->
-		<set name="elementPower" val="20" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
-		<enchant3 name="magicLevel" val="#enchMagicLvl" />
+		<icon>icon.skill1083</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>ARMOR_FIRE</abnormalType>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>#castRange</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>#effectRange</effectRange>
+		<element>0</element> <!-- Fire -->
+		<elementPower>20</elementPower>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
+		<enchant3 name="magicLevel">#enchMagicLvl</enchant3>
 		<effects>
 			<effect name="Debuff">
-				<sub stat="fireRes" val="20" />
-				<add stat="waterRes" val="10" />
+				<sub stat="fireRes">20</sub>
+				<add stat="waterRes">10</add>
 			</effect>
 		</effects>
 		<enchant3effects>
 			<effect name="Debuff">
-				<sub stat="fireRes" val="20" />
-				<add stat="waterRes" val="10" />
-				<sub stat="firePower" val="#enchElementPower" />
+				<sub stat="fireRes">20</sub>
+				<add stat="waterRes">10</add>
+				<sub stat="firePower">#enchElementPower</sub>
 			</effect>
 		</enchant3effects>
 	</skill>
@@ -4473,28 +4475,28 @@
 		<table name="#ench2mpConsume">34 33 33 32 32 31 30 30 29 29 28 28 27 26 26 25 25 24 23 23 22 22 21 21 20 19 19 18 18 17</table>
 		<table name="#ench2mpInitialConsume">8 8 8 8 8 8 7 7 7 7 7 7 7 6 6 6 6 6 6 6 5 5 5 5 5 5 4 4 4 4</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1085" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="CASTING_TIME_DOWN" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1085</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>CASTING_TIME_DOWN</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="mAtkSpd" val="#mAtkSpd" />
+				<mul stat="mAtkSpd">#mAtkSpd</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -4570,28 +4572,28 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1086" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="ATTACK_TIME_DOWN" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1086</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>ATTACK_TIME_DOWN</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<mul stat="pAtkSpd" val="#pAtkSpd" />
+				<mul stat="pAtkSpd">#pAtkSpd</mul>
 			</effect>
 		</effects>
 	</skill>
@@ -4668,28 +4670,28 @@
 		<table name="#ench2mpConsume">37 36 36 35 34 34 33 32 32 31 31 30 29 29 28 27 27 26 25 25 24 24 23 22 22 21 20 20 19 19</table>
 		<table name="#ench2mpInitialConsume">9 9 9 9 9 9 8 8 8 8 8 8 7 7 7 7 7 7 6 6 6 6 6 6 5 5 5 5 5 5</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1087" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="1200" />
-		<set name="abnormalType" val="AVOID_UP" />
-		<set name="castRange" val="400" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="900" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="abnormalTime" val="#ench1AbnormalTimes" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1087</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>1200</abnormalTime>
+		<abnormalType>AVOID_UP</abnormalType>
+		<castRange>400</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>900</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Buff">
-				<add stat="rEvas" val="#rEvas" />
+				<add stat="rEvas">#rEvas</add>
 			</effect>
 		</effects>
 	</skill>
@@ -4705,22 +4707,22 @@
 		<table name="#mpConsume">22 32 40 46 54 63</table>
 		<table name="#mpInitialConsume">5 8 10 12 14 16</table>
 		<table name="#power">15 21 26 32 38 44</table>
-		<set name="icon" val="icon.skill1090" />
-		<set name="operateType" val="A1" />
-		<set name="targetType" val="ONE" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="power" val="#power" />
-		<set name="reuseDelay" val="2000" />
+		<icon>icon.skill1090</icon>
+		<operateType>A1</operateType>
+		<targetType>ONE</targetType>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<power>#power</power>
+		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="HpDrain">
-				<param power="0.8" />
+				<power>0.8</power>
 			</effect>
 		</effects>
 	</skill>
@@ -4795,33 +4797,33 @@
 		<table name="#ench2mpConsume">54 53 52 50 50 49 48 46 46 46 45 44 42 42 41 40 38 38 37 37 36 34 34 33 32 30 30 29 28 28</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 12 12 12 12 12 11 11 11 11 10 10 10 10 9 9 9 9 9 8 8 8 8 7 7 7 7</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1092" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="10" />
-		<set name="abnormalType" val="TURN_FLEE" />
-		<set name="abnormalVisualEffect" val="TURN_FLEE" />
-		<set name="activateRate" val="40" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<set name="trait" val="DERANGEMENT" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="effectPoint" val="#ench1EffectPoints" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1092</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>10</abnormalTime>
+		<abnormalType>TURN_FLEE</abnormalType>
+		<abnormalVisualEffect>TURN_FLEE</abnormalVisualEffect>
+		<activateRate>40</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<trait>DERANGEMENT</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="effectPoint">#ench1EffectPoints</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Fear" />
 		</effects>
@@ -4838,30 +4840,30 @@
 		<table name="#magicLevel">7 14 20 40 52</table>
 		<table name="#mpConsume">8 12 16 28 38</table>
 		<table name="#mpInitialConsume">2 3 4 7 10</table>
-		<set name="icon" val="icon.skill1095" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="POISON" />
-		<set name="abnormalVisualEffect" val="DOT_POISON" />
-		<set name="activateRate" val="70" />
-		<set name="basicProperty" val="CON" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="3000" />
-		<set name="trait" val="POISON" />
+		<icon>icon.skill1095</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>POISON</abnormalType>
+		<abnormalVisualEffect>DOT_POISON</abnormalVisualEffect>
+		<activateRate>70</activateRate>
+		<basicProperty>CON</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>3000</reuseDelay>
+		<trait>POISON</trait>
 		<effects>
 			<effect name="DamOverTime" ticks="5">
-				<param power="#dot" />
+				<power>#dot</power>
 			</effect>
 		</effects>
 	</skill>
@@ -4953,34 +4955,34 @@
 		<table name="#ench2mpConsume">80 78 77 76 74 73 72 70 69 68 66 65 64 62 61 60 58 57 54 54 53 50 50 49 46 46 44 42 42 40</table>
 		<table name="#ench2mpInitialConsume">20 20 19 19 19 18 18 18 17 17 16 16 16 15 15 15 14 14 14 13 13 13 12 12 12 11 11 11 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1096" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="HIT_DOWN" />
-		<set name="activateRate" val="60" />
-		<set name="affectLimit" val="10-10" />
-		<set name="affectRange" val="200" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="1500" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="2000" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1096</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>HIT_DOWN</abnormalType>
+		<activateRate>60</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<affectRange>200</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>1500</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>2000</reuseDelay>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Debuff">
-				<sub stat="accCombat" val="#Acc" />
+				<sub stat="accCombat">#Acc</sub>
 			</effect>
 		</effects>
 	</skill>
@@ -5055,38 +5057,38 @@
 		<table name="#ench2mpConsume">54 53 52 50 50 49 48 46 46 45 44 44 42 42 41 40 38 38 37 36 34 34 33 33 32 30 30 29 28 26</table>
 		<table name="#ench2mpInitialConsume">13 13 13 13 12 12 12 12 11 11 11 11 11 10 10 10 10 9 9 9 9 8 8 8 8 8 7 7 7 7</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1097" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="ONE" />
-		<set name="abnormalLevel" val="1" />
-		<set name="abnormalTime" val="30" />
-		<set name="abnormalType" val="SLEEP" />
-		<set name="abnormalVisualEffect" val="SLEEP" />
-		<set name="activateRate" val="80" />
-		<set name="basicProperty" val="MEN" />
-		<set name="castRange" val="600" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="effectRange" val="1100" />
-		<set name="hitTime" val="4000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="2" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="removedOnDamage" val="true" />
-		<set name="reuseDelay" val="2000" />
-		<set name="trait" val="SLEEP" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="abnormalTime" val="#ench2AbnormalTimes" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1097</icon>
+		<operateType>A2</operateType>
+		<targetType>ONE</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>30</abnormalTime>
+		<abnormalType>SLEEP</abnormalType>
+		<abnormalVisualEffect>SLEEP</abnormalVisualEffect>
+		<activateRate>80</activateRate>
+		<basicProperty>MEN</basicProperty>
+		<castRange>600</castRange>
+		<effectPoint>#effectPoints</effectPoint>
+		<effectRange>1100</effectRange>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>2</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<removedOnDamage>true</removedOnDamage>
+		<reuseDelay>2000</reuseDelay>
+		<trait>SLEEP</trait>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="abnormalTime">#ench2AbnormalTimes</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Sleep" />
 			<effect name="DefenceTrait">
-				<param SLEEP="100" />
+				<SLEEP>100</SLEEP>
 			</effect>
 		</effects>
 	</skill>
@@ -5177,34 +5179,34 @@
 		<table name="#ench2mpConsume">80 78 77 76 74 73 72 70 69 68 66 65 64 62 61 60 58 57 54 54 53 50 50 49 46 46 44 42 42 40</table>
 		<table name="#ench2mpInitialConsume">20 20 19 19 19 18 18 18 17 17 16 16 16 15 15 15 14 14 14 13 13 13 12 12 12 11 11 11 10 10</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
-		<set name="icon" val="icon.skill1099" />
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="AURA" />
-		<set name="abnormalLevel" val="#abnormalLevels" />
-		<set name="abnormalTime" val="60" />
-		<set name="abnormalType" val="SPEED_DOWN" />
-		<set name="activateRate" val="40" />
-		<set name="affectLimit" val="10-10" />
-		<set name="affectRange" val="200" />
-		<set name="basicProperty" val="MEN" />
-		<set name="effectPoint" val="#effectPoints" />
-		<set name="hitTime" val="4000" />
-		<set name="isDebuff" val="true" />
-		<set name="isMagic" val="1" /> <!-- Magic Skill -->
-		<set name="lvlBonusRate" val="1" />
-		<set name="magicLevel" val="#magicLevel" />
-		<set name="mpConsume" val="#mpConsume" />
-		<set name="mpInitialConsume" val="#mpInitialConsume" />
-		<set name="reuseDelay" val="5000" />
-		<enchant1 name="activateRate" val="#ench1ActivateRates" />
-		<enchant1 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="activateRate" val="#ench2ActivateRates" />
-		<enchant2 name="magicLevel" val="#enchMagicLvl" />
-		<enchant2 name="mpConsume" val="#ench2mpConsume" />
-		<enchant2 name="mpInitialConsume" val="#ench2mpInitialConsume" />
+		<icon>icon.skill1099</icon>
+		<operateType>A2</operateType>
+		<targetType>AURA</targetType>
+		<abnormalLevel>#abnormalLevels</abnormalLevel>
+		<abnormalTime>60</abnormalTime>
+		<abnormalType>SPEED_DOWN</abnormalType>
+		<activateRate>40</activateRate>
+		<affectLimit>10-10</affectLimit>
+		<affectRange>200</affectRange>
+		<basicProperty>MEN</basicProperty>
+		<effectPoint>#effectPoints</effectPoint>
+		<hitTime>4000</hitTime>
+		<isDebuff>true</isDebuff>
+		<isMagic>1</isMagic> <!-- Magic Skill -->
+		<lvlBonusRate>1</lvlBonusRate>
+		<magicLevel>#magicLevel</magicLevel>
+		<mpConsume>#mpConsume</mpConsume>
+		<mpInitialConsume>#mpInitialConsume</mpInitialConsume>
+		<reuseDelay>5000</reuseDelay>
+		<enchant1 name="activateRate">#ench1ActivateRates</enchant1>
+		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
+		<enchant2 name="activateRate">#ench2ActivateRates</enchant2>
+		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
+		<enchant2 name="mpConsume">#ench2mpConsume</enchant2>
+		<enchant2 name="mpInitialConsume">#ench2mpInitialConsume</enchant2>
 		<effects>
 			<effect name="Debuff">
-				<mul stat="runSpd" val="#runSpd" />
+				<mul stat="runSpd">#runSpd</mul>
 			</effect>
 		</effects>
 	</skill>

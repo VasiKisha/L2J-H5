@@ -200,7 +200,9 @@
 		<set name="weight" val="20" />
 		<set name="price" val="500" />
 		<set name="handler" val="Harvester" />
-		<set name="item_skill" val="2098-1" /> <!-- Harvesting -->
+		<skills>
+			<skill id="2098" level="1" /> <!-- Harvesting -->
+		</skills>
 	</item>
 	<item id="5126" type="EtcItem" name="Dualsword Craft Stamp">
 		<!-- Certificate obtained from a shop or quest. Essential component for making dualswords of B-Grade and higher. -->
@@ -215,8 +217,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -229,13 +229,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5128" type="Weapon" name="Crokian Blade">
@@ -243,8 +243,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;300;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -257,13 +255,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5129" type="Weapon" name="Doll Knife">
@@ -271,8 +269,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUAL" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;44;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -285,12 +281,12 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="200" />
-			<set stat="mAtk" val="6" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="325" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">200</stat>
+			<stat type="mAtk">6</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5130" type="Weapon" name="Nos Sword">
@@ -298,8 +294,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;300;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -312,13 +306,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5131" type="Weapon" name="Parhit Staff">
@@ -326,8 +320,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;300;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -340,13 +332,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5132" type="Weapon" name="Giant Trident">
@@ -354,8 +346,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DAGGER" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;300;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="crystal_count" val="743" />
@@ -368,13 +358,13 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
 		<stats>
-			<set stat="pAtk" val="5" />
-			<set stat="mAtk" val="5" />
-			<set stat="critRate" val="12" />
-			<add stat="accCombat" val="-3.75" />
-			<set stat="pAtkSpd" val="433" />
-			<enchant val="0" stat="pAtk" />
-			<enchant val="0" stat="mAtk" />
+			<stat type="pAtk">5</stat>
+			<stat type="mAtk">5</stat>
+			<stat type="critRate">12</stat>
+			<stat type="accCombat">-3.75</stat>
+			<stat type="pAtkSpd">433</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5133" type="Weapon" name="Chrono Unitus">
@@ -383,18 +373,18 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="DUALFIST" />
 		<set name="bodypart" val="lrhand" />
-		<set name="random_damage" val="5" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
 		<stats>
-			<set stat="pAtk" val="1" />
-			<set stat="mAtk" val="1" />
-			<set stat="critRate" val="4" />
-			<add stat="accCombat" val="4.75" />
-			<set stat="pAtkSpd" val="325" />
+			<stat type="pAtk">1</stat>
+			<stat type="mAtk">1</stat>
+			<stat type="critRate">4</stat>
+			<stat type="accCombat">4.75</stat>
+			<stat type="pAtkSpd">325</stat>
+			<stat type="randomDamage">5</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5134" type="EtcItem" name="Compressed Package of Soulshots: No Grade">
@@ -406,7 +396,9 @@
 		<set name="weight" val="600" />
 		<set name="price" val="2300" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2078-1" /> <!-- Compressed Package of Soulshots: No Grade -->
+		<skills>
+			<skill id="2078" level="1" /> <!-- Compressed Package of Soulshots: No Grade -->
+		</skills>
 	</item>
 	<item id="5135" type="EtcItem" name="Compressed Package of Soulshots (D-Grade)">
 		<!-- 300 compressed soulshots. D-grade. -->
@@ -417,7 +409,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="3300" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2079-1" /> <!-- Compressed Package of Soulshots: D-grade -->
+		<skills>
+			<skill id="2079" level="1" /> <!-- Compressed Package of Soulshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5136" type="EtcItem" name="Compressed Package of Soulshots (C-Grade)">
 		<!-- 300 compressed soulshots. C-grade. -->
@@ -428,7 +422,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="4950" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2080-1" /> <!-- Compressed Package of Soulshots: C-grade -->
+		<skills>
+			<skill id="2080" level="1" /> <!-- Compressed Package of Soulshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5137" type="EtcItem" name="Compressed Package of Soulshots (B-Grade)">
 		<!-- 300 compressed soulshots. B-grade. -->
@@ -439,7 +435,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="16500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2081-1" /> <!-- Compressed Package of Soulshots: B-grade -->
+		<skills>
+			<skill id="2081" level="1" /> <!-- Compressed Package of Soulshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5138" type="EtcItem" name="Compressed Package of Soulshots (A-Grade)">
 		<!-- 300 compressed soulshots. A-grade. -->
@@ -450,7 +448,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="26400" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2082-1" /> <!-- Compressed Package of Soulshots: A-grade -->
+		<skills>
+			<skill id="2082" level="1" /> <!-- Compressed Package of Soulshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5139" type="EtcItem" name="Compressed Package of Soulshots (S-Grade)">
 		<!-- 300 compressed soulshots. S-grade. -->
@@ -461,7 +461,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="33000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2083-1" /> <!-- Compressed Package of Soulshots: S-grade -->
+		<skills>
+			<skill id="2083" level="1" /> <!-- Compressed Package of Soulshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5140" type="EtcItem" name="Compressed Package of Spiritshots: No Grade">
 		<!-- 300 compressed spiritshots. No Grade. -->
@@ -472,7 +474,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="4950" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2084-1" /> <!-- Compressed Package of Spiritshots: No Grade -->
+		<skills>
+			<skill id="2084" level="1" /> <!-- Compressed Package of Spiritshots: No Grade -->
+		</skills>
 	</item>
 	<item id="5141" type="EtcItem" name="Compressed Package of Spiritshots (D-Grade)">
 		<!-- 300 compressed spiritshots. D-grade. -->
@@ -483,7 +487,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="5940" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2085-1" /> <!-- Compressed Package of Spiritshots: D-grade -->
+		<skills>
+			<skill id="2085" level="1" /> <!-- Compressed Package of Spiritshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5142" type="EtcItem" name="Compressed Package of Spiritshots (C-Grade)">
 		<!-- 300 compressed spiritshots. C-grade. -->
@@ -494,7 +500,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="11550" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2086-1" /> <!-- Compressed Package of Spiritshots: C-grade -->
+		<skills>
+			<skill id="2086" level="1" /> <!-- Compressed Package of Spiritshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5143" type="EtcItem" name="Compressed Package of Spiritshots (B-Grade)">
 		<!-- 300 compressed spiritshots. B-grade. -->
@@ -505,7 +513,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="33000" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2087-1" /> <!-- Compressed Package of Spiritshots: B-grade -->
+		<skills>
+			<skill id="2087" level="1" /> <!-- Compressed Package of Spiritshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5144" type="EtcItem" name="Compressed Package of Spiritshots (A-Grade)">
 		<!-- 300 compressed spiritshots. A-grade. -->
@@ -516,7 +526,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="39600" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2088-1" /> <!-- Compressed Package of Spiritshots: A-grade -->
+		<skills>
+			<skill id="2088" level="1" /> <!-- Compressed Package of Spiritshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5145" type="EtcItem" name="Compressed Package of Spiritshots (S-Grade)">
 		<!-- 300 compressed spiritshots. S-grade. -->
@@ -527,7 +539,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="49500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2089-1" /> <!-- Compressed Package of Spiritshots: S-grade -->
+		<skills>
+			<skill id="2089" level="1" /> <!-- Compressed Package of Spiritshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5146" type="EtcItem" name="Compressed Package of Blessed Spiritshots: No Grade">
 		<!-- 300 compressed blessed spiritshots. No Grade. -->
@@ -538,7 +552,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="11550" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2090-1" /> <!-- Compressed Package of Blessed Spiritshots: No Grade -->
+		<skills>
+			<skill id="2090" level="1" /> <!-- Compressed Package of Blessed Spiritshots: No Grade -->
+		</skills>
 	</item>
 	<item id="5147" type="EtcItem" name="Compressed Package of Blessed Spiritshots (D-Grade)">
 		<!-- 300 compressed blessed spiritshots. D-grade. -->
@@ -549,7 +565,9 @@
 		<set name="weight" val="750" />
 		<set name="price" val="14850" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2091-1" /> <!-- Compressed Package of Blessed Spiritshots: D-grade -->
+		<skills>
+			<skill id="2091" level="1" /> <!-- Compressed Package of Blessed Spiritshots: D-grade -->
+		</skills>
 	</item>
 	<item id="5148" type="EtcItem" name="Compressed Package of Blessed Spiritshots (C-Grade)">
 		<!-- 300 compressed blessed spiritshots. C-grade. -->
@@ -560,7 +578,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="29700" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2092-1" /> <!-- Compressed Package of Blessed Spiritshots: C-grade -->
+		<skills>
+			<skill id="2092" level="1" /> <!-- Compressed Package of Blessed Spiritshots: C-grade -->
+		</skills>
 	</item>
 	<item id="5149" type="EtcItem" name="Compressed Package of Blessed Spiritshots (B-Grade)">
 		<!-- 300 compressed blessed spiritshots. B-grade. -->
@@ -571,7 +591,9 @@
 		<set name="weight" val="450" />
 		<set name="price" val="80850" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2093-1" /> <!-- Compressed Package of Blessed Spiritshots: B-grade -->
+		<skills>
+			<skill id="2093" level="1" /> <!-- Compressed Package of Blessed Spiritshots: B-grade -->
+		</skills>
 	</item>
 	<item id="5150" type="EtcItem" name="Compressed Package of Blessed Spiritshots (A-Grade)">
 		<!-- 300 compressed blessed spiritshots. A-grade. -->
@@ -582,7 +604,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="95700" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2094-1" /> <!-- Compressed Package of Blessed Spiritshots: A-grade -->
+		<skills>
+			<skill id="2094" level="1" /> <!-- Compressed Package of Blessed Spiritshots: A-grade -->
+		</skills>
 	</item>
 	<item id="5151" type="EtcItem" name="Compressed Package of Blessed Spiritshots (S-Grade)">
 		<!-- 300 compressed blessed spiritshots. S-grade. -->
@@ -593,7 +617,9 @@
 		<set name="weight" val="300" />
 		<set name="price" val="115500" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2095-1" /> <!-- Compressed Package of Blessed Spiritshots: S-grade -->
+		<skills>
+			<skill id="2095" level="1" /> <!-- Compressed Package of Blessed Spiritshots: S-grade -->
+		</skills>
 	</item>
 	<item id="5152" type="EtcItem" name="Magic Compressor">
 		<!-- A magic tool needed to compress soulshots, spiritshots etc. -->
@@ -786,7 +812,7 @@
 		<set name="handler" val="Recipes" />
 	</item>
 	<item id="5167" type="EtcItem" name="Recipe: Blessed Spiritshot (S) Compressed Package (100%)">
-		<!-- For Dwarves only. The recipe for the Compressed Package of Blessed Spiritshots: Grade S. Requires Create Item Skill Level 8. The success rate is 100%. -->
+		<!-- For Dwarves only. The recipe for the Compressed Package of Blessed Spiritshots: Grade S. Requires Create Item – Skill Level 8. The success rate is 100%. -->
 		<set name="icon" val="icon.etc_recipe_black_i00" />
 		<set name="default_action" val="RECIPE" />
 		<set name="etcitem_type" val="RECIPE" />
@@ -809,11 +835,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="PetFood" />
-		<set name="item_skill" val="2101-1" /> <!-- Feed: General Strider -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="600">
 			<player categoryType="STRIDER" />
 		</conditions>
+		<skills>
+			<skill id="2101" level="1" /> <!-- Feed: General Strider -->
+		</skills>
 	</item>
 	<item id="5169" type="EtcItem" name="Deluxe Food for Strider">
 		<!-- When the hunger gauge of a Strider reaches 55% or below, its food will be consumed automatically. Food consumption efficiency improves while riding a Strider. -->
@@ -826,11 +854,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="PetFood" />
-		<set name="item_skill" val="2102-1" /> <!-- Feed: Clan Hall Strider -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="600">
 			<player categoryType="STRIDER" />
 		</conditions>
+		<skills>
+			<skill id="2102" level="1" /> <!-- Feed: Clan Hall Strider -->
+		</skills>
 	</item>
 	<item id="5170" type="Armor" name="Mithril Panzer Coat">
 		<!-- Double-click to wear. Exclusively used by a Strider. -->
@@ -847,8 +877,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="41" />
-			<add order="0" stat="pDef" val="41" />
+			<stat type="mDef">41</stat>
+			<stat type="pDef">41</stat>
 		</stats>
 	</item>
 	<item id="5171" type="Armor" name="Brigadine Panzer Coat">
@@ -866,8 +896,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="44" />
-			<add order="0" stat="pDef" val="44" />
+			<stat type="mDef">44</stat>
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5172" type="Armor" name="Draconic Panzer Coat">
@@ -885,8 +915,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="46" />
-			<add order="0" stat="pDef" val="46" />
+			<stat type="mDef">46</stat>
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5173" type="Armor" name="Blood Panzer Coat">
@@ -904,8 +934,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="49" />
-			<add order="0" stat="pDef" val="49" />
+			<stat type="mDef">49</stat>
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5174" type="Armor" name="Ophidian Panzer Coat">
@@ -923,8 +953,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="52" />
-			<add order="0" stat="pDef" val="52" />
+			<stat type="mDef">52</stat>
+			<stat type="pDef">52</stat>
 		</stats>
 	</item>
 	<item id="5175" type="Armor" name="Inferno Panzer Coat">
@@ -942,8 +972,8 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<add order="0" stat="pDef" val="54" />
+			<stat type="mDef">54</stat>
+			<stat type="pDef">54</stat>
 		</stats>
 	</item>
 	<item id="5176" type="Weapon" name="Serpentine Spike">
@@ -952,8 +982,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -964,10 +992,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="17" />
-			<add stat="mAtk" val="21" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">17</stat>
+			<stat type="mAtk">21</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5177" type="Weapon" name="Drake Horn">
@@ -976,8 +1006,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -988,10 +1016,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="19" />
-			<add stat="mAtk" val="24" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">19</stat>
+			<stat type="mAtk">24</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5178" type="Weapon" name="Assault Alicorn">
@@ -1000,8 +1030,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1012,10 +1040,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="21" />
-			<add stat="mAtk" val="27" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">21</stat>
+			<stat type="mAtk">27</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5179" type="Weapon" name="Draconic Slicer">
@@ -1024,8 +1054,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1036,10 +1064,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="23" />
-			<add stat="mAtk" val="30" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">23</stat>
+			<stat type="mAtk">30</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5180" type="Weapon" name="Ohpdian Lance">
@@ -1048,8 +1078,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1060,10 +1088,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="25" />
-			<add stat="mAtk" val="34" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">25</stat>
+			<stat type="mAtk">34</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5181" type="Weapon" name="Diamond Drill">
@@ -1072,8 +1102,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1084,10 +1112,12 @@
 			<player categoryType="STRIDER" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="27" />
-			<add stat="mAtk" val="37" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">27</stat>
+			<stat type="mAtk">37</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5182" type="Armor" name="Hatchling's Gorgon Coat">
@@ -1105,8 +1135,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="44" />
-			<add order="0" stat="pDef" val="44" />
+			<stat type="mDef">44</stat>
+			<stat type="pDef">44</stat>
 		</stats>
 	</item>
 	<item id="5183" type="Armor" name="Hatchling's Ophidian Plate">
@@ -1124,8 +1154,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="46" />
-			<add order="0" stat="pDef" val="46" />
+			<stat type="mDef">46</stat>
+			<stat type="pDef">46</stat>
 		</stats>
 	</item>
 	<item id="5184" type="Armor" name="Hatchling's Crimson Plate">
@@ -1143,8 +1173,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="49" />
-			<add order="0" stat="pDef" val="49" />
+			<stat type="mDef">49</stat>
+			<stat type="pDef">49</stat>
 		</stats>
 	</item>
 	<item id="5185" type="Armor" name="Hatchling's Draconic Plate">
@@ -1162,8 +1192,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="52" />
-			<add order="0" stat="pDef" val="52" />
+			<stat type="mDef">52</stat>
+			<stat type="pDef">52</stat>
 		</stats>
 	</item>
 	<item id="5186" type="Armor" name="Hatchling's Inferno Plate">
@@ -1181,8 +1211,8 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add order="0" stat="mDef" val="54" />
-			<add order="0" stat="pDef" val="54" />
+			<stat type="mDef">54</stat>
+			<stat type="pDef">54</stat>
 		</stats>
 	</item>
 	<item id="5187" type="Weapon" name="Serpentine Grinder">
@@ -1191,8 +1221,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1203,10 +1231,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="19" />
-			<add stat="mAtk" val="24" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">19</stat>
+			<stat type="mAtk">24</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5188" type="Weapon" name="Fang of Dahak">
@@ -1215,8 +1245,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1227,10 +1255,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="21" />
-			<add stat="mAtk" val="27" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">21</stat>
+			<stat type="mAtk">27</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5189" type="Weapon" name="Crimson Blood Fang">
@@ -1239,8 +1269,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1251,10 +1279,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="23" />
-			<add stat="mAtk" val="30" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">23</stat>
+			<stat type="mAtk">30</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5190" type="Weapon" name="Draconic Chopper">
@@ -1263,8 +1293,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1275,10 +1303,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="25" />
-			<add stat="mAtk" val="34" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">25</stat>
+			<stat type="mAtk">34</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5191" type="Weapon" name="Diabolic Grinder">
@@ -1287,8 +1317,6 @@
 		<set name="default_action" val="EQUIP" />
 		<set name="weapon_type" val="SWORD" />
 		<set name="bodypart" val="rhand" />
-		<set name="random_damage" val="10" />
-		<set name="attack_range" val="40" />
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
@@ -1299,10 +1327,12 @@
 			<player categoryType="HATCHLING_GROUP" />
 		</conditions>
 		<stats>
-			<add stat="pAtk" val="27" />
-			<add stat="mAtk" val="37" />
-			<set stat="critRate" val="8" />
-			<set stat="pAtkSpd" val="277" />
+			<stat type="pAtk">27</stat>
+			<stat type="mAtk">37</stat>
+			<stat type="critRate">8</stat>
+			<stat type="pAtkSpd">277</stat>
+			<stat type="randomDamage">10</stat>
+			<stat type="pAtkRange">40</stat>
 		</stats>
 	</item>
 	<item id="5192" type="EtcItem" name="Rope of Magic (D-Grade)">
@@ -1360,7 +1390,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-1" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="1" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5198" type="EtcItem" name="Chest Key - Grade 7">
 		<!-- Opens a level 10 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -1372,7 +1404,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-2" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="2" /> <!-- Box Key -->
+		</skills>
 	</item>
 	<item id="5199" type="EtcItem" name="Chest Key - Grade 6">
 		<!-- Opens a level 20 treasure chest with a success rate of 60%. When opening a higher level treasure chest, the success rate will decrease. -->
@@ -1384,6 +1418,8 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2065-3" /> <!-- Box Key -->
+		<skills>
+			<skill id="2065" level="3" /> <!-- Box Key -->
+		</skills>
 	</item>
 </list>

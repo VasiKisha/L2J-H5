@@ -16,11 +16,11 @@
  */
 package org.l2jmobius.gameserver.model.events.holders.actor.player;
 
-import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.IBaseEvent;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.options.Augmentation;
 
 /**
  * @author UnAfraid

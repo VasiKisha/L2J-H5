@@ -64,7 +64,7 @@ public class EnchantFormatter extends Formatter
 				else if (p instanceof Item)
 				{
 					final Item item = (Item) p;
-					if (item.getEnchantLevel() > 0)
+					if (item.isEnchanted())
 					{
 						StringUtil.append(output, "+", String.valueOf(item.getEnchantLevel()), " ");
 					}

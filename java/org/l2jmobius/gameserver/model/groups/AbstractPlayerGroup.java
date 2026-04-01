@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

@@ -56,8 +56,8 @@ import ai.areas.Hellbound.AI.Zones.TullyWorkshop.TullyWorkshop;
 import ai.areas.Hellbound.Instances.DemonPrinceFloor.DemonPrinceFloor;
 import ai.areas.Hellbound.Instances.RankuFloor.RankuFloor;
 import ai.areas.Hellbound.Instances.UrbanArea.UrbanArea;
-import handlers.admincommandhandlers.AdminHellbound;
-import handlers.voicedcommandhandlers.Hellbound;
+import handlers.chat.commands.admin.AdminHellbound;
+import handlers.chat.commands.voiced.Hellbound;
 import quests.Q00130_PathToHellbound.Q00130_PathToHellbound;
 import quests.Q00133_ThatsBloodyHot.Q00133_ThatsBloodyHot;
 

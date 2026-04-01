@@ -34,10 +34,10 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.model.spawns.Spawn;
 
 /**
  * Raid Boss spawn manager.

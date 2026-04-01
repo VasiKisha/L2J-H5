@@ -1,38 +1,81 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network;
 
 import org.l2jmobius.commons.network.Buffer;
 
 /**
- * @author KenM
+ * Stateful XOR cipher used by the game protocol.<br>
+ * Uses a 16-byte session key and advances a rolling offset stored in key bytes [8..11].
+ * <ul>
+ * <li>{@link #setKey(byte[])} seeds inbound and outbound keys.</li>
+ * <li>First {@link #encrypt(Buffer, int, int)} call only enables the cipher.</li>
+ * <li>{@link #decrypt(Buffer, int, int)} mirrors encryption with running XOR.</li>
+ * </ul>
+ * @author BazookaRpm
  */
 public class Encryption
 {
-	private final byte[] _inKey = new byte[16];
-	private final byte[] _outKey = new byte[16];
+	// Constants.
+	private static final int KEY_LENGTH = 16;
+	private static final int BYTE_MASK = 0xFF;
+	private static final int NIBBLE_MASK = 0x0F;
+	private static final int SHIFT_8 = 8;
+	private static final int SHIFT_16 = 16;
+	private static final int SHIFT_24 = 24;
+	
+	// Rolling offset is stored at key[8..11] (little-endian).
+	private static final int OFFSET_INDEX = 8;
+	
+	// Session keys (references are immutable; contents are intentionally mutable).
+	private final byte[] _inKey = new byte[KEY_LENGTH];
+	private final byte[] _outKey = new byte[KEY_LENGTH];
+	
+	// Enabled state.
 	private boolean _isEnabled;
 	
+	/**
+	 * Copies the provided 16-byte key into inbound and outbound key buffers.<br>
+	 * Fails fast if the input is null or shorter than 16 bytes.
+	 * @param key
+	 * @throws IllegalArgumentException if key is null or key.length &lt; 16.
+	 */
 	public void setKey(byte[] key)
 	{
-		System.arraycopy(key, 0, _inKey, 0, 16);
-		System.arraycopy(key, 0, _outKey, 0, 16);
+		if ((key == null) || (key.length < KEY_LENGTH))
+		{
+			throw new IllegalArgumentException("Encryption key must be at least 16 bytes.");
+		}
+		
+		System.arraycopy(key, 0, _inKey, 0, KEY_LENGTH);
+		System.arraycopy(key, 0, _outKey, 0, KEY_LENGTH);
 	}
 	
+	/**
+	 * Encrypts in place using running XOR and advances the outbound key offset.<br>
+	 * The first call only enables the cipher.
+	 * @param data
+	 * @param offset
+	 * @param size
+	 */
 	public void encrypt(Buffer data, int offset, int size)
 	{
 		if (!_isEnabled)
@@ -41,26 +84,28 @@ public class Encryption
 			return;
 		}
 		
-		int encrypted = 0;
+		if (size <= 0)
+		{
+			return;
+		}
+		
+		int prev = 0;
 		for (int i = 0; i < size; i++)
 		{
 			final int raw = Byte.toUnsignedInt(data.readByte(offset + i));
-			encrypted = raw ^ _outKey[i & 0x0f] ^ encrypted;
-			data.writeByte(offset + i, (byte) encrypted);
+			prev = raw ^ (_outKey[i & NIBBLE_MASK] & BYTE_MASK) ^ prev;
+			data.writeByte(offset + i, (byte) prev);
 		}
 		
-		// Shift key.
-		int old = _outKey[8] & 0xff;
-		old |= (_outKey[9] << 8) & 0xff00;
-		old |= (_outKey[10] << 16) & 0xff0000;
-		old |= (_outKey[11] << 24) & 0xff000000;
-		old += size;
-		_outKey[8] = (byte) (old & 0xff);
-		_outKey[9] = (byte) ((old >> 8) & 0xff);
-		_outKey[10] = (byte) ((old >> 16) & 0xff);
-		_outKey[11] = (byte) ((old >> 24) & 0xff);
+		advanceOffset(_outKey, size);
 	}
 	
+	/**
+	 * Decrypts in place using running XOR and advances the inbound key offset.
+	 * @param data
+	 * @param offset
+	 * @param size
+	 */
 	public void decrypt(Buffer data, int offset, int size)
 	{
 		if (!_isEnabled)
@@ -68,23 +113,35 @@ public class Encryption
 			return;
 		}
 		
-		int xOr = 0;
-		for (int i = 0; i < size; i++)
+		if (size <= 0)
 		{
-			final int encrypted = Byte.toUnsignedInt(data.readByte(offset + i));
-			data.writeByte(offset + i, (byte) (encrypted ^ _inKey[i & 15] ^ xOr));
-			xOr = encrypted;
+			return;
 		}
 		
-		// Shift key.
-		int old = _inKey[8] & 0xff;
-		old |= (_inKey[9] << 8) & 0xff00;
-		old |= (_inKey[10] << 16) & 0xff0000;
-		old |= (_inKey[11] << 24) & 0xff000000;
+		int last = 0;
+		for (int i = 0; i < size; i++)
+		{
+			final int enc = Byte.toUnsignedInt(data.readByte(offset + i));
+			data.writeByte(offset + i, (byte) (enc ^ (_inKey[i & NIBBLE_MASK] & BYTE_MASK) ^ last));
+			last = enc;
+		}
+		
+		advanceOffset(_inKey, size);
+	}
+	
+	private static void advanceOffset(byte[] key, int size)
+	{
+		// Advance rolling offset at key[8..11] by size (little-endian int).
+		int old = (key[OFFSET_INDEX] & BYTE_MASK);
+		old |= (key[OFFSET_INDEX + 1] & BYTE_MASK) << SHIFT_8;
+		old |= (key[OFFSET_INDEX + 2] & BYTE_MASK) << SHIFT_16;
+		old |= (key[OFFSET_INDEX + 3] & BYTE_MASK) << SHIFT_24;
+		
 		old += size;
-		_inKey[8] = (byte) (old & 0xff);
-		_inKey[9] = (byte) ((old >> 8) & 0xff);
-		_inKey[10] = (byte) ((old >> 16) & 0xff);
-		_inKey[11] = (byte) ((old >> 24) & 0xff);
+		
+		key[OFFSET_INDEX] = (byte) (old & BYTE_MASK);
+		key[OFFSET_INDEX + 1] = (byte) ((old >> SHIFT_8) & BYTE_MASK);
+		key[OFFSET_INDEX + 2] = (byte) ((old >> SHIFT_16) & BYTE_MASK);
+		key[OFFSET_INDEX + 3] = (byte) ((old >> SHIFT_24) & BYTE_MASK);
 	}
 }

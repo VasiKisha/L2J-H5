@@ -69,7 +69,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2174-1" /> <!-- Ingredient Bag -->
+		<skills>
+			<skill id="2174" level="1" /> <!-- Ingredient Bag -->
+		</skills>
 	</item>
 	<item id="6008" type="EtcItem" name="Reagent Pouch">
 		<!-- A pouch that contains an alchemic reagent. Double-click to confirm contents. -->
@@ -79,7 +81,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2174-2" /> <!-- Ingredient Bag -->
+		<skills>
+			<skill id="2174" level="2" /> <!-- Ingredient Bag -->
+		</skills>
 	</item>
 	<item id="6009" type="EtcItem" name="Reagent Pouch">
 		<!-- A pouch that contains an alchemic reagent. Double-click to confirm contents. -->
@@ -89,7 +93,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2174-3" /> <!-- Ingredient Bag -->
+		<skills>
+			<skill id="2174" level="3" /> <!-- Ingredient Bag -->
+		</skills>
 	</item>
 	<item id="6010" type="EtcItem" name="Reagent Box">
 		<!-- A small box containing an alchemic reagent. -->
@@ -99,7 +105,9 @@
 		<set name="material" val="LIQUID" />
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2175-1" /> <!-- Ingredient Box -->
+		<skills>
+			<skill id="2175" level="1" /> <!-- Ingredient Box -->
+		</skills>
 	</item>
 	<item id="6011" type="EtcItem" name="Wyrm's Blood">
 		<!-- Used to mix alchemic reagents. -->
@@ -306,8 +314,10 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2169-1" /> <!-- Magic Haste Potion -->
 		<set name="for_npc" val="true" />
+		<skills>
+			<skill id="2169" level="1" /> <!-- Magic Haste Potion -->
+		</skills>
 	</item>
 	<item id="6036" type="EtcItem" name="Greater Magic Haste Potion">
 		<!-- Casting Spd. is raised. -->
@@ -322,11 +332,13 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2169-2" /> <!-- Magic Haste Potion -->
 		<set name="for_npc" val="true" />
 		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
 		</conditions>
+		<skills>
+			<skill id="2169" level="2" /> <!-- Greater Magic Haste Potion -->
+		</skills>
 	</item>
 	<item id="6037" type="EtcItem" name="Waking Scroll">
 		<!-- If you use it on a target who is asleep, the target will wake up. -->
@@ -339,7 +351,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
-		<set name="item_skill" val="2170-1" /> <!-- Scroll: Cancel Sleep -->
+		<skills>
+			<skill id="2170" level="1" /> <!-- Scroll: Cancel Sleep -->
+		</skills>
 	</item>
 	<item id="6038" type="EtcItem" name="Greater Mercenary Posting Ticket (Sword/Stationary)">
 		<!-- Gludio/Sword/Stationary. The seal of strife cannot be used to place a mercenary when it is possessed by the Revolutionaries of Dusk. -->
