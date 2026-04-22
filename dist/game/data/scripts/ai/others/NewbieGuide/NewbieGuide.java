@@ -289,7 +289,7 @@ public final class NewbieGuide extends Script
 								
 								if ((talker.getLevel() >= 16) && (talker.getLevel() <= 34))
 								{
-									npc.doCast(LIFE_CUBIC_FOR_BEGINNERS.getSkill());
+									talker.doSimultaneousCast(LIFE_CUBIC_FOR_BEGINNERS.getSkill());
 								}
 							}
 							else if (talker.isMageClass() && (talker.getPlayerClass().level() < 3))
@@ -304,7 +304,7 @@ public final class NewbieGuide extends Script
 								npc.doCast(EMPOWER_FOR_BEGINNERS.getSkill());
 								if ((talker.getLevel() >= 16) && (talker.getLevel() <= 34))
 								{
-									npc.doCast(LIFE_CUBIC_FOR_BEGINNERS.getSkill());
+									talker.doSimultaneousCast(LIFE_CUBIC_FOR_BEGINNERS.getSkill());
 								}
 							}
 						}
