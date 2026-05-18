@@ -30,44 +30,78 @@
 	<skill id="6705" levels="1" name="Stun">
 		<!-- Temporarily in shock and unable to move. -->
 		<icon>icon.skill0100</icon>
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
-		<abnormalTime>9</abnormalTime>
-		<activateRate>50</activateRate>
+		<operateType>A2</operateType>
+		<targetType>FRONT_AREA</targetType>
+		<fanRange>0,0,300,65</fanRange>
+		<castRange>100</castRange>
+		<effectRange>300</effectRange>
+		<hitTime>3000</hitTime>
+		<coolTime>500</coolTime>
+		<reuseDelay>30000</reuseDelay>
+		<mpConsume>83</mpConsume>
+		<magicLevel>85</magicLevel>
+		<effectPoint>-1033</effectPoint>
 		<basicProperty>CON</basicProperty>
+		<trait>SHOCK</trait>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>3</abnormalTime>
+		<abnormalType>STUN</abnormalType>
+		<abnormalVisualEffect>STUN</abnormalVisualEffect>
+		<activateRate>50</activateRate>
+		<lvlBonusRate>1</lvlBonusRate>
+		<isDebuff>true</isDebuff>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<effectPoint>-100</effectPoint>
+		<effects>
+			<effect name="Stun" />
+		</effects>
 	</skill>
 	<skill id="6706" levels="1" name="Piercing Attack">
-		<operateType>A2</operateType> <!-- FIXME: value unconfirmed -->
+		<operateType>A2</operateType>
 		<targetType>ONE</targetType>
 		<abnormalLevel>3</abnormalLevel>
 		<abnormalTime>10</abnormalTime>
 		<abnormalType>PD_DOWN</abnormalType>
-		<activateRate>80</activateRate> <!-- FIXME: Base Land Rate unconformed -->
+		<activateRate>80</activateRate>
 		<castRange>100</castRange>
 		<effectRange>500</effectRange>
 		<isDebuff>true</isDebuff>
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<magicLevel>80</magicLevel>
 		<mpConsume>83</mpConsume>
-		<reuseDelay>10000</reuseDelay> <!-- FIXME: reuseDelay unconfirmed -->
+		<reuseDelay>10000</reuseDelay>
 		<effects>
-			<!-- FIXME: Time value is unconfirmed -->
 			<effect name="Debuff">
 				<mul stat="pDef">0.77</mul>
 			</effect>
 		</effects>
 	</skill>
 	<skill id="6707" levels="1" name="Self-destruction">
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>200</affectRange>
+		<hitTime>1500</hitTime>
+		<coolTime>500</coolTime>
+		<reuseDelay>30000</reuseDelay>
+		<magicLevel>85</magicLevel>
+		<effectPoint>-1000</effectPoint>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<effectPoint>-100</effectPoint>
+		<effects>
+			<effect name="StaticDamage">
+				<power>1000</power>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="6708" levels="1" name="Self-destruction">
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<operateType>A1</operateType>
+		<targetType>AURA</targetType>
+		<affectRange>200</affectRange>
+		<hitTime>1500</hitTime>
+		<coolTime>500</coolTime>
+		<reuseDelay>30000</reuseDelay>
+		<magicLevel>85</magicLevel>
+		<effectPoint>-1000</effectPoint>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<!-- Retail PTS: effect={} empty - DF self-destruction triggers AI doDie() in USE_SKILL_FINISHED, no damage effect -->
 	</skill>
 	<skill id="6709" levels="1" name="Multi Shot">
 		<operateType>P</operateType>
@@ -463,8 +497,23 @@
 	</skill>
 	<skill id="6735" levels="1" name="Petrify">
 		<!-- Inflicted with petrification, the body is rigid like stone. -->
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<icon>icon.skill4111</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<hitTime>0</hitTime>
+		<magicLevel>85</magicLevel>
+		<effectPoint>-1000</effectPoint>
+		<basicProperty>MEN</basicProperty>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>5</abnormalTime>
+		<abnormalType>TURN_STONE</abnormalType>
+		<abnormalVisualEffect>FLESH_STONE</abnormalVisualEffect>
+		<lvlBonusRate>1</lvlBonusRate>
+		<isDebuff>true</isDebuff>
+		<blockedInOlympiad>true</blockedInOlympiad>
+		<effects>
+			<effect name="Petrification" />
+		</effects>
 	</skill>
 	<skill id="6736" levels="1" name="Fierce Attack">
 		<operateType>A1</operateType>

@@ -786,11 +786,18 @@
 	</skill>
 	<skill id="6262" levels="1" name="EMP Power">
 		<operateType>A1</operateType>
-		<targetType>NONE</targetType>
+		<targetType>AURA</targetType>
+		<affectRange>150</affectRange>
+		<hitTime>2000</hitTime>
 		<coolTime>500</coolTime>
-		<effectPoint>-100</effectPoint>
-		<magicLevel>76</magicLevel>
 		<reuseDelay>30000</reuseDelay>
+		<mpConsume>78</mpConsume>
+		<magicLevel>76</magicLevel>
+		<power>2959</power>
+		<effectPoint>-100</effectPoint>
+		<effects>
+			<effect name="PhysicalDamage" />
+		</effects>
 	</skill>
 	<skill id="6263" levels="1" name="EMP Shock">
 		<!-- Momentarily causes shock and stuns the enemy for 2 seconds. -->
