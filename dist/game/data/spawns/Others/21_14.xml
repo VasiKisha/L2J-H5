@@ -218,5 +218,118 @@
 		<npc id="32090" x="35652" y="-117571" z="-1272" heading="57344" respawnDelay="60" /> <!-- Dead Leopard's Carcass -->
 		<npc id="32656" x="62440" y="-117169" z="-3064" heading="0" respawnDelay="60" />
 		<npc id="32656" x="63089" y="-106595" z="-2384" heading="0" respawnDelay="60" />
+		<npc id="22001" x="41672" y="-113145" z="-2191" heading="17948" respawnDelay="60" /> <!-- Grim Wolf -->
+		<npc id="22001" x="41554" y="-112766" z="-2160" heading="19952" respawnDelay="60" /> <!-- Grim Wolf -->
+		<npc id="22001" x="41393" y="-112883" z="-2113" heading="40455" respawnDelay="60" /> <!-- Grim Wolf -->
+		<npc id="22001" x="41158" y="-112479" z="-2071" heading="25314" respawnDelay="60" /> <!-- Grim Wolf -->
+		<npc id="22002" x="40278" y="-112103" z="-1860" heading="24998" respawnDelay="60" /> <!-- Grim Grizzly -->
+		<npc id="22002" x="40086" y="-111746" z="-1752" heading="21531" respawnDelay="60" /> <!-- Grim Grizzly -->
+		<npc id="22002" x="40226" y="-111894" z="-1802" heading="57054" respawnDelay="60" /> <!-- Grim Grizzly -->
+		<npc id="22002" x="40724" y="-111027" z="-1687" heading="22874" respawnDelay="60" /> <!-- Grim Grizzly -->
+		<npc id="22002" x="39925" y="-110598" z="-1472" heading="3139" respawnDelay="60" /> <!-- Grim Grizzly -->
+		<npc id="22003" x="47168" y="-110575" z="-2351" heading="8386" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="47479" y="-110646" z="-2334" heading="11997" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="47806" y="-111256" z="-2225" heading="26180" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="40907" y="-112967" z="-2059" heading="55063" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="40847" y="-113251" z="-2068" heading="63122" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="40630" y="-112931" z="-2028" heading="29870" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="39758" y="-111270" z="-1576" heading="8040" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22003" x="40640" y="-111195" z="-1719" heading="51771" respawnDelay="60" /> <!-- Grave Robber Scout -->
+		<npc id="22004" x="47232" y="-107298" z="-1614" heading="37743" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="46451" y="-108753" z="-1832" heading="22471" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="47038" y="-109490" z="-1722" heading="1171" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="48242" y="-110178" z="-2082" heading="18883" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="48458" y="-110068" z="-2082" heading="4711" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="47079" y="-110732" z="-2349" heading="40540" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="40146" y="-111587" z="-1732" heading="21463" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="39364" y="-111618" z="-1467" heading="25880" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="40859" y="-111185" z="-1748" heading="63642" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="39870" y="-110701" z="-1486" heading="30058" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="55800" y="-111400" z="-2871" heading="32768" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22004" x="55600" y="-112800" z="-2871" heading="16384" respawnDelay="60" /> <!-- Grave Robber Lookout -->
+		<npc id="22005" x="46963" y="-107221" z="-1562" heading="56795" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22005" x="47498" y="-107709" z="-1589" heading="52851" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22005" x="46518" y="-108855" z="-1832" heading="38459" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22005" x="55400" y="-111200" z="-2871" heading="49152" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22005" x="55900" y="-112400" z="-2871" heading="8192" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22005" x="54900" y="-112000" z="-2871" heading="24576" respawnDelay="60" /> <!-- Grave Robber Ranger -->
+		<npc id="22006" x="46585" y="-106764" z="-1517" heading="28214" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="47627" y="-108013" z="-1580" heading="17395" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="47620" y="-107941" z="-1572" heading="17395" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="47503" y="-108855" z="-1831" heading="48247" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="46759" y="-108270" z="-1832" heading="13424" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="46967" y="-109498" z="-1718" heading="49152" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="56000" y="-111800" z="-2871" heading="40960" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="55200" y="-113200" z="-2871" heading="20480" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22006" x="55800" y="-112000" z="-2871" heading="57344" respawnDelay="60" /> <!-- Grave Robber Guard -->
+		<npc id="22008" x="47200" y="-107800" z="-1700" heading="32768" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22008" x="48000" y="-109200" z="-1700" heading="16384" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22008" x="46300" y="-108200" z="-1700" heading="49152" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22008" x="47600" y="-108700" z="-1700" heading="0" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22008" x="55500" y="-112500" z="-2871" heading="32768" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22008" x="55700" y="-111700" z="-2871" heading="16384" respawnDelay="60" /> <!-- Grave Robber Fighter -->
+		<npc id="22706" x="50508" y="-118259" z="-4160" heading="44096" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49806" y="-118260" z="-4160" heading="53440" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49296" y="-118768" z="-4160" heading="61400" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49301" y="-119471" z="-4160" heading="3784" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49812" y="-119976" z="-4160" heading="10632" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="50515" y="-119975" z="-4160" heading="20296" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51022" y="-119468" z="-4160" heading="27360" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51021" y="-118765" z="-4160" heading="36164" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47789" y="-121157" z="-3888" heading="53200" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47286" y="-121654" z="-3888" heading="61584" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47286" y="-122369" z="-3888" heading="3408" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47790" y="-122866" z="-3888" heading="10800" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="48500" y="-122873" z="-3888" heading="19744" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49000" y="-122366" z="-3888" heading="27096" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49001" y="-121658" z="-3888" heading="37344" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="48496" y="-121155" z="-3888" heading="44384" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="52574" y="-121154" z="-3888" heading="44456" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51872" y="-121152" z="-3888" heading="52800" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51360" y="-121664" z="-3888" heading="62064" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51360" y="-122368" z="-3888" heading="3936" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51865" y="-122872" z="-3888" heading="12008" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="52576" y="-122870" z="-3888" heading="19928" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53079" y="-122366" z="-3888" heading="28240" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53079" y="-121664" z="-3888" heading="36064" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="54256" y="-124064" z="-3648" heading="43640" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53536" y="-124064" z="-3648" heading="53384" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53029" y="-124555" z="-3648" heading="61672" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53032" y="-125268" z="-3648" heading="4048" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="53536" y="-125776" z="-3648" heading="10800" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="54241" y="-125774" z="-3648" heading="19648" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="54749" y="-125262" z="-3648" heading="27536" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="54743" y="-124558" z="-3648" heading="36280" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="50528" y="-124064" z="-3680" heading="44232" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49810" y="-124057" z="-3680" heading="53656" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49310" y="-124544" z="-3680" heading="60768" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49300" y="-125262" z="-3680" heading="3200" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="49805" y="-125769" z="-3680" heading="10896" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="50503" y="-125771" z="-3680" heading="19768" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51019" y="-125266" z="-3680" heading="27408" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="51018" y="-124562" z="-3680" heading="36344" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="46880" y="-125776" z="-3664" heading="20000" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47386" y="-125264" z="-3664" heading="27792" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="47381" y="-124555" z="-3664" heading="36120" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="46880" y="-124056" z="-3664" heading="44048" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="22706" x="46177" y="-124057" z="-3664" heading="53200" respawnDelay="60" /> <!-- Turka Follower's Ghost -->
+		<npc id="18837" x="50243" y="-119083" z="-3728" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="50170" y="-119219" z="-3728" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="50060" y="-119093" z="-3728" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="48192" y="-121934" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="48179" y="-122113" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="48042" y="-122022" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="52124" y="-122041" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="52272" y="-121932" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="52293" y="-122075" z="-3440" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="53795" y="-124848" z="-3200" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="53877" y="-125016" z="-3200" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="54000" y="-124873" z="-3200" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="50272" y="-124910" z="-3240" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="50117" y="-125000" z="-3240" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="50125" y="-124826" z="-3240" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="46442" y="-124959" z="-3232" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="46556" y="-124820" z="-3232" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
+		<npc id="18837" x="46610" y="-124981" z="-3232" heading="0" respawnDelay="60" /> <!-- legend_orc_buff -->
 	</spawn>
 </list>
