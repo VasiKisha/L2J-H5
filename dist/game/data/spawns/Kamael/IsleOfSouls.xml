@@ -1423,4 +1423,62 @@
 		<npc id="32189" x="-74016" y="51932" z="-3680" heading="0" respawnDelay="60" />
 		<npc id="32190" x="-74016" y="52896" z="-3680" heading="0" respawnDelay="60" />
 	</spawn>
+	<spawn zone="aden49_1719_11">
+		<territory minZ="-3035" maxZ="-2401">
+			<node x="-89083" y="46939" />
+			<node x="-87188" y="47790" />
+			<node x="-87305" y="48201" />
+			<node x="-89225" y="47403" />
+		</territory>
+		<npc id="22246" count="1" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
+	<spawn zone="aden49_1719_12">
+		<territory minZ="-3035" maxZ="-2401">
+			<node x="-91111" y="44494" />
+			<node x="-89681" y="45443" />
+			<node x="-89512" y="46850" />
+			<node x="-89939" y="47295" />
+			<node x="-93199" y="46189" />
+		</territory>
+		<npc id="22246" count="2" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
+	<spawn zone="aden49_1719_13">
+		<territory minZ="-2658" maxZ="-1645">
+			<node x="-93234" y="42915" />
+			<node x="-92114" y="42829" />
+			<node x="-90951" y="44143" />
+			<node x="-91944" y="45076" />
+			<node x="-93363" y="43383" />
+		</territory>
+		<npc id="22246" count="2" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
+	<spawn zone="aden49_1719_14">
+		<territory minZ="-2658" maxZ="-1645">
+			<node x="-93931" y="43326" />
+			<node x="-92778" y="44344" />
+			<node x="-92283" y="44998" />
+			<node x="-93231" y="45561" />
+			<node x="-94817" y="44084" />
+		</territory>
+		<npc id="22246" count="2" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
+	<spawn zone="aden49_1719_15">
+		<territory minZ="-2658" maxZ="-1645">
+			<node x="-94881" y="44564" />
+			<node x="-93088" y="45941" />
+			<node x="-93746" y="46534" />
+			<node x="-95375" y="45292" />
+		</territory>
+		<npc id="22246" count="2" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
+	<spawn zone="aden49_1719_16">
+		<territory minZ="-2658" maxZ="-1645">
+			<node x="-98222" y="44553" />
+			<node x="-96535" y="44420" />
+			<node x="-95184" y="44921" />
+			<node x="-95473" y="45395" />
+			<node x="-98189" y="45473" />
+		</territory>
+		<npc id="22246" count="2" respawnDelay="15" /> <!-- Muertos Commander -->
+	</spawn>
 </list>

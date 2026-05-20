@@ -87,4 +87,13 @@
 		<npc id="27117" x="48001" y="244347" z="-6563" heading="32944" respawnDelay="60" /> <!-- Nahir -->
 		<npc id="30429" x="49328" y="248416" z="-5952" heading="24576" respawnDelay="60" /> <!-- Tiramisa -->
 	</spawn>
+	<spawn zone="gludio29_2125_18">
+		<territory minZ="-6723" maxZ="-6523">
+			<node x="47690" y="245471" />
+			<node x="48248" y="245467" />
+			<node x="48267" y="246318" />
+			<node x="47688" y="246327" />
+		</territory>
+		<npc id="20118" count="2" respawnDelay="100" /> <!-- Dre Vanul Scout -->
+	</spawn>
 </list>

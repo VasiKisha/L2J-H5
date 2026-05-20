@@ -9,6 +9,8 @@
 			<node x="18228" y="181493" />
 		</territory>
 		<npc id="20930" count="11" respawnDelay="32" /> <!-- Hatu Brown Bear -->
+		<npc id="20928" count="11" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="11" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_02">
 		<territory minZ="-3803" maxZ="-2603">
@@ -19,6 +21,8 @@
 			<node x="21520" y="185588" />
 		</territory>
 		<npc id="20930" count="11" respawnDelay="32" /> <!-- Hatu Brown Bear -->
+		<npc id="20928" count="11" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="12" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_04">
 		<territory minZ="-3778" maxZ="-2778">
@@ -31,6 +35,8 @@
 		<npc id="20930" count="8" respawnDelay="32" /> <!-- Hatu Brown Bear -->
 		<npc id="20934" count="8" respawnDelay="32" /> <!-- Wasp Worker -->
 		<npc id="20935" count="8" respawnDelay="32" /> <!-- Wasp Leader -->
+		<npc id="20928" count="8" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="8" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_05">
 		<territory minZ="-3599" maxZ="-2399">
@@ -42,6 +48,8 @@
 		<npc id="20930" count="6" respawnDelay="32" /> <!-- Hatu Brown Bear -->
 		<npc id="20934" count="5" respawnDelay="32" /> <!-- Wasp Worker -->
 		<npc id="20935" count="5" respawnDelay="32" /> <!-- Wasp Leader -->
+		<npc id="20928" count="5" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="5" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_06">
 		<territory minZ="-3793" maxZ="-3093">
@@ -53,6 +61,8 @@
 		<npc id="20930" count="5" respawnDelay="32" /> <!-- Hatu Brown Bear -->
 		<npc id="20934" count="5" respawnDelay="32" /> <!-- Wasp Worker -->
 		<npc id="20935" count="6" respawnDelay="32" /> <!-- Wasp Leader -->
+		<npc id="20928" count="5" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="5" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_07">
 		<territory minZ="-3793" maxZ="-3093">
@@ -65,6 +75,8 @@
 		<npc id="20930" count="4" respawnDelay="32" /> <!-- Hatu Brown Bear -->
 		<npc id="20934" count="4" respawnDelay="32" /> <!-- Wasp Worker -->
 		<npc id="20935" count="4" respawnDelay="32" /> <!-- Wasp Leader -->
+		<npc id="20928" count="3" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="4" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_08">
 		<territory minZ="-3778" maxZ="-3078">
@@ -141,6 +153,8 @@
 			<node x="19797" y="179381" />
 		</territory>
 		<npc id="20930" count="3" respawnDelay="32" /> <!-- Hatu Brown Bear -->
+		<npc id="20928" count="3" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="3" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2023_14s">
 		<territory minZ="-3664" maxZ="-2964">
@@ -152,6 +166,8 @@
 		<npc id="20930" count="4" respawnDelay="32" /> <!-- Hatu Brown Bear -->
 		<npc id="20934" count="3" respawnDelay="32" /> <!-- Wasp Worker -->
 		<npc id="20935" count="3" respawnDelay="32" /> <!-- Wasp Leader -->
+		<npc id="20928" count="3" respawnDelay="32" /> <!-- Hatu Weird Bee -->
+		<npc id="20929" count="3" respawnDelay="32" /> <!-- Hatu Dire Wolf -->
 	</spawn>
 	<spawn zone="dion14_2123_01">
 		<territory minZ="-3539" maxZ="-2639">
