@@ -61,7 +61,7 @@ public class ChatShout implements IChatHandler
 		}
 		
 		final CreatureSay cs = new CreatureSay(activeChar, type, activeChar.getName(), text);
-		if ((GeneralConfig.DEFAULT_TRADE_CHAT == ChatBroadcastType.ON) || ((GeneralConfig.DEFAULT_TRADE_CHAT == ChatBroadcastType.GM) && activeChar.isGM()))
+		if ((GeneralConfig.DEFAULT_GLOBAL_CHAT == ChatBroadcastType.ON) || ((GeneralConfig.DEFAULT_GLOBAL_CHAT == ChatBroadcastType.GM) && activeChar.isGM()))
 		{
 			final int region = MapRegionData.getInstance().getMapRegionLocId(activeChar);
 			for (Player player : World.getInstance().getPlayers())
