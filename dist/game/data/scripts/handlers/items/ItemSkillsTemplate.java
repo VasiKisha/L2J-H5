@@ -88,13 +88,13 @@ public class ItemSkillsTemplate implements IItemHandler
 					return false;
 				}
 				
-				if (playable.isSkillDisabled(itemSkill))
+				// Verify that skill is not under reuse.
+				if (!checkReuse(playable, itemSkill, item))
 				{
 					return false;
 				}
 				
-				// Verify that skill is not under reuse.
-				if (!checkReuse(playable, itemSkill, item))
+				if (playable.isSkillDisabled(itemSkill))
 				{
 					return false;
 				}
