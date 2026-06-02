@@ -701,7 +701,7 @@ public class SpawnData implements IXmlReader
 				final String spawnId = String.valueOf(spawn.getId());
 				final String spawnX = String.valueOf(spawnLocation != null ? spawnLocation.getX() : spawn.getX());
 				final String spawnY = String.valueOf(spawnLocation != null ? spawnLocation.getY() : spawn.getY());
-				final String spawnZ = String.valueOf(spawnLocation != null ? spawnLocation.getX() : spawn.getZ());
+				final String spawnZ = String.valueOf(spawnLocation != null ? spawnLocation.getZ() : spawn.getZ());
 				
 				while ((currentLine = reader.readLine()) != null)
 				{
