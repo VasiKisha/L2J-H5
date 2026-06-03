@@ -86,7 +86,7 @@ public class FloodProtectorAction
 	 * Applies punishment if violation limits are exceeded.
 	 * @return true if action is allowed, otherwise false.
 	 */
-	public boolean canPerformAction()
+	public synchronized boolean canPerformAction()
 	{
 		final Player player = _client.getPlayer();
 		if ((player != null) && player.isGM())
