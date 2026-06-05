@@ -180,7 +180,7 @@ public class MinionList
 		
 		_spawnedMinions.remove(minion);
 		
-		final int actualRespawnTime = respawnTime < INVALID_RESPAWN_TIME ? _master.isRaid() ? (int) NpcConfig.RAID_MINION_RESPAWN_TIMER : NO_RESPAWN : respawnTime;
+		final int actualRespawnTime = respawnTime <= INVALID_RESPAWN_TIME ? _master.isRaid() ? (int) NpcConfig.RAID_MINION_RESPAWN_TIMER : NO_RESPAWN : respawnTime;
 		if ((actualRespawnTime > NO_RESPAWN) && !_master.isAlikeDead())
 		{
 			_respawnTasks.add(ThreadPool.schedule(new MinionRespawnTask(minion), actualRespawnTime));
