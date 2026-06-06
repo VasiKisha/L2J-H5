@@ -1372,16 +1372,6 @@ public class Skill
 			{
 				effected.getEffectList().add(info);
 			}
-			
-			// Support for buff sharing feature including healing herbs.
-			if (effected.isPlayer())
-			{
-				final Player player = effected.asPlayer();
-				if (player.hasServitor() && (_abnormalType != AbnormalType.TRANSFORM) && ((addContinuousEffects && isContinuous() && !_isDebuff) || _isRecoveryHerb))
-				{
-					applyEffects(effector, player.getSummon(), _isRecoveryHerb, 0);
-				}
-			}
 		}
 		
 		if (self)
@@ -1400,21 +1390,6 @@ public class Skill
 			if (addContinuousEffects && hasEffectType(EffectType.BUFF))
 			{
 				info.getEffector().getEffectList().add(info);
-			}
-			
-			// Support for buff sharing feature.
-			// Avoiding Servitor Share since it's implementation already "shares" the effect.
-			if (addContinuousEffects)
-			{
-				final Creature effectedCreature = info.getEffected();
-				if (effectedCreature.isPlayer())
-				{
-					final Player player = effectedCreature.asPlayer();
-					if (player.hasServitor() && isContinuous() && !_isDebuff && (getId() != CommonSkill.SERVITOR_SHARE.getId()))
-					{
-						applyEffects(effector, player.getSummon(), false, 0);
-					}
-				}
 			}
 		}
 		
