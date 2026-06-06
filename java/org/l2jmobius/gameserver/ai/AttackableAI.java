@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
@@ -113,6 +114,8 @@ public class AttackableAI extends CreatureAI
 	protected static final int FEAR_TICKS = 5;
 	private static final int RANDOM_WALK_RATE = 30; // confirmed
 	private static final int MAX_ATTACK_TIMEOUT = 1200; // int ticks, i.e. 2min
+	private static final int SKILL_PROBABILITY_SCALE = 10000;
+	private static final int MAX_PARAMETERIZED_SKILL_SLOTS = 6;
 	
 	/** The delay after which the attacked is stopped. */
 	private int _attackTimeout;
@@ -1244,7 +1247,7 @@ public class AttackableAI extends CreatureAI
 			{
 				final Skill shortRangeSkill = shortRangeSkills.get(Rnd.get(shortRangeSkills.size()));
 				final int castRange = shortRangeSkill.getCastRange();
-				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, shortRangeSkill))
+				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, shortRangeSkill) && allowsParameterizedCast(npc, shortRangeSkill, mostHate))
 				{
 					clientStopMoving(null);
 					npc.setTarget(mostHate);
@@ -1259,7 +1262,7 @@ public class AttackableAI extends CreatureAI
 			{
 				final Skill longRangeSkill = longRangeSkills.get(Rnd.get(longRangeSkills.size()));
 				final int castRange = longRangeSkill.getCastRange();
-				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, longRangeSkill))
+				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, longRangeSkill) && allowsParameterizedCast(npc, longRangeSkill, mostHate))
 				{
 					clientStopMoving(null);
 					npc.setTarget(mostHate);
@@ -1411,7 +1414,12 @@ public class AttackableAI extends CreatureAI
 		{
 			return false;
 		}
-		
+
+		if (!allowsParameterizedCast(caster, sk, getAttackTarget()))
+		{
+			return false;
+		}
+
 		if ((getAttackTarget() == null) && (caster.getMostHated() != null))
 		{
 			setAttackTarget(caster.getMostHated());
@@ -1935,7 +1943,12 @@ public class AttackableAI extends CreatureAI
 			{
 				continue;
 			}
-			
+
+			if (!allowsParameterizedCast(npc, sk, target))
+			{
+				continue;
+			}
+
 			clientStopMoving(null);
 			npc.doCast(sk);
 			return true;
@@ -2593,5 +2606,89 @@ public class AttackableAI extends CreatureAI
 	public void setFearTime(int fearTime)
 	{
 		_fearTime = fearTime;
+	}
+
+	private boolean allowsParameterizedCast(Attackable caster, Skill skill, Creature target)
+	{
+		if ((caster == null) || (skill == null))
+		{
+			return true;
+		}
+
+		final StatSet params = caster.getTemplate() != null ? caster.getTemplate().getParameters() : null;
+		if ((params == null) || params.isEmpty())
+		{
+			return true;
+		}
+
+		final int slot = findParameterizedSkillSlot(params, skill.getId());
+		if (slot == 0)
+		{
+			return true;
+		}
+
+		return passesParameterizedGates(slot, params, caster, target);
+	}
+
+	private int findParameterizedSkillSlot(StatSet params, int skillId)
+	{
+		for (int slot = 1; slot <= MAX_PARAMETERIZED_SKILL_SLOTS; slot++)
+		{
+			final SkillHolder declared = params.getObject("Skill0" + slot + "_ID", SkillHolder.class);
+			if ((declared != null) && (declared.getSkillId() == skillId))
+			{
+				return slot;
+			}
+		}
+		return 0;
+	}
+
+	private boolean passesParameterizedGates(int slot, StatSet params, Attackable caster, Creature target)
+	{
+		final String prefix = "Skill0" + slot + "_";
+		final int probability = params.getInt(prefix + "Probablity", 0);
+		final boolean checksDistance = params.getInt(prefix + "Check_Dist", 0) == 1;
+		final int highHp = params.getInt(prefix + "HighHP", 0);
+
+		if (probability == 0)
+		{
+			final boolean hasAttackHint = (params.getInt(prefix + "AttackSplash", 0) == 1) || (params.getInt(prefix + "MainAttack", 0) == 1) || (params.getInt(prefix + "Target", 0) > 0);
+			if (!checksDistance && (highHp == 0) && !hasAttackHint)
+			{
+				return false;
+			}
+		}
+		else if (Rnd.get(SKILL_PROBABILITY_SCALE) >= probability)
+		{
+			return false;
+		}
+
+		if (checksDistance && (target != null))
+		{
+			final int distMin = params.getInt(prefix + "Dist_Min", 0);
+			final int distMax = params.getInt(prefix + "Dist_Max", Integer.MAX_VALUE);
+			final int distance = (int) caster.calculateDistance2D(target);
+			if ((distance < distMin) || (distance > distMax))
+			{
+				return false;
+			}
+		}
+
+		if (highHp > 0)
+		{
+			final int hpTarget = params.getInt(prefix + "HPTarget", 0);
+			final Creature hpSource = (hpTarget == 1) ? caster : target;
+			if (hpSource == null)
+			{
+				return false;
+			}
+			final double hpPercent = (hpSource.getCurrentHp() * 100.0) / hpSource.getMaxHp();
+			if (hpPercent <= highHp)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
