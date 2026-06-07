@@ -5106,13 +5106,13 @@
 			<height normal="3.75" />
 		</collision>
 	</npc>
-	<npc id="1594" level="80" type="Folk" name="Singer &amp; Dancer Agathion" title="Singer &amp; Dancer Agathion">
+	<npc id="1594" level="55" type="Folk" name="Singer &amp; Dancer Agathion" title="Singer &amp; Dancer Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="25">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -5129,13 +5129,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="1595" level="80" type="Folk" name="Zakensword Agathion" title="Zakensword Agathion">
+	<npc id="1595" level="55" type="Folk" name="Zakensword Agathion" title="Zakensword Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="25">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -5152,13 +5152,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="1596" level="80" type="Folk" name="Cow Agathion" title="Cow Agathion">
+	<npc id="1596" level="55" type="Folk" name="Cow Agathion" title="Cow Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="25">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -5175,13 +5175,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="1597" level="80" type="Folk" name="Tow Agathion" title="Tow Agathion">
+	<npc id="1597" level="55" type="Folk" name="Tow Agathion" title="Tow Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="25">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -5198,13 +5198,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="1598" level="80" type="Folk" name="Rudolph Agathion">
+	<npc id="1598" level="55" type="Folk" name="Rudolph Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -5221,13 +5221,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="1599" level="80" type="Folk" name="Zinyanzi Agathion">
+	<npc id="1599" level="55" type="Folk" name="Zinyanzi Agathion">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="25">
+			<vitals hp="1673.05473" mp="889.8" />
+			<attack physical="388.11142" magical="265.02979" attackSpeed="253" range="40" />
+			<defence physical="223.6362" magical="163.64727" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>

@@ -1882,9 +1882,9 @@
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="4129.70213428133" hpRegen="67.0069943268003" mp="1980.30304497258" mpRegen="3.96" />
+			<vitals hp="336237" hpRegen="109.442978618283" mp="18468" mpRegen="300" />
 			<attack physical="2670.3603804899" magical="812.454942994962" random="10" critical="8" accuracy="0" attackSpeed="253" reuseDelay="1500" type="BOW" range="1100" distance="10" width="0" />
-			<defence physical="388.150473598966" magical="284.031666989471" evasion="-1" />
+			<defence physical="405" magical="444" evasion="-1" />
 			<attribute>
 				<attack type="FIRE" value="300" />
 				<defence fire="300" water="170" wind="220" earth="220" holy="220" dark="220" default="220" />
@@ -3157,7 +3157,7 @@
 			<height normal="58" />
 		</collision>
 	</npc>
-	<npc id="29054" level="78" type="RaidBoss" name="Benom" title="Triol's Leader"> <!-- Retail level is 75 -->
+	<npc id="29054" level="75" type="RaidBoss" name="Benom" title="Triol's Leader"> <!-- Retail level is 75 -->
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<skill name="PhysicalSpecial" id="4993" level="1" /> <!-- Venom - Strike -->

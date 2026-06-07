@@ -1008,9 +1008,9 @@
 		<sex>MALE</sex>
 		<equipment rhand="946" lhand="945" /> <!-- rhand: Skeleton Dagger lhand: Skeleton Buckler -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="3289.87341" hpRegen="8.5" mp="1523.77049" mpRegen="3" />
-			<attack physical="962.52465" magical="482.95329" attackSpeed="253" range="40" />
-			<defence physical="341.42011" magical="227.47114" />
+			<vitals hp="3289.87341" hpRegen="8.5" mp="1674.8" mpRegen="3" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.42011" magical="249.80341" />
 			<attribute>
 				<attack type="DARK" value="100" />
 				<defence fire="100" water="100" wind="100" earth="100" holy="60" dark="140" />
@@ -1041,9 +1041,9 @@
 		<sex>MALE</sex>
 		<equipment rhand="946" lhand="945" /> <!-- rhand: Skeleton Dagger lhand: Skeleton Buckler -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="3289.87341" hpRegen="8.5" mp="1523.77049" mpRegen="3" />
-			<attack physical="962.52465" magical="482.95329" attackSpeed="253" range="40" />
-			<defence physical="341.42011" magical="227.47114" />
+			<vitals hp="3289.87341" hpRegen="8.5" mp="1674.8" mpRegen="3" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.42011" magical="249.80341" />
 			<attribute>
 				<attack type="DARK" value="100" />
 				<defence fire="100" water="100" wind="100" earth="100" holy="60" dark="140" />

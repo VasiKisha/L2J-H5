@@ -137,10 +137,10 @@
 	<npc id="27403" level="80" type="Folk" name="Trainee of Rest">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -157,10 +157,10 @@
 	<npc id="27404" level="80" type="Folk" name="Supplicant of Rest">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -177,10 +177,10 @@
 	<npc id="27405" level="80" type="Folk" name="Monastic Pilgrim">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -197,10 +197,10 @@
 	<npc id="27406" level="80" type="Folk" name="Monastic Crusader">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -218,10 +218,10 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<equipment rhand="8212" /> <!-- Monster Only (Solina Brother Mace) -->
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -258,10 +258,10 @@
 	<npc id="27408" level="80" type="Folk" name="Savior Solina">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -275,13 +275,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="27409" level="80" type="Monster" name="Solina Knight Captain">
+	<npc id="27409" level="81" type="Monster" name="Solina Knight Captain">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3461.77253215841" mp="1708.8" />
+			<attack physical="1012.32268463427" magical="691.285164307598" attackSpeed="253" range="40" />
+			<defence physical="345.61127" magical="252.90333" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -304,10 +304,10 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<equipment rhand="8211" lhand="8210" /> <!-- Monster Only (Monk Warrior Shield) -->
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -329,10 +329,10 @@
 	<npc id="27411" level="80" type="Folk" name="Divinity Manager">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -350,10 +350,10 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<equipment rhand="8221" /> <!-- Monster Only (Grail Apostle Spear) -->
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -375,10 +375,10 @@
 	<npc id="27413" level="80" type="Monster" name="Divinity Fighter">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -400,10 +400,10 @@
 	<npc id="27414" level="80" type="Monster" name="Divinity Magus">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -432,9 +432,9 @@
 		<sex>MALE</sex>
 		<equipment rhand="8212" /> <!-- rhand: Monster Only (Solina Brother Mace) -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="5198" mp="1859.0" />
-			<attack physical="1952" magical="905" attackSpeed="253" range="40" />
-			<defence physical="577" magical="469" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -451,10 +451,10 @@
 	<npc id="27416" level="80" type="Folk" name="Relic Manager Golem">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -472,10 +472,10 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<equipment rhand="274" /> <!-- Reinforced Bow -->
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -502,10 +502,10 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<equipment rhand="150" /> <!-- rhand: Elemental Sword -->
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -531,10 +531,10 @@
 	<npc id="27419" level="80" type="Folk" name="Divinity Watcher">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -551,10 +551,10 @@
 	<npc id="27420" level="80" type="Folk" name="Instructor Solina">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -568,13 +568,13 @@
 			<height normal="35" />
 		</collision>
 	</npc>
-	<npc id="27421" level="80" type="Monster" name="Creature of the Dusk">
+	<npc id="27421" level="79" type="Monster" name="Creature of the Dusk">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3127.82459333517" mp="1641" />
+			<attack physical="929.930814318487" magical="635.022195830619" attackSpeed="253" range="40" />
+			<defence physical="337.07008" magical="246.65326" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -592,9 +592,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="4942" hpRegen="8.5" mp="1822.0" mpRegen="3" />
-			<attack physical="1859" magical="866" attackSpeed="253" range="40" />
-			<defence physical="566" magical="460" />
+			<vitals hp="3127.82459333517" hpRegen="8.5" mp="1641" mpRegen="3" />
+			<attack physical="929.930814318487" magical="635.022195830619" attackSpeed="253" range="40" />
+			<defence physical="337.07008" magical="246.65326" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -608,13 +608,13 @@
 			<height normal="23" />
 		</collision>
 	</npc>
-	<npc id="27423" level="80" type="Monster" name="Creature of the Dusk">
+	<npc id="27423" level="79" type="Monster" name="Creature of the Dusk">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3127.82459333517" mp="1641" />
+			<attack physical="929.930814318487" magical="635.022195830619" attackSpeed="253" range="40" />
+			<defence physical="337.07008" magical="246.65326" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -633,9 +633,9 @@
 		<sex>MALE</sex>
 		<equipment rhand="304" /> <!-- rhand: Orcish Halberd -->
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="4942" hpRegen="8.5" mp="1822.0" mpRegen="3" />
-			<attack physical="1859" magical="866" attackSpeed="253" range="40" />
-			<defence physical="566" magical="460" />
+			<vitals hp="3127.82459333517" hpRegen="8.5" mp="1641" mpRegen="3" />
+			<attack physical="929.930814318487" magical="635.022195830619" attackSpeed="253" range="40" />
+			<defence physical="337.07008" magical="246.65326" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>

@@ -3,10 +3,10 @@
 	<npc id="2501" level="80" type="Monster" name="Lucky Pig" title="The Spirit of Fortune">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="2676.65854" mp="1507.8" />
+			<attack physical="794.70901" magical="542.68324" attackSpeed="253" range="40" />
+			<defence physical="319.24623" magical="233.61053" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -25,13 +25,13 @@
 			<height normal="18" />
 		</collision>
 	</npc>
-	<npc id="2502" level="80" type="Monster" name="Wingless Lucky Pig">
+	<npc id="2502" level="1" type="Monster" name="Wingless Lucky Pig">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="2676.65854" mp="1507.8" />
+			<attack physical="794.70901" magical="542.68324" attackSpeed="253" range="40" />
+			<defence physical="319.24623" magical="233.61053" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -45,13 +45,13 @@
 			<height normal="18" />
 		</collision>
 	</npc>
-	<npc id="2503" level="80" type="Monster" name="Wingless Lucky Pig">
+	<npc id="2503" level="1" type="Monster" name="Wingless Lucky Pig">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="2676.65854" mp="1507.8" />
+			<attack physical="794.70901" magical="542.68324" attackSpeed="253" range="40" />
+			<defence physical="319.24623" magical="233.61053" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>

@@ -4372,7 +4372,7 @@
 			<height normal="10" />
 		</collision>
 	</npc>
-	<npc id="18680" level="2" type="Folk" name="Energy Seed - Wind">
+	<npc id="18680" level="1" type="Folk" name="Energy Seed - Wind">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -4414,7 +4414,7 @@
 			<height normal="10" />
 		</collision>
 	</npc>
-	<npc id="18681" level="2" type="Folk" name="Energy Seed - Earth">
+	<npc id="18681" level="1" type="Folk" name="Energy Seed - Earth">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -4456,7 +4456,7 @@
 			<height normal="10" />
 		</collision>
 	</npc>
-	<npc id="18682" level="3" type="Folk" name="Energy Seed - Holy">
+	<npc id="18682" level="1" type="Folk" name="Energy Seed - Holy">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -4498,7 +4498,7 @@
 			<height normal="10" />
 		</collision>
 	</npc>
-	<npc id="18683" level="3" type="Folk" name="Energy Seed - Dark">
+	<npc id="18683" level="1" type="Folk" name="Energy Seed - Dark">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>

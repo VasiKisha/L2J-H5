@@ -2994,9 +2994,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3014,9 +3014,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3034,9 +3034,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3054,9 +3054,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3074,9 +3074,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3094,9 +3094,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3114,9 +3114,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3134,9 +3134,9 @@
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3153,10 +3153,10 @@
 	<npc id="32792" level="80" type="Folk" name="Eris's Evil Thoughts" title="Director">
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3173,10 +3173,10 @@
 	<npc id="32793" level="80" type="Folk" name="Solina's Evil Thoughts" title="Saintess of Elmore-Aden">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3193,10 +3193,10 @@
 	<npc id="32794" level="80" type="Folk" name="Solina" title="Saintess of Elmore-Aden">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3213,10 +3213,10 @@
 	<npc id="32795" level="80" type="Folk" name="Eris" title="Solina's Disciple">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3233,10 +3233,10 @@
 	<npc id="32796" level="80" type="Folk" name="Anais" title="Solina's Disciple">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3253,10 +3253,10 @@
 	<npc id="32797" level="80" type="Folk" name="Jude van Etina" title="Solina's Disciple">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3273,10 +3273,10 @@
 	<npc id="32798" level="80" type="Folk" name="Elcadia" title="Abyssal Saintess">
 		<!-- TODO: Must be confirmed -->
 		<sex>FEMALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
@@ -3293,10 +3293,10 @@
 	<npc id="32799" level="80" type="Folk" name="Hardin" title="Grand Wizard">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<stats str="10" int="10" dex="10" wit="10" con="10" men="10">
-			<vitals hp="2444" mp="2444.0" />
-			<attack physical="500" magical="500" attackSpeed="278" range="40" />
-			<defence physical="500" magical="500" />
+		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
+			<vitals hp="3290.11306877694" mp="1674.8" />
+			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
