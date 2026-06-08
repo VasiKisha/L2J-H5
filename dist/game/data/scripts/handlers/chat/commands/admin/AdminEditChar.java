@@ -1036,13 +1036,12 @@ public class AdminEditChar implements IAdminCommandHandler
 	private void gatherCharacterInfo(Player activeChar, Player player, String filename)
 	{
 		String ip = "N/A";
-		final String hwid = "N/A";
 		if (player == null)
 		{
 			activeChar.sendSysMessage("Player is null.");
 			return;
 		}
-		
+
 		final GameClient client = player.getClient();
 		if (client == null)
 		{
@@ -1055,11 +1054,6 @@ public class AdminEditChar implements IAdminCommandHandler
 		else
 		{
 			ip = client.getIp();
-			
-			// if (client.getHWID() != null)
-			// {
-			// hwid = client.getHWID();
-			// }
 		}
 		
 		final NpcHtmlMessage adminReply = new NpcHtmlMessage();
@@ -1104,7 +1098,7 @@ public class AdminEditChar implements IAdminCommandHandler
 		adminReply.replace("%account%", player.getAccountName());
 		adminReply.replace("%ip%", ip);
 		adminReply.replace("%protocol%", String.valueOf(player.getClient() != null ? player.getClient().getProtocolVersion() : "NULL"));
-		adminReply.replace("%hwid%", hwid);
+		adminReply.replace("%hwid%", (player.getClient() != null) && (player.getClient().getHardwareInfo() != null) ? player.getClient().getHardwareInfo().getMacAddress() : "Unknown");
 		adminReply.replace("%ai%", player.getAI().getIntention().name());
 		adminReply.replace("%autoplay%", AutoPlayConfig.ENABLE_AUTO_PLAY ? "<br1>AutoPlay: " + (player.isAutoPlaying() ? "Enabled" : "Disabled") : "");
 		adminReply.replace("%inst%", player.getInstanceId() > 0 ? "<tr><td>InstanceId:</td><td><a action=\"bypass -h admin_instance_spawns " + player.getInstanceId() + "\">" + player.getInstanceId() + "</a></td></tr>" : "");

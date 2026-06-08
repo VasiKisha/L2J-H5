@@ -153,6 +153,7 @@ import handlers.chat.commands.admin.AdminHeal;
 import handlers.chat.commands.admin.AdminHelp;
 import handlers.chat.commands.admin.AdminHide;
 import handlers.chat.commands.admin.AdminHtml;
+import handlers.chat.commands.admin.AdminHwid;
 import handlers.chat.commands.admin.AdminInstance;
 import handlers.chat.commands.admin.AdminInstanceZone;
 import handlers.chat.commands.admin.AdminInvul;
@@ -379,6 +380,7 @@ public class MasterHandler
 			AdminHelp.class,
 			AdminHide.class,
 			AdminHtml.class,
+			AdminHwid.class,
 			AdminInstance.class,
 			AdminInstanceZone.class,
 			AdminInvul.class,

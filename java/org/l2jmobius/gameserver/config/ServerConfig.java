@@ -88,6 +88,8 @@ public class ServerConfig
 	public static boolean HARDWARE_INFO_ENABLED;
 	public static boolean KICK_MISSING_HWID;
 	public static int MAX_PLAYERS_PER_HWID;
+	public static boolean REQUIRE_FRESH_HWID;
+	public static int HWID_CHECK_DELAY;
 	public static List<Integer> PROTOCOL_LIST;
 	public static int SERVER_LIST_TYPE;
 	public static int SERVER_LIST_AGE;
@@ -168,6 +170,8 @@ public class ServerConfig
 		{
 			KICK_MISSING_HWID = true;
 		}
+		REQUIRE_FRESH_HWID = config.getBoolean("RequireFreshHWID", false);
+		HWID_CHECK_DELAY = config.getInt("HwidCheckDelay", 5000);
 		
 		final String[] protocols = config.getString("AllowedProtocolRevisions", "267;268;271;273").split(";");
 		PROTOCOL_LIST = new ArrayList<>(protocols.length);

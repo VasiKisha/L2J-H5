@@ -66,7 +66,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 	private SessionKey _sessionKey;
 	private Player _player;
 	private SecondaryPasswordAuth _secondaryAuth;
-	private ClientHardwareInfoHolder _hardwareInfo;
+	private volatile ClientHardwareInfoHolder _hardwareInfo;
 	private List<CharacterInfoHolder> _charSlotMapping = null;
 	private volatile boolean _isDetached = false;
 	private boolean _isAuthedGG;

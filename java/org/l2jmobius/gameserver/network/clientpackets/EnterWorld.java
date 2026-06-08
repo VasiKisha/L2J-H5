@@ -690,8 +690,11 @@ public class EnterWorld extends ClientPacket
 				
 				final String trace = sb.toString();
 				
+				// Whether a hardware info packet was received during this session, before any fallback.
+				final ClientHardwareInfoHolder freshHwInfo = client.getHardwareInfo();
+				
 				// Get hardware info from client.
-				ClientHardwareInfoHolder hwInfo = client.getHardwareInfo();
+				ClientHardwareInfoHolder hwInfo = freshHwInfo;
 				if (hwInfo != null)
 				{
 					hwInfo.store(player);
@@ -712,9 +715,17 @@ public class EnterWorld extends ClientPacket
 						final String storedInfo = player.getAccountVariables().getString(AccountVariables.HWID, "");
 						if (!storedInfo.isEmpty())
 						{
-							hwInfo = new ClientHardwareInfoHolder(storedInfo);
-							TRACE_HWINFO.put(trace, hwInfo);
-							client.setHardwareInfo(hwInfo);
+							try
+							{
+								hwInfo = new ClientHardwareInfoHolder(storedInfo);
+								TRACE_HWINFO.put(trace, hwInfo);
+								client.setHardwareInfo(hwInfo);
+							}
+							catch (Exception e)
+							{
+								// Malformed or legacy stored hardware info; treat as missing.
+								PacketLogger.warning("Could not parse stored hardware info for account " + player.getAccountName() + ": " + e.getMessage());
+							}
 						}
 					}
 				}
@@ -726,11 +737,12 @@ public class EnterWorld extends ClientPacket
 					return;
 				}
 				
-				// Check max players.
-				if (ServerConfig.KICK_MISSING_HWID && (hwInfo == null))
+				// Kick if HWID is missing. When RequireFreshHWID is enabled a packet must be received during this session; otherwise a previously stored value is accepted.
+				if (ServerConfig.KICK_MISSING_HWID && (ServerConfig.REQUIRE_FRESH_HWID ? (freshHwInfo == null) : (hwInfo == null)))
 				{
 					Disconnection.of(client).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 				}
+				// Check max players per HWID.
 				else if (ServerConfig.MAX_PLAYERS_PER_HWID > 0)
 				{
 					int count = 0;
@@ -751,7 +763,7 @@ public class EnterWorld extends ClientPacket
 						Disconnection.of(client).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 					}
 				}
-			}, 5000);
+			}, ServerConfig.HWID_CHECK_DELAY);
 		}
 		
 		// Check if the player is a Dark Elf and has the Shadow Sense skill.
