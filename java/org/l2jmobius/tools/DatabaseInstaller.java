@@ -375,11 +375,11 @@ public class DatabaseInstaller extends JFrame
 		System.out.print("Enter MySQL Password: ");
 		password = scanner.nextLine().trim();
 		
-		System.out.print("Enter Database Name [l2jmobiusinterlude]: ");
+		System.out.print("Enter Database Name [l2jmobiush5]: ");
 		dbName = scanner.nextLine().trim();
 		if (dbName.isEmpty())
 		{
-			dbName = "l2jmobiusinterlude";
+			dbName = "l2jmobiush5";
 		}
 		
 		switch (choice)
