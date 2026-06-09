@@ -170,7 +170,7 @@ public class Q00103_SpiritOfCraftsman extends Quest
 						
 						for (ItemHolder reward : REWARDS)
 						{
-							rewardItems(talker, reward);
+							giveItems(talker, reward);
 						}
 						
 						// Newbie Guide.

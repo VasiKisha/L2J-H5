@@ -405,7 +405,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 			}
 			case "32114-3.html":
 			{
-				rewardItems(player, ENCHANT_WEAPON_A, 1);
+				giveItems(player, ENCHANT_WEAPON_A, 1);
 				giveAdena(player, 460483, true);
 				addExpAndSp(player, 1015973, 102802);
 				qs.exitQuest(false, true);

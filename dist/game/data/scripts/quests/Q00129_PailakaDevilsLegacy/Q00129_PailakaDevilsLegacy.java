@@ -245,7 +245,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 						npc.doCast(VITALITY_REPLENISHING.getSkill());
 						addExpAndSp(player, 10800000, 950000);
 						rewardItems(player, BRACELET, 1);
-						rewardItems(player, ESCAPE, 1);
+						giveItems(player, ESCAPE, 1);
 					}
 					else
 					{

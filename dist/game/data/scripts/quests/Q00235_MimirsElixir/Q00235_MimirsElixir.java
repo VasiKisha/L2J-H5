@@ -144,7 +144,7 @@ public class Q00235_MimirsElixir extends Quest
 					npc.setTarget(player);
 					npc.doCast(QUEST_MIMIRS_ELIXIR.getSkill());
 					takeItems(player, STAR_OF_DESTINY, -1);
-					rewardItems(player, ENCHANT_WEAPON_A, 1);
+					giveItems(player, ENCHANT_WEAPON_A, 1);
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;

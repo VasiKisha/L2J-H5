@@ -184,11 +184,11 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 					{
 						if (getRandomBoolean())
 						{
-							rewardItems(player, SCROLL_ENCHANT_A_S, 1);
+							giveItems(player, SCROLL_ENCHANT_A_S, 1);
 						}
 						else
 						{
-							rewardItems(player, SCROLL_ENCHANT_W_S, 1);
+							giveItems(player, SCROLL_ENCHANT_W_S, 1);
 						}
 						
 						htmltext = "31328-07.html";
