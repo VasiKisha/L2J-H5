@@ -195,7 +195,7 @@ public enum ClientPackets
 	REQUEST_BUY_SEED(0xC5, RequestBuySeed::new, ConnectionState.IN_GAME),
 	DLG_ANSWER(0xC6, DlgAnswer::new, ConnectionState.IN_GAME),
 	REQUEST_PREVIEW_ITEM(0xC7, RequestPreviewItem::new, ConnectionState.IN_GAME),
-	REQUEST_SSQ_STATUS(0xC8, null, ConnectionState.IN_GAME),
+	REQUEST_SSQ_STATUS(0xC8, RequestSSQStatus::new, ConnectionState.IN_GAME),
 	REQUEST_PETITION_FEEDBACK(0xC9, RequestPetitionFeedback::new, ConnectionState.IN_GAME),
 	GAME_GUARD_REPLY(0xCB, GameGuardReply::new, ConnectionState.IN_GAME),
 	REQUEST_PLEDGE_POWER(0xCC, RequestPledgePower::new, ConnectionState.IN_GAME),
