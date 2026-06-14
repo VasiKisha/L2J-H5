@@ -145,7 +145,7 @@ public abstract class DocumentBase
 {
 	protected final Logger LOGGER = Logger.getLogger(getClass().getName());
 	
-	private static final Set<String> IGNORED_ELEMENTS = Set.of("param", "conditions", "effect", "add", "sub", "mul", "div", "set", "share", "enchant", "enchanthp", "value");
+	private static final Set<String> IGNORED_ELEMENTS = Set.of("param", "conditions", "effect", "add", "sub", "mul", "div", "set", "share", "enchant", "enchanthp");
 	
 	private final File _file;
 	protected final Map<String, String[]> _tables = new HashMap<>();
