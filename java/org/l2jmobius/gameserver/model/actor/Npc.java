@@ -1585,7 +1585,7 @@ public class Npc extends Creature
 			// Trainer Healer?
 			if (html == null)
 			{
-				html = HtmCache.getInstance().getHtm(player, "data/scripts/ai/npc/Trainers/HealerTrainer/" + npcId + "-noteach.html");
+				html = HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/HealerTrainer/" + npcId + "-noteach.html");
 			}
 		}
 		
