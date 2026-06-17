@@ -81,7 +81,7 @@ public class RequestPackageSend extends ClientPacket
 		
 		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
-			player.sendMessage("You depositing items too fast.");
+			player.sendMessage("You are sending freight packages too fast.");
 			return;
 		}
 		
