@@ -10031,7 +10031,7 @@
 		<production id="9557" count="1" />
 		<statUse name="MP" value="240" />
 	</item>
-	<item id="936" recipeId="14854" name="mk_soul_energy" craftLevel="2" type="common" successRate="100">
+	<item id="936" recipeId="14854" name="mk_soul_energy" craftLevel="2" type="common" successRate="25">
 		<ingredient id="14856" count="1" />
 		<production id="14855" count="1" />
 		<statUse name="MP" value="100" />
