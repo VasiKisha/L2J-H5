@@ -7,5 +7,11 @@
 			<location name="3rd Floor Elven Wizard Guild" x="85399" y="16197" z="-2288" feeCount="0" />
 			<location name="4th Floor Dark Wizard Guild" x="85399" y="16197" z="-1771" feeCount="0" />
 		</teleport>
+		<teleport type="OTHER">
+			<location x="85399" y="16197" z="-3679" /> <!-- Ivory Tower Ground Floor -->
+			<location x="85399" y="16197" z="-2809" /> <!-- Ivory Tower 1st Floor -->
+			<location x="85399" y="16197" z="-2293" /> <!-- Ivory Tower 2nd Floor -->
+			<location x="85399" y="16197" z="-1776" /> <!-- Ivory Tower 3th Floor -->
+		</teleport>
 	</npc>
 </list>
