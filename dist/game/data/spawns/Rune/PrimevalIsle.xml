@@ -496,8 +496,6 @@
 			<node x="13860" y="-16920" />
 		</territory>
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_02">
 		<territory minZ="-3232" maxZ="-2832">
@@ -518,8 +516,6 @@
 			<node x="13856" y="-16916" />
 		</territory>
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_04">
 		<territory minZ="-3320" maxZ="-2620">
@@ -528,12 +524,12 @@
 			<node x="15180" y="-16024" />
 			<node x="13856" y="-16916" />
 		</territory>
-		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
-		<npc id="22220" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Deinonychus -->
-		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 		<npc id="18345" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
-		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
+		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
+		<npc id="22220" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_05">
 		<territory minZ="-3448" maxZ="-3048">
@@ -542,7 +538,6 @@
 			<node x="20532" y="-17568" />
 			<node x="17684" y="-16072" />
 		</territory>
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 		<npc id="22199" count="1" respawnDelay="250" respawnRandom="55" /> <!-- Pterosaur -->
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
@@ -553,11 +548,11 @@
 			<node x="20532" y="-17568" />
 			<node x="17684" y="-16072" />
 		</territory>
-		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
-		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 		<npc id="18345" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
-		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
+		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
+		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_07">
 		<territory minZ="-3504" maxZ="-3004">
@@ -576,11 +571,11 @@
 			<node x="20248" y="-19296" />
 			<node x="18252" y="-18680" />
 		</territory>
-		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 		<npc id="18345" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
+		<npc id="22218" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 		<npc id="22225" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Deinonychus -->
-		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 	</spawn>
 	<spawn zone="rune17_2017_09">
 		<territory minZ="-3476" maxZ="-2676">
@@ -590,9 +585,9 @@
 			<node x="22424" y="-18308" />
 			<node x="20544" y="-17612" />
 		</territory>
-		<npc id="22224" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
 		<npc id="22199" count="3" respawnDelay="250" respawnRandom="55" /> <!-- Pterosaur -->
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="22224" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
 	</spawn>
 	<spawn zone="rune17_2017_10">
 		<territory minZ="-3476" maxZ="-2676">
@@ -602,12 +597,12 @@
 			<node x="22424" y="-18308" />
 			<node x="20544" y="-17612" />
 		</territory>
-		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
-		<npc id="22196" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 		<npc id="18345" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
+		<npc id="22196" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
 		<npc id="22225" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Deinonychus -->
-		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 	</spawn>
 	<spawn zone="rune17_2017_11">
 		<territory minZ="-2900" maxZ="-2200">
@@ -629,12 +624,12 @@
 			<node x="24888" y="-20916" />
 			<node x="22584" y="-18716" />
 		</territory>
-		<npc id="22196" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
+		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 		<npc id="18345" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="1" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
+		<npc id="22196" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="22219" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
 		<npc id="22225" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Deinonychus -->
-		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 	</spawn>
 	<spawn zone="rune17_2017_13">
 		<territory minZ="-2884" maxZ="-1984">
@@ -645,7 +640,6 @@
 			<node x="23344" y="-18032" />
 		</territory>
 		<npc id="22199" count="1" respawnDelay="250" respawnRandom="55" /> <!-- Pterosaur -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_14">
@@ -918,7 +912,6 @@
 		</territory>
 		<npc id="22199" count="1" respawnDelay="250" respawnRandom="55" /> <!-- Pterosaur -->
 		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_35">
 		<territory minZ="-2764" maxZ="-2364">
@@ -1077,10 +1070,9 @@
 			<node x="13496" y="-11484" />
 		</territory>
 		<npc id="22224" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Ornithomimus -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
+		<npc id="22223" count="2" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 		<npc id="18345" count="2" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
 		<npc id="18346" count="2" respawnDelay="200" respawnRandom="30" /> <!-- Sprigant -->
-		<npc id="22223" count="2" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 		<npc id="18344" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Ancient Egg -->
 	</spawn>
 	<spawn zone="rune17_2017_47_Night">
@@ -1380,7 +1372,6 @@
 			<node x="18884" y="-17684" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp09">
@@ -1400,7 +1391,6 @@
 			<node x="20872" y="-18152" />
 			<node x="20256" y="-18356" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 	</spawn>
@@ -1443,7 +1433,6 @@
 			<node x="26176" y="-16160" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22217" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Tyrannosaurus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp23">
@@ -1484,7 +1473,6 @@
 			<node x="23040" y="-15016" />
 			<node x="21636" y="-15096" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp31">
@@ -1527,7 +1515,6 @@
 			<node x="15764" y="-15328" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp39">
 		<territory minZ="-3244" maxZ="-3044">
@@ -1568,7 +1555,6 @@
 			<node x="14360" y="-11660" />
 			<node x="13856" y="-11264" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp47">
@@ -1611,7 +1597,6 @@
 			<node x="16736" y="-11872" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp55">
 		<territory minZ="-3108" maxZ="-2908">
@@ -1631,7 +1616,6 @@
 			<node x="21256" y="-13780" />
 			<node x="20460" y="-13612" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp59">
@@ -1653,7 +1637,6 @@
 			<node x="25988" y="-11588" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp63">
 		<territory minZ="-2596" maxZ="-2196">
@@ -1673,7 +1656,6 @@
 			<node x="26928" y="-12376" />
 			<node x="26132" y="-12804" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp67">
@@ -1716,7 +1698,6 @@
 			<node x="22408" y="-10028" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp75">
 		<territory minZ="-2828" maxZ="-2628">
@@ -1757,7 +1738,6 @@
 			<node x="20524" y="-10212" />
 			<node x="19304" y="-10056" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_sp83">

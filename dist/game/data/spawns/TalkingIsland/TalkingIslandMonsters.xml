@@ -293,7 +293,6 @@
 		</territory>
 		<npc id="20326" count="2" respawnDelay="20" /> <!-- Goblin Scout -->
 		<npc id="20132" count="2" respawnDelay="20" /> <!-- Werewolf -->
-		<npc id="20132" count="2" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20093" count="3" respawnDelay="20" /> <!-- Orc Fighter -->
 	</spawn>
 	<spawn zone="gludio31_1725_25">
@@ -306,7 +305,6 @@
 		<npc id="20131" count="3" respawnDelay="20" /> <!-- Orc Grunt -->
 		<npc id="20006" count="2" respawnDelay="20" /> <!-- Orc Archer -->
 		<npc id="20326" count="3" respawnDelay="20" /> <!-- Goblin Scout -->
-		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 	</spawn>
 	<spawn zone="gludio31_1624_01">
@@ -457,7 +455,6 @@
 		</territory>
 		<npc id="20006" count="3" respawnDelay="20" /> <!-- Orc Archer -->
 		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
-		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20093" count="3" respawnDelay="20" /> <!-- Orc Fighter -->
 	</spawn>
 	<spawn zone="gludio31_1625_04">
@@ -500,7 +497,6 @@
 		</territory>
 		<npc id="20326" count="2" respawnDelay="20" /> <!-- Goblin Scout -->
 		<npc id="20132" count="5" respawnDelay="20" /> <!-- Werewolf -->
-		<npc id="20132" count="5" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20343" count="4" respawnDelay="20" /> <!-- Werewolf Hunter -->
 	</spawn>
 	<spawn zone="gludio31_1625_08">
@@ -510,7 +506,6 @@
 			<node x="-108540" y="237970" />
 			<node x="-106463" y="236356" />
 		</territory>
-		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20343" count="3" respawnDelay="20" /> <!-- Werewolf Hunter -->
 		<npc id="20342" count="3" respawnDelay="20" /> <!-- Werewolf Chieftain -->
@@ -522,7 +517,6 @@
 			<node x="-100034" y="234969" />
 			<node x="-99895" y="233301" />
 		</territory>
-		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 		<npc id="20132" count="3" respawnDelay="20" /> <!-- Werewolf -->
 	</spawn>
 	<spawn zone="gludio31_1625_10">
