@@ -112,14 +112,14 @@ public class TeleporterData implements IXmlReader
 	/**
 	 * Registers teleport data for a specific NPC to the global teleporter list.
 	 * <p>
-	 * If a teleporter with the given {@code npcId} already exists, it will be overwritten by the new {@code teleList} data. This method does not perform duplicate checks, so any existing data for the {@code npcId} will be replaced.
+	 * If a teleporter with the given {@code npcId} already exists, the new {@code teleList} data will be merged into the existing data.
 	 * </p>
 	 * @param npcId the template ID of the teleporter NPC
 	 * @param teleList a map of teleport data associated with the NPC
 	 */
 	private void registerTeleportList(int npcId, Map<String, TeleportHolder> teleList)
 	{
-		_teleporters.put(npcId, teleList);
+		_teleporters.computeIfAbsent(npcId, k -> new ConcurrentHashMap<>()).putAll(teleList);
 	}
 	
 	/**
