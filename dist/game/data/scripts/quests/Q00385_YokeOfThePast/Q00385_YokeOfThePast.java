@@ -135,8 +135,8 @@ public class Q00385_YokeOfThePast extends Quest
 					if (qs.isCreated())
 					{
 						qs.startQuest();
-						htmltext = event;
 					}
+					htmltext = event;
 					break;
 				}
 				case "ziggurat-10.html":
