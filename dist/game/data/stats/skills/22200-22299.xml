@@ -14,7 +14,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21181</itemConsumeId> <!-- Transformation Scroll: Veil Master - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -38,7 +38,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21182</itemConsumeId> <!-- Transformation Scroll: Saber Tooth Tiger - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -62,7 +62,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21183</itemConsumeId> <!-- Transformation Scroll: Ol Mahum - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -86,7 +86,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21184</itemConsumeId> <!-- Transformation Scroll: Doll Blader - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -110,7 +110,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21185</itemConsumeId> <!-- Transformation Scroll: Zaken - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -134,7 +134,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21186</itemConsumeId> <!-- Transformation Scroll: Anakim - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -158,7 +158,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21187</itemConsumeId> <!-- Transformation Scroll: Venom - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -182,7 +182,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21188</itemConsumeId> <!-- Transformation Scroll: Gordon - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -206,7 +206,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21189</itemConsumeId> <!-- Transformation Scroll: Ranku - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -230,7 +230,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21190</itemConsumeId> <!-- Transformation Scroll: Kechi - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -254,7 +254,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21191</itemConsumeId> <!-- Transformation Scroll: Demon Prince - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>

@@ -357,6 +357,11 @@
 		<abnormalTime>-1</abnormalTime>
 		<abnormalType>TRANSFORM</abnormalType>
 		<blockedInOlympiad>true</blockedInOlympiad>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<magicLevel>85</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
 		<effects>
 			<effect name="Transformation">
 				<id>20004</id>

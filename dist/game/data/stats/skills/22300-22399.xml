@@ -692,16 +692,84 @@
 		<targetType>NONE</targetType>
 	</skill>
 	<skill id="22386" levels="1" name="PC Café Transformation Scroll Box">
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>22274</itemConsumeId> <!-- PC Transformation Scroll Box - Event -->
+		<magicLevel>1</magicLevel>
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="11">
+						<item id="21182" count="1" /> <!-- Transformation Scroll: Saber Tooth Tiger - Event -->
+					</item>
+					<item chance="11">
+						<item id="21183" count="1" /> <!-- Transformation Scroll: Ol Mahum - Event -->
+					</item>
+					<item chance="11">
+						<item id="21184" count="1" /> <!-- Transformation Scroll: Doll Blader - Event -->
+					</item>
+					<item chance="11">
+						<item id="21185" count="1" /> <!-- Transformation Scroll: Zaken - Event -->
+					</item>
+					<item chance="1">
+						<item id="21186" count="1" /> <!-- Transformation Scroll: Anakim - Event -->
+					</item>
+					<item chance="11">
+						<item id="21187" count="1" /> <!-- Transformation Scroll: Venom - Event -->
+					</item>
+					<item chance="11">
+						<item id="21188" count="1" /> <!-- Transformation Scroll: Gordon - Event -->
+					</item>
+					<item chance="11">
+						<item id="21189" count="1" /> <!-- Transformation Scroll: Ranku - Event -->
+					</item>
+					<item chance="11">
+						<item id="21190" count="1" /> <!-- Transformation Scroll: Kechi - Event -->
+					</item>
+					<item chance="11">
+						<item id="21191" count="1" /> <!-- Transformation Scroll: Demon Prince - Event -->
+					</item>
+				</items>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="22387" levels="1" name="PC Café Gift Box">
 		<operateType>P</operateType>
 		<targetType>NONE</targetType>
 	</skill>
 	<skill id="22388" levels="1" name="PC Café Transformation Stick Box">
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>22276</itemConsumeId> <!-- PC Transformation Stick Box - Event -->
+		<magicLevel>1</magicLevel>
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom">
+				<items>
+					<item chance="50">
+						<item id="22282" count="1" /> <!-- Sujin Transformation Stick 7-Day Pack - Event -->
+					</item>
+					<item chance="50">
+						<item id="22284" count="1" /> <!-- Trejuo Transformation Stick 7-Day Pack - Event -->
+					</item>
+				</items>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="22389" levels="1" name="PC Café Hair Accessory Box">
 		<operateType>P</operateType>

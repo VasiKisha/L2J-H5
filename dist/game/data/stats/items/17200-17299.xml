@@ -703,11 +703,17 @@
 	<item id="17279" type="EtcItem" name="Transformation Scroll: Anakim Pack">
 		<!-- Gift box containing 1 Anakim Transformation Scroll. When used, you can obtain a Transformation Scroll: Anakim. Cannot be exchanged, dropped, or destroyed. -->
 		<set name="icon" val="icon.etc_pi_gift_box_i04" />
+		<set name="default_action" val="PEEL" />
 		<set name="material" val="STEEL" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_destroyable" val="false" />
 		<set name="is_stackable" val="true" />
+		<set name="is_oly_restricted" val="true" />
+		<set name="handler" val="ExtractableItems" />
+		<capsuled_items>
+			<item id="17139" min="1" max="1" chance="100" /> <!-- Transformation Scroll: Anakim -->
+		</capsuled_items>
 	</item>
 	<item id="17280" type="EtcItem" name="Transformation Sealbook: Anakim Pack">
 		<!-- Gift box containing 1 Anakim Transformation Sealbook. When used, you can obtain a Transformation Sealbook: Anakim. Cannot be exchanged, dropped, or destroyed. -->

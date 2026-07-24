@@ -2,13 +2,47 @@
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="22400" levels="1" name="Transformation Scroll - Zaken">
 		<!-- Transformed into Zaken. -->
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<icon>icon.skilltransform1</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1800</abnormalTime>
+		<abnormalType>TRANSFORM</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>22325</itemConsumeId> <!-- Transformation Scroll: Zaken -->
+		<magicLevel>-1</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
+		<effects>
+			<effect name="Transformation">
+				<id>305</id>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="22401" levels="1" name="Transformation Scroll - Ranku">
 		<!-- Transformed into Ranku. -->
-		<operateType>P</operateType>
-		<targetType>NONE</targetType>
+		<icon>icon.skilltransform1</icon>
+		<operateType>A2</operateType>
+		<targetType>SELF</targetType>
+		<abnormalLevel>1</abnormalLevel>
+		<abnormalTime>1800</abnormalTime>
+		<abnormalType>TRANSFORM</abnormalType>
+		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>22324</itemConsumeId> <!-- Transformation Scroll: Ranku -->
+		<magicLevel>-1</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
+		<effects>
+			<effect name="Transformation">
+				<id>309</id>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="22402" levels="1" name="Juju Agathion's Gift">
 		<operateType>P</operateType>

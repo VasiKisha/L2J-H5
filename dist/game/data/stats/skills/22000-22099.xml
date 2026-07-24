@@ -1131,7 +1131,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>203</id>
+				<id>202</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1153,7 +1153,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>206</id>
+				<id>205</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1175,7 +1175,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>209</id>
+				<id>208</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1197,7 +1197,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>212</id>
+				<id>211</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1219,7 +1219,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>215</id>
+				<id>214</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1241,7 +1241,7 @@
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>218</id>
+				<id>217</id>
 			</effect>
 		</effects>
 	</skill>

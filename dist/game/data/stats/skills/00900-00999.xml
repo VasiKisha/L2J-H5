@@ -1768,7 +1768,7 @@
 		<!-- Pretends to attack. -->
 		<icon>icon.skill_transform_s_attack</icon>
 		<operateType>A1</operateType>
-		<targetType>ONE</targetType>
+		<targetType>SELF</targetType>
 		<hitTime>1000</hitTime>
 		<magicLevel>80</magicLevel>
 	</skill>
@@ -1776,7 +1776,7 @@
 		<!-- Plays harp. -->
 		<icon>icon.skill_transform_s_attack</icon>
 		<operateType>A1</operateType>
-		<targetType>ONE</targetType>
+		<targetType>SELF</targetType>
 		<castRange>600</castRange>
 		<effectPoint>100</effectPoint>
 		<effectRange>1100</effectRange>

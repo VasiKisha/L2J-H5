@@ -1709,8 +1709,16 @@
 		<!-- Transformed into Dragon Master Lee. -->
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
+		<abnormalLevel>26</abnormalLevel>
 		<abnormalTime>3600</abnormalTime>
 		<abnormalType>TRANSFORM</abnormalType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>21148</itemConsumeId> <!-- Transformation Scroll: Dragon Master Lee -->
+		<magicLevel>-1</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
 		<effects>
 			<effect name="Transformation">
 				<id>20005</id>
@@ -1721,8 +1729,16 @@
 		<!-- Transformed into Dragon Master Karin. -->
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
+		<abnormalLevel>26</abnormalLevel>
 		<abnormalTime>3600</abnormalTime>
 		<abnormalType>TRANSFORM</abnormalType>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>21149</itemConsumeId> <!-- Transformation Scroll: Dragon Master Karin -->
+		<magicLevel>-1</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
 		<effects>
 			<effect name="Transformation">
 				<id>20006</id>
@@ -1757,10 +1773,17 @@
 		<operateType>A2</operateType>
 		<targetType>SELF</targetType>
 		<abnormalLevel>1</abnormalLevel>
-		<abnormalTime>1800</abnormalTime>
+		<abnormalTime>600</abnormalTime>
 		<abnormalType>TRANSFORM</abnormalType>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<effectPoint>1</effectPoint>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>21171</itemConsumeId> <!-- Transformation Scroll: Treasure Hunter - Event -->
+		<magicLevel>-1</magicLevel>
+		<conditions>
+			<player canTransform="true" />
+		</conditions>
 		<effects>
 			<effect name="Transformation">
 				<id>127</id>
@@ -1781,7 +1804,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21172</itemConsumeId> <!-- Transformation Scroll: Onyx Beast - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -1805,7 +1828,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21173</itemConsumeId> <!-- Transformation Scroll: Death Blader - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
@@ -1829,13 +1852,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21174</itemConsumeId> <!-- Transformation Scroll: Grail Apostle - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>202</id>
+				<id>201</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1853,13 +1876,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21175</itemConsumeId> <!-- Transformation Scroll: Unicorn - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>205</id>
+				<id>204</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1877,13 +1900,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21176</itemConsumeId> <!-- Transformation Scroll: Lilim Knight - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>208</id>
+				<id>207</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1901,13 +1924,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21177</itemConsumeId> <!-- Transformation Scroll: Golem Guardian - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>211</id>
+				<id>210</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1925,13 +1948,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21178</itemConsumeId> <!-- Transformation Scroll: Inferno Drake - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>214</id>
+				<id>213</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1949,13 +1972,13 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21179</itemConsumeId> <!-- Transformation Scroll: Dragon Bomber - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
 		<effects>
 			<effect name="Transformation">
-				<id>217</id>
+				<id>216</id>
 			</effect>
 		</effects>
 	</skill>
@@ -1973,7 +1996,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>21180</itemConsumeId> <!-- Transformation Scroll: Heretic - Event -->
 		<magicLevel>-1</magicLevel>
-		<reuseDelay>14400000</reuseDelay>
+		<reuseDelay>0</reuseDelay>
 		<conditions>
 			<player canTransform="true" />
 		</conditions>
