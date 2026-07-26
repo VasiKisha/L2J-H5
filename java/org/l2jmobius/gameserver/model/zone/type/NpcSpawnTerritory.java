@@ -62,11 +62,6 @@ public class NpcSpawnTerritory
 	{
 		int count = 0; // Prevent infinite loop.
 		Location location;
-		
-		final Location centerPoint = _territory.getCenterPoint();
-		final int centerX = centerPoint.getX();
-		final int centerY = centerPoint.getY();
-		final int centerZ = centerPoint.getZ();
 		int randomX;
 		int randomY;
 		int randomZ;
@@ -89,11 +84,6 @@ public class NpcSpawnTerritory
 				}
 				
 				if (GeoEngine.getInstance().getHeight(randomX, randomY, randomZ) > _territory.getHighZ())
-				{
-					continue;
-				}
-				
-				if (!GeoEngine.getInstance().canSeeTarget(randomX, randomY, randomZ, centerX, centerY, centerZ, 0))
 				{
 					continue;
 				}
@@ -130,11 +120,6 @@ public class NpcSpawnTerritory
 			randomZ = location.getZ();
 			
 			if (GeoEngine.getInstance().getHeight(randomX, randomY, randomZ) > _territory.getHighZ())
-			{
-				continue;
-			}
-			
-			if (!GeoEngine.getInstance().canSeeTarget(randomX, randomY, randomZ, centerX, centerY, centerZ, 0))
 			{
 				continue;
 			}
