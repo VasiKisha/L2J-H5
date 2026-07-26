@@ -20,7 +20,10 @@
  */
 package ai.areas.HotSprings;
 
+import java.util.List;
+
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -54,14 +57,29 @@ public class HotSprings extends Script
 	private HotSprings()
 	{
 		addAttackId(BANDERSNATCHLING, FLAVA, ATROXSPAWN, NEPENTHES, ATROX, BANDERSNATCH);
+		addSkillSeeId(BANDERSNATCHLING, FLAVA, ATROXSPAWN, NEPENTHES, ATROX, BANDERSNATCH);
 	}
 	
 	@Override
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
+		spreadDisease(npc, attacker);
+	}
+	
+	@Override
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	{
+		if (targets.contains(npc))
+		{
+			spreadDisease(npc, caster);
+		}
+	}
+	
+	private void spreadDisease(Npc npc, Creature creature)
+	{
 		if (getRandom(100) < DISEASE_CHANCE)
 		{
-			tryToInfect(npc, attacker, MALARIA);
+			tryToInfect(npc, creature, MALARIA);
 		}
 		
 		if (getRandom(100) < DISEASE_CHANCE)
@@ -71,19 +89,19 @@ public class HotSprings extends Script
 				case BANDERSNATCHLING:
 				case ATROX:
 				{
-					tryToInfect(npc, attacker, RHEUMATISM);
+					tryToInfect(npc, creature, RHEUMATISM);
 					break;
 				}
 				case FLAVA:
 				case NEPENTHES:
 				{
-					tryToInfect(npc, attacker, CHOLERA);
+					tryToInfect(npc, creature, CHOLERA);
 					break;
 				}
 				case ATROXSPAWN:
 				case BANDERSNATCH:
 				{
-					tryToInfect(npc, attacker, FLU);
+					tryToInfect(npc, creature, FLU);
 					break;
 				}
 			}
