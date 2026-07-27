@@ -38,7 +38,7 @@ public class RequestSaveKeyMapping extends ClientPacket
 	protected void readImpl()
 	{
 		final int dataSize = readInt();
-		if (dataSize > 0)
+		if ((dataSize > 0) && (dataSize <= remaining()))
 		{
 			_uiKeyMapping = readBytes(dataSize);
 		}
