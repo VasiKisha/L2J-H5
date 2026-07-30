@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -71,6 +72,8 @@ import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.model.zone.type.BossZone;
+import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.taskmanagers.AttackableThinkTaskManager;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 import org.l2jmobius.gameserver.util.LocationUtil;
@@ -116,6 +119,8 @@ public class AttackableAI extends CreatureAI
 	private static final int MAX_ATTACK_TIMEOUT = 1200; // int ticks, i.e. 2min
 	private static final int SKILL_PROBABILITY_SCALE = 10000;
 	private static final int MAX_PARAMETERIZED_SKILL_SLOTS = 6;
+	private static final int MINION_LEASH_INTERVAL = 120000; // Retail raid minion territory check runs every 120 seconds.
+	private static final int MINION_LEASH_OFFSET = 100; // Retail raid minion is placed on a random point around its master.
 	
 	/** The delay after which the attacked is stopped. */
 	private int _attackTimeout;
@@ -124,6 +129,8 @@ public class AttackableAI extends CreatureAI
 	/** The flag used to indicate that a thinking action is in progress, to prevent recursive thinking. */
 	private boolean _thinking;
 	private int _chaosTime = 0;
+	/** The time of the next raid minion territory check. */
+	private long _minionLeashTime;
 	
 	// Fear parameters
 	private int _fearTime;
@@ -898,11 +905,16 @@ public class AttackableAI extends CreatureAI
 		
 		if (_attackTimeout < GameTimeTaskManager.getInstance().getGameTicks())
 		{
+			// Remember the combat state, the intention change below clears it.
+			final boolean wasInCombat = npc.isInCombat();
+			
 			// Set the AI Intention to ACTIVE
 			setIntention(Intention.ACTIVE);
 			
 			// Lose target and walk to spawn.
 			setTarget(null);
+			npc.clearAggroList();
+			npc.getAttackByList().clear();
 			
 			if (!_actor.isFakePlayer())
 			{
@@ -910,7 +922,7 @@ public class AttackableAI extends CreatureAI
 			}
 			
 			// Monster teleport to spawn
-			if (npc.isMonster() && (npc.getSpawn() != null) && (npc.getInstanceId() == 0) && (npc.isInCombat() || World.getInstance().getVisibleObjects(npc, Player.class).isEmpty()))
+			if (npc.isMonster() && (npc.getSpawn() != null) && (npc.getInstanceId() == 0) && (wasInCombat || World.getInstance().getVisibleObjects(npc, Player.class).isEmpty()))
 			{
 				npc.teleToLocation(npc.getSpawn(), false);
 			}
@@ -2351,6 +2363,9 @@ public class AttackableAI extends CreatureAI
 		
 		try
 		{
+			// Send raid minions back to their master when they were dragged out of the master territory.
+			checkMinionLeash();
+			
 			// Manage AI thinks of a Attackable
 			switch (getIntention())
 			{
@@ -2380,6 +2395,70 @@ public class AttackableAI extends CreatureAI
 			// Stop thinking action
 			_thinking = false;
 		}
+	}
+	
+	/**
+	 * Sends a raid minion back to its master when it was dragged out of the master territory.<br>
+	 * A minion that is outside of the territory, while its master is still alive and while it is standing still, is teleported next to its master and loses all aggro.<br>
+	 * The check runs every 120 seconds, the first one 120 seconds after the minion started to think.
+	 */
+	private void checkMinionLeash()
+	{
+		final Attackable npc = getActiveChar();
+		if (!npc.isRaidMinion() || npc.isDead() || npc.isMoving())
+		{
+			return;
+		}
+		
+		final long currentTime = System.currentTimeMillis();
+		if (_minionLeashTime == 0)
+		{
+			_minionLeashTime = currentTime + MINION_LEASH_INTERVAL;
+			return;
+		}
+		
+		if (_minionLeashTime > currentTime)
+		{
+			return;
+		}
+		
+		_minionLeashTime = currentTime + MINION_LEASH_INTERVAL;
+		
+		final Attackable master = npc.getLeader();
+		if ((master == null) || master.isDead() || isInsideMasterTerritory(npc, master))
+		{
+			return;
+		}
+		
+		npc.clearAggroList();
+		npc.getAttackByList().clear();
+		npc.teleToLocation(master, MINION_LEASH_OFFSET);
+	}
+	
+	/**
+	 * @param npc the raid minion.
+	 * @param master the master of the raid minion.
+	 * @return {@code true} if the minion is inside the territory of its master or if no territory could be resolved, {@code false} otherwise.
+	 */
+	private boolean isInsideMasterTerritory(Attackable npc, Attackable master)
+	{
+		final Spawn masterSpawn = master.getSpawn();
+		if (masterSpawn != null)
+		{
+			final NpcSpawnTerritory territory = masterSpawn.getSpawnTerritory();
+			if (territory != null)
+			{
+				return territory.isInsideZone(npc.getX(), npc.getY(), npc.getZ());
+			}
+		}
+		
+		final BossZone bossZone = ZoneManager.getInstance().getZone(master, BossZone.class);
+		if (bossZone != null)
+		{
+			return bossZone.isInsideZone(npc.getX(), npc.getY(), npc.getZ());
+		}
+		
+		return true;
 	}
 	
 	/**
