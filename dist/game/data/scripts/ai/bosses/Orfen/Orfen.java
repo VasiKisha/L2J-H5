@@ -297,8 +297,7 @@ public class Orfen extends Script
 					if (!npc.isInsideRadius2D(minion, MINION_FOLLOW_RADIUS))
 					{
 						minion.teleToLocation(npc.getLocation());
-						npc.asAttackable().clearAggroList();
-						npc.getAI().setIntention(Intention.IDLE, null, null);
+						minion.clearAggroList();
 					}
 				}
 				break;
