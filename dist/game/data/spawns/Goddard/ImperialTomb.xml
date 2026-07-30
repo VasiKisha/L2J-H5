@@ -234,8 +234,6 @@
 		<npc id="21434" count="1" respawnDelay="720" respawnRandom="120" chaseRange="2500" /> <!-- Seer of Blood -->
 		<npc id="21412" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
 		<npc id="21420" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
-		<npc id="21413" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
-		<npc id="21421" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
 	</spawn>
 	<spawn zone="godard14_2515_19">
 		<territory minZ="-5372" maxZ="-5072">
@@ -251,8 +249,6 @@
 		<npc id="21429" count="2" respawnDelay="90" respawnRandom="30" chaseRange="2500" /> <!-- Hasturan -->
 		<npc id="21431" count="2" respawnDelay="120" respawnRandom="30" chaseRange="2500" /> <!-- Arimanes -->
 		<npc id="21434" count="1" respawnDelay="720" respawnRandom="120" chaseRange="2500" /> <!-- Seer of Blood -->
-		<npc id="21412" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
-		<npc id="21420" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
 		<npc id="21413" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
 		<npc id="21421" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
 	</spawn>
@@ -271,8 +267,6 @@
 		<npc id="21431" count="2" respawnDelay="120" respawnRandom="30" chaseRange="2500" /> <!-- Arimanes -->
 		<npc id="21434" count="1" respawnDelay="720" respawnRandom="120" chaseRange="2500" /> <!-- Seer of Blood -->
 		<npc id="21412" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
-		<npc id="21420" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
-		<npc id="21413" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ustralith -->
 		<npc id="21421" count="1" respawnDelay="80" respawnRandom="20" chaseRange="2500" /> <!-- Ashuras -->
 	</spawn>
 	<spawn zone="godard14_2515_21">
