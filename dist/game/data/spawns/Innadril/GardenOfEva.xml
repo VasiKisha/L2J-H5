@@ -27,7 +27,6 @@
 			<node x="82602" y="244907" />
 		</territory>
 		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
-		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 	</spawn>
 	<spawn zone="innadrill05_2225_04">
 		<territory minZ="-7532" maxZ="-7182">
@@ -45,7 +44,6 @@
 			<node x="86489" y="244936" />
 			<node x="86172" y="244940" />
 		</territory>
-		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 	</spawn>
 	<spawn zone="innadrill05_2225_06">
@@ -65,9 +63,7 @@
 			<node x="87856" y="248019" />
 		</territory>
 		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
-		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
-		<npc id="20793" x="87614" y="247555" z="-8816" heading="3624" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20793" x="87614" y="247555" z="-8816" heading="3624" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" x="85271" y="245759" z="-8816" heading="44036" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 	</spawn>
@@ -79,10 +75,8 @@
 			<node x="89241" y="251848" />
 		</territory>
 		<npc id="20793" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
-		<npc id="20793" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 		<npc id="20796" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato Warrior -->
-		<npc id="20793" x="89304" y="251382" z="-8816" heading="-4452" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20793" x="89304" y="251382" z="-8816" heading="-4452" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" x="88413" y="248643" z="-8816" heading="21432" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 	</spawn>
@@ -151,10 +145,8 @@
 			<node x="77236" y="248289" />
 		</territory>
 		<npc id="20793" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
-		<npc id="20793" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 		<npc id="20796" count="1" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato Warrior -->
-		<npc id="20793" x="76833" y="248412" z="-8816" heading="13576" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20793" x="76833" y="248412" z="-8816" heading="13576" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" x="75910" y="251361" z="-8816" heading="13576" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 	</spawn>
@@ -166,9 +158,7 @@
 			<node x="80399" y="245947" />
 		</territory>
 		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
-		<npc id="20793" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" count="2" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
-		<npc id="20793" x="78831" y="246914" z="-8816" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20793" x="78831" y="246914" z="-8816" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Nos -->
 		<npc id="20794" x="77368" y="247715" z="-8816" respawnDelay="94" respawnRandom="30" chaseRange="2500" /> <!-- Blade Stakato -->
 	</spawn>
