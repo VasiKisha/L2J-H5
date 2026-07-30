@@ -99,7 +99,6 @@ public class QueenAnt extends Script
 	private static final int HEAL_INTERVAL_MILLIS = 1000;
 	private static final int ACTION_INTERVAL_MILLIS = 10000;
 	private static final int DISTANCE_CHECK_INTERVAL_MILLIS = 5000;
-	private static final int QUEEN_LEASH_MAX_DISTANCE = 2000;
 	private static final int RAID_CURSE_LEVEL_DIFFERENCE = 8;
 	private static final int RAID_CURSE_CAST_TIME_MILLIS = 300;
 	
@@ -312,7 +311,7 @@ public class QueenAnt extends Script
 				{
 					cancelQuestTimers(EVENT_DISTANCE_CHECK);
 				}
-				else if (_queenInstance.calculateDistance2D(QUEEN_NEST_X, QUEEN_NEST_Y, QUEEN_NEST_Z) > QUEEN_LEASH_MAX_DISTANCE)
+				else if ((_queenNestZone != null) && !_queenNestZone.isInsideZone(_queenInstance))
 				{
 					_queenInstance.clearAggroList();
 					_queenInstance.getAI().setIntention(Intention.MOVE_TO, new Location(QUEEN_NEST_X, QUEEN_NEST_Y, QUEEN_NEST_Z, 0));

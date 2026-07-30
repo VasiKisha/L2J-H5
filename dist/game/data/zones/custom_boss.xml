@@ -36,7 +36,7 @@
 		<node X="229176" Y="-98508" />
 		<node X="196880" Y="-98498" />
 	</zone>
-	<zone name="Queen Ant Boss" id="12012" type="BossZone" shape="NPoly" minZ="-5947" maxZ="-5547"> <!-- Not Verified -->
+	<zone name="Queen Ant Boss" id="12012" type="BossZone" shape="NPoly" minZ="-5947" maxZ="-5547"> <!-- Verified -->
 		<stat name="default_enabled" val="false" />
 		<node X="-21490" Y="178613" />
 		<node X="-22258" Y="178961" />
