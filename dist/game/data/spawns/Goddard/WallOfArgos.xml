@@ -409,6 +409,12 @@
 		</territory>
 		<npc id="21306" count="4" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Protection -->
 		<npc id="21307" count="5" respawnDelay="100" respawnRandom="30" /> <!-- Elder Homunculus -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 	</spawn>
@@ -421,6 +427,12 @@
 			<node x="180460" y="-36902" />
 		</territory>
 		<npc id="21307" count="4" respawnDelay="100" respawnRandom="30" /> <!-- Elder Homunculus -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 	</spawn>
@@ -469,9 +481,21 @@
 			<node x="191897" y="-35591" />
 			<node x="192269" y="-38115" />
 		</territory>
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
 		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
-		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21310" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
 	</spawn>
 	<spawn zone="godard26_2516_44">
@@ -482,10 +506,22 @@
 			<node x="190103" y="-40834" />
 			<node x="189826" y="-43336" />
 		</territory>
-		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
 		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21310" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
-		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21311" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21311" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
 	</spawn>
 	<spawn zone="godard26_2516_45">
 		<territory minZ="-3107" maxZ="-2507">
@@ -495,9 +531,21 @@
 			<node x="191531" y="-48676" />
 			<node x="194629" y="-50260" />
 		</territory>
-		<npc id="21308" count="4" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21308" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="3" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21309" count="3" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21311" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21309" count="1" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21310" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21311" count="1" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21308" count="4" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
+		<npc id="21310" count="2" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
+		<npc id="21309" count="2" respawnDelay="130" respawnRandom="45" /> <!-- Disciples of Punishment -->
 		<npc id="21311" count="4" respawnDelay="100" respawnRandom="30" /> <!-- Disciples of Authority -->
 	</spawn>
 	<spawn zone="godard26_2516_46">
