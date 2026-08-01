@@ -481,13 +481,17 @@ public class AdminSpawn implements IAdminCommandHandler
 				// Split the command into an array of words.
 				final String[] params = command.split(" ");
 				final StringBuilder searchParam = new StringBuilder();
+				
+				// The last word is a teleport index only when a search parameter precedes it.
+				final boolean hasTeleportIndex = (params.length > 2) && StringUtil.isNumeric(params[params.length - 1]);
+				final int searchEnd = hasTeleportIndex ? (params.length - 1) : params.length;
 				int pos = -1;
 				
-				// Concatenate all words in the command except the first and last word.
+				// Concatenate all words in the command except the first word and the teleport index.
 				for (String param : params)
 				{
 					pos++;
-					if ((pos > 0) && (pos < (params.length - 1)))
+					if ((pos > 0) && (pos < searchEnd))
 					{
 						searchParam.append(param);
 						searchParam.append(" ");
@@ -507,14 +511,10 @@ public class AdminSpawn implements IAdminCommandHandler
 					npcId = NpcData.getInstance().getTemplateByName(searchString).getId();
 				}
 				
-				// If there are more than two words in the command, try to parse the last word as the teleport index.
-				if (params.length > 2)
+				// Use the teleport index when present.
+				if (hasTeleportIndex)
 				{
-					final String lastParam = params[params.length - 1];
-					if (StringUtil.isNumeric(lastParam))
-					{
-						teleportIndex = Integer.parseInt(lastParam);
-					}
+					teleportIndex = Integer.parseInt(params[params.length - 1]);
 				}
 			}
 			catch (Exception e)
