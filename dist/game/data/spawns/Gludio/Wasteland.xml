@@ -9,6 +9,8 @@
 			<node x="-51008" y="181772" />
 			<node x="-55048" y="180964" />
 		</territory>
+		<npc id="21012" count="2" respawnDelay="25" /> <!-- Magical Eye -->
+		<npc id="21013" count="1" respawnDelay="25" /> <!-- Ol Mahum Van Archer -->
 		<npc id="21014" count="3" respawnDelay="25" /> <!-- Lesser Warlike Tyrant -->
 	</spawn>
 	<spawn zone="gludio36_1823_05">
@@ -19,6 +21,7 @@
 			<node x="-55592" y="183052" />
 			<node x="-56804" y="181812" />
 		</territory>
+		<npc id="21012" count="2" respawnDelay="25" /> <!-- Magical Eye -->
 		<npc id="21014" count="2" respawnDelay="25" /> <!-- Lesser Warlike Tyrant -->
 	</spawn>
 	<spawn zone="gludio36_1823_06">
@@ -29,6 +32,8 @@
 			<node x="-46744" y="185368" />
 			<node x="-48096" y="185568" />
 		</territory>
+		<npc id="21012" count="1" respawnDelay="25" /> <!-- Magical Eye -->
+		<npc id="21013" count="1" respawnDelay="25" /> <!-- Ol Mahum Van Archer -->
 		<npc id="21014" count="3" respawnDelay="25" /> <!-- Lesser Warlike Tyrant -->
 	</spawn>
 	<spawn zone="gludio36_1823_07">
@@ -38,6 +43,7 @@
 			<node x="-44864" y="190220" />
 			<node x="-46472" y="190852" />
 		</territory>
+		<npc id="21012" count="2" respawnDelay="25" /> <!-- Magical Eye -->
 		<npc id="21014" count="3" respawnDelay="25" /> <!-- Lesser Warlike Tyrant -->
 	</spawn>
 	<spawn zone="gludio36_1823_08">
@@ -49,6 +55,7 @@
 			<node x="-44184" y="190444" />
 			<node x="-42187" y="189347" />
 		</territory>
+		<npc id="21013" count="1" respawnDelay="25" /> <!-- Ol Mahum Van Archer -->
 		<npc id="21014" count="3" respawnDelay="25" /> <!-- Lesser Warlike Tyrant -->
 		<npc id="21015" count="3" respawnDelay="25" /> <!-- Ol Mahum Van Leader -->
 	</spawn>
