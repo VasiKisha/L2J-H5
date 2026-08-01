@@ -4,38 +4,25 @@
 		<npc id="4327" x="69403" y="118816" z="-3459" heading="58824" /> <!-- Worshipper -->
 		<npc id="4328" x="69403" y="118653" z="-3460" heading="41572" /> <!-- Altar Guard -->
 		<npc id="4328" x="69549" y="118880" z="-3460" heading="64074" /> <!-- Altar Guard -->
-		<npc id="20625" x="76008" y="110004" z="-2560" heading="50278" respawnDelay="60" /> <!-- Maluk Knight -->
-		<npc id="20625" x="76887" y="110529" z="-2368" heading="88" respawnDelay="60" /> <!-- Maluk Knight -->
-		<npc id="20626" x="75119" y="111033" z="-2400" heading="12505" respawnDelay="60" /> <!-- Maluk Berserker -->
-		<npc id="20626" x="75736" y="111152" z="-2488" heading="14104" respawnDelay="60" /> <!-- Maluk Berserker -->
-		<npc id="20627" x="75101" y="110724" z="-2416" heading="33892" respawnDelay="60" /> <!-- Maluk Lord -->
-		<npc id="20627" x="75156" y="111390" z="-2416" heading="20634" respawnDelay="60" /> <!-- Maluk Lord -->
-		<npc id="20628" x="75444" y="110961" z="-2472" heading="44491" respawnDelay="60" /> <!-- Limal Karinness -->
-		<npc id="20628" x="77472" y="109284" z="-2568" heading="32641" respawnDelay="60" /> <!-- Limal Karinness -->
-		<npc id="20629" x="74806" y="111232" z="-2320" heading="21559" respawnDelay="60" /> <!-- Karik -->
-		<npc id="20629" x="75767" y="109281" z="-2576" heading="47731" respawnDelay="60" /> <!-- Karik -->
-		<npc id="20761" x="74638" y="111152" z="-2288" heading="47995" respawnDelay="60" /> <!-- Pytan -->
-		<npc id="20761" x="77749" y="110222" z="-2248" heading="11778" respawnDelay="60" /> <!-- Pytan -->
-		<npc id="21084" x="78813" y="105602" z="-3128" heading="27103" respawnDelay="60" /> <!-- Bloody Lady -->
-		<npc id="21090" x="75614" y="111489" z="-2448" heading="22834" respawnDelay="60" /> <!-- Bloody Guardian -->
-		<npc id="21090" x="76182" y="109537" z="-2608" heading="5070" respawnDelay="60" /> <!-- Bloody Guardian -->
-		<npc id="21090" x="76587" y="109820" z="-2560" heading="51607" respawnDelay="60" /> <!-- Bloody Guardian -->
-		<npc id="21090" x="76651" y="108827" z="-2672" heading="8435" respawnDelay="60" /> <!-- Bloody Guardian -->
-		<npc id="21091" x="74638" y="111152" z="-2288" heading="23837" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="75187" y="110067" z="-2464" heading="55934" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="75919" y="110377" z="-2528" heading="16526" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="76468" y="109757" z="-2576" heading="18139" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="76651" y="110067" z="-2512" heading="11757" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="77017" y="110532" z="-2344" heading="42954" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21091" x="77566" y="110532" z="-2240" heading="5248" respawnDelay="60" /> <!-- Bloody Keeper -->
-		<npc id="21092" x="76468" y="110377" z="-2480" heading="8085" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="76468" y="110687" z="-2440" heading="23103" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="76834" y="110997" z="-2304" heading="48346" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="76834" y="111462" z="-2264" heading="26518" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="77017" y="110687" z="-2320" heading="33974" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="77017" y="110842" z="-2304" heading="57219" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="77200" y="109757" z="-2504" heading="36865" respawnDelay="60" /> <!-- Bloody Mystic -->
-		<npc id="21092" x="77200" y="111152" z="-2192" heading="41328" respawnDelay="60" /> <!-- Bloody Mystic -->
+		<npc id="20625" x="76008" y="110004" z="-2560" heading="50278" respawnDelay="36" /> <!-- Maluk Knight -->
+		<npc id="20625" x="76887" y="110529" z="-2368" heading="88" respawnDelay="36" /> <!-- Maluk Knight -->
+		<npc id="20626" x="75119" y="111033" z="-2400" heading="12505" respawnDelay="36" /> <!-- Maluk Berserker -->
+		<npc id="20626" x="75736" y="111152" z="-2488" heading="14104" respawnDelay="36" /> <!-- Maluk Berserker -->
+		<npc id="20627" x="75101" y="110724" z="-2416" heading="33892" respawnDelay="36" /> <!-- Maluk Lord -->
+		<npc id="20627" x="75156" y="111390" z="-2416" heading="20634" respawnDelay="36" /> <!-- Maluk Lord -->
+		<npc id="20628" x="75444" y="110961" z="-2472" heading="44491" respawnDelay="36" /> <!-- Limal Karinness -->
+		<npc id="20628" x="77472" y="109284" z="-2568" heading="32641" respawnDelay="36" /> <!-- Limal Karinness -->
+		<npc id="20629" x="74806" y="111232" z="-2320" heading="21559" respawnDelay="36" /> <!-- Karik -->
+		<npc id="20629" x="75767" y="109281" z="-2576" heading="47731" respawnDelay="36" /> <!-- Karik -->
+		<npc id="20761" x="74638" y="111152" z="-2288" heading="47995" respawnDelay="36" /> <!-- Pytan -->
+		<npc id="20761" x="77749" y="110222" z="-2248" heading="11778" respawnDelay="36" /> <!-- Pytan -->
+		<npc id="21084" x="78813" y="105602" z="-3128" heading="27103" respawnDelay="36" /> <!-- Bloody Lady -->
+		<npc id="21090" x="75614" y="111489" z="-2448" heading="22834" respawnDelay="22" /> <!-- Bloody Guardian -->
+		<npc id="21090" x="76182" y="109537" z="-2608" heading="5070" respawnDelay="22" /> <!-- Bloody Guardian -->
+		<npc id="21090" x="76587" y="109820" z="-2560" heading="51607" respawnDelay="22" /> <!-- Bloody Guardian -->
+		<npc id="21090" x="76651" y="108827" z="-2672" heading="8435" respawnDelay="22" /> <!-- Bloody Guardian -->
+		<npc id="21091" x="74638" y="111152" z="-2288" heading="23837" respawnDelay="36" /> <!-- Bloody Keeper -->
+		<npc id="21092" x="76468" y="110377" z="-2480" heading="8085" respawnDelay="36" /> <!-- Bloody Mystic -->
 		<npc id="22815" x="76971" y="117518" z="-3718" heading="4767" respawnDelay="60" /> <!-- Drakos -->
 		<npc id="22815" x="78894" y="117339" z="-3720" heading="40702" respawnDelay="60" /> <!-- Drakos -->
 		<npc id="22815" x="79411" y="116082" z="-3720" heading="44481" respawnDelay="60" /> <!-- Drakos -->
