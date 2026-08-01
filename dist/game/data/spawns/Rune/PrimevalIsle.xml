@@ -1066,7 +1066,6 @@
 			<node x="13496" y="-11484" />
 		</territory>
 		<npc id="22199" count="3" respawnDelay="250" respawnRandom="55" /> <!-- Pterosaur -->
-		<npc id="22223" count="1" respawnDelay="100" respawnRandom="35" /> <!-- Velociraptor -->
 	</spawn>
 	<spawn zone="rune17_2017_46">
 		<territory minZ="-3376" maxZ="-2476">
@@ -1349,7 +1348,6 @@
 			<node x="13556" y="-18216" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp03">
 		<territory minZ="-3308" maxZ="-3008">
@@ -1391,7 +1389,6 @@
 			<node x="18472" y="-18904" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp12">
 		<territory minZ="-3316" maxZ="-3116">
@@ -1411,7 +1408,6 @@
 			<node x="23600" y="-19468" />
 			<node x="22592" y="-19492" />
 		</territory>
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp17">
@@ -1433,7 +1429,6 @@
 			<node x="24660" y="-16876" />
 		</territory>
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp21">
 		<territory minZ="-2820" maxZ="-2620">
@@ -1453,7 +1448,6 @@
 			<node x="27684" y="-16436" />
 			<node x="24284" y="-16212" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp25">
@@ -1474,8 +1468,6 @@
 			<node x="26680" y="-15236" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp29">
 		<territory minZ="-3120" maxZ="-2920">
@@ -1494,9 +1486,7 @@
 			<node x="21308" y="-15168" />
 			<node x="19564" y="-14176" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp33">
 		<territory minZ="-3216" maxZ="-3016">
@@ -1515,8 +1505,6 @@
 			<node x="20572" y="-16792" />
 			<node x="19680" y="-16888" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp37">
@@ -1537,8 +1525,6 @@
 			<node x="15776" y="-14488" />
 		</territory>
 		<npc id="22217" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Tyrannosaurus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp41">
 		<territory minZ="-3264" maxZ="-3064">
@@ -1557,9 +1543,7 @@
 			<node x="14784" y="-13088" />
 			<node x="14048" y="-13516" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp45">
 		<territory minZ="-3164" maxZ="-2764">
@@ -1578,8 +1562,6 @@
 			<node x="15156" y="-11636" />
 			<node x="14252" y="-11880" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp48">
@@ -1600,8 +1582,6 @@
 			<node x="15648" y="-13252" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp53">
 		<territory minZ="-3268" maxZ="-3068">
@@ -1620,9 +1600,7 @@
 			<node x="19560" y="-14220" />
 			<node x="18884" y="-13840" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp57">
 		<territory minZ="-3160" maxZ="-2960">
@@ -1641,8 +1619,6 @@
 			<node x="21960" y="-13460" />
 			<node x="21112" y="-14172" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp61">
@@ -1663,8 +1639,6 @@
 			<node x="27084" y="-11416" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp65">
 		<territory minZ="-2656" maxZ="-2256">
@@ -1683,9 +1657,7 @@
 			<node x="26068" y="-10220" />
 			<node x="24936" y="-10072" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp69">
 		<territory minZ="-2616" maxZ="-2416">
@@ -1704,8 +1676,6 @@
 			<node x="24508" y="-11660" />
 			<node x="23400" y="-11292" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp73">
@@ -1726,8 +1696,6 @@
 			<node x="21364" y="-11276" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp77">
 		<territory minZ="-2880" maxZ="-2680">
@@ -1746,9 +1714,7 @@
 			<node x="20800" y="-9532" />
 			<node x="19744" y="-8668" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
 		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22217" count="1" respawnDelay="300" respawnRandom="100" /> <!-- Tyrannosaurus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp81">
 		<territory minZ="-2952" maxZ="-2752">
@@ -1768,8 +1734,6 @@
 			<node x="15020" y="-10288" />
 		</territory>
 		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
-		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 	<spawn zone="rune17_2017_sp85">
 		<territory minZ="-3356" maxZ="-3156">
@@ -1788,8 +1752,6 @@
 			<node x="16544" y="-7964" />
 			<node x="15140" y="-7572" />
 		</territory>
-		<npc id="22202" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Ornithomimus -->
-		<npc id="22198" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Velociraptor -->
 		<npc id="22205" count="1" respawnDelay="150" respawnRandom="100" /> <!-- Deinonychus -->
 	</spawn>
 </list>
