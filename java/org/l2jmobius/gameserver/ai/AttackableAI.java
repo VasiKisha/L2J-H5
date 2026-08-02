@@ -144,7 +144,7 @@ public class AttackableAI extends CreatureAI
 	{
 		super(creature);
 		_attackTimeout = Integer.MAX_VALUE;
-		_globalAggro = -10; // 10 seconds timeout of ATTACK after respawn
+		rollGlobalAggro();
 	}
 	
 	/**
@@ -2559,6 +2559,12 @@ public class AttackableAI extends CreatureAI
 							return;
 						}
 						
+						// Don't call npcs spawned within the last 7 seconds.
+						if ((System.currentTimeMillis() - nearby.getSpawnTime()) < 7000)
+						{
+							return;
+						}
+						
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
 						if ((nearby.getAI()._intention != Intention.IDLE) && (nearby.getAI()._intention != Intention.ACTIVE))
 						{
@@ -2677,6 +2683,14 @@ public class AttackableAI extends CreatureAI
 		// Cancel attack timeout
 		_attackTimeout = Integer.MAX_VALUE;
 		super.onIntentionActive();
+	}
+	
+	/**
+	 * Rolls the 3 to 7 second timeout of ATTACK that follows a spawn.
+	 */
+	public void rollGlobalAggro()
+	{
+		_globalAggro = -(Rnd.get(5) + 4);
 	}
 	
 	public void setGlobalAggro(int value)

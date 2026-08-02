@@ -2678,6 +2678,12 @@ public abstract class Creature extends WorldObject
 							return;
 						}
 						
+						// Don't call npcs spawned within the last 7 seconds.
+						if ((System.currentTimeMillis() - called.getSpawnTime()) < 7000)
+						{
+							return;
+						}
+						
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
 						if ((called.getAI().getIntention() != Intention.IDLE) && (called.getAI().getIntention() != Intention.ACTIVE))
 						{
