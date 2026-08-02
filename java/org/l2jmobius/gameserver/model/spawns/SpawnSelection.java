@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.model.spawns;
 /**
  * Entry selection policy of a spawn group.<br>
  * ALL spawns every entry, RANDOM rolls a single entry, RANDOM_FILL rolls maximumNpc times with replacement.
- * @author Mobius
+ * @author Altur
  */
 public enum SpawnSelection
 {

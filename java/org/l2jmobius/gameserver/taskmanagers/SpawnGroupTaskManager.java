@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.model.spawns.SpawnGroupEntry;
 /**
  * Materializes pending spawn group replacements whose units were already reserved on death.<br>
  * A queue is used instead of a map because the same entry can have several replacements pending.
- * @author Mobius
+ * @author Altur
  */
 public class SpawnGroupTaskManager implements Runnable
 {

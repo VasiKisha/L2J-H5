@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.taskmanagers.SpawnGroupTaskManager;
 /**
  * A group of NPC spawn entries sharing an entry selection policy, the runtime equivalent of a retail npcmaker.<br>
  * Reservations are made under the group monitor and the actual spawning happens outside of it.
- * @author Mobius
+ * @author Altur
  */
 public class SpawnGroup
 {

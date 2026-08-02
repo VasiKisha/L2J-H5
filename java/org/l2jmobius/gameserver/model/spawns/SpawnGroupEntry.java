@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * A single NPC entry of a spawn group, holding its quota and one spawn slot per territory.
- * @author Mobius
+ * @author Altur
  */
 public class SpawnGroupEntry
 {

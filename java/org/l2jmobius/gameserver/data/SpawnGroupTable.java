@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
 
 /**
  * Registry of the spawn groups declared by the datapack.
- * @author Mobius
+ * @author Altur
  */
 public class SpawnGroupTable
 {
