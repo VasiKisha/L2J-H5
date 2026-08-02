@@ -393,7 +393,7 @@ public class NpcTemplate extends CreatureTemplate
 	
 	public boolean isRandomWalkEnabled()
 	{
-		return _randomWalk;
+		return _randomWalk && (getParameters().getInt("MoveArounding", 1) != 0);
 	}
 	
 	public boolean isRandomAnimationEnabled()

@@ -117,6 +117,7 @@ public class AttackableAI extends CreatureAI
 	protected static final int FEAR_TICKS = 5;
 	private static final int RANDOM_WALK_RATE = 30; // confirmed
 	private static final int MAX_ATTACK_TIMEOUT = 1200; // int ticks, i.e. 2min
+	private static final int WANDER_ATTEMPTS = 3;
 	private static final int SKILL_PROBABILITY_SCALE = 10000;
 	private static final int MAX_PARAMETERIZED_SKILL_SLOTS = 6;
 	private static final int MINION_LEASH_INTERVAL = 120000; // Retail raid minion territory check runs every 120 seconds.
@@ -372,7 +373,7 @@ public class AttackableAI extends CreatureAI
 				{
 					intention = Intention.ACTIVE;
 				}
-				else if ((npc.getSpawn() != null) && !npc.isInsideRadius3D(npc.getSpawn().getLocation(), NpcConfig.MAX_DRIFT_RANGE + NpcConfig.MAX_DRIFT_RANGE))
+				else if ((npc.getSpawn() != null) && ((npc.getSpawn().getSpawnTerritory() != null) ? !npc.getSpawn().getSpawnTerritory().isInsideZone(npc.getX(), npc.getY()) : !npc.isInsideRadius3D(npc.getSpawn().getLocation(), NpcConfig.MAX_DRIFT_RANGE + NpcConfig.MAX_DRIFT_RANGE)))
 				{
 					intention = Intention.ACTIVE;
 				}
@@ -659,7 +660,7 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Order this attackable to return to its spawn because there's no target to attack
-		if (!npc.isWalker() && (npc.getSpawn() != null) && (npc.calculateDistance2D(npc.getSpawn()) > NpcConfig.MAX_DRIFT_RANGE) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !NpcConfig.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().asPlayer().isAlikeDead())))
+		if (!npc.isWalker() && (npc.getSpawn() != null) && ((npc.getSpawn().getSpawnTerritory() != null) ? !npc.getSpawn().getSpawnTerritory().isInsideZone(npc.getX(), npc.getY()) : (npc.calculateDistance2D(npc.getSpawn()) > NpcConfig.MAX_DRIFT_RANGE)) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !NpcConfig.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().asPlayer().isAlikeDead())))
 		{
 			npc.setWalking();
 			npc.returnHome();
@@ -768,6 +769,35 @@ public class AttackableAI extends CreatureAI
 				
 				npc.setTarget(npc);
 				npc.doCast(sk);
+				return;
+			}
+			
+			// A territory spawn has no fixed home, the Spawn location holds the point rolled for the last NPC of the group.
+			final NpcSpawnTerritory spawnTerritory = npc.getSpawn().getSpawnTerritory();
+			if (spawnTerritory != null)
+			{
+				// Near a territory border most offsets fall outside, so give the roll a few attempts before giving up.
+				for (int i = 0; i < WANDER_ATTEMPTS; i++)
+				{
+					final int deltaX = Rnd.get(NpcConfig.MAX_DRIFT_RANGE * 2); // x
+					int deltaY = Rnd.get(deltaX, NpcConfig.MAX_DRIFT_RANGE * 2); // distance
+					deltaY = (int) Math.sqrt((deltaY * deltaY) - (deltaX * deltaX)); // y
+					final int x2 = (deltaX + npc.getX()) - NpcConfig.MAX_DRIFT_RANGE;
+					final int y2 = (deltaY + npc.getY()) - NpcConfig.MAX_DRIFT_RANGE;
+					if (!spawnTerritory.isInsideZone(x2, y2))
+					{
+						continue;
+					}
+					
+					// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)
+					final Location moveLoc = _actor.isFlying() ? new Location(x2, y2, npc.getZ()) : GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), x2, y2, npc.getZ(), npc.getInstanceId());
+					if (spawnTerritory.isInsideZone(moveLoc.getX(), moveLoc.getY()))
+					{
+						moveTo(moveLoc.getX(), moveLoc.getY(), moveLoc.getZ());
+						break;
+					}
+				}
+				
 				return;
 			}
 			

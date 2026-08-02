@@ -135,6 +135,35 @@ public class NpcSpawnTerritory
 		return _territory.isInsideZone(x, y, z);
 	}
 	
+	/**
+	 * Tests containment on the XY plane only, ignoring the Z band.<br>
+	 * Banned territories are excluded, like getRandomPoint does.
+	 * @param x
+	 * @param y
+	 * @return {@code true} if the point lies inside the territory polygon
+	 */
+	public boolean isInsideZone(int x, int y)
+	{
+		final int z = _territory.getLowZ();
+		if (!_territory.isInsideZone(x, y, z))
+		{
+			return false;
+		}
+		
+		if (_bannedTerritories != null)
+		{
+			for (ZoneForm territory : _bannedTerritories)
+			{
+				if (territory.isInsideZone(x, y, z))
+				{
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
 	public int getHighZ()
 	{
 		return _territory.getHighZ();
