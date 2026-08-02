@@ -173,51 +173,6 @@
 		<npc id="21432" count="3" respawnDelay="40" chaseRange="2500" /> <!-- Chakram Beetle -->
 		<npc id="21424" count="2" respawnDelay="40" chaseRange="2500" /> <!-- Ashkenas -->
 	</spawn>
-	<spawn zone="godard14_2515_15">
-		<territory minZ="-5367" maxZ="-5067">
-			<node x="183286" y="-81378" />
-			<node x="184046" y="-81378" />
-			<node x="184034" y="-80596" />
-			<node x="183293" y="-80595" />
-		</territory>
-		<npc id="21407" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
-		<npc id="21414" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
-		<npc id="21418" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
-		<npc id="21422" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21423" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21424" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-		<npc id="21425" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-	</spawn>
-	<spawn zone="godard14_2515_16">
-		<territory minZ="-6015" maxZ="-5715">
-			<node x="186142" y="-81378" />
-			<node x="186961" y="-81360" />
-			<node x="186957" y="-80639" />
-			<node x="186164" y="-80573" />
-		</territory>
-		<npc id="21407" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
-		<npc id="21414" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
-		<npc id="21418" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
-		<npc id="21422" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21423" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21424" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-		<npc id="21425" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-	</spawn>
-	<spawn zone="godard14_2515_17">
-		<territory minZ="-6668" maxZ="-6368">
-			<node x="189032" y="-81361" />
-			<node x="189850" y="-81343" />
-			<node x="189847" y="-80621" />
-			<node x="189054" y="-80555" />
-		</territory>
-		<npc id="21406" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
-		<npc id="21415" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
-		<npc id="21418" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
-		<npc id="21422" count="1" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21423" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
-		<npc id="21424" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-		<npc id="21425" count="2" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
-	</spawn>
 	<spawn zone="godard14_2515_18">
 		<territory minZ="-6005" maxZ="-5705">
 			<node x="189047" y="-84252" />
@@ -288,5 +243,50 @@
 		</territory>
 		<npc id="21425" count="2" respawnDelay="90" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
 		<npc id="21427" count="2" respawnDelay="90" respawnRandom="20" chaseRange="2500" /> <!-- Abraxion -->
+	</spawn>
+	<spawn zone="godard14_2515_15" selection="random">
+		<territory minZ="-5367" maxZ="-5067">
+			<node x="183286" y="-81378" />
+			<node x="184046" y="-81378" />
+			<node x="184034" y="-80596" />
+			<node x="183293" y="-80595" />
+		</territory>
+		<npc id="21407" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
+		<npc id="21414" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
+		<npc id="21418" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
+		<npc id="21422" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21423" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21424" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
+		<npc id="21425" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
+	</spawn>
+	<spawn zone="godard14_2515_16" selection="random">
+		<territory minZ="-6015" maxZ="-5715">
+			<node x="186142" y="-81378" />
+			<node x="186961" y="-81360" />
+			<node x="186957" y="-80639" />
+			<node x="186164" y="-80573" />
+		</territory>
+		<npc id="21407" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
+		<npc id="21414" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
+		<npc id="21418" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
+		<npc id="21422" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21423" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21424" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
+		<npc id="21425" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
+	</spawn>
+	<spawn zone="godard14_2515_17" selection="random">
+		<territory minZ="-6668" maxZ="-6368">
+			<node x="189032" y="-81361" />
+			<node x="189850" y="-81343" />
+			<node x="189847" y="-80621" />
+			<node x="189054" y="-80555" />
+		</territory>
+		<npc id="21406" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Knight of Empire -->
+		<npc id="21415" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Assassin of Empire -->
+		<npc id="21418" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Imperial Royal Guard -->
+		<npc id="21422" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21423" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Dancer of Empire -->
+		<npc id="21424" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
+		<npc id="21425" count="10" respawnDelay="45" respawnRandom="20" chaseRange="2500" /> <!-- Ashkenas -->
 	</spawn>
 </list>

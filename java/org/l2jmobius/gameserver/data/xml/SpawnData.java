@@ -27,9 +27,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +44,7 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
+import org.l2jmobius.gameserver.data.SpawnGroupTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.managers.DayNightSpawnManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
@@ -50,11 +53,15 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
+import org.l2jmobius.gameserver.model.spawns.SpawnGroupEntry;
+import org.l2jmobius.gameserver.model.spawns.SpawnSelection;
 import org.l2jmobius.gameserver.model.zone.ZoneForm;
 import org.l2jmobius.gameserver.model.zone.form.ZoneCuboid;
 import org.l2jmobius.gameserver.model.zone.form.ZoneCylinder;
 import org.l2jmobius.gameserver.model.zone.form.ZoneNPoly;
 import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
+import org.l2jmobius.gameserver.taskmanagers.SpawnGroupTaskManager;
 
 /**
  * @author Mobius
@@ -66,6 +73,7 @@ public class SpawnData implements IXmlReader
 	private static final String OTHER_XML_FOLDER = "data/spawns/Others";
 	
 	private final Map<Integer, String> _spawnTemplates = new ConcurrentHashMap<>();
+	private final Set<String> _parsedFiles = ConcurrentHashMap.newKeySet();
 	private int _spawnCount = 0;
 	
 	protected SpawnData()
@@ -79,9 +87,65 @@ public class SpawnData implements IXmlReader
 		_spawnTemplates.put(0, "None");
 		if (!DevelopmentConfig.NO_SPAWNS)
 		{
+			// Reloading must not accumulate: groups respawn from scratch and pending replacements die with them.
+			// Group slots are swept by iterator, their mutated coordinates make hash based removal unreliable.
+			_spawnCount = 0;
+			_parsedFiles.clear();
+			for (Set<Spawn> spawns : SpawnTable.getInstance().getSpawnTable().values())
+			{
+				final Iterator<Spawn> iterator = spawns.iterator();
+				while (iterator.hasNext())
+				{
+					if (iterator.next().getGroup() != null)
+					{
+						iterator.remove();
+					}
+				}
+			}
+			
+			SpawnGroupTable.getInstance().clear();
+			SpawnGroupTaskManager.getInstance().clear();
+			
 			LOGGER.info(getClass().getSimpleName() + ": Initializing spawns...");
 			parseDatapackDirectory("data/spawns", true);
+			checkMissingFiles(new File(".", "data/spawns"));
+			for (SpawnGroup group : SpawnGroupTable.getInstance().getGroups())
+			{
+				_spawnCount += group.initialSpawn();
+			}
+			
+			if (!SpawnGroupTable.getInstance().getGroups().isEmpty())
+			{
+				LOGGER.info(getClass().getSimpleName() + ": " + SpawnGroupTable.getInstance().getGroups().size() + " spawn groups initialized.");
+			}
+			
+			LOGGER.info(getClass().getSimpleName() + ": " + _parsedFiles.size() + " spawn files parsed.");
 			LOGGER.info(getClass().getSimpleName() + ": " + _spawnCount + " spawns have been initialized!");
+		}
+	}
+	
+	/**
+	 * Reports datapack files that were silently omitted by XML validation errors.
+	 * @param directory the directory to verify recursively
+	 */
+	private void checkMissingFiles(File directory)
+	{
+		final File[] files = directory.listFiles();
+		if (files == null)
+		{
+			return;
+		}
+		
+		for (File file : files)
+		{
+			if (file.isDirectory())
+			{
+				checkMissingFiles(file);
+			}
+			else if (file.getName().toLowerCase().endsWith(".xml") && !_parsedFiles.contains(file.getAbsolutePath()))
+			{
+				LOGGER.severe(getClass().getSimpleName() + ": " + file.getPath() + " was not parsed!");
+			}
 		}
 	}
 	
@@ -122,6 +186,8 @@ public class SpawnData implements IXmlReader
 	@Override
 	public void parseDocument(Document document, File file)
 	{
+		_parsedFiles.add(file.getAbsolutePath());
+		
 		NamedNodeMap attrs;
 		for (Node list = document.getFirstChild(); list != null; list = list.getNextSibling())
 		{
@@ -154,6 +220,68 @@ public class SpawnData implements IXmlReader
 						if (attrs.getNamedItem("zone") != null)
 						{
 							territoryName = parseString(attrs, "zone");
+						}
+						
+						// Check, if a territory list is specified. Only spawn groups use it, one slot per territory.
+						String[] territoryNames = null;
+						if (attrs.getNamedItem("zones") != null)
+						{
+							if (territoryName != null)
+							{
+								LOGGER.warning(getClass().getSimpleName() + ": zone and zones are exclusive, ignoring zones in " + file.getName());
+							}
+							else
+							{
+								territoryNames = parseString(attrs, "zones").split(";");
+								territoryName = territoryNames[0];
+							}
+						}
+						
+						// Check, if entry selection specified. Blocks without it keep the default spawning path.
+						SpawnGroup group = null;
+						if (attrs.getNamedItem("selection") != null)
+						{
+							final String selectionValue = parseString(attrs, "selection");
+							final SpawnSelection selection;
+							if ("random".equalsIgnoreCase(selectionValue))
+							{
+								selection = SpawnSelection.RANDOM;
+							}
+							else if ("randomFill".equalsIgnoreCase(selectionValue))
+							{
+								selection = SpawnSelection.RANDOM_FILL;
+							}
+							else
+							{
+								if (!"all".equalsIgnoreCase(selectionValue))
+								{
+									LOGGER.warning(getClass().getSimpleName() + ": Unknown selection \"" + selectionValue + "\" in " + file.getName() + ", using all.");
+								}
+								
+								selection = SpawnSelection.ALL;
+							}
+							
+							int maximumNpc = attrs.getNamedItem("maximumNpc") != null ? parseInteger(attrs, "maximumNpc") : 0;
+							if ((selection == SpawnSelection.RANDOM) && (maximumNpc > 0))
+							{
+								// Retail random_spawn never reads the cap, accepting it silently would suggest otherwise.
+								LOGGER.warning(getClass().getSimpleName() + ": maximumNpc is not read by random selection, ignoring it in " + file.getName());
+								maximumNpc = 0;
+							}
+							
+							if ((selection == SpawnSelection.RANDOM_FILL) && (maximumNpc <= 0))
+							{
+								LOGGER.warning(getClass().getSimpleName() + ": randomFill requires maximumNpc, the group in " + file.getName() + " will spawn nothing.");
+							}
+							
+							final String groupName = spawnName != null ? spawnName : (territoryName != null ? territoryName : file.getName());
+							group = new SpawnGroup(groupName, selection, maximumNpc);
+							SpawnGroupTable.getInstance().addGroup(group);
+						}
+						else if (territoryNames != null)
+						{
+							LOGGER.warning(getClass().getSimpleName() + ": zones requires an entry selection, using only the first territory in " + file.getName());
+							territoryNames = null;
 						}
 						
 						for (Node npctag = param.getFirstChild(); npctag != null; npctag = npctag.getNextSibling())
@@ -198,7 +326,9 @@ public class SpawnData implements IXmlReader
 							// Check for NPC spawn territories.
 							else if (npctag.getNodeName().equalsIgnoreCase("territory"))
 							{
-								if (ZoneManager.getInstance().spawnTerritoryExists(territoryName))
+								// Territories can declare their own name, defaulting to the block zone.
+								final String declaredName = attrs.getNamedItem("name") != null ? parseString(attrs, "name") : territoryName;
+								if (ZoneManager.getInstance().spawnTerritoryExists(declaredName))
 								{
 									continue;
 								}
@@ -229,7 +359,7 @@ public class SpawnData implements IXmlReader
 									
 									if ((coords == null) || (coords.length == 0))
 									{
-										LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: missing data for spawn territory: " + territoryName + " XML file: " + file.getName());
+										LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: missing data for spawn territory: " + declaredName + " XML file: " + file.getName());
 										continue;
 									}
 									
@@ -243,7 +373,7 @@ public class SpawnData implements IXmlReader
 										}
 										else
 										{
-											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Missing cuboid vertex data for territory: " + territoryName + " in file: " + file.getName());
+											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Missing cuboid vertex data for territory: " + declaredName + " in file: " + file.getName());
 											continue;
 										}
 									}
@@ -264,7 +394,7 @@ public class SpawnData implements IXmlReader
 										}
 										else
 										{
-											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Bad data for territory: " + territoryName + " in file: " + file.getName());
+											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Bad data for territory: " + declaredName + " in file: " + file.getName());
 											continue;
 										}
 									}
@@ -278,22 +408,22 @@ public class SpawnData implements IXmlReader
 										}
 										else
 										{
-											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Bad data for territory: " + territoryName + " in file: " + file.getName());
+											LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Bad data for territory: " + declaredName + " in file: " + file.getName());
 											continue;
 										}
 									}
 									else
 									{
-										LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Unknown shape: \"" + zoneShape + "\"  for territory: " + territoryName + " in file: " + file.getName());
+										LOGGER.warning(getClass().getSimpleName() + ": SpawnTable: Unknown shape: \"" + zoneShape + "\"  for territory: " + declaredName + " in file: " + file.getName());
 										continue;
 									}
 								}
 								catch (Exception e)
 								{
-									LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": SpawnTable: Failed to load territory " + territoryName + " coordinates: " + e.getMessage(), e);
+									LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": SpawnTable: Failed to load territory " + declaredName + " coordinates: " + e.getMessage(), e);
 								}
 								
-								ZoneManager.getInstance().addSpawnTerritory(territoryName, new NpcSpawnTerritory(territoryName, zoneForm));
+								ZoneManager.getInstance().addSpawnTerritory(declaredName, new NpcSpawnTerritory(declaredName, zoneForm));
 							}
 							// Check for NPC banned spawn territories.
 							else if (npctag.getNodeName().equalsIgnoreCase("banned_territory"))
@@ -433,47 +563,62 @@ public class SpawnData implements IXmlReader
 								final Node countNode = attrs.getNamedItem("count");
 								final int count = countNode == null ? 1 : parseInteger(attrs, "count");
 								
+								final StatSet spawnInfo = new StatSet();
+								spawnInfo.set("npcTemplateid", templateId);
+								spawnInfo.set("x", x);
+								spawnInfo.set("y", y);
+								spawnInfo.set("z", z);
+								spawnInfo.set("territoryName", territoryName);
+								spawnInfo.set("spawnName", spawnName);
+								
+								// Trying to read optional parameters.
+								if (attrs.getNamedItem("heading") != null)
+								{
+									spawnInfo.set("heading", parseInteger(attrs, "heading"));
+								}
+								
+								if (attrs.getNamedItem("respawnDelay") != null)
+								{
+									spawnInfo.set("respawnDelay", parseInteger(attrs, "respawnDelay"));
+								}
+								
+								if (attrs.getNamedItem("respawnRandom") != null)
+								{
+									spawnInfo.set("respawnRandom", parseInteger(attrs, "respawnRandom"));
+								}
+								
+								if (attrs.getNamedItem("chaseRange") != null)
+								{
+									spawnInfo.set("chaseRange", parseInteger(attrs, "chaseRange"));
+								}
+								
+								if (attrs.getNamedItem("periodOfDay") != null)
+								{
+									final String period = attrs.getNamedItem("periodOfDay").getNodeValue();
+									if (period.equalsIgnoreCase("day") || period.equalsIgnoreCase("night"))
+									{
+										spawnInfo.set("periodOfDay", period.equalsIgnoreCase("day") ? 1 : 2);
+									}
+								}
+								
+								spawnInfo.set("fileName", file.getPath());
+								
+								// Group entries keep their count as the entry quota, one spawn slot per territory manages them.
+								if (group != null)
+								{
+									if (spawnInfo.getInt("periodOfDay", 0) != 0)
+									{
+										// No retail maker mixes rolling with the day night gate and DayNightSpawnManager bypasses decreaseCount.
+										LOGGER.warning(getClass().getSimpleName() + ": periodOfDay cannot be combined with an entry selection, skipping NPC " + templateId + " in " + file.getName());
+										continue;
+									}
+									
+									addGroupSpawn(group, spawnInfo, map, count, territoryNames);
+									continue;
+								}
+								
 								for (int i = 0; i < count; i++)
 								{
-									final StatSet spawnInfo = new StatSet();
-									spawnInfo.set("npcTemplateid", templateId);
-									spawnInfo.set("x", x);
-									spawnInfo.set("y", y);
-									spawnInfo.set("z", z);
-									spawnInfo.set("territoryName", territoryName);
-									spawnInfo.set("spawnName", spawnName);
-									
-									// Trying to read optional parameters.
-									if (attrs.getNamedItem("heading") != null)
-									{
-										spawnInfo.set("heading", parseInteger(attrs, "heading"));
-									}
-									
-									if (attrs.getNamedItem("respawnDelay") != null)
-									{
-										spawnInfo.set("respawnDelay", parseInteger(attrs, "respawnDelay"));
-									}
-									
-									if (attrs.getNamedItem("respawnRandom") != null)
-									{
-										spawnInfo.set("respawnRandom", parseInteger(attrs, "respawnRandom"));
-									}
-									
-									if (attrs.getNamedItem("chaseRange") != null)
-									{
-										spawnInfo.set("chaseRange", parseInteger(attrs, "chaseRange"));
-									}
-									
-									if (attrs.getNamedItem("periodOfDay") != null)
-									{
-										final String period = attrs.getNamedItem("periodOfDay").getNodeValue();
-										if (period.equalsIgnoreCase("day") || period.equalsIgnoreCase("night"))
-										{
-											spawnInfo.set("periodOfDay", period.equalsIgnoreCase("day") ? 1 : 2);
-										}
-									}
-									
-									spawnInfo.set("fileName", file.getPath());
 									_spawnCount += addSpawn(spawnInfo, map);
 								}
 							}
@@ -496,27 +641,7 @@ public class SpawnData implements IXmlReader
 		int ret = 0;
 		try
 		{
-			spawnDat = new Spawn(spawnInfo.getInt("npcTemplateid"));
-			spawnDat.setAmount(spawnInfo.getInt("count", 1));
-			spawnDat.setXYZ(spawnInfo.getInt("x", 0), spawnInfo.getInt("y", 0), spawnInfo.getInt("z", 0));
-			spawnDat.setHeading(spawnInfo.getInt("heading", -1));
-			spawnDat.setRespawnDelay(spawnInfo.getInt("respawnDelay", 0), spawnInfo.getInt("respawnRandom", 0));
-			spawnDat.setChaseRange(spawnInfo.getInt("chaseRange", 0));
-			spawnDat.setLocationId(spawnInfo.getInt("locId", 0));
-			final String territoryName = spawnInfo.getString("territoryName", "");
-			final String spawnName = spawnInfo.getString("spawnName", "");
-			if (!spawnName.isEmpty())
-			{
-				spawnDat.setName(spawnName);
-			}
-			
-			if (!territoryName.isEmpty())
-			{
-				spawnDat.setSpawnTerritory(ZoneManager.getInstance().getSpawnTerritory(territoryName));
-			}
-			
-			// Register AI Data for this spawn.
-			NpcPersonalAIData.getInstance().storeData(spawnDat, aiData);
+			spawnDat = createSpawn(spawnInfo, aiData);
 			switch (spawnInfo.getInt("periodOfDay", 0))
 			{
 				case 0: // Default
@@ -538,26 +663,7 @@ public class SpawnData implements IXmlReader
 				}
 			}
 			
-			final String fileName = spawnInfo.getString("fileName", "None");
-			if (_spawnTemplates.values().contains(fileName))
-			{
-				for (Entry<Integer, String> entry : _spawnTemplates.entrySet())
-				{
-					if (entry.getValue().equals(fileName))
-					{
-						spawnDat.setSpawnTemplateId(entry.getKey());
-						break;
-					}
-				}
-			}
-			else
-			{
-				final int newId = _spawnTemplates.size();
-				_spawnTemplates.put(newId, fileName);
-				spawnDat.setSpawnTemplateId(newId);
-			}
-			
-			SpawnTable.getInstance().addSpawn(spawnDat);
+			registerSpawn(spawnDat, spawnInfo.getString("fileName", "None"));
 		}
 		catch (Exception e)
 		{
@@ -566,6 +672,123 @@ public class SpawnData implements IXmlReader
 		}
 		
 		return ret;
+	}
+	
+	/**
+	 * Creates a spawn group entry backed by one spawn slot per territory and adds it to the group.<br>
+	 * Group slots never call {@link Spawn#init()}, the group performs the spawning itself.
+	 * @param group the spawn group the entry belongs to
+	 * @param spawnInfo StatSet of spawn parameters
+	 * @param aiData Map of specific AI parameters for this spawn
+	 * @param total the unit quota of the entry
+	 * @param territoryNames the territories of the group, {@code null} when the block declares a single zone
+	 */
+	private void addGroupSpawn(SpawnGroup group, StatSet spawnInfo, Map<String, Integer> aiData, int total, String[] territoryNames)
+	{
+		try
+		{
+			final SpawnGroupEntry entry = new SpawnGroupEntry(total, spawnInfo.getInt("respawnDelay", 0), spawnInfo.getInt("respawnRandom", 0));
+			final int slotCount = territoryNames != null ? territoryNames.length : 1;
+			for (int i = 0; i < slotCount; i++)
+			{
+				if (territoryNames != null)
+				{
+					spawnInfo.set("territoryName", territoryNames[i]);
+				}
+				
+				final Spawn spawnDat = createSpawn(spawnInfo, aiData);
+				spawnDat.setAmount(total);
+				if ((group.getSelection() != SpawnSelection.ALL) || (spawnInfo.getInt("respawnDelay", 0) <= 0))
+				{
+					// Rolling groups replace their own units; ALL slots keep the regular per slot respawn with its fixed species.
+					spawnDat.stopRespawn();
+				}
+				
+				final NpcSpawnTerritory slotTerritory = spawnDat.getSpawnTerritory();
+				if (slotTerritory != null)
+				{
+					// Location equality would collapse unspawned slots inside the SpawnTable set, seed each slot with its own territory point.
+					spawnDat.setXYZ(slotTerritory.getRandomPoint());
+				}
+				
+				spawnDat.setGroup(group);
+				entry.addSlot(spawnDat);
+			}
+			
+			// Register only after every slot was created, a failed slot must not leave half an entry behind.
+			for (Spawn slot : entry.getSlots())
+			{
+				registerSpawn(slot, spawnInfo.getString("fileName", "None"));
+			}
+			
+			group.addEntry(entry);
+		}
+		catch (Exception e)
+		{
+			// Problem with initializing spawn, go to next one.
+			LOGGER.log(Level.WARNING, "Group spawn could not be initialized: " + e.getMessage(), e);
+		}
+	}
+	
+	/**
+	 * Builds and configures a {@link Spawn} from the given parameters.
+	 * @param spawnInfo StatSet of spawn parameters
+	 * @param aiData Map of specific AI parameters for this spawn
+	 * @return the configured spawn
+	 * @throws Exception when the spawn could not be constructed
+	 */
+	private Spawn createSpawn(StatSet spawnInfo, Map<String, Integer> aiData) throws Exception
+	{
+		final Spawn spawnDat = new Spawn(spawnInfo.getInt("npcTemplateid"));
+		spawnDat.setAmount(spawnInfo.getInt("count", 1));
+		spawnDat.setXYZ(spawnInfo.getInt("x", 0), spawnInfo.getInt("y", 0), spawnInfo.getInt("z", 0));
+		spawnDat.setHeading(spawnInfo.getInt("heading", -1));
+		spawnDat.setRespawnDelay(spawnInfo.getInt("respawnDelay", 0), spawnInfo.getInt("respawnRandom", 0));
+		spawnDat.setChaseRange(spawnInfo.getInt("chaseRange", 0));
+		spawnDat.setLocationId(spawnInfo.getInt("locId", 0));
+		final String territoryName = spawnInfo.getString("territoryName", "");
+		final String spawnName = spawnInfo.getString("spawnName", "");
+		if (!spawnName.isEmpty())
+		{
+			spawnDat.setName(spawnName);
+		}
+		
+		if (!territoryName.isEmpty())
+		{
+			spawnDat.setSpawnTerritory(ZoneManager.getInstance().getSpawnTerritory(territoryName));
+		}
+		
+		// Register AI Data for this spawn.
+		NpcPersonalAIData.getInstance().storeData(spawnDat, aiData);
+		return spawnDat;
+	}
+	
+	/**
+	 * Assigns the spawn template id of the source file and registers the spawn on the {@link SpawnTable}.
+	 * @param spawnDat the spawn to register
+	 * @param fileName the datapack file the spawn was declared in
+	 */
+	private void registerSpawn(Spawn spawnDat, String fileName)
+	{
+		if (_spawnTemplates.values().contains(fileName))
+		{
+			for (Entry<Integer, String> entry : _spawnTemplates.entrySet())
+			{
+				if (entry.getValue().equals(fileName))
+				{
+					spawnDat.setSpawnTemplateId(entry.getKey());
+					break;
+				}
+			}
+		}
+		else
+		{
+			final int newId = _spawnTemplates.size();
+			_spawnTemplates.put(newId, fileName);
+			spawnDat.setSpawnTemplateId(newId);
+		}
+		
+		SpawnTable.getInstance().addSpawn(spawnDat);
 	}
 	
 	/**

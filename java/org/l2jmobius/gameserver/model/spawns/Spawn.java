@@ -85,6 +85,8 @@ public class Spawn extends Location
 	private boolean _randomWalk = false; // Is random walk
 	private int _spawnTemplateId = 0;
 	private Location _spawnLocation = null;
+	/** Spawn group this spawn is a slot of, null for regular spawns */
+	private SpawnGroup _group = null;
 	
 	/**
 	 * Constructor of Spawn.<br>
@@ -260,6 +262,29 @@ public class Spawn extends Location
 			// Schedule the next respawn.
 			RespawnTaskManager.getInstance().add(oldNpc, System.currentTimeMillis() + (hasRespawnRandom() ? Rnd.get(_respawnMinDelay, _respawnMaxDelay) : _respawnMinDelay));
 		}
+		
+		// Notify the spawn group, it rolls the replacement itself.
+		if (_group != null)
+		{
+			_group.onUnitDeath(this);
+		}
+	}
+	
+	/**
+	 * @return the spawn group this spawn is a slot of, {@code null} for regular spawns
+	 */
+	public SpawnGroup getGroup()
+	{
+		return _group;
+	}
+	
+	/**
+	 * Sets the spawn group this spawn is a slot of.
+	 * @param group the owning spawn group
+	 */
+	public void setGroup(SpawnGroup group)
+	{
+		_group = group;
 	}
 	
 	/**
@@ -270,7 +295,12 @@ public class Spawn extends Location
 	{
 		while (_currentCount < _maximumCount)
 		{
-			doSpawn();
+			final int previousCount = _currentCount;
+			if ((doSpawn() == null) && (_currentCount == previousCount))
+			{
+				// Respawn is disabled or the NPC could not be created, looping again would never end.
+				break;
+			}
 		}
 		
 		_doRespawn = _respawnMinDelay > 0;

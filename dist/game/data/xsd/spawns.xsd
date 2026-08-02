@@ -18,7 +18,7 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="territory" minOccurs="0">
+							<xs:element name="territory" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="node" maxOccurs="unbounded" minOccurs="0">
@@ -32,6 +32,7 @@
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
+									<xs:attribute type="xs:string" name="name" use="optional" />
 									<xs:attribute type="xs:string" name="shape" use="optional" />
 									<xs:attribute type="xs:short" name="minZ" use="required" />
 									<xs:attribute type="xs:short" name="maxZ" use="required" />
@@ -86,6 +87,17 @@
 						</xs:sequence>
 						<xs:attribute type="xs:string" name="name" use="optional" />
 						<xs:attribute type="xs:string" name="zone" use="optional" />
+						<xs:attribute type="xs:string" name="zones" use="optional" />
+						<xs:attribute name="selection" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:token">
+									<xs:enumeration value="all" />
+									<xs:enumeration value="random" />
+									<xs:enumeration value="randomFill" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute type="xs:positiveInteger" name="maximumNpc" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

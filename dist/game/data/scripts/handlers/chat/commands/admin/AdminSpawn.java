@@ -21,16 +21,19 @@
 package handlers.chat.commands.admin;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
+import org.l2jmobius.gameserver.data.SpawnGroupTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
@@ -51,6 +54,9 @@ import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.spawns.AutoSpawnHandler;
 import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
+import org.l2jmobius.gameserver.model.spawns.SpawnGroupEntry;
+import org.l2jmobius.gameserver.taskmanagers.SpawnGroupTaskManager;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -85,6 +91,7 @@ public class AdminSpawn implements IAdminCommandHandler
 		"admin_instance_spawns",
 		"admin_list_spawns",
 		"admin_list_positions",
+		"admin_list_pools",
 		"admin_spawn_debug_menu",
 		"admin_spawn_debug_print",
 		"admin_spawn_debug_print_menu",
@@ -236,6 +243,10 @@ public class AdminSpawn implements IAdminCommandHandler
 		{
 			Broadcast.toAllOnlinePlayers(new SystemMessage(SystemMessageId.THE_NPC_SERVER_IS_NOT_OPERATING_AT_THIS_TIME));
 			
+			// Stop group replacement first, the delete loop below fires the death hook of every group unit.
+			SpawnGroupTable.getInstance().deactivateAll();
+			SpawnGroupTaskManager.getInstance().clear();
+			
 			// Unload all scripts.
 			ScriptManager.getInstance().unloadAllScripts();
 			
@@ -258,6 +269,19 @@ public class AdminSpawn implements IAdminCommandHandler
 				}
 			}
 			
+			// Group slots are swept by iterator, their mutated coordinates make hash based removal unreliable.
+			for (Set<Spawn> spawns : SpawnTable.getInstance().getSpawnTable().values())
+			{
+				final Iterator<Spawn> spawnIterator = spawns.iterator();
+				while (spawnIterator.hasNext())
+				{
+					if (spawnIterator.next().getGroup() != null)
+					{
+						spawnIterator.remove();
+					}
+				}
+			}
+			
 			// Reload.
 			ScriptManager.getInstance().reloadAllScripts();
 			AdminData.getInstance().broadcastMessageToGMs("NPC unspawn completed!");
@@ -272,6 +296,10 @@ public class AdminSpawn implements IAdminCommandHandler
 		}
 		else if (command.startsWith("admin_respawnall") || command.startsWith("admin_spawn_reload"))
 		{
+			// Stop group replacement first, the delete loop below fires the death hook of every group unit.
+			SpawnGroupTable.getInstance().deactivateAll();
+			SpawnGroupTaskManager.getInstance().clear();
+			
 			// Unload all scripts.
 			ScriptManager.getInstance().unloadAllScripts();
 			
@@ -470,6 +498,10 @@ public class AdminSpawn implements IAdminCommandHandler
 				// Case of wrong or missing monster data.
 				AdminHtml.showAdminHtml(activeChar, "spawns.htm");
 			}
+		}
+		else if (command.equals("admin_list_pools"))
+		{
+			listPools(activeChar);
 		}
 		else if (command.startsWith("admin_list_spawns") || command.startsWith("admin_list_positions"))
 		{
@@ -671,6 +703,39 @@ public class AdminSpawn implements IAdminCommandHandler
 		return ADMIN_COMMANDS;
 	}
 	
+	private String getPoolInfo(Spawn spawn)
+	{
+		final SpawnGroup group = spawn.getGroup();
+		if (group == null)
+		{
+			return "";
+		}
+		
+		final SpawnGroupEntry entry = group.getEntryBySlot(spawn);
+		final String liveMark = spawn.getLastSpawn() != null ? " HERE" : "";
+		return " [pool " + group.getName() + (entry != null ? " " + entry.getAliveOrReserved() + "/" + entry.getTotal() : "") + liveMark + "]";
+	}
+	
+	private void listPools(Player activeChar)
+	{
+		if (SpawnGroupTable.getInstance().getGroups().isEmpty())
+		{
+			activeChar.sendSysMessage("There are no spawn groups.");
+			return;
+		}
+		
+		for (SpawnGroup group : SpawnGroupTable.getInstance().getGroups())
+		{
+			activeChar.sendSysMessage(group.getName() + " [" + group.getSelection() + (group.getMaximumNpc() > 0 ? " cap " + group.getMaximumNpc() : "") + "] alive " + group.getAliveOrReserved());
+			for (SpawnGroupEntry entry : group.getEntries())
+			{
+				final List<Spawn> slots = entry.getSlots();
+				final Spawn slot = slots.get(0);
+				activeChar.sendSysMessage("- " + slot.getTemplate().getName() + " (" + slot.getId() + ") " + entry.getAliveOrReserved() + "/" + entry.getTotal() + " in " + slots.size() + " territories");
+			}
+		}
+	}
+	
 	/**
 	 * Get all the spawn of a NPC.
 	 * @param activeChar
@@ -703,11 +768,11 @@ public class AdminSpawn implements IAdminCommandHandler
 			}
 			else if (showposition && (npc != null))
 			{
-				activeChar.sendMessage(index + " - " + spawn.getTemplate().getName() + " (" + spawn + "): " + npc.getX() + " " + npc.getY() + " " + npc.getZ());
+				activeChar.sendMessage(index + " - " + spawn.getTemplate().getName() + " (" + spawn + "): " + npc.getX() + " " + npc.getY() + " " + npc.getZ() + getPoolInfo(spawn));
 			}
 			else
 			{
-				activeChar.sendMessage(index + " - " + spawn.getTemplate().getName() + " (" + spawn + "): " + spawn.getX() + " " + spawn.getY() + " " + spawn.getZ());
+				activeChar.sendMessage(index + " - " + spawn.getTemplate().getName() + " (" + spawn + "): " + spawn.getX() + " " + spawn.getY() + " " + spawn.getZ() + getPoolInfo(spawn));
 			}
 		}
 		
