@@ -33,6 +33,7 @@ import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
 import quests.Q00129_PailakaDevilsLegacy.Q00129_PailakaDevilsLegacy;
 
@@ -136,11 +137,26 @@ public class PailakaDevilsLegacy extends InstanceScript
 					}
 					break;
 				}
+				case "LEMATAN_MOVE_RETRY":
+				{
+					if (!npc.isDead() && npc.isScriptValue(1))
+					{
+						npc.setRunning();
+						npc.getAI().setIntention(Intention.MOVE_TO, LEMATAN_PORT_POINT);
+						startQuestTimer("LEMATAN_MOVE_RETRY", 5000, npc, null);
+					}
+					break;
+				}
 				case "LEMATAN_TELEPORT":
 				{
+					if (npc.isDead())
+					{
+						break;
+					}
+					
 					npc.asAttackable().clearAggroList();
 					npc.disableCoreAI(false);
-					npc.teleToLocation(LEMATAN_PORT);
+					npc.teleToLocation(LEMATAN_PORT, world.getInstanceId(), 0);
 					npc.getVariables().set("ON_SHIP", 1);
 					npc.getSpawn().setLocation(LEMATAN_PORT);
 					final List<Npc> followerslist = world.getParameters().getList("followerslist", Npc.class, new ArrayList<>());
@@ -204,6 +220,7 @@ public class PailakaDevilsLegacy extends InstanceScript
 						npc.setScriptValue(1);
 						npc.setRunning();
 						npc.getAI().setIntention(Intention.MOVE_TO, LEMATAN_PORT_POINT);
+						startQuestTimer("LEMATAN_MOVE_RETRY", 5000, npc, null);
 					}
 					break;
 				}
@@ -319,9 +336,10 @@ public class PailakaDevilsLegacy extends InstanceScript
 	@Override
 	public void onMoveFinished(Npc npc)
 	{
-		if (npc.getLocation() == LEMATAN_PORT_POINT)
+		if (npc.isScriptValue(1))
 		{
-			npc.doCast(AV_TELEPORT.getSkill());
+			npc.setScriptValue(2);
+			npc.broadcastPacket(new MagicSkillUse(npc, npc, AV_TELEPORT.getSkillId(), AV_TELEPORT.getSkillLevel(), 2000, 0));
 			startQuestTimer("LEMATAN_TELEPORT", 2000, npc, null);
 		}
 	}
