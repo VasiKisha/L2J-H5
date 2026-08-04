@@ -212,9 +212,13 @@ public class Q00144_PailakaInjuredDragon extends Quest
 							
 							htmltext = "32512-02z.html";
 						}
-						else
+						else if (qs.isCompleted())
 						{
 							htmltext = "32512-03.html";
+						}
+						else
+						{
+							htmltext = getNoQuestMsg(player);
 						}
 						break;
 					}
