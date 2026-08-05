@@ -2781,7 +2781,8 @@ public class AttackableAI extends CreatureAI
 	private boolean passesParameterizedGates(int slot, StatSet params, Attackable caster, Creature target)
 	{
 		final String prefix = "Skill0" + slot + "_";
-		final int probability = params.getInt(prefix + "Probablity", 0);
+		// Retail AI classes spell this parameter three different ways, all present in npcdata.
+		final int probability = params.getInt(prefix + "Probablity", params.getInt(prefix + "Probability", params.getInt(prefix + "Prob", 0)));
 		final boolean checksDistance = params.getInt(prefix + "Check_Dist", 0) == 1;
 		final int highHp = params.getInt(prefix + "HighHP", 0);
 
