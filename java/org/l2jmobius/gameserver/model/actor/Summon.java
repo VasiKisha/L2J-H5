@@ -346,6 +346,8 @@ public abstract class Summon extends Playable
 			});
 		}
 		
+		addKillerHate(killer);
+		
 		DecayTaskManager.getInstance().add(this);
 		return true;
 	}
@@ -357,12 +359,26 @@ public abstract class Summon extends Playable
 			return false;
 		}
 		
+		addKillerHate(killer);
+		
 		if (!decayed)
 		{
 			DecayTaskManager.getInstance().add(this);
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Retail monster AIs add 500 hate against the owner to the monster that finishes a summon or pet.
+	 * @param killer the creature that killed this summon
+	 */
+	private void addKillerHate(Creature killer)
+	{
+		if ((_owner != null) && (killer != null) && killer.isAttackable() && !killer.isDead())
+		{
+			killer.asAttackable().addDamageHate(_owner, 0, 500);
+		}
 	}
 	
 	public void stopDecay()
