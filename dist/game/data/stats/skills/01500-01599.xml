@@ -1628,7 +1628,7 @@
 		<mpConsume>#mpConsume</mpConsume>
 		<mpInitialConsume>#mpConsume_Init</mpInitialConsume>
 		<power>#power</power>
-		<reuseDelay>1000</reuseDelay>
+		<reuseDelay>1200</reuseDelay>
 		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>
 		<enchant2 name="elementPower">#enchElementPower</enchant2>
 		<enchant2 name="magicLevel">#enchMagicLvl</enchant2>
