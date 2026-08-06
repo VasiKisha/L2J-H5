@@ -604,9 +604,6 @@
 				<item id="15766" min="1" max="1" chance="9.23254659736633" /> <!-- Sealed Moirai Ring -->
 				<item id="15767" min="1" max="1" chance="6.15429096498108" /> <!-- Sealed Moirai Earring -->
 				<item id="15768" min="1" max="1" chance="4.61586324331665" /> <!-- Sealed Moirai Necklace -->
-				<item id="10219" min="1" max="1" chance="1.46739995479584" /> <!-- Icarus Trident -->
-				<item id="959" min="1" max="1" chance="14.7566467414246" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
-				<item id="960" min="1" max="3" chance="73.7830566277161" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -1978,7 +1975,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="67" lhand="633" /> <!-- rhand: Orcish Sword lhand: Zubei's Shield -->
-		<acquire exp="529" sp="69902" />
+		<acquire exp="2690117" sp="69902" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="40330.259723" hpRegen="17.534747" mp="231.96" mpRegen="1.5" />
 			<attack physical="62.85328" magical="3.96218" attackSpeed="253" range="40" />
@@ -2109,7 +2106,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="291" /> <!-- rhand: Trident -->
-		<acquire exp="529" sp="69902" />
+		<acquire exp="2690117" sp="69902" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="40330.259723" hpRegen="17.534747" mp="231.96" mpRegen="1.5" />
 			<attack physical="62.85328" magical="3.96218" attackSpeed="253" range="40" />
@@ -2158,7 +2155,6 @@
 				<item id="185" min="1" max="1" chance="3.3845948" /> <!-- Staff of Mana -->
 				<item id="2022" min="4" max="12" chance="16.3267484" /> <!-- Mace of Judgment Head -->
 				<item id="2023" min="2" max="4" chance="34.6364932" /> <!-- Conjuror's Staff Head -->
-				<item id="6387" min="24" max="72" chance="15.0970503238" /> <!-- Blessed Scroll of Resurrection for Pets -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2247,7 +2243,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="216" /> <!-- rhand: Dirk -->
-		<acquire exp="882" sp="60367" />
+		<acquire exp="2646357" sp="60367" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="37886.485367" hpRegen="16.826966" mp="205.2" mpRegen="1.5" />
 			<attack physical="53.12758" magical="3.16861" attackSpeed="253" range="40" />
@@ -2281,7 +2277,6 @@
 				<item id="605" min="4" max="12" chance="25.6556773338" /> <!-- Leather Gauntlets -->
 				<item id="1123" min="8" max="22" chance="13.6830226662" /> <!-- Blue Buckskin Boots -->
 				<item id="222" min="1" max="1" chance="31.812" /> <!-- Poniard Dagger -->
-				<item id="6387" min="24" max="72" chance="14.1898009605" /> <!-- Blessed Scroll of Resurrection for Pets -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2373,7 +2368,7 @@
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="150" /> <!-- rhand: Elemental Sword -->
-		<acquire sp="122871" />
+		<acquire exp="1589296" sp="122871" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="56644.139929" hpRegen="24.086233" mp="259.2" mpRegen="1.5" />
 			<attack physical="138.03739" magical="16.13317" attackSpeed="253" range="40" />
@@ -2414,7 +2409,6 @@
 				<item id="157" min="1" max="1" chance="12.3684743895" /> <!-- Spiked Club -->
 				<item id="186" min="1" max="1" chance="12.3684743895" /> <!-- Staff of Magic -->
 				<item id="2027" min="12" max="36" chance="25.097551221" /> <!-- Spiked Club Head -->
-				<item id="6387" min="60" max="180" chance="29.8017" /> <!-- Blessed Scroll of Resurrection for Pets -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2507,7 +2501,7 @@
 			<param name="RaidSpawnMusic" value="Rm03_A" />
 			<skill name="PhysicalSpecial_b" id="4741" level="2" /> <!-- BOSS Strike -->
 		</parameters>
-		<acquire exp="625" sp="79280" />
+		<acquire exp="2541012" sp="79280" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="43316.308536" hpRegen="18.438531" mp="259.2" mpRegen="1.5" />
 			<attack physical="74.22232" magical="4.67967" attackSpeed="253" range="40" />
@@ -2643,7 +2637,7 @@
 		</parameters>
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
-		<acquire exp="1200" sp="59634" />
+		<acquire exp="3041766" sp="59634" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="36847.186075" hpRegen="16.540032" mp="192.0" mpRegen="1.2" />
 			<attack physical="48.82516" magical="2.38239" attackSpeed="253" range="40" />
@@ -2684,7 +2678,6 @@
 				<item id="156" min="1" max="1" chance="17.1845494821" /> <!-- Hand Axe -->
 				<item id="167" min="1" max="1" chance="17.1845494821" /> <!-- Scalpel -->
 				<item id="178" min="1" max="1" chance="17.1846010358" /> <!-- Bone Staff -->
-				<item id="955" min="1" max="3" chance="35.084826512" /> <!-- Scroll: Enchant Weapon (D-Grade) -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2783,7 +2776,7 @@
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="96" /> <!-- rhand: Scythe -->
-		<acquire sp="144137" />
+		<acquire exp="1912395" sp="144137" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="138899.136909" hpRegen="66.98598" mp="402.6" mpRegen="1.8" />
 			<attack physical="327.3913" magical="51.71999" attackSpeed="253" range="40" />
@@ -2834,9 +2827,6 @@
 				<item id="2050" min="7" max="21" chance="7.5734585472" /> <!-- Ghost Staff Head -->
 				<item id="2051" min="12" max="36" chance="4.4178608448" /> <!-- Staff of Life Shaft -->
 				<item id="2058" min="3" max="9" chance="16.6660361088" /> <!-- Atuba Mace Head -->
-				<item id="4591" min="1" max="3" chance="32.6602419916" /> <!-- Greater Dye of CON <Con+2 Str-2> -->
-				<item id="4592" min="2" max="4" chance="21.7735186845" /> <!-- Greater Dye of CON <Con+2 Dex-2> -->
-				<item id="4593" min="2" max="6" chance="16.3301209958" /> <!-- Greater Dye of DEX <Dex+2 Str-2> -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2858,7 +2848,7 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<acquire sp="144137" />
+		<acquire exp="1912395" sp="144137" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="69449.568455" hpRegen="26.794392" mp="402.6" mpRegen="1.8" />
 			<attack physical="163.69565" magical="12.93" attackSpeed="253" range="40" />
@@ -2898,9 +2888,6 @@
 				<item id="1953" min="12" max="36" chance="53.801106453" /> <!-- Sage's Rag Lining -->
 				<item id="262" min="1" max="1" chance="8.7192585431" /> <!-- Scallop Jamadhr -->
 				<item id="2053" min="12" max="36" chance="20.8326414569" /> <!-- Scallop Jamadhr Edge -->
-				<item id="4594" min="1" max="3" chance="32.6602621394" /> <!-- Greater Dye of DEX <Dex+2 Con-2> -->
-				<item id="4595" min="2" max="4" chance="21.7735354135" /> <!-- Greater Dye of INT <Int+2 Men-2> -->
-				<item id="4596" min="2" max="6" chance="16.3301310697" /> <!-- Greater Dye of INT <Int+2 Wit-2> -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -2991,7 +2978,7 @@
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
 		<equipment rhand="192" /> <!-- rhand: Crystal Staff -->
-		<acquire sp="144137" />
+		<acquire exp="1912395" sp="144137" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="69449.568455" hpRegen="26.794392" mp="402.6" mpRegen="1.8" />
 			<attack physical="163.69565" magical="12.93" attackSpeed="253" range="40" />
@@ -3039,7 +3026,6 @@
 				<item id="2933" min="46" max="136" chance="8.2405644802" /> <!-- Sage's Worn Gloves Lining -->
 				<item id="225" min="1" max="1" chance="8.7192549621" /> <!-- Mithril Dagger -->
 				<item id="2052" min="12" max="36" chance="21.8498450379" /> <!-- Mithril Dagger Blade -->
-				<item id="4600" min="2" max="6" chance="32.660221746" /> <!-- Greater Dye of WIT <Wit+2 Men-2> -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -3133,7 +3119,7 @@
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="1472" /> <!-- rhand: Dreadbane -->
-		<acquire sp="394692" />
+		<acquire exp="2735033" sp="394692" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="221100.024975" hpRegen="72.964382" mp="1036.8" mpRegen="2.4" />
 			<attack physical="785.17745" magical="133.51196" attackSpeed="253" range="40" />
@@ -3179,9 +3165,6 @@
 				<item id="4087" min="11" max="31" chance="21.7907776815" /> <!-- Stockings of Doom Pattern -->
 				<item id="97" min="1" max="1" chance="2.318883161" /> <!-- Lance -->
 				<item id="4115" min="12" max="36" chance="21.267616839" /> <!-- Lance Blade -->
-				<item id="4613" min="1" max="3" chance="26.1503392436" /> <!-- Greater Dye of STR <Str+4 Con-4> -->
-				<item id="4614" min="2" max="4" chance="17.4335116116" /> <!-- Greater Dye of STR <Str+4 Dex-4> -->
-				<item id="4615" min="2" max="6" chance="13.0751696218" /> <!-- Greater Dye of CON <Con+4 Str-4> -->
 				<item id="8176" min="1" max="2" chance="73" /> <!-- Destruction Tombstone -->
 				<item id="9814" min="1" max="4" chance="85" /> <!-- Memento Mori -->
 			</drop>
@@ -3283,7 +3266,7 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<acquire sp="381459" />
+		<acquire exp="2684275" sp="381459" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="215207.609633" hpRegen="71.371054" mp="1007.0" mpRegen="2.4" />
 			<attack physical="748.77526" magical="122.63548" attackSpeed="253" range="40" />
@@ -3424,7 +3407,7 @@
 		</parameters>
 		<race>DRAGON</race>
 		<sex>MALE</sex>
-		<acquire sp="394692" />
+		<acquire exp="2735033" sp="394692" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="442200.04995" hpRegen="182.410956" mp="1036.8" mpRegen="2.4" />
 			<attack physical="1570.3549" magical="534.04783" attackSpeed="253" range="40" />
@@ -3469,8 +3452,6 @@
 				<item id="2504" min="1" max="1" chance="0.986914242" /> <!-- Meteor Shower -->
 				<item id="5532" min="8" max="22" chance="15.639495858" /> <!-- Meteor Shower Head -->
 				<item id="5543" min="4" max="12" chance="29.600675658" /> <!-- Dasparion's Staff Head -->
-				<item id="729" min="1" max="1" chance="6.6800186371" /> <!-- Scroll: Enchant Weapon (A-Grade) -->
-				<item id="730" min="1" max="1" chance="50.100283733" /> <!-- Scroll: Enchant Armor (A-Grade) -->
 				<item id="8176" min="1" max="2" chance="72" /> <!-- Destruction Tombstone -->
 				<item id="9815" min="1" max="4" chance="85" /> <!-- Dragon Heart -->
 			</drop>
@@ -3493,7 +3474,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="71" /> <!-- rhand: Flamberge -->
-		<acquire sp="281312" />
+		<acquire exp="2389767" sp="281312" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="155046.064475" hpRegen="53.854634" mp="747.8" mpRegen="2.1" />
 			<attack physical="458.48043" magical="56.52768" attackSpeed="253" range="40" />
@@ -3534,9 +3515,6 @@
 				<item id="92" min="1" max="1" chance="1.3813737044" /> <!-- Sprite's Staff -->
 				<item id="4105" min="4" max="12" chance="33.0057703012" /> <!-- Heavy War Axe Head -->
 				<item id="4106" min="8" max="22" chance="17.31428229" /> <!-- Sprite's Staff Head -->
-				<item id="4610" min="1" max="3" chance="33.2293680726" /> <!-- Greater Dye of MEN <Men+3 Wit-3> -->
-				<item id="4611" min="2" max="4" chance="22.1529120484" /> <!-- Greater Dye of WIT <Wit+3 Int-3> -->
-				<item id="4612" min="2" max="6" chance="16.6146840363" /> <!-- Greater Dye of WIT <Wit+3 Men-3> -->
 				<item id="8176" min="1" max="1" chance="85" /> <!-- Destruction Tombstone -->
 				<item id="9814" min="1" max="3" chance="85" /> <!-- Memento Mori -->
 			</drop>
@@ -3628,7 +3606,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="84" /> <!-- rhand: Homunkulus's Sword -->
-		<acquire sp="284981" />
+		<acquire exp="2328069" sp="284981" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="148076.094027" hpRegen="51.719311" mp="720.0" mpRegen="2.1" />
 			<attack physical="431.28336" magical="51.9276" attackSpeed="253" range="40" />
@@ -3667,9 +3645,6 @@
 				<item id="2917" min="40" max="120" chance="15.109152297" /> <!-- Ring of Seal Gemstone -->
 				<item id="286" min="1" max="1" chance="4.0181852172" /> <!-- Eminence Bow -->
 				<item id="2121" min="3" max="9" chance="72.5814147828" /> <!-- Eminence Bow Shaft -->
-				<item id="4607" min="1" max="3" chance="34.0992819254" /> <!-- Greater Dye of INT <Int+3 Men-3> -->
-				<item id="4608" min="2" max="4" chance="22.7328293077" /> <!-- Greater Dye of INT <Int+3 Wit-3> -->
-				<item id="4609" min="2" max="6" chance="17.0496409627" /> <!-- Greater Dye of MEN <Men+3 Int-3> -->
 				<item id="8176" min="1" max="1" chance="87" /> <!-- Destruction Tombstone -->
 				<item id="9814" min="1" max="3" chance="87" /> <!-- Memento Mori -->
 			</drop>
@@ -3760,7 +3735,7 @@
 		</parameters>
 		<race>BEAST</race>
 		<sex>MALE</sex>
-		<acquire sp="229987" />
+		<acquire exp="2085510" sp="229987" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="121183.101254" hpRegen="43.342559" mp="610.8" mpRegen="2.1" />
 			<attack physical="333.67447" magical="35.73201" attackSpeed="253" range="40" />
@@ -3799,9 +3774,6 @@
 				<item id="233" min="1" max="1" chance="2.454601275" /> <!-- Dark Screamer -->
 				<item id="2106" min="4" max="12" chance="27.6249704325" /> <!-- Grace Dagger Edge -->
 				<item id="2107" min="8" max="22" chance="14.7333270175" /> <!-- Dark Screamer Edge -->
-				<item id="4604" min="2" max="6" chance="14.6026690173" /> <!-- Greater Dye of CON <Con+3 Dex-3> -->
-				<item id="4605" min="3" max="7" chance="11.6821163277" /> <!-- Greater Dye of DEX <Dex+3 Str-3> -->
-				<item id="4606" min="3" max="9" chance="9.7351441551" /> <!-- Greater Dye of DEX <Dex+3 Con-3> -->
 				<item id="8176" min="1" max="1" chance="75" /> <!-- Destruction Tombstone -->
 				<item id="9816" min="1" max="3" chance="75" /> <!-- Earth Egg -->
 			</drop>
@@ -3901,7 +3873,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="183" /> <!-- rhand: Mystic Staff -->
-		<acquire sp="206038" />
+		<acquire exp="1976893" sp="206038" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="108760.132419" hpRegen="39.411275" mp="557.4" mpRegen="2.1" />
 			<attack physical="291.5444" magical="29.76552" attackSpeed="253" range="40" />
@@ -4028,7 +4000,7 @@
 		</parameters>
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
-		<acquire exp="625" sp="79280" />
+		<acquire exp="2541012" sp="79280" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="43316.308536" hpRegen="18.438531" mp="259.2" mpRegen="1.5" />
 			<attack physical="74.22232" magical="4.67967" attackSpeed="253" range="40" />
@@ -4150,7 +4122,7 @@
 		<race>UNDEAD</race>
 		<sex>MALE</sex>
 		<equipment rhand="8532" /> <!-- rhand: For Monsters Only (Spinebone Sword) -->
-		<acquire sp="173127" />
+		<acquire exp="1988451" sp="173127" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="86871.349292" hpRegen="32.411747" mp="463.32" mpRegen="1.8" />
 			<attack physical="219.96935" magical="17.29939" attackSpeed="253" range="40" />
@@ -4208,8 +4180,6 @@
 				<item id="2062" min="5" max="15" chance="17.675802781" /> <!-- Scythe Edge -->
 				<item id="2075" min="9" max="27" chance="9.819925703" /> <!-- Orcish Glaive Blade -->
 				<item id="2076" min="2" max="6" chance="44.1895069525" /> <!-- Body Slasher Blade -->
-				<item id="951" min="1" max="1" chance="53.1163081987" /> <!-- Scroll: Enchant Weapon (C-Grade) -->
-				<item id="952" min="12" max="36" chance="16.2299850411" /> <!-- Scroll: Enchant Armor (C-Grade) -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -4267,7 +4237,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="67" lhand="633" /> <!-- rhand: Orcish Sword lhand: Zubei's Shield -->
-		<acquire sp="153693" />
+		<acquire exp="1932589" sp="153693" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="77592.657061" hpRegen="29.423287" mp="432.72" mpRegen="1.8" />
 			<attack physical="190.06221" magical="15.06832" attackSpeed="253" range="40" />
@@ -4395,7 +4365,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="6719" /> <!-- rhand: Monster Only(Ketra Orc Chieftain) -->
-		<acquire sp="557272" />
+		<acquire exp="3775961" sp="557272" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="300327.053711" hpRegen="92.338763" mp="1674.8" mpRegen="3" />
 			<attack physical="1445.33275" magical="280.52214" attackSpeed="253" range="40" />
@@ -4430,7 +4400,6 @@
 				<item id="6707" min="12" max="36" chance="21.62115241" /> <!-- Sealed Draconic Leather Armor Part -->
 				<item id="6367" min="1" max="1" chance="0.7347704126" /> <!-- Angel Slayer -->
 				<item id="6691" min="3" max="9" chance="56.5930295874" /> <!-- Angel Slayer Blade -->
-				<item id="3936" min="1" max="1" chance="50.9091236248" /> <!-- Blessed Scroll of Resurrection -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -4521,7 +4490,7 @@
 		<race>HUMANOID</race>
 		<sex>MALE</sex>
 		<equipment rhand="6716" /> <!-- rhand: Monster Only(Silenos Shaman) -->
-		<acquire sp="557272" />
+		<acquire exp="3775961" sp="557272" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="300327.053711" hpRegen="92.338763" mp="1674.8" mpRegen="3" />
 			<attack physical="1445.33275" magical="280.52214" attackSpeed="253" range="40" />
@@ -4560,8 +4529,6 @@
 				<item id="6702" min="4" max="12" chance="44.861199764" /> <!-- Sealed Imperial Crusader Gaiters Pattern -->
 				<item id="6367" min="1" max="1" chance="0.7347704126" /> <!-- Angel Slayer -->
 				<item id="6691" min="3" max="9" chance="56.5930295874" /> <!-- Angel Slayer Blade -->
-				<item id="959" min="1" max="1" chance="2.7151629088" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
-				<item id="960" min="1" max="1" chance="27.1516897268" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -4641,7 +4608,7 @@
 	<npc id="25793" level="72" type="RaidBoss" name="Doom Blade Tanatos" title="Lord of Destruction">
 		<!-- TODO: Must be confirmed -->
 		<sex>MALE</sex>
-		<acquire sp="827123" />
+		<acquire exp="5140647" sp="827123" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="766919.841979" hpRegen="299.923216" mp="1410.0" mpRegen="3" />
 			<attack physical="4561.13269" magical="3254.54886" attackSpeed="253" range="40" />
@@ -4688,7 +4655,6 @@
 				<item id="5528" min="14" max="42" chance="21.16944751" /> <!-- Sealed Majestic Circlet Design -->
 				<item id="236" min="1" max="1" chance="2.1512677472" /> <!-- Soul Separator -->
 				<item id="5537" min="12" max="36" chance="25.5028322528" /> <!-- Soul Separator Head -->
-				<item id="730" min="1" max="3" chance="60.2496381482" /> <!-- Scroll: Enchant Armor (A-Grade) -->
 				<item id="8176" min="1" max="4" chance="82" /> <!-- Destruction Tombstone -->
 				<item id="8619" min="1" max="1" chance="54" /> <!-- Ancient Book: Divine Inspiration (Original Language Version) -->
 				<item id="9814" min="3" max="7" chance="82" /> <!-- Memento Mori -->
@@ -4713,7 +4679,7 @@
 		</parameters>
 		<race>DEMONIC</race>
 		<sex>MALE</sex>
-		<acquire sp="864099" />
+		<acquire exp="5231148" sp="864099" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="397437.25144" hpRegen="123.21629" mp="1507.8" mpRegen="3" />
 			<attack physical="2451.22348" magical="868.87603" attackSpeed="253" range="40" />
@@ -4763,8 +4729,6 @@
 				<item id="6713" min="46" max="136" chance="3.9340480946" /> <!-- Sealed Major Arcana Boots Design -->
 				<item id="6371" min="1" max="1" chance="1.0583905527" /> <!-- Demon Splinter -->
 				<item id="6695" min="12" max="36" chance="19.9953094473" /> <!-- Demon Splinter Blade -->
-				<item id="959" min="1" max="1" chance="3.9110313616" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
-				<item id="960" min="1" max="1" chance="39.1104009626" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 			</drop>
 		</dropLists>
 		<collision>
@@ -4861,7 +4825,7 @@
 		</parameters>
 		<race>DRAGON</race>
 		<sex>MALE</sex>
-		<acquire sp="802604" />
+		<acquire exp="4596479" sp="802604" />
 		<stats str="60" int="76" dex="73" wit="70" con="57" men="80">
 			<vitals hp="373386.071242" hpRegen="117.684362" mp="1345.8" mpRegen="2.7" />
 			<attack physical="2154.88112" magical="717.40387" attackSpeed="253" range="40" />
@@ -4900,8 +4864,6 @@
 				<item id="5481" min="8" max="22" chance="22.0131847604" /> <!-- Sealed Majestic Leather Armor Fabric -->
 				<item id="305" min="1" max="1" chance="2.1287467624" /> <!-- Tallum Glaive -->
 				<item id="5541" min="12" max="36" chance="25.2256532376" /> <!-- Tallum Glaive Edge -->
-				<item id="959" min="1" max="1" chance="3.8156405712" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
-				<item id="960" min="1" max="1" chance="38.1564909282" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 				<item id="8176" min="1" max="4" chance="82" /> <!-- Destruction Tombstone -->
 				<item id="8619" min="1" max="1" chance="52" /> <!-- Ancient Book: Divine Inspiration (Original Language Version) -->
 				<item id="9815" min="3" max="7" chance="81" /> <!-- Dragon Heart -->
