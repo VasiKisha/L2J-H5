@@ -399,37 +399,25 @@ public class SSQMonasteryOfSilence extends InstanceScript
 					addSpawn(GUARDIAN_OF_THE_TOMB_1, GUARDIAN_OF_THE_TOMB_1_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_1_LOC)
 					{
-						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
-						mob.setRunning();
-						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(Intention.ATTACK, player);
+						sendSlaveAtPlayer(addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()), player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_2, GUARDIAN_OF_THE_TOMB_2_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_2_LOC)
 					{
-						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
-						mob.setRunning();
-						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(Intention.ATTACK, player);
+						sendSlaveAtPlayer(addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()), player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_3, GUARDIAN_OF_THE_TOMB_3_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_3_LOC)
 					{
-						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
-						mob.setRunning();
-						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(Intention.ATTACK, player);
+						sendSlaveAtPlayer(addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()), player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_4, GUARDIAN_OF_THE_TOMB_4_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_4_LOC)
 					{
-						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
-						mob.setRunning();
-						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(Intention.ATTACK, player);
+						sendSlaveAtPlayer(addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()), player);
 					}
 					
 					return "32843-01.html";
@@ -546,6 +534,25 @@ public class SSQMonasteryOfSilence extends InstanceScript
 		}
 		
 		return super.onTalk(npc, talker);
+	}
+	
+	/**
+	 * Sends a freshly spawned tomb slave at the player.<br>
+	 * The template of a slave can be a Folk, which is not attackable, so the aggression is only applied when it is.
+	 * @param slave the spawned slave
+	 * @param player the player to send it at
+	 */
+	private void sendSlaveAtPlayer(Npc slave, Player player)
+	{
+		final Attackable mob = slave.asAttackable();
+		if (mob == null)
+		{
+			return;
+		}
+		
+		mob.setRunning();
+		mob.addDamageHate(player, 0, 999);
+		mob.getAI().setIntention(Intention.ATTACK, player);
 	}
 	
 	protected void spawnElcadia(Player player, InstanceWorld world)

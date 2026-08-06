@@ -134,44 +134,50 @@
 			<height normal="27.5" />
 		</collision>
 	</npc>
-	<npc id="27403" level="80" type="Folk" name="Trainee of Rest">
-		<!-- TODO: Must be confirmed -->
+	<npc id="27403" level="80" type="Monster" name="Trainee of Rest">
+		<!-- Confirmed High Five -->
+		<race>DIVINE</race>
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="3290.11306877694" mp="1674.8" />
-			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<vitals hp="3290.11306877694" hpRegen="8.5" mp="1674.8" mpRegen="3" />
+			<attack physical="970.537548504614" magical="662.751329129412" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
 			<speed>
-				<walk ground="60" />
+				<walk ground="27" />
 				<run ground="160" />
 			</speed>
 		</stats>
+		<status undying="false" />
+		<ai aggroRange="500" clanHelpRange="300" isAggressive="true" />
 		<collision>
-			<radius normal="25" />
-			<height normal="35" />
+			<radius normal="12" />
+			<height normal="28.4" />
 		</collision>
 	</npc>
-	<npc id="27404" level="80" type="Folk" name="Supplicant of Rest">
-		<!-- TODO: Must be confirmed -->
+	<npc id="27404" level="80" type="Monster" name="Supplicant of Rest">
+		<!-- Confirmed High Five -->
+		<race>DIVINE</race>
 		<sex>MALE</sex>
 		<stats str="40" int="21" dex="30" wit="20" con="43" men="20">
-			<vitals hp="3290.11306877694" mp="1674.8" />
-			<attack physical="970.537548504614" magical="662.751329129412" attackSpeed="253" range="40" />
+			<vitals hp="3290.11306877694" hpRegen="8.5" mp="1674.8" mpRegen="3" />
+			<attack physical="970.537548504614" magical="662.751329129412" random="30" critical="4" accuracy="4.75" attackSpeed="253" type="SWORD" range="40" distance="80" width="120" />
 			<defence physical="341.375" magical="249.80341" />
 			<attribute>
 				<defence fire="20" water="20" wind="20" earth="20" holy="20" dark="20" />
 			</attribute>
 			<speed>
-				<walk ground="60" />
+				<walk ground="27" />
 				<run ground="160" />
 			</speed>
 		</stats>
+		<status undying="false" />
+		<ai aggroRange="500" clanHelpRange="300" isAggressive="true" />
 		<collision>
-			<radius normal="25" />
-			<height normal="35" />
+			<radius normal="18" />
+			<height normal="44" />
 		</collision>
 	</npc>
 	<npc id="27405" level="80" type="Folk" name="Monastic Pilgrim">
