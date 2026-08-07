@@ -2,6 +2,10 @@
 <list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
 	<spawn name="21_16">
 		<npc id="4312" x="43319" y="-47412" z="-792" heading="7788" respawnDelay="60" /> <!-- Prophet -->
+		<npc id="31386" x="59612" y="-42775" z="-2996" heading="13152" respawnDelay="60" periodOfDay="day" /> <!-- Violet -->
+		<npc id="31387" x="58782" y="-42652" z="-3004" heading="0" respawnDelay="60" periodOfDay="day" /> <!-- Kurstin -->
+		<npc id="31388" x="59618" y="-41675" z="-3003" heading="-20280" respawnDelay="60" periodOfDay="day" /> <!-- Mina -->
+		<npc id="31389" x="60162" y="-42069" z="-3003" heading="-29168" respawnDelay="60" periodOfDay="day" /> <!-- Dorian -->
 		<npc id="18119" x="48801" y="-47523" z="-3785" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="48902" y="-48413" z="-3785" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="49305" y="-47345" z="-3785" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
@@ -42,10 +46,8 @@
 		<npc id="18119" x="54389" y="-57295" z="-3622" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="54397" y="-49842" z="-3085" heading="42972" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="54564" y="-48460" z="-3762" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="54614" y="-48491" z="-3280" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="54783" y="-56123" z="-3348" heading="38225" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="54791" y="-56939" z="-3622" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="54899" y="-49706" z="-2955" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="54903" y="-49194" z="-3117" heading="58289" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="55168" y="-50240" z="-3762" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="55172" y="-51945" z="-3518" heading="7741" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
@@ -62,7 +64,6 @@
 		<npc id="18119" x="55900" y="-52860" z="-3324" heading="35323" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="55927" y="-50815" z="-3624" heading="8401" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="55969" y="-53643" z="-3578" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="55995" y="-49507" z="-3121" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="55999" y="-56583" z="-3622" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="56041" y="-55794" z="-3459" heading="12978" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="56170" y="-53287" z="-3578" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
@@ -79,18 +80,10 @@
 		<npc id="18119" x="58358" y="-57744" z="-3306" heading="37984" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="58383" y="-56876" z="-3607" heading="0" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
 		<npc id="18119" x="59065" y="-57109" z="-3186" heading="53662" respawnDelay="60" periodOfDay="night" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="59338" y="-47119" z="-2553" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="60084" y="-46497" z="-2521" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="60362" y="-45743" z="-2532" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="61044" y="-46919" z="-2646" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="61124" y="-45712" z="-2563" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
-		<npc id="18119" x="61586" y="-46424" z="-2561" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corpse of Deadman -->
 		<npc id="21547" x="47005" y="-58115" z="-2294" heading="54666" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="47437" y="-56772" z="-2356" heading="59486" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="47590" y="-57818" z="-2406" heading="36518" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="47730" y="-56383" z="-2479" heading="15986" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
-		<npc id="21547" x="48027" y="-56062" z="-2532" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corrupted Knight -->
-		<npc id="21547" x="48536" y="-55831" z="-2607" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="48638" y="-59211" z="-2817" heading="51978" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="49498" y="-57079" z="-2586" heading="52018" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
 		<npc id="21547" x="49589" y="-56681" z="-2590" heading="4602" respawnDelay="30" periodOfDay="night" /> <!-- Corrupted Knight -->
@@ -156,22 +149,6 @@
 		<npc id="21552" x="58094" y="-58216" z="-3306" heading="42332" respawnDelay="30" periodOfDay="night" /> <!-- Resurrected Guard -->
 		<npc id="21552" x="58891" y="-55566" z="-3240" heading="17142" respawnDelay="30" periodOfDay="night" /> <!-- Resurrected Guard -->
 		<npc id="21552" x="59650" y="-57321" z="-3072" heading="1897" respawnDelay="30" periodOfDay="night" /> <!-- Resurrected Guard -->
-		<npc id="21553" x="48127" y="-58500" z="-2669" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="48325" y="-57700" z="-2636" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="48665" y="-56346" z="-2672" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49084" y="-56652" z="-2625" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49209" y="-55832" z="-2669" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49286" y="-57626" z="-2692" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49793" y="-59267" z="-2688" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49833" y="-56757" z="-2586" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="49876" y="-55365" z="-2683" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="50183" y="-58715" z="-2766" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="50362" y="-60677" z="-2680" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="51005" y="-61221" z="-2690" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="51137" y="-58952" z="-2860" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="51849" y="-60206" z="-2883" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="52404" y="-59630" z="-2947" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
-		<npc id="21553" x="53574" y="-59686" z="-3168" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Trampled Man -->
 		<npc id="21555" x="47509" y="-57360" z="-2408" heading="28536" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
 		<npc id="21555" x="48628" y="-57803" z="-2822" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
 		<npc id="21555" x="49632" y="-62157" z="-2885" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
@@ -193,37 +170,6 @@
 		<npc id="21556" x="53926" y="-59562" z="-3219" heading="32448" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
 		<npc id="21556" x="55057" y="-59729" z="-3255" heading="19428" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
 		<npc id="21556" x="55573" y="-59763" z="-3459" heading="4993" respawnDelay="30" periodOfDay="night" /> <!-- Slaughter Executioner -->
-		<npc id="21557" x="49698" y="-60886" z="-2677" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50177" y="-61547" z="-2553" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50239" y="-52165" z="-2888" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50651" y="-50371" z="-2821" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50675" y="-59203" z="-2765" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50709" y="-52928" z="-2849" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="50942" y="-49222" z="-2947" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="51021" y="-61847" z="-2584" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="51158" y="-50845" z="-2781" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="51414" y="-61701" z="-2663" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="53109" y="-59165" z="-3210" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="53130" y="-60575" z="-3069" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="53920" y="-59258" z="-3307" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="54564" y="-58884" z="-3428" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="54695" y="-59700" z="-3262" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="58877" y="-54473" z="-3201" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="59382" y="-53801" z="-3230" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="59558" y="-53238" z="-3129" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="59859" y="-54113" z="-3224" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21557" x="59932" y="-53555" z="-3130" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Snatcher -->
-		<npc id="21559" x="50902" y="-61550" z="-2621" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="51317" y="-60678" z="-2815" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="51537" y="-61249" z="-2796" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="52440" y="-60323" z="-2936" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="52946" y="-59606" z="-3097" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="53477" y="-60199" z="-3052" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="59230" y="-52339" z="-3216" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="59889" y="-50734" z="-2842" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="60008" y="-53840" z="-3180" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="60335" y="-51304" z="-2905" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
-		<npc id="21559" x="60343" y="-52399" z="-3030" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Maker -->
 		<npc id="21560" x="51439" y="-52915" z="-3195" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
 		<npc id="21560" x="51620" y="-51503" z="-3093" heading="25740" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
 		<npc id="21560" x="51843" y="-53271" z="-3195" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
@@ -234,20 +180,6 @@
 		<npc id="21560" x="58282" y="-57054" z="-3607" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
 		<npc id="21560" x="58923" y="-57951" z="-3244" heading="51259" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
 		<npc id="21560" x="59358" y="-55767" z="-3149" heading="43155" respawnDelay="30" periodOfDay="night" /> <!-- Bone Shaper -->
-		<npc id="21561" x="54442" y="-54337" z="-3116" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="54788" y="-56144" z="-3360" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="54860" y="-55067" z="-3197" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="56908" y="-51662" z="-3114" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="57724" y="-51131" z="-3162" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="58133" y="-51647" z="-3177" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="58138" y="-56992" z="-3324" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="58197" y="-55189" z="-3326" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="58320" y="-55917" z="-3328" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="59375" y="-53820" z="-3234" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="59583" y="-52914" z="-3089" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="59599" y="-52087" z="-3114" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="60098" y="-51343" z="-2908" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
-		<npc id="21561" x="60271" y="-52020" z="-2989" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Sacrificed Man -->
 		<npc id="21562" x="55771" y="-58610" z="-3548" heading="30725" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
 		<npc id="21562" x="57677" y="-57410" z="-3607" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
 		<npc id="21562" x="57980" y="-56876" z="-3607" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
@@ -260,14 +192,6 @@
 		<npc id="21562" x="59917" y="-53412" z="-3092" heading="14712" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
 		<npc id="21562" x="60032" y="-51703" z="-3295" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
 		<npc id="21562" x="60525" y="-53078" z="-3062" heading="39205" respawnDelay="30" periodOfDay="night" /> <!-- Guillotine's Ghost -->
-		<npc id="21563" x="50591" y="-52055" z="-2906" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="50888" y="-51439" z="-2927" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="51408" y="-51807" z="-3062" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="52133" y="-50948" z="-3104" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="52802" y="-51307" z="-3091" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="53379" y="-55737" z="-3061" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="53826" y="-56627" z="-3356" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
-		<npc id="21563" x="54746" y="-56945" z="-3315" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Collector -->
 		<npc id="21564" x="50734" y="-53093" z="-3195" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
 		<npc id="21564" x="51255" y="-55137" z="-2920" heading="51513" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
 		<npc id="21564" x="51851" y="-51751" z="-3095" heading="34939" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
@@ -289,19 +213,6 @@
 		<npc id="21564" x="58789" y="-57254" z="-3275" heading="64248" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
 		<npc id="21564" x="59057" y="-56452" z="-3224" heading="55695" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
 		<npc id="21564" x="59061" y="-57443" z="-3193" heading="2694" respawnDelay="30" periodOfDay="night" /> <!-- Skull Collector -->
-		<npc id="21565" x="50477" y="-53112" z="-2832" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="50661" y="-50988" z="-2818" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="51135" y="-52651" z="-2878" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="51223" y="-50366" z="-2889" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="52439" y="-51751" z="-3044" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="53616" y="-55692" z="-3075" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="53915" y="-56593" z="-3362" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="54662" y="-57008" z="-3306" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="57479" y="-56340" z="-3352" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="57651" y="-57366" z="-3321" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="57921" y="-55653" z="-3332" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="58586" y="-55192" z="-3238" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
-		<npc id="21565" x="58591" y="-56157" z="-3327" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Animator -->
 		<npc id="21566" x="53535" y="-54784" z="-2928" heading="49152" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
 		<npc id="21566" x="54087" y="-56761" z="-3622" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
 		<npc id="21566" x="54590" y="-55871" z="-3622" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
@@ -318,19 +229,6 @@
 		<npc id="21566" x="60146" y="-52439" z="-3047" heading="29191" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
 		<npc id="21566" x="60208" y="-52403" z="-3041" heading="20026" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
 		<npc id="21566" x="60689" y="-51954" z="-2946" heading="52054" respawnDelay="90" periodOfDay="night" /> <!-- Skull Animator -->
-		<npc id="21567" x="48679" y="-41409" z="-2210" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="49239" y="-41885" z="-2157" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="49579" y="-40567" z="-2250" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="49853" y="-39734" z="-2218" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="50690" y="-40715" z="-2247" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="56705" y="-52962" z="-3249" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="57455" y="-55249" z="-3342" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="57795" y="-56317" z="-3356" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="57959" y="-52212" z="-3188" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="58137" y="-57629" z="-3334" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="58278" y="-53041" z="-3321" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="58541" y="-54553" z="-3199" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
-		<npc id="21567" x="58732" y="-56918" z="-3315" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Slayer -->
 		<npc id="21568" x="49728" y="-48097" z="-3387" heading="9482" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
 		<npc id="21568" x="50321" y="-47384" z="-3382" heading="63314" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
 		<npc id="21568" x="50686" y="-47086" z="-3396" heading="63314" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
@@ -361,23 +259,6 @@
 		<npc id="21569" x="59482" y="-53030" z="-3118" heading="16315" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
 		<npc id="21569" x="59631" y="-51528" z="-2928" heading="59083" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
 		<npc id="21569" x="60436" y="-51239" z="-2888" heading="14210" respawnDelay="30" periodOfDay="night" /> <!-- Devil Bat -->
-		<npc id="21570" x="49128" y="-40288" z="-2233" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="49500" y="-41375" z="-2258" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="50042" y="-40808" z="-2241" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="53578" y="-54253" z="-3023" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="54530" y="-55364" z="-3173" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="54678" y="-56682" z="-3359" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="55557" y="-48001" z="-3171" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="56254" y="-48938" z="-3036" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="56326" y="-53644" z="-3371" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="56347" y="-52636" z="-3253" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="56911" y="-51997" z="-3108" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="57232" y="-47528" z="-2827" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="57634" y="-52728" z="-3251" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="60343" y="-48346" z="-2743" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="60383" y="-46579" z="-2426" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="60498" y="-47581" z="-2732" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
-		<npc id="21570" x="60537" y="-48137" z="-2758" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Ghost of Betrayer -->
 		<npc id="21571" x="48930" y="-45176" z="-3365" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
 		<npc id="21571" x="49031" y="-45354" z="-3365" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
 		<npc id="21571" x="49338" y="-48340" z="-3287" heading="64309" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
@@ -406,17 +287,6 @@
 		<npc id="21571" x="59228" y="-46816" z="-2637" heading="28296" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
 		<npc id="21571" x="59251" y="-47787" z="-2633" heading="9286" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
 		<npc id="21571" x="60815" y="-48087" z="-2739" heading="43810" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Soldier -->
-		<npc id="21572" x="48871" y="-41838" z="-2168" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="49583" y="-45329" z="-2974" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="50543" y="-47113" z="-3400" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="50594" y="-45885" z="-3173" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="55092" y="-49068" z="-3105" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="55648" y="-49845" z="-3110" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="55748" y="-49097" z="-3082" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="59270" y="-47594" z="-2621" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="59560" y="-48114" z="-2721" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="60078" y="-46796" z="-2500" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
-		<npc id="21572" x="60271" y="-47841" z="-2738" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Sweeper -->
 		<npc id="21573" x="46604" y="-39906" z="-2026" heading="19750" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
 		<npc id="21573" x="47044" y="-42034" z="-1767" heading="45668" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
 		<npc id="21573" x="47762" y="-42531" z="-1884" heading="44170" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
@@ -449,24 +319,6 @@
 		<npc id="21573" x="59573" y="-48458" z="-3247" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
 		<npc id="21573" x="59875" y="-47568" z="-3247" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
 		<npc id="21573" x="60389" y="-46791" z="-2497" heading="4025" respawnDelay="30" periodOfDay="night" /> <!-- Atrox -->
-		<npc id="21574" x="46687" y="-40857" z="-1973" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="46839" y="-42134" z="-1830" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="47068" y="-41622" z="-1771" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="47676" y="-42661" z="-1852" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="47922" y="-42001" z="-1975" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="48165" y="-44671" z="-2370" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="48260" y="-43792" z="-2556" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="48852" y="-42343" z="-2244" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="53752" y="-49038" z="-3265" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="54226" y="-48559" z="-3323" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="55168" y="-49364" z="-3085" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="56018" y="-45147" z="-2961" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="56851" y="-45610" z="-2866" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="57471" y="-45126" z="-2615" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="57483" y="-45984" z="-2739" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="58534" y="-48549" z="-2682" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="58796" y="-49470" z="-2857" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
-		<npc id="21574" x="59644" y="-47486" z="-2714" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Grinder -->
 		<npc id="21576" x="47375" y="-42096" z="-1714" heading="57139" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
 		<npc id="21576" x="47388" y="-41204" z="-2017" heading="23908" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
 		<npc id="21576" x="48806" y="-42122" z="-2506" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
@@ -512,19 +364,6 @@
 		<npc id="21577" x="60303" y="-48131" z="-2761" heading="44084" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
 		<npc id="21577" x="60680" y="-47924" z="-3247" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
 		<npc id="21577" x="61267" y="-47500" z="-2832" heading="860" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Guillotine -->
-		<npc id="21578" x="46559" y="-39483" z="-1938" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="47292" y="-36405" z="-1583" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="47306" y="-37312" z="-1742" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="47668" y="-38458" z="-1710" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="47900" y="-39171" z="-1747" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="48763" y="-35805" z="-1514" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="49282" y="-36549" z="-1493" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="49860" y="-35989" z="-1573" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="50513" y="-36225" z="-1684" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="58721" y="-48937" z="-2808" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="59604" y="-46657" z="-2583" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="60371" y="-47156" z="-2695" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
-		<npc id="21578" x="60388" y="-46022" z="-2545" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Behemoth Zombie -->
 		<npc id="21579" x="46596" y="-39314" z="-1887" heading="32520" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
 		<npc id="21579" x="47814" y="-41651" z="-2013" heading="48753" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
 		<npc id="21579" x="48404" y="-41766" z="-2506" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
@@ -544,27 +383,6 @@
 		<npc id="21579" x="59588" y="-46594" z="-2567" heading="12499" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
 		<npc id="21579" x="59866" y="-47878" z="-2723" heading="13974" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
 		<npc id="21579" x="60643" y="-47150" z="-2662" heading="16862" respawnDelay="30" periodOfDay="night" /> <!-- Ghost of Rebellion Leader -->
-		<npc id="21580" x="46832" y="-39995" z="-2015" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="47788" y="-44267" z="-2391" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="48096" y="-43849" z="-2518" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="48418" y="-45335" z="-2632" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="51139" y="-38515" z="-1869" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="51288" y="-39548" z="-2040" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="53906" y="-48190" z="-3346" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="54520" y="-48223" z="-3335" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="54608" y="-49142" z="-3206" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21580" x="55384" y="-45226" z="-2874" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Caster -->
-		<npc id="21581" x="46665" y="-40387" z="-2061" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="46794" y="-36869" z="-1639" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="47337" y="-37731" z="-1783" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="48262" y="-36194" z="-1467" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="48786" y="-37466" z="-1681" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="50311" y="-36408" z="-1703" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="55602" y="-45389" z="-2894" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="56641" y="-45690" z="-2905" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="59828" y="-46270" z="-2557" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="60543" y="-45606" z="-2523" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
-		<npc id="21581" x="61564" y="-45859" z="-2537" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Puppeteer -->
 		<npc id="21582" x="46351" y="-40855" z="-2272" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
 		<npc id="21582" x="47055" y="-41033" z="-2272" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
 		<npc id="21582" x="47609" y="-40707" z="-2121" heading="63449" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
@@ -592,20 +410,6 @@
 		<npc id="21582" x="59976" y="-47390" z="-3247" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
 		<npc id="21582" x="60077" y="-47212" z="-3247" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
 		<npc id="21582" x="61115" y="-48248" z="-2738" heading="39621" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Soldier -->
-		<npc id="21583" x="45907" y="-37365" z="-1657" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="46220" y="-36387" z="-1657" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="46281" y="-37205" z="-1678" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="46591" y="-36695" z="-1645" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="46953" y="-38272" z="-1652" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="47638" y="-39222" z="-1752" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="48064" y="-35987" z="-1521" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="48353" y="-36680" z="-1338" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="49108" y="-37431" z="-1696" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="49937" y="-36622" z="-1662" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="49953" y="-36330" z="-1641" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="56138" y="-45668" z="-3030" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="56691" y="-45861" z="-2848" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
-		<npc id="21583" x="57385" y="-45629" z="-2754" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Bone Scavenger -->
 		<npc id="21585" x="46862" y="-39119" z="-1820" heading="53143" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magician -->
 		<npc id="21585" x="47280" y="-37848" z="-1775" heading="10647" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magician -->
 		<npc id="21585" x="49503" y="-37412" z="-2047" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magician -->
@@ -636,9 +440,6 @@
 		<npc id="21586" x="55932" y="-45757" z="-2999" heading="3166" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Adept -->
 		<npc id="21586" x="58377" y="-43626" z="-3216" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Adept -->
 		<npc id="21586" x="58722" y="-43183" z="-2999" heading="36540" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Adept -->
-		<npc id="21587" x="46406" y="-40009" z="-2014" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warrior -->
-		<npc id="21587" x="47566" y="-36619" z="-1568" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warrior -->
-		<npc id="21587" x="48921" y="-36541" z="-1428" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warrior -->
 		<npc id="21588" x="46419" y="-38114" z="-1464" heading="34326" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
 		<npc id="21588" x="47241" y="-38457" z="-1710" heading="60105" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
 		<npc id="21588" x="48283" y="-36647" z="-1343" heading="2449" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
@@ -658,7 +459,6 @@
 		<npc id="21589" x="57166" y="-47682" z="-2855" heading="45082" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
 		<npc id="21589" x="57974" y="-43270" z="-3216" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
 		<npc id="21589" x="59332" y="-42507" z="-2999" heading="13497" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Wizard -->
-		<npc id="21590" x="49681" y="-35721" z="-1503" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Magister -->
 		<npc id="21591" x="46903" y="-39851" z="-1951" heading="61781" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
 		<npc id="21591" x="47085" y="-40359" z="-2059" heading="62467" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
 		<npc id="21591" x="53670" y="-40643" z="-3105" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
@@ -669,10 +469,6 @@
 		<npc id="21592" x="57703" y="-47205" z="-2637" heading="10339" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
 		<npc id="21592" x="58864" y="-43153" z="-2999" heading="4395" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
 		<npc id="21592" x="59984" y="-42454" z="-2999" heading="3772" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Magister -->
-		<npc id="21593" x="46819" y="-39146" z="-1833" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warlord -->
-		<npc id="21593" x="47097" y="-37901" z="-1749" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warlord -->
-		<npc id="21593" x="47554" y="-38683" z="-1746" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warlord -->
-		<npc id="21593" x="48104" y="-39472" z="-1735" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Vampire Warlord -->
 		<npc id="21594" x="46218" y="-39990" z="-1991" heading="47738" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
 		<npc id="21594" x="46893" y="-41669" z="-1779" heading="11858" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
 		<npc id="21594" x="47252" y="-37404" z="-1731" heading="16207" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
@@ -688,33 +484,14 @@
 		<npc id="21595" x="57873" y="-43448" z="-3216" heading="0" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
 		<npc id="21595" x="58453" y="-45145" z="-2527" heading="5776" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
 		<npc id="21595" x="60586" y="-42404" z="-2999" heading="655" respawnDelay="30" periodOfDay="night" /> <!-- Vampire Warlord -->
-		<npc id="21596" x="50735" y="-49675" z="-2891" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="51388" y="-52773" z="-2854" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="51616" y="-53310" z="-2813" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="53162" y="-51515" z="-3079" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="53966" y="-51786" z="-3040" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="54048" y="-54670" z="-3029" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="54175" y="-56646" z="-3387" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="54851" y="-56283" z="-3374" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="56573" y="-52246" z="-3190" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="57275" y="-51383" z="-3163" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21596" x="57360" y="-52552" z="-3246" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Lord -->
-		<npc id="21599" x="46341" y="-39761" z="-1990" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
-		<npc id="21599" x="47194" y="-37474" z="-1738" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
-		<npc id="21599" x="47988" y="-38781" z="-1731" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
 		<npc id="21599" x="53761" y="-48504" z="-3321" heading="40914" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="54424" y="-47178" z="-3226" heading="41418" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="54765" y="-49172" z="-3762" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
-		<npc id="21599" x="55112" y="-44053" z="-2931" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
 		<npc id="21599" x="55332" y="-48124" z="-3290" heading="62721" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
-		<npc id="21599" x="55544" y="-44500" z="-2922" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
 		<npc id="21599" x="55823" y="-48450" z="-3202" heading="14326" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="56195" y="-47341" z="-2988" heading="12786" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="56275" y="-51486" z="-3762" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="56475" y="-50062" z="-3762" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
-		<npc id="21599" x="57349" y="-46255" z="-2773" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
-		<npc id="21599" x="57451" y="-49456" z="-3020" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
-		<npc id="21599" x="57732" y="-48609" z="-2848" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Requiem Priest -->
 		<npc id="21599" x="58696" y="-49334" z="-2868" heading="454" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="58867" y="-47212" z="-3247" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
 		<npc id="21599" x="58968" y="-47746" z="-3247" heading="0" respawnDelay="90" periodOfDay="night" /> <!-- Requiem Priest -->
@@ -790,10 +567,6 @@
 		<npc id="31349" x="35408" y="-48368" z="899" heading="0" respawnDelay="60" /> <!-- Benedict -->
 		<npc id="31350" x="35416" y="-48076" z="899" heading="0" respawnDelay="60" /> <!-- Dominic -->
 		<npc id="31351" x="37762" y="-37946" z="-3668" heading="49000" respawnDelay="60" /> <!-- Volker -->
-		<npc id="31386" x="59618" y="-42774" z="-3000" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Violet -->
-		<npc id="31387" x="58790" y="-42646" z="-3000" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Kurstin -->
-		<npc id="31388" x="59626" y="-41684" z="-3000" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Mina -->
-		<npc id="31389" x="60161" y="-42086" z="-3000" heading="0" respawnDelay="240" periodOfDay="day" /> <!-- Dorian -->
 		<npc id="31522" x="51878" y="-54796" z="-3167" heading="22912" respawnDelay="60" /> <!-- Mysterious Wizard -->
 		<npc id="31523" x="51475" y="-54596" z="-3155" heading="11040" respawnDelay="60" /> <!-- Tombstone -->
 		<npc id="31526" x="51995" y="-51265" z="-3104" heading="-2064" respawnDelay="60" /> <!-- Broken Bookshelf -->
@@ -878,5 +651,352 @@
 		<npc id="35579" x="37811" y="-46092" z="897" heading="46596" respawnDelay="60" /> <!-- Egon -->
 		<npc id="36478" x="43456" y="-49579" z="-796" heading="3743" respawnDelay="60" /> <!-- Mickey -->
 		<npc id="36480" x="36058" y="-48333" z="-1096" heading="0" respawnDelay="60" /> <!-- Scipio -->
+	</spawn>
+	<spawn zone="rune09_2116_01">
+		<territory minZ="-2885" maxZ="-2335">
+			<node x="51088" y="-61979" />
+			<node x="51906" y="-61281" />
+			<node x="51096" y="-60374" />
+			<node x="49342" y="-60066" />
+			<node x="48950" y="-60699" />
+			<node x="49872" y="-61921" />
+		</territory>
+		<npc id="21549" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21553" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Trampled Man -->
+		<npc id="21558" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21559" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Maker -->
+	</spawn>
+	<spawn zone="rune09_2116_02">
+		<territory minZ="-3394" maxZ="-2694">
+			<node x="53066" y="-60914" />
+			<node x="54969" y="-60537" />
+			<node x="53552" y="-58689" />
+			<node x="51986" y="-59406" />
+			<node x="51599" y="-60439" />
+		</territory>
+		<npc id="21549" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21554" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Trampled Man -->
+		<npc id="21557" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21558" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21559" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Maker -->
+	</spawn>
+	<spawn zone="rune09_2116_03">
+		<territory minZ="-3734" maxZ="-2834">
+			<node x="55947" y="-59306" />
+			<node x="55857" y="-57736" />
+			<node x="55422" y="-57554" />
+			<node x="53718" y="-58754" />
+			<node x="55017" y="-60462" />
+		</territory>
+		<npc id="21549" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21554" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Trampled Man -->
+		<npc id="21557" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21558" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21559" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Maker -->
+	</spawn>
+	<spawn zone="rune09_2116_04">
+		<territory minZ="-3364" maxZ="-2364">
+			<node x="50875" y="-59952" />
+			<node x="53186" y="-58121" />
+			<node x="52429" y="-57584" />
+			<node x="49356" y="-58742" />
+			<node x="49343" y="-59399" />
+		</territory>
+		<npc id="21549" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21553" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Trampled Man -->
+		<npc id="21558" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21559" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Maker -->
+	</spawn>
+	<spawn zone="rune09_2116_05">
+		<territory minZ="-2822" maxZ="-2022">
+			<node x="47991" y="-58773" />
+			<node x="49889" y="-57367" />
+			<node x="48562" y="-55344" />
+			<node x="47061" y="-56908" />
+			<node x="46714" y="-58004" />
+		</territory>
+		<npc id="21547" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Corrupted Knight -->
+		<npc id="21548" respawnDelay="30" count="5" periodOfDay="day" /> <!-- Resurrected Knight -->
+		<npc id="21550" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21554" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Trampled Man -->
+	</spawn>
+	<spawn zone="rune09_2116_06">
+		<territory minZ="-3099" maxZ="-2299">
+			<node x="49958" y="-57323" />
+			<node x="51530" y="-57076" />
+			<node x="51827" y="-55793" />
+			<node x="49874" y="-54770" />
+			<node x="48623" y="-55290" />
+		</territory>
+		<npc id="21547" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Corrupted Knight -->
+		<npc id="21548" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Resurrected Knight -->
+		<npc id="21550" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Corrupted Guard -->
+		<npc id="21554" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Trampled Man -->
+	</spawn>
+	<spawn zone="rune09_2116_07">
+		<territory minZ="-3622" maxZ="-2522">
+			<node x="55839" y="-56824" />
+			<node x="56094" y="-54794" />
+			<node x="55017" y="-53294" />
+			<node x="53072" y="-54320" />
+			<node x="53029" y="-56382" />
+			<node x="54195" y="-57695" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="20" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21563" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Collector -->
+		<npc id="21561" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Sacrificed Man -->
+		<npc id="21565" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Animator -->
+		<npc id="21596" respawnDelay="90" count="3" periodOfDay="day" /> <!-- Requiem Lord -->
+		<npc id="21570" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+	</spawn>
+	<spawn zone="rune09_2116_08">
+		<territory minZ="-3578" maxZ="-2778">
+			<node x="58000" y="-53340" />
+			<node x="58352" y="-51238" />
+			<node x="57194" y="-50956" />
+			<node x="55910" y="-51563" />
+			<node x="55215" y="-53245" />
+			<node x="56372" y="-54735" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="20" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21561" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Sacrificed Man -->
+		<npc id="21596" respawnDelay="90" count="3" periodOfDay="day" /> <!-- Requiem Lord -->
+		<npc id="21567" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Slayer -->
+		<npc id="21570" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+	</spawn>
+	<spawn zone="rune09_2116_09">
+		<territory minZ="-3607" maxZ="-2807">
+			<node x="59147" y="-57639" />
+			<node x="59410" y="-54956" />
+			<node x="58373" y="-54061" />
+			<node x="56759" y="-55546" />
+			<node x="56378" y="-57632" />
+			<node x="57310" y="-58768" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="15" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21558" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21559" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Bone Maker -->
+		<npc id="21561" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Sacrificed Man -->
+		<npc id="21563" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Collector -->
+	</spawn>
+	<spawn zone="rune09_2116_10">
+		<territory minZ="-3515" maxZ="-2715">
+			<node x="59981" y="-54556" />
+			<node x="60939" y="-53182" />
+			<node x="60726" y="-52341" />
+			<node x="59098" y="-52110" />
+			<node x="58513" y="-53596" />
+		</territory>
+		<npc id="21561" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Sacrificed Man -->
+		<npc id="21567" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Slayer -->
+		<npc id="21565" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Animator -->
+	</spawn>
+	<spawn zone="rune09_2116_11">
+		<territory minZ="-3295" maxZ="-2595">
+			<node x="60753" y="-52237" />
+			<node x="61459" y="-51067" />
+			<node x="60988" y="-49341" />
+			<node x="59148" y="-50895" />
+			<node x="59142" y="-52067" />
+		</territory>
+		<npc id="21563" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Collector -->
+		<npc id="21567" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Slayer -->
+		<npc id="21565" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Animator -->
+	</spawn>
+	<spawn zone="rune09_2116_12">
+		<territory minZ="-3195" maxZ="-2495">
+			<node x="51547" y="-54171" />
+			<node x="52883" y="-52822" />
+			<node x="50208" y="-51055" />
+			<node x="50231" y="-53713" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="6" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21557" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21563" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Collector -->
+		<npc id="21565" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Animator -->
+		<npc id="21596" respawnDelay="90" count="2" periodOfDay="day" /> <!-- Requiem Lord -->
+	</spawn>
+	<spawn zone="rune09_2116_13">
+		<territory minZ="-3582" maxZ="-2482">
+			<node x="52993" y="-52764" />
+			<node x="54593" y="-51652" />
+			<node x="52548" y="-49621" />
+			<node x="50566" y="-49198" />
+			<node x="50248" y="-50992" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="9" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21557" respawnDelay="30" count="5" periodOfDay="day" /> <!-- Bone Snatcher -->
+		<npc id="21563" respawnDelay="30" count="5" periodOfDay="day" /> <!-- Bone Collector -->
+		<npc id="21565" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Animator -->
+		<npc id="21596" respawnDelay="90" count="3" periodOfDay="day" /> <!-- Requiem Lord -->
+	</spawn>
+	<spawn zone="rune09_2116_14">
+		<territory minZ="-3762" maxZ="-2562">
+			<node x="58979" y="-50028" />
+			<node x="58254" y="-47746" />
+			<node x="55197" y="-46308" />
+			<node x="53374" y="-47521" />
+			<node x="53261" y="-49355" />
+			<node x="55040" y="-50952" />
+		</territory>
+		<npc id="18119" respawnDelay="60" count="18" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21570" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+		<npc id="21572" respawnDelay="30" count="8" periodOfDay="day" /> <!-- Bone Sweeper -->
+		<npc id="21574" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21575" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21580" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Caster -->
+		<npc id="21599" respawnDelay="90" count="4" periodOfDay="day" /> <!-- Requiem Priest -->
+	</spawn>
+	<spawn zone="rune09_2116_15">
+		<territory minZ="-3247" maxZ="-2347">
+			<node x="61271" y="-48011" />
+			<node x="62135" y="-44855" />
+			<node x="61207" y="-44065" />
+			<node x="58383" y="-47642" />
+			<node x="59055" y="-49908" />
+		</territory>
+		<npc id="21570" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+		<npc id="21575" respawnDelay="30" count="6" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21578" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Behemoth Zombie -->
+		<npc id="21580" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Caster -->
+		<npc id="21581" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Puppeteer -->
+	</spawn>
+	<spawn zone="rune09_2116_16">
+		<territory minZ="-3465" maxZ="-2165">
+			<node x="58049" y="-47430" />
+			<node x="59409" y="-45332" />
+			<node x="55094" y="-42164" />
+			<node x="54333" y="-44387" />
+			<node x="55252" y="-46179" />
+		</territory>
+		<npc id="18119" respawnDelay="30" count="13" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21580" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Caster -->
+		<npc id="21581" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Puppeteer -->
+		<npc id="21584" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Vampire Warrior -->
+		<npc id="21590" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Vampire Magister -->
+		<npc id="21593" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Vampire Warlord -->
+		<npc id="21599" respawnDelay="90" count="4" periodOfDay="day" /> <!-- Requiem Priest -->
+	</spawn>
+	<spawn zone="rune09_2116_17">
+		<territory minZ="-3785" maxZ="-2485">
+			<node x="52416" y="-49303" />
+			<node x="52699" y="-45840" />
+			<node x="48978" y="-45027" />
+			<node x="48979" y="-47767" />
+			<node x="50416" y="-48949" />
+		</territory>
+		<npc id="18119" respawnDelay="30" count="12" periodOfDay="day" /> <!-- Corpse of Deadman -->
+		<npc id="21567" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Slayer -->
+		<npc id="21572" respawnDelay="30" count="5" periodOfDay="day" /> <!-- Bone Sweeper -->
+		<npc id="21574" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Grinder -->
+	</spawn>
+	<spawn zone="rune09_2116_18">
+		<territory minZ="-3454" maxZ="-2054">
+			<node x="53057" y="-45111" />
+			<node x="53121" y="-42263" />
+			<node x="50824" y="-41678" />
+			<node x="50259" y="-44275" />
+			<node x="51907" y="-45600" />
+		</territory>
+		<npc id="21575" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21578" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Behemoth Zombie -->
+		<npc id="21580" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Caster -->
+		<npc id="21583" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Scavenger -->
+	</spawn>
+	<spawn zone="rune09_2116_19">
+		<territory minZ="-2919" maxZ="-1519">
+			<node x="52766" y="-41986" />
+			<node x="51862" y="-38059" />
+			<node x="50873" y="-37668" />
+			<node x="48991" y="-38876" />
+			<node x="50845" y="-41514" />
+		</territory>
+		<npc id="21575" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21578" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Behemoth Zombie -->
+		<npc id="21583" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21584" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warrior -->
+	</spawn>
+	<spawn zone="rune09_2116_20">
+		<territory minZ="-3365" maxZ="-1965">
+			<node x="50050" y="-44770" />
+			<node x="50552" y="-42189" />
+			<node x="48201" y="-42970" />
+			<node x="47781" y="-44506" />
+			<node x="48779" y="-45614" />
+		</territory>
+		<npc id="21570" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+		<npc id="21572" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Sweeper -->
+		<npc id="21574" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21580" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Caster -->
+	</spawn>
+	<spawn zone="rune09_2116_21">
+		<territory minZ="-2506" maxZ="-1506">
+			<node x="50214" y="-42130" />
+			<node x="48835" y="-39806" />
+			<node x="46697" y="-41050" />
+			<node x="46876" y="-42018" />
+			<node x="48051" y="-42834" />
+		</territory>
+		<npc id="21570" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Ghost of Betrayer -->
+		<npc id="21574" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Bone Grinder -->
+		<npc id="21581" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Puppeteer -->
+	</spawn>
+	<spawn zone="rune09_2116_22">
+		<territory minZ="-2272" maxZ="-1372">
+			<node x="48841" y="-39600" />
+			<node x="47859" y="-38225" />
+			<node x="46734" y="-38134" />
+			<node x="45561" y="-39907" />
+			<node x="46630" y="-40855" />
+		</territory>
+		<npc id="21578" respawnDelay="30" count="4" periodOfDay="day" /> <!-- Behemoth Zombie -->
+		<npc id="21583" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21584" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Vampire Warrior -->
+	</spawn>
+	<spawn zone="rune09_2116_23">
+		<territory minZ="-2019" maxZ="-1219">
+			<node x="48083" y="-38016" />
+			<node x="47510" y="-35628" />
+			<node x="45908" y="-35733" />
+			<node x="45339" y="-36807" />
+			<node x="46689" y="-38068" />
+		</territory>
+		<npc id="21581" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Puppeteer -->
+		<npc id="21583" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warrior -->
+		<npc id="21593" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warlord -->
+		<npc id="21599" respawnDelay="90" count="1" periodOfDay="day" /> <!-- Requiem Priest -->
+	</spawn>
+	<spawn zone="rune09_2116_24">
+		<territory minZ="-2047" maxZ="-1047">
+			<node x="51808" y="-37216" />
+			<node x="51166" y="-35851" />
+			<node x="49675" y="-35182" />
+			<node x="47845" y="-35731" />
+			<node x="48247" y="-37978" />
+		</territory>
+		<npc id="21581" respawnDelay="30" count="3" periodOfDay="day" /> <!-- Bone Puppeteer -->
+		<npc id="21584" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warrior -->
+		<npc id="21590" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Magister -->
+		<npc id="21593" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warlord -->
+		<npc id="21599" respawnDelay="90" count="2" periodOfDay="day" /> <!-- Requiem Priest -->
+	</spawn>
+	<spawn zone="rune09_2116_25">
+		<territory minZ="-3105" maxZ="-1905">
+			<node x="55328" y="-41060" />
+			<node x="54890" y="-39477" />
+			<node x="53638" y="-38835" />
+			<node x="52743" y="-39441" />
+			<node x="53558" y="-41751" />
+		</territory>
+		<npc id="21583" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21584" respawnDelay="30" count="1" periodOfDay="day" /> <!-- Bone Scavenger -->
+		<npc id="21587" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warrior -->
+		<npc id="21590" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Magister -->
+		<npc id="21593" respawnDelay="30" count="2" periodOfDay="day" /> <!-- Vampire Warlord -->
 	</spawn>
 </list>
