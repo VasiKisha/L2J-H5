@@ -355,11 +355,6 @@ public class QueenAnt extends Script
 			}
 			case QUEEN_ANT_ID:
 			{
-				if (monster.getMinionList().getSpawnedMinions().isEmpty())
-				{
-					monster.getMinionList().spawnMinions(npc.getTemplate().getParameters().getMinionList("Privates"));
-				}
-				
 				cancelQuestTimer(EVENT_DISTANCE_CHECK, npc, null);
 				startQuestTimer(EVENT_DISTANCE_CHECK, DISTANCE_CHECK_INTERVAL_MILLIS, npc, null, true);
 				break;
