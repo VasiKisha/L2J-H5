@@ -1270,7 +1270,7 @@
 				<group chance="70">
 					<item id="57" min="4323" max="8709" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.24240000545978546">
+				<group chance="0.2424">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -1278,7 +1278,7 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="37.40230178833008">
+				<group chance="37.4023">
 					<item id="1879" min="1" max="1" chance="43.0197" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="21.5099" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.0245" /> <!-- Leonard -->
@@ -1354,7 +1354,7 @@
 				<group chance="70">
 					<item id="57" min="4323" max="8709" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.23880000412464142">
+				<group chance="0.2388">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -1364,7 +1364,7 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="26.694700241088867">
+				<group chance="26.6947">
 					<item id="1879" min="1" max="1" chance="60.2755" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.1377" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8365" /> <!-- Leonard -->
@@ -1440,11 +1440,11 @@
 				<group chance="70">
 					<item id="57" min="4323" max="8709" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.2345999926328659">
+				<group chance="0.2346">
 					<item id="9450" min="1" max="1" chance="0.3294" /> <!-- Dynasty Bagh-Nakh -->
 					<item id="9624" min="1" max="1" chance="99.6706" /> <!-- Dynasty Bagh-Nakh Piece -->
 				</group>
-				<group chance="26.68829917907715">
+				<group chance="26.6883">
 					<item id="1879" min="1" max="1" chance="60.29" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.145" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8372" /> <!-- Leonard -->
@@ -1529,11 +1529,11 @@
 				<group chance="70">
 					<item id="57" min="4459" max="8983" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.2515999972820282">
+				<group chance="0.2516">
 					<item id="9445" min="1" max="1" chance="0.3168" /> <!-- Dynasty Bow -->
 					<item id="9619" min="1" max="1" chance="99.6832" /> <!-- Dynasty Bow Piece -->
 				</group>
-				<group chance="41.737998962402344">
+				<group chance="41.738">
 					<item id="1895" min="1" max="1" chance="76.6877" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.3681" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.4735" /> <!-- Enria -->
@@ -1618,11 +1618,11 @@
 				<group chance="70">
 					<item id="57" min="4224" max="8509" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.23659999668598175">
+				<group chance="0.2366">
 					<item id="9446" min="1" max="1" chance="0.3192" /> <!-- Dynasty Knife -->
 					<item id="9620" min="1" max="1" chance="99.6808" /> <!-- Dynasty Knife Piece -->
 				</group>
-				<group chance="39.53770065307617">
+				<group chance="39.5377">
 					<item id="1895" min="1" max="1" chance="76.6877" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.3681" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.4735" /> <!-- Enria -->
@@ -1704,11 +1704,11 @@
 				<group chance="70">
 					<item id="57" min="6281" max="12679" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.35420000553131104">
+				<group chance="0.3542">
 					<item id="9447" min="1" max="1" chance="0.3175" /> <!-- Dynasty Halberd -->
 					<item id="9621" min="1" max="1" chance="99.6825" /> <!-- Dynasty Halberd Piece -->
 				</group>
-				<group chance="30.47130012512207">
+				<group chance="30.4713">
 					<item id="1895" min="1" max="3" chance="74.0893" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="10.3725" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="4.0676" /> <!-- Leonard -->
@@ -1785,13 +1785,13 @@
 				<group chance="70">
 					<item id="57" min="4172" max="8403" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.210800051689148">
+				<group chance="1.2108">
 					<item id="9514" min="1" max="1" chance="0.0946" /> <!-- Sealed Dynasty Breast Plate -->
 					<item id="9515" min="1" max="1" chance="0.1513" /> <!-- Sealed Dynasty Gaiter -->
 					<item id="9530" min="1" max="1" chance="25.2036" /> <!-- Sealed Dynasty Breast Plate Piece -->
 					<item id="9531" min="1" max="1" chance="74.5505" /> <!-- Sealed Dynasty Gaiters Piece -->
 				</group>
-				<group chance="26.484699249267578">
+				<group chance="26.4847">
 					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
@@ -1872,13 +1872,13 @@
 				<group chance="70">
 					<item id="57" min="4224" max="8509" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.9419000148773193">
+				<group chance="0.9419">
 					<item id="9519" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Leather Armor -->
 					<item id="9520" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Leather Leggings -->
 					<item id="9535" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Leather Armor Piece -->
 					<item id="9536" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Leather Leggings Piece -->
 				</group>
-				<group chance="13.50979995727539">
+				<group chance="13.5098">
 					<item id="1894" min="1" max="1" chance="27.5621" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="26.184" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="6.8306" /> <!-- Mold Hardener -->
@@ -1964,13 +1964,13 @@
 				<group chance="70">
 					<item id="57" min="4534" max="9153" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.0125999450683594">
+				<group chance="1.0126">
 					<item id="9524" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Tunic -->
 					<item id="9525" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Stockings -->
 					<item id="9540" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Tunic Piece -->
 					<item id="9541" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Stocking Piece -->
 				</group>
-				<group chance="42.50550079345703">
+				<group chance="42.5055">
 					<item id="1895" min="1" max="1" chance="76.6877" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.3681" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.4735" /> <!-- Enria -->
@@ -2051,7 +2051,7 @@
 				<group chance="70">
 					<item id="57" min="6281" max="12679" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.5901000499725342">
+				<group chance="1.5901">
 					<item id="9452" min="1" max="1" chance="0.4382" /> <!-- Sealed Dynasty Earring -->
 					<item id="9453" min="1" max="1" chance="0.3286" /> <!-- Sealed Dynasty Necklace -->
 					<item id="9454" min="1" max="1" chance="0.6573" /> <!-- Sealed Dynasty Ring -->
@@ -2059,7 +2059,7 @@
 					<item id="9992" min="1" max="1" chance="23.8445" /> <!-- Sealed Dynasty Necklace Gemstone -->
 					<item id="9993" min="1" max="1" chance="43.6626" /> <!-- Sealed Dynasty Ring Gemstone -->
 				</group>
-				<group chance="38.819400787353516">
+				<group chance="38.8194">
 					<item id="1879" min="1" max="1" chance="60.3104" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.1552" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8381" /> <!-- Leonard -->
@@ -2134,7 +2134,7 @@
 				<group chance="70">
 					<item id="57" min="4326" max="8732" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="2.092600107192993">
+				<group chance="2.0926">
 					<item id="9517" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Gauntlets -->
 					<item id="9518" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Boots -->
 					<item id="9522" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Leather Gloves -->
@@ -2148,7 +2148,7 @@
 					<item id="9543" min="1" max="1" chance="16.5909" /> <!-- Sealed Dynasty Glove Piece -->
 					<item id="9544" min="1" max="1" chance="16.5907" /> <!-- Sealed Dynasty Shoes Piece -->
 				</group>
-				<group chance="13.028200149536133">
+				<group chance="13.0282">
 					<item id="1894" min="1" max="1" chance="29.312" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.8464" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2643" /> <!-- Mold Hardener -->
@@ -2223,7 +2223,7 @@
 				<group chance="70">
 					<item id="57" min="4326" max="8732" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.2236000299453735">
+				<group chance="1.2236">
 					<item id="9516" min="1" max="1" chance="0.1037" /> <!-- Sealed Dynasty Helmet -->
 					<item id="9529" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Shield -->
 					<item id="13886" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Sigil -->
@@ -2235,7 +2235,7 @@
 					<item id="9545" min="1" max="1" chance="30.4907" /> <!-- Sealed Dynasty Shield Piece -->
 					<item id="10114" min="1" max="1" chance="17.6381" /> <!-- Sealed Dynasty Sigil Piece -->
 				</group>
-				<group chance="13.033100128173828">
+				<group chance="13.0331">
 					<item id="1894" min="1" max="1" chance="29.3011" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.8361" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2616" /> <!-- Mold Hardener -->
@@ -2310,11 +2310,11 @@
 				<group chance="70">
 					<item id="57" min="4326" max="8732" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.23510000109672546">
+				<group chance="0.2351">
 					<item id="9450" min="1" max="1" chance="0.3294" /> <!-- Dynasty Bagh-Nakh -->
 					<item id="9624" min="1" max="1" chance="99.6706" /> <!-- Dynasty Bagh-Nakh Piece -->
 				</group>
-				<group chance="13.033100128173828">
+				<group chance="13.0331">
 					<item id="1894" min="1" max="1" chance="29.3011" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.8361" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2616" /> <!-- Mold Hardener -->
@@ -2399,7 +2399,7 @@
 				<group chance="70">
 					<item id="57" min="4272" max="8623" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.23980000615119934">
+				<group chance="0.2398">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -2407,7 +2407,7 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="26.440399169921875">
+				<group chance="26.4404">
 					<item id="1879" min="1" max="1" chance="60.2222" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.1111" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.834" /> <!-- Leonard -->
@@ -2489,7 +2489,7 @@
 				<group chance="70">
 					<item id="57" min="5893" max="11896" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.33090001344680786">
+				<group chance="0.3309">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -2497,7 +2497,7 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="36.54909896850586">
+				<group chance="36.5491">
 					<item id="1879" min="1" max="1" chance="60.1016" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.0508" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8283" /> <!-- Leonard -->
@@ -2580,7 +2580,7 @@
 				<group chance="70">
 					<item id="57" min="4835" max="9740" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.2671000063419342">
+				<group chance="0.2671">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -2590,7 +2590,7 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="39.85639953613281">
+				<group chance="39.8564">
 					<item id="1895" min="1" max="1" chance="87.0764" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.0953" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.3903" /> <!-- Leonard -->
@@ -2669,7 +2669,7 @@
 				<group chance="70">
 					<item id="57" min="4272" max="8623" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.23639999330043793">
+				<group chance="0.2364">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -2679,7 +2679,7 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="26.440399169921875">
+				<group chance="26.4404">
 					<item id="1879" min="1" max="1" chance="60.2222" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.1111" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.834" /> <!-- Leonard -->
@@ -2752,11 +2752,11 @@
 				<group chance="70">
 					<item id="57" min="1883" max="3706" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.3961000144481659">
+				<group chance="0.3961">
 					<item id="6371" min="1" max="1" chance="0.2201" /> <!-- Demon Splinter -->
 					<item id="6695" min="1" max="1" chance="99.7799" /> <!-- Demon Splinter Blade -->
 				</group>
-				<group chance="23.802799224853516">
+				<group chance="23.8028">
 					<item id="1895" min="1" max="1" chance="89.4913" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.2644" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.4566" /> <!-- Leonard -->
@@ -2825,13 +2825,13 @@
 				<group chance="70">
 					<item id="57" min="1839" max="3620" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.39750000834465027">
+				<group chance="0.3975">
 					<item id="6364" min="1" max="1" chance="0.1071" /> <!-- Forgotten Blade -->
 					<item id="6372" min="1" max="1" chance="0.1071" /> <!-- Heaven's Divider -->
 					<item id="6688" min="1" max="1" chance="49.4997" /> <!-- Forgotten Blade Edge -->
 					<item id="6696" min="1" max="1" chance="50.2861" /> <!-- Heavens Divider Edge -->
 				</group>
-				<group chance="23.227699279785156">
+				<group chance="23.2277">
 					<item id="1895" min="1" max="1" chance="89.5598" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.2692" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.4585" /> <!-- Leonard -->
@@ -2900,7 +2900,7 @@
 				<group chance="70">
 					<item id="57" min="1900" max="3739" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.785099983215332">
+				<group chance="0.7851">
 					<item id="6676" min="1" max="1" chance="0.4284" /> <!-- Sealed Imperial Crusader Gauntlet -->
 					<item id="6677" min="1" max="1" chance="0.4284" /> <!-- Sealed Imperial Crusader Boots -->
 					<item id="6681" min="1" max="1" chance="0.4284" /> <!-- Sealed Draconic Leather Glove -->
@@ -2909,7 +2909,7 @@
 					<item id="6686" min="1" max="1" chance="0.4284" /> <!-- Sealed Major Arcana Boots -->
 					<item id="6703" min="1" max="1" chance="97.4296" /> <!-- Sealed Imperial Crusader Gauntlets Design -->
 				</group>
-				<group chance="16.772600173950195">
+				<group chance="16.7726">
 					<item id="1879" min="1" max="1" chance="62.2849" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1425" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9311" /> <!-- Leonard -->
@@ -2979,11 +2979,11 @@
 				<group chance="70">
 					<item id="57" min="1883" max="3706" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.4083000123500824">
+				<group chance="0.4083">
 					<item id="7575" min="1" max="1" chance="0.2135" /> <!-- Draconic Bow -->
 					<item id="7579" min="1" max="1" chance="99.7865" /> <!-- Draconic Bow Shaft -->
 				</group>
-				<group chance="24.366100311279297">
+				<group chance="24.3661">
 					<item id="1895" min="1" max="1" chance="87.4224" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.1196" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.3998" /> <!-- Leonard -->
@@ -3052,11 +3052,11 @@
 				<group chance="70">
 					<item id="57" min="1883" max="3706" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.40380001068115234">
+				<group chance="0.4038">
 					<item id="6367" min="1" max="1" chance="0.2159" /> <!-- Angel Slayer -->
 					<item id="6691" min="1" max="1" chance="99.7841" /> <!-- Angel Slayer Blade -->
 				</group>
-				<group chance="17.11370086669922">
+				<group chance="17.1137">
 					<item id="1879" min="1" max="1" chance="60.5061" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.2531" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8473" /> <!-- Leonard -->
@@ -3127,7 +3127,7 @@
 				<group chance="70">
 					<item id="57" min="1892" max="3724" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.7486000061035156">
+				<group chance="1.7486">
 					<item id="6679" min="1" max="1" chance="0.1277" /> <!-- Sealed Imperial Crusader Helmet -->
 					<item id="6683" min="1" max="1" chance="0.1277" /> <!-- Sealed Draconic Leather Helmet -->
 					<item id="6687" min="1" max="1" chance="0.1277" /> <!-- Sealed Major Arcana Circlet -->
@@ -3136,7 +3136,7 @@
 					<item id="6706" min="1" max="1" chance="49.6563" /> <!-- Sealed Imperial Crusader Helmet Pattern -->
 					<item id="6710" min="1" max="1" chance="49.6564" /> <!-- Sealed Draconic Leather Helmet Pattern -->
 				</group>
-				<group chance="27.24799919128418">
+				<group chance="27.248">
 					<item id="1895" min="1" max="1" chance="78.5546" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.4988" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.5824" /> <!-- Enria -->
@@ -3207,11 +3207,11 @@
 				<group chance="70">
 					<item id="57" min="1843" max="3629" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.387800008058548">
+				<group chance="0.3878">
 					<item id="6371" min="1" max="1" chance="0.2201" /> <!-- Demon Splinter -->
 					<item id="6695" min="1" max="1" chance="99.7799" /> <!-- Demon Splinter Blade -->
 				</group>
-				<group chance="23.854700088500977">
+				<group chance="23.8547">
 					<item id="1895" min="1" max="1" chance="87.4224" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.1196" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.3998" /> <!-- Leonard -->
@@ -3280,13 +3280,13 @@
 				<group chance="70">
 					<item id="57" min="1890" max="3720" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.40849998593330383">
+				<group chance="0.4085">
 					<item id="6364" min="1" max="1" chance="0.1071" /> <!-- Forgotten Blade -->
 					<item id="6372" min="1" max="1" chance="0.1071" /> <!-- Heaven's Divider -->
 					<item id="6688" min="1" max="1" chance="49.4997" /> <!-- Forgotten Blade Edge -->
 					<item id="6696" min="1" max="1" chance="50.2861" /> <!-- Heavens Divider Edge -->
 				</group>
-				<group chance="17.175899505615234">
+				<group chance="17.1759">
 					<item id="1879" min="1" max="1" chance="60.5061" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.2531" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8473" /> <!-- Leonard -->
@@ -3357,11 +3357,11 @@
 				<group chance="70">
 					<item id="57" min="2427" max="4777" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.529699981212616">
+				<group chance="0.5297">
 					<item id="6370" min="1" max="1" chance="0.2121" /> <!-- Saint Spear -->
 					<item id="6694" min="1" max="1" chance="99.7879" /> <!-- Saint Spear Blade -->
 				</group>
-				<group chance="11.381400108337402">
+				<group chance="11.3814">
 					<item id="1894" min="1" max="1" chance="29.6224" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="28.1413" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.3412" /> <!-- Mold Hardener -->
@@ -3431,11 +3431,11 @@
 				<group chance="70">
 					<item id="57" min="2554" max="5027" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.2554999589920044">
+				<group chance="1.2555">
 					<item id="6684" min="1" max="1" chance="0.2585" /> <!-- Sealed Major Arcana Robe -->
 					<item id="6711" min="1" max="1" chance="99.7415" /> <!-- Sealed Major Arcana Robe Part -->
 				</group>
-				<group chance="39.3380012512207">
+				<group chance="39.338">
 					<item id="1895" min="1" max="1" chance="61.1984" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="4.2839" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="3.5699" /> <!-- Enria -->
@@ -3506,7 +3506,7 @@
 				<group chance="70">
 					<item id="57" min="2576" max="5071" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.5529999732971191">
+				<group chance="0.553">
 					<item id="6365" min="1" max="1" chance="0.0719" /> <!-- Basalt Battlehammer -->
 					<item id="6366" min="1" max="1" chance="0.0719" /> <!-- Imperial Staff -->
 					<item id="6369" min="1" max="1" chance="0.0719" /> <!-- Dragon Hunter Axe -->
@@ -3514,7 +3514,7 @@
 					<item id="6690" min="1" max="1" chance="33.3116" /> <!-- Imperial Staff Head -->
 					<item id="6693" min="1" max="1" chance="33.8509" /> <!-- Dragon Hunter Axe Blade -->
 				</group>
-				<group chance="32.56520080566406">
+				<group chance="32.5652">
 					<item id="1895" min="1" max="1" chance="89.5037" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.2653" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.457" /> <!-- Leonard -->
@@ -3585,11 +3585,11 @@
 				<group chance="70">
 					<item id="57" min="2445" max="4813" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.5144000053405762">
+				<group chance="0.5144">
 					<item id="6371" min="1" max="1" chance="0.2201" /> <!-- Demon Splinter -->
 					<item id="6695" min="1" max="1" chance="99.7799" /> <!-- Demon Splinter Blade -->
 				</group>
-				<group chance="10.737199783325195">
+				<group chance="10.7372">
 					<item id="1894" min="1" max="1" chance="31.6406" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="30.0586" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.8414" /> <!-- Mold Hardener -->
@@ -3659,11 +3659,11 @@
 				<group chance="70">
 					<item id="57" min="2514" max="4949" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.2360999584197998">
+				<group chance="1.2361">
 					<item id="6680" min="1" max="1" chance="0.2585" /> <!-- Sealed Draconic Leather Armor -->
 					<item id="6707" min="1" max="1" chance="99.7415" /> <!-- Sealed Draconic Leather Armor Part -->
 				</group>
-				<group chance="35.454498291015625">
+				<group chance="35.4545">
 					<item id="1895" min="1" max="1" chance="80.2211" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.6155" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.6796" /> <!-- Enria -->
@@ -3733,13 +3733,13 @@
 				<group chance="70">
 					<item id="57" min="2631" max="5178" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="1.5906000137329102">
+				<group chance="1.5906">
 					<item id="6674" min="1" max="1" chance="0.1281" /> <!-- Sealed Imperial Crusader Breastplate -->
 					<item id="6675" min="1" max="1" chance="0.2049" /> <!-- Sealed Imperial Crusader Gaiters -->
 					<item id="6701" min="1" max="1" chance="43.5747" /> <!-- Sealed Imperial Crusader Breastplate Part -->
 					<item id="6702" min="1" max="1" chance="56.0923" /> <!-- Sealed Imperial Crusader Gaiters Pattern -->
 				</group>
-				<group chance="23.2549991607666">
+				<group chance="23.255">
 					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
@@ -3806,11 +3806,11 @@
 				<group chance="70">
 					<item id="57" min="2575" max="5068" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.5620999932289124">
+				<group chance="0.5621">
 					<item id="6370" min="1" max="1" chance="0.2121" /> <!-- Saint Spear -->
 					<item id="6694" min="1" max="1" chance="99.7879" /> <!-- Saint Spear Blade -->
 				</group>
-				<group chance="32.60710144042969">
+				<group chance="32.6071">
 					<item id="1895" min="1" max="1" chance="89.3358" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="6.2535" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="2.4524" /> <!-- Leonard -->
@@ -3877,7 +3877,7 @@
 				<group chance="70">
 					<item id="57" min="2658" max="5232" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="4.701499938964844">
+				<group chance="4.7015">
 					<item id="6724" min="1" max="1" chance="0.1141" /> <!-- Sealed Tateossian Earring -->
 					<item id="6725" min="1" max="1" chance="0.1711" /> <!-- Sealed Tateossian Ring -->
 					<item id="6726" min="1" max="1" chance="0.0855" /> <!-- Sealed Tateossian Necklace -->
@@ -3885,7 +3885,7 @@
 					<item id="6699" min="1" max="1" chance="40.6573" /> <!-- Sealed Tateossian Ring Gem -->
 					<item id="6700" min="1" max="1" chance="22.3317" /> <!-- Sealed Tateossian Necklace Chain -->
 				</group>
-				<group chance="37.48550033569336">
+				<group chance="37.4855">
 					<item id="1895" min="1" max="1" chance="80.2211" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="5.6155" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="4.6796" /> <!-- Enria -->
@@ -3950,51 +3950,52 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1476" max="2979" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1476" max="2979" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0829">
-					<item id="10216" min="1" max="1" chance="0.0009" /> <!-- Icarus Disperser -->
-					<item id="10398" min="1" max="1" chance="0.0500" /> <!-- Icarus Disperser Piece -->
+				<group chance="0.0275">
+					<item id="10216" min="1" max="1" chance="0.012" /> <!-- Icarus Disperser -->
+					<item id="10398" min="1" max="1" chance="99.988" /> <!-- Icarus Disperser Piece -->
 				</group>
-				<group chance="21.1594">
-					<item id="1895" min="1" max="1" chance="80.2211" /> <!-- Metallic Fiber -->
-					<item id="4040" min="1" max="1" chance="5.6155" /> <!-- Mold Lubricant -->
-					<item id="4042" min="1" max="1" chance="4.6796" /> <!-- Enria -->
-					<item id="4043" min="1" max="1" chance="9.3591" /> <!-- Asofe -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="10549" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Protection of Rune -->
+				<group chance="0.5527">
+					<item id="6622" min="1" max="1" chance="31.778" /> <!-- Giant's Codex -->
+					<item id="9573" min="1" max="1" chance="54.5471" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="12.4317" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="1.2432" /> <!-- High-Grade Life Stone - Level 80 -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0738">
+					<item id="10549" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Rune -->
 				</group>
 			</drop>
 			<spoil>
@@ -4054,56 +4055,57 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1477" max="3449" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1477" max="3449" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0845">
-					<item id="10215" min="1" max="1" chance="0.0009" /> <!-- Icarus Sawsword -->
-					<item id="10217" min="1" max="1" chance="0.0009" /> <!-- Icarus Spirit -->
-					<item id="10218" min="1" max="1" chance="0.0009" /> <!-- Icarus Heavy Arms -->
-					<item id="10397" min="1" max="1" chance="0.0500" /> <!-- Icarus Sawsword Piece -->
-					<item id="10399" min="1" max="1" chance="0.0500" /> <!-- Icarus Spirit Piece -->
-					<item id="10400" min="1" max="1" chance="0.0500" /> <!-- Icarus Heavy Arms Piece -->
+				<group chance="0.0495">
+					<item id="10215" min="1" max="1" chance="0.1382" /> <!-- Icarus Sawsword -->
+					<item id="10217" min="1" max="1" chance="0.1382" /> <!-- Icarus Spirit -->
+					<item id="10218" min="1" max="1" chance="0.1382" /> <!-- Icarus Heavy Arms -->
+					<item id="10397" min="1" max="1" chance="33.2573" /> <!-- Icarus Sawsword Piece -->
+					<item id="10399" min="1" max="1" chance="33.2573" /> <!-- Icarus Spirit Piece -->
+					<item id="10400" min="1" max="1" chance="33.071" /> <!-- Icarus Heavy Arms Piece -->
 				</group>
-				<group chance="13.7237">
-					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9646" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.6229" /> <!-- Adamantine -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="10550" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Protection of Elemental -->
+				<group chance="0.6936">
+					<item id="9630" min="1" max="1" chance="38.8745" /> <!-- Orichalcum -->
+					<item id="6622" min="1" max="1" chance="21.9641" /> <!-- Giant's Codex -->
+					<item id="9573" min="1" max="1" chance="27.9201" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="8.9598" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="2.2815" /> <!-- High-Grade Life Stone - Level 80 -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0639">
+					<item id="10550" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Elemental -->
 				</group>
 			</drop>
 			<spoil>
@@ -4163,58 +4165,57 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1500" max="3065" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1500" max="3065" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0653">
-					<item id="15694" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Helmet -->
-					<item id="15695" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Leather Helmet -->
-					<item id="15696" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Circlet -->
-					<item id="15646" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Leather Helmet Piece -->
-					<item id="15645" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Helmet Piece -->
-					<item id="15647" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Circlet Piece -->
+				<group chance="0.6753">
+					<item id="15694" min="1" max="1" chance="0.0888" /> <!-- Sealed Moirai Helmet -->
+					<item id="15695" min="1" max="1" chance="0.0888" /> <!-- Sealed Moirai Leather Helmet -->
+					<item id="15696" min="1" max="1" chance="0.0888" /> <!-- Sealed Moirai Circlet -->
+					<item id="15646" min="1" max="1" chance="33.2445" /> <!-- Sealed Moirai Leather Helmet Piece -->
+					<item id="15645" min="1" max="1" chance="33.2445" /> <!-- Sealed Moirai Helmet Piece -->
+					<item id="15647" min="1" max="1" chance="33.2445" /> <!-- Sealed Moirai Circlet Piece -->
 				</group>
-				<group chance="4.548">
-					<item id="1894" min="1" max="1" chance="29.3611" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="27.8930" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="7.2764" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="27.8930" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.8110" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.4528" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1453" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="14219" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Magician's Will -->
+				<group chance="0.6777">
+					<item id="9573" min="1" max="1" chance="38.9945" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="9.749" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.975" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6622" min="1" max="1" chance="22.1445" /> <!-- Giant's Codex -->
+					<item id="9630" min="1" max="1" chance="28.137" /> <!-- Orichalcum -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.063">
+					<item id="14219" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Magician's Will -->
 				</group>
 			</drop>
 			<spoil>
@@ -4274,58 +4275,54 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1500" max="3065" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1500" max="3065" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0653">
-					<item id="15694" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Helmet -->
-					<item id="15695" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Leather Helmet -->
-					<item id="15696" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Circlet -->
-					<item id="15646" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Leather Helmet Piece -->
-					<item id="15645" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Helmet Piece -->
-					<item id="15647" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Circlet Piece -->
+				<group chance="0.5373">
+					<item id="9573" min="1" max="1" chance="50.8986" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="12.7249" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="1.2728" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6622" min="1" max="1" chance="35.1037" /> <!-- Giant's Codex -->
 				</group>
-				<group chance="4.548">
-					<item id="1894" min="1" max="1" chance="29.3611" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="27.8930" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="7.2764" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="27.8930" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.8110" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.4528" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1453" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="14219" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Magician's Will -->
-				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0786">
+					<item id="14219" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Magician's Will -->
+				</group>
+				<group chance="0.0505">
+					<item id="10222" min="1" max="1" chance="0.107" /> <!-- Icarus Hall -->
+					<item id="10220" min="1" max="1" chance="0.107" /> <!-- Icarus Hammer -->
+					<item id="10404" min="1" max="1" chance="49.893" /> <!-- Icarus Hall Piece -->
+					<item id="10402" min="1" max="1" chance="49.893" /> <!-- Icarus Hammer Piece -->
 				</group>
 			</drop>
 			<spoil>
@@ -4384,57 +4381,53 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="535" max="1080" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="535" max="1080" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.03">
-					<item id="10223" min="1" max="1" chance="0.0009" /> <!-- Icarus Spitter -->
-					<item id="10405" min="1" max="1" chance="0.0500" /> <!-- Icarus Spitter Piece -->
+				<group chance="0.0144">
+					<item id="10223" min="1" max="1" chance="0.665" /> <!-- Icarus Spitter -->
+					<item id="10405" min="1" max="1" chance="99.335" /> <!-- Icarus Spitter Piece -->
 				</group>
-				<group chance="10.2401">
-					<item id="1879" min="1" max="1" chance="17.5259" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="8.7629" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="0.8247" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="0.5534" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="0.4572" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="0.7302" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="0.1826" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.0183" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="9546" min="1" max="1" chance="0.8412" /> <!-- Fire Stone -->
-					<item id="1345" min="10" max="30" chance="70.1036" /> <!-- Shining Arrow -->
-					<item id="6622" min="1" max="1" chance="0.0500" /> <!-- Giant's Codex -->
-					<item id="10551" min="1" max="1" chance="0.0500" /> <!-- Forgotten Scroll - Protection of Alignment -->
+				<group chance="0.196">
+					<item id="9630" min="1" max="1" chance="28.9057" /> <!-- Orichalcum -->
+					<item id="9573" min="1" max="1" chance="38.1405" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="9.5377" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.9559" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6622" min="1" max="1" chance="22.4602" /> <!-- Giant's Codex -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0185">
+					<item id="10551" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Alignment -->
 				</group>
 			</drop>
 			<spoil>
@@ -4493,59 +4486,57 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="2702" max="5522" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="2702" max="5522" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.1537">
-					<item id="15703" min="1" max="1" chance="0.0050" /> <!-- Sealed Moirai Gauntlet -->
-					<item id="15704" min="1" max="1" chance="0.0050" /> <!-- Sealed Moirai Leather Gloves -->
-					<item id="15705" min="1" max="1" chance="0.0050" /> <!-- Sealed Moirai Gloves -->
-					<item id="15654" min="1" max="1" chance="1.0000" /> <!-- Sealed Moirai Gauntlet Piece -->
-					<item id="15655" min="1" max="1" chance="1.0000" /> <!-- Sealed Moirai Leather Gloves Piece -->
-					<item id="15656" min="1" max="1" chance="1.0000" /> <!-- Sealed Moirai Gloves Piece -->
+				<group chance="0.4121">
+					<item id="15703" min="1" max="1" chance="0.091" /> <!-- Sealed Moirai Gauntlet -->
+					<item id="15704" min="1" max="1" chance="0.091" /> <!-- Sealed Moirai Leather Gloves -->
+					<item id="15705" min="1" max="1" chance="0.091" /> <!-- Sealed Moirai Gloves -->
+					<item id="15654" min="1" max="1" chance="33.2423" /> <!-- Sealed Moirai Gauntlet Piece -->
+					<item id="15655" min="1" max="1" chance="33.2423" /> <!-- Sealed Moirai Leather Gloves Piece -->
+					<item id="15656" min="1" max="1" chance="33.2423" /> <!-- Sealed Moirai Gloves Piece -->
 				</group>
-				<group chance="8.7275">
-					<item id="1894" min="1" max="1" chance="27.5621" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="26.1840" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="6.8306" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="26.1840" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.4550" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.3638" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1364" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="9547" min="1" max="1" chance="6.2841" /> <!-- Water Stone -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="14219" min="1" max="1" chance="0.5000" /> <!-- Forgotten Scroll - Magician's Will -->
+				<group chance="1.4609">
+					<item id="9573" min="1" max="1" chance="32.588" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="8.1473" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.8148" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="9547" min="1" max="1" chance="37.541" /> <!-- Water Stone -->
+					<item id="6622" min="1" max="1" chance="20.9089" /> <!-- Giant's Codex -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.1286">
+					<item id="14219" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Magician's Will -->
 				</group>
 			</drop>
 			<spoil>
@@ -4605,58 +4596,55 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1476" max="2979" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1476" max="2979" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.429">
-					<item id="15699" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Tunic -->
-					<item id="15702" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Stockings -->
-					<item id="15650" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Tunic Piece -->
-					<item id="15653" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Stockings Piece -->
+				<group chance="0.5193">
+					<item id="15699" min="1" max="1" chance="0.1112" /> <!-- Sealed Moirai Tunic -->
+					<item id="15702" min="1" max="1" chance="0.125" /> <!-- Sealed Moirai Stockings -->
+					<item id="15650" min="1" max="1" chance="49.7386" /> <!-- Sealed Moirai Tunic Piece -->
+					<item id="15653" min="1" max="1" chance="50.0252" /> <!-- Sealed Moirai Stockings Piece -->
 				</group>
-				<group chance="9.3838">
-					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.8512" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.5293" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="2.4426" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="0.6106" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="9548" min="1" max="1" chance="2.8138" /> <!-- Earth Stone -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="10549" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Protection of Rune -->
+				<group chance="0.7158">
+					<item id="9573" min="1" max="1" chance="32.0211" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="8.0046" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.801" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="9548" min="1" max="1" chance="36.8873" /> <!-- Earth Stone -->
+					<item id="6622" min="1" max="1" chance="22.286" /> <!-- Giant's Codex -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0684">
+					<item id="10549" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Rune -->
 				</group>
 			</drop>
 			<spoil>
@@ -4716,60 +4704,56 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1500" max="3065" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1500" max="3065" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.3378">
-					<item id="15706" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Boots -->
-					<item id="15707" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Leather Boots -->
-					<item id="15708" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Shoes -->
-					<item id="15657" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Boots Piece -->
-					<item id="15658" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Leather Boots Piece -->
-					<item id="15659" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Shoes Piece -->
+				<group chance="0.9173">
+					<item id="15706" min="1" max="1" chance="0.0973" /> <!-- Sealed Moirai Boots -->
+					<item id="15707" min="1" max="1" chance="0.0931" /> <!-- Sealed Moirai Leather Boots -->
+					<item id="15708" min="1" max="1" chance="0.0898" /> <!-- Sealed Moirai Shoes -->
+					<item id="15657" min="1" max="1" chance="33.2399" /> <!-- Sealed Moirai Boots Piece -->
+					<item id="15658" min="1" max="1" chance="33.2399" /> <!-- Sealed Moirai Leather Boots Piece -->
+					<item id="15659" min="1" max="1" chance="33.2399" /> <!-- Sealed Moirai Shoes Piece -->
 				</group>
-				<group chance="9.6178">
-					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.8512" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.5293" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="2.4426" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="0.6106" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="9549" min="1" max="1" chance="2.8138" /> <!-- Wind Stone -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="10551" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Protection of Alignment -->
+				<group chance="0.4669">
+					<item id="9573" min="1" max="1" chance="50.3183" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="12.5785" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="1.2587" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6622" min="1" max="1" chance="35.8445" /> <!-- Giant's Codex -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0701">
+					<item id="10551" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Alignment -->
 				</group>
 			</drop>
 			<spoil>
@@ -4829,57 +4813,55 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1372" max="3204" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1372" max="3204" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.341">
-					<item id="9524" min="1" max="1" chance="0.0050" /> <!-- Sealed Dynasty Tunic -->
-					<item id="9525" min="1" max="1" chance="0.0050" /> <!-- Sealed Dynasty Stockings -->
-					<item id="9540" min="1" max="1" chance="1.0000" /> <!-- Sealed Dynasty Tunic Piece -->
-					<item id="9541" min="1" max="1" chance="1.0000" /> <!-- Sealed Dynasty Stocking Piece -->
+				<group chance="0.8182">
+					<item id="9573" min="1" max="1" chance="32.6075" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="8.1522" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.8153" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6622" min="1" max="1" chance="20.8616" /> <!-- Giant's Codex -->
+					<item id="9550" min="1" max="1" chance="37.5634" /> <!-- Dark Stone -->
 				</group>
-				<group chance="4.8911">
-					<item id="1894" min="1" max="1" chance="27.5621" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="26.1840" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="6.8306" /> <!-- Mold Hardene r -->
-					<item id="4044" min="1" max="1" chance="26.1840" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.4550" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.3638" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1364" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="10550" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Protection of Elemental -->
-					<item id="9550" min="1" max="1" chance="6.2841" /> <!-- Dark Stone -->
-				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
+				</group>
+				<group chance="0.0712">
+					<item id="10550" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Elemental -->
+				</group>
+				<group chance="1.1392">
+					<item id="15709" min="1" max="1" chance="0.1053" /> <!-- Sealed Moirai Sigil -->
+					<item id="15710" min="1" max="1" chance="0.1053" /> <!-- Sealed Moirai Shield -->
+					<item id="15693" min="1" max="1" chance="49.8947" /> <!-- Sealed Moirai Shield Piece -->
+					<item id="15692" min="1" max="1" chance="49.8947" /> <!-- Sealed Moirai Sigil Piece -->
 				</group>
 			</drop>
 			<spoil>
@@ -4940,14 +4922,14 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="70.0">
-					<item id="57" min="1552" max="3172" chance="100.0000" /> <!-- Adena -->
+				<group chance="70">
+					<item id="57" min="1552" max="3172" chance="100" /> <!-- Adena -->
 				</group>
 				<group chance="0.3962">
 					<item id="15699" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Tunic -->
 					<item id="15702" min="1" max="1" chance="0.0009" /> <!-- Sealed Moirai Stockings -->
-					<item id="15650" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Tunic Piece -->
-					<item id="15653" min="1" max="1" chance="0.5000" /> <!-- Sealed Moirai Stockings Piece -->
+					<item id="15650" min="1" max="1" chance="0.5" /> <!-- Sealed Moirai Tunic Piece -->
+					<item id="15653" min="1" max="1" chance="0.5" /> <!-- Sealed Moirai Stockings Piece -->
 				</group>
 				<group chance="9.9518">
 					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
@@ -4959,36 +4941,36 @@
 					<item id="9574" min="1" max="1" chance="0.6106" /> <!-- Mid-Grade Life Stone - Level 80 -->
 					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9551" min="1" max="1" chance="2.8138" /> <!-- Divine Stone -->
-					<item id="6622" min="1" max="1" chance="0.5000" /> <!-- Giant's Codex -->
-					<item id="14219" min="1" max="1" chance="0.1000" /> <!-- Forgotten Scroll - Magician's Will -->
+					<item id="6622" min="1" max="1" chance="0.5" /> <!-- Giant's Codex -->
+					<item id="14219" min="1" max="1" chance="0.1" /> <!-- Forgotten Scroll - Magician's Will -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -5048,7 +5030,7 @@
 				<group chance="70">
 					<item id="57" min="12255" max="24722" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="5.924499988555908">
+				<group chance="5.9245">
 					<item id="9517" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Gauntlets -->
 					<item id="9518" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Boots -->
 					<item id="9522" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Leather Gloves -->
@@ -5062,16 +5044,17 @@
 					<item id="9543" min="1" max="1" chance="16.5909" /> <!-- Sealed Dynasty Glove Piece -->
 					<item id="9544" min="1" max="1" chance="16.5907" /> <!-- Sealed Dynasty Shoes Piece -->
 				</group>
-				<group chance="37.649200439453125">
-					<item id="1879" min="3" max="9" chance="20.208" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="60.624" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="5.7058" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="3.8289" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="3.163" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="5.052" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.263" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1263" /> <!-- High-Grade Life Stone - Level 80 -->
+				<group chance="37.6643">
+					<item id="1879" min="3" max="9" chance="20.1999" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="60.5998" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="5.7035" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="3.8274" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="3.1617" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="5.05" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.2625" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1262" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="959" min="1" max="1" chance="0.029" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
+					<item id="9627" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5135,7 +5118,7 @@
 				<group chance="70">
 					<item id="57" min="12560" max="25336" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="4.457200050354004">
+				<group chance="4.4572">
 					<item id="9516" min="1" max="1" chance="0.0826" /> <!-- Sealed Dynasty Helmet -->
 					<item id="9529" min="1" max="1" chance="0.118" /> <!-- Sealed Dynasty Shield -->
 					<item id="13886" min="1" max="1" chance="0.118" /> <!-- Sealed Dynasty Sigil -->
@@ -5147,16 +5130,17 @@
 					<item id="9545" min="1" max="1" chance="24.2999" /> <!-- Sealed Dynasty Shield Piece -->
 					<item id="10114" min="1" max="1" chance="14.0571" /> <!-- Sealed Dynasty Sigil Piece -->
 				</group>
-				<group chance="38.685298919677734">
-					<item id="1879" min="3" max="9" chance="20.1552" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="60.4656" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="5.6909" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="3.8189" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="3.1547" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="5.0388" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.2597" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.126" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="960" min="1" max="1" chance="0.2902" /> <!-- Scroll: Enchant Armor (S-Grade) -->
+				<group chance="38.7008">
+					<item id="1879" min="3" max="9" chance="20.1471" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="60.4414" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="5.6886" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="3.8174" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="3.1534" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="5.0368" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.2592" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1259" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="960" min="1" max="1" chance="0.2901" /> <!-- Scroll: Enchant Armor (S-Grade) -->
+					<item id="9627" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5213,7 +5197,7 @@
 				<group chance="70">
 					<item id="57" min="11942" max="24057" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.6694999933242798">
+				<group chance="0.6695">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -5221,16 +5205,17 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="36.7661018371582">
-					<item id="1879" min="3" max="9" chance="20.1487" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="60.4461" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="5.689" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="3.8176" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="3.1537" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="5.0372" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.2593" /> <!-- Mid-Grade Life Stone - Level 80 -->
+				<group chance="36.7771">
+					<item id="1879" min="3" max="9" chance="20.1427" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="60.428" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="5.6873" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="3.8165" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="3.1528" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="5.0357" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.2589" /> <!-- Mid-Grade Life Stone - Level 80 -->
 					<item id="9575" min="1" max="1" chance="0.1259" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5272" min="1" max="1" chance="0.3225" /> <!-- Recipe: Greater Soulshot (S) Compressed Package(100%) -->
+					<item id="5272" min="1" max="1" chance="0.3224" /> <!-- Recipe: Greater Soulshot (S) Compressed Package(100%) -->
+					<item id="9627" min="1" max="1" chance="0.03" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5293,7 +5278,7 @@
 				<group chance="70">
 					<item id="57" min="11942" max="24057" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.6597999930381775">
+				<group chance="0.6598">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -5303,16 +5288,17 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="36.7661018371582">
-					<item id="1879" min="3" max="9" chance="20.1487" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="60.4461" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="5.689" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="3.8176" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="3.1537" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="5.0372" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.2593" /> <!-- Mid-Grade Life Stone - Level 80 -->
+				<group chance="36.7771">
+					<item id="1879" min="3" max="9" chance="20.1427" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="60.428" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="5.6873" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="3.8165" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="3.1528" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="5.0357" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.2589" /> <!-- Mid-Grade Life Stone - Level 80 -->
 					<item id="9575" min="1" max="1" chance="0.1259" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5277" min="1" max="1" chance="0.3225" /> <!-- Recipe: Greater Spiritshot (S) Compressed Package(100%) -->
+					<item id="5277" min="1" max="1" chance="0.3224" /> <!-- Recipe: Greater Spiritshot (S) Compressed Package(100%) -->
+					<item id="9627" min="1" max="1" chance="0.03" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5377,19 +5363,20 @@
 				<group chance="70">
 					<item id="57" min="12203" max="24581" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.6622999906539917">
+				<group chance="0.6623">
 					<item id="9450" min="1" max="1" chance="0.3294" /> <!-- Dynasty Bagh-Nakh -->
 					<item id="9624" min="1" max="1" chance="99.6706" /> <!-- Dynasty Bagh-Nakh Piece -->
 				</group>
-				<group chance="27.59749984741211">
-					<item id="1895" min="3" max="9" chance="52.896" /> <!-- Metallic Fiber -->
-					<item id="4040" min="1" max="1" chance="22.2163" /> <!-- Mold Lubricant -->
-					<item id="9628" min="1" max="1" chance="8.7123" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="5.8464" /> <!-- Orichalcum -->
-					<item id="9573" min="1" max="1" chance="7.714" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.9285" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1928" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5282" min="1" max="1" chance="0.4937" /> <!-- Recipe: Greater Blessed Spiritshot (S) Compressed Package(100%) -->
+				<group chance="27.6113">
+					<item id="1895" min="3" max="9" chance="52.8696" /> <!-- Metallic Fiber -->
+					<item id="4040" min="1" max="1" chance="22.2052" /> <!-- Mold Lubricant -->
+					<item id="9628" min="1" max="1" chance="8.7079" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="5.8435" /> <!-- Orichalcum -->
+					<item id="9573" min="1" max="1" chance="7.7101" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.9275" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1927" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="5282" min="1" max="1" chance="0.4935" /> <!-- Recipe: Greater Blessed Spiritshot (S) Compressed Package(100%) -->
+					<item id="9627" min="1" max="1" chance="0.05" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5460,19 +5447,20 @@
 				<group chance="70">
 					<item id="57" min="12056" max="24286" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.680400013923645">
+				<group chance="0.6804">
 					<item id="9445" min="1" max="1" chance="0.3168" /> <!-- Dynasty Bow -->
 					<item id="9619" min="1" max="1" chance="99.6832" /> <!-- Dynasty Bow Piece -->
 				</group>
-				<group chance="27.434799194335938">
-					<item id="1895" min="3" max="9" chance="52.5715" /> <!-- Metallic Fiber -->
-					<item id="4040" min="1" max="1" chance="22.08" /> <!-- Mold Lubricant -->
-					<item id="9628" min="1" max="1" chance="8.6588" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="5.8105" /> <!-- Orichalcum -->
-					<item id="9573" min="1" max="1" chance="7.6667" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.9167" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1917" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="6901" min="1" max="1" chance="1.1041" /> <!-- Recipe: Shining Arrow (100%) -->
+				<group chance="27.4485">
+					<item id="1895" min="3" max="9" chance="52.5452" /> <!-- Metallic Fiber -->
+					<item id="4040" min="1" max="1" chance="22.069" /> <!-- Mold Lubricant -->
+					<item id="9628" min="1" max="1" chance="8.6545" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="5.8076" /> <!-- Orichalcum -->
+					<item id="9573" min="1" max="1" chance="7.6629" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.9157" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1916" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="6901" min="1" max="1" chance="1.1035" /> <!-- Recipe: Shining Arrow (100%) -->
+					<item id="9627" min="1" max="1" chance="0.05" /> <!-- Giant's Codex - Mastery -->
 				</group>
 			</drop>
 			<spoil>
@@ -5542,20 +5530,21 @@
 				<group chance="70">
 					<item id="57" min="1432" max="2885" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.08020000159740448">
+				<group chance="0.0802">
 					<item id="9446" min="1" max="1" chance="0.3192" /> <!-- Dynasty Knife -->
 					<item id="9620" min="1" max="1" chance="99.6808" /> <!-- Dynasty Knife Piece -->
 				</group>
-				<group chance="8.852399826049805">
-					<item id="1879" min="1" max="1" chance="60.2222" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="30.1111" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.834" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9018" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.571" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="2.5093" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="0.6273" /> <!-- Mid-Grade Life Stone - Level 80 -->
+				<group chance="8.8582">
+					<item id="1879" min="1" max="1" chance="60.1831" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="30.0915" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.8322" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9006" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.57" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="2.5077" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="0.6269" /> <!-- Mid-Grade Life Stone - Level 80 -->
 					<item id="9575" min="1" max="1" chance="0.0627" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5157" min="1" max="1" chance="0.1606" /> <!-- Recipe: Soulshot (S) Compressed Package (100%) -->
+					<item id="5157" min="1" max="1" chance="0.1605" /> <!-- Recipe: Soulshot (S) Compressed Package (100%) -->
+					<item id="9625" min="1" max="1" chance="0.065" /> <!-- Giant's Codex - Oblivion -->
 				</group>
 			</drop>
 			<spoil>
@@ -5618,19 +5607,20 @@
 				<group chance="70">
 					<item id="57" min="1477" max="2979" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.08320000022649765">
+				<group chance="0.0832">
 					<item id="9447" min="1" max="1" chance="0.3175" /> <!-- Dynasty Halberd -->
 					<item id="9621" min="1" max="1" chance="99.6825" /> <!-- Dynasty Halberd Piece -->
 				</group>
-				<group chance="4.445899963378906">
-					<item id="1894" min="1" max="1" chance="29.3011" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="27.8361" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="7.2616" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="27.8361" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.7992" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.4498" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.145" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5162" min="1" max="1" chance="0.3711" /> <!-- Recipe: Spiritshot (S) Compressed Package (100%) -->
+				<group chance="4.4521">
+					<item id="1894" min="1" max="1" chance="29.2601" /> <!-- Crafted Leather -->
+					<item id="4039" min="1" max="1" chance="27.7972" /> <!-- Mold Glue -->
+					<item id="4041" min="1" max="1" chance="7.2514" /> <!-- Mold Hardener -->
+					<item id="4044" min="1" max="1" chance="27.7972" /> <!-- Thons -->
+					<item id="9573" min="1" max="1" chance="5.7911" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.4478" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1448" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="5162" min="1" max="1" chance="0.3706" /> <!-- Recipe: Spiritshot (S) Compressed Package (100%) -->
+					<item id="9625" min="1" max="1" chance="0.1398" /> <!-- Giant's Codex - Oblivion -->
 				</group>
 			</drop>
 			<spoil>
@@ -5689,22 +5679,23 @@
 				<group chance="70">
 					<item id="57" min="1245" max="2511" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.36160001158714294">
+				<group chance="0.3616">
 					<item id="9514" min="1" max="1" chance="0.0946" /> <!-- Sealed Dynasty Breast Plate -->
 					<item id="9515" min="1" max="1" chance="0.1513" /> <!-- Sealed Dynasty Gaiter -->
 					<item id="9530" min="1" max="1" chance="25.2036" /> <!-- Sealed Dynasty Breast Plate Piece -->
 					<item id="9531" min="1" max="1" chance="74.5505" /> <!-- Sealed Dynasty Gaiters Piece -->
 				</group>
-				<group chance="7.6992998123168945">
-					<item id="1879" min="1" max="1" chance="60.2222" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="30.1111" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.834" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9018" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.571" /> <!-- Adamantine -->
-					<item id="9573" min="1" max="1" chance="2.5093" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="0.6273" /> <!-- Mid-Grade Life Stone - Level 80 -->
+				<group chance="7.7039">
+					<item id="1879" min="1" max="1" chance="60.1861" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="30.093" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.8323" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9007" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.5701" /> <!-- Adamantine -->
+					<item id="9573" min="1" max="1" chance="2.5078" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="0.6269" /> <!-- Mid-Grade Life Stone - Level 80 -->
 					<item id="9575" min="1" max="1" chance="0.0627" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="5167" min="1" max="1" chance="0.1606" /> <!-- Recipe: Blessed Spiritshot (S) Compressed Package (100%) -->
+					<item id="5167" min="1" max="1" chance="0.1605" /> <!-- Recipe: Blessed Spiritshot (S) Compressed Package (100%) -->
+					<item id="9625" min="1" max="1" chance="0.06" /> <!-- Giant's Codex - Oblivion -->
 				</group>
 			</drop>
 			<spoil>
@@ -5767,21 +5758,22 @@
 				<group chance="70">
 					<item id="57" min="1245" max="2511" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.2777999937534332">
+				<group chance="0.2778">
 					<item id="9519" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Leather Armor -->
 					<item id="9520" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Leather Leggings -->
 					<item id="9535" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Leather Armor Piece -->
 					<item id="9536" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Leather Leggings Piece -->
 				</group>
-				<group chance="3.7402000427246094">
-					<item id="1894" min="1" max="1" chance="29.3611" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="27.893" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="7.2764" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="27.893" /> <!-- Thons -->
-					<item id="9573" min="1" max="1" chance="5.811" /> <!-- Life Stone - Level 80 -->
-					<item id="9574" min="1" max="1" chance="1.4528" /> <!-- Mid-Grade Life Stone - Level 80 -->
-					<item id="9575" min="1" max="1" chance="0.1453" /> <!-- High-Grade Life Stone - Level 80 -->
-					<item id="9625" min="1" max="1" chance="0.1674" /> <!-- Giant's Codex - Oblivion -->
+				<group chance="3.7447">
+					<item id="1894" min="1" max="1" chance="29.3259" /> <!-- Crafted Leather -->
+					<item id="4039" min="1" max="1" chance="27.8596" /> <!-- Mold Glue -->
+					<item id="4041" min="1" max="1" chance="7.2677" /> <!-- Mold Hardener -->
+					<item id="4044" min="1" max="1" chance="27.8596" /> <!-- Thons -->
+					<item id="9573" min="1" max="1" chance="5.804" /> <!-- Life Stone - Level 80 -->
+					<item id="9574" min="1" max="1" chance="1.4511" /> <!-- Mid-Grade Life Stone - Level 80 -->
+					<item id="9575" min="1" max="1" chance="0.1451" /> <!-- High-Grade Life Stone - Level 80 -->
+					<item id="9625" min="1" max="1" chance="0.1672" /> <!-- Giant's Codex - Oblivion -->
+					<item id="9626" min="1" max="1" chance="0.1199" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -5851,13 +5843,13 @@
 				<group chance="70">
 					<item id="57" min="1536" max="3100" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.34310001134872437">
+				<group chance="0.3431">
 					<item id="9524" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Tunic -->
 					<item id="9525" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Stockings -->
 					<item id="9540" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Tunic Piece -->
 					<item id="9541" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Stocking Piece -->
 				</group>
-				<group chance="9.498900413513184">
+				<group chance="9.4989">
 					<item id="1879" min="1" max="1" chance="60.29" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.145" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8372" /> <!-- Leonard -->
@@ -5932,7 +5924,7 @@
 				<group chance="70">
 					<item id="57" min="1465" max="2956" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.3709999918937683">
+				<group chance="0.371">
 					<item id="9452" min="1" max="1" chance="0.4382" /> <!-- Sealed Dynasty Earring -->
 					<item id="9453" min="1" max="1" chance="0.3286" /> <!-- Sealed Dynasty Necklace -->
 					<item id="9454" min="1" max="1" chance="0.6573" /> <!-- Sealed Dynasty Ring -->
@@ -5940,13 +5932,14 @@
 					<item id="9992" min="1" max="1" chance="23.8445" /> <!-- Sealed Dynasty Necklace Gemstone -->
 					<item id="9993" min="1" max="1" chance="43.6626" /> <!-- Sealed Dynasty Ring Gemstone -->
 				</group>
-				<group chance="38.59379959106445">
-					<item id="1894" min="1" max="1" chance="4.4691" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="4.2457" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="1.1076" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="4.2457" /> <!-- Thons -->
-					<item id="9546" min="1" max="1" chance="1.019" /> <!-- Fire Stone -->
-					<item id="1345" min="10" max="30" chance="84.9129" /> <!-- Shining Arrow -->
+				<group chance="38.6004">
+					<item id="1894" min="1" max="1" chance="4.4683" /> <!-- Crafted Leather -->
+					<item id="4039" min="1" max="1" chance="4.245" /> <!-- Mold Glue -->
+					<item id="4041" min="1" max="1" chance="1.1074" /> <!-- Mold Hardener -->
+					<item id="4044" min="1" max="1" chance="4.245" /> <!-- Thons -->
+					<item id="9546" min="1" max="1" chance="1.0188" /> <!-- Fire Stone -->
+					<item id="1345" min="10" max="30" chance="84.8985" /> <!-- Shining Arrow -->
+					<item id="9626" min="1" max="1" chance="0.017" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -6012,7 +6005,7 @@
 				<group chance="70">
 					<item id="57" min="1460" max="2947" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.70660001039505">
+				<group chance="0.7066">
 					<item id="9517" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Gauntlets -->
 					<item id="9518" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Boots -->
 					<item id="9522" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Leather Gloves -->
@@ -6026,13 +6019,14 @@
 					<item id="9543" min="1" max="1" chance="16.5909" /> <!-- Sealed Dynasty Glove Piece -->
 					<item id="9544" min="1" max="1" chance="16.5907" /> <!-- Sealed Dynasty Shoes Piece -->
 				</group>
-				<group chance="13.496600151062012">
-					<item id="1879" min="1" max="1" chance="60.5061" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="30.2531" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.8473" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9107" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.5784" /> <!-- Adamantine -->
-					<item id="9547" min="1" max="1" chance="2.9044" /> <!-- Water Stone -->
+				<group chance="13.502">
+					<item id="1879" min="1" max="1" chance="60.4819" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="30.241" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.8462" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9099" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.5778" /> <!-- Adamantine -->
+					<item id="9547" min="1" max="1" chance="2.9032" /> <!-- Water Stone -->
+					<item id="9626" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -6096,7 +6090,7 @@
 				<group chance="70">
 					<item id="57" min="1255" max="2533" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.35519999265670776">
+				<group chance="0.3552">
 					<item id="9516" min="1" max="1" chance="0.1037" /> <!-- Sealed Dynasty Helmet -->
 					<item id="9529" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Shield -->
 					<item id="13886" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Sigil -->
@@ -6108,13 +6102,14 @@
 					<item id="9545" min="1" max="1" chance="30.4907" /> <!-- Sealed Dynasty Shield Piece -->
 					<item id="10114" min="1" max="1" chance="17.6381" /> <!-- Sealed Dynasty Sigil Piece -->
 				</group>
-				<group chance="11.601900100708008">
-					<item id="1879" min="1" max="1" chance="60.5061" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="30.2531" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.8473" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9107" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.5784" /> <!-- Adamantine -->
-					<item id="9548" min="1" max="1" chance="2.9044" /> <!-- Earth Stone -->
+				<group chance="11.6067">
+					<item id="1879" min="1" max="1" chance="60.4813" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="30.2407" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.8461" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9099" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.5778" /> <!-- Adamantine -->
+					<item id="9548" min="1" max="1" chance="2.9032" /> <!-- Earth Stone -->
+					<item id="9626" min="1" max="1" chance="0.041" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -6178,7 +6173,7 @@
 				<group chance="70">
 					<item id="57" min="1216" max="2453" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.06830000132322311">
+				<group chance="0.0683">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -6186,12 +6181,13 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="17.80470085144043">
-					<item id="1895" min="1" max="1" chance="78.5546" /> <!-- Metallic Fiber -->
-					<item id="4040" min="1" max="1" chance="5.4988" /> <!-- Mold Lubricant -->
-					<item id="4042" min="1" max="1" chance="4.5824" /> <!-- Enria -->
-					<item id="4043" min="1" max="1" chance="9.1647" /> <!-- Asofe -->
-					<item id="9549" min="1" max="1" chance="2.1995" /> <!-- Wind Stone -->
+				<group chance="17.8118">
+					<item id="1895" min="1" max="1" chance="78.5232" /> <!-- Metallic Fiber -->
+					<item id="4040" min="1" max="1" chance="5.4966" /> <!-- Mold Lubricant -->
+					<item id="4042" min="1" max="1" chance="4.5806" /> <!-- Enria -->
+					<item id="4043" min="1" max="1" chance="9.161" /> <!-- Asofe -->
+					<item id="9549" min="1" max="1" chance="2.1986" /> <!-- Wind Stone -->
+					<item id="9625" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Oblivion -->
 				</group>
 			</drop>
 			<spoil>
@@ -6257,7 +6253,7 @@
 				<group chance="70">
 					<item id="57" min="1278" max="2578" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.07069999724626541">
+				<group chance="0.0707">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -6267,12 +6263,13 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="6.094200134277344">
-					<item id="1894" min="1" max="1" chance="29.6224" /> <!-- Crafted Leather -->
-					<item id="4039" min="1" max="1" chance="28.1413" /> <!-- Mold Glue -->
-					<item id="4041" min="1" max="1" chance="7.3412" /> <!-- Mold Hardener -->
-					<item id="4044" min="1" max="1" chance="28.1413" /> <!-- Thons -->
-					<item id="9550" min="1" max="1" chance="6.7538" /> <!-- Dark Stone -->
+				<group chance="6.1027">
+					<item id="1894" min="1" max="1" chance="29.581" /> <!-- Crafted Leather -->
+					<item id="4039" min="1" max="1" chance="28.102" /> <!-- Mold Glue -->
+					<item id="4041" min="1" max="1" chance="7.3309" /> <!-- Mold Hardener -->
+					<item id="4044" min="1" max="1" chance="28.102" /> <!-- Thons -->
+					<item id="9550" min="1" max="1" chance="6.7444" /> <!-- Dark Stone -->
+					<item id="9625" min="1" max="1" chance="0.1398" /> <!-- Giant's Codex - Oblivion -->
 				</group>
 			</drop>
 			<spoil>
@@ -6332,17 +6329,18 @@
 				<group chance="70">
 					<item id="57" min="1255" max="2533" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0681999996304512">
+				<group chance="0.0682">
 					<item id="9450" min="1" max="1" chance="0.3294" /> <!-- Dynasty Bagh-Nakh -->
 					<item id="9624" min="1" max="1" chance="99.6706" /> <!-- Dynasty Bagh-Nakh Piece -->
 				</group>
-				<group chance="11.601900100708008">
-					<item id="1879" min="1" max="1" chance="60.5061" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="30.2531" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.8473" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9107" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.5784" /> <!-- Adamantine -->
-					<item id="9551" min="1" max="1" chance="2.9044" /> <!-- Holy Stone -->
+				<group chance="11.6065">
+					<item id="1879" min="1" max="1" chance="60.4819" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="30.241" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.8462" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9099" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.5778" /> <!-- Adamantine -->
+					<item id="9551" min="1" max="1" chance="2.9032" /> <!-- Holy Stone -->
+					<item id="9626" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -6407,17 +6405,18 @@
 				<group chance="70">
 					<item id="57" min="1290" max="2604" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.07289999723434448">
+				<group chance="0.0729">
 					<item id="9445" min="1" max="1" chance="0.3168" /> <!-- Dynasty Bow -->
 					<item id="9619" min="1" max="1" chance="99.6832" /> <!-- Dynasty Bow Piece -->
 				</group>
-				<group chance="11.582099914550781">
-					<item id="1879" min="1" max="1" chance="62.3067" /> <!-- Cokes -->
-					<item id="1885" min="1" max="1" chance="31.1533" /> <!-- High-Grade Suede -->
-					<item id="9628" min="1" max="1" chance="2.9321" /> <!-- Leonard -->
-					<item id="9630" min="1" max="1" chance="1.9676" /> <!-- Orichalcum -->
-					<item id="9629" min="1" max="1" chance="1.6254" /> <!-- Adamantine -->
+				<group chance="11.5867">
+					<item id="1879" min="1" max="1" chance="62.2818" /> <!-- Cokes -->
+					<item id="1885" min="1" max="1" chance="31.1408" /> <!-- High-Grade Suede -->
+					<item id="9628" min="1" max="1" chance="2.9309" /> <!-- Leonard -->
+					<item id="9630" min="1" max="1" chance="1.9668" /> <!-- Orichalcum -->
+					<item id="9629" min="1" max="1" chance="1.6248" /> <!-- Adamantine -->
 					<item id="959" min="1" max="1" chance="0.0149" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
+					<item id="9626" min="1" max="1" chance="0.04" /> <!-- Giant's Codex - Discipline -->
 				</group>
 			</drop>
 			<spoil>
@@ -6494,11 +6493,11 @@
 				<group chance="70">
 					<item id="57" min="695" max="1401" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.03889999911189079">
+				<group chance="0.0389">
 					<item id="9446" min="1" max="1" chance="0.3192" /> <!-- Dynasty Knife -->
 					<item id="9620" min="1" max="1" chance="99.6808" /> <!-- Dynasty Knife Piece -->
 				</group>
-				<group chance="18.653900146484375">
+				<group chance="18.6539">
 					<item id="1879" min="1" max="1" chance="17.8345" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="8.9172" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="0.8393" /> <!-- Leonard -->
@@ -6507,28 +6506,28 @@
 					<item id="960" min="1" max="1" chance="0.0428" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 					<item id="1345" min="10" max="30" chance="71.3378" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -6608,11 +6607,11 @@
 				<group chance="70">
 					<item id="57" min="713" max="1437" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.04019999876618385">
+				<group chance="0.0402">
 					<item id="9447" min="1" max="1" chance="0.3175" /> <!-- Dynasty Halberd -->
 					<item id="9621" min="1" max="1" chance="99.6825" /> <!-- Dynasty Halberd Piece -->
 				</group>
-				<group chance="6.402599811553955">
+				<group chance="6.4026">
 					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
@@ -6620,28 +6619,28 @@
 					<item id="9629" min="1" max="1" chance="1.6229" /> <!-- Adamantine -->
 					<item id="5272" min="1" max="1" chance="0.1659" /> <!-- Recipe: Greater Soulshot (S) Compressed Package(100%) -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -6707,13 +6706,13 @@
 				<group chance="70">
 					<item id="57" min="728" max="1468" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.21150000393390656">
+				<group chance="0.2115">
 					<item id="9514" min="1" max="1" chance="0.0946" /> <!-- Sealed Dynasty Breast Plate -->
 					<item id="9515" min="1" max="1" chance="0.1513" /> <!-- Sealed Dynasty Gaiter -->
 					<item id="9530" min="1" max="1" chance="25.2036" /> <!-- Sealed Dynasty Breast Plate Piece -->
 					<item id="9531" min="1" max="1" chance="74.5505" /> <!-- Sealed Dynasty Gaiters Piece -->
 				</group>
-				<group chance="18.97570037841797">
+				<group chance="18.9757">
 					<item id="1894" min="1" max="1" chance="4.5125" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="4.2869" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="1.1183" /> <!-- Mold Hardener -->
@@ -6721,28 +6720,28 @@
 					<item id="5277" min="1" max="1" chance="0.0572" /> <!-- Recipe: Greater Spiritshot (S) Compressed Package(100%) -->
 					<item id="1345" min="10" max="30" chance="85.7382" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -6811,13 +6810,13 @@
 				<group chance="70">
 					<item id="57" min="748" max="1506" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.16670000553131104">
+				<group chance="0.1667">
 					<item id="9519" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Leather Armor -->
 					<item id="9520" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Leather Leggings -->
 					<item id="9535" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Leather Armor Piece -->
 					<item id="9536" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Leather Leggings Piece -->
 				</group>
-				<group chance="6.709400177001953">
+				<group chance="6.7094">
 					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
@@ -6825,28 +6824,28 @@
 					<item id="9629" min="1" max="1" chance="1.6229" /> <!-- Adamantine -->
 					<item id="5282" min="1" max="1" chance="0.1659" /> <!-- Recipe: Greater Blessed Spiritshot (S) Compressed Package(100%) -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -6915,41 +6914,41 @@
 				<group chance="70">
 					<item id="57" min="827" max="1666" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.18440000712871552">
+				<group chance="0.1844">
 					<item id="9524" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Tunic -->
 					<item id="9525" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Stockings -->
 					<item id="9540" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Tunic Piece -->
 					<item id="9541" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Stocking Piece -->
 				</group>
-				<group chance="3.704400062561035">
+				<group chance="3.7044">
 					<item id="1894" min="1" max="1" chance="31.4829" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="29.9088" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.8023" /> <!-- Mold Hardener -->
 					<item id="4044" min="1" max="1" chance="29.9088" /> <!-- Thons -->
 					<item id="6901" min="1" max="1" chance="0.8972" /> <!-- Recipe: Shining Arrow (100%) -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7014,7 +7013,7 @@
 				<group chance="70">
 					<item id="57" min="777" max="1567" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.1965000033378601">
+				<group chance="0.1965">
 					<item id="9452" min="1" max="1" chance="0.4382" /> <!-- Sealed Dynasty Earring -->
 					<item id="9453" min="1" max="1" chance="0.3286" /> <!-- Sealed Dynasty Necklace -->
 					<item id="9454" min="1" max="1" chance="0.6573" /> <!-- Sealed Dynasty Ring -->
@@ -7022,7 +7021,7 @@
 					<item id="9992" min="1" max="1" chance="23.8445" /> <!-- Sealed Dynasty Necklace Gemstone -->
 					<item id="9993" min="1" max="1" chance="43.6626" /> <!-- Sealed Dynasty Ring Gemstone -->
 				</group>
-				<group chance="20.24570083618164">
+				<group chance="20.2457">
 					<item id="1894" min="1" max="1" chance="4.5125" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="4.2869" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="1.1183" /> <!-- Mold Hardener -->
@@ -7030,28 +7029,28 @@
 					<item id="5157" min="1" max="1" chance="0.0572" /> <!-- Recipe: Soulshot (S) Compressed Package (100%) -->
 					<item id="1345" min="10" max="30" chance="85.7382" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7116,7 +7115,7 @@
 				<group chance="70">
 					<item id="57" min="728" max="1468" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.35190001130104065">
+				<group chance="0.3519">
 					<item id="9517" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Gauntlets -->
 					<item id="9518" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Boots -->
 					<item id="9522" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Leather Gloves -->
@@ -7130,7 +7129,7 @@
 					<item id="9543" min="1" max="1" chance="16.5909" /> <!-- Sealed Dynasty Glove Piece -->
 					<item id="9544" min="1" max="1" chance="16.5907" /> <!-- Sealed Dynasty Shoes Piece -->
 				</group>
-				<group chance="6.537799835205078">
+				<group chance="6.5378">
 					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
@@ -7138,28 +7137,28 @@
 					<item id="9629" min="1" max="1" chance="1.6229" /> <!-- Adamantine -->
 					<item id="5162" min="1" max="1" chance="0.1659" /> <!-- Recipe: Spiritshot (S) Compressed Package (100%) -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7224,7 +7223,7 @@
 				<group chance="70">
 					<item id="57" min="748" max="1506" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.21119999885559082">
+				<group chance="0.2112">
 					<item id="9516" min="1" max="1" chance="0.1037" /> <!-- Sealed Dynasty Helmet -->
 					<item id="9529" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Shield -->
 					<item id="13886" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Sigil -->
@@ -7236,7 +7235,7 @@
 					<item id="9545" min="1" max="1" chance="30.4907" /> <!-- Sealed Dynasty Shield Piece -->
 					<item id="10114" min="1" max="1" chance="17.6381" /> <!-- Sealed Dynasty Sigil Piece -->
 				</group>
-				<group chance="6.709400177001953">
+				<group chance="6.7094">
 					<item id="1879" min="1" max="1" chance="62.2126" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="31.1063" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.9277" /> <!-- Leonard -->
@@ -7244,28 +7243,28 @@
 					<item id="9629" min="1" max="1" chance="1.6229" /> <!-- Adamantine -->
 					<item id="5167" min="1" max="1" chance="0.1659" /> <!-- Recipe: Blessed Spiritshot (S) Compressed Package (100%) -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7329,7 +7328,7 @@
 				<group chance="70">
 					<item id="57" min="748" max="1506" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.04190000146627426">
+				<group chance="0.0419">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -7337,7 +7336,7 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="20.056900024414062">
+				<group chance="20.0569">
 					<item id="1879" min="1" max="1" chance="17.8383" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="8.9191" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="0.8394" /> <!-- Leonard -->
@@ -7346,28 +7345,28 @@
 					<item id="9625" min="1" max="1" chance="0.0214" /> <!-- Giant's Codex - Oblivion -->
 					<item id="1345" min="10" max="30" chance="71.3532" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7436,7 +7435,7 @@
 				<group chance="70">
 					<item id="57" min="829" max="1673" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.04600000008940697">
+				<group chance="0.046">
 					<item id="9448" min="1" max="1" chance="0.1211" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.1211" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.1211" /> <!-- Dynasty Staff -->
@@ -7446,7 +7445,7 @@
 					<item id="10546" min="1" max="1" chance="25.3236" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3238" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="28.43269920349121">
+				<group chance="28.4327">
 					<item id="1895" min="1" max="1" chance="27.9423" /> <!-- Metallic Fiber -->
 					<item id="4040" min="1" max="1" chance="1.956" /> <!-- Mold Lubricant -->
 					<item id="4042" min="1" max="1" chance="1.63" /> <!-- Enria -->
@@ -7454,28 +7453,28 @@
 					<item id="9626" min="1" max="1" chance="0.013" /> <!-- Giant's Codex - Discipline -->
 					<item id="1345" min="10" max="30" chance="65.1988" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7544,11 +7543,11 @@
 				<group chance="70">
 					<item id="57" min="852" max="1716" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.046300001442432404">
+				<group chance="0.0463">
 					<item id="9450" min="1" max="1" chance="0.4933" /> <!-- Dynasty Bagh-Nakh -->
 					<item id="9624" min="1" max="1" chance="99.5067" /> <!-- Dynasty Bagh-Nakh Piece -->
 				</group>
-				<group chance="2.5576999187469482">
+				<group chance="2.5577">
 					<item id="1894" min="1" max="1" chance="29.3611" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.893" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2764" /> <!-- Mold Hardener -->
@@ -7558,28 +7557,28 @@
 					<item id="9575" min="1" max="1" chance="0.1453" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9625" min="1" max="1" chance="0.1674" /> <!-- Giant's Codex - Oblivion -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7646,11 +7645,11 @@
 				<group chance="70">
 					<item id="57" min="394" max="794" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.022299999371170998">
+				<group chance="0.0223">
 					<item id="9445" min="1" max="1" chance="0.4745" /> <!-- Dynasty Bow -->
 					<item id="9619" min="1" max="1" chance="99.5255" /> <!-- Dynasty Bow Piece -->
 				</group>
-				<group chance="2.4326000213623047">
+				<group chance="2.4326">
 					<item id="1879" min="1" max="1" chance="60.29" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.145" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8372" /> <!-- Leonard -->
@@ -7661,28 +7660,28 @@
 					<item id="9575" min="1" max="1" chance="0.0628" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9626" min="1" max="1" chance="0.0482" /> <!-- Giant's Codex - Discipline -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7749,11 +7748,11 @@
 				<group chance="70">
 					<item id="57" min="894" max="1800" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.05009999871253967">
+				<group chance="0.0501">
 					<item id="9446" min="1" max="1" chance="0.3192" /> <!-- Dynasty Knife -->
 					<item id="9620" min="1" max="1" chance="99.6808" /> <!-- Dynasty Knife Piece -->
 				</group>
-				<group chance="17.079500198364258">
+				<group chance="17.0795">
 					<item id="1879" min="1" max="1" chance="17.5259" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="8.7629" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="0.8247" /> <!-- Leonard -->
@@ -7765,28 +7764,28 @@
 					<item id="9546" min="1" max="1" chance="0.8412" /> <!-- Fire Stone -->
 					<item id="1345" min="10" max="30" chance="70.1036" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="52.0">
+				<group chance="52">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="50" /> <!-- Herb of the Warrior -->
 					<item id="8614" min="1" max="1" chance="50" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7855,11 +7854,11 @@
 				<group chance="70">
 					<item id="57" min="829" max="1673" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.04670000076293945">
+				<group chance="0.0467">
 					<item id="9447" min="1" max="1" chance="0.3175" /> <!-- Dynasty Halberd -->
 					<item id="9621" min="1" max="1" chance="99.6825" /> <!-- Dynasty Halberd Piece -->
 				</group>
-				<group chance="5.270400047302246">
+				<group chance="5.2704">
 					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
@@ -7870,33 +7869,33 @@
 					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9547" min="1" max="1" chance="2.8138" /> <!-- Water Stone -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -7968,13 +7967,13 @@
 				<group chance="70">
 					<item id="57" min="880" max="1772" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.25540000200271606">
+				<group chance="0.2554">
 					<item id="9514" min="1" max="1" chance="0.0946" /> <!-- Sealed Dynasty Breast Plate -->
 					<item id="9515" min="1" max="1" chance="0.1513" /> <!-- Sealed Dynasty Gaiter -->
 					<item id="9530" min="1" max="1" chance="25.2036" /> <!-- Sealed Dynasty Breast Plate Piece -->
 					<item id="9531" min="1" max="1" chance="74.5505" /> <!-- Sealed Dynasty Gaiters Piece -->
 				</group>
-				<group chance="2.813999891281128">
+				<group chance="2.814">
 					<item id="1894" min="1" max="1" chance="27.5621" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="26.184" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="6.8306" /> <!-- Mold Hardener -->
@@ -7984,33 +7983,33 @@
 					<item id="9575" min="1" max="1" chance="0.1364" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9548" min="1" max="1" chance="6.2841" /> <!-- Earth Stone -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8091,13 +8090,13 @@
 				<group chance="70">
 					<item id="57" min="880" max="1772" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.19619999825954437">
+				<group chance="0.1962">
 					<item id="9519" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Leather Armor -->
 					<item id="9520" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Leather Leggings -->
 					<item id="9535" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Leather Armor Piece -->
 					<item id="9536" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Leather Leggings Piece -->
 				</group>
-				<group chance="5.58620023727417">
+				<group chance="5.5862">
 					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
@@ -8108,33 +8107,33 @@
 					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9549" min="1" max="1" chance="2.8138" /> <!-- Wind Stone -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8217,13 +8216,13 @@
 				<group chance="70">
 					<item id="57" min="852" max="1716" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.1899999976158142">
+				<group chance="0.19">
 					<item id="9524" min="1" max="1" chance="0.1642" /> <!-- Sealed Dynasty Tunic -->
 					<item id="9525" min="1" max="1" chance="0.2627" /> <!-- Sealed Dynasty Stockings -->
 					<item id="9540" min="1" max="1" chance="40.3139" /> <!-- Sealed Dynasty Tunic Piece -->
 					<item id="9541" min="1" max="1" chance="59.2592" /> <!-- Sealed Dynasty Stocking Piece -->
 				</group>
-				<group chance="5.40880012512207">
+				<group chance="5.4088">
 					<item id="1879" min="1" max="1" chance="58.6218" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="29.3109" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.7587" /> <!-- Leonard -->
@@ -8234,33 +8233,33 @@
 					<item id="9575" min="1" max="1" chance="0.0611" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="9550" min="1" max="1" chance="2.8138" /> <!-- Dark Stone -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8333,7 +8332,7 @@
 				<group chance="70">
 					<item id="57" min="834" max="1681" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.21089999377727509">
+				<group chance="0.2109">
 					<item id="9452" min="1" max="1" chance="0.4382" /> <!-- Sealed Dynasty Earring -->
 					<item id="9453" min="1" max="1" chance="0.3286" /> <!-- Sealed Dynasty Necklace -->
 					<item id="9454" min="1" max="1" chance="0.6573" /> <!-- Sealed Dynasty Ring -->
@@ -8341,7 +8340,7 @@
 					<item id="9992" min="1" max="1" chance="23.8445" /> <!-- Sealed Dynasty Necklace Gemstone -->
 					<item id="9993" min="1" max="1" chance="43.6626" /> <!-- Sealed Dynasty Ring Gemstone -->
 				</group>
-				<group chance="14.790399551391602">
+				<group chance="14.7904">
 					<item id="1894" min="1" max="1" chance="4.4193" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="4.1983" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="1.0952" /> <!-- Mold Hardener -->
@@ -8352,33 +8351,33 @@
 					<item id="9551" min="1" max="1" chance="1.0076" /> <!-- Holy Stone -->
 					<item id="1345" min="10" max="30" chance="83.9661" /> <!-- Shining Arrow -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8452,7 +8451,7 @@
 				<group chance="70">
 					<item id="57" min="827" max="1669" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.4000000059604645">
+				<group chance="0.4">
 					<item id="9517" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Gauntlets -->
 					<item id="9518" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Boots -->
 					<item id="9522" min="1" max="1" chance="0.0758" /> <!-- Sealed Dynasty Leather Gloves -->
@@ -8466,7 +8465,7 @@
 					<item id="9543" min="1" max="1" chance="16.5909" /> <!-- Sealed Dynasty Glove Piece -->
 					<item id="9544" min="1" max="1" chance="16.5907" /> <!-- Sealed Dynasty Shoes Piece -->
 				</group>
-				<group chance="5.110300064086914">
+				<group chance="5.1103">
 					<item id="1879" min="1" max="1" chance="60.3104" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.1552" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8381" /> <!-- Leonard -->
@@ -8477,33 +8476,33 @@
 					<item id="9575" min="1" max="1" chance="0.0628" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="959" min="1" max="1" chance="0.0146" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8584,7 +8583,7 @@
 				<group chance="70">
 					<item id="57" min="766" max="1544" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.21649999916553497">
+				<group chance="0.2165">
 					<item id="9516" min="1" max="1" chance="0.1037" /> <!-- Sealed Dynasty Helmet -->
 					<item id="9529" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Shield -->
 					<item id="13886" min="1" max="1" chance="0.1481" /> <!-- Sealed Dynasty Sigil -->
@@ -8596,7 +8595,7 @@
 					<item id="9545" min="1" max="1" chance="30.4907" /> <!-- Sealed Dynasty Shield Piece -->
 					<item id="10114" min="1" max="1" chance="17.6381" /> <!-- Sealed Dynasty Sigil Piece -->
 				</group>
-				<group chance="4.736000061035156">
+				<group chance="4.736">
 					<item id="1879" min="1" max="1" chance="60.2319" /> <!-- Cokes -->
 					<item id="1885" min="1" max="1" chance="30.116" /> <!-- High-Grade Suede -->
 					<item id="9628" min="1" max="1" chance="2.8344" /> <!-- Leonard -->
@@ -8607,33 +8606,33 @@
 					<item id="9575" min="1" max="1" chance="0.0627" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="960" min="1" max="1" chance="0.1445" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8703,7 +8702,7 @@
 				<group chance="70">
 					<item id="57" min="855" max="1724" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.0478999987244606">
+				<group chance="0.0479">
 					<item id="9442" min="1" max="1" chance="0.1063" /> <!-- Dynasty Sword -->
 					<item id="9443" min="1" max="1" chance="0.1063" /> <!-- Dynasty Blade -->
 					<item id="9444" min="1" max="1" chance="0.1063" /> <!-- Dynasty Phantom -->
@@ -8711,7 +8710,7 @@
 					<item id="9617" min="1" max="1" chance="33.227" /> <!-- Dynasty Blade Piece -->
 					<item id="9618" min="1" max="1" chance="33.2271" /> <!-- Dynasty Phantom Piece -->
 				</group>
-				<group chance="2.5731000900268555">
+				<group chance="2.5731">
 					<item id="1894" min="1" max="1" chance="29.3011" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.8361" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2616" /> <!-- Mold Hardener -->
@@ -8721,33 +8720,33 @@
 					<item id="9575" min="1" max="1" chance="0.145" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="5272" min="1" max="1" chance="0.3711" /> <!-- Recipe: Greater Soulshot (S) Compressed Package(100%) -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->
@@ -8816,7 +8815,7 @@
 				<group chance="70">
 					<item id="57" min="878" max="1768" chance="100" /> <!-- Adena -->
 				</group>
-				<group chance="0.048500001430511475">
+				<group chance="0.0485">
 					<item id="9448" min="1" max="1" chance="0.0809" /> <!-- Dynasty Cudgel -->
 					<item id="9449" min="1" max="1" chance="0.0809" /> <!-- Dynasty Mace -->
 					<item id="10252" min="1" max="1" chance="0.0809" /> <!-- Dynasty Staff -->
@@ -8826,7 +8825,7 @@
 					<item id="10546" min="1" max="1" chance="25.3646" /> <!-- Dynasty Staff Fragment -->
 					<item id="10547" min="1" max="1" chance="25.3644" /> <!-- Dynasty Crusher Fragment -->
 				</group>
-				<group chance="2.640700101852417">
+				<group chance="2.6407">
 					<item id="1894" min="1" max="1" chance="29.3011" /> <!-- Crafted Leather -->
 					<item id="4039" min="1" max="1" chance="27.8361" /> <!-- Mold Glue -->
 					<item id="4041" min="1" max="1" chance="7.2616" /> <!-- Mold Hardener -->
@@ -8836,33 +8835,33 @@
 					<item id="9575" min="1" max="1" chance="0.145" /> <!-- High-Grade Life Stone - Level 80 -->
 					<item id="5277" min="1" max="1" chance="0.3711" /> <!-- Recipe: Greater Spiritshot (S) Compressed Package(100%) -->
 				</group>
-				<group chance="42.0">
+				<group chance="42">
 					<item id="8600" min="1" max="1" chance="55" /> <!-- Herb of Life -->
 					<item id="8601" min="1" max="1" chance="38" /> <!-- Greater Herb of Life -->
 					<item id="8602" min="1" max="1" chance="7" /> <!-- Superior Herb of Life -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8603" min="1" max="1" chance="7" /> <!-- Herb of Mana -->
 					<item id="8604" min="1" max="1" chance="81" /> <!-- Greater Herb of Mana -->
 					<item id="8605" min="1" max="1" chance="12" /> <!-- Superior Herb of Mana -->
 				</group>
-				<group chance="25.0">
+				<group chance="25">
 					<item id="8606" min="1" max="1" chance="20" /> <!-- Herb of Power -->
 					<item id="8608" min="1" max="1" chance="20" /> <!-- Herb of Alacrity -->
 					<item id="8610" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Probability -->
 					<item id="10655" min="1" max="1" chance="20" /> <!-- Herb of Vampiric Rage -->
 					<item id="10656" min="1" max="1" chance="20" /> <!-- Herb of Critical Attack - Power -->
 				</group>
-				<group chance="10.0">
+				<group chance="10">
 					<item id="8607" min="1" max="1" chance="50" /> <!-- Herb of Magic -->
 					<item id="8609" min="1" max="1" chance="50" /> <!-- Herb of Casting Spd. -->
 				</group>
-				<group chance="1.0">
+				<group chance="1">
 					<item id="8612" min="1" max="1" chance="33" /> <!-- Herb of the Warrior -->
 					<item id="8613" min="1" max="1" chance="33" /> <!-- Herb of the Mystic -->
 					<item id="8614" min="1" max="1" chance="34" /> <!-- Herb of Recovery -->
 				</group>
-				<group chance="11.0">
+				<group chance="11">
 					<item id="8611" min="1" max="1" chance="94" /> <!-- Herb of Speed -->
 					<item id="10657" min="1" max="1" chance="3" /> <!-- Herb of Doubt -->
 					<item id="13028" min="1" max="1" chance="3" /> <!-- Vitality Replenishing Herb -->

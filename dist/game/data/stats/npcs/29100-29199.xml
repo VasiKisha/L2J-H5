@@ -654,7 +654,7 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="57.10929870605469">
+				<group chance="57.1093">
 					<item id="6676" min="1" max="1" chance="1.2148" /> <!-- Sealed Imperial Crusader Gauntlet -->
 					<item id="6677" min="1" max="1" chance="1.2148" /> <!-- Sealed Imperial Crusader Boots -->
 					<item id="6681" min="1" max="1" chance="1.2148" /> <!-- Sealed Draconic Leather Glove -->
@@ -668,7 +668,7 @@
 					<item id="6712" min="36" max="108" chance="4.2999" /> <!-- Sealed Major Arcana Gloves fabric -->
 					<item id="6713" min="4" max="10" chance="44.2269" /> <!-- Sealed Major Arcana Boots Design -->
 				</group>
-				<group chance="2.3326001167297363">
+				<group chance="2.3326">
 					<item id="9458" min="1" max="1" chance="14.2857" /> <!-- Dynasty Earrings - Stun Resistance -->
 					<item id="9461" min="1" max="1" chance="14.2857" /> <!-- Dynasty Earrings - Poison Resistance -->
 					<item id="9464" min="1" max="1" chance="14.2857" /> <!-- Dynasty Earrings - Bleed Resistance -->
@@ -677,7 +677,7 @@
 					<item id="9473" min="1" max="1" chance="14.2857" /> <!-- Dynasty Earrings - Hold Resistance -->
 					<item id="9476" min="1" max="1" chance="14.2858" /> <!-- Dynasty Earrings - Fear Resistance -->
 				</group>
-				<group chance="4.107600212097168">
+				<group chance="4.1076">
 					<item id="6577" min="1" max="1" chance="13.0435" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
 					<item id="6578" min="1" max="1" chance="86.9565" /> <!-- Blessed Scroll: Enchant Armor (S-Grade) -->
 				</group>
@@ -721,7 +721,7 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="70.39129638671875">
+				<group chance="70.3913">
 					<item id="6678" min="1" max="1" chance="2.8152" /> <!-- Sealed Imperial Crusader Shield -->
 					<item id="6679" min="1" max="1" chance="1.9712" /> <!-- Sealed Imperial Crusader Helmet -->
 					<item id="6683" min="1" max="1" chance="1.9712" /> <!-- Sealed Draconic Leather Helmet -->
@@ -731,10 +731,10 @@
 					<item id="6710" min="11" max="31" chance="40.884" /> <!-- Sealed Draconic Leather Helmet Pattern -->
 					<item id="6714" min="16" max="48" chance="26.8301" /> <!-- Sealed Major Arcana Circlet Pattern -->
 				</group>
-				<group chance="8.449700355529785">
+				<group chance="8.4497">
 					<item id="10170" min="1" max="1" chance="100" /> <!-- Baylor's Earring -->
 				</group>
-				<group chance="8.215100288391113">
+				<group chance="8.2151">
 					<item id="6577" min="1" max="1" chance="13.0435" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
 					<item id="6578" min="1" max="1" chance="86.9565" /> <!-- Blessed Scroll: Enchant Armor (S-Grade) -->
 				</group>
@@ -790,29 +790,28 @@
 				<item id="10552" min="1" max="1" chance="20" /> <!-- Forgotten Scroll - Fighter's Will -->
 				<item id="10553" min="1" max="1" chance="20" /> <!-- Forgotten Scroll - Archer's Will -->
 				<item id="14219" min="1" max="1" chance="20" /> <!-- Forgotten Scroll - Magician's Will -->
-				<group chance="100">
-					<item id="13457" min="1" max="1" chance="3.77" /> <!-- Vesper Cutter -->
-					<item id="13458" min="1" max="1" chance="3.76" /> <!-- Vesper Slasher -->
-					<item id="13459" min="1" max="1" chance="3.76" /> <!-- Vesper Buster -->
-					<item id="13460" min="1" max="1" chance="3.77" /> <!-- Vesper Shaper -->
-					<item id="13461" min="1" max="1" chance="3.77" /> <!-- Vesper Fighter -->
-					<item id="13462" min="1" max="1" chance="3.76" /> <!-- Vesper Stormer -->
-					<item id="13463" min="1" max="1" chance="3.77" /> <!-- Vesper Avenger -->
-					<item id="13464" min="1" max="1" chance="3.76" /> <!-- Vesper Retributer -->
-					<item id="13465" min="1" max="1" chance="3.76" /> <!-- Vesper Caster -->
-					<item id="13467" min="1" max="1" chance="3.76" /> <!-- Vesper Thrower -->
-					<item id="13466" min="1" max="1" chance="3.76" /> <!-- Vesper Singer -->
-					<item id="10215" min="1" max="1" chance="6.52" /> <!-- Icarus Sawsword -->
-					<item id="10216" min="1" max="1" chance="6.51" /> <!-- Icarus Disperser -->
-					<item id="10217" min="1" max="1" chance="6.51" /> <!-- Icarus Spirit -->
-					<item id="10218" min="1" max="1" chance="6.51" /> <!-- Icarus Heavy Arms -->
-					<item id="10219" min="1" max="1" chance="6.51" /> <!-- Icarus Trident -->
-					<item id="10220" min="1" max="1" chance="6.51" /> <!-- Icarus Hammer -->
-					<item id="10221" min="1" max="1" chance="6.51" /> <!-- Icarus Hand -->
-					<item id="10222" min="1" max="1" chance="6.51" /> <!-- Icarus Hall -->
-					<item id="10223" min="1" max="1" chance="6.51" /> <!-- Icarus Spitter -->
+				<group chance="93.48">
+					<item id="13457" min="1" max="1" chance="4.0329" /> <!-- Vesper Cutter -->
+					<item id="13458" min="1" max="1" chance="4.0223" /> <!-- Vesper Slasher -->
+					<item id="13459" min="1" max="1" chance="4.0223" /> <!-- Vesper Buster -->
+					<item id="13460" min="1" max="1" chance="4.0329" /> <!-- Vesper Shaper -->
+					<item id="13461" min="1" max="1" chance="4.0329" /> <!-- Vesper Fighter -->
+					<item id="13462" min="1" max="1" chance="4.0223" /> <!-- Vesper Stormer -->
+					<item id="13463" min="1" max="1" chance="4.0329" /> <!-- Vesper Avenger -->
+					<item id="13464" min="1" max="1" chance="4.0223" /> <!-- Vesper Retributer -->
+					<item id="13465" min="1" max="1" chance="4.0223" /> <!-- Vesper Caster -->
+					<item id="13467" min="1" max="1" chance="4.0223" /> <!-- Vesper Thrower -->
+					<item id="13466" min="1" max="1" chance="4.0223" /> <!-- Vesper Singer -->
+					<item id="10216" min="1" max="1" chance="6.9641" /> <!-- Icarus Disperser -->
+					<item id="10217" min="1" max="1" chance="6.9641" /> <!-- Icarus Spirit -->
+					<item id="10218" min="1" max="1" chance="6.9641" /> <!-- Icarus Heavy Arms -->
+					<item id="10219" min="1" max="1" chance="6.9641" /> <!-- Icarus Trident -->
+					<item id="10220" min="1" max="1" chance="6.9641" /> <!-- Icarus Hammer -->
+					<item id="10221" min="1" max="1" chance="6.9641" /> <!-- Icarus Hand -->
+					<item id="10222" min="1" max="1" chance="6.9641" /> <!-- Icarus Hall -->
+					<item id="10223" min="1" max="1" chance="6.9641" /> <!-- Icarus Spitter -->
 				</group>
-				<group chance="50.0">
+				<group chance="50">
 					<item id="10215" min="1" max="1" chance="11.2" /> <!-- Icarus Sawsword -->
 					<item id="10216" min="1" max="1" chance="11.1" /> <!-- Icarus Disperser -->
 					<item id="10217" min="1" max="1" chance="11.1" /> <!-- Icarus Spirit -->
@@ -822,6 +821,21 @@
 					<item id="10221" min="1" max="1" chance="11.1" /> <!-- Icarus Hand -->
 					<item id="10222" min="1" max="1" chance="11.1" /> <!-- Icarus Hall -->
 					<item id="10223" min="1" max="1" chance="11.1" /> <!-- Icarus Spitter -->
+				</group>
+				<group chance="20">
+					<item id="14219" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Magician's Will -->
+				</group>
+				<group chance="20">
+					<item id="10553" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Archer's Will -->
+				</group>
+				<group chance="20">
+					<item id="10552" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Fighter's Will -->
+				</group>
+				<group chance="40">
+					<item id="13893" min="1" max="1" chance="100" /> <!-- Sealed Holy Spirit's Cloak -->
+				</group>
+				<group chance="6.52">
+					<item id="10215" min="1" max="1" chance="100" /> <!-- Icarus Sawsword -->
 				</group>
 			</drop>
 		</dropLists>
@@ -1241,17 +1255,17 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="59.852901458740234">
+				<group chance="59.8529">
 					<item id="395" min="1" max="1" chance="56.3214" /> <!-- Manticore Skin Shirt -->
 					<item id="417" min="4" max="12" chance="11.2434" /> <!-- Manticore Skin Gaiters -->
 					<item id="1942" min="53" max="157" chance="23.5297" /> <!-- Manticore Skin Shirt Texture -->
 					<item id="1943" min="216" max="648" chance="8.9055" /> <!-- Manticore Skin Gaiters Pattern -->
 				</group>
-				<group chance="58.123600006103516">
+				<group chance="58.1236">
 					<item id="279" min="1" max="1" chance="27.8645" /> <!-- Reinforced Long Bow -->
 					<item id="2040" min="12" max="36" chance="72.1355" /> <!-- Reinforced Long Bow Shaft -->
 				</group>
-				<group chance="37.58039855957031">
+				<group chance="37.5804">
 					<item id="6576" min="3" max="9" chance="100" /> <!-- Blessed Scroll: Enchant Armor (D-Grade) -->
 				</group>
 			</drop>
@@ -1396,19 +1410,19 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="48.78020095825195">
+				<group chance="48.7802">
 					<item id="439" min="1" max="1" chance="54.8719" /> <!-- Karmian Tunic -->
 					<item id="471" min="5" max="13" chance="9.743" /> <!-- Karmian Stockings -->
 					<item id="1962" min="53" max="157" chance="24.3318" /> <!-- Karmian Tunic Pattern -->
 					<item id="1954" min="192" max="576" chance="11.0533" /> <!-- Karmian Stocking Design -->
 				</group>
-				<group chance="51.8474006652832">
+				<group chance="51.8474">
 					<item id="71" min="1" max="1" chance="12.7827" /> <!-- Flamberge -->
 					<item id="72" min="1" max="1" chance="12.7827" /> <!-- Stormbringer -->
 					<item id="2059" min="8" max="22" chance="55.796" /> <!-- Flamberge Blade -->
 					<item id="2060" min="24" max="72" chance="18.6386" /> <!-- Stormbringer Blade -->
 				</group>
-				<group chance="61.102699279785156">
+				<group chance="61.1027">
 					<item id="4589" min="4" max="12" chance="34.4262" /> <!-- Greater Dye of STR <Str+2 Con-2> -->
 					<item id="4590" min="8" max="22" chance="18.3607" /> <!-- Greater Dye of STR <Str+2 Dex-2> -->
 					<item id="6574" min="1" max="1" chance="47.2131" /> <!-- Blessed Scroll: Enchant Armor (C-Grade) -->
@@ -1555,7 +1569,7 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="58.89780044555664">
+				<group chance="58.8978">
 					<item id="119" min="1" max="1" chance="28.6435" /> <!-- Necklace of Seal -->
 					<item id="855" min="1" max="1" chance="38.1913" /> <!-- Nassen's Earring -->
 					<item id="886" min="6" max="16" chance="5.2079" /> <!-- Ring of Seal -->
@@ -1563,11 +1577,11 @@
 					<item id="1918" min="81" max="243" chance="16.6321" /> <!-- Nassen's Earring Gemstone -->
 					<item id="2917" min="480" max="1440" chance="3.7224" /> <!-- Ring of Seal Gemstone -->
 				</group>
-				<group chance="38.59149932861328">
+				<group chance="38.5915">
 					<item id="286" min="1" max="1" chance="18.1298" /> <!-- Eminence Bow -->
 					<item id="2121" min="12" max="36" chance="81.8702" /> <!-- Eminence Bow Shaft -->
 				</group>
-				<group chance="84.7074966430664">
+				<group chance="84.7075">
 					<item id="4607" min="5" max="15" chance="14.0187" /> <!-- Greater Dye of INT <Int+3 Men-3> -->
 					<item id="4608" min="2" max="4" chance="46.729" /> <!-- Greater Dye of INT <Int+3 Wit-3> -->
 					<item id="4609" min="2" max="6" chance="35.0467" /> <!-- Greater Dye of MEN <Men+3 Int-3> -->
@@ -1715,7 +1729,7 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="62.18280029296875">
+				<group chance="62.1828">
 					<item id="864" min="1" max="1" chance="22.4307" /> <!-- Earring of Black Ore -->
 					<item id="895" min="1" max="1" chance="33.646" /> <!-- Ring of Black Ore -->
 					<item id="926" min="1" max="1" chance="16.823" /> <!-- Necklace of Black Ore -->
@@ -1723,7 +1737,7 @@
 					<item id="4053" min="280" max="840" chance="6.1035" /> <!-- Ring of Black Ore Gemstone -->
 					<item id="4054" min="220" max="660" chance="3.5697" /> <!-- Necklace of Black Ore Beads -->
 				</group>
-				<group chance="65.97820281982422">
+				<group chance="65.9782">
 					<item id="171" min="1" max="1" chance="2.2342" /> <!-- Deadman's Glory -->
 					<item id="175" min="1" max="1" chance="2.2342" /> <!-- Art of Battle Axe -->
 					<item id="210" min="1" max="1" chance="2.2342" /> <!-- Staff of Evil Spirits -->
@@ -1731,7 +1745,7 @@
 					<item id="4117" min="9" max="27" chance="27.3674" /> <!-- Art of Battle Axe Blade -->
 					<item id="4118" min="14" max="42" chance="16.6687" /> <!-- Evil Spirit Head -->
 				</group>
-				<group chance="87.43939971923828">
+				<group chance="87.4394">
 					<item id="4616" min="5" max="15" chance="11.4068" /> <!-- Greater Dye of CON <Con+4 Dex-4> -->
 					<item id="4617" min="2" max="4" chance="38.0228" /> <!-- Greater Dye of DEX <Dex+4 Str-4> -->
 					<item id="4618" min="2" max="6" chance="28.5171" /> <!-- Greater Dye of DEX <Dex+4 Con-4> -->
@@ -1878,17 +1892,17 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="66.69059753417969">
+				<group chance="66.6906">
 					<item id="5326" min="1" max="1" chance="3.2792" /> <!-- Sealed Robe of Nightmare -->
 					<item id="5329" min="1" max="1" chance="3.2792" /> <!-- Sealed Majestic Robe -->
 					<item id="5487" min="4" max="12" chance="60.9401" /> <!-- Sealed Robe of Nightmare Fabric -->
 					<item id="5488" min="8" max="22" chance="32.5015" /> <!-- Sealed Majestic Robe Fabric -->
 				</group>
-				<group chance="26.866100311279297">
+				<group chance="26.8661">
 					<item id="289" min="1" max="1" chance="7.7743" /> <!-- Soul Bow -->
 					<item id="5534" min="12" max="36" chance="92.2257" /> <!-- Soul Bow Stave -->
 				</group>
-				<group chance="89.64219665527344">
+				<group chance="89.6422">
 					<item id="730" min="1" max="1" chance="87.007" /> <!-- Scroll: Enchant Armor (A-Grade) -->
 					<item id="6569" min="1" max="1" chance="1.3921" /> <!-- Blessed Scroll: Enchant Weapon (A-Grade) -->
 					<item id="729" min="1" max="1" chance="11.6009" /> <!-- Scroll: Enchant Weapon (A-Grade) -->
@@ -2037,15 +2051,15 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="56.46730041503906">
+				<group chance="56.4673">
 					<item id="6680" min="1" max="1" chance="5.855" /> <!-- Sealed Draconic Leather Armor -->
 					<item id="6707" min="12" max="36" chance="94.145" /> <!-- Sealed Draconic Leather Armor Part -->
 				</group>
-				<group chance="36.995201110839844">
+				<group chance="36.9952">
 					<item id="7575" min="1" max="1" chance="4.8834" /> <!-- Draconic Bow -->
 					<item id="7579" min="12" max="36" chance="95.1166" /> <!-- Draconic Bow Shaft -->
 				</group>
-				<group chance="74.54820251464844">
+				<group chance="74.5482">
 					<item id="959" min="1" max="1" chance="8.9552" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
 					<item id="960" min="1" max="1" chance="89.5522" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 					<item id="6577" min="1" max="1" chance="1.4926" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
@@ -2198,7 +2212,7 @@
 		<ai type="BALANCED" aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="73.94190216064453">
+				<group chance="73.9419">
 					<item id="6678" min="1" max="1" chance="4.9387" /> <!-- Sealed Imperial Crusader Shield -->
 					<item id="6679" min="1" max="1" chance="3.457" /> <!-- Sealed Imperial Crusader Helmet -->
 					<item id="6683" min="1" max="1" chance="3.457" /> <!-- Sealed Draconic Leather Helmet -->
@@ -2208,11 +2222,11 @@
 					<item id="6710" min="116" max="346" chance="5.8179" /> <!-- Sealed Draconic Leather Helmet Pattern -->
 					<item id="6714" min="16" max="48" chance="41.9978" /> <!-- Sealed Major Arcana Circlet Pattern -->
 				</group>
-				<group chance="34.19779968261719">
+				<group chance="34.1978">
 					<item id="6371" min="1" max="1" chance="5.0271" /> <!-- Demon Splinter -->
 					<item id="6695" min="12" max="36" chance="94.9729" /> <!-- Demon Splinter Blade -->
 				</group>
-				<group chance="70.93900299072266">
+				<group chance="70.939">
 					<item id="959" min="1" max="1" chance="8.9552" /> <!-- Scroll: Enchant Weapon (S-Grade) -->
 					<item id="960" min="1" max="1" chance="89.5522" /> <!-- Scroll: Enchant Armor (S-Grade) -->
 					<item id="6577" min="1" max="1" chance="1.4926" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
@@ -2393,11 +2407,20 @@
 					<item id="17016" min="1" max="1" chance="2.94" /> <!-- Sealed Vesper Noble Gloves -->
 					<item id="17017" min="1" max="1" chance="2.98" /> <!-- Sealed Vesper Noble Shoes -->
 				</group>
-				<group chance="100.0">
+				<group chance="100">
 					<item id="13893" min="1" max="1" chance="10" /> <!-- Sealed Holy Spirit's Cloak -->
 					<item id="10552" min="1" max="1" chance="30" /> <!-- Forgotten Scroll - Fighter's Will -->
 					<item id="10553" min="1" max="1" chance="30" /> <!-- Forgotten Scroll - Archer's Will -->
 					<item id="14219" min="1" max="1" chance="30" /> <!-- Forgotten Scroll - Magician's Will -->
+				</group>
+				<group chance="35">
+					<item id="14162" min="1" max="1" chance="100" /> <!-- Sealed Vesper Ring -->
+				</group>
+				<group chance="30">
+					<item id="14161" min="1" max="1" chance="100" /> <!-- Sealed Vesper Necklace -->
+				</group>
+				<group chance="35">
+					<item id="14160" min="1" max="1" chance="100" /> <!-- Sealed Vesper Earring -->
 				</group>
 			</drop>
 		</dropLists>
@@ -2914,31 +2937,45 @@
 				<item id="13893" min="1" max="1" chance="20" /> <!-- Sealed Holy Spirit's Cloak -->
 				<item id="10550" min="1" max="1" chance="40" /> <!-- Forgotten Scroll - Protection of Elemental -->
 				<item id="10552" min="1" max="1" chance="40" /> <!-- Forgotten Scroll - Fighter's Will -->
-				<group chance="100">
-					<item id="13457" min="1" max="1" chance="3.77" /> <!-- Vesper Cutter -->
-					<item id="13458" min="1" max="1" chance="3.76" /> <!-- Vesper Slasher -->
-					<item id="13459" min="1" max="1" chance="3.76" /> <!-- Vesper Buster -->
-					<item id="13460" min="1" max="1" chance="3.77" /> <!-- Vesper Shaper -->
-					<item id="13461" min="1" max="1" chance="3.77" /> <!-- Vesper Fighter -->
-					<item id="13462" min="1" max="1" chance="3.76" /> <!-- Vesper Stormer -->
-					<item id="13463" min="1" max="1" chance="3.77" /> <!-- Vesper Avenger -->
-					<item id="13464" min="1" max="1" chance="3.76" /> <!-- Vesper Retributer -->
-					<item id="13465" min="1" max="1" chance="3.76" /> <!-- Vesper Caster -->
-					<item id="13467" min="1" max="1" chance="3.76" /> <!-- Vesper Thrower -->
-					<item id="13466" min="1" max="1" chance="3.76" /> <!-- Vesper Singer -->
-					<item id="10215" min="1" max="1" chance="6.52" /> <!-- Icarus Sawsword -->
-					<item id="10216" min="1" max="1" chance="6.51" /> <!-- Icarus Disperser -->
-					<item id="10217" min="1" max="1" chance="6.51" /> <!-- Icarus Spirit -->
-					<item id="10218" min="1" max="1" chance="6.51" /> <!-- Icarus Heavy Arms -->
-					<item id="10219" min="1" max="1" chance="6.51" /> <!-- Icarus Trident -->
-					<item id="10220" min="1" max="1" chance="6.51" /> <!-- Icarus Hammer -->
-					<item id="10221" min="1" max="1" chance="6.51" /> <!-- Icarus Hand -->
-					<item id="10222" min="1" max="1" chance="6.51" /> <!-- Icarus Hall -->
-					<item id="10223" min="1" max="1" chance="6.51" /> <!-- Icarus Spitter -->
+				<group chance="93.48">
+					<item id="13457" min="1" max="1" chance="4.0329" /> <!-- Vesper Cutter -->
+					<item id="13458" min="1" max="1" chance="4.0223" /> <!-- Vesper Slasher -->
+					<item id="13459" min="1" max="1" chance="4.0223" /> <!-- Vesper Buster -->
+					<item id="13460" min="1" max="1" chance="4.0329" /> <!-- Vesper Shaper -->
+					<item id="13461" min="1" max="1" chance="4.0329" /> <!-- Vesper Fighter -->
+					<item id="13462" min="1" max="1" chance="4.0223" /> <!-- Vesper Stormer -->
+					<item id="13463" min="1" max="1" chance="4.0329" /> <!-- Vesper Avenger -->
+					<item id="13464" min="1" max="1" chance="4.0223" /> <!-- Vesper Retributer -->
+					<item id="13465" min="1" max="1" chance="4.0223" /> <!-- Vesper Caster -->
+					<item id="13467" min="1" max="1" chance="4.0223" /> <!-- Vesper Thrower -->
+					<item id="13466" min="1" max="1" chance="4.0223" /> <!-- Vesper Singer -->
+					<item id="10216" min="1" max="1" chance="6.9641" /> <!-- Icarus Disperser -->
+					<item id="10217" min="1" max="1" chance="6.9641" /> <!-- Icarus Spirit -->
+					<item id="10218" min="1" max="1" chance="6.9641" /> <!-- Icarus Heavy Arms -->
+					<item id="10219" min="1" max="1" chance="6.9641" /> <!-- Icarus Trident -->
+					<item id="10220" min="1" max="1" chance="6.9641" /> <!-- Icarus Hammer -->
+					<item id="10221" min="1" max="1" chance="6.9641" /> <!-- Icarus Hand -->
+					<item id="10222" min="1" max="1" chance="6.9641" /> <!-- Icarus Hall -->
+					<item id="10223" min="1" max="1" chance="6.9641" /> <!-- Icarus Spitter -->
 				</group>
-				<group chance="100.0">
+				<group chance="100">
 					<item id="10553" min="1" max="1" chance="50" /> <!-- Forgotten Scroll - Archer's Will -->
 					<item id="14219" min="1" max="1" chance="50" /> <!-- Forgotten Scroll - Magician's Will -->
+				</group>
+				<group chance="40">
+					<item id="10552" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Fighter's Will -->
+				</group>
+				<group chance="40">
+					<item id="10550" min="1" max="1" chance="100" /> <!-- Forgotten Scroll - Protection of Elemental -->
+				</group>
+				<group chance="20">
+					<item id="13893" min="1" max="1" chance="100" /> <!-- Sealed Holy Spirit's Cloak -->
+				</group>
+				<group chance="6.52">
+					<item id="10215" min="1" max="1" chance="100" /> <!-- Icarus Sawsword -->
+				</group>
+				<group chance="10.26">
+					<item id="21939" min="1" max="1" chance="100" /> <!-- Claw of Destruction -->
 				</group>
 			</drop>
 		</dropLists>
@@ -3378,11 +3415,11 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<group chance="21.704700469970703">
+				<group chance="21.7047">
 					<item id="7575" min="1" max="1" chance="4.8834" /> <!-- Draconic Bow -->
 					<item id="7579" min="12" max="36" chance="95.1166" /> <!-- Draconic Bow Shaft -->
 				</group>
-				<group chance="62.86330032348633">
+				<group chance="62.8633">
 					<item id="6676" min="1" max="1" chance="5.6413" /> <!-- Sealed Imperial Crusader Gauntlet -->
 					<item id="6677" min="1" max="1" chance="5.6413" /> <!-- Sealed Imperial Crusader Boots -->
 					<item id="6681" min="1" max="1" chance="5.6413" /> <!-- Sealed Draconic Leather Glove -->
@@ -3396,7 +3433,7 @@
 					<item id="6712" min="36" max="108" chance="17.8211" /> <!-- Sealed Major Arcana Gloves fabric -->
 					<item id="6713" min="46" max="136" chance="14.1003" /> <!-- Sealed Major Arcana Boots Design -->
 				</group>
-				<group chance="64.87049865722656">
+				<group chance="64.8705">
 					<item id="6578" min="1" max="1" chance="15.0943" /> <!-- Blessed Scroll: Enchant Armor (S-Grade) -->
 					<item id="3936" min="1" max="3" chance="84.9057" /> <!-- Blessed Scroll of Resurrection -->
 				</group>
@@ -3445,24 +3482,24 @@
 		<ai type="BALANCED" aggroRange="1000" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="48.80440139770508">
+				<group chance="48.8044">
 					<item id="80" min="1" max="1" chance="4.3508" /> <!-- Tallum Blade -->
 					<item id="150" min="1" max="1" chance="4.3508" /> <!-- Elemental Sword -->
 					<item id="5548" min="24" max="72" chance="21.7377" /> <!-- Tallum Blade Edge -->
 					<item id="5547" min="8" max="22" chance="69.5607" /> <!-- Elemental Sword Edge -->
 				</group>
-				<group chance="74.33370208740234">
+				<group chance="74.3337">
 					<item id="729" min="1" max="1" chance="11.6009" /> <!-- Scroll: Enchant Weapon (A-Grade) -->
 					<item id="730" min="1" max="1" chance="87.007" /> <!-- Scroll: Enchant Armor (A-Grade) -->
 					<item id="6569" min="1" max="1" chance="1.3921" /> <!-- Blessed Scroll: Enchant Weapon (A-Grade) -->
 				</group>
-				<group chance="0.09000000357627869">
+				<group chance="0.09">
 					<item id="6659" min="1" max="1" chance="100" /> <!-- Earring of Zaken -->
 				</group>
-				<group chance="0.09000000357627869">
+				<group chance="0.09">
 					<item id="8922" min="1" max="1" chance="100" /> <!-- Pirate Hat -->
 				</group>
-				<group chance="0.18000000715255737">
+				<group chance="0.18">
 					<item id="8619" min="1" max="1" chance="100" /> <!-- Ancient Book: Divine Inspiration (Original Language Version) -->
 				</group>
 			</drop>
@@ -3760,7 +3797,7 @@
 					<item id="15761" min="1" max="1" chance="33.3" /> <!-- Sealed Elegia Earring -->
 					<item id="15762" min="1" max="1" chance="33.3" /> <!-- Sealed Elegia Necklace -->
 				</group>
-				<group chance="4.107600212097168">
+				<group chance="4.1076">
 					<item id="6577" min="1" max="1" chance="13.0435" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
 					<item id="6578" min="1" max="1" chance="86.9565" /> <!-- Blessed Scroll: Enchant Armor (S-Grade) -->
 				</group>
@@ -3769,6 +3806,12 @@
 				</group>
 				<group chance="50">
 					<item id="16027" min="1" max="1" chance="100" /> <!-- Bottle of Freya's Soul -->
+				</group>
+				<group chance="5.693">
+					<item id="21714" min="1" max="1" chance="100" /> <!-- Sealed Cloak of Freya -->
+				</group>
+				<group chance="3">
+					<item id="21894" min="1" max="1" chance="100" /> <!-- Ice Queen's Tiara -->
 				</group>
 			</drop>
 		</dropLists>
@@ -4155,7 +4198,7 @@
 					<item id="13887" min="1" max="1" chance="8.33" /> <!-- Sealed Vesper Sigil -->
 					<item id="10170" min="1" max="1" chance="8.33" /> <!-- Baylor's Earring -->
 				</group>
-				<group chance="4.107600212097168">
+				<group chance="4.1076">
 					<item id="6577" min="1" max="1" chance="13.0435" /> <!-- Blessed Scroll: Enchant Weapon (S-Grade) -->
 					<item id="6578" min="1" max="1" chance="86.9565" /> <!-- Blessed Scroll: Enchant Armor (S-Grade) -->
 				</group>
@@ -4343,10 +4386,10 @@
 		<ai aggroRange="300" clanHelpRange="300" isAggressive="false" />
 		<dropLists>
 			<drop>
-				<group chance="100.0">
+				<group chance="100">
 					<item id="8952" min="10" max="20" chance="100" /> <!-- Greater Herb of Life -->
 				</group>
-				<group chance="100.0">
+				<group chance="100">
 					<item id="8953" min="10" max="20" chance="100" /> <!-- Greater Herb of Mana -->
 				</group>
 			</drop>
