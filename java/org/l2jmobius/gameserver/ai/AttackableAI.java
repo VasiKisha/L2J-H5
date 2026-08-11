@@ -2716,11 +2716,25 @@ public class AttackableAI extends CreatureAI
 	}
 	
 	/**
-	 * Rolls the 3 to 7 second timeout of ATTACK that follows a spawn.
+	 * Rolls the timeout of ATTACK that follows a spawn, three to seven seconds by default.
+	 * SetAggressiveTime overrides it per npc: zero acquires on sight, a positive value gates for that many seconds.
 	 */
 	public void rollGlobalAggro()
 	{
-		_globalAggro = -(Rnd.get(5) + 4);
+		final int aggressiveTime = getActiveChar().getTemplate().getParameters().getInt("SetAggressiveTime", -1);
+		if (aggressiveTime == 0)
+		{
+			_globalAggro = 0;
+		}
+		else if (aggressiveTime > 0)
+		{
+			// The counter is tested on the tick that raises it, so it is set one past the wanted delay.
+			_globalAggro = -(aggressiveTime + 1);
+		}
+		else
+		{
+			_globalAggro = -(Rnd.get(5) + 4);
+		}
 	}
 	
 	public void setGlobalAggro(int value)
