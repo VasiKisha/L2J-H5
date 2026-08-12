@@ -511,8 +511,8 @@
 		<hitTime>15000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>56</magicLevel>
-		<mpConsume>36</mpConsume>
-		<mpInitialConsume>144</mpInitialConsume>
+		<mpConsume>144</mpConsume>
+		<mpInitialConsume>36</mpInitialConsume>
 		<reuseDelay>150000</reuseDelay>
 		<conditions>
 			<and>
@@ -545,8 +545,8 @@
 		<itemConsumeCount>3</itemConsumeCount>
 		<itemConsumeId>3031</itemConsumeId> <!-- Spirit Ore -->
 		<magicLevel>66</magicLevel>
-		<mpConsume>64</mpConsume>
-		<mpInitialConsume>256</mpInitialConsume>
+		<mpConsume>256</mpConsume>
+		<mpInitialConsume>64</mpInitialConsume>
 		<reuseDelay>900000</reuseDelay>
 		<conditions>
 			<and>
@@ -1548,8 +1548,8 @@
 		<itemConsumeCount>4</itemConsumeCount>
 		<itemConsumeId>8615</itemConsumeId> <!-- Summoning Crystal -->
 		<magicLevel>78</magicLevel>
-		<mpConsume>57</mpConsume>
-		<mpInitialConsume>227</mpInitialConsume>
+		<mpConsume>227</mpConsume>
+		<mpInitialConsume>57</mpInitialConsume>
 		<reuseDelay>600000</reuseDelay>
 		<staticReuse>true</staticReuse>
 		<conditions>

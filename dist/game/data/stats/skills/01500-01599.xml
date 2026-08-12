@@ -2503,8 +2503,8 @@
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>81</magicLevel>
-		<mpConsume>31</mpConsume>
-		<mpInitialConsume>145</mpInitialConsume>
+		<mpConsume>116</mpConsume>
+		<mpInitialConsume>29</mpInitialConsume>
 		<power>199</power> <!-- Inflicts additional non-attribute damage if the target is a monster -->
 		<pvpPower>141</pvpPower>
 		<reuseDelay>15000</reuseDelay>
@@ -2528,8 +2528,8 @@
 		<hitTime>2000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<magicLevel>82</magicLevel>
-		<mpConsume>27</mpConsume>
-		<mpInitialConsume>123</mpInitialConsume>
+		<mpConsume>98</mpConsume>
+		<mpInitialConsume>25</mpInitialConsume>
 		<power>302</power> <!-- Inflicts additional non-attribute damage if the target is a monster -->
 		<pvpPower>178</pvpPower>
 		<reuseDelay>10000</reuseDelay>
