@@ -1604,7 +1604,7 @@
 		<hitTime>#hitTime</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>80</magicLevel>
 		<mpConsume>70</mpConsume>
 		<reuseDelay>1000</reuseDelay>
 		<trait>DERANGEMENT</trait>

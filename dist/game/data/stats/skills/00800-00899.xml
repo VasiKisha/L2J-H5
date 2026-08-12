@@ -2412,7 +2412,7 @@
 		<abnormalType>MULTI_BUFF</abnormalType>
 		<hitTime>1500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>75</magicLevel>
 		<mpConsume>69</mpConsume>
 		<reuseDelay>8000</reuseDelay>
 		<effects>
@@ -2434,7 +2434,7 @@
 		<abnormalType>MULTI_BUFF</abnormalType>
 		<hitTime>1500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>75</magicLevel>
 		<mpConsume>70</mpConsume>
 		<reuseDelay>8000</reuseDelay>
 		<effects>
@@ -2467,7 +2467,7 @@
 		<effectPoint>#effectPoints</effectPoint>
 		<effectRange>400</effectRange>
 		<hitTime>1000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>80</magicLevel>
 		<mpConsume>#mpConsume</mpConsume>
 		<nextActionAttack>true</nextActionAttack>
 		<power>#pvePower</power>
@@ -2495,7 +2495,7 @@
 		<effectPoint>#effectPoints</effectPoint>
 		<effectRange>1500</effectRange>
 		<hitTime>4000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>80</magicLevel>
 		<mpConsume>#mpConsume</mpConsume>
 		<power>#pvePower</power>
 		<pvpPower>#pvpPower</pvpPower>
@@ -2522,7 +2522,7 @@
 		<affectRange>100</affectRange>
 		<effectPoint>#effectPoints</effectPoint>
 		<hitTime>4000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>80</magicLevel>
 		<mpConsume>#mpConsume</mpConsume>
 		<power>#pvePower</power>
 		<pvpPower>#pvpPower</pvpPower>
@@ -2556,7 +2556,7 @@
 		<hitTime>4000</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>80</magicLevel>
 		<mpConsume>#mpConsume</mpConsume>
 		<power>#pvePower</power>
 		<pvpPower>#pvpPower</pvpPower>

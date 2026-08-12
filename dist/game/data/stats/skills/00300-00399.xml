@@ -2409,7 +2409,7 @@
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>1461</itemConsumeId> <!-- Crystal (A-Grade) -->
-		<magicLevel>60</magicLevel>
+		<magicLevel>66</magicLevel>
 		<mpConsume>366</mpConsume>
 		<reuseDelay>600000</reuseDelay>
 		<conditions msgId="129">
@@ -4609,7 +4609,7 @@
 		<abnormalType>DETECT_WEAKNESS</abnormalType>
 		<effectPoint>669</effectPoint>
 		<hitTime>2000</hitTime>
-		<magicLevel>77</magicLevel>
+		<magicLevel>78</magicLevel>
 		<mpConsume>71</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<enchant1 name="magicLevel">#enchMagicLvl</enchant1>

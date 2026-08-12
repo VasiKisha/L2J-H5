@@ -2488,7 +2488,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14219</itemConsumeId> <!-- Forgotten Scroll - Magician's Will -->
 		<learnSkillId>945</learnSkillId>
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2512,7 +2512,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14220</itemConsumeId> <!-- Forgotten Scroll - Silent Mind -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2536,7 +2536,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14221</itemConsumeId> <!-- Forgotten Scroll - Turn Stone -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2560,7 +2560,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14222</itemConsumeId> <!-- This Forgotten Scroll can be used by Fortune Seekers level 83 and above to learn Lucky Strike. -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2584,7 +2584,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14223</itemConsumeId> <!-- This Forgotten Scroll can be used by Doombringers level 83 and above to learn Eye for Eye. -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2608,7 +2608,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14224</itemConsumeId> <!-- Forgotten Scroll - Curse of Desparion -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2632,7 +2632,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14225</itemConsumeId> <!-- Forgotten Scroll - Counter Critical -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2656,7 +2656,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14226</itemConsumeId> <!-- Forgotten Scroll - Onslaught of Pa'agrio -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2680,7 +2680,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14227</itemConsumeId> <!-- Forgotten Scroll - Great Fury -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2704,7 +2704,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>13552</itemConsumeId> <!-- Spellbook - Flying Final Form -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>840</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2728,7 +2728,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>13553</itemConsumeId> <!-- Spellbook - Aurabird Falcon -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>841</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -2751,7 +2751,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>13554</itemConsumeId> <!-- Spellbook - Aurabird Owl -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>842</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>

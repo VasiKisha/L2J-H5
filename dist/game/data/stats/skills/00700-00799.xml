@@ -1617,7 +1617,7 @@
 		<effectPoint>679</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>29</mpConsume>
 		<mpInitialConsume>8</mpInitialConsume>
 		<reuseDelay>15000</reuseDelay>
@@ -1654,7 +1654,7 @@
 		<ignoreShld>true</ignoreShld>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>80</mpConsume>
 		<overHit>true</overHit>
 		<power>8409</power>
@@ -1700,7 +1700,7 @@
 		<hitTime>1000</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>87</mpConsume>
 		<reuseDelay>75000</reuseDelay>
 		<trait>DERANGEMENT</trait>
@@ -1883,7 +1883,7 @@
 		<abnormalVisualEffect>ULTIMATE_DEFENCE</abnormalVisualEffect>
 		<effectPoint>679</effectPoint>
 		<hitTime>1000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>36</mpConsume>
 		<reuseDelay>900000</reuseDelay>
 		<effects>
@@ -1907,7 +1907,7 @@
 		<abnormalVisualEffect>ULTIMATE_DEFENCE</abnormalVisualEffect>
 		<effectPoint>679</effectPoint>
 		<hitTime>1000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>36</mpConsume>
 		<reuseDelay>900000</reuseDelay>
 		<effects>
@@ -1931,7 +1931,7 @@
 		<abnormalVisualEffect>ULTIMATE_DEFENCE</abnormalVisualEffect>
 		<effectPoint>679</effectPoint>
 		<hitTime>1000</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>36</mpConsume>
 		<reuseDelay>900000</reuseDelay>
 		<effects>
@@ -2114,7 +2114,7 @@
 		<hitTime>1200</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>37</mpConsume>
 		<overHit>true</overHit>
 		<reuseDelay>15000</reuseDelay>
@@ -2146,7 +2146,7 @@
 		<effectRange>650</effectRange>
 		<fanRange>0,0,500,60</fanRange>
 		<hitTime>1200</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>160</mpConsume>
 		<overHit>true</overHit>
 		<power>7475</power>
@@ -2331,7 +2331,7 @@
 		<effectPoint>138</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>29</mpConsume>
 		<mpInitialConsume>8</mpInitialConsume>
 		<reuseDelay>15000</reuseDelay>
@@ -2361,7 +2361,7 @@
 		<effectPoint>835</effectPoint>
 		<hitTime>1800</hitTime>
 		<hpConsume>1253</hpConsume>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<reuseDelay>150000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player active_effect_id_lvl="5562,3" />
@@ -2398,7 +2398,7 @@
 		<effectPoint>138</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>29</mpConsume>
 		<mpInitialConsume>8</mpInitialConsume>
 		<reuseDelay>15000</reuseDelay>
@@ -2432,7 +2432,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>1800</hitTime>
 		<hpConsume>1253</hpConsume>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<reuseDelay>150000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player active_effect_id_lvl="5563,3" />
@@ -2462,7 +2462,7 @@
 		<effectPoint>138</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>29</mpConsume>
 		<mpInitialConsume>8</mpInitialConsume>
 		<reuseDelay>15000</reuseDelay>
@@ -2492,7 +2492,7 @@
 		<effectPoint>835</effectPoint>
 		<hitTime>1800</hitTime>
 		<hpConsume>1253</hpConsume>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<reuseDelay>150000</reuseDelay>
 		<conditions msgId="113" addName="1">
 			<player active_effect_id_lvl="5564,3" />
@@ -2530,7 +2530,7 @@
 		<effectRange>1400</effectRange>
 		<fanRange>0,0,900,40</fanRange>
 		<hitTime>3500</hitTime>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>120</mpConsume>
 		<overHit>true</overHit>
 		<power>7475</power>
@@ -2559,7 +2559,7 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>52</mpConsume>
 		<power>69</power>
 		<reuseDelay>5000</reuseDelay>

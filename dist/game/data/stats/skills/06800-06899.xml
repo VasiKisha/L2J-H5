@@ -675,7 +675,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>123</mpConsume>
 		<power>300</power>
 		<reuseDelay>3000</reuseDelay>
@@ -702,7 +702,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>82</magicLevel>
 		<mpConsume>100</mpConsume>
 		<power>3000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -732,7 +732,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>3000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -751,7 +751,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>81</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>100</power>
 		<reuseDelay>3000</reuseDelay>
@@ -777,7 +777,7 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>82</magicLevel>
 		<mpConsume>80</mpConsume>
 		<removedOnDamage>true</removedOnDamage>
 		<reuseDelay>1000</reuseDelay>
@@ -803,7 +803,7 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>82</magicLevel>
 		<mpConsume>73</mpConsume>
 		<reuseDelay>1000</reuseDelay>
 		<effects>
@@ -820,7 +820,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>4000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>82</magicLevel>
 		<power>150</power>
 		<reuseDelay>1000</reuseDelay>
 		<effects>
@@ -841,7 +841,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2500</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -866,7 +866,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2500</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -884,7 +884,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2000</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -905,7 +905,7 @@
 		<effectPoint>100</effectPoint>
 		<hitTime>2000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>75</mpConsume>
 		<reuseDelay>30000</reuseDelay>
 		<effects>
@@ -932,7 +932,7 @@
 		<hitTime>2500</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<trait>POISON</trait>
@@ -959,7 +959,7 @@
 		<hitTime>3000</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<trait>POISON</trait>
@@ -986,7 +986,7 @@
 		<hitTime>2500</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<trait>POISON</trait>
@@ -1006,7 +1006,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<power>200</power>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
@@ -1025,7 +1025,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<power>150</power>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
@@ -1048,7 +1048,7 @@
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<isSuicideAttack>true</isSuicideAttack>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<power>300</power>
 		<effects>
 			<effect name="MagicalDamage" />
@@ -1064,7 +1064,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>2000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>123</mpConsume>
 		<power>100</power>
 		<reuseDelay>3000</reuseDelay>
@@ -1085,7 +1085,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>122</mpConsume>
 		<power>100</power>
 		<reuseDelay>3000</reuseDelay>
@@ -1103,7 +1103,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>5000</hitTime>
 		<isSuicideAttack>true</isSuicideAttack>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>300</power>
 		<effects>
@@ -1129,7 +1129,7 @@
 		<hitTime>1500</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<reuseDelay>2000</reuseDelay>
 		<effects>
 			<effect name="Debuff">
@@ -1146,7 +1146,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>2500</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<power>150</power>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
@@ -1172,7 +1172,7 @@
 		<hitTime>2500</hitTime>
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
 			<effect name="DamOverTime" ticks="1">
@@ -1190,7 +1190,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2000</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -1208,7 +1208,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2000</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<mpConsume>80</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -1251,7 +1251,7 @@
 		<elementPower>20</elementPower>
 		<hitTime>3000</hitTime>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>85</magicLevel>
+		<magicLevel>83</magicLevel>
 		<power>100</power>
 		<reuseDelay>3000</reuseDelay>
 		<effects>
@@ -1294,7 +1294,7 @@
 		<element>5</element> <!-- Dark -->
 		<elementPower>20</elementPower>
 		<hitTime>2500</hitTime>
-		<magicLevel>85</magicLevel>
+		<magicLevel>84</magicLevel>
 		<mpConsume>89</mpConsume>
 		<power>15000</power>
 		<reuseDelay>3000</reuseDelay>
@@ -1314,7 +1314,7 @@
 		<hitTime>2500</hitTime>
 		<isDebuff>true</isDebuff>
 		<lvlBonusRate>1</lvlBonusRate>
-		<magicLevel>85</magicLevel>
+		<magicLevel>84</magicLevel>
 		<reuseDelay>5000</reuseDelay>
 		<effects>
 			<effect name="Petrification" />
@@ -1355,7 +1355,7 @@
 		<effectPoint>100</effectPoint>
 		<effectRange>1800</effectRange>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
-		<magicLevel>-1</magicLevel>
+		<magicLevel>80</magicLevel>
 		<effects>
 			<effect name="Buff">
 				<mul stat="critRate">#critRate</mul>

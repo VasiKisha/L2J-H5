@@ -6087,7 +6087,7 @@
 		<effectPoint>379</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>3</isMagic> <!-- Dance Skill -->
-		<magicLevel>43</magicLevel>
+		<magicLevel>40</magicLevel>
 		<mpConsume>60</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>
@@ -6354,7 +6354,7 @@
 		<effectPoint>408</effectPoint>
 		<hitTime>2500</hitTime>
 		<isMagic>3</isMagic> <!-- Dance Skill -->
-		<magicLevel>49</magicLevel>
+		<magicLevel>43</magicLevel>
 		<mpConsume>60</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<enchant1 name="abnormalTime">#ench1AbnormalTimes</enchant1>

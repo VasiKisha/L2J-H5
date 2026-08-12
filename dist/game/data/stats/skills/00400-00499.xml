@@ -3558,7 +3558,7 @@
 		<affectLimit>9-10</affectLimit>
 		<affectRange>200</affectRange>
 		<hitTime>500</hitTime>
-		<magicLevel>78</magicLevel>
+		<magicLevel>28</magicLevel>
 		<mpConsume>12</mpConsume>
 		<reuseDelay>3000</reuseDelay>
 		<effects>

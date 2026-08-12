@@ -1199,7 +1199,7 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>1</isMagic> <!-- Magic Skill -->
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>84</magicLevel>
+		<magicLevel>75</magicLevel>
 		<trait>HOLD</trait>
 		<effects>
 			<effect name="Root" />

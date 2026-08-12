@@ -2112,7 +2112,7 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<magicLevel>1</magicLevel>
+		<magicLevel>85</magicLevel>
 		<reuseDelay>600</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">
@@ -2126,7 +2126,7 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<magicLevel>1</magicLevel>
+		<magicLevel>85</magicLevel>
 		<reuseDelay>600</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">
@@ -2141,7 +2141,7 @@
 		<targetType>SELF</targetType>
 		<blockedInOlympiad>true</blockedInOlympiad>
 		<despawnDelay>1800000</despawnDelay>
-		<magicLevel>1</magicLevel>
+		<magicLevel>85</magicLevel>
 		<reuseDelay>600</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">
@@ -2155,7 +2155,7 @@
 		<operateType>A1</operateType>
 		<targetType>SELF</targetType>
 		<blockedInOlympiad>true</blockedInOlympiad>
-		<magicLevel>1</magicLevel>
+		<magicLevel>85</magicLevel>
 		<reuseDelay>600</reuseDelay>
 		<effects>
 			<effect name="SummonNpc">

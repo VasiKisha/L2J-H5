@@ -954,7 +954,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14200</itemConsumeId> <!-- Forgotten Scroll - Summon Imperial Phoenix -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -978,7 +978,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14207</itemConsumeId> <!-- Forgotten Scroll - Deflect Magic -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1002,7 +1002,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14198</itemConsumeId> <!-- Forgotten Scroll - Song of Purification -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1026,7 +1026,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14199</itemConsumeId> <!-- Forgotten Scroll - Dance of Berserker -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1050,7 +1050,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14208</itemConsumeId> <!-- Forgotten Scroll - Final Secret -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1074,7 +1074,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14201</itemConsumeId> <!-- Forgotten Scroll - Maximum Force Focus -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1098,7 +1098,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14202</itemConsumeId> <!-- Forgotten Scroll - Maximum Sonic Focus -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1122,7 +1122,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14209</itemConsumeId> <!-- Forgotten Scroll - Hide -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1170,7 +1170,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14211</itemConsumeId> <!-- Forgotten Scroll - Seven Arrow -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1194,7 +1194,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14212</itemConsumeId> <!-- Forgotten Scroll - Enlightenment - Wizard -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1218,7 +1218,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14213</itemConsumeId> <!-- Forgotten Scroll - Enlightenment - Healer -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1242,7 +1242,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14214</itemConsumeId> <!-- Forgotten Scroll - Chant of Movement -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>72</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1266,7 +1266,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14215</itemConsumeId> <!-- Forgotten Scroll - Combat of Pa'agrio -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>70</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1290,7 +1290,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14216</itemConsumeId> <!-- Forgotten Scroll - Critical of Pa'agrio -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>74</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1314,7 +1314,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14217</itemConsumeId> <!-- Forgotten Scroll - Condition of Pa'agrio -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>72</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1338,7 +1338,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14218</itemConsumeId> <!-- Forgotten Scroll - Dual Blow -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1362,7 +1362,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14204</itemConsumeId> <!-- Forgotten Scroll - Spirit of the Cat -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1386,7 +1386,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14206</itemConsumeId> <!-- Forgotten Scroll - Spirit of the Phantom -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>
@@ -1410,7 +1410,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>14205</itemConsumeId> <!-- Forgotten Scroll - Spirit of the Unicorn -->
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>

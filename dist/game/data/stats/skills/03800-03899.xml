@@ -360,7 +360,7 @@
 		<icon>icon.skill1077</icon>
 		<operateType>P</operateType>
 		<targetType>SELF</targetType>
-		<magicLevel>70</magicLevel>
+		<magicLevel>75</magicLevel>
 		<effects>
 			<effect name="Buff">
 				<add stat="critRate">54.4</add>

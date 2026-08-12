@@ -1096,7 +1096,7 @@
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
 				<attackerType>Creature</attackerType>
@@ -1130,7 +1130,7 @@
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
 				<attackerType>Creature</attackerType>
@@ -1165,7 +1165,7 @@
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
 				<attackerType>Creature</attackerType>
@@ -1199,7 +1199,7 @@
 		<abnormalType>SEED_OF_KNIGHT</abnormalType>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="TriggerSkillByDamageReceived">
 				<attackerType>Creature</attackerType>
@@ -1260,7 +1260,7 @@
 		<effectRange>900</effectRange>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<power>47</power>
 		<effects>
 			<effect name="MagicalDamage" />
@@ -1282,7 +1282,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="Debuff">
 				<mul stat="runSpd">0.7</mul>
@@ -1305,7 +1305,7 @@
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
 		<lvlBonusRate>2</lvlBonusRate>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<effects>
 			<effect name="Debuff">
 				<mul stat="pAtkSpd">0.77</mul>

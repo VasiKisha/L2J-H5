@@ -4607,7 +4607,7 @@
 		<itemConsumeCount>1</itemConsumeCount>
 		<itemConsumeId>17036</itemConsumeId> <!-- Forgotten Scroll - Magician's Will - For Events -->
 		<learnSkillId>945</learnSkillId>
-		<magicLevel>1</magicLevel>
+		<magicLevel>81</magicLevel>
 		<conditions msgId="113" addName="1">
 			<and>
 				<not>

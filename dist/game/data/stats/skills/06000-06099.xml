@@ -732,7 +732,7 @@
 		<abnormalTime>8</abnormalTime>
 		<abnormalType>COUNTER_CRITICAL_TRIGGER</abnormalType>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<reuseDelay>15000</reuseDelay>
 		<effects>
 			<effect name="Buff">
@@ -753,7 +753,7 @@
 		<abnormalType>ATTACK_TIME_DOWN_SPECIAL</abnormalType>
 		<affectRange>1000</affectRange>
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<reuseDelay>15000</reuseDelay>
 		<effects>
 			<effect name="Buff">
@@ -1014,7 +1014,7 @@
 		<isDebuff>true</isDebuff>
 		<isMagic>2</isMagic> <!-- Static Skill -->
 		<isTriggeredSkill>true</isTriggeredSkill>
-		<magicLevel>83</magicLevel>
+		<magicLevel>81</magicLevel>
 		<soulMaxConsumeCount>5</soulMaxConsumeCount>
 		<trait>PARALYZE</trait>
 		<effects>
