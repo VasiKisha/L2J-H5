@@ -17,13 +17,13 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -53,14 +53,14 @@ public class RequestExMagicSkillUseGround extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		// Get the current Player of the player
+		// Get the current Player of the player.
 		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		// Get the level of the used skill
+		// Get the level of the used skill.
 		final int level = player.getSkillLevel(_skillId);
 		if (level <= 0)
 		{
@@ -68,17 +68,17 @@ public class RequestExMagicSkillUseGround extends ClientPacket
 			return;
 		}
 		
-		// Get the Skill template corresponding to the skillID received from the client
+		// Get the Skill template corresponding to the skillID received from the client.
 		final Skill skill = SkillData.getInstance().getSkill(_skillId, level);
 		
-		// Check the validity of the skill
+		// Check the validity of the skill.
 		if (skill != null)
 		{
 			player.setCurrentSkillWorldPosition(new Location(_x, _y, _z));
 			
-			// normally magicskilluse packet turns char client side but for these skills, it doesn't (even with correct target)
+			// Normally magicskilluse packet turns char client side but for these skills, it doesn't (even with correct target).
 			player.setHeading(LocationUtil.calculateHeadingFrom(player.getX(), player.getY(), _x, _y));
-			Broadcast.toKnownPlayers(player, new ValidateLocation(player));
+			World.broadcastToVisiblePlayers(player, new ValidateLocation(player));
 			player.useMagic(skill, _ctrlPressed, _shiftPressed);
 		}
 		else

@@ -20,13 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.VehiclePathPoint;
+import org.l2jmobius.gameserver.entity.actor.instance.AirShip;
 import org.l2jmobius.gameserver.managers.AirShipManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
-import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public class MoveToLocationAirShip extends ClientPacket
@@ -83,7 +82,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				
 				if (_param1 < World.GRACIA_MAX_X)
 				{
-					ship.getAI().setIntention(Intention.MOVE_TO, new Location(_param1, _param2, z));
+					ship.getAI().setIntentionMoveTo(new Location(_param1, _param2, z));
 				}
 				break;
 			}
@@ -94,7 +93,7 @@ public class MoveToLocationAirShip extends ClientPacket
 					return;
 				}
 				
-				ship.getAI().setIntention(Intention.ACTIVE);
+				ship.getAI().setIntentionActive();
 				break;
 			}
 			case 2:
@@ -107,7 +106,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				if (z < World.GRACIA_MAX_Z)
 				{
 					z = Math.min(z + STEP, World.GRACIA_MAX_Z);
-					ship.getAI().setIntention(Intention.MOVE_TO, new Location(ship.getX(), ship.getY(), z));
+					ship.getAI().setIntentionMoveTo(new Location(ship.getX(), ship.getY(), z));
 				}
 				break;
 			}
@@ -121,7 +120,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				if (z > World.GRACIA_MIN_Z)
 				{
 					z = Math.max(z - STEP, World.GRACIA_MIN_Z);
-					ship.getAI().setIntention(Intention.MOVE_TO, new Location(ship.getX(), ship.getY(), z));
+					ship.getAI().setIntentionMoveTo(new Location(ship.getX(), ship.getY(), z));
 				}
 				break;
 			}
@@ -138,7 +137,7 @@ public class MoveToLocationAirShip extends ClientPacket
 					return;
 				}
 				
-				// Consume fuel, if needed
+				// Consume fuel, if needed.
 				final int fuelConsumption = AirShipManager.getInstance().getFuelConsumption(ship.getDockId(), _param1);
 				if (fuelConsumption > 0)
 				{

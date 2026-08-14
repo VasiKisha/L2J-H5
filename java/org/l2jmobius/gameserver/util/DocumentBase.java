@@ -39,104 +39,103 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerState;
-import org.l2jmobius.gameserver.model.actor.templates.DoorTemplate;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.conditions.ConditionCategoryType;
-import org.l2jmobius.gameserver.model.conditions.ConditionChangeWeapon;
-import org.l2jmobius.gameserver.model.conditions.ConditionGameChance;
-import org.l2jmobius.gameserver.model.conditions.ConditionGameTime;
-import org.l2jmobius.gameserver.model.conditions.ConditionLogicAnd;
-import org.l2jmobius.gameserver.model.conditions.ConditionLogicNot;
-import org.l2jmobius.gameserver.model.conditions.ConditionLogicOr;
-import org.l2jmobius.gameserver.model.conditions.ConditionMinDistance;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerActiveEffectId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerActiveSkillId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerAgathionId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCallPc;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanCreateBase;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanCreateOutpost;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanEscape;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanRefuelAirship;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanResurrect;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanSummon;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanSummonSiegeGolem;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanSweep;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanTakeCastle;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanTakeFort;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanTransform;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCanUntransform;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCharges;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCheckAbnormal;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerClassIdRestriction;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCloakStatus;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerCp;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerFlyMounted;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerGrade;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerHasCastle;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerHasClanHall;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerHasFort;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerHasPet;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerHp;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerInsideZoneId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerInstanceId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerInvSize;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerIsClanLeader;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerIsHero;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerIsPvpFlagged;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerIsRidingStrider;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerLandingZone;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerLevel;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerLevelRange;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerMp;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerPkCount;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerPledgeClass;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerRace;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerRangeFromNpc;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerServitorNpcId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerSex;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerSiegeSide;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerSouls;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerState;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerSubclass;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerTransformationId;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerVehicleMounted;
-import org.l2jmobius.gameserver.model.conditions.ConditionPlayerWeight;
-import org.l2jmobius.gameserver.model.conditions.ConditionSiegeZone;
-import org.l2jmobius.gameserver.model.conditions.ConditionSlotItemId;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetAbnormal;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetActiveEffectId;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetActiveSkillId;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetAggro;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetClassIdRestriction;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetInvSize;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetLevel;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetLevelRange;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetMyPartyExceptMe;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetNpcId;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetNpcType;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetPlayable;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetRace;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetUsesWeaponKind;
-import org.l2jmobius.gameserver.model.conditions.ConditionTargetWeight;
-import org.l2jmobius.gameserver.model.conditions.ConditionUsingItemType;
-import org.l2jmobius.gameserver.model.conditions.ConditionUsingSkill;
-import org.l2jmobius.gameserver.model.conditions.ConditionUsingSlotType;
-import org.l2jmobius.gameserver.model.conditions.ConditionWithSkill;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
-import org.l2jmobius.gameserver.model.item.type.ArmorType;
-import org.l2jmobius.gameserver.model.item.type.WeaponType;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.EffectScope;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.stats.Stat;
-import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerState;
+import org.l2jmobius.gameserver.entity.actor.templates.DoorTemplate;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.type.ArmorType;
+import org.l2jmobius.gameserver.entity.item.type.WeaponType;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionCategoryType;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionChangeWeapon;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionGameChance;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionGameTime;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionLogicAnd;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionLogicNot;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionLogicOr;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionMinDistance;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerActiveEffectId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerActiveSkillId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerAgathionId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCallPc;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanCreateBase;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanCreateOutpost;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanEscape;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanRefuelAirship;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanResurrect;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanSummon;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanSummonSiegeGolem;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanSweep;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanTakeCastle;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanTakeFort;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanTransform;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCanUntransform;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCharges;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCheckAbnormal;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerClassIdRestriction;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCloakStatus;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerCp;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerFlyMounted;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerGrade;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerHasCastle;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerHasClanHall;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerHasFort;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerHasPet;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerHp;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerInsideZoneId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerInstanceId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerInvSize;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerIsClanLeader;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerIsHero;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerIsPvpFlagged;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerIsRidingStrider;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerLandingZone;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerLevel;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerLevelRange;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerMp;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerPkCount;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerPledgeClass;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerRace;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerRangeFromNpc;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerServitorNpcId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerSex;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerSiegeSide;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerSouls;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerState;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerSubclass;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerTransformationId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerVehicleMounted;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionPlayerWeight;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionSiegeZone;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionSlotItemId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetAbnormal;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetActiveEffectId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetActiveSkillId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetAggro;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetClassIdRestriction;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetInvSize;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetLevel;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetLevelRange;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetMyPartyExceptMe;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetNpcId;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetNpcType;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetPlayable;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetRace;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetUsesWeaponKind;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionTargetWeight;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionUsingItemType;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionUsingSkill;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionUsingSlotType;
+import org.l2jmobius.gameserver.mechanics.conditions.ConditionWithSkill;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.EffectScope;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncTemplate;
 
 /**
  * @author mkizub, Mobius
@@ -359,7 +358,7 @@ public abstract class DocumentBase
 					
 					// Parse the value.
 					double value;
-					if ((valueString.length() > 0) && (valueString.charAt(0) == '#'))
+					if (!valueString.isEmpty() && (valueString.charAt(0) == '#'))
 					{
 						value = Double.parseDouble(getTableValue(valueString));
 					}
@@ -554,7 +553,6 @@ public abstract class DocumentBase
 		{
 			if ((innerNode.getNodeType() == Node.ELEMENT_NODE) && "item".equals(innerNode.getNodeName()))
 			{
-				final StatSet itemData = new StatSet();
 				final NamedNodeMap itemAttrs = innerNode.getAttributes();
 				
 				// Get item ID (required).
@@ -577,6 +575,7 @@ public abstract class DocumentBase
 				final Node minEnchantNode = itemAttrs.getNamedItem("minEnchant");
 				final Node maxEnchantNode = itemAttrs.getNamedItem("maxEnchant");
 				
+				final StatSet itemData = new StatSet();
 				itemData.set(".id", id);
 				itemData.set(".count", countNode != null ? Long.parseLong(countNode.getNodeValue()) : 1L);
 				itemData.set(".minEnchant", minEnchantNode != null ? Integer.parseInt(minEnchantNode.getNodeValue()) : 0);
@@ -603,7 +602,7 @@ public abstract class DocumentBase
 		
 		// First pass: Process <param> tags (traditional format).
 		n = node;
-		while ((n != null))
+		while (n != null)
 		{
 			// Parse all parameters.
 			if ((n.getNodeType() == Node.ELEMENT_NODE) && "param".equals(n.getNodeName()))
@@ -628,7 +627,7 @@ public abstract class DocumentBase
 		n = node;
 		
 		// Define elements to ignore (these have special handling elsewhere).
-		while ((n != null))
+		while (n != null)
 		{
 			if ((n.getNodeType() == Node.ELEMENT_NODE) && !IGNORED_ELEMENTS.contains(n.getNodeName().toLowerCase()))
 			{
@@ -1618,7 +1617,7 @@ public abstract class DocumentBase
 			array.add(data.nextToken());
 		}
 		
-		setTable(name, array.toArray(new String[array.size()]));
+		setTable(name, array.toArray(new String[0]));
 	}
 	
 	protected void parseBeanSet(Node n, StatSet set, Integer level)
@@ -1668,7 +1667,6 @@ public abstract class DocumentBase
 	 */
 	protected void parseElementValue(Node n, StatSet set, Integer level)
 	{
-		final String nodeName = n.getNodeName().trim();
 		final String value = n.getTextContent().trim();
 		if (value.isEmpty())
 		{
@@ -1677,7 +1675,7 @@ public abstract class DocumentBase
 		
 		// If the tag is <enchant1 name="power">, the stat is 'power'.
 		final Node nameAttr = n.getAttributes().getNamedItem("name");
-		final String statName = (nameAttr != null) ? nameAttr.getNodeValue().trim() : nodeName;
+		final String statName = (nameAttr != null) ? nameAttr.getNodeValue().trim() : n.getNodeName().trim();
 		
 		final char ch = value.charAt(0);
 		if ((ch == '#') || (ch == '-') || Character.isDigit(ch))
@@ -1768,8 +1766,8 @@ public abstract class DocumentBase
 	
 	protected String getValue(String value, Object template)
 	{
-		// is it a table?
-		if ((value != null) && (value.length() > 0) && (value.charAt(0) == '#'))
+		// Is it a table?
+		if ((value != null) && !value.isEmpty() && (value.charAt(0) == '#'))
 		{
 			if (template instanceof Skill)
 			{

@@ -25,9 +25,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.Couple;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Couple;
 
 /**
  * @author evill33t
@@ -100,8 +100,8 @@ public class CoupleManager
 			return;
 		}
 		
-		final Player player1 = World.getInstance().getPlayer(couple.getPlayer1Id());
-		final Player player2 = World.getInstance().getPlayer(couple.getPlayer2Id());
+		final Player player1 = World.getPlayer(couple.getPlayer1Id());
+		final Player player2 = World.getPlayer(couple.getPlayer2Id());
 		if (player1 != null)
 		{
 			player1.setPartnerId(0);

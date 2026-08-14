@@ -23,17 +23,18 @@ import java.util.logging.Level;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.instance.OlympiadManager;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.OlympiadManager;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.olympiad.CompetitionType;
-import org.l2jmobius.gameserver.model.olympiad.Hero;
-import org.l2jmobius.gameserver.model.olympiad.Olympiad;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.olympiad.CompetitionType;
+import org.l2jmobius.gameserver.mechanics.olympiad.Hero;
+import org.l2jmobius.gameserver.mechanics.olympiad.Olympiad;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExHeroList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -116,13 +117,13 @@ public class OlympiadManagerLink implements IBypassHandler
 				{
 					case 0: // H5 match selection
 					{
-						if (!org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().isRegistered(player))
+						if (!org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().isRegistered(player))
 						{
 							html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_desc2a.htm");
 							html.replace("%objectId%", String.valueOf(target.getObjectId()));
 							html.replace("%olympiad_period%", String.valueOf(Olympiad.getInstance().getPeriod()));
 							html.replace("%olympiad_cycle%", String.valueOf(Olympiad.getInstance().getCurrentCycle()));
-							html.replace("%olympiad_opponent%", String.valueOf(org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().getCountOpponents()));
+							html.replace("%olympiad_opponent%", String.valueOf(org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().getCountOpponents()));
 							player.sendPacket(html);
 						}
 						else
@@ -135,14 +136,14 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					case 1: // unregister
 					{
-						org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().unRegisterNoble(player);
+						org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().unRegisterNoble(player);
 						break;
 					}
 					case 2: // show waiting list | TODO: cleanup (not used anymore)
 					{
-						final int nonClassed = org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().getRegisteredNonClassBased().size();
-						final int teams = org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().getRegisteredTeamsBased().size();
-						final Collection<List<Integer>> allClassed = org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().getRegisteredClassBased().values();
+						final int nonClassed = org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().getRegisteredNonClassBased().size();
+						final int teams = org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().getRegisteredTeamsBased().size();
+						final Collection<List<Integer>> allClassed = org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().getRegisteredClassBased().values();
 						int classed = 0;
 						if (!allClassed.isEmpty())
 						{
@@ -184,12 +185,12 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					case 4: // register non classed
 					{
-						org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.NON_CLASSED);
+						org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.NON_CLASSED);
 						break;
 					}
 					case 5: // register classed
 					{
-						org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.CLASSED);
+						org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.CLASSED);
 						break;
 					}
 					case 6: // request tokens reward
@@ -239,7 +240,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					case 11: // register team
 					{
-						org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.TEAMS);
+						org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().registerNoble(player, CompetitionType.TEAMS);
 						break;
 					}
 					default:
@@ -257,7 +258,6 @@ public class OlympiadManagerLink implements IBypassHandler
 					return false;
 				}
 				
-				final NpcHtmlMessage html = new NpcHtmlMessage(target.getObjectId());
 				final String[] params = command.split(" ");
 				if (!StringUtil.isNumeric(params[1]))
 				{
@@ -271,6 +271,8 @@ public class OlympiadManagerLink implements IBypassHandler
 					LOGGER.warning("Olympiad Buffer Warning: npcId = " + target.getId() + " has invalid index sent in the bypass: " + index);
 					return false;
 				}
+				
+				final NpcHtmlMessage html = new NpcHtmlMessage(target.getObjectId());
 				
 				if (buffCount > 0)
 				{
@@ -317,30 +319,74 @@ public class OlympiadManagerLink implements IBypassHandler
 					{
 						// for example >> Olympiad 1_88
 						final int classId = Integer.parseInt(command.substring(11));
-						if (((classId >= 88) && (classId <= 118)) || ((classId >= 131) && (classId <= 134)) || (classId == 136))
+						final PlayerClass playerClass = PlayerClass.getPlayerClass(classId);
+						switch (playerClass)
 						{
-							final List<String> names = Olympiad.getInstance().getClassLeaderBoard(classId);
-							reply.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "olympiad_ranking.htm");
-							int index = 1;
-							for (String name : names)
+							case DUELIST:
+							case DREADNOUGHT:
+							case PHOENIX_KNIGHT:
+							case HELL_KNIGHT:
+							case SAGITTARIUS:
+							case ADVENTURER:
+							case ARCHMAGE:
+							case SOULTAKER:
+							case ARCANA_LORD:
+							case CARDINAL:
+							case HIEROPHANT:
+							case EVA_TEMPLAR:
+							case SWORD_MUSE:
+							case WIND_RIDER:
+							case MOONLIGHT_SENTINEL:
+							case MYSTIC_MUSE:
+							case ELEMENTAL_MASTER:
+							case EVA_SAINT:
+							case SHILLIEN_TEMPLAR:
+							case SPECTRAL_DANCER:
+							case GHOST_HUNTER:
+							case GHOST_SENTINEL:
+							case STORM_SCREAMER:
+							case SPECTRAL_MASTER:
+							case SHILLIEN_SAINT:
+							case TITAN:
+							case GRAND_KHAVATARI:
+							case DOMINATOR:
+							case DOOMCRYER:
+							case FORTUNE_SEEKER:
+							case MAESTRO:
+							case DOOMBRINGER:
+							case MALE_SOUL_HOUND:
+							case FEMALE_SOUL_HOUND:
+							case TRICKSTER:
+							case JUDICATOR:
 							{
-								reply.replace("%place" + index + "%", String.valueOf(index));
-								reply.replace("%rank" + index + "%", name);
-								index++;
-								if (index > 10)
+								final List<String> names = Olympiad.getInstance().getClassLeaderBoard(classId);
+								reply.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "olympiad_ranking.htm");
+								int index = 1;
+								for (String name : names)
 								{
-									break;
+									reply.replace("%place" + index + "%", String.valueOf(index));
+									reply.replace("%rank" + index + "%", name);
+									index++;
+									if (index > 10)
+									{
+										break;
+									}
 								}
+								
+								for (; index <= 10; index++)
+								{
+									reply.replace("%place" + index + "%", "");
+									reply.replace("%rank" + index + "%", "");
+								}
+								
+								reply.replace("%objectId%", String.valueOf(target.getObjectId()));
+								player.sendPacket(reply);
+								break;
 							}
-							
-							for (; index <= 10; index++)
+							default:
 							{
-								reply.replace("%place" + index + "%", "");
-								reply.replace("%rank" + index + "%", "");
+								break;
 							}
-							
-							reply.replace("%objectId%", String.valueOf(target.getObjectId()));
-							player.sendPacket(reply);
 						}
 						break;
 					}

@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.data.holders;
 
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author HorridoJoho

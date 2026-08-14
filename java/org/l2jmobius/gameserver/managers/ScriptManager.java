@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.DevelopmentConfig;
-import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
 import org.l2jmobius.gameserver.scripting.ScriptEngine;
 
 public class ScriptManager
@@ -152,12 +152,8 @@ public class ScriptManager
 	 */
 	public Quest getScript(String name)
 	{
-		if (_quests.containsKey(name))
-		{
-			return _quests.get(name);
-		}
-		
-		return _scripts.get(name);
+		final Quest quest = _quests.get(name);
+		return (quest != null) ? quest : _scripts.get(name);
 	}
 	
 	/**

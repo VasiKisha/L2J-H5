@@ -18,20 +18,20 @@ package instances.NornilsGarden;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
@@ -236,7 +236,7 @@ public class NornilsGarden extends InstanceScript
 		super.teleportPlayer(player, loc, instanceId);
 	}
 	
-	private final synchronized String enterInstance(Npc npc, Player player)
+	private synchronized String enterInstance(Npc npc, Player player)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -310,7 +310,7 @@ public class NornilsGarden extends InstanceScript
 		final InstanceWorld inst = InstanceManager.getInstance().getWorld(npc);
 		if (inst instanceof NornilsWorld)
 		{
-			final NornilsWorld world = ((NornilsWorld) inst);
+			final NornilsWorld world = (NornilsWorld) inst;
 			if (npc.equals(world.first_npc) && !world.spawned_1)
 			{
 				world.spawned_1 = true;
@@ -327,7 +327,7 @@ public class NornilsGarden extends InstanceScript
 		final InstanceWorld inst = InstanceManager.getInstance().getWorld(npc);
 		if (inst instanceof NornilsWorld)
 		{
-			final NornilsWorld world = ((NornilsWorld) inst);
+			final NornilsWorld world = (NornilsWorld) inst;
 			if (!world.spawned_2)
 			{
 				world.spawned_2 = true;
@@ -344,7 +344,7 @@ public class NornilsGarden extends InstanceScript
 		final InstanceWorld inst = InstanceManager.getInstance().getWorld(creature);
 		if (inst instanceof NornilsWorld)
 		{
-			final NornilsWorld world = ((NornilsWorld) inst);
+			final NornilsWorld world = (NornilsWorld) inst;
 			if (!world.spawned_3)
 			{
 				world.spawned_3 = true;
@@ -361,7 +361,7 @@ public class NornilsGarden extends InstanceScript
 		final InstanceWorld inst = InstanceManager.getInstance().getWorld(creature);
 		if (inst instanceof NornilsWorld)
 		{
-			final NornilsWorld world = ((NornilsWorld) inst);
+			final NornilsWorld world = (NornilsWorld) inst;
 			if (!world.spawned_4)
 			{
 				world.spawned_4 = true;
@@ -516,7 +516,7 @@ public class NornilsGarden extends InstanceScript
 		}
 		else if ((npc.getId() == 32258) && event.equalsIgnoreCase("exit"))
 		{
-			if (player.getInstanceId() > 0)
+			if (player.isInInstance())
 			{
 				super.teleportPlayer(player, EXIT_PPL, 0);
 			}
@@ -592,7 +592,7 @@ public class NornilsGarden extends InstanceScript
 			dropHerb(npc, attacker, MP_HERBS_DROPLIST);
 			npc.doDie(attacker);
 		}
-		else if ((npc.getId() == 18362) && (npc.getInstanceId() > 0))
+		else if ((npc.getId() == 18362) && npc.isInInstance())
 		{
 			spawn1(npc);
 		}

@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExVariationCancelResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -61,7 +61,7 @@ public class RequestRefineCancel extends ClientPacket
 			return;
 		}
 		
-		// cannot remove augmentation from a not augmented item
+		// Cannot remove augmentation from a not augmented item.
 		if (!targetItem.isAugmented())
 		{
 			player.sendPacket(SystemMessageId.AUGMENTATION_REMOVAL_CAN_ONLY_BE_DONE_ON_AN_AUGMENTED_ITEM);

@@ -20,16 +20,19 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import java.util.Map;
+
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.entity.actor.instance.Cubic;
+import org.l2jmobius.gameserver.entity.item.holders.Elementals;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
-import org.l2jmobius.gameserver.model.item.holders.Elementals;
-import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -87,7 +90,7 @@ public class UserInfo extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.USER_INFO.writeId(this, buffer);
 		buffer.writeInt(_player.getX());
@@ -186,8 +189,9 @@ public class UserInfo extends ServerPacket
 		buffer.writeInt(_player.getPkKills());
 		buffer.writeInt(_player.getPvpKills());
 		
-		buffer.writeShort(_player.getCubics().size());
-		for (int cubicId : _player.getCubics().keySet())
+		final Map<Integer, Cubic> cubics = _player.getCubics();
+		buffer.writeShort(cubics.size());
+		for (int cubicId : cubics.keySet())
 		{
 			buffer.writeShort(cubicId);
 		}

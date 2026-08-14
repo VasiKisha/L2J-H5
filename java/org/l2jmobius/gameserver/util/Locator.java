@@ -133,7 +133,7 @@ public class Locator
 		}
 		
 		final StringBuilder buf = new StringBuilder(url.getHost());
-		if (buf.length() > 0)
+		if (!buf.isEmpty())
 		{
 			buf.insert(0, File.separatorChar).insert(0, File.separatorChar);
 		}
@@ -195,11 +195,11 @@ public class Locator
 	 */
 	public static File getToolsJar()
 	{
-		// firstly check if the tools jar is already in the classpath
+		// Firstly check if the tools jar is already in the classpath.
 		boolean toolsJarAvailable = false;
 		try
 		{
-			// just check whether this throws an exception
+			// Just check whether this throws an exception.
 			Class.forName("com.sun.tools.javac.Main");
 			toolsJarAvailable = true;
 		}

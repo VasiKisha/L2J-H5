@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAskJoinPartyRoom;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -45,8 +45,8 @@ public class RequestAskJoinPartyRoom extends ClientPacket
 			return;
 		}
 		
-		// Send PartyRoom invite request (with activeChar) name to the target
-		final Player target = World.getInstance().getPlayer(_name);
+		// Send PartyRoom invite request (with activeChar) name to the target.
+		final Player target = World.getPlayer(_name);
 		if (target != null)
 		{
 			if (!target.isProcessingRequest())

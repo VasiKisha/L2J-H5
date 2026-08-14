@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `character_premium_items` (
   KEY `charId` (`charId`),
   KEY `itemNum` (`itemNum`),
   KEY `itemId` (`itemId`)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

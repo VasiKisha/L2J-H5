@@ -24,13 +24,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
-import org.l2jmobius.gameserver.model.actor.instance.Boat;
-import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.VehiclePathPoint;
+import org.l2jmobius.gameserver.entity.actor.instance.Boat;
+import org.l2jmobius.gameserver.entity.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
+import org.l2jmobius.gameserver.util.StatSet;
 
 public class BoatManager
 {
@@ -173,10 +173,30 @@ public class BoatManager
 	
 	private void broadcastPacketsToPlayers(VehiclePathPoint point1, VehiclePathPoint point2, ServerPacket... packets)
 	{
-		for (Player player : World.getInstance().getPlayers())
+		final double radSq = (double) GeneralConfig.BOAT_BROADCAST_RADIUS * GeneralConfig.BOAT_BROADCAST_RADIUS;
+		for (Player player : World.getPlayers())
 		{
-			if ((Math.hypot(player.getX() - point1.getX(), player.getY() - point1.getY()) < GeneralConfig.BOAT_BROADCAST_RADIUS) || //
-				(Math.hypot(player.getX() - point2.getX(), player.getY() - point2.getY()) < GeneralConfig.BOAT_BROADCAST_RADIUS))
+			final int px = player.getX();
+			final int py = player.getY();
+			
+			final double dx1 = px - point1.getX();
+			final double dy1 = py - point1.getY();
+			final double dx1Sq = dx1 * dx1;
+			final double dy1Sq = dy1 * dy1;
+			if ((dx1Sq + dy1Sq) < radSq)
+			{
+				for (ServerPacket p : packets)
+				{
+					player.sendPacket(p);
+				}
+				continue;
+			}
+			
+			final double dx2 = px - point2.getX();
+			final double dy2 = py - point2.getY();
+			final double dx2Sq = dx2 * dx2;
+			final double dy2Sq = dy2 * dy2;
+			if ((dx2Sq + dy2Sq) < radSq)
 			{
 				for (ServerPacket p : packets)
 				{

@@ -32,15 +32,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemSkillType;
-import org.l2jmobius.gameserver.model.item.holders.ExtractableProduct;
-import org.l2jmobius.gameserver.model.item.type.ArmorType;
-import org.l2jmobius.gameserver.model.stats.Stat;
-import org.l2jmobius.gameserver.model.stats.functions.FuncEnchant;
-import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemSkillType;
+import org.l2jmobius.gameserver.entity.item.holders.ExtractableProduct;
+import org.l2jmobius.gameserver.entity.item.type.ArmorType;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncEnchant;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncTemplate;
 
 /**
  * @author mkizub, JIV, Mobius
@@ -357,7 +356,7 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 			}
 		}
 		
-		// bah! in this point item doesn't have to be still created
+		// Bah! In this point item doesn't have to be still created.
 		makeItem();
 	}
 	
@@ -372,7 +371,7 @@ public class DocumentItem extends DocumentBase implements IXmlReader
 		
 		try
 		{
-			final Constructor<?> itemClass = Class.forName("org.l2jmobius.gameserver.model.item." + _currentItem.type).getConstructor(StatSet.class);
+			final Constructor<?> itemClass = Class.forName("org.l2jmobius.gameserver.entity.item." + _currentItem.type).getConstructor(StatSet.class);
 			_currentItem.item = (ItemTemplate) itemClass.newInstance(_currentItem.set);
 		}
 		catch (Exception e)

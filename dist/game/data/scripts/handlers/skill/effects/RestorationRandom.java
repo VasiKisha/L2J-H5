@@ -28,19 +28,19 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.RatesConfig;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ExtractableProductItem;
-import org.l2jmobius.gameserver.model.item.holders.RestorationItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ExtractableProductItem;
+import org.l2jmobius.gameserver.entity.item.holders.RestorationItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Restoration Random effect implementation.<br>
@@ -126,14 +126,7 @@ public class RestorationRandom extends AbstractEffect
 				newItem.setEnchantLevel(Rnd.get(createdItem.getMinEnchant(), createdItem.getMaxEnchant()));
 			}
 			
-			if (extractedItems.containsKey(newItem))
-			{
-				extractedItems.put(newItem, extractedItems.get(newItem) + itemCount);
-			}
-			else
-			{
-				extractedItems.put(newItem, itemCount);
-			}
+			extractedItems.merge(newItem, itemCount, Long::sum);
 		}
 		
 		if (!extractedItems.isEmpty())

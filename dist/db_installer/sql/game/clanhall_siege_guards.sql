@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `clanhall_siege_guards` (
   `respawnDelay` mediumint(5) NOT NULL DEFAULT '0',
   `isSiegeBoss` enum('false','true') NOT NULL DEFAULT 'false',
   KEY `clanHallId` (`clanHallId`)
-) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `clanhall_siege_guards` VALUES
 -- Devasted Castle

@@ -118,7 +118,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -341,7 +341,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -1456,7 +1456,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -1679,7 +1679,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -1902,7 +1902,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -2125,7 +2125,7 @@
 			<skill id="4416" level="23" /> <!-- Mercenaries -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>MERCENARY_SIEGE</clan>
@@ -2801,7 +2801,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>
@@ -2933,7 +2933,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>
@@ -3065,7 +3065,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>
@@ -3381,7 +3381,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>
@@ -3513,7 +3513,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>
@@ -3645,7 +3645,7 @@
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
 		<sNpcPropHpRate>8</sNpcPropHpRate>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>GLUDIO_SIEGE</clan>

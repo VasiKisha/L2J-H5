@@ -25,18 +25,18 @@ import java.util.logging.Logger;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.config.custom.WalkerBotProtectionConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.ChatHandler;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerChat;
-import org.l2jmobius.gameserver.model.events.returns.ChatFilterReturn;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerChat;
+import org.l2jmobius.gameserver.mechanics.events.returns.ChatFilterReturn;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -202,7 +202,7 @@ public class Say2 extends ClientPacket
 		
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CHAT))
 		{
-			final ChatFilterReturn filter = EventDispatcher.getInstance().notifyEvent(new OnPlayerChat(player, World.getInstance().getPlayer(_target), _text, chatType), ChatFilterReturn.class);
+			final ChatFilterReturn filter = EventDispatcher.getInstance().notifyEvent(new OnPlayerChat(player, World.getPlayer(_target), _text, chatType), ChatFilterReturn.class);
 			if (filter != null)
 			{
 				_text = filter.getFilteredText();
@@ -269,7 +269,7 @@ public class Say2 extends ClientPacket
 			}
 			
 			final int id = Integer.parseInt(result.toString());
-			final WorldObject item = World.getInstance().findObject(id);
+			final WorldObject item = World.findObject(id);
 			if (item instanceof Item)
 			{
 				if (owner.getInventory().getItemByObjectId(id) == null)
@@ -286,7 +286,7 @@ public class Say2 extends ClientPacket
 			}
 			
 			pos1 = _text.indexOf(8, pos) + 1;
-			if (pos1 == 0) // missing ending tag
+			if (pos1 == 0) // Missing ending tag.
 			{
 				PacketLogger.info(owner.getClient() + " sent invalid publish item msg! ID:" + id);
 				return false;

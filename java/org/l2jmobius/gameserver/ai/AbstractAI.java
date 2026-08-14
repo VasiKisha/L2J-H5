@@ -20,14 +20,14 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.WorldRegion;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.WorldRegion;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.interfaces.ILocational;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.AutoAttackStart;
 import org.l2jmobius.gameserver.network.serverpackets.AutoAttackStop;
@@ -46,31 +46,27 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
  */
 public abstract class AbstractAI
 {
-	/** The creature that this AI manages */
+	/** The creature that this AI manages. */
 	protected final Creature _actor;
 	
-	/** Current long-term intention */
+	/** Current long-term intention. */
 	protected Intention _intention = Intention.IDLE;
-	/** Current long-term intention parameter */
-	protected Object _intentionArg0 = null;
-	/** Current long-term intention parameter */
-	protected Object _intentionArg1 = null;
 	
-	/** Flags about client's state, in order to know which messages to send */
+	/** Flags about client's state, in order to know which messages to send. */
 	protected volatile boolean _clientAutoAttacking;
-	/** Flags about client's state, in order to know which messages to send */
+	/** Flags about client's state, in order to know which messages to send. */
 	protected int _clientMovingToPawnOffset;
 	
-	/** Different targets this AI maintains */
+	/** Different targets this AI maintains. */
 	private WorldObject _target;
 	private Creature _castTarget;
 	protected Creature _attackTarget;
 	protected Creature _followTarget;
 	
-	/** The skill we are currently casting by INTENTION_CAST */
+	/** The skill we are currently casting by INTENTION_CAST. */
 	protected Skill _skill;
 	
-	/** Different internal state flags */
+	/** Different internal state flags. */
 	private int _moveToPawnTimeout;
 	
 	private NextAction _nextAction;
@@ -113,339 +109,77 @@ public abstract class AbstractAI
 	}
 	
 	/**
-	 * Set the Intention of this AbstractAI.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: This method is USED by AI classes</b></font><b><u><br>
-	 * Overridden in</u>:</b><br>
-	 * <b>AttackableAI</b> : Create an AI Task executed every 1s (if necessary)<br>
-	 * <b>PlayerAI</b> : Stores the current AI intention parameters to later restore it if necessary.
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention
-	 * @param arg1 The second parameter of the Intention
+	 * @return the saved Intention pending replay (e.g. after a CAST finishes), or {@code null} if none.<br>
+	 *         <b><u>Overridden in</u>:</b>
+	 *         <ul>
+	 *         <li><b>PlayerAI</b> : returns the intention that was interrupted by the current CAST</li>
+	 *         <li><b>SummonAI</b> : returns {@link Intention#ATTACK} if a pending attack is saved</li>
+	 *         </ul>
 	 */
-	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
+	public Intention getNextIntention()
 	{
-		_intention = intention;
-		_intentionArg0 = arg0;
-		_intentionArg1 = arg1;
+		return null;
 	}
 	
-	/**
-	 * Launch the CreatureAI onIntention method corresponding to the new Intention.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: Stop the FOLLOW mode if necessary</b></font>
-	 * @param intention The new Intention to set to the AI
-	 */
-	public void setIntention(Intention intention)
-	{
-		setIntention(intention, null, null);
-	}
+	public abstract void setIntentionIdle();
 	
-	/**
-	 * Launch the CreatureAI onIntention method corresponding to the new Intention.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: Stop the FOLLOW mode if necessary</b></font>
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention (optional target)
-	 */
-	public void setIntention(Intention intention, Object arg0)
-	{
-		setIntention(intention, arg0, null);
-	}
+	public abstract void setIntentionActive();
 	
-	/**
-	 * Launch the CreatureAI onIntention method corresponding to the new Intention.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: Stop the FOLLOW mode if necessary</b></font>
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention (optional target)
-	 * @param arg1 The second parameter of the Intention (optional target)
-	 */
-	public void setIntention(Intention intention, Object arg0, Object arg1)
-	{
-		// Stop the follow mode if necessary
-		if ((intention != Intention.FOLLOW) && (intention != Intention.ATTACK))
-		{
-			stopFollow();
-		}
-		
-		// Launch the onIntention method of the CreatureAI corresponding to the new Intention
-		switch (intention)
-		{
-			case IDLE:
-			{
-				onIntentionIdle();
-				break;
-			}
-			case ACTIVE:
-			{
-				onIntentionActive();
-				break;
-			}
-			case REST:
-			{
-				onIntentionRest();
-				break;
-			}
-			case ATTACK:
-			{
-				onIntentionAttack((Creature) arg0);
-				break;
-			}
-			case CAST:
-			{
-				onIntentionCast((Skill) arg0, (WorldObject) arg1);
-				break;
-			}
-			case MOVE_TO:
-			{
-				onIntentionMoveTo((ILocational) arg0);
-				break;
-			}
-			case FOLLOW:
-			{
-				onIntentionFollow((Creature) arg0);
-				break;
-			}
-			case PICK_UP:
-			{
-				onIntentionPickUp((WorldObject) arg0);
-				break;
-			}
-			case INTERACT:
-			{
-				onIntentionInteract((WorldObject) arg0);
-				break;
-			}
-		}
-		
-		// If do move or follow intention drop next action.
-		final NextAction nextAction = _nextAction;
-		if ((nextAction != null) && nextAction.isRemovedBy(intention))
-		{
-			_nextAction = null;
-		}
-	}
+	public abstract void setIntentionRest();
 	
-	/**
-	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned period)</b></font>
-	 * @param action The action whose the AI must be notified
-	 */
-	public void notifyAction(Action action)
-	{
-		notifyAction(action, null, null);
-	}
+	public abstract void setIntentionAttack(WorldObject target);
 	
-	/**
-	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned periode)</b></font>
-	 * @param action The action whose the AI must be notified
-	 * @param arg0 The first parameter of the Action (optional target)
-	 */
-	public void notifyAction(Action action, Object arg0)
-	{
-		notifyAction(action, arg0, null);
-	}
+	public abstract void setIntentionCast(Skill skill, WorldObject target);
 	
-	/**
-	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned periode)</b></font>
-	 * @param action The action whose the AI must be notified
-	 * @param args The arguments of the Action
-	 */
-	public void notifyAction(Action action, Object... args)
-	{
-		if ((!_actor.isSpawned() && !_actor.isTeleporting()) || !_actor.hasAI())
-		{
-			return;
-		}
-		
-		switch (action)
-		{
-			case THINK:
-			{
-				onActionThink();
-				break;
-			}
-			case ATTACKED:
-			{
-				onActionAttacked((Creature) args[0]);
-				break;
-			}
-			case AGGRESSION:
-			{
-				onActionAggression((Creature) args[0], ((Number) args[1]).intValue());
-				break;
-			}
-			case STUNNED:
-			{
-				onActionStunned((Creature) args[0]);
-				break;
-			}
-			case PARALYZED:
-			{
-				onActionParalyzed((Creature) args[0]);
-				break;
-			}
-			case SLEEPING:
-			{
-				onActionSleeping((Creature) args[0]);
-				break;
-			}
-			case ROOTED:
-			{
-				onActionRooted((Creature) args[0]);
-				break;
-			}
-			case CONFUSED:
-			{
-				onActionConfused((Creature) args[0]);
-				break;
-			}
-			case MUTED:
-			{
-				onActionMuted((Creature) args[0]);
-				break;
-			}
-			case EVADED:
-			{
-				onActionEvaded((Creature) args[0]);
-				break;
-			}
-			case READY_TO_ACT:
-			{
-				if (!_actor.isCastingNow() && !_actor.isCastingSimultaneouslyNow())
-				{
-					onActionReadyToAct();
-				}
-				break;
-			}
-			case USER_CMD:
-			{
-				onActionUserCmd(args[0], args[1]);
-				break;
-			}
-			case ARRIVED:
-			{
-				// happens e.g. from stopmove but we don't process it if we're casting
-				if (!_actor.isCastingNow() && !_actor.isCastingSimultaneouslyNow())
-				{
-					onActionArrived();
-				}
-				break;
-			}
-			case ARRIVED_REVALIDATE:
-			{
-				// this is disregarded if the char is not moving any more
-				if (_actor.isMoving())
-				{
-					onActionArrivedRevalidate();
-				}
-				break;
-			}
-			case ARRIVED_BLOCKED:
-			{
-				onActionArrivedBlocked((Location) args[0]);
-				break;
-			}
-			case FORGET_OBJECT:
-			{
-				final WorldObject worldObject = (WorldObject) args[0];
-				_actor.removeSeenCreature(worldObject);
-				onActionForgetObject(worldObject);
-				break;
-			}
-			case CANCEL:
-			{
-				onActionCancel();
-				break;
-			}
-			case DEATH:
-			{
-				onActionDeath();
-				break;
-			}
-			case FAKE_DEATH:
-			{
-				onActionFakeDeath();
-				break;
-			}
-			case FINISH_CASTING:
-			{
-				onActionFinishCasting();
-				break;
-			}
-			case AFRAID:
-			{
-				onActionAfraid((Creature) args[0], (Boolean) args[1]);
-				break;
-			}
-		}
-		
-		// Do next action.
-		final NextAction nextAction = _nextAction;
-		if ((nextAction != null) && nextAction.isTriggeredBy(action))
-		{
-			nextAction.doAction();
-		}
-	}
+	public abstract void setIntentionMoveTo(ILocational destination);
 	
-	protected abstract void onIntentionIdle();
+	public abstract void setIntentionFollow(WorldObject target);
 	
-	protected abstract void onIntentionActive();
+	public abstract void setIntentionPickUp(WorldObject item);
 	
-	protected abstract void onIntentionRest();
+	public abstract void setIntentionInteract(WorldObject object);
 	
-	protected abstract void onIntentionAttack(Creature target);
+	public abstract void notifyActionThink();
 	
-	protected abstract void onIntentionCast(Skill skill, WorldObject target);
+	public abstract void notifyActionAttacked(WorldObject attacker);
 	
-	protected abstract void onIntentionMoveTo(ILocational destination);
+	public abstract void notifyActionAggression(WorldObject target, int aggro);
 	
-	protected abstract void onIntentionFollow(Creature target);
+	public abstract void notifyActionStunned();
 	
-	protected abstract void onIntentionPickUp(WorldObject item);
+	public abstract void notifyActionParalyzed();
 	
-	protected abstract void onIntentionInteract(WorldObject object);
+	public abstract void notifyActionSleeping();
 	
-	protected abstract void onActionThink();
+	public abstract void notifyActionRooted();
 	
-	protected abstract void onActionAttacked(Creature attacker);
+	public abstract void notifyActionConfused();
 	
-	protected abstract void onActionAggression(Creature target, int aggro);
+	public abstract void notifyActionMuted();
 	
-	protected abstract void onActionStunned(Creature attacker);
+	public abstract void notifyActionEvaded(WorldObject attacker);
 	
-	protected abstract void onActionParalyzed(Creature attacker);
+	public abstract void notifyActionReadyToAct();
 	
-	protected abstract void onActionSleeping(Creature attacker);
+	public abstract void notifyActionUserCmd(Object arg0, Object arg1);
 	
-	protected abstract void onActionRooted(Creature attacker);
+	public abstract void notifyActionArrived();
 	
-	protected abstract void onActionConfused(Creature attacker);
+	public abstract void notifyActionArrivedRevalidate();
 	
-	protected abstract void onActionMuted(Creature attacker);
+	public abstract void notifyActionArrivedBlocked(Location location);
 	
-	protected abstract void onActionEvaded(Creature attacker);
+	public abstract void notifyActionForgetObject(WorldObject object);
 	
-	protected abstract void onActionReadyToAct();
+	public abstract void notifyActionCancel();
 	
-	protected abstract void onActionUserCmd(Object arg0, Object arg1);
+	public abstract void notifyActionDeath();
 	
-	protected abstract void onActionArrived();
+	public abstract void notifyActionFakeDeath();
 	
-	protected abstract void onActionArrivedRevalidate();
+	public abstract void notifyActionAfraid(WorldObject effector, boolean start);
 	
-	protected abstract void onActionArrivedBlocked(Location location);
-	
-	protected abstract void onActionForgetObject(WorldObject object);
-	
-	protected abstract void onActionCancel();
-	
-	protected abstract void onActionDeath();
-	
-	protected abstract void onActionFakeDeath();
-	
-	protected abstract void onActionFinishCasting();
-	
-	protected abstract void onActionAfraid(Creature effector, boolean start);
+	public abstract void notifyActionFinishCasting();
 	
 	/**
 	 * Cancel action client side by sending Server->Client packet ActionFailed to the Player actor.<br>
@@ -494,7 +228,7 @@ public abstract class AbstractAI
 				}
 			}
 			
-			// Set AI movement data
+			// Set AI movement data.
 			_clientMovingToPawnOffset = offset;
 			_target = pawn;
 			_moveToPawnTimeout = gameTime;
@@ -505,7 +239,7 @@ public abstract class AbstractAI
 				return;
 			}
 			
-			// Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeTaskManager
+			// Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeTaskManager.
 			_actor.moveToLocation(pawn.getX(), pawn.getY(), pawn.getZ(), offset);
 			
 			// May result to make monsters stop moving.
@@ -515,7 +249,7 @@ public abstract class AbstractAI
 			// return;
 			// }
 			
-			// Send a Server->Client packet MoveToPawn/MoveToLocation to the actor and all Player in its _knownPlayers
+			// Send a Server->Client packet MoveToPawn/MoveToLocation to the actor and all Player in its known players.
 			if (pawn.isCreature())
 			{
 				if (_actor.isOnGeodataPath())
@@ -557,16 +291,16 @@ public abstract class AbstractAI
 	 */
 	protected void moveTo(int x, int y, int z)
 	{
-		// Check if actor can move
+		// Check if actor can move.
 		if (!_actor.isMovementDisabled())
 		{
-			// Set AI movement data
+			// Set AI movement data.
 			_clientMovingToPawnOffset = 0;
 			
-			// Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeTaskManager
+			// Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeTaskManager.
 			_actor.moveToLocation(x, y, z, 0);
 			
-			// Send a Server->Client packet MoveToLocation to the actor and all Player in its _knownPlayers
+			// Send a Server->Client packet MoveToLocation to the actor and all Player in its known players.
 			_actor.broadcastMoveToLocation();
 		}
 		else
@@ -582,7 +316,7 @@ public abstract class AbstractAI
 	 */
 	public void clientStopMoving(Location loc)
 	{
-		// Stop movement of the Creature
+		// Stop movement of the Creature.
 		if (_actor.isMoving())
 		{
 			_actor.stopMove(loc);
@@ -596,7 +330,7 @@ public abstract class AbstractAI
 	 */
 	protected void clientStoppedMoving()
 	{
-		if (_clientMovingToPawnOffset > 0) // movetoPawn needs to be stopped
+		if (_clientMovingToPawnOffset > 0) // movetoPawn needs to be stopped.
 		{
 			_clientMovingToPawnOffset = 0;
 			_actor.broadcastPacket(new StopMove(_actor));
@@ -657,7 +391,7 @@ public abstract class AbstractAI
 				}
 			}
 			
-			// Send a Server->Client packet AutoAttackStart to the actor and all Player in its _knownPlayers
+			// Send a Server->Client packet AutoAttackStart to the actor and all Player in its known players.
 			_actor.broadcastPacket(new AutoAttackStart(_actor.getObjectId()));
 			setAutoAttacking(true);
 		}
@@ -706,7 +440,7 @@ public abstract class AbstractAI
 	 */
 	protected void clientNotifyDead()
 	{
-		// Send a Server->Client packet Die to the actor and all Player in its _knownPlayers
+		// Send a Server->Client packet Die to the actor and all Player in its known players.
 		_actor.broadcastPacket(new Die(_actor));
 		
 		// Init AI
@@ -715,7 +449,7 @@ public abstract class AbstractAI
 		_castTarget = null;
 		_attackTarget = null;
 		
-		// Cancel the follow task if necessary
+		// Cancel the follow task if necessary.
 		stopFollow();
 	}
 	
@@ -730,12 +464,12 @@ public abstract class AbstractAI
 		{
 			if ((_clientMovingToPawnOffset != 0) && isFollowing())
 			{
-				// Send a Server->Client packet MoveToPawn to the actor and all Player in its _knownPlayers
+				// Send a Server->Client packet MoveToPawn to the actor and all Player in its known players.
 				player.sendPacket(new MoveToPawn(_actor, _followTarget, _clientMovingToPawnOffset));
 			}
 			else
 			{
-				// Send a Server->Client packet MoveToLocation to the actor and all Player in its _knownPlayers
+				// Send a Server->Client packet MoveToLocation to the actor and all Player in its known players.
 				player.sendPacket(new MoveToLocation(_actor));
 			}
 		}

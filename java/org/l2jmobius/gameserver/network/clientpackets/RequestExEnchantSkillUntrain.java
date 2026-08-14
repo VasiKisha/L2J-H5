@@ -23,13 +23,13 @@ import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillLearn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
@@ -110,17 +110,16 @@ public class RequestExEnchantSkillUntrain extends ClientPacket
 			return;
 		}
 		
-		final EnchantSkillHolder esd = s.getEnchantSkillHolder(beforeUntrainSkillLevel);
-		final int requiredSp = esd.getSpCost();
-		final int requireditems = esd.getAdenaCost();
 		final Item spb = player.getInventory().getItemByItemId(reqItemId);
-		
 		// does not have spellbook
 		if (PlayerConfig.ES_SP_BOOK_NEEDED && (spb == null))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL);
 			return;
 		}
+		
+		final EnchantSkillHolder esd = s.getEnchantSkillHolder(beforeUntrainSkillLevel);
+		final int requireditems = esd.getAdenaCost();
 		
 		if (player.getInventory().getAdena() < requireditems)
 		{
@@ -141,7 +140,7 @@ public class RequestExEnchantSkillUntrain extends ClientPacket
 			return;
 		}
 		
-		player.getStat().addSp((int) (requiredSp * 0.8));
+		player.getStat().addSp((int) (esd.getSpCost() * 0.8));
 		if (GeneralConfig.LOG_SKILL_ENCHANTS)
 		{
 			LOGGER_ENCHANT.log(Level.INFO, "Untrain:" + player.getName() + " [" + player.getObjectId() + "] Account:" + player.getAccountName() + " IP:" + player.getIPAddress() + ", Skill:" + skill + ", SPB:" + spb);

@@ -38,14 +38,14 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.sevensigns.DimensionalRift;
-import org.l2jmobius.gameserver.model.sevensigns.DimensionalRiftRoom;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.sevensigns.DimensionalRift;
+import org.l2jmobius.gameserver.mechanics.sevensigns.DimensionalRiftRoom;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
@@ -97,10 +97,7 @@ public class DimensionalRiftManager
 				final int yT = rs.getInt("yT");
 				final int zT = rs.getInt("zT");
 				final boolean isBossRoom = rs.getByte("boss") > 0;
-				if (!_rooms.containsKey(type))
-				{
-					_rooms.put(type, new HashMap<>(9));
-				}
+				_rooms.computeIfAbsent(type, k -> new HashMap<>(9));
 				
 				_rooms.get(type).put(room_id, new DimensionalRiftRoom(type, room_id, xMin, xMax, yMin, yMax, z1, z2, xT, yT, zT, isBossRoom));
 			}

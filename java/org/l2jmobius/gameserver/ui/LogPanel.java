@@ -532,7 +532,7 @@ public class LogPanel extends JFrame
 					final long fileSize = logFile.length();
 					while ((line = reader.readLine()) != null)
 					{
-						logContent.append(line).append("\n");
+						logContent.append(line).append('\n');
 						bytesRead += line.length();
 						final int progress = (int) ((bytesRead * 100) / fileSize);
 						

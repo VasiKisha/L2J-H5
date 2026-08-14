@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.ai;
 
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
 
 /**
  * @author Naker
@@ -43,12 +43,12 @@ public class DistrustAI extends AttackableAI
 		if ((_forcedTarget == null) || _forcedTarget.isDead())
 		{
 			_actor.setTarget(null);
-			setIntention(Intention.ACTIVE);
+			setIntentionActive();
 			return;
 		}
 		
 		_actor.setTarget(_forcedTarget);
-		setIntention(Intention.ATTACK, _forcedTarget);
+		setIntentionAttack(_forcedTarget);
 		
 		final int range = _actor.getPhysicalAttackRange() + _forcedTarget.getTemplate().getCollisionRadius();
 		if (_actor.calculateDistance3D(_forcedTarget) > range)

@@ -29,8 +29,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.fishing.FishingMonster;
+import org.l2jmobius.gameserver.mechanics.fishing.FishingMonster;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * This class holds the Fishing Monsters information.
@@ -108,7 +108,7 @@ public class FishingMonstersData implements IXmlReader
 	 */
 	public FishingMonster getFishingMonsterById(int id)
 	{
-		return _fishingMonstersData.containsKey(id) ? _fishingMonstersData.get(id) : null;
+		return _fishingMonstersData.get(id);
 	}
 	
 	/**

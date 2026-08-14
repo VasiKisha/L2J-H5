@@ -19,19 +19,19 @@ package features.SkillTransfer;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillLearn;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerProfessionCancel;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 
 /**
  * Skill Transfer feature.
@@ -76,7 +76,6 @@ public class SkillTransfer extends Script
 	
 	public void onProfessionCancel(OnPlayerProfessionCancel event)
 	{
-		final Player player = event.getPlayer();
 		final PlayerClass playerClass = PlayerClass.getPlayerClass(event.getClassId());
 		final int index = getTransferClassIndex(playerClass);
 		
@@ -89,6 +88,7 @@ public class SkillTransfer extends Script
 		final int pomanderId = PORMANDERS[index].getId();
 		
 		// remove unsused HolyPomander
+		final Player player = event.getPlayer();
 		final PlayerInventory inv = player.getInventory();
 		for (Item itemI : inv.getAllItemsByItemId(pomanderId))
 		{

@@ -16,12 +16,12 @@
  */
 package quests.Q00139_ShadowFoxPart1;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 
 import quests.Q00138_TempleChampionPart2.Q00138_TempleChampionPart2;
 
@@ -151,8 +151,7 @@ public class Q00139_ShadowFoxPart1 extends Quest
 			return;
 		}
 		
-		final 
-QuestState qs = getQuestState(member, false);
+		final QuestState qs = getQuestState(member, false);
 		if (!qs.isSet("talk") && (getRandom(100) < DROP_CHANCE))
 		{
 			final int itemId = (getRandom(11) == 0) ? CHEST : FRAGMENT;

@@ -19,13 +19,13 @@ package quests.Q00141_ShadowFoxPart3;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.ScriptManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 
 import quests.Q00140_ShadowFoxPart2.Q00140_ShadowFoxPart2;
 import quests.Q00998_FallenAngelSelect.Q00998_FallenAngelSelect;
@@ -147,8 +147,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 			return;
 		}
 		
-		final 
-QuestState qs = getQuestState(member, false);
+		final QuestState qs = getQuestState(member, false);
 		if (getRandom(100) < MOBS.get(npc.getId()))
 		{
 			giveItems(member, PREDECESSORS_REPORT, 1);

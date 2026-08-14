@@ -22,11 +22,11 @@ package org.l2jmobius.gameserver.util;
 
 import java.awt.Color;
 
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.util.GridLineIterator2D;
 import org.l2jmobius.gameserver.geoengine.util.GridLineIterator3D;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
 
 /**

@@ -23,15 +23,14 @@ package ai.bosses.Frintezza;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -201,7 +200,7 @@ public class ScarletVanHalisha extends Script
 		
 		if (LocationUtil.checkIfInRange(skill.getCastRange(), npc, target, true))
 		{
-			npc.getAI().setIntention(Intention.IDLE);
+			npc.getAI().setIntentionIdle();
 			npc.setTarget(target);
 			// npc.setCastingNow(true);
 			_target = null;
@@ -209,8 +208,8 @@ public class ScarletVanHalisha extends Script
 		}
 		else
 		{
-			npc.getAI().setIntention(Intention.FOLLOW, target, null);
-			npc.getAI().setIntention(Intention.ATTACK, target, null);
+			npc.getAI().setIntentionFollow(target);
+			npc.getAI().setIntentionAttack(target);
 			// npc.setCastingNow(false);
 		}
 	}

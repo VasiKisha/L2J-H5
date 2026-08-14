@@ -22,7 +22,7 @@ package org.l2jmobius.commons.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,7 +122,7 @@ public class DatabaseFactory
 	 */
 	private static int determineMaxPoolSize(int configuredMax)
 	{
-		return Math.min(Math.max(configuredMax, 4), 1000);
+		return Math.clamp(configuredMax, 4, 1000);
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class DatabaseFactory
 	 */
 	private static void testDatabaseConnections()
 	{
-		final List<Connection> connections = new LinkedList<>();
+		final List<Connection> connections = new ArrayList<>();
 		int successfulConnections = 0;
 		
 		try

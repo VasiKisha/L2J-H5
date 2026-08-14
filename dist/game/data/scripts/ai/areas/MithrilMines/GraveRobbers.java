@@ -16,9 +16,9 @@
  */
 package ai.areas.MithrilMines;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.MinionHolder;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Grove Robber's AI.<br>

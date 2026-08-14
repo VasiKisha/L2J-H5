@@ -27,20 +27,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.MinionList;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -729,9 +728,9 @@ public class TowerOfNaia extends Script
 		{
 			_sporeSpawn.add(npc);
 			npc.setWalking();
-			final int[] coord = SPORES_MOVE_POINTS[getRandom(SPORES_MOVE_POINTS.length)];
+			final int[] coord = getRandomEntry(SPORES_MOVE_POINTS);
 			npc.getSpawn().setXYZ(coord[0], coord[1], coord[2]);
-			npc.getAI().setIntention(Intention.MOVE_TO, new Location(coord[0], coord[1], coord[2], 0));
+			npc.getAI().setIntentionMoveTo(new Location(coord[0], coord[1], coord[2]));
 			startQuestTimer("despawn_spore", 60000, npc, null);
 		}
 	}
@@ -767,11 +766,11 @@ public class TowerOfNaia extends Script
 		removeAllPlayers(managerId);
 		_activeRooms.put(managerId, false);
 		
-		if (DOORS.containsKey(managerId))
+		final int[] doorListA = DOORS.get(managerId);
+		if (doorListA != null)
 		{
-			final int[] doorList = DOORS.get(managerId);
-			DoorData.getInstance().getDoor(doorList[0]).openMe();
-			DoorData.getInstance().getDoor(doorList[1]).closeMe();
+			DoorData.getInstance().getDoor(doorListA[0]).openMe();
+			DoorData.getInstance().getDoor(doorListA[1]).closeMe();
 		}
 		
 		if (_spawns.containsKey(managerId) && (_spawns.get(managerId) != null))
@@ -818,7 +817,7 @@ public class TowerOfNaia extends Script
 			npc.setWalking();
 			npc.disableCoreAI(true);
 			npc.setRandomWalking(false);
-			npc.getAI().setIntention(Intention.MOVE_TO, new Location(coords[0], coords[1], coords[2], heading));
+			npc.getAI().setIntentionMoveTo(new Location(coords[0], coords[1], coords[2], heading));
 			npc.getSpawn().setXYZ(coords[0], coords[1], coords[2]);
 		}
 		
@@ -853,15 +852,15 @@ public class TowerOfNaia extends Script
 	{
 		_activeRooms.put(managerId, true);
 		
-		if (DOORS.containsKey(managerId))
+		final int[] doorListB = DOORS.get(managerId);
+		if (doorListB != null)
 		{
-			final int[] doorList = DOORS.get(managerId);
-			DoorData.getInstance().getDoor(doorList[0]).closeMe();
+			DoorData.getInstance().getDoor(doorListB[0]).closeMe();
 		}
 		
-		if (SPAWNS.containsKey(managerId))
+		final int[][] spawnList = SPAWNS.get(managerId);
+		if (spawnList != null)
 		{
-			final int[][] spawnList = SPAWNS.get(managerId);
 			final Collection<Npc> spawned = ConcurrentHashMap.newKeySet();
 			for (int[] spawn : spawnList)
 			{

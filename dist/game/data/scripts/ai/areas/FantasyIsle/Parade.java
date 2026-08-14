@@ -20,16 +20,17 @@
  */
 package ai.areas.FantasyIsle;
 
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
@@ -38,6 +39,8 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
  */
 public class Parade extends Script
 {
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+	
 	// @formatter:off
 	final int[] ACTORS =
 	{
@@ -144,7 +147,7 @@ public class Parade extends Script
 		// final long diff = timeLeftMilli(8, 0, 0), cycle = 600000;
 		// ThreadPoolManager.scheduleAtFixedRate(new Start(), 180000, cycle);
 		
-		LOGGER.info("Fantasy Isle: Parade starting at " + new SimpleDateFormat("yyyy/MM/dd HH:mm").format(System.currentTimeMillis() + diff) + " and is scheduled each next " + (cycle / 3600000) + " hours.");
+		LOGGER.info("Fantasy Isle: Parade starting at " + DATE_FORMAT.format(Instant.ofEpochMilli(System.currentTimeMillis() + diff).atZone(ZoneId.systemDefault())) + " and is scheduled each next " + (cycle / 3600000) + " hours.");
 	}
 	
 	void load()
@@ -214,7 +217,7 @@ public class Parade extends Script
 					final int[] goal = GOAL[route][i];
 					final Npc actor = addSpawn(npcId, start[0], start[1], start[2], start[3], false, 0);
 					actor.setRunning();
-					actor.getAI().setIntention(Intention.MOVE_TO, new Location(goal[0], goal[1], goal[2], goal[3]));
+					actor.getAI().setIntentionMoveTo(new Location(goal[0], goal[1], goal[2], goal[3]));
 					spawns.add(actor);
 				}
 			}
@@ -242,7 +245,7 @@ public class Parade extends Script
 					}
 					else if (!actor.isMoving())
 					{
-						actor.getAI().setIntention(Intention.MOVE_TO, new Location(actor.getXdestination(), actor.getYdestination(), actor.getZdestination(), actor.getHeading()));
+						actor.getAI().setIntentionMoveTo(new Location(actor.getXdestination(), actor.getYdestination(), actor.getZdestination(), actor.getHeading()));
 					}
 				}
 			}

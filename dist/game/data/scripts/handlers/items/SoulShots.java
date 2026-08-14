@@ -23,18 +23,18 @@ package handlers.items;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.enums.ShotType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.type.ActionType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.Weapon;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.enums.ShotType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.type.ActionType;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 public class SoulShots implements IItemHandler
 {
@@ -47,18 +47,19 @@ public class SoulShots implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.asPlayer();
-		final Item weaponInst = player.getActiveWeaponInstance();
-		final Weapon weaponItem = player.getActiveWeaponItem();
 		final SkillHolder[] skills = item.getTemplate().getSkills();
-		final int itemId = item.getId();
 		if (skills == null)
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": is missing skills!");
 			return false;
 		}
 		
-		// Check if Soul shot can be used
+		final Player player = playable.asPlayer();
+		final Item weaponInst = player.getActiveWeaponInstance();
+		final Weapon weaponItem = player.getActiveWeaponItem();
+		final int itemId = item.getId();
+		
+		// Check if Soul shot can be used.
 		if ((weaponInst == null) || (weaponItem.getSoulShotCount() == 0))
 		{
 			if (!player.getAutoSoulShot().contains(itemId))
@@ -80,13 +81,13 @@ public class SoulShots implements IItemHandler
 			return false;
 		}
 		
-		// Check if Soul shot is already active
+		// Check if Soul shot is already active.
 		if (player.isChargedShot(ShotType.SOULSHOTS))
 		{
 			return false;
 		}
 		
-		// Consume Soul shots if player has enough of them
+		// Consume Soul shots if player has enough of them.
 		int count = weaponItem.getSoulShotCount();
 		if ((weaponItem.getReducedSoulShot() > 0) && (Rnd.get(100) < weaponItem.getReducedSoulShotChance()))
 		{
@@ -106,9 +107,9 @@ public class SoulShots implements IItemHandler
 		// Charge soul shot
 		weaponInst.setChargedShot(ShotType.SOULSHOTS, true);
 		
-		// Send message to client
+		// Send message to client.
 		player.sendPacket(SystemMessageId.YOUR_SOULSHOTS_ARE_ENABLED);
-		Broadcast.toSelfAndKnownPlayersInRadius(player, new MagicSkillUse(player, player, skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), 600);
+		World.broadcastToSelfAndVisiblePlayersInRange(player, new MagicSkillUse(player, player, skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), 600);
 		return true;
 	}
 }

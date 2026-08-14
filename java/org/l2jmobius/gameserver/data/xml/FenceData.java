@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -26,14 +30,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldRegion;
-import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
-import org.l2jmobius.gameserver.model.actor.instance.Fence;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldRegion;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.FenceState;
+import org.l2jmobius.gameserver.entity.actor.instance.Fence;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * @author HorridoJoho
+ * @author HorridoJoho, BazookaRpm
  */
 public class FenceData implements IXmlReader
 {
@@ -53,7 +57,7 @@ public class FenceData implements IXmlReader
 	{
 		if (!_fences.isEmpty())
 		{
-			// Remove old fences when reloading
+			// Remove old fences when reloading.
 			_fences.values().forEach(this::removeFence);
 		}
 		
@@ -119,7 +123,7 @@ public class FenceData implements IXmlReader
 	
 	public boolean checkIfFenceBetween(int x, int y, int z, int tx, int ty, int tz, int instanceId)
 	{
-		final WorldRegion region = World.getInstance().getRegion(x, y, z);
+		final WorldRegion region = World.getRegion(x, y, z);
 		final Collection<Fence> fences = region != null ? region.getFences() : null;
 		if ((fences == null) || fences.isEmpty())
 		{
@@ -141,24 +145,24 @@ public class FenceData implements IXmlReader
 			}
 			
 			final int xMin = fence.getXMin();
-			final int xMax = fence.getXMax();
-			final int yMin = fence.getYMin();
-			final int yMax = fence.getYMax();
 			if ((x < xMin) && (tx < xMin))
 			{
 				continue;
 			}
 			
+			final int xMax = fence.getXMax();
 			if ((x > xMax) && (tx > xMax))
 			{
 				continue;
 			}
 			
+			final int yMin = fence.getYMin();
 			if ((y < yMin) && (ty < yMin))
 			{
 				continue;
 			}
 			
+			final int yMax = fence.getYMax();
 			if ((y > yMax) && (ty > yMax))
 			{
 				continue;
@@ -187,12 +191,12 @@ public class FenceData implements IXmlReader
 		}
 		
 		final double xCross = result[0];
-		final double yCross = result[1];
 		if ((xCross <= xMax) && (xCross >= xMin))
 		{
 			return true;
 		}
 		
+		final double yCross = result[1];
 		if ((yCross <= yMax) && (yCross >= yMin))
 		{
 			return true;

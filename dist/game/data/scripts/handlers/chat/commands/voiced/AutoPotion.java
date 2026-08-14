@@ -21,8 +21,8 @@
 package handlers.chat.commands.voiced;
 
 import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.taskmanagers.AutoPotionTaskManager;
 
 /**

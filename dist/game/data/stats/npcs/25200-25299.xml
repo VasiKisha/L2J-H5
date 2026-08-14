@@ -637,7 +637,7 @@
 			<skill id="4756" level="5" /> <!-- BOSS Power Shot -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai clanHelpRange="300" isAggressive="false" />
+		<ai type="ARCHER" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="11" />
 			<height normal="30" />

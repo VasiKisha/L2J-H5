@@ -23,9 +23,9 @@ package handlers.chat.commands.admin;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.data.xml.BuyListData;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
+import org.l2jmobius.gameserver.mechanics.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.BuyList;
 import org.l2jmobius.gameserver.network.serverpackets.ExBuySellList;

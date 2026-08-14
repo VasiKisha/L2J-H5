@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.List;
+import java.util.Collection;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.EtcItem;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.EtcItem;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -100,14 +100,14 @@ public class RequestUnEquipItem extends ClientPacket
 			return;
 		}
 		
-		final List<Item> unequipped = player.getInventory().unEquipItemInBodySlotAndRecord(_slot);
+		final Collection<Item> unequipped = player.getInventory().unEquipItemInBodySlotAndRecord(_slot);
 		player.broadcastUserInfo();
 		
 		// This can be 0 if the user pressed the right mouse button twice very fast.
 		if (!unequipped.isEmpty())
 		{
 			SystemMessage sm = null;
-			final Item unequippedItem = unequipped.get(0);
+			final Item unequippedItem = unequipped.iterator().next();
 			if (unequippedItem.isEnchanted())
 			{
 				sm = new SystemMessage(SystemMessageId.THE_EQUIPMENT_S1_S2_HAS_BEEN_REMOVED);

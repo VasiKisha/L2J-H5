@@ -23,16 +23,15 @@ package instances.DarkCloudMansion;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -704,11 +703,11 @@ public class DarkCloudMansion extends InstanceScript
 			fifthRoom.npcList.add(thisNpc);
 			if ((temp[idx] == 1) && (getRandom(100) < 95))
 			{
-				thisNpc.npc.broadcastPacket(new NpcSay(thisNpc.npc.getObjectId(), ChatType.GENERAL, thisNpc.npc.getId(), _spawnChat[getRandom(_spawnChat.length)]));
+				thisNpc.npc.broadcastPacket(new NpcSay(thisNpc.npc.getObjectId(), ChatType.GENERAL, thisNpc.npc.getId(), getRandomEntry(_spawnChat)));
 			}
 			else if ((temp[idx] != 1) && (getRandom(100) < 67))
 			{
-				thisNpc.npc.broadcastPacket(new NpcSay(thisNpc.npc.getObjectId(), ChatType.GENERAL, thisNpc.npc.getId(), _spawnChat[getRandom(_spawnChat.length)]));
+				thisNpc.npc.broadcastPacket(new NpcSay(thisNpc.npc.getObjectId(), ChatType.GENERAL, thisNpc.npc.getId(), getRandomEntry(_spawnChat)));
 			}
 			
 			idx++;
@@ -797,7 +796,7 @@ public class DarkCloudMansion extends InstanceScript
 					mob.count = 1;
 					if (mob.status == 1)
 					{
-						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), _successChat[getRandom(_successChat.length)]));
+						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), getRandomEntry(_successChat)));
 						fifthRoom.founded += 1;
 						startQuestTimer("decayMe", 1500, npc, player);
 					}
@@ -805,8 +804,8 @@ public class DarkCloudMansion extends InstanceScript
 					{
 						fifthRoom.reset = 1;
 						mob.npc.disableCoreAI(false);
-						mob.npc.getAI().setIntention(Intention.ATTACK, player);
-						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), _faildChat[getRandom(_faildChat.length)]));
+						mob.npc.getAI().setIntentionAttack(player);
+						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), getRandomEntry(_faildChat)));
 						startQuestTimer("decayChatBelethSamples", 4000, npc, player);
 						startQuestTimer("decayBelethSamples", 4500, npc, player);
 					}
@@ -968,7 +967,7 @@ public class DarkCloudMansion extends InstanceScript
 				{
 					if (mob.status == 1)
 					{
-						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), _decayChat[getRandom(_decayChat.length)]));
+						mob.npc.broadcastPacket(new NpcSay(mob.npc.getObjectId(), ChatType.NPC_GENERAL, mob.npc.getId(), getRandomEntry(_decayChat)));
 					}
 				}
 			}
@@ -1083,12 +1082,12 @@ public class DarkCloudMansion extends InstanceScript
 						if (mob.npc.isCoreAIDisabled())
 						{
 							mob.npc.disableCoreAI(false);
-							mob.npc.getAI().setIntention(Intention.ATTACK, attacker);
+							mob.npc.getAI().setIntentionAttack(attacker);
 						}
 						
 						if (mob.npc.isInvul() && (getRandom(100) < 12))
 						{
-							addSpawn(BM[getRandom(BM.length)], attacker.getX(), attacker.getY(), attacker.getZ(), 0, false, 0, false, world.getInstanceId());
+							addSpawn(getRandomEntry(BM), attacker.getX(), attacker.getY(), attacker.getZ(), 0, false, 0, false, world.getInstanceId());
 						}
 					}
 				}

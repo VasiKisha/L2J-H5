@@ -20,19 +20,18 @@
  */
 package ai.bosses.DrChaos;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * AI for Dr. Chaos boss in Pavel's Ruins.<br>
@@ -211,7 +210,7 @@ public class DrChaos extends Script
 			case "4":
 			{
 				npc.broadcastPacket(new SpecialCamera(npc, 1, -150, 10, 3500, 1000, 5000, 0, 0, 0, 0, 0));
-				npc.getAI().setIntention(Intention.MOVE_TO, CHAOS_MOVE_LOCATION);
+				npc.getAI().setIntentionMoveTo(CHAOS_MOVE_LOCATION);
 				break;
 			}
 			case "5":
@@ -233,11 +232,11 @@ public class DrChaos extends Script
 			{
 				if (GrandBossManager.getInstance().getStatus(CHAOS_GOLEM_NPC_ID) == STATUS_NORMAL)
 				{
-					for (Player nearbyPlayer : World.getInstance().getVisibleObjectsInRange(npc, Player.class, PARANOIA_RANGE))
+					World.forEachVisibleObjectInRange(npc, Player.class, PARANOIA_RANGE, nearbyPlayer ->
 					{
 						if (nearbyPlayer.isDead())
 						{
-							continue;
+							return;
 						}
 						
 						_paranoiaCountdown -= 1;
@@ -251,7 +250,7 @@ public class DrChaos extends Script
 						{
 							crazyMidgetBecomesAngry(npc);
 						}
-					}
+					});
 				}
 				
 				if (npc.calculateDistance2D(CHAOS_RETURN_LOCATION) > CHAOS_RETURN_DISTANCE)
@@ -260,7 +259,7 @@ public class DrChaos extends Script
 					{
 						npc.asAttackable().clearAggroList();
 					}
-					npc.getAI().setIntention(Intention.MOVE_TO, CHAOS_RETURN_LOCATION);
+					npc.getAI().setIntentionMoveTo(CHAOS_RETURN_LOCATION);
 				}
 				break;
 			}
@@ -420,7 +419,7 @@ public class DrChaos extends Script
 			
 			cancelQuestTimer("paranoia_activity", npc, null);
 			
-			npc.getAI().setIntention(Intention.MOVE_TO, CHAOS_BOX_LOCATION);
+			npc.getAI().setIntentionMoveTo(CHAOS_BOX_LOCATION);
 			npc.broadcastSay(ChatType.NPC_GENERAL, "Fools! Why haven't you fled yet? Prepare to learn a lesson!");
 			
 			startQuestTimer("1", 2000, npc, null, false);

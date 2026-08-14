@@ -23,13 +23,12 @@ package ai.bosses.Anais;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 /**
  * Anais AI.
@@ -100,10 +99,10 @@ public class Anais extends Script
 					final Npc ward = addSpawn(GRAIL_WARD, new Location(b.getX(), b.getY(), b.getZ()), true, 0);
 					ward.asAttackable().addDamageHate(_nextTarget, 0, 999);
 					ward.setRunning();
-					ward.getAI().setIntention(Intention.ATTACK, _nextTarget, null);
+					ward.getAI().setIntentionAttack(_nextTarget);
 					startQuestTimer("GUARD_ATTACK", 1000, ward, _nextTarget, true);
 					startQuestTimer("SUICIDE", 20000, ward, null);
-					ward.getAI().setIntention(Intention.ATTACK, _nextTarget);
+					ward.getAI().setIntentionAttack(_nextTarget);
 				}
 				break;
 			}

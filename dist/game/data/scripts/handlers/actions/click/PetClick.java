@@ -20,14 +20,13 @@
  */
 package handlers.actions.click;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerSummonTalk;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
 
@@ -36,7 +35,7 @@ public class PetClick implements IActionClickHandler
 	@Override
 	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
-		// Aggression target lock effect
+		// Aggression target lock effect.
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
 		{
 			player.sendPacket(SystemMessageId.FAILED_TO_CHANGE_ATTACK_TARGET);
@@ -51,20 +50,20 @@ public class PetClick implements IActionClickHandler
 		
 		if (player.getTarget() != target)
 		{
-			// Set the target of the Player player
+			// Set the target of the Player player.
 			player.setTarget(target);
 		}
 		else if (interact)
 		{
-			// Check if the pet is attackable (without a forced attack) and isn't dead
+			// Check if the pet is attackable (without a forced attack) and isn't dead.
 			if (target.isAutoAttackable(player) && !isOwner)
 			{
-				player.getAI().setIntention(Intention.ATTACK, target);
+				player.getAI().setIntentionAttack(target);
 				player.onActionRequest();
 			}
 			else if (!target.asCreature().isInsideRadius2D(player, 150))
 			{
-				player.getAI().setIntention(Intention.INTERACT, target);
+				player.getAI().setIntentionInteract(target);
 				player.onActionRequest();
 			}
 			else

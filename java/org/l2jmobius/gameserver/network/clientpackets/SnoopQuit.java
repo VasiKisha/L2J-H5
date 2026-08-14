@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 
 /**
  * @author -Wooden-
@@ -35,7 +35,7 @@ public class SnoopQuit extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final Player target = World.getInstance().getPlayer(_snoopID);
+		final Player target = World.getPlayer(_snoopID);
 		if (target == null)
 		{
 			return;

@@ -16,12 +16,12 @@
  */
 package ai.areas.Hellbound.AI;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 import ai.areas.Hellbound.HellboundEngine;
 
@@ -48,7 +48,7 @@ public class HellboundCore extends Script
 	{
 		if (event.equalsIgnoreCase("cast") && (HellboundEngine.getInstance().getLevel() <= 6))
 		{
-			World.getInstance().forEachVisibleObjectInRange(npc, Creature.class, 900, naia ->
+			World.forEachVisibleObjectInRange(npc, Creature.class, 900, naia ->
 			{
 				if ((naia != null) && naia.isMonster() && (naia.getId() == NAIA) && !naia.isDead() && !naia.isChanneling())
 				{

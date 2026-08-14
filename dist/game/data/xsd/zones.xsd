@@ -124,6 +124,7 @@
 									<xs:enumeration value="DerbyTrackZone" />
 									<xs:enumeration value="EffectZone" />
 									<xs:enumeration value="FishingZone" />
+									<xs:enumeration value="FlagPvPZone" />
 									<xs:enumeration value="FortZone" />
 									<xs:enumeration value="HqZone" />
 									<xs:enumeration value="JailZone" />

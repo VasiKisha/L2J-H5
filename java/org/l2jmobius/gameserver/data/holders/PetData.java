@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 /**
  * Class hold information about basic pet stats which are same on each level.
@@ -218,7 +218,7 @@ public class PetData
 					lvl = (7 + ((petLvl - 70) / 5));
 				}
 				
-				// formula usable for skill that have 10 or more skill levels
+				// Formula usable for skill that have 10 or more skill levels.
 				final int maxLevel = SkillData.getInstance().getMaxLevel(temp.getSkillId());
 				if (lvl > maxLevel)
 				{

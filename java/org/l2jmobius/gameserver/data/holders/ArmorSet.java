@@ -19,10 +19,10 @@ package org.l2jmobius.gameserver.data.holders;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 /**
  * @author Luno
@@ -277,7 +277,7 @@ public class ArmorSet
 	 */
 	public boolean isEnchanted6(Player player)
 	{
-		// Player don't have full set
+		// Player don't have full set.
 		if (!containAll(player))
 		{
 			return false;
@@ -285,30 +285,30 @@ public class ArmorSet
 		
 		final Inventory inv = player.getInventory();
 		final Item chestItem = inv.getPaperdollItem(Inventory.PAPERDOLL_CHEST);
-		final Item legsItem = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
-		final Item headItem = inv.getPaperdollItem(Inventory.PAPERDOLL_HEAD);
-		final Item glovesItem = inv.getPaperdollItem(Inventory.PAPERDOLL_GLOVES);
-		final Item feetItem = inv.getPaperdollItem(Inventory.PAPERDOLL_FEET);
 		if ((chestItem == null) || (chestItem.getEnchantLevel() < 6))
 		{
 			return false;
 		}
 		
+		final Item legsItem = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
 		if (!_legs.isEmpty() && ((legsItem == null) || (legsItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
 		
+		final Item glovesItem = inv.getPaperdollItem(Inventory.PAPERDOLL_GLOVES);
 		if (!_gloves.isEmpty() && ((glovesItem == null) || (glovesItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
 		
+		final Item headItem = inv.getPaperdollItem(Inventory.PAPERDOLL_HEAD);
 		if (!_head.isEmpty() && ((headItem == null) || (headItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
 		
+		final Item feetItem = inv.getPaperdollItem(Inventory.PAPERDOLL_FEET);
 		if (!_feet.isEmpty() && ((feetItem == null) || (feetItem.getEnchantLevel() < 6)))
 		{
 			return false;

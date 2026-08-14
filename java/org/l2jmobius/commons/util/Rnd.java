@@ -24,11 +24,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Mobius
+ * @since September 15th 2018
  */
 public class Rnd
 {
 	private static final int MINIMUM_POSITIVE_INT = 1;
 	private static final long MINIMUM_POSITIVE_LONG = 1L;
+	private static final float MINIMUM_POSITIVE_FLOAT = Float.intBitsToFloat(0x1);
 	private static final double MINIMUM_POSITIVE_DOUBLE = Double.longBitsToDouble(0x1L);
 	
 	/**
@@ -100,6 +102,33 @@ public class Rnd
 	public static long nextLong()
 	{
 		return ThreadLocalRandom.current().nextLong();
+	}
+	
+	/**
+	 * @param bound (float)
+	 * @return a random float value between zero (inclusive) and the specified bound (exclusive).
+	 */
+	public static float get(float bound)
+	{
+		return bound <= 0 ? 0 : ThreadLocalRandom.current().nextFloat(bound);
+	}
+	
+	/**
+	 * @param origin (float)
+	 * @param bound (float)
+	 * @return a random float value between the specified origin (inclusive) and the specified bound (inclusive).
+	 */
+	public static float get(float origin, float bound)
+	{
+		return origin >= bound ? origin : ThreadLocalRandom.current().nextFloat(origin, bound == Float.MAX_VALUE ? bound : bound + MINIMUM_POSITIVE_FLOAT);
+	}
+	
+	/**
+	 * @return a random float value between zero (inclusive) and one (exclusive).
+	 */
+	public static float nextFloat()
+	{
+		return ThreadLocalRandom.current().nextFloat();
 	}
 	
 	/**

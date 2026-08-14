@@ -21,11 +21,11 @@
 package custom.FactionSystem;
 
 import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -65,7 +65,7 @@ public class FactionSystem extends Script
 		{
 			case "selectGoodFaction":
 			{
-				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getAllGoodPlayers().size() >= (World.getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 				{
 					final String htmltext = null;
 					final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
@@ -95,7 +95,7 @@ public class FactionSystem extends Script
 			}
 			case "selectEvilFaction":
 			{
-				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getAllEvilPlayers().size() >= (World.getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 				{
 					final String htmltext = null;
 					final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
@@ -162,14 +162,14 @@ public class FactionSystem extends Script
 	{
 		if (factionName.equals(FactionSystemConfig.FACTION_GOOD_TEAM_NAME))
 		{
-			for (Player player : World.getInstance().getAllGoodPlayers())
+			for (Player player : World.getAllGoodPlayers())
 			{
 				player.sendMessage(message);
 			}
 		}
 		else
 		{
-			for (Player player : World.getInstance().getAllEvilPlayers())
+			for (Player player : World.getAllEvilPlayers())
 			{
 				player.sendMessage(message);
 			}

@@ -20,11 +20,11 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.commons.network.packet.WritablePacket;
 import org.l2jmobius.commons.util.TraceUtil;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -70,7 +70,7 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 	}
 	
 	@Override
-	protected boolean write(GameClient client, WritableBuffer buffer)
+	protected boolean write(GameClient client, WriteBuffer buffer)
 	{
 		final GameClient c = client;
 		if ((c == null) || c.isDetached() || (c.getConnectionState() == ConnectionState.DISCONNECTED))
@@ -96,5 +96,5 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 	{
 	}
 	
-	protected abstract void writeImpl(GameClient client, WritableBuffer buffer) throws Exception;
+	protected abstract void writeImpl(GameClient client, WriteBuffer buffer) throws Exception;
 }

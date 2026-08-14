@@ -122,7 +122,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule task ", runnable.getClass().getSimpleName(), " with delay ", String.valueOf(delay), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule task ", runnable.getClass().getSimpleName(), " with delay ", String.valueOf(delay), "ms: ", e.getMessage(), System.lineSeparator(), TraceUtil.getStackTrace(e)));
 			return null;
 		}
 	}
@@ -142,7 +142,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule recurring task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule recurring task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), TraceUtil.getStackTrace(e)));
 			return null;
 		}
 	}
@@ -168,7 +168,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule high priority task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule high priority task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), TraceUtil.getStackTrace(e)));
 			return null;
 		}
 	}
@@ -185,7 +185,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to execute task ", runnable.getClass().getSimpleName(), ": ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to execute task ", runnable.getClass().getSimpleName(), ": ", e.getMessage(), System.lineSeparator(), TraceUtil.getStackTrace(e)));
 		}
 	}
 	

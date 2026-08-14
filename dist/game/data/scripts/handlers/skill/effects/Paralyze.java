@@ -20,15 +20,13 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Paralyze effect implementation.
@@ -57,14 +55,14 @@ public class Paralyze extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyAction(Action.THINK);
+			effected.getAI().notifyActionThink();
 		}
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(Intention.IDLE, effector);
+		effected.getAI().setIntentionIdle();
 		effected.startParalyze();
 	}
 }

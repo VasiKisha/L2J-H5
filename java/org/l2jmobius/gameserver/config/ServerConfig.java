@@ -45,7 +45,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.w3c.dom.Document;
@@ -81,8 +80,8 @@ public class ServerConfig
 	public static File DATAPACK_ROOT;
 	public static File SCRIPT_ROOT;
 	public static Pattern CHARNAME_TEMPLATE_PATTERN;
-	public static String PET_NAME_TEMPLATE;
-	public static String CLAN_NAME_TEMPLATE;
+	public static Pattern PET_NAME_TEMPLATE_PATTERN;
+	public static Pattern CLAN_NAME_TEMPLATE_PATTERN;
 	public static int MAX_CHARACTERS_NUMBER_PER_ACCOUNT;
 	public static int MAXIMUM_ONLINE_USERS;
 	public static boolean HARDWARE_INFO_ENABLED;
@@ -130,7 +129,7 @@ public class ServerConfig
 		
 		try
 		{
-			DATAPACK_ROOT = new File(config.getString("DatapackRoot", ".").replaceAll("\\\\", "/")).getCanonicalFile();
+			DATAPACK_ROOT = new File(config.getString("DatapackRoot", ".").replace('\\', '/')).getCanonicalFile();
 		}
 		catch (IOException e)
 		{
@@ -140,7 +139,7 @@ public class ServerConfig
 		
 		try
 		{
-			SCRIPT_ROOT = new File(config.getString("ScriptRoot", "./data/scripts").replaceAll("\\\\", "/")).getCanonicalFile();
+			SCRIPT_ROOT = new File(config.getString("ScriptRoot", "./data/scripts").replace('\\', '/')).getCanonicalFile();
 		}
 		catch (Exception e)
 		{
@@ -159,8 +158,31 @@ public class ServerConfig
 			charNamePattern = Pattern.compile(".*");
 		}
 		CHARNAME_TEMPLATE_PATTERN = charNamePattern;
-		PET_NAME_TEMPLATE = config.getString("PetNameTemplate", ".*");
-		CLAN_NAME_TEMPLATE = config.getString("ClanNameTemplate", ".*");
+		
+		Pattern petNamePattern;
+		try
+		{
+			petNamePattern = Pattern.compile(config.getString("PetNameTemplate", ".*"));
+		}
+		catch (PatternSyntaxException e)
+		{
+			LOGGER.log(Level.WARNING, "Pet name pattern is invalid!", e);
+			petNamePattern = Pattern.compile(".*");
+		}
+		PET_NAME_TEMPLATE_PATTERN = petNamePattern;
+		
+		Pattern clanNamePattern;
+		try
+		{
+			clanNamePattern = Pattern.compile(config.getString("ClanNameTemplate", ".*"));
+		}
+		catch (PatternSyntaxException e)
+		{
+			LOGGER.log(Level.WARNING, "Clan name pattern is invalid!", e);
+			clanNamePattern = Pattern.compile(".*");
+		}
+		
+		CLAN_NAME_TEMPLATE_PATTERN = clanNamePattern;
 		MAX_CHARACTERS_NUMBER_PER_ACCOUNT = config.getInt("CharMaxNumber", 7);
 		MAXIMUM_ONLINE_USERS = config.getInt("MaximumOnlineUsers", 100);
 		HARDWARE_INFO_ENABLED = config.getBoolean("EnableHardwareInfo", false);
@@ -234,7 +256,7 @@ public class ServerConfig
 	{
 		try
 		{
-			FILTER_LIST = Files.lines(Paths.get(CHAT_FILTER_FILE), StandardCharsets.UTF_8).map(String::trim).filter(line -> (!line.isEmpty() && (line.charAt(0) != '#'))).collect(Collectors.toList());
+			FILTER_LIST = Files.lines(Paths.get(CHAT_FILTER_FILE), StandardCharsets.UTF_8).map(String::trim).filter(line -> (!line.isEmpty() && (line.charAt(0) != '#'))).toList();
 			LOGGER.info("Loaded " + FILTER_LIST.size() + " Filter Words.");
 		}
 		catch (IOException e)

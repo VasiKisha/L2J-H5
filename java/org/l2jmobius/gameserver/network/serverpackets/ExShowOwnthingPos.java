@@ -18,9 +18,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.siege.TerritoryWard;
+import org.l2jmobius.gameserver.mechanics.siege.TerritoryWard;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -36,7 +36,7 @@ public class ExShowOwnthingPos extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_SHOW_OWNTHING_POS.writeId(this, buffer);
 		if (TerritoryWarManager.getInstance().isTWInProgress())

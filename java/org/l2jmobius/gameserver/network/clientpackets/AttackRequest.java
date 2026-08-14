@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -49,7 +49,7 @@ public class AttackRequest extends ClientPacket
 		_originX = readInt();
 		_originY = readInt();
 		_originZ = readInt();
-		_attackId = readByte(); // 0 for simple click 1 for shift-click
+		_attackId = readByte(); // 0 for simple click 1 for shift-click.
 	}
 	
 	@Override
@@ -88,7 +88,7 @@ public class AttackRequest extends ClientPacket
 			}
 		}
 		
-		// avoid using expensive operations if not needed
+		// Avoid using expensive operations if not needed.
 		final WorldObject target;
 		if (player.getTargetId() == _objectId)
 		{
@@ -96,7 +96,7 @@ public class AttackRequest extends ClientPacket
 		}
 		else
 		{
-			target = World.getInstance().findObject(_objectId);
+			target = World.findObject(_objectId);
 		}
 		
 		if (target == null)
@@ -111,7 +111,7 @@ public class AttackRequest extends ClientPacket
 			return;
 		}
 		
-		// Players can't attack objects in the other instances
+		// Players can't attack objects in the other instances.
 		// except from multiverse
 		else if ((target.getInstanceId() != player.getInstanceId()) && (player.getInstanceId() != -1))
 		{
@@ -119,7 +119,7 @@ public class AttackRequest extends ClientPacket
 			return;
 		}
 		
-		// Only GMs can directly attack invisible characters
+		// Only GMs can directly attack invisible characters.
 		else if (!target.isVisibleFor(player))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);

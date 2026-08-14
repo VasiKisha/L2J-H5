@@ -26,26 +26,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.time.TimeUtil;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.GrandBossConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.zone.type.BossZone;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.model.zone.type.BossZone;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Orfen grand boss AI handler.<br>
@@ -203,7 +202,7 @@ public class Orfen extends Script
 	public void setSpawnPoint(Npc npc, int index)
 	{
 		npc.asAttackable().clearAggroList();
-		npc.getAI().setIntention(Intention.IDLE, null, null);
+		npc.getAI().setIntentionIdle();
 		
 		final Spawn spawn = npc.getSpawn();
 		spawn.setLocation(ORFEN_SPAWN_LOCATIONS[index]);
@@ -375,7 +374,7 @@ public class Orfen extends Script
 			
 			if ((callerId != RIBA_IREN_NPC_ID) && (caller.getCurrentHp() < (caller.getMaxHp() / 2.0)) && (getRandom(RIBA_IREN_BASE_HEAL_CHANCE) < healChance))
 			{
-				npc.getAI().setIntention(Intention.IDLE, null, null);
+				npc.getAI().setIntentionIdle();
 				npc.setTarget(caller);
 				npc.doCast(ORFEN_HEAL.getSkill());
 			}

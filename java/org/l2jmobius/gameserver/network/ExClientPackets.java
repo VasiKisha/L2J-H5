@@ -21,7 +21,8 @@
 package org.l2jmobius.gameserver.network;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -175,7 +176,8 @@ public enum ExClientPackets
 	REQUEST_BR_LECTURE_MARK(0x90, null, ConnectionState.IN_GAME),
 	REQUEST_GOODS_INVENTORY_INFO(0x91, null, ConnectionState.IN_GAME),
 	REQUEST_USE_GOODS_INVENTORY_ITEM(0x92, null, ConnectionState.IN_GAME),
-	REQUEST_HARDWARE_INFO(0x96, RequestHardWareInfo::new, ConnectionState.values());
+	REQUEST_HARDWARE_INFO(0x96, RequestHardWareInfo::new, ConnectionState.values()),
+	EX_MAX(0x97, null, ConnectionState.IN_GAME);
 	
 	public static final ExClientPackets[] PACKET_ARRAY;
 	static
@@ -202,7 +204,10 @@ public enum ExClientPackets
 		
 		_packetId = packetId;
 		_packetSupplier = packetSupplier != null ? packetSupplier : () -> null;
-		_connectionStates = new HashSet<>(Arrays.asList(connectionStates));
+		
+		final EnumSet<ConnectionState> states = EnumSet.noneOf(ConnectionState.class);
+		Collections.addAll(states, connectionStates);
+		_connectionStates = states;
 	}
 	
 	public int getPacketId()

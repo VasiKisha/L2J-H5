@@ -20,13 +20,13 @@
  */
 package quests.Q00655_AGrandPlanForTamingWildBeasts;
 
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegableHall;
 
 /**
  * @author LordWinter
@@ -49,7 +49,7 @@ public class Q00655_AGrandPlanForTamingWildBeasts extends Quest
 	}
 	
 	@Override
-	public final String onTalk(Npc npc, Player player)
+	public String onTalk(Npc npc, Player player)
 	{
 		String htmltext = getNoQuestMsg(player);
 		final QuestState st = getQuestState(player, true);

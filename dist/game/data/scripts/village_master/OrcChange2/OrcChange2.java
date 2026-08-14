@@ -17,10 +17,10 @@
 package village_master.OrcChange2;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Orc class transfer AI.
@@ -126,7 +126,7 @@ public class OrcChange2 extends Script
 				player.setPlayerClass(DESTROYER);
 				player.setBaseClass(DESTROYER);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30513-22.htm"; // fnAfterClassChange11
@@ -155,7 +155,7 @@ public class OrcChange2 extends Script
 				player.setPlayerClass(TYRANT);
 				player.setBaseClass(TYRANT);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30513-26.htm"; // fnAfterClassChange21
@@ -184,7 +184,7 @@ public class OrcChange2 extends Script
 				player.setPlayerClass(OVERLORD);
 				player.setBaseClass(OVERLORD);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30513-30.htm"; // fnAfterClassChange31
@@ -213,7 +213,7 @@ public class OrcChange2 extends Script
 				player.setPlayerClass(WARCRYER);
 				player.setBaseClass(WARCRYER);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30513-34.htm"; // fnAfterClassChange32

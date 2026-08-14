@@ -16,11 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchWaitingList;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchWaitingList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExClosePartyRoom;
 import org.l2jmobius.gameserver.network.serverpackets.ListPartyWating;
@@ -48,7 +48,7 @@ public class RequestOustFromPartyRoom extends ClientPacket
 			return;
 		}
 		
-		final Player member = World.getInstance().getPlayer(_charid);
+		final Player member = World.getPlayer(_charid);
 		if (member == null)
 		{
 			return;

@@ -4423,7 +4423,7 @@
 			<skill id="4761" level="3" /> <!-- Stun -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai clanHelpRange="300" isAggressive="false" />
+		<ai type="ARCHER" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="11" />
 			<height normal="30" />

@@ -25,14 +25,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
@@ -72,7 +72,7 @@ public class AdminMenu implements IAdminCommandHandler
 			if (data.length == 5)
 			{
 				final String playerName = data[1];
-				final Player player = World.getInstance().getPlayer(playerName);
+				final Player player = World.getPlayer(playerName);
 				if (player != null)
 				{
 					teleportCharacter(player, new Location(Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4])), activeChar, "Admin is teleporting you.");
@@ -86,7 +86,7 @@ public class AdminMenu implements IAdminCommandHandler
 			try
 			{
 				final String targetName = command.substring(23);
-				final Player player = World.getInstance().getPlayer(targetName);
+				final Player player = World.getPlayer(targetName);
 				teleportCharacter(player, activeChar.getLocation(), activeChar, "Admin is teleporting you.");
 				activeChar.setTarget(null);
 			}
@@ -106,7 +106,7 @@ public class AdminMenu implements IAdminCommandHandler
 				}
 				
 				final String targetName = command.substring(24);
-				final Player player = World.getInstance().getPlayer(targetName);
+				final Player player = World.getPlayer(targetName);
 				if (player == null)
 				{
 					activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -143,7 +143,7 @@ public class AdminMenu implements IAdminCommandHandler
 				}
 				
 				final String targetName = command.substring(23);
-				final Player player = World.getInstance().getPlayer(targetName);
+				final Player player = World.getPlayer(targetName);
 				if (player == null)
 				{
 					activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -175,7 +175,7 @@ public class AdminMenu implements IAdminCommandHandler
 			try
 			{
 				final String targetName = command.substring(21);
-				final Player player = World.getInstance().getPlayer(targetName);
+				final Player player = World.getPlayer(targetName);
 				if (player == null)
 				{
 					activeChar.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_CURRENTLY_ONLINE);
@@ -201,7 +201,7 @@ public class AdminMenu implements IAdminCommandHandler
 			{
 				st.nextToken();
 				final String player = st.nextToken();
-				final Player plyr = World.getInstance().getPlayer(player);
+				final Player plyr = World.getPlayer(player);
 				String text;
 				if (plyr != null)
 				{
@@ -256,7 +256,7 @@ public class AdminMenu implements IAdminCommandHandler
 		String filename = "main_menu.htm";
 		if (player != null)
 		{
-			final Player plyr = World.getInstance().getPlayer(player);
+			final Player plyr = World.getPlayer(player);
 			if (plyr != null)
 			{
 				target = plyr;

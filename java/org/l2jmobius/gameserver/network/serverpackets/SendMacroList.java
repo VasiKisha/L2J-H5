@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
-import org.l2jmobius.gameserver.model.actor.holders.player.MacroCmd;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.entity.actor.holders.player.MacroCmd;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -40,7 +40,7 @@ public class SendMacroList extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.MACRO_LIST.writeId(this, buffer);
 		buffer.writeInt(_rev); // macro change revision (changes after each macro edition)

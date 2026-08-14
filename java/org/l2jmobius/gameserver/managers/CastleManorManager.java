@@ -24,7 +24,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -47,17 +49,17 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.manor.CropProcure;
-import org.l2jmobius.gameserver.model.siege.manor.ManorMode;
-import org.l2jmobius.gameserver.model.siege.manor.Seed;
-import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.itemcontainer.ItemContainer;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.manor.CropProcure;
+import org.l2jmobius.gameserver.mechanics.siege.manor.ManorMode;
+import org.l2jmobius.gameserver.mechanics.siege.manor.Seed;
+import org.l2jmobius.gameserver.mechanics.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Castle manor system.
@@ -66,6 +68,8 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 public class CastleManorManager implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(CastleManorManager.class.getName());
+	
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM HH:mm:ss");
 	
 	// SQL queries
 	private static final String INSERT_PRODUCT = "INSERT INTO castle_manor_production VALUES (?, ?, ?, ?, ?, ?)";
@@ -442,7 +446,7 @@ public class CastleManorManager implements IXmlReader
 			}
 			case MODIFIABLE:
 			{
-				// Transition to approved mode
+				// Transition to approved mode.
 				_mode = ManorMode.APPROVED;
 				
 				// Validate each castle's funds and warehouse capacity.
@@ -476,7 +480,7 @@ public class CastleManorManager implements IXmlReader
 						_productionNext.get(castleId).clear();
 						_procureNext.get(castleId).clear();
 						
-						// Notify clan leader
+						// Notify clan leader.
 						final ClanMember clanLeader = owner.getLeader();
 						if ((clanLeader != null) && clanLeader.isOnline())
 						{
@@ -839,7 +843,7 @@ public class CastleManorManager implements IXmlReader
 			return "Disabled";
 		}
 		
-		return new SimpleDateFormat("dd/MM HH:mm:ss").format(_nextModeChange.getTime());
+		return DATE_FORMAT.format(Instant.ofEpochMilli(_nextModeChange.getTimeInMillis()).atZone(ZoneId.systemDefault()));
 	}
 	
 	public List<Seed> getCrops()

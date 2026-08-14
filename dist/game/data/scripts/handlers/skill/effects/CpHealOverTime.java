@@ -20,11 +20,11 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Cp Heal Over Time effect implementation.
@@ -51,7 +51,7 @@ public class CpHealOverTime extends AbstractEffect
 		double cp = effected.getCurrentCp();
 		final double maxcp = effected.getMaxRecoverableCp();
 		
-		// Not needed to set the CP and send update packet if player is already at max CP
+		// Not needed to set the CP and send update packet if player is already at max CP.
 		if (cp >= maxcp)
 		{
 			return false;

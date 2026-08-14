@@ -18,12 +18,11 @@ package ai.areas.Hellbound.AI;
 
 import java.util.Collection;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
@@ -86,7 +85,7 @@ public class Slaves extends Script
 						HellboundEngine.getInstance().updateTrust(TRUST_REWARD, false);
 					}
 					
-					slave.getAI().setIntention(Intention.MOVE_TO, MOVE_TO);
+					slave.getAI().setIntentionMoveTo(MOVE_TO);
 					DecayTaskManager.getInstance().add(slave);
 				}
 			}

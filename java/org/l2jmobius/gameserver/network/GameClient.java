@@ -25,8 +25,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.network.Buffer;
 import org.l2jmobius.commons.network.Client;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
@@ -37,9 +38,9 @@ import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.network.holders.CharacterInfoHolder;
 import org.l2jmobius.gameserver.network.holders.ClientHardwareInfoHolder;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
@@ -100,7 +101,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 	}
 	
 	@Override
-	public boolean encrypt(Buffer data, int offset, int size)
+	public boolean encrypt(WriteBuffer data, int offset, int size)
 	{
 		if (ServerConfig.PACKET_ENCRYPTION && (_encryption != null))
 		{
@@ -111,7 +112,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 	}
 	
 	@Override
-	public boolean decrypt(Buffer data, int offset, int size)
+	public boolean decrypt(ReadBuffer data, int offset, int size)
 	{
 		if (ServerConfig.PACKET_ENCRYPTION && (_encryption != null))
 		{
@@ -507,7 +508,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 			return null;
 		}
 		
-		Player player = World.getInstance().getPlayer(objectId);
+		Player player = World.getPlayer(objectId);
 		if (player != null)
 		{
 			// exploit prevention, should not happens in normal way

@@ -18,16 +18,15 @@ package ai.areas.MonasteryOfSilence;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -90,13 +89,13 @@ public class MonasteryOfSilence extends Script
 		{
 			case "TRAINING":
 			{
-				World.getInstance().forEachVisibleObjectInRange(npc, Npc.class, 400, character ->
+				World.forEachVisibleObjectInRange(npc, Npc.class, 400, character ->
 				{
 					if ((getRandom(100) < 30) && !character.isDead() && !character.isInCombat())
 					{
 						if ((character.getId() == CAPTAIN) && (getRandom(100) < 10) && npc.isScriptValue(0))
 						{
-							character.broadcastSay(ChatType.NPC_GENERAL, SOLINA_KNIGHTS_MSG[getRandom(SOLINA_KNIGHTS_MSG.length)]);
+							character.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(SOLINA_KNIGHTS_MSG));
 							character.setScriptValue(1);
 							startQuestTimer("TIMER", 10000, character, null);
 						}
@@ -104,7 +103,7 @@ public class MonasteryOfSilence extends Script
 						{
 							character.setRunning();
 							character.asAttackable().addDamageHate(npc, 0, 100);
-							character.getAI().setIntention(Intention.ATTACK, npc, null);
+							character.getAI().setIntentionAttack(npc);
 						}
 					}
 				});
@@ -271,7 +270,7 @@ public class MonasteryOfSilence extends Script
 			{
 				if (obj.equals(npc))
 				{
-					npc.broadcastSay(ChatType.NPC_GENERAL, DIVINITY_MSG[getRandom(DIVINITY_MSG.length)], caster.getName());
+					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(DIVINITY_MSG), caster.getName());
 					addAttackDesire(npc, caster);
 					break;
 				}

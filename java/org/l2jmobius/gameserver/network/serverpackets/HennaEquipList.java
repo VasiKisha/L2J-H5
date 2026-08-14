@@ -22,10 +22,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.xml.HennaData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.Henna;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.Henna;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -47,7 +47,7 @@ public class HennaEquipList extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.HENNA_EQUIP_LIST.writeId(this, buffer);
 		buffer.writeLong(_player.getAdena()); // activeChar current amount of Adena
@@ -55,7 +55,7 @@ public class HennaEquipList extends ServerPacket
 		buffer.writeInt(_hennaEquipList.size());
 		for (Henna henna : _hennaEquipList)
 		{
-			// Player must have at least one dye in inventory
+			// Player must have at least one dye in inventory.
 			// to be able to see the Henna that can be applied with it.
 			if ((_player.getInventory().getItemByItemId(henna.getDyeItemId())) != null)
 			{

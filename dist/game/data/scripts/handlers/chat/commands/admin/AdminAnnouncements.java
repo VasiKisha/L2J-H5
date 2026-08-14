@@ -22,18 +22,18 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.announce.Announcement;
-import org.l2jmobius.gameserver.model.announce.AnnouncementType;
-import org.l2jmobius.gameserver.model.announce.AutoAnnouncement;
-import org.l2jmobius.gameserver.model.announce.IAnnouncement;
-import org.l2jmobius.gameserver.model.html.PageBuilder;
-import org.l2jmobius.gameserver.model.html.PageResult;
-import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
-import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
-import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.mechanics.announce.Announcement;
+import org.l2jmobius.gameserver.mechanics.announce.AnnouncementType;
+import org.l2jmobius.gameserver.mechanics.announce.AutoAnnouncement;
+import org.l2jmobius.gameserver.mechanics.announce.IAnnouncement;
+import org.l2jmobius.gameserver.mechanics.html.PageBuilder;
+import org.l2jmobius.gameserver.mechanics.html.PageResult;
+import org.l2jmobius.gameserver.mechanics.html.formatters.BypassParserFormatter;
+import org.l2jmobius.gameserver.mechanics.html.pagehandlers.NextPrevPageHandler;
+import org.l2jmobius.gameserver.mechanics.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
@@ -74,7 +74,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 				
 				if (cmd.equals("admin_announce_screen"))
 				{
-					Broadcast.toAllOnlinePlayersOnScreen(announce);
+					World.broadcastToAllOnlinePlayersOnScreen(announce);
 				}
 				else
 				{
@@ -83,7 +83,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						announce = announce + " [" + activeChar.getName() + "]";
 					}
 					
-					Broadcast.toAllOnlinePlayers(announce, cmd.equals("admin_announce_crit"));
+					World.broadcastToAllOnlinePlayers(announce, cmd.equals("admin_announce_crit"));
 				}
 				
 				AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");

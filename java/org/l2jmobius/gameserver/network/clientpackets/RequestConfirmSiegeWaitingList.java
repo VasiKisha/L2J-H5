@@ -21,10 +21,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.managers.CastleManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeDefenderList;
 
 /**
@@ -53,7 +53,7 @@ public class RequestConfirmSiegeWaitingList extends ClientPacket
 			return;
 		}
 		
-		// Check if the player has a clan
+		// Check if the player has a clan.
 		if (player.getClan() == null)
 		{
 			return;
@@ -99,7 +99,7 @@ public class RequestConfirmSiegeWaitingList extends ClientPacket
 			}
 		}
 		
-		// Update the defender list
+		// Update the defender list.
 		player.sendPacket(new SiegeDefenderList(castle));
 	}
 }

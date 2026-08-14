@@ -21,12 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -104,7 +103,7 @@ public class PolymorphingOnAttack extends Script
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				newNpc.setRunning();
 				newNpc.addDamageHate(originalAttacker, 0, 500);
-				newNpc.getAI().setIntention(Intention.ATTACK, originalAttacker);
+				newNpc.getAI().setIntentionAttack(originalAttacker);
 			}
 		}
 	}

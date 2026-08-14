@@ -16,12 +16,12 @@
  */
 package handlers.chat.commands.admin;
 
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.AutoSpawnHandler;
+import org.l2jmobius.gameserver.entity.spawns.AutoSpawnHandler.AutoSpawnInstance;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.spawns.AutoSpawnHandler;
-import org.l2jmobius.gameserver.model.spawns.AutoSpawnHandler.AutoSpawnInstance;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**

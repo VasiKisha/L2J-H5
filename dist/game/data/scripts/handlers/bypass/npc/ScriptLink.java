@@ -30,17 +30,17 @@ import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.managers.ScriptManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.listeners.AbstractEventListener;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.NpcStringId.NSLocalisation;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -149,7 +149,7 @@ public class ScriptLink implements IBypassHandler
 			sb.append("<a action=\"bypass npc_" + npc.getObjectId() + "_Script " + quest.getName() + "\">");
 			
 			// StringUtil.append(sb, "<font color=\"" + color + "\">[");
-			sb.append("[");
+			sb.append('[');
 			
 			if (quest.isCustomQuest())
 			{
@@ -177,7 +177,7 @@ public class ScriptLink implements IBypassHandler
 			// sb.append("]</font></a><br>");
 			sb.append("]</a><br>");
 			
-			if ((player.getApprentice() > 0) && (World.getInstance().getPlayer(player.getApprentice()) != null))
+			if ((player.getApprentice() > 0) && (World.getPlayer(player.getApprentice()) != null))
 			{
 				if (questId == TO_LEAD_AND_BE_LED)
 				{
@@ -220,7 +220,7 @@ public class ScriptLink implements IBypassHandler
 		
 		sb.append("</body></html>");
 		
-		// Send a Server->Client packet NpcHtmlMessage to the Player in order to display the message of the Npc
+		// Send a Server->Client packet NpcHtmlMessage to the Player in order to display the message of the Npc.
 		npc.insertObjectIdAndShowChatWindow(player, sb.toString());
 	}
 	
@@ -243,7 +243,7 @@ public class ScriptLink implements IBypassHandler
 		
 		final Quest q = ScriptManager.getInstance().getScript(questId);
 		
-		// Get the state of the selected quest
+		// Get the state of the selected quest.
 		final QuestState qs = player.getQuestState(questId);
 		if (q != null)
 		{
@@ -268,13 +268,13 @@ public class ScriptLink implements IBypassHandler
 			content = Quest.getNoQuestMsg(player); // no quests found
 		}
 		
-		// Send a Server->Client packet NpcHtmlMessage to the Player in order to display the message of the Npc
+		// Send a Server->Client packet NpcHtmlMessage to the Player in order to display the message of the Npc.
 		if (content != null)
 		{
 			npc.insertObjectIdAndShowChatWindow(player, content);
 		}
 		
-		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet
+		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet.
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 	}
 	
@@ -362,7 +362,7 @@ public class ScriptLink implements IBypassHandler
 		{
 			showQuestWindow(player, npc, "");
 		}
-		else if ((options.size() > 1) || ((player.getApprentice() > 0) && (World.getInstance().getPlayer(player.getApprentice()) != null) && options.stream().anyMatch(q -> q.getId() == TO_LEAD_AND_BE_LED)))
+		else if ((options.size() > 1) || ((player.getApprentice() > 0) && (World.getPlayer(player.getApprentice()) != null) && options.stream().anyMatch(q -> q.getId() == TO_LEAD_AND_BE_LED)))
 		{
 			showQuestChooseWindow(player, npc, options);
 		}

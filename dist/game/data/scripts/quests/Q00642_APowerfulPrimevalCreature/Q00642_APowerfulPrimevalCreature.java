@@ -19,10 +19,10 @@ package quests.Q00642_APowerfulPrimevalCreature;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 
 /**
  * A Powerful Primeval Creature (642)
@@ -132,9 +132,10 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 		}
 		
 		final int npcId = npc.getId();
-		if (MOBS_TISSUE.containsKey(npcId))
+		final Double tissueChance = MOBS_TISSUE.get(npcId);
+		if (tissueChance != null)
 		{
-			giveItemRandomly(qs.getPlayer(), npc, DINOSAUR_TISSUE, 1, 0, MOBS_TISSUE.get(npcId), true);
+			giveItemRandomly(qs.getPlayer(), npc, DINOSAUR_TISSUE, 1, 0, tissueChance, true);
 		}
 		else
 		{

@@ -32,31 +32,29 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.SpecialSiegeGuardAI;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.zone.type.ResidenceHallTeleportZone;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.siege.SiegeClan;
-import org.l2jmobius.gameserver.model.siege.SiegeClanType;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegeStatus;
-import org.l2jmobius.gameserver.model.zone.type.ResidenceHallTeleportZone;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClan;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClanType;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegeStatus;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * @author LordWinter
@@ -495,7 +493,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	@Override
 	public void onSpawn(Npc npc)
 	{
-		npc.getAI().setIntention(Intention.MOVE_TO, CENTER, 0);
+		npc.getAI().setIntentionMoveTo(CENTER);
 	}
 	
 	@Override
@@ -515,7 +513,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 		_hall.banishForeigners();
 		final SystemMessage msg = new SystemMessage(SystemMessageId.THE_REGISTRATION_TERM_FOR_S1_HAS_ENDED);
 		msg.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
-		Broadcast.toAllOnlinePlayers(msg);
+		World.broadcastToAllOnlinePlayers(msg);
 		_hall.updateSiegeStatus(SiegeStatus.WAITING_BATTLE);
 		
 		_siegeTask = ThreadPool.schedule(new SiegeStarts(), 3600000);
@@ -531,7 +529,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 			_hall.updateNextSiege();
 			final SystemMessage sm = new SystemMessage(SystemMessageId.THE_SIEGE_OF_S1_HAS_BEEN_CANCELED_DUE_TO_LACK_OF_INTEREST);
 			sm.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
-			Broadcast.toAllOnlinePlayers(sm);
+			World.broadcastToAllOnlinePlayers(sm);
 			return;
 		}
 		
@@ -605,7 +603,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	@Override
 	public void onSiegeEnds()
 	{
-		if (_data.size() > 0)
+		if (!_data.isEmpty())
 		{
 			for (int clanId : _data.keySet())
 			{
@@ -624,7 +622,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public final Location getInnerSpawnLoc(Player player)
+	public Location getInnerSpawnLoc(Player player)
 	{
 		Location loc = null;
 		if (player.getId() == _hall.getOwnerId())
@@ -652,13 +650,13 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public final boolean canPlantFlag()
+	public boolean canPlantFlag()
 	{
 		return false;
 	}
 	
 	@Override
-	public final boolean doorIsAutoAttackable()
+	public boolean doorIsAutoAttackable()
 	{
 		return false;
 	}
@@ -712,7 +710,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	{
 		for (int objId : data.players)
 		{
-			final Player player = World.getInstance().getPlayer(objId);
+			final Player player = World.getPlayer(objId);
 			if (player != null)
 			{
 				data.playersInstance.add(player);

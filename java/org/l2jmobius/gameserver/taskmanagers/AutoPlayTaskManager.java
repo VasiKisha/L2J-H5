@@ -28,19 +28,19 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.item.Weapon;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -112,7 +112,7 @@ public class AutoPlayTaskManager
 									{
 										if (!player.isMoving())
 										{
-											player.getAI().setIntention(Intention.MOVE_TO, target);
+											player.getAI().setIntentionMoveTo(target);
 										}
 										
 										continue PLAY;
@@ -141,7 +141,7 @@ public class AutoPlayTaskManager
 						final Summon summon = player.getSummon();
 						if ((summon != null) && summon.hasAI() && !summon.isMoving() && !summon.isDisabled() && (summon.getAI().getIntention() != Intention.ATTACK) && (summon.getAI().getIntention() != Intention.CAST) && creature.isAutoAttackable(player) && GeoEngine.getInstance().canSeeTarget(player, creature))
 						{
-							summon.getAI().setIntention(Intention.ATTACK, creature);
+							summon.getAI().setIntentionAttack(creature);
 						}
 						
 						// We take granted that mage classes do not auto hit.
@@ -164,7 +164,7 @@ public class AutoPlayTaskManager
 										continue PLAY;
 									}
 									
-									player.getAI().setIntention(Intention.ATTACK, creature);
+									player.getAI().setIntentionAttack(creature);
 								}
 							}
 							else if (creature.hasAI() && !creature.getAI().isAutoAttacking())
@@ -192,7 +192,7 @@ public class AutoPlayTaskManager
 											location = new Location(creature.getX() + x1, creature.getY() + y1, player.getZ());
 										}
 										
-										player.getAI().setIntention(Intention.MOVE_TO, location);
+										player.getAI().setIntentionMoveTo(location);
 										IDLE_COUNT.remove(player);
 									}
 									else
@@ -213,34 +213,37 @@ public class AutoPlayTaskManager
 				// Pickup.
 				if (player.getAutoPlaySettings().doPickup() && player.isInventoryUnder90(false))
 				{
-					PICKUP: for (Item droppedItem : World.getInstance().getVisibleObjectsInRange(player, Item.class, 200))
+					// First item we can act on: either reachable far (move to it) or reachable close + pickup-eligible.
+					final Item droppedItem = World.getFirstVisibleObjectInRange(player, Item.class, 200, item ->
 					{
-						// Check if item is reachable.
-						if ((droppedItem == null) //
-							|| (!droppedItem.isSpawned()) //
-							|| AutoPlayConfig.IGNORED_AUTO_PICK_ITEMS.contains(droppedItem.getId()) //
-							|| !GeoEngine.getInstance().canMoveToTarget(player.getX(), player.getY(), player.getZ(), droppedItem.getX(), droppedItem.getY(), droppedItem.getZ(), player.getInstanceId()))
+						if (!item.isSpawned() || AutoPlayConfig.IGNORED_AUTO_PICK_ITEMS.contains(item.getId()) || !GeoEngine.getInstance().canMoveToTarget(player.getX(), player.getY(), player.getZ(), item.getX(), item.getY(), item.getZ(), player.getInstanceId()))
 						{
-							continue PICKUP;
+							return false;
 						}
-						
-						// Move to item.
+						// Far item: we can move to it.
+						if (player.calculateDistance2D(item) > 70)
+						{
+							return true;
+						}
+						// Close item: must be unprotected or owned by player.
+						return !item.isProtected() || (item.getOwnerId() == player.getObjectId());
+					});
+					
+					if (droppedItem != null)
+					{
 						if (player.calculateDistance2D(droppedItem) > 70)
 						{
 							if (!player.isMoving())
 							{
-								player.getAI().setIntention(Intention.MOVE_TO, droppedItem);
+								player.getAI().setIntentionMoveTo(droppedItem);
 							}
 							
 							continue PLAY;
 						}
 						
-						// Try to pick it up.
-						if (!droppedItem.isProtected() || (droppedItem.getOwnerId() == player.getObjectId()))
-						{
-							player.doPickupItem(droppedItem);
-							continue PLAY; // Avoid pickup being skipped.
-						}
+						// Item is close and pickup-eligible.
+						player.doPickupItem(droppedItem);
+						continue PLAY; // Avoid pickup being skipped.
 					}
 				}
 				
@@ -259,44 +262,35 @@ public class AutoPlayTaskManager
 						}
 						else if ((player.getAI().getIntention() != Intention.FOLLOW) && !player.isDisabled())
 						{
-							player.getAI().setIntention(Intention.FOLLOW, leader);
+							player.getAI().setIntentionFollow(leader);
 						}
 					}
 				}
 				else
 				{
-					double closestDistance = Double.MAX_VALUE;
-					TARGET: for (Creature nearby : World.getInstance().getVisibleObjectsInRange(player, Creature.class, player.getAutoPlaySettings().isShortRange() && (targetMode != 2 /* Characters */) ? AutoPlayConfig.AUTO_PLAY_SHORT_RANGE : AutoPlayConfig.AUTO_PLAY_LONG_RANGE))
+					creature = World.getNearestVisibleObjectInRange(player, Creature.class, player.getAutoPlaySettings().isShortRange() && (targetMode != 2 /* Characters */) ? AutoPlayConfig.AUTO_PLAY_SHORT_RANGE : AutoPlayConfig.AUTO_PLAY_LONG_RANGE, nearby ->
 					{
 						// Skip unavailable creatures.
-						if ((nearby == null) || nearby.isAlikeDead())
+						if (nearby.isAlikeDead())
 						{
-							continue TARGET;
+							return false;
 						}
 						
 						// Check creature target.
 						if (player.getAutoPlaySettings().isRespectfulHunting() && !nearby.isPlayable() && (nearby.getTarget() != null) && (nearby.getTarget() != player) && !(player.hasSummon() && (player.getSummon().getObjectId() == nearby.getTarget().getObjectId())))
 						{
-							continue TARGET;
+							return false;
 						}
 						
 						// Check next target mode.
 						if (!isTargetModeValid(targetMode, player, nearby))
 						{
-							continue TARGET;
+							return false;
 						}
 						
 						// Check if creature is reachable.
-						if ((Math.abs(player.getZ() - nearby.getZ()) < 800) && GeoEngine.getInstance().canSeeTarget(player, nearby) && GeoEngine.getInstance().canMoveToTarget(player.getX(), player.getY(), player.getZ(), nearby.getX(), nearby.getY(), nearby.getZ(), player.getInstanceId()))
-						{
-							final double creatureDistance = player.calculateDistance2D(nearby);
-							if (creatureDistance < closestDistance)
-							{
-								creature = nearby;
-								closestDistance = creatureDistance;
-							}
-						}
-					}
+						return (Math.abs(player.getZ() - nearby.getZ()) < 800) && GeoEngine.getInstance().canSeeTarget(player, nearby) && GeoEngine.getInstance().canMoveToTarget(player.getX(), player.getY(), player.getZ(), nearby.getX(), nearby.getY(), nearby.getZ(), player.getInstanceId());
+					});
 				}
 				
 				// New target was assigned.
@@ -310,7 +304,7 @@ public class AutoPlayTaskManager
 						continue PLAY;
 					}
 					
-					player.getAI().setIntention(Intention.ATTACK, creature);
+					player.getAI().setIntentionAttack(creature);
 				}
 			}
 		}

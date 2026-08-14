@@ -20,13 +20,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -89,7 +88,7 @@ public class DevastatedCastle extends ClanHallSiegeEngine
 			if (!npc.isCastingNow() && (npc.getCurrentHp() < (npc.getMaxHp() / 12)))
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THIS_IS_UNBELIEVABLE_HAVE_I_REALLY_BEEN_DEFEATED_I_SHALL_RETURN_AND_TAKE_YOUR_HEAD);
-				npc.getAI().setIntention(Intention.CAST, SkillData.getInstance().getSkill(4235, 1), npc);
+				npc.getAI().setIntentionCast(SkillData.getInstance().getSkill(4235, 1), npc);
 			}
 		}
 	}

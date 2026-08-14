@@ -26,17 +26,29 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.l2jmobius.commons.network.internal.InternalWritableBuffer;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.commons.network.handler.ReadHandler;
+import org.l2jmobius.commons.network.handler.WriteHandler;
+import org.l2jmobius.commons.network.packet.WritablePacket;
+import org.l2jmobius.commons.network.pool.ResourcePool;
 
 /**
- * Represents a generic client in a network context.<br>
- * This abstract class provides the foundation for managing connections, sending and receiving data packets, and handling connection states.<br>
- * It requires implementation of encryption, decryption, and connection management methods.
- * @param <T> The type of Connection associated with this client.
+ * Abstract client entity that owns a {@link Connection} and manages packet I/O.<br>
+ * <br>
+ * <b>Fair-send mechanism:</b> a single global {@link ConcurrentLinkedQueue} ({@code PENDING_CLIENTS}) is used across all active clients. Whenever a client wants to send it atomically acquires the {@code _writing} flag, then adds itself to the pending queue.<br>
+ * The client polled from the front of the queue sends its next packet. This round-robin approach ensures no single client can monopolise the I/O threads when many clients are active simultaneously.<br>
+ * <br>
+ * <b>Packet dropping:</b> when {@link ConnectionConfig#dropPackets} is enabled, packets that return {@code true} from {@link WritablePacket#canBeDropped} are silently discarded once the estimated outbound queue exceeds {@link ConnectionConfig#dropPacketThreshold}.
+ * @param <T> the concrete {@link Connection} subtype bound to this client
  * @author JoeAlisson, Mobius
  */
 public abstract class Client<T extends Connection<?>>
 {
+	/**
+	 * Global fair-send queue shared across all client instances.<br>
+	 * Unbounded; clients add themselves when they start sending and are polled by the completing write to find the next sender.
+	 */
 	private static final ConcurrentLinkedQueue<Client<?>> PENDING_CLIENTS = new ConcurrentLinkedQueue<>();
 	
 	private final T _connection;
@@ -46,13 +58,15 @@ public abstract class Client<T extends Connection<?>>
 	private final AtomicBoolean _closing = new AtomicBoolean();
 	private final AtomicInteger _estimateQueueSize = new AtomicInteger();
 	private final AtomicInteger _dataSentSize = new AtomicInteger();
+	
+	// Read-side state (accessed only on the single async-read thread for this client).
 	private boolean _readingPayload;
 	private int _expectedReadSize;
 	
 	/**
-	 * Constructs a new Client using the specified connection.
-	 * @param connection The Connection to the client.
-	 * @throws IllegalArgumentException if the connection is null or closed.
+	 * Constructs a client bound to the given connection.
+	 * @param connection the open connection; must not be {@code null} or closed
+	 * @throws IllegalArgumentException if {@code connection} is {@code null} or already closed
 	 */
 	protected Client(T connection)
 	{
@@ -65,9 +79,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Sends a packet to this client.<br>
-	 * If another packet is being sent, the actual packet is queued to be sent after all previous packets.
-	 * @param packet The packet to be sent.
+	 * Queues {@code packet} for transmission and triggers the fair-send loop if needed.
+	 * @param packet the packet to send; ignored if {@code null}
 	 */
 	protected void writePacket(WritablePacket<? extends Client<T>> packet)
 	{
@@ -78,6 +91,22 @@ public abstract class Client<T extends Connection<?>>
 		
 		_estimateQueueSize.incrementAndGet();
 		_packetsToWrite.add(packet);
+		writeFairPacket();
+	}
+	
+	/**
+	 * Queues multiple packets and triggers the fair-send loop if needed.
+	 * @param packets the collection of packets to send; ignored if {@code null} or empty
+	 */
+	protected void writePackets(Collection<WritablePacket<? extends Client<T>>> packets)
+	{
+		if (!isConnected() || (packets == null) || packets.isEmpty())
+		{
+			return;
+		}
+		
+		_estimateQueueSize.addAndGet(packets.size());
+		_packetsToWrite.addAll(packets);
 		writeFairPacket();
 	}
 	
@@ -97,24 +126,7 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Sends multiple packets to this client, queuing them if needed.
-	 * @param packets The collection of packets to be sent.
-	 */
-	protected void writePackets(Collection<WritablePacket<? extends Client<T>>> packets)
-	{
-		if (!isConnected() || (packets == null) || packets.isEmpty())
-		{
-			return;
-		}
-		
-		_estimateQueueSize.addAndGet(packets.size());
-		_packetsToWrite.addAll(packets);
-		writeFairPacket();
-	}
-	
-	/**
-	 * Attempts to initiate a fair packet write operation, ensuring only one write operation occurs at a time.<br>
-	 * This method starts the packet-sending process.
+	 * Enters the send loop for this client if it is not already active.
 	 */
 	private void writeFairPacket()
 	{
@@ -125,8 +137,21 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Writes the next packet in the queue.<br>
-	 * If no packets are left, releases resources associated with the write operation and disconnects if the client is closing.
+	 * Adds this client to the global pending queue, then polls one client to send its next packet.<br>
+	 * The polled client may be {@code this} or any other client waiting to send.
+	 */
+	private void sendFairPacket()
+	{
+		PENDING_CLIENTS.offer(this);
+		final Client<?> nextClient = PENDING_CLIENTS.poll();
+		if (nextClient != null)
+		{
+			nextClient.writeNextPacket();
+		}
+	}
+	
+	/**
+	 * Sends the next queued packet, or releases the write lock if the queue is empty.
 	 */
 	private void writeNextPacket()
 	{
@@ -134,8 +159,22 @@ public abstract class Client<T extends Connection<?>>
 		if (packet == null)
 		{
 			releaseWritingResource();
+			
+			// A packet may have been queued by another thread between the empty poll above and the release of the writing flag; that thread's CAS failed, so this thread must restart the send loop.
+			if (!_packetsToWrite.isEmpty())
+			{
+				writeFairPacket();
+				return;
+			}
+			
 			if (_closing.get())
 			{
+				// A close(packet) may have queued its final packet concurrently, or another thread may be writing it right now; that thread's completion path will come back here and disconnect.
+				if (!_packetsToWrite.isEmpty() || _writing.get())
+				{
+					return;
+				}
+				
 				disconnect();
 			}
 		}
@@ -143,21 +182,6 @@ public abstract class Client<T extends Connection<?>>
 		{
 			_estimateQueueSize.decrementAndGet();
 			write(packet);
-		}
-	}
-	
-	/**
-	 * Sends a packet fairly among pending clients, ensuring fair access to the network resources.<br>
-	 * This method takes the next client in the queue and initiates its packet sending.
-	 */
-	private void sendFairPacket()
-	{
-		PENDING_CLIENTS.offer(this);
-		
-		final Client<?> nextClient = PENDING_CLIENTS.poll();
-		if (nextClient != null)
-		{
-			nextClient.writeNextPacket();
 		}
 	}
 	
@@ -174,7 +198,7 @@ public abstract class Client<T extends Connection<?>>
 	private void write(WritablePacket packet)
 	{
 		boolean written = false;
-		InternalWritableBuffer buffer = null;
+		WriteBuffer buffer = null;
 		try
 		{
 			buffer = packet.writeData(this);
@@ -200,7 +224,7 @@ public abstract class Client<T extends Connection<?>>
 		}
 		catch (Exception e)
 		{
-			// Placeholder for handling/logging Exception if needed.
+			// Intentionally silent - a broken packet must not crash the I/O thread.
 		}
 		finally
 		{
@@ -216,7 +240,7 @@ public abstract class Client<T extends Connection<?>>
 	 * Releases any associated buffer resources and re-attempts the packet send if the client is still connected.
 	 * @param buffer The buffer containing packet data, which may need resource release.
 	 */
-	private void handleNotWritten(InternalWritableBuffer buffer)
+	private void handleNotWritten(WriteBuffer buffer)
 	{
 		if (!releaseWritingResource() && (buffer != null))
 		{
@@ -230,7 +254,7 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Begins reading data from the connection.
+	 * Starts reading the next packet header from the connection.
 	 */
 	public void read()
 	{
@@ -240,8 +264,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Reads the payload of the specified data size from the connection.
-	 * @param dataSize The size of the data to be read.
+	 * Transitions to payload-reading mode for the given data size.
+	 * @param dataSize the number of payload bytes to read
 	 */
 	public void readPayload(int dataSize)
 	{
@@ -251,8 +275,7 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Close the underlying Connection to the client.<br>
-	 * All pending packets are cancelled.
+	 * Closes the connection immediately, discarding all pending outbound packets.
 	 */
 	public void close()
 	{
@@ -260,9 +283,9 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Sends the packet and close the underlying Connection to the client.<br>
-	 * All others pending packets are cancelled.
-	 * @param packet to be sent before the connection is closed.
+	 * Sends {@code packet} (if non-null) and then closes the connection.<br>
+	 * All other queued packets are discarded.
+	 * @param packet a final packet to transmit before closing, or {@code null}
 	 */
 	public void close(WritablePacket<? extends Client<T>> packet)
 	{
@@ -283,8 +306,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Resumes sending data after a specified amount has been successfully sent.
-	 * @param result The number of bytes sent.
+	 * Called by {@link WriteHandler} after a partial write; adjusts the remaining-bytes counter and retries the write with the remainder.
+	 * @param result the number of bytes that were successfully sent
 	 */
 	public void resumeSend(int result)
 	{
@@ -293,7 +316,7 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Completes the current writing operation and prepares to send the next packet.
+	 * Called by {@link WriteHandler} after a complete write; releases buffers and sends the next packet.
 	 */
 	public void finishWriting()
 	{
@@ -309,7 +332,7 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Disconnects the client, releasing resources associated with the connection.
+	 * Disconnects the client: calls {@link #onDisconnection()}, clears all pending packets, and closes the underlying channel. Guaranteed to execute at most once.
 	 */
 	public void disconnect()
 	{
@@ -328,22 +351,26 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Retrieves the connection associated with this client.
-	 * @return The connection.
+	 * Returns the connection bound to this client.
+	 * @return the connection
 	 */
 	public T getConnection()
 	{
 		return _connection;
 	}
 	
+	/**
+	 * Returns the total size of the data being sent in the current write operation.
+	 * @return bytes currently in flight
+	 */
 	public int getDataSentSize()
 	{
 		return _dataSentSize.get();
 	}
 	
 	/**
-	 * Retrieves the client's IP address.
-	 * @return The client's IP address as a string.
+	 * Returns the remote peer's IP address.
+	 * @return IP string, or an empty string if unavailable
 	 */
 	public String getHostAddress()
 	{
@@ -351,8 +378,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Checks if the client is still connected.
-	 * @return {@code true} if connected, {@code false} otherwise.
+	 * Returns {@code true} if the connection is open and a close has not been requested.
+	 * @return {@code true} if connected
 	 */
 	public boolean isConnected()
 	{
@@ -360,8 +387,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Retrieves an estimate of the queue size for packets to be sent.
-	 * @return The estimated queue size.
+	 * Returns the estimated number of packets waiting in the outbound queue.
+	 * @return estimated queue depth
 	 */
 	public int getEstimateQueueSize()
 	{
@@ -369,8 +396,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Retrieves the resource pool associated with the client's connection.
-	 * @return The {@link ResourcePool} used by the connection.
+	 * Returns the {@link ResourcePool} used by the underlying connection.
+	 * @return the resource pool
 	 */
 	public ResourcePool getResourcePool()
 	{
@@ -378,8 +405,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Checks if the client is currently reading payload data.
-	 * @return True if reading payload, false otherwise.
+	 * Returns {@code true} when the client is in the middle of reading a packet payload (as opposed to reading a header).
+	 * @return {@code true} if reading payload
 	 */
 	public boolean isReadingPayload()
 	{
@@ -387,8 +414,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Resumes reading operation with the specified number of bytes read.
-	 * @param bytesRead The number of bytes read.
+	 * Called by {@link ReadHandler} after a partial read; subtracts the bytes already received and issues another read for the remainder.
+	 * @param bytesRead the number of bytes received in the partial read
 	 */
 	public void resumeRead(int bytesRead)
 	{
@@ -397,8 +424,8 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Retrieves the total size of data sent in the current session.
-	 * @return The size of data sent.
+	 * Returns the number of bytes still expected from the current read operation.
+	 * @return remaining expected bytes
 	 */
 	public int getExpectedReadSize()
 	{
@@ -406,34 +433,33 @@ public abstract class Client<T extends Connection<?>>
 	}
 	
 	/**
-	 * Encrypts the specified data in-place.
-	 * @param data The data to be encrypted.
-	 * @param offset The initial index of the data to encrypt.
-	 * @param size The length of data to encrypt.
-	 * @return True if the data was successfully encrypted, false otherwise.
+	 * Encrypts the packet data in-place within {@code data}.
+	 * @param data the outbound buffer containing the data to encrypt
+	 * @param offset byte offset at which the encryptable region starts
+	 * @param size number of bytes to encrypt
+	 * @return {@code true} if encryption succeeded; {@code false} to abort sending
 	 */
-	public abstract boolean encrypt(Buffer data, int offset, int size);
+	public abstract boolean encrypt(WriteBuffer data, int offset, int size);
 	
 	/**
-	 * Decrypts the specified data in-place.
-	 * @param data The data to be decrypted.
-	 * @param offset The initial index of the data to decrypt.
-	 * @param size The length of data to decrypt.
-	 * @return True if the data was successfully decrypted, false otherwise.
+	 * Decrypts the packet data in-place within {@code data}.
+	 * @param data the inbound buffer containing the data to decrypt
+	 * @param offset byte offset at which the decryptable region starts
+	 * @param size number of bytes to decrypt
+	 * @return {@code true} if decryption succeeded; {@code false} to abort processing
 	 */
-	public abstract boolean decrypt(Buffer data, int offset, int size);
+	public abstract boolean decrypt(ReadBuffer data, int offset, int size);
 	
 	/**
-	 * Handles the client's disconnection.<br>
-	 * This method must save all data and release all resources related to the client.<br>
-	 * No more packet can be sent after this method is called.
+	 * Called once when the client disconnects.<br>
+	 * Implementations must persist state and release all application-level resources.<br>
+	 * No further packets can be sent after this method returns.
 	 */
 	protected abstract void onDisconnection();
 	
 	/**
-	 * Handles the client's connection.<br>
-	 * This method should not use blocking operations.<br>
-	 * The Packets can be sent only after this method is called.
+	 * Called once immediately after the connection is accepted.<br>
+	 * Implementations should not block; outbound packets may be sent from this method onward.
 	 */
 	public abstract void onConnected();
 }

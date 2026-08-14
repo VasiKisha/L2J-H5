@@ -3536,7 +3536,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>
@@ -3662,7 +3662,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>
@@ -3788,7 +3788,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>
@@ -4091,7 +4091,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>
@@ -4217,7 +4217,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>
@@ -4343,7 +4343,7 @@
 			<skill id="4416" level="22" /> <!-- Defending Army -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="1200" isAggressive="false">
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="1200" isAggressive="false">
 			<clanList>
 				<clan>DOOR</clan>
 				<clan>RUNE_SIEGE</clan>

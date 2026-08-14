@@ -57,13 +57,8 @@ public class ScriptExecutor
 	
 	public ScriptExecutor()
 	{
-		// The Java version is hardcoded to "1.8" for both the source and target options in the compiler settings.
-		// This decision is primarily driven by compatibility considerations with the scripting environment.
-		addOptionIfNotNull(OPTIONS, "1.8", "-source");
 		addOptionIfNotNull(OPTIONS, "data/scripts", "-sourcepath");
 		addOptionIfNotNull(OPTIONS, "source,lines,vars", "-g:");
-		OPTIONS.add("-target");
-		OPTIONS.add("1.8");
 	}
 	
 	private boolean addOptionIfNotNull(List<String> list, String nullChecked, String before)
@@ -122,7 +117,7 @@ public class ScriptExecutor
 				{
 					final Path compiledSourcePath = compiledClass.getSourcePath();
 					
-					// sourcePath can be relative, so we have to use endsWith
+					// sourcePath can be relative, so we have to use endsWith.
 					if ((compiledSourcePath != null) && (compiledSourcePath.equals(sourcePath) || compiledSourcePath.endsWith(sourcePath)))
 					{
 						final String javaName = compiledClass.getJavaName();

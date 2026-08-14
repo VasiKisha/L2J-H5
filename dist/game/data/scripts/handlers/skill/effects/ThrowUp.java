@@ -20,17 +20,17 @@
  */
 package handlers.skill.effects;
 
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.FlyType;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Throw Up effect implementation.
@@ -65,13 +65,14 @@ public class ThrowUp extends AbstractEffect
 		// Calculate distance between effector and effected current position.
 		final double dx = effector.getX() - curX;
 		final double dy = effector.getY() - curY;
-		final double dz = effector.getZ() - curZ;
 		final double distance = Math.sqrt((dx * dx) + (dy * dy));
 		if (distance > 2000)
 		{
 			LOGGER.info("EffectThrow was going to use invalid coordinates for characters, getEffected: " + curX + "," + curY + " and getEffector: " + effector.getX() + "," + effector.getY());
 			return;
 		}
+		
+		final double dz = effector.getZ() - curZ;
 		
 		int offset = Math.min((int) distance + skill.getFlyRadius(), 1400);
 		double cos;

@@ -16,15 +16,14 @@
  */
 package quests.Q00022_TragedyInVonHellmannForest;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.QuestTimer;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.QuestTimer;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -277,7 +276,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 					_soulWellNpc = addSpawn(SOUL_OF_WELL, SOUL_WELL_LOC, true, 0);
 					startQuestTimer("activateSoulOfWell", 90000, _soulWellNpc, player);
 					startQuestTimer("despawnSoulOfWell", 120000, _soulWellNpc, player);
-					_soulWellNpc.getAI().setIntention(Intention.ATTACK, player);
+					_soulWellNpc.getAI().setIntentionAttack(player);
 					playSound(player, QuestSound.SKILLSOUND_ANTARAS_FEAR);
 					htmltext = event;
 				}

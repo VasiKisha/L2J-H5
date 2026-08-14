@@ -23,11 +23,11 @@ package handlers.chat.commands.admin;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * @author Mobius
@@ -167,7 +167,7 @@ public class AdminGoto implements IAdminCommandHandler
 		}
 		
 		// Find if a player with that name exists.
-		final Player foundPlayer = World.getInstance().getPlayer(noSpacesTargetName);
+		final Player foundPlayer = World.getPlayer(noSpacesTargetName);
 		if ((foundPlayer != null) && (foundPlayer != activeChar))
 		{
 			activeChar.teleToLocation(foundPlayer);

@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAskJoinMPCC;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -47,7 +47,7 @@ public class RequestExAskJoinMPCC extends ClientPacket
 			return;
 		}
 		
-		final Player target = World.getInstance().getPlayer(_name);
+		final Player target = World.getPlayer(_name);
 		if (target == null)
 		{
 			return;
@@ -69,7 +69,7 @@ public class RequestExAskJoinMPCC extends ClientPacket
 			// activeChar is PartyLeader? && activeChars Party is already in a CommandChannel?
 			if (activeParty.getLeader().equals(player))
 			{
-				// if activeChars Party is in CC, is activeChar CCLeader?
+				// If activeChars Party is in CC, is activeChar CCLeader?
 				if (activeParty.isInCommandChannel() && activeParty.getCommandChannel().getLeader().equals(player))
 				{
 					// in CC and the CCLeader
@@ -149,7 +149,7 @@ public class RequestExAskJoinMPCC extends ClientPacket
 		}
 		else if ((requestor.getPledgeClass() >= 5) && (requestor.getKnownSkill(391) != null))
 		{
-			// At least Baron or higher and the skill Clan Imperium
+			// At least Baron or higher and the skill Clan Imperium.
 			hasRight = true;
 		}
 		

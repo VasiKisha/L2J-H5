@@ -20,14 +20,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.CastleManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * @author UnAfraid
@@ -73,7 +73,7 @@ public class RequestSetCastleSiegeTime extends ClientPacket
 				castle.getSiege().saveSiegeDate();
 				final SystemMessage msg = new SystemMessage(SystemMessageId.S1_HAS_ANNOUNCED_THE_NEXT_CASTLE_SIEGE_TIME);
 				msg.addCastleId(_castleId);
-				Broadcast.toAllOnlinePlayers(msg);
+				World.broadcastToAllOnlinePlayers(msg);
 				player.sendPacket(new SiegeInfo(castle, player));
 			}
 			else

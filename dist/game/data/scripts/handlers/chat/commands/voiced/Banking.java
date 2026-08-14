@@ -1,29 +1,35 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.chat.commands.voiced;
 
 import org.l2jmobius.gameserver.config.custom.BankingConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 
 /**
  * This class trades Gold Bars for Adena and vice versa.
- * @author Ahmed
+ * @author Ahmed, CostyKiller, Mobius
  */
 public class Banking implements IVoicedCommandHandler
 {
@@ -37,44 +43,57 @@ public class Banking implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player activeChar, String params)
 	{
+		final String goldBarText = "Gold " + (BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT > 1 ? "Bars" : "Bar");
+		
 		if (command.equals("bank"))
 		{
-			activeChar.sendMessage(".deposit (" + BankingConfig.BANKING_SYSTEM_ADENA + " Adena = " + BankingConfig.BANKING_SYSTEM_GOLDBARS + " Goldbar) / .withdraw (" + BankingConfig.BANKING_SYSTEM_GOLDBARS + " Goldbar = " + BankingConfig.BANKING_SYSTEM_ADENA + " Adena)");
+			activeChar.sendMessage("Use .deposit to convert " + BankingConfig.BANKING_SYSTEM_ADENA_COUNT + " Adena to " + BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT + " " + goldBarText + ".");
+			activeChar.sendMessage("Use .withdraw to convert " + BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT + " " + goldBarText + " to " + BankingConfig.BANKING_SYSTEM_ADENA_COUNT + " Adena.");
 		}
 		else if (command.equals("deposit"))
 		{
-			if (activeChar.getInventory().getInventoryItemCount(57, 0) >= BankingConfig.BANKING_SYSTEM_ADENA)
+			final PlayerInventory inventory = activeChar.getInventory();
+			final long currentAdena = inventory.getInventoryItemCount(Inventory.ADENA_ID, 0);
+			if (currentAdena >= BankingConfig.BANKING_SYSTEM_ADENA_COUNT)
 			{
-				if (!activeChar.reduceAdena(ItemProcessType.BUY, BankingConfig.BANKING_SYSTEM_ADENA, activeChar, false))
+				if (!activeChar.reduceAdena(ItemProcessType.BUY, BankingConfig.BANKING_SYSTEM_ADENA_COUNT, activeChar, false))
 				{
 					return false;
 				}
 				
-				activeChar.getInventory().addItem(ItemProcessType.COMPENSATE, 3470, BankingConfig.BANKING_SYSTEM_GOLDBARS, activeChar, null);
-				activeChar.getInventory().updateDatabase();
-				activeChar.sendMessage("Thank you, you now have " + BankingConfig.BANKING_SYSTEM_GOLDBARS + " Goldbar(s), and " + BankingConfig.BANKING_SYSTEM_ADENA + " less adena.");
+				inventory.addItem(ItemProcessType.COMPENSATE, 3470, BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT, activeChar, null);
+				inventory.updateDatabase();
+				
+				activeChar.sendMessage("Successfully converted " + BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT + " " + goldBarText + " into " + BankingConfig.BANKING_SYSTEM_ADENA_COUNT + " Adena.");
 			}
 			else
 			{
-				activeChar.sendMessage("You do not have enough Adena to convert to Goldbar(s), you need " + BankingConfig.BANKING_SYSTEM_ADENA + " Adena.");
+				final long needed = BankingConfig.BANKING_SYSTEM_ADENA_COUNT - currentAdena;
+				activeChar.sendMessage("You don't have enough Adena to convert to " + goldBarText + ".");
+				activeChar.sendMessage("You need " + BankingConfig.BANKING_SYSTEM_ADENA_COUNT + " Adena but you only have " + currentAdena + ". You need " + needed + " more.");
 			}
 		}
 		else if (command.equals("withdraw"))
 		{
-			if (activeChar.getInventory().getInventoryItemCount(3470, 0) >= BankingConfig.BANKING_SYSTEM_GOLDBARS)
+			final PlayerInventory inventory = activeChar.getInventory();
+			final long currentBars = inventory.getInventoryItemCount(3470, 0);
+			if (currentBars >= BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT)
 			{
-				if (!activeChar.destroyItemByItemId(ItemProcessType.SELL, 3470, BankingConfig.BANKING_SYSTEM_GOLDBARS, activeChar, false))
+				if (!activeChar.destroyItemByItemId(ItemProcessType.SELL, 3470, BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT, activeChar, false))
 				{
 					return false;
 				}
 				
-				activeChar.getInventory().addAdena(ItemProcessType.COMPENSATE, BankingConfig.BANKING_SYSTEM_ADENA, activeChar, null);
-				activeChar.getInventory().updateDatabase();
-				activeChar.sendMessage("Thank you, you now have " + BankingConfig.BANKING_SYSTEM_ADENA + " Adena, and " + BankingConfig.BANKING_SYSTEM_GOLDBARS + " less Goldbar(s).");
+				inventory.addAdena(ItemProcessType.COMPENSATE, BankingConfig.BANKING_SYSTEM_ADENA_COUNT, activeChar, null);
+				inventory.updateDatabase();
+				
+				activeChar.sendMessage("Successfully converted " + BankingConfig.BANKING_SYSTEM_ADENA_COUNT + " Adena to " + BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT + " " + goldBarText + ".");
 			}
 			else
 			{
-				activeChar.sendMessage("You do not have any Goldbars to turn into " + BankingConfig.BANKING_SYSTEM_ADENA + " Adena.");
+				final long needed = BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT - currentBars;
+				activeChar.sendMessage("You don't have enough Gold Bars to convert to Adena.");
+				activeChar.sendMessage("You need " + BankingConfig.BANKING_SYSTEM_GOLDBAR_COUNT + " " + goldBarText + " but you only have " + currentBars + ". You need " + needed + " more.");
 			}
 		}
 		

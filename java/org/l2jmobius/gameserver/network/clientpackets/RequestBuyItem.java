@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import static org.l2jmobius.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
-import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
+import static org.l2jmobius.gameserver.entity.actor.Npc.INTERACTION_DISTANCE;
+import static org.l2jmobius.gameserver.entity.itemcontainer.Inventory.MAX_ADENA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +30,15 @@ import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Merchant;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
-import org.l2jmobius.gameserver.model.buylist.Product;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.mechanics.buylist.BuyListHolder;
+import org.l2jmobius.gameserver.mechanics.buylist.Product;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -99,7 +99,7 @@ public class RequestBuyItem extends ClientPacket
 			return;
 		}
 		
-		// Alt game - Karma punishment
+		// Alt game - Karma punishment.
 		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getKarma() > 0))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -155,7 +155,7 @@ public class RequestBuyItem extends ClientPacket
 		
 		long subTotal = 0;
 		
-		// Check for buylist validity and calculates summary values
+		// Check for buylist validity and calculates summary values.
 		long slots = 0;
 		long weight = 0;
 		for (ItemHolder i : _items)
@@ -196,7 +196,7 @@ public class RequestBuyItem extends ClientPacket
 				return;
 			}
 			
-			// trying to buy more then available
+			// Trying to buy more then available.
 			if (product.hasLimitedStock() && (i.getCount() > product.getCount()))
 			{
 				player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -209,7 +209,7 @@ public class RequestBuyItem extends ClientPacket
 				return;
 			}
 			
-			// first calculate price per item with tax, then multiply by count
+			// First calculate price per item with tax, then multiply by count.
 			price = (long) (price * (1 + castleTaxRate + baseTaxRate));
 			subTotal += i.getCount() * price;
 			if (subTotal > MAX_ADENA)
@@ -239,7 +239,7 @@ public class RequestBuyItem extends ClientPacket
 			return;
 		}
 		
-		// Charge buyer and add tax to castle treasury if not owned by npc clan
+		// Charge buyer and add tax to castle treasury if not owned by npc clan.
 		if ((subTotal < 0) || !player.reduceAdena(ItemProcessType.BUY, subTotal, player.getLastFolkNPC(), false))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);

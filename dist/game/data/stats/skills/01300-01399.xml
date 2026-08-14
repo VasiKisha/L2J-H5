@@ -1460,9 +1460,6 @@
 				<cubicMaxCount>30</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>#cubicPower</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 		<enchant1effects>
@@ -1473,9 +1470,6 @@
 				<cubicMaxCount>30</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>#ench1Power</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</enchant1effects>
 	</skill>

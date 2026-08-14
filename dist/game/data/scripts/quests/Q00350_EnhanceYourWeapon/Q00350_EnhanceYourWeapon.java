@@ -31,18 +31,18 @@ import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
 import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
 import org.l2jmobius.gameserver.data.holders.SoulCrystal;
 import org.l2jmobius.gameserver.data.xml.LevelUpCrystalData;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.npc.AbsorberInfo;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.AbsorberInfo;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -406,9 +406,10 @@ public class Q00350_EnhanceYourWeapon extends Quest
 					while ((getRandom(100) < 33) && !partyMembers.isEmpty())
 					{
 						final Player lucky = partyMembers.remove(getRandom(partyMembers.size()));
-						if (players.containsKey(lucky))
+						final SoulCrystal luckyData = players.get(lucky);
+						if (luckyData != null)
 						{
-							levelCrystal(lucky, players.get(lucky), mob);
+							levelCrystal(lucky, luckyData, mob);
 						}
 					}
 				}

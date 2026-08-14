@@ -18,13 +18,13 @@ package handlers.items;
 
 import java.util.logging.Level;
 
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.enums.ShotType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.enums.ShotType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
@@ -56,15 +56,16 @@ public class BeastSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		final int itemId = item.getId();
-		final boolean isBlessed = ((itemId == 6647) || (itemId == 20334)); // TODO: Unhardcode these!
-		final short shotConsumption = activeOwner.getSummon().getSpiritShotsPerHit();
 		final SkillHolder[] skills = item.getTemplate().getSkills();
 		if (skills == null)
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": is missing skills!");
 			return false;
 		}
+		
+		final int itemId = item.getId();
+		final boolean isBlessed = ((itemId == 6647) || (itemId == 20334)); // TODO: Unhardcode these!
+		final short shotConsumption = activeOwner.getSummon().getSpiritShotsPerHit();
 		
 		final long shotCount = item.getCount();
 		if (shotCount < shotConsumption)

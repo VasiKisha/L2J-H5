@@ -30,14 +30,14 @@ import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Event;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Event;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Rabbits event.<br>
@@ -153,7 +153,7 @@ public class Rabbits extends Event
 	@Override
 	public boolean eventStart(Player eventMaker)
 	{
-		// Don't start event if it is active
+		// Don't start event if it is active.
 		if (_isActive)
 		{
 			eventMaker.sendMessage("Event " + getName() + " is already started!");
@@ -181,10 +181,10 @@ public class Rabbits extends Event
 		}
 		
 		// Announce event start
-		Broadcast.toAllOnlinePlayers("Rabbits Event: Chests spawned!");
-		Broadcast.toAllOnlinePlayers("Rabbits Event: Go to Fantasy Isle and grab some rewards!");
-		Broadcast.toAllOnlinePlayers("Rabbits Event: You have " + EVENT_TIME + " minutes!");
-		Broadcast.toAllOnlinePlayers("Rabbits Event: After that time all chests will disappear...");
+		World.broadcastToAllOnlinePlayers("Rabbits Event: Chests spawned!");
+		World.broadcastToAllOnlinePlayers("Rabbits Event: Go to Fantasy Isle and grab some rewards!");
+		World.broadcastToAllOnlinePlayers("Rabbits Event: You have " + EVENT_TIME + " minutes!");
+		World.broadcastToAllOnlinePlayers("Rabbits Event: After that time all chests will disappear...");
 		
 		// Schedule event end
 		startQuestTimer("END_RABBITS_EVENT", EVENT_TIME * 60000, null, eventMaker);
@@ -194,7 +194,7 @@ public class Rabbits extends Event
 	@Override
 	public boolean eventStop()
 	{
-		// Don't stop inactive event
+		// Don't stop inactive event.
 		if (!_isActive)
 		{
 			return false;
@@ -225,7 +225,7 @@ public class Rabbits extends Event
 		_players.clear();
 		
 		// Announce event end
-		Broadcast.toAllOnlinePlayers("Rabbits Event: Event has finished.");
+		World.broadcastToAllOnlinePlayers("Rabbits Event: Event has finished.");
 		return true;
 	}
 	
@@ -253,7 +253,7 @@ public class Rabbits extends Event
 			}
 			case "END_RABBITS_EVENT":
 			{
-				Broadcast.toAllOnlinePlayers("Rabbits Event: Time up!");
+				World.broadcastToAllOnlinePlayers("Rabbits Event: Time up!");
 				eventStop();
 				break;
 			}
@@ -281,7 +281,7 @@ public class Rabbits extends Event
 				
 				if (_npcs.isEmpty())
 				{
-					Broadcast.toAllOnlinePlayers("Rabbits Event: No more chests...");
+					World.broadcastToAllOnlinePlayers("Rabbits Event: No more chests...");
 					eventStop();
 				}
 			}

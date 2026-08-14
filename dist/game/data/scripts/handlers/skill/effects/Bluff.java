@@ -16,14 +16,14 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.stats.Formulas;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Formulas;
 import org.l2jmobius.gameserver.network.serverpackets.StartRotation;
 import org.l2jmobius.gameserver.network.serverpackets.StopRotation;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Bluff effect implementation.
@@ -55,7 +55,7 @@ public class Bluff extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		// Headquarters NPC should not rotate
+		// Headquarters NPC should not rotate.
 		if ((effected.getId() == 35062) || effected.isRaid() || effected.isRaidMinion())
 		{
 			return;

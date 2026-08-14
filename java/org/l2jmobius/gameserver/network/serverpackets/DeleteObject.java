@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -40,10 +40,10 @@ public class DeleteObject extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.DELETE_OBJECT.writeId(this, buffer);
 		buffer.writeInt(_objectId);
-		buffer.writeInt(0); // c2
+		buffer.writeInt(1); // C2 - If the object is mounted, with 0 it will be dismounted, with 1 it will disappear.
 	}
 }

@@ -26,7 +26,6 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -38,7 +37,7 @@ import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
 import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
 import org.l2jmobius.gameserver.data.holders.SoulCrystal;
 import org.l2jmobius.gameserver.data.holders.SoulCrystalDisplay;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
 
 /**
  * Loads item enchant data.
@@ -71,7 +70,7 @@ public class LevelUpCrystalData implements IXmlReader
 	 * Gets the enchant scroll.
 	 * @return Leveling SoulCrystal Information Map based NPC
 	 */
-	public final Map<Integer, Map<Integer, LevelingSoulCrystalInfo>> getNpcsSoulInfo()
+	public Map<Integer, Map<Integer, LevelingSoulCrystalInfo>> getNpcsSoulInfo()
 	{
 		return _npcLevelingInfo;
 	}
@@ -81,7 +80,7 @@ public class LevelUpCrystalData implements IXmlReader
 	 * @param npcid
 	 * @return Leveling SoulCrystal Information map by items
 	 */
-	public final Map<Integer, LevelingSoulCrystalInfo> getNpcSoulInfo(int npcid)
+	public Map<Integer, LevelingSoulCrystalInfo> getNpcSoulInfo(int npcid)
 	{
 		return _npcLevelingInfo.get(npcid);
 	}
@@ -90,7 +89,7 @@ public class LevelUpCrystalData implements IXmlReader
 	 * Gets the enchant scroll.
 	 * @return Map soul cristal based key itemid
 	 */
-	public final Map<Integer, SoulCrystal> getSoulCrystals()
+	public Map<Integer, SoulCrystal> getSoulCrystals()
 	{
 		return _soulCrystalsData;
 	}
@@ -100,7 +99,7 @@ public class LevelUpCrystalData implements IXmlReader
 	 * @param itemid
 	 * @return Leveling SoulCrystal Information map by items
 	 */
-	public final SoulCrystal getSoulCrystal(int itemid)
+	public SoulCrystal getSoulCrystal(int itemid)
 	{
 		return _soulCrystalsData.get(itemid);
 	}
@@ -109,7 +108,7 @@ public class LevelUpCrystalData implements IXmlReader
 	 * Gets the enchant scroll.
 	 * @return SoulCrystalDisplay list
 	 */
-	public final List<SoulCrystalDisplay> getSoulCrystalInfo()
+	public List<SoulCrystalDisplay> getSoulCrystalInfo()
 	{
 		return _crystalDisplayInfo;
 	}
@@ -151,8 +150,6 @@ public class LevelUpCrystalData implements IXmlReader
 								continue;
 							}
 							
-							int level = Integer.parseInt(attrs.getNamedItem("level").getNodeValue());
-							
 							att = attrs.getNamedItem("leveledItemId");
 							if (att == null)
 							{
@@ -160,8 +157,8 @@ public class LevelUpCrystalData implements IXmlReader
 								continue;
 							}
 							
+							int level = Integer.parseInt(attrs.getNamedItem("level").getNodeValue());
 							int leveledItemId = Integer.parseInt(attrs.getNamedItem("leveledItemId").getNodeValue());
-							
 							_soulCrystalsData.put(itemId, new SoulCrystal(level, itemId, leveledItemId));
 						}
 					}
@@ -276,7 +273,7 @@ public class LevelUpCrystalData implements IXmlReader
 			}
 		}
 		
-		_crystalDisplayInfo = _crystalDisplayAux.stream().sorted(Comparator.comparing(SoulCrystalDisplay::getFromLevel).reversed().thenComparing(Comparator.comparing(SoulCrystalDisplay::getChance)).reversed()).collect(Collectors.toList());
+		_crystalDisplayInfo = _crystalDisplayAux.stream().sorted(Comparator.comparingInt(SoulCrystalDisplay::getFromLevel).reversed().thenComparing(Comparator.comparingInt(SoulCrystalDisplay::getChance)).reversed()).toList();
 		
 		for (Entry<Integer, SoulCrystal> entry : _soulCrystalsData.entrySet())
 		{

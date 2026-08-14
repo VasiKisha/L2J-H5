@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.config.custom.SchemeBufferConfig;
-import org.l2jmobius.gameserver.model.actor.holders.npc.BuffSkillHolder;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.BuffSkillHolder;
 
 /**
  * Loads available scheme buffer skills and manages player schemes in memory and database.<br>
@@ -114,7 +114,7 @@ public class SchemeBufferTable
 							skillsBuilder.append(skillId).append(SKILL_SEPARATOR);
 						}
 						
-						if (skillsBuilder.length() > 0)
+						if (!skillsBuilder.isEmpty())
 						{
 							skillsBuilder.setLength(skillsBuilder.length() - SKILL_SEPARATOR.length());
 						}
@@ -148,7 +148,7 @@ public class SchemeBufferTable
 			return;
 		}
 		
-		final List<Integer> safeList = (skillIds != null) ? Collections.unmodifiableList(new ArrayList<>(skillIds)) : Collections.emptyList();
+		final List<Integer> safeList = (skillIds != null) ? List.copyOf(skillIds) : Collections.emptyList();
 		schemes.put(schemeName, safeList);
 	}
 	
@@ -413,7 +413,7 @@ public class SchemeBufferTable
 				entry.setValue(Collections.unmodifiableList(entry.getValue()));
 			}
 			
-			LOGGER.info("SchemeBufferTable: Loaded " + categoryCount + " categories and " + skillCount + " entries from " + SKILLS_XML_PATH + ".");
+			LOGGER.info("SchemeBufferTable: Loaded " + categoryCount + " categories and " + skillCount + " entries.");
 		}
 		catch (Exception e)
 		{
@@ -431,7 +431,6 @@ public class SchemeBufferTable
 		{
 			while (resultSet.next())
 			{
-				final int objectId = resultSet.getInt(DB_COLUMN_OBJECT_ID);
 				final String schemeName = resultSet.getString(DB_COLUMN_SCHEME_NAME);
 				final String skills = resultSet.getString(DB_COLUMN_SKILLS);
 				if ((schemeName == null) || (skills == null))
@@ -439,6 +438,7 @@ public class SchemeBufferTable
 					continue;
 				}
 				
+				final int objectId = resultSet.getInt(DB_COLUMN_OBJECT_ID);
 				final String[] split = skills.split(SKILL_SEPARATOR);
 				final List<Integer> schemeSkillIds = new ArrayList<>(split.length);
 				

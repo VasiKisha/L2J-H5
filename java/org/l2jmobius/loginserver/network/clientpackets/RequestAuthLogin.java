@@ -26,12 +26,12 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.config.LoginConfig;
-import org.l2jmobius.loginserver.LoginController;
+import org.l2jmobius.loginserver.controller.AccountInfo;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.data.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.enums.AccountKickedReason;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
-import org.l2jmobius.loginserver.model.data.AccountInfo;
 import org.l2jmobius.loginserver.network.ConnectionState;
 import org.l2jmobius.loginserver.network.LoginClient;
 import org.l2jmobius.loginserver.network.serverpackets.AccountKicked;
@@ -106,7 +106,7 @@ public class RequestAuthLogin extends LoginClientPacket
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "", e);
+			LOGGER.log(Level.WARNING, "run: ", e);
 			return;
 		}
 		

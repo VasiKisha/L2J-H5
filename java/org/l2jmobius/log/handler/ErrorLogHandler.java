@@ -21,9 +21,8 @@
 package org.l2jmobius.log.handler;
 
 import java.io.IOException;
-import java.util.logging.FileHandler;
 
-public class ErrorLogHandler extends FileHandler
+public class ErrorLogHandler extends AsyncFileHandler
 {
 	public ErrorLogHandler() throws IOException
 	{

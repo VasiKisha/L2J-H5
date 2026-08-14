@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExMPCCShowPartyMemberInfo;
 
 /**
@@ -43,7 +43,7 @@ public class RequestExMPCCShowPartyMembersInfo extends ClientPacket
 			return;
 		}
 		
-		final Player target = World.getInstance().getPlayer(_partyLeaderId);
+		final Player target = World.getPlayer(_partyLeaderId);
 		if ((target != null) && (target.getParty() != null))
 		{
 			player.sendPacket(new ExMPCCShowPartyMemberInfo(target.getParty()));

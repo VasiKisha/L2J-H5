@@ -23,19 +23,20 @@ package handlers.bypass.npc;
 import java.text.DateFormat;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.games.LotteryManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 public class Loto implements IBypassHandler
 {
@@ -212,11 +213,11 @@ public class Loto implements IBypassHandler
 				
 				if (player.getLoto(i) < 17)
 				{
-					enchant += Math.pow(2, player.getLoto(i) - 1);
+					enchant += MathUtil.pow(2, player.getLoto(i) - 1);
 				}
 				else
 				{
-					type2 += Math.pow(2, player.getLoto(i) - 17);
+					type2 += MathUtil.pow(2, player.getLoto(i) - 17);
 				}
 			}
 			
@@ -365,7 +366,7 @@ public class Loto implements IBypassHandler
 		html.replace("%prize4%", Float.toString(GeneralConfig.ALT_LOTTERY_4_NUMBER_RATE * 100));
 		html.replace("%prize3%", Float.toString(GeneralConfig.ALT_LOTTERY_3_NUMBER_RATE * 100));
 		html.replace("%prize2%", Long.toString(GeneralConfig.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE));
-		html.replace("%enddate%", "" + DateFormat.getDateInstance().format(LotteryManager.getInstance().getEndDate()));
+		html.replace("%enddate%", DateFormat.getDateInstance().format(LotteryManager.getInstance().getEndDate()));
 		player.sendPacket(html);
 		
 		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet

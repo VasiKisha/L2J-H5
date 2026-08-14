@@ -20,16 +20,16 @@
  */
 package handlers.skill.effects;
 
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.FlyType;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Enemy Charge effect implementation.
@@ -63,13 +63,14 @@ public class EnemyCharge extends AbstractEffect
 		// Calculate distance (dx,dy) between current position and destination
 		final double dx = effected.getX() - curX;
 		final double dy = effected.getY() - curY;
-		final double dz = effected.getZ() - curZ;
 		final double distance = Math.sqrt((dx * dx) + (dy * dy));
 		if (distance > 2000)
 		{
 			LOGGER.info("EffectEnemyCharge was going to use invalid coordinates for characters, getEffector: " + curX + "," + curY + " and getEffected: " + effected.getX() + "," + effected.getY());
 			return;
 		}
+		
+		final double dz = effected.getZ() - curZ;
 		
 		int offset = Math.max(skill.getFlyRadius(), 30);
 		

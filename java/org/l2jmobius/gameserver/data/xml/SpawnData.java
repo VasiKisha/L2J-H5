@@ -46,22 +46,22 @@ import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.SpawnGroupTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.spawns.SpawnGroup;
+import org.l2jmobius.gameserver.entity.spawns.SpawnGroupEntry;
+import org.l2jmobius.gameserver.entity.spawns.SpawnSelection;
+import org.l2jmobius.gameserver.entity.zone.ZoneForm;
+import org.l2jmobius.gameserver.entity.zone.form.ZoneCuboid;
+import org.l2jmobius.gameserver.entity.zone.form.ZoneCylinder;
+import org.l2jmobius.gameserver.entity.zone.form.ZoneNPoly;
+import org.l2jmobius.gameserver.entity.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.managers.DayNightSpawnManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.model.spawns.SpawnGroup;
-import org.l2jmobius.gameserver.model.spawns.SpawnGroupEntry;
-import org.l2jmobius.gameserver.model.spawns.SpawnSelection;
-import org.l2jmobius.gameserver.model.zone.ZoneForm;
-import org.l2jmobius.gameserver.model.zone.form.ZoneCuboid;
-import org.l2jmobius.gameserver.model.zone.form.ZoneCylinder;
-import org.l2jmobius.gameserver.model.zone.form.ZoneNPoly;
-import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.taskmanagers.SpawnGroupTaskManager;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author Mobius
@@ -354,7 +354,7 @@ public class SpawnData implements IXmlReader
 										}
 									}
 									
-									coords = rs.toArray(new int[rs.size()][2]);
+									coords = rs.toArray(new int[0][2]);
 									rs.clear();
 									
 									if ((coords == null) || (coords.length == 0))
@@ -455,7 +455,7 @@ public class SpawnData implements IXmlReader
 										}
 									}
 									
-									coords = rs.toArray(new int[rs.size()][2]);
+									coords = rs.toArray(new int[0][2]);
 									rs.clear();
 									
 									if ((coords == null) || (coords.length == 0))

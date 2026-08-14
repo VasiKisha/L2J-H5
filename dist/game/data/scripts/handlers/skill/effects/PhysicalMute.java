@@ -20,13 +20,12 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Physical Mute effect implementation.
@@ -53,6 +52,6 @@ public class PhysicalMute extends AbstractEffect
 			return;
 		}
 		
-		effected.getAI().notifyAction(Action.MUTED);
+		effected.getAI().notifyActionMuted();
 	}
 }

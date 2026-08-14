@@ -26,8 +26,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 
 /**
  * @author Mobius
@@ -83,10 +83,7 @@ public class ItemManaTaskManager implements Runnable
 	
 	public void add(Item item)
 	{
-		if (!ITEMS.containsKey(item))
-		{
-			ITEMS.put(item, System.currentTimeMillis() + MANA_CONSUMPTION_RATE);
-		}
+		ITEMS.computeIfAbsent(item, k -> System.currentTimeMillis() + MANA_CONSUMPTION_RATE);
 	}
 	
 	public static ItemManaTaskManager getInstance()

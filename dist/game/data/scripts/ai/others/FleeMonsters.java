@@ -20,14 +20,13 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.interfaces.ILocational;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -74,7 +73,7 @@ public class FleeMonsters extends Script
 		final int posY = (int) (npc.getY() + (FLEE_DISTANCE * Math.sin(radians)));
 		final int posZ = npc.getZ();
 		final Location destination = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), posX, posY, posZ, npc.getInstanceId());
-		npc.getAI().setIntention(Intention.MOVE_TO, destination);
+		npc.getAI().setIntentionMoveTo(destination);
 	}
 	
 	public static void main(String[] args)

@@ -38,15 +38,18 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.zone.type.DerbyTrackZone;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
+import org.l2jmobius.gameserver.entity.zone.type.DerbyTrackZone;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.MonRaceInfo;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
+import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 public class MonsterRaceManager
 {
@@ -194,7 +197,7 @@ public class MonsterRaceManager
 					
 					final SystemMessage msg = new SystemMessage(SystemMessageId.TICKETS_ARE_NOW_AVAILABLE_FOR_MONSTER_RACE_S1);
 					msg.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, _packet, msg);
+					broadcastToAllPlayersInDerbyZone(_packet, msg);
 					break;
 				}
 				case 30: // 30 sec
@@ -226,7 +229,7 @@ public class MonsterRaceManager
 				{
 					final SystemMessage msg = new SystemMessage(SystemMessageId.TICKETS_ARE_NOW_AVAILABLE_FOR_MONSTER_RACE_S1);
 					msg.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg);
+					broadcastToAllPlayersInDerbyZone(msg);
 					break;
 				}
 				case 300: // 5 min
@@ -235,7 +238,7 @@ public class MonsterRaceManager
 					msg.addInt(_raceNumber);
 					final SystemMessage msg2 = new SystemMessage(SystemMessageId.TICKET_SALES_FOR_THE_MONSTER_RACE_WILL_END_IN_S1_MINUTE_S);
 					msg2.addInt(10);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg, msg2);
+					broadcastToAllPlayersInDerbyZone(msg, msg2);
 					break;
 				}
 				case 600: // 10 min
@@ -244,7 +247,7 @@ public class MonsterRaceManager
 					msg.addInt(_raceNumber);
 					final SystemMessage msg2 = new SystemMessage(SystemMessageId.TICKET_SALES_FOR_THE_MONSTER_RACE_WILL_END_IN_S1_MINUTE_S);
 					msg2.addInt(5);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg, msg2);
+					broadcastToAllPlayersInDerbyZone(msg, msg2);
 					break;
 				}
 				case 840: // 14 min
@@ -253,7 +256,7 @@ public class MonsterRaceManager
 					msg.addInt(_raceNumber);
 					final SystemMessage msg2 = new SystemMessage(SystemMessageId.TICKET_SALES_FOR_THE_MONSTER_RACE_WILL_END_IN_S1_MINUTE_S);
 					msg2.addInt(1);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg, msg2);
+					broadcastToAllPlayersInDerbyZone(msg, msg2);
 					break;
 				}
 				case 900: // 15 min
@@ -266,7 +269,7 @@ public class MonsterRaceManager
 					msg.addInt(_raceNumber);
 					final SystemMessage msg2 = new SystemMessage(SystemMessageId.TICKETS_SALES_ARE_CLOSED_FOR_MONSTER_RACE_S1_ODDS_ARE_POSTED);
 					msg2.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg, msg2);
+					broadcastToAllPlayersInDerbyZone(msg, msg2);
 					break;
 				}
 				case 960: // 16 min
@@ -276,21 +279,21 @@ public class MonsterRaceManager
 					final SystemMessage msg = new SystemMessage(SystemMessageId.MONSTER_RACE_S2_WILL_BEGIN_IN_S1_MINUTE_S);
 					msg.addInt(minutes);
 					msg.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg);
+					broadcastToAllPlayersInDerbyZone(msg);
 					break;
 				}
 				case 1050: // 17 min 30 sec
 				{
 					final SystemMessage msg = new SystemMessage(SystemMessageId.MONSTER_RACE_S1_WILL_BEGIN_IN_30_SECONDS);
 					msg.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg);
+					broadcastToAllPlayersInDerbyZone(msg);
 					break;
 				}
 				case 1070: // 17 min 50 sec
 				{
 					final SystemMessage msg = new SystemMessage(SystemMessageId.MONSTER_RACE_S1_IS_ABOUT_TO_BEGIN_COUNTDOWN_IN_FIVE_SECONDS);
 					msg.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg);
+					broadcastToAllPlayersInDerbyZone(msg);
 					break;
 				}
 				case 1075: // 17 min 55 sec
@@ -302,21 +305,21 @@ public class MonsterRaceManager
 					final int seconds = 1080 - _finalCountdown;
 					final SystemMessage msg = new SystemMessage(SystemMessageId.THE_RACE_WILL_BEGIN_IN_S1_SECOND_S);
 					msg.addInt(seconds);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg);
+					broadcastToAllPlayersInDerbyZone(msg);
 					break;
 				}
 				case 1080: // 18 min
 				{
 					_state = RaceState.STARTING_RACE;
 					_packet = new MonRaceInfo(CODES[1][0], CODES[1][1], getMonsters(), getSpeeds());
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, new SystemMessage(SystemMessageId.THEY_RE_OFF), SOUND_1, SOUND_2, _packet);
+					broadcastToAllPlayersInDerbyZone(new SystemMessage(SystemMessageId.THEY_RE_OFF), SOUND_1, SOUND_2, _packet);
 					break;
 				}
 				case 1085: // 18 min 5 sec
 				{
 					_packet = new MonRaceInfo(CODES[2][0], CODES[2][1], getMonsters(), getSpeeds());
 					
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, _packet);
+					broadcastToAllPlayersInDerbyZone(_packet);
 					break;
 				}
 				case 1115: // 18 min 35 sec
@@ -337,13 +340,13 @@ public class MonsterRaceManager
 					msg.addInt(getSecondPlace() + 1);
 					final SystemMessage msg2 = new SystemMessage(SystemMessageId.MONSTER_RACE_S1_IS_FINISHED);
 					msg2.addInt(_raceNumber);
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, msg, msg2);
+					broadcastToAllPlayersInDerbyZone(msg, msg2);
 					_raceNumber++;
 					break;
 				}
 				case 1140: // 19 min
 				{
-					Broadcast.toAllPlayersInZoneType(DerbyTrackZone.class, new DeleteObject(getMonsters()[0]), new DeleteObject(getMonsters()[1]), new DeleteObject(getMonsters()[2]), new DeleteObject(getMonsters()[3]), new DeleteObject(getMonsters()[4]), new DeleteObject(getMonsters()[5]), new DeleteObject(getMonsters()[6]), new DeleteObject(getMonsters()[7]));
+					broadcastToAllPlayersInDerbyZone(new DeleteObject(getMonsters()[0]), new DeleteObject(getMonsters()[1]), new DeleteObject(getMonsters()[2]), new DeleteObject(getMonsters()[3]), new DeleteObject(getMonsters()[4]), new DeleteObject(getMonsters()[5]), new DeleteObject(getMonsters()[6]), new DeleteObject(getMonsters()[7]));
 					break;
 				}
 			}
@@ -366,11 +369,11 @@ public class MonsterRaceManager
 			try
 			{
 				final NpcTemplate template = NpcData.getInstance().getTemplate(_npcTemplates.get(i));
-				_monsters[i] = (Npc) Class.forName("org.l2jmobius.gameserver.model.actor.instance." + template.getType()).getConstructors()[0].newInstance(template);
+				_monsters[i] = (Npc) Class.forName("org.l2jmobius.gameserver.entity.actor.instance." + template.getType()).getConstructors()[0].newInstance(template);
 			}
 			catch (Exception e)
 			{
-				LOGGER.log(Level.WARNING, "", e);
+				LOGGER.log(Level.WARNING, "newRace: ", e);
 			}
 		}
 	}
@@ -578,6 +581,30 @@ public class MonsterRaceManager
 		for (long amount : sortedLanes.values())
 		{
 			_odds.add((amount == 0) ? 0D : Math.max(1.25, (sumOfAllLanes * 0.7) / amount));
+		}
+	}
+	
+	private <T extends ZoneType> void broadcastToAllPlayersInDerbyZone(ServerPacket... packets)
+	{
+		for (ServerPacket packet : packets)
+		{
+			packet.sendInBroadcast();
+		}
+		
+		for (ZoneType zone : ZoneManager.getInstance().getAllZones(DerbyTrackZone.class))
+		{
+			for (Creature creature : zone.getCharactersInside())
+			{
+				if (creature == null)
+				{
+					continue;
+				}
+				
+				for (ServerPacket packet : packets)
+				{
+					creature.sendPacket(packet);
+				}
+			}
 		}
 	}
 	

@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.PetNameTable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -59,7 +59,7 @@ public class RequestChangePetName extends ClientPacket
 			return;
 		}
 		
-		if ((pet.getName() != null) && !pet.getName().equals(""))
+		if ((pet.getName() != null) && !pet.getName().isEmpty())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_SET_THE_NAME_OF_THE_PET);
 			return;

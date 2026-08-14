@@ -16,18 +16,18 @@
  */
 package handlers.skill.targets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
 /**
  * @author UnAfraid
@@ -37,7 +37,7 @@ public class Clan implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		final List<WorldObject> targetList = new LinkedList<>();
+		final List<WorldObject> targetList = new ArrayList<>();
 		if (creature.isPlayable())
 		{
 			final Player player = creature.asPlayer();
@@ -61,7 +61,7 @@ public class Clan implements ITargetTypeHandler
 			targetList.add(player);
 			
 			final int radius = skill.getAffectRange();
-			final org.l2jmobius.gameserver.model.clan.Clan clan = player.getClan();
+			final org.l2jmobius.gameserver.entity.clan.Clan clan = player.getClan();
 			if (Skill.addSummon(creature, player, radius, false))
 			{
 				targetList.add(player.getSummon());
@@ -131,7 +131,7 @@ public class Clan implements ITargetTypeHandler
 				return targetList;
 			}
 			
-			for (Npc newTarget : World.getInstance().getVisibleObjectsInRange(creature, Npc.class, skill.getCastRange()))
+			for (Npc newTarget : World.getVisibleObjectsInRange(creature, Npc.class, skill.getCastRange()))
 			{
 				if (newTarget.isNpc() && npc.isInMyClan(newTarget))
 				{

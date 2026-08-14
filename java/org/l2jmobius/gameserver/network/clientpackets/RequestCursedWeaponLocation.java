@@ -16,13 +16,13 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.CursedWeapon;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.CursedWeapon;
 import org.l2jmobius.gameserver.network.serverpackets.ExCursedWeaponLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ExCursedWeaponLocation.CursedWeaponInfo;
 
@@ -46,7 +46,7 @@ public class RequestCursedWeaponLocation extends ClientPacket
 			return;
 		}
 		
-		final List<CursedWeaponInfo> list = new LinkedList<>();
+		final List<CursedWeaponInfo> list = new ArrayList<>();
 		for (CursedWeapon cw : CursedWeaponsManager.getInstance().getCursedWeapons())
 		{
 			if (!cw.isActive())

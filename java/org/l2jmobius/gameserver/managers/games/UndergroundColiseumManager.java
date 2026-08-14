@@ -44,15 +44,15 @@ import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.UndergroundColiseumConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.undergroundColiseum.UCArena;
-import org.l2jmobius.gameserver.model.undergroundColiseum.UCBestTeam;
-import org.l2jmobius.gameserver.model.undergroundColiseum.UCPoint;
-import org.l2jmobius.gameserver.model.undergroundColiseum.UCReward;
-import org.l2jmobius.gameserver.model.undergroundColiseum.UCTeam;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.mechanics.undergroundColiseum.UCArena;
+import org.l2jmobius.gameserver.mechanics.undergroundColiseum.UCBestTeam;
+import org.l2jmobius.gameserver.mechanics.undergroundColiseum.UCPoint;
+import org.l2jmobius.gameserver.mechanics.undergroundColiseum.UCReward;
+import org.l2jmobius.gameserver.mechanics.undergroundColiseum.UCTeam;
 
 public class UndergroundColiseumManager implements IXmlReader
 {
@@ -298,11 +298,11 @@ public class UndergroundColiseumManager implements IXmlReader
 		{
 			if (_isStarted)
 			{
-				Broadcast.toAllOnlinePlayers("Underground Coliseum has started!");
+				World.broadcastToAllOnlinePlayers("Underground Coliseum has started!");
 			}
 			else
 			{
-				Broadcast.toAllOnlinePlayers("Underground Coliseum has stopped!");
+				World.broadcastToAllOnlinePlayers("Underground Coliseum has stopped!");
 			}
 		}
 	}

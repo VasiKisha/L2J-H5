@@ -23,7 +23,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
@@ -113,7 +113,7 @@ public class HitConditionBonusData implements IXmlReader
 	{
 		double mod = 100;
 		
-		// Get high or low bonus
+		// Get high or low bonus.
 		if ((attacker.getZ() - target.getZ()) > 50)
 		{
 			mod += highBonus;

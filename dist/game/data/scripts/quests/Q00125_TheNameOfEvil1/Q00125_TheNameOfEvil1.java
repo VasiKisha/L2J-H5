@@ -19,12 +19,12 @@ package quests.Q00125_TheNameOfEvil1;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
 import quests.Q00124_MeetingTheElroki.Q00124_MeetingTheElroki;
@@ -309,9 +309,10 @@ public class Q00125_TheNameOfEvil1 extends Quest
 		
 		final QuestState qs = getQuestState(partyMember, false);
 		final int npcId = npc.getId();
-		if (ORNITHOMIMUS.containsKey(npcId))
+		final Integer ornithomimusChance = ORNITHOMIMUS.get(npcId);
+		if (ornithomimusChance != null)
 		{
-			if ((getQuestItemsCount(player, ORNITHOMIMUS_CLAW) < 2) && (getRandom(1000) < ORNITHOMIMUS.get(npcId)))
+			if ((getQuestItemsCount(player, ORNITHOMIMUS_CLAW) < 2) && (getRandom(1000) < ornithomimusChance))
 			{
 				giveItems(player, ORNITHOMIMUS_CLAW, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);

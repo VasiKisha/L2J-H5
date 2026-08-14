@@ -490,7 +490,7 @@
 				<run ground="160" />
 			</speed>
 		</stats>
-		<ai aggroRange="300" clanHelpRange="300">
+		<ai type="ARCHER" aggroRange="300" clanHelpRange="300">
 			<clanList>
 				<clan>SSQ</clan>
 			</clanList>

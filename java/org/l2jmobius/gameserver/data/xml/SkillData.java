@@ -36,7 +36,7 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.DocumentSkill;
 
 /**

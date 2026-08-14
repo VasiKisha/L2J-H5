@@ -21,9 +21,9 @@
 package handlers.chat.commands.voiced;
 
 import org.l2jmobius.gameserver.config.custom.OnlineInfoConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * @author Mobius
@@ -40,7 +40,7 @@ public class Online implements IVoicedCommandHandler
 	{
 		if (command.equals("online") && OnlineInfoConfig.ENABLE_ONLINE_COMMAND)
 		{
-			final int count = World.getInstance().getPlayers().size();
+			final int count = World.getPlayers().size();
 			if (count > 1)
 			{
 				player.sendMessage("There are " + count + " players online!");

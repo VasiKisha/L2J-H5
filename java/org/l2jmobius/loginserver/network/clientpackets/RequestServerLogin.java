@@ -20,14 +20,14 @@
  */
 package org.l2jmobius.loginserver.network.clientpackets;
 
-import org.l2jmobius.loginserver.LoginController;
 import org.l2jmobius.loginserver.LoginServer;
-import org.l2jmobius.loginserver.SessionKey;
 import org.l2jmobius.loginserver.config.LoginConfig;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.controller.SessionKey;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.enums.PlayFailReason;
 import org.l2jmobius.loginserver.network.LoginClient;
-import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ServerStatus;
 import org.l2jmobius.loginserver.network.serverpackets.PlayOk;
 
 /**

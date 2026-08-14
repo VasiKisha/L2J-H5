@@ -5,4 +5,3 @@ CREATE TABLE IF NOT EXISTS `item_elementals` (
   PRIMARY KEY (`itemId`, `elemType`)
 ) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
-CREATE INDEX idx_itemId_elemType ON item_elementals (itemId, elemType);

@@ -25,9 +25,9 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
 
 public class SeedOfDestructionManager
 {
@@ -104,7 +104,7 @@ public class SeedOfDestructionManager
 		{
 			case 1:
 			{
-				// do nothing, players should kill Tiat a few times
+				// Do nothing players should kill Tiat a few times
 				break;
 			}
 			case 2:
@@ -143,7 +143,7 @@ public class SeedOfDestructionManager
 	
 	private void manageEdricSpawn()
 	{
-		final Npc edric = World.getInstance().getNpc(32527);
+		final Npc edric = World.getNpc(32527);
 		if (_SoDState == 2)
 		{
 			if (edric == null)

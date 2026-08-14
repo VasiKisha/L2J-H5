@@ -18,12 +18,12 @@ package village_master.KamaelChange2;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00064_CertifiedBerserker.Q00064_CertifiedBerserker;
@@ -151,7 +151,7 @@ public class KamaelChange2 extends Script
 			{
 				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
-					if (classId == 127)
+					if (classId == PlayerClass.BERSERKER.getId())
 					{
 						final QuestState qs = player.getQuestState(Q00064_CertifiedBerserker.class.getSimpleName());
 						if (player.getLevel() < 40)
@@ -172,8 +172,8 @@ public class KamaelChange2 extends Script
 						else
 						{
 							takeItems(player, ORKURUS_RECOMMENDATION, -1);
-							player.setPlayerClass(127);
-							player.setBaseClass(127);
+							player.setPlayerClass(PlayerClass.BERSERKER.getId());
+							player.setBaseClass(PlayerClass.BERSERKER.getId());
 							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -181,7 +181,7 @@ public class KamaelChange2 extends Script
 							htmltext = "32145-23.htm"; // master_all_kamael011ta
 						}
 					}
-					else if (classId == 128)
+					else if (classId == PlayerClass.MALE_SOULBREAKER.getId())
 					{
 						final QuestState qs = player.getQuestState(Q00065_CertifiedSoulBreaker.class.getSimpleName());
 						if (player.getLevel() < 40)
@@ -202,8 +202,8 @@ public class KamaelChange2 extends Script
 						else
 						{
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
-							player.setPlayerClass(128);
-							player.setBaseClass(128);
+							player.setPlayerClass(PlayerClass.MALE_SOULBREAKER.getId());
+							player.setBaseClass(PlayerClass.MALE_SOULBREAKER.getId());
 							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -225,7 +225,7 @@ public class KamaelChange2 extends Script
 				}
 				else
 				{
-					if (classId == 129)
+					if (classId == PlayerClass.FEMALE_SOULBREAKER.getId())
 					{
 						final QuestState qs = player.getQuestState(Q00065_CertifiedSoulBreaker.class.getSimpleName());
 						if (player.getLevel() < 40)
@@ -246,8 +246,8 @@ public class KamaelChange2 extends Script
 						else
 						{
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
-							player.setPlayerClass(129);
-							player.setBaseClass(129);
+							player.setPlayerClass(PlayerClass.FEMALE_SOULBREAKER.getId());
+							player.setBaseClass(PlayerClass.FEMALE_SOULBREAKER.getId());
 							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -255,7 +255,7 @@ public class KamaelChange2 extends Script
 							htmltext = "32145-31.htm"; // master_all_kamael011fsa
 						}
 					}
-					else if (classId == 130)
+					else if (classId == PlayerClass.ARBALESTER.getId())
 					{
 						final QuestState qs = player.getQuestState(Q00066_CertifiedArbalester.class.getSimpleName());
 						if (player.getLevel() < 40)
@@ -276,8 +276,8 @@ public class KamaelChange2 extends Script
 						else
 						{
 							takeItems(player, KAMAEL_INQUISITOR_MARK, -1);
-							player.setPlayerClass(130);
-							player.setBaseClass(130);
+							player.setPlayerClass(PlayerClass.ARBALESTER.getId());
+							player.setBaseClass(PlayerClass.ARBALESTER.getId());
 							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();

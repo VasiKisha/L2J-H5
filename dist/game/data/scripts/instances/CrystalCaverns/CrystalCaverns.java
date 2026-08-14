@@ -29,31 +29,31 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.TrapAction;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.actor.instance.Trap;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceReenterType;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.creature.TrapAction;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.actor.instance.Trap;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceReenterType;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.FlyType;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.FlyType;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -746,7 +746,7 @@ public class CrystalCaverns extends InstanceScript
 		player.abortCast();
 		player.breakAttack();
 		player.breakCast();
-		player.getAI().setIntention(Intention.IDLE);
+		player.getAI().setIntentionIdle();
 		final Summon pet = player.getSummon();
 		if (pet != null)
 		{
@@ -755,7 +755,7 @@ public class CrystalCaverns extends InstanceScript
 			pet.abortCast();
 			pet.breakAttack();
 			pet.breakCast();
-			pet.getAI().setIntention(Intention.IDLE);
+			pet.getAI().setIntentionIdle();
 		}
 	}
 	
@@ -1122,7 +1122,7 @@ public class CrystalCaverns extends InstanceScript
 					final Npc copy = addSpawn(TEARS_COPY, npc.getX(), npc.getY(), npc.getZ(), 0, false, 0, false, attacker.getInstanceId());
 					copy.setRunning();
 					copy.asAttackable().addDamageHate(target, 0, 99999);
-					copy.getAI().setIntention(Intention.ATTACK, target);
+					copy.getAI().setIntentionAttack(target);
 					copy.setCurrentHp(nowHp);
 					world.copys.add(copy);
 				}
@@ -1242,7 +1242,7 @@ public class CrystalCaverns extends InstanceScript
 			}
 			else if (event.equalsIgnoreCase("baylorEffect0"))
 			{
-				npc.getAI().setIntention(Intention.IDLE);
+				npc.getAI().setIntentionIdle();
 				npc.broadcastSocialAction(1);
 				startQuestTimer("baylorCamera0", 11000, npc, null);
 				startQuestTimer("baylorEffect1", 19000, npc, null);
@@ -1271,7 +1271,7 @@ public class CrystalCaverns extends InstanceScript
 					final int x = (int) (radius * Math.cos(i * 0.618));
 					final int y = (int) (radius * Math.sin(i * 0.618));
 					final Npc mob = addSpawn(29104, 153571 + x, 142075 + y, -12737, 0, false, 0, false, world.getInstanceId());
-					mob.getAI().setIntention(Intention.IDLE);
+					mob.getAI().setIntentionIdle();
 					world._animationMobs.add(mob);
 				}
 				
@@ -1394,24 +1394,10 @@ public class CrystalCaverns extends InstanceScript
 				}
 				
 				final CrystalGolem cryGolem = world.crystalGolems.get(npc);
-				int minDist = 300000;
-				for (Item object : World.getInstance().getVisibleObjectsInRange(npc, Item.class, 300))
+				final Item nearest = World.getNearestVisibleObjectInRange(npc, Item.class, 300, obj -> obj.getId() == CRYSTAL_FRAGMENT);
+				if (nearest != null)
 				{
-					if (object.getId() == CRYSTAL_FRAGMENT)
-					{
-						final int dx = npc.getX() - object.getX();
-						final int dy = npc.getY() - object.getY();
-						final int d = (dx * dx) + (dy * dy);
-						if (d < minDist)
-						{
-							minDist = d;
-							cryGolem.foodItem = object;
-						}
-					}
-				}
-				
-				if (minDist != 300000)
-				{
+					cryGolem.foodItem = nearest;
 					startQuestTimer("getFood", 2000, npc, null);
 				}
 				else
@@ -1435,7 +1421,7 @@ public class CrystalCaverns extends InstanceScript
 				if (npc.getAI().getIntention() == Intention.ACTIVE)
 				{
 					cancelQuestTimers("backFood");
-					npc.getAI().setIntention(Intention.IDLE, null);
+					npc.getAI().setIntentionIdle();
 					world.crystalGolems.get(npc).foodItem = null;
 					startQuestTimer("autoFood", 2000, npc, null);
 				}
@@ -1447,16 +1433,16 @@ public class CrystalCaverns extends InstanceScript
 				int dy;
 				if ((cryGolem.foodItem == null) || !cryGolem.foodItem.isSpawned())
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, cryGolem.oldLoc);
+					npc.getAI().setIntentionMoveTo(cryGolem.oldLoc);
 					cancelQuestTimers("reachFood");
 					startQuestTimer("backFood", 2000, npc, null, true);
 					return null;
 				}
 				else if (npc.getAI().getIntention() == Intention.ACTIVE)
 				{
-					World.getInstance().removeVisibleObject(cryGolem.foodItem, cryGolem.foodItem.getWorldRegion());
-					World.getInstance().removeObject(cryGolem.foodItem);
-					npc.getAI().setIntention(Intention.IDLE, null);
+					World.removeVisibleObject(cryGolem.foodItem, cryGolem.foodItem.getWorldRegion());
+					World.removeObject(cryGolem.foodItem);
+					npc.getAI().setIntentionIdle();
 					cryGolem.foodItem = null;
 					dx = npc.getX() - 142999;
 					dy = npc.getY() - 151671;
@@ -1490,7 +1476,7 @@ public class CrystalCaverns extends InstanceScript
 				final CrystalGolem cryGolem = world.crystalGolems.get(npc);
 				final Location newLoc = new Location(cryGolem.foodItem.getX(), cryGolem.foodItem.getY(), cryGolem.foodItem.getZ(), 0);
 				cryGolem.oldLoc = new Location(npc.getX(), npc.getY(), npc.getZ(), npc.getHeading());
-				npc.getAI().setIntention(Intention.MOVE_TO, newLoc);
+				npc.getAI().setIntentionMoveTo(newLoc);
 				startQuestTimer("reachFood", 2000, npc, null, true);
 				cancelQuestTimers("getFood");
 			}

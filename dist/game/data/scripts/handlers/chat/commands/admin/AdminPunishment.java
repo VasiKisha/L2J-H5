@@ -22,8 +22,9 @@ package handlers.chat.commands.admin;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
@@ -31,13 +32,13 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentAffect;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -71,7 +72,7 @@ public class AdminPunishment implements IAdminCommandHandler
 		"admin_unjail"
 	};
 	
-	private static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
@@ -150,11 +151,7 @@ public class AdminPunishment implements IAdminCommandHandler
 										String expire = "never";
 										if (expiration > 0)
 										{
-											// Synchronize date formatter since it is not thread safe.
-											synchronized (DATE_FORMATTER)
-											{
-												expire = DATE_FORMATTER.format(new Date(expiration));
-											}
+											expire = DATE_FORMATTER.format(Instant.ofEpochMilli(expiration).atZone(ZoneId.systemDefault()));
 										}
 										
 										sb.append("<tr><td><font color=\"LEVEL\">" + type + "</font></td><td>" + expire + "</td><td><a action=\"bypass -h admin_punishment_remove " + name + " " + affect + " " + type + "\">Remove</a></td></tr>");
@@ -184,7 +181,7 @@ public class AdminPunishment implements IAdminCommandHandler
 									return onCommand("admin_punishment", activeChar);
 								}
 								
-								target = World.getInstance().getPlayer(playerName);
+								target = World.getPlayer(playerName);
 							}
 							
 							if ((target == null) && ((activeChar.getTarget() == null) || !activeChar.getTarget().isPlayer()))
@@ -239,7 +236,7 @@ public class AdminPunishment implements IAdminCommandHandler
 					if (!reason.isEmpty())
 					{
 						reason = reason.replaceAll("\\$", "\\\\\\$");
-						reason = reason.replaceAll("\r\n", "<br1>");
+						reason = reason.replace("\r\n", "<br1>");
 						reason = reason.replace("<", "&lt;");
 						reason = reason.replace(">", "&gt;");
 					}

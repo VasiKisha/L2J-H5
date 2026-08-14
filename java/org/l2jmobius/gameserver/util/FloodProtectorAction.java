@@ -25,11 +25,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentAffect;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;

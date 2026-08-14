@@ -21,11 +21,11 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.BlockList;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.groups.PartyDistributionType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.AskJoinParty;
@@ -56,7 +56,7 @@ public class RequestJoinParty extends ClientPacket
 			return;
 		}
 		
-		final Player target = World.getInstance().getPlayer(_name);
+		final Player target = World.getPlayer(_name);
 		if (target == null)
 		{
 			requestor.sendPacket(SystemMessageId.YOU_MUST_FIRST_SELECT_A_USER_TO_INVITE_TO_YOUR_PARTY);
@@ -207,7 +207,7 @@ public class RequestJoinParty extends ClientPacket
 	{
 		final Party party = requestor.getParty();
 		
-		// summary of ppl already in party and ppl that get invitation
+		// Summary of people already in party and people that get invitation.
 		if (!party.isLeader(requestor))
 		{
 			requestor.sendPacket(SystemMessageId.ONLY_THE_LEADER_CAN_GIVE_OUT_INVITATIONS);

@@ -21,14 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.TamedBeast;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -155,12 +154,8 @@ public class FeedableBeasts extends Script
 		
 		public Integer getMob(int spice, int mobType, int classType)
 		{
-			if (_spiceToMob.containsKey(spice))
-			{
-				return _spiceToMob.get(spice)[mobType][classType];
-			}
-			
-			return null;
+			final int[][] data = _spiceToMob.get(spice);
+			return (data != null) ? data[mobType][classType] : null;
 		}
 		
 		public Integer getRandomMob(int spice)
@@ -490,7 +485,7 @@ public class FeedableBeasts extends Script
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(Intention.ATTACK, player);
+			nextNpc.getAI().setIntentionAttack(player);
 		}
 	}
 	
@@ -515,7 +510,7 @@ public class FeedableBeasts extends Script
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(Intention.ATTACK, player);
+			nextNpc.getAI().setIntentionAttack(player);
 		}
 		
 		return super.onEvent(event, npc, player);
@@ -531,22 +526,23 @@ public class FeedableBeasts extends Script
 			return;
 		}
 		
-		// gather some values on local variables
-		final int npcId = npc.getId();
+		// check if the npc and skills used are valid for this script. Exit if invalid.
 		final int skillId = skill.getId();
-		
 		// check if the npc and skills used are valid for this script. Exit if invalid.
 		if ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE))
 		{
 			return;
 		}
 		
+		final int npcId = npc.getId();
+		
 		// first gather some values on local variables
 		final int objectId = npc.getObjectId();
 		int growthLevel = 3; // if a mob is in FEEDABLE_BEASTS but not in _GrowthCapableMobs, then it's at max growth (3)
-		if (GROWTH_CAPABLE_MONSTERS.containsKey(npcId))
+		final GrowthCapableMob growthData = GROWTH_CAPABLE_MONSTERS.get(npcId);
+		if (growthData != null)
 		{
-			growthLevel = GROWTH_CAPABLE_MONSTERS.get(npcId).getGrowthLevel();
+			growthLevel = growthData.getGrowthLevel();
 		}
 		
 		// prevent exploit which allows 2 players to simultaneously raise the same 0-growth beast
@@ -572,10 +568,11 @@ public class FeedableBeasts extends Script
 		npc.broadcastSocialAction(2);
 		
 		// if this pet can't grow, it's all done.
-		if (GROWTH_CAPABLE_MONSTERS.containsKey(npcId))
+		final GrowthCapableMob growthData2 = GROWTH_CAPABLE_MONSTERS.get(npcId);
+		if (growthData2 != null)
 		{
-			// do nothing if this mob doesn't eat the specified food (food gets consumed but has no effect).
-			if (GROWTH_CAPABLE_MONSTERS.get(npcId).getMob(food, 0, 0) == null)
+			// Do nothing if this monster doesn't eat the specified food (food gets consumed but has no effect).
+			if (growthData2.getMob(food, 0, 0) == null)
 			{
 				return;
 			}
@@ -601,14 +598,14 @@ public class FeedableBeasts extends Script
 			}
 			
 			// Polymorph the mob, with a certain chance, given its current growth level
-			if (getRandom(100) < GROWTH_CAPABLE_MONSTERS.get(npcId).getChance())
+			if (getRandom(100) < growthData2.getChance())
 			{
 				spawnNext(npc, growthLevel, caster, food);
 			}
 		}
 		else if (ArrayUtil.contains(TAMED_BEASTS, npcId) && (npc instanceof TamedBeast))
 		{
-			final TamedBeast beast = ((TamedBeast) npc);
+			final TamedBeast beast = (TamedBeast) npc;
 			if (skillId == beast.getFoodType())
 			{
 				beast.onReceiveFood();

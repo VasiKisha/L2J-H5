@@ -20,24 +20,25 @@
  */
 package handlers.bypass.npc;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.auction.ItemAuction;
+import org.l2jmobius.gameserver.entity.item.auction.ItemAuctionInstance;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.managers.ItemAuctionManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.auction.ItemAuction;
-import org.l2jmobius.gameserver.model.item.auction.ItemAuctionInstance;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemAuctionInfoPacket;
 
 public class ItemAuctionLink implements IBypassHandler
 {
-	private static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
+	private static final DateTimeFormatter SDF = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
 	
 	private static final String[] COMMANDS =
 	{
@@ -94,7 +95,7 @@ public class ItemAuctionLink implements IBypassHandler
 					
 					if (nextAuction != null)
 					{
-						player.sendMessage("The next auction will begin on the " + SDF.format(new Date(nextAuction.getStartingTime())) + ".");
+						player.sendMessage("The next auction will begin on the " + SDF.format(Instant.ofEpochMilli(nextAuction.getStartingTime()).atZone(ZoneId.systemDefault())) + ".");
 					}
 					
 					return true;

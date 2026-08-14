@@ -17,10 +17,10 @@
 package village_master.ElfHumanClericChange2;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Elf Human class transfer AI.
@@ -117,7 +117,7 @@ public class ElfHumanClericChange2 extends Script
 				player.setPlayerClass(BISHOP);
 				player.setBaseClass(BISHOP);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30120-18.htm"; // fnAfterClassChange11
@@ -146,7 +146,7 @@ public class ElfHumanClericChange2 extends Script
 				player.setPlayerClass(PROPHET);
 				player.setBaseClass(PROPHET);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30120-22.htm"; // fnAfterClassChange12
@@ -175,7 +175,7 @@ public class ElfHumanClericChange2 extends Script
 				player.setPlayerClass(ELDER);
 				player.setBaseClass(ELDER);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
 				htmltext = "30120-26.htm"; // fnAfterClassChange21

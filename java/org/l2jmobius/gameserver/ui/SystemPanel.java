@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
 import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.gameserver.GameServer;
 import org.l2jmobius.gameserver.config.ServerConfig;
-import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.util.Locator;
 
 /**
@@ -133,7 +133,7 @@ public class SystemPanel extends JPanel
 			@Override
 			public void run()
 			{
-				final int playerCount = World.getInstance().getPlayers().size();
+				final int playerCount = World.getPlayers().size();
 				if (World.MAX_CONNECTED_COUNT < playerCount)
 				{
 					World.MAX_CONNECTED_COUNT = playerCount;

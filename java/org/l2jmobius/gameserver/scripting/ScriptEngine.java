@@ -104,11 +104,11 @@ public class ScriptEngine implements IXmlReader
 					for (int i = 0; i < relativePathParts.size(); i++)
 					{
 						final String currentPart = relativePathParts.get(i);
-						if (excludePaths.containsKey(currentPart))
+						final Set<String> includePath = excludePaths.get(currentPart);
+						if (includePath != null)
 						{
 							boolean excludeScript = true;
 							
-							final Set<String> includePath = excludePaths.get(currentPart);
 							for (int j = i + 1; j < relativePathParts.size(); j++)
 							{
 								if (includePath.contains(relativePathParts.get(j)))
@@ -166,7 +166,7 @@ public class ScriptEngine implements IXmlReader
 		path = path.toAbsolutePath();
 		// System.out.println("Executing script at path: " + path.toString());
 		
-		// Check if the path exists
+		// Check if the path exists.
 		if (!Files.exists(path))
 		{
 			throw new Exception("Script file does not exist: " + path.toString());

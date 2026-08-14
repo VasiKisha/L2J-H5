@@ -1681,7 +1681,7 @@
 			<skill id="4416" level="18" /> <!-- Dwarves -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="19" />
@@ -1722,7 +1722,7 @@
 			<skill id="4416" level="18" /> <!-- Dwarves -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="19" />
@@ -1886,7 +1886,7 @@
 			<skill id="4416" level="18" /> <!-- Dwarves -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="19" />
@@ -1927,7 +1927,7 @@
 			<skill id="4416" level="18" /> <!-- Dwarves -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="19" />
@@ -3094,7 +3094,7 @@
 			<skill id="4416" level="17" /> <!-- Orcs -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="27" />
@@ -3135,7 +3135,7 @@
 			<skill id="4416" level="17" /> <!-- Orcs -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="27" />
@@ -3176,7 +3176,7 @@
 			<skill id="4416" level="17" /> <!-- Orcs -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="27" />
@@ -3258,7 +3258,7 @@
 			<skill id="4416" level="17" /> <!-- Orcs -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="27" />

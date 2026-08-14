@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.ClanAccess;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanAccess;
-import org.l2jmobius.gameserver.model.siege.manor.Seed;
-import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
+import org.l2jmobius.gameserver.mechanics.siege.manor.Seed;
+import org.l2jmobius.gameserver.mechanics.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
 /**
@@ -94,7 +94,7 @@ public class RequestSetSeed extends ClientPacket
 			return;
 		}
 		
-		// Filter seeds with start amount lower than 0 and incorrect price
+		// Filter seeds with start amount lower than 0 and incorrect price.
 		final List<SeedProduction> list = new ArrayList<>(_items.size());
 		for (SeedProduction sp : _items)
 		{

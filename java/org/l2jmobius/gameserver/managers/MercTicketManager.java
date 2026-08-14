@@ -26,13 +26,13 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Defender;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Defender;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 
 /**
  * This class is similar to the SiegeGuardManager, except it handles the loading of the mercenary tickets that are dropped on castle floors by the castle lords.<br>
@@ -181,22 +181,22 @@ public class MercTicketManager
 					mercPlaced[castle.getResidenceId() - 1] += 1;
 				}
 				
-				// find the FIRST ticket itemId with spawns the saved NPC in the saved location
+				// Find the FIRST ticket itemId with spawns the saved NPC in the saved location.
 				for (int i = startindex; i < (startindex + GUARDIAN_TYPES_COUNT); i++)
 				{
-					if (NPC_IDS[i] == npcId) // Find the index of the item used
+					if (NPC_IDS[i] == npcId) // Find the index of the item used.
 					{
 						// only handle tickets if a siege is not ongoing in this npc's castle
 						if ((castle != null) && !castle.getSiege().isInProgress())
 						{
 							itemId = ITEM_IDS[i];
 							
-							// create the ticket in the gameworld
+							// Create the ticket in the gameworld.
 							final Item dropticket = new Item(IdManager.getInstance().getNextId(), itemId);
 							dropticket.setItemLocation(ItemLocation.VOID);
 							dropticket.dropMe(null, x, y, z);
 							dropticket.setDropTime(0); // avoids it from being removed by the auto item destroyer
-							World.getInstance().addObject(dropticket);
+							World.addObject(dropticket);
 							DROPPED_TICKETS.add(dropticket);
 						}
 						break;
@@ -227,7 +227,7 @@ public class MercTicketManager
 		// find the max value for this item
 		for (int i = 0; i < ITEM_IDS.length; i++)
 		{
-			if (ITEM_IDS[i] == itemId) // Find the index of the item used
+			if (ITEM_IDS[i] == itemId) // Find the index of the item used.
 			{
 				limit = MAX_MERC_PER_TYPE[i];
 				break;
@@ -312,31 +312,31 @@ public class MercTicketManager
 	 */
 	public int addTicket(int itemId, Player player)
 	{
-		final int x = player.getX();
-		final int y = player.getY();
-		final int z = player.getZ();
-		final int heading = player.getHeading();
 		final Castle castle = CastleManager.getInstance().getCastle(player);
 		if (castle == null)
 		{
 			return -1;
 		}
 		
+		final int x = player.getX();
+		final int y = player.getY();
+		final int z = player.getZ();
+		final int heading = player.getHeading();
 		for (int i = 0; i < ITEM_IDS.length; i++)
 		{
-			if (ITEM_IDS[i] == itemId) // Find the index of the item used
+			if (ITEM_IDS[i] == itemId) // Find the index of the item used.
 			{
 				spawnMercenary(NPC_IDS[i], x, y, z, 3000);
 				
 				// Hire merc for this castle. NpcId is at the same index as the item used.
 				castle.getSiege().getSiegeGuardManager().hireMerc(x, y, z, heading, NPC_IDS[i]);
 				
-				// create the ticket in the gameworld
+				// Create the ticket in the gameworld.
 				final Item dropticket = new Item(IdManager.getInstance().getNextId(), itemId);
 				dropticket.setItemLocation(ItemLocation.VOID);
 				dropticket.dropMe(null, x, y, z);
 				dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
-				World.getInstance().addObject(dropticket); // add to the world
+				World.addObject(dropticket); // add to the world
 				
 				// and keep track of this ticket in the list
 				DROPPED_TICKETS.add(dropticket);
@@ -377,7 +377,7 @@ public class MercTicketManager
 			if ((item != null) && (getTicketCastleId(item.getId()) == castleId))
 			{
 				item.decayMe();
-				World.getInstance().removeObject(item);
+				// World.removeObject(item); // redundant - decayMe() already calls World.removeObject
 				DROPPED_TICKETS.remove(item);
 			}
 		}
@@ -392,10 +392,10 @@ public class MercTicketManager
 		final int itemId = item.getId();
 		int npcId = -1;
 		
-		// find the FIRST ticket itemId with spawns the saved NPC in the saved location
+		// Find the FIRST ticket itemId with spawns the saved NPC in the saved location.
 		for (int i = 0; i < ITEM_IDS.length; i++)
 		{
-			if (ITEM_IDS[i] == itemId) // Find the index of the item used
+			if (ITEM_IDS[i] == itemId) // Find the index of the item used.
 			{
 				npcId = NPC_IDS[i];
 				break;

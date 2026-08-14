@@ -18,12 +18,12 @@ package quests.Q00333_HuntOfTheBlackLion;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.enums.CategoryType;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -128,12 +128,13 @@ public class Q00333_HuntOfTheBlackLion extends Quest
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
-		final int chance = getRandom(100);
-		final int chance1 = getRandom(100);
 		if (qs == null)
 		{
 			return null;
 		}
+		
+		final int chance = getRandom(100);
+		final int chance1 = getRandom(100);
 		
 		String htmltext = null;
 		switch (event)

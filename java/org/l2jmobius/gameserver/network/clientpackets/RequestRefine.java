@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.AugmentationData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.options.Augmentation;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.options.Augmentation;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExVariationResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -86,7 +86,6 @@ public class RequestRefine extends AbstractRefinePacket
 			return;
 		}
 		
-		final int lifeStoneLevel = ls.getLevel();
 		final int lifeStoneGrade = ls.getGrade();
 		if (_gemStoneCount != getGemStoneCount(targetItem.getTemplate().getCrystalType(), lifeStoneGrade))
 		{
@@ -94,6 +93,8 @@ public class RequestRefine extends AbstractRefinePacket
 			player.sendPacket(SystemMessageId.AUGMENTATION_FAILED_DUE_TO_INAPPROPRIATE_CONDITIONS);
 			return;
 		}
+		
+		final int lifeStoneLevel = ls.getLevel();
 		
 		// unequip item
 		if (targetItem.isEquipped())

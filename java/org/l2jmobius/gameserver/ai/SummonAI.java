@@ -25,18 +25,18 @@ import java.util.concurrent.Future;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 
 public class SummonAI extends PlayableAI implements Runnable
 {
 	private static final int AVOID_RADIUS = 70;
 	
-	private volatile boolean _thinking; // to prevent recursive thinking
+	private volatile boolean _thinking; // To prevent recursive thinking.
 	private volatile boolean _startFollow = _actor.asSummon().getFollowStatus();
 	private Creature _lastAttack = null;
 	
@@ -49,39 +49,60 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onIntentionAttack(Creature target)
+	public Intention getNextIntention()
 	{
-		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
+		return _lastAttack != null ? Intention.ATTACK : null;
+	}
+	
+	@Override
+	public void setIntentionAttack(WorldObject target)
+	{
+		if (target == null)
 		{
 			return;
 		}
 		
-		super.onIntentionAttack(target);
+		final Creature creatureTarget = target.asCreature();
+		if (creatureTarget == null)
+		{
+			return;
+		}
+		
+		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), creatureTarget.getX(), creatureTarget.getY(), creatureTarget.getZ(), _actor.getInstanceId(), false) == null))
+		{
+			return;
+		}
+		
+		stopAvoidTask();
+		super.setIntentionAttack(target);
 	}
 	
 	@Override
-	protected void onIntentionIdle()
+	public void setIntentionIdle()
 	{
 		stopFollow();
 		_startFollow = false;
-		onIntentionActive();
+		stopAvoidTask();
+		setIntentionActive();
 	}
 	
 	@Override
-	protected void onIntentionActive()
+	public void setIntentionActive()
 	{
 		if (_startFollow)
 		{
-			setIntention(Intention.FOLLOW, _actor.asSummon().getOwner());
+			startAvoidTask();
+			setIntentionFollow(_actor.asSummon().getOwner());
 		}
 		else
 		{
-			super.onIntentionActive();
+			startAvoidTask();
+			super.setIntentionActive();
 		}
 	}
 	
 	@Override
-	protected void onIntentionFollow(Creature target)
+	public void setIntentionFollow(WorldObject target)
 	{
 		if (target == null)
 		{
@@ -89,33 +110,21 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
+		final Creature creatureTarget = target.asCreature();
+		if (creatureTarget == null)
 		{
 			clientActionFailed();
 			return;
 		}
 		
-		super.onIntentionFollow(target);
-	}
-	
-	@Override
-	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
-	{
-		switch (intention)
+		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), creatureTarget.getX(), creatureTarget.getY(), creatureTarget.getZ(), _actor.getInstanceId(), false) == null))
 		{
-			case ACTIVE:
-			case FOLLOW:
-			{
-				startAvoidTask();
-				break;
-			}
-			default:
-			{
-				stopAvoidTask();
-			}
+			clientActionFailed();
+			return;
 		}
 		
-		super.changeIntention(intention, arg0, arg1);
+		startAvoidTask();
+		super.setIntentionFollow(target);
 	}
 	
 	private void thinkAttack()
@@ -152,7 +161,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		clientStopMoving(null);
 		final Summon summon = _actor.asSummon();
 		summon.setFollowStatus(false);
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 		_startFollow = val;
 		_actor.doCast(_skill);
 	}
@@ -164,7 +173,7 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 		_actor.asSummon().doPickupItem(getTarget());
 	}
 	
@@ -175,11 +184,11 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 	}
 	
 	@Override
-	public void onActionThink()
+	public void notifyActionThink()
 	{
 		if (_thinking || _actor.isCastingNow() || _actor.isAllSkillsDisabled())
 		{
@@ -221,7 +230,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onActionFinishCasting()
+	public void notifyActionFinishCasting()
 	{
 		if (_lastAttack == null)
 		{
@@ -229,30 +238,47 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		else
 		{
-			setIntention(Intention.ATTACK, _lastAttack);
+			final Creature replayTarget = _lastAttack;
 			_lastAttack = null;
+			setIntentionAttack(replayTarget);
+		}
+		
+		super.notifyActionFinishCasting();
+	}
+	
+	@Override
+	public void notifyActionAttacked(WorldObject attacker)
+	{
+		super.notifyActionAttacked(attacker);
+		
+		if (attacker != null)
+		{
+			final Creature attackerCreature = attacker.asCreature();
+			if (attackerCreature != null)
+			{
+				avoidAttack(attackerCreature);
+			}
 		}
 	}
 	
 	@Override
-	protected void onActionAttacked(Creature attacker)
+	public void notifyActionEvaded(WorldObject attacker)
 	{
-		super.onActionAttacked(attacker);
+		super.notifyActionEvaded(attacker);
 		
-		avoidAttack(attacker);
-	}
-	
-	@Override
-	protected void onActionEvaded(Creature attacker)
-	{
-		super.onActionEvaded(attacker);
-		
-		avoidAttack(attacker);
+		if (attacker != null)
+		{
+			final Creature attackerCreature = attacker.asCreature();
+			if (attackerCreature != null)
+			{
+				avoidAttack(attackerCreature);
+			}
+		}
 	}
 	
 	private void avoidAttack(Creature attacker)
 	{
-		// trying to avoid if summon near owner
+		// Trying to avoid if summon near owner.
 		if ((_actor.asSummon().getOwner() != null) && (_actor.asSummon().getOwner() != attacker) && _actor.asSummon().getOwner().isInsideRadius3D(_actor, 2 * AVOID_RADIUS))
 		{
 			_startAvoid = true;
@@ -307,7 +333,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onIntentionCast(Skill skill, WorldObject target)
+	public void setIntentionCast(Skill skill, WorldObject target)
 	{
 		if (getIntention() == Intention.ATTACK)
 		{
@@ -318,7 +344,8 @@ public class SummonAI extends PlayableAI implements Runnable
 			_lastAttack = null;
 		}
 		
-		super.onIntentionCast(skill, target);
+		stopAvoidTask();
+		super.setIntentionCast(skill, target);
 	}
 	
 	private void startAvoidTask()

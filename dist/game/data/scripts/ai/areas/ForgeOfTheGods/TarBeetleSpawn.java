@@ -30,10 +30,10 @@ import org.w3c.dom.Node;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
 import org.l2jmobius.gameserver.util.PolygonTerritory;
 
 /**
@@ -178,7 +178,7 @@ public class TarBeetleSpawn implements IXmlReader
 			_bannedZones.add(bZone);
 		}
 		
-		private final boolean isInsideBannedZone(Location location)
+		private boolean isInsideBannedZone(Location location)
 		{
 			if (_bannedZones != null)
 			{

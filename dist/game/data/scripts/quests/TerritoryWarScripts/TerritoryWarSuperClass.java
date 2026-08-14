@@ -19,18 +19,18 @@ package quests.TerritoryWarScripts;
 import java.util.Calendar;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager.TerritoryNPCSpawn;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.siege.TerritoryWard;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.siege.TerritoryWard;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
@@ -159,7 +159,7 @@ public class TerritoryWarSuperClass extends Quest
 			final int territoryId = getTerritoryIdForThisNPCId(npc.getId());
 			if ((territoryId >= 81) && (territoryId <= 89))
 			{
-				for (Player pl : World.getInstance().getPlayers())
+				for (Player pl : World.getPlayers())
 				{
 					if (pl.getSiegeSide() == territoryId)
 					{
@@ -352,7 +352,7 @@ public class TerritoryWarSuperClass extends Quest
 	{
 		super.setOnEnterWorld(value);
 		
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			if (player.getSiegeSide() > 0)
 			{

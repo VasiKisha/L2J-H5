@@ -1,20 +1,22 @@
 /*
- * Copyright © 2019-2021 Async-mmocore
- *
- * This file is part of the Async-mmocore project.
- *
- * Async-mmocore is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Async-mmocore is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.network;
 
@@ -23,12 +25,22 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.l2jmobius.commons.network.handler.ReadHandler;
+import org.l2jmobius.commons.network.handler.WriteHandler;
+import org.l2jmobius.commons.network.pool.ResourcePool;
 
 /**
- * Represents a network connection associated with a client.<br>
- * This class encapsulates operations such as reading and writing data to and from the network channel, managing buffers and handling network events.
- * @param <T> The type of the client associated with this connection.
- * @author JoeAlisson
+ * Manages a single network connection backed by an {@link AsynchronousSocketChannel}.<br>
+ * <br>
+ * Owns the lifecycle of both the read buffer (single {@link ByteBuffer} obtained from the {@link ResourcePool}) and the write buffer array (supplied per-packet by the {@link Client}).<br>
+ * All asynchronous I/O is dispatched from here; completion logic lives in {@link ReadHandler} and {@link WriteHandler}.<br>
+ * <br>
+ * Thread-safety: the {@code _client} reference is declared {@code volatile} because it is read by NIO completion-handler threads.<br>
+ * An {@link AtomicBoolean} guards {@link #close()} against double-close races that can occur when a read failure and a write failure fire concurrently.
+ * @param <T> the client type associated with this connection
+ * @author JoeAlisson, Mobius
  */
 public class Connection<T extends Client<Connection<T>>>
 {
@@ -36,17 +48,22 @@ public class Connection<T extends Client<Connection<T>>>
 	private final ReadHandler<T> _readHandler;
 	private final WriteHandler<T> _writeHandler;
 	private final ConnectionConfig _config;
-	private T _client;
+	
+	/** Volatile because NIO completion-handler threads read this field. */
+	private volatile T _client;
+	
+	/** Ensures {@link #close()} body executes at most once. */
+	private final AtomicBoolean _closed = new AtomicBoolean();
 	
 	private ByteBuffer _readingBuffer;
 	private ByteBuffer[] _writingBuffers;
 	
 	/**
-	 * Constructs a Connection with the specified channel, handlers, and configuration.
-	 * @param channel The AsynchronousSocketChannel for communication.
-	 * @param readHandler The handler for read operations.
-	 * @param writeHandler The handler for write operations.
-	 * @param config The configuration for the connection.
+	 * Creates a new connection around an already-accepted channel.
+	 * @param channel the open async socket channel
+	 * @param readHandler completion handler for read operations
+	 * @param writeHandler completion handler for write operations
+	 * @param config shared configuration (resource pool, thresholds, etc.)
 	 */
 	public Connection(AsynchronousSocketChannel channel, ReadHandler<T> readHandler, WriteHandler<T> writeHandler, ConnectionConfig config)
 	{
@@ -57,16 +74,21 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Sets the client associated with this connection.
-	 * @param client The client to associate with this connection.
+	 * Binds a client to this connection. Must be called exactly once, immediately after construction.
+	 * @param client the owning client
 	 */
 	public void setClient(T client)
 	{
 		_client = client;
 	}
 	
+	// ------------------------------------------------------------------
+	// Read operations.
+	// ------------------------------------------------------------------
+	
 	/**
-	 * Initiates a read operation on the connection.
+	 * Submits an async read into the current reading buffer.<br>
+	 * No-op if the channel has already been closed.
 	 */
 	public void read()
 	{
@@ -77,21 +99,21 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Initiates a header read operation by releasing any existing buffer and obtaining a new header buffer from the resource pool.
+	 * Prepares for the next packet by recycling the old reading buffer, obtaining a fresh header-sized buffer from the pool and starting a read.
 	 */
 	public void readHeader()
 	{
 		if (_channel.isOpen())
 		{
-			releaseReadingBuffer();
+			recycleReadBuffer();
 			_readingBuffer = _config.resourcePool.getHeaderBuffer();
 			read();
 		}
 	}
 	
 	/**
-	 * Reads a specific size of data by obtaining a buffer of the specified size from the resource pool and initiating a read operation.
-	 * @param size The size of data to read.
+	 * Swaps the reading buffer for one that can hold {@code size} bytes and starts a read.
+	 * @param size required capacity in bytes
 	 */
 	public void read(int size)
 	{
@@ -103,9 +125,22 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Initiates a write operation with the specified buffers.
-	 * @param buffers The ByteBuffers to write.
-	 * @return {@code true} if the write operation was initiated, {@code false} otherwise.
+	 * Returns the buffer that is currently receiving inbound data.
+	 * @return the reading buffer, or {@code null} between packets
+	 */
+	public ByteBuffer getReadingBuffer()
+	{
+		return _readingBuffer;
+	}
+	
+	// ------------------------------------------------------------------
+	// Write operations.
+	// ------------------------------------------------------------------
+	
+	/**
+	 * Begins a gather-write of the supplied buffers to the channel.
+	 * @param buffers one or more buffers containing the outgoing packet data
+	 * @return {@code true} if the write was submitted; {@code false} if the channel is closed
 	 */
 	public boolean write(ByteBuffer[] buffers)
 	{
@@ -120,8 +155,8 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Continues a write operation using the existing write buffers.<br>
-	 * If the write completes, notifies the client to finish the writing process.
+	 * Continues (or completes) a previously started gather-write.<br>
+	 * If the channel is closed or no buffers remain, signals the client via {@link Client#finishWriting()} so it can dequeue the next packet.
 	 */
 	public void write()
 	{
@@ -136,54 +171,44 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Retrieves the current reading buffer.
-	 * @return The reading buffer.
-	 */
-	public ByteBuffer getReadingBuffer()
-	{
-		return _readingBuffer;
-	}
-	
-	/**
-	 * Releases the reading buffer back to the resource pool.
-	 */
-	private void releaseReadingBuffer()
-	{
-		if (_readingBuffer != null)
-		{
-			_config.resourcePool.recycleBuffer(_readingBuffer);
-			_readingBuffer = null;
-		}
-	}
-	
-	/**
-	 * Releases the writing buffers back to the resource pool.
-	 * @return {@code true} if any buffers were released, {@code false} otherwise.
+	 * Returns every write buffer to the resource pool.
+	 * @return {@code true} if at least one buffer was recycled
 	 */
 	public boolean releaseWritingBuffer()
 	{
-		boolean released = false;
-		if (_writingBuffers != null)
+		final ByteBuffer[] buffers = _writingBuffers;
+		if (buffers == null)
 		{
-			for (ByteBuffer buffer : _writingBuffers)
-			{
-				_config.resourcePool.recycleBuffer(buffer);
-				released = true;
-			}
-			
-			_writingBuffers = null;
+			return false;
 		}
 		
-		return released;
+		_writingBuffers = null;
+		for (ByteBuffer buf : buffers)
+		{
+			_config.resourcePool.recycleBuffer(buf);
+		}
+		
+		return true;
 	}
 	
+	// ------------------------------------------------------------------
+	// Lifecycle.
+	// ------------------------------------------------------------------
+	
 	/**
-	 * Closes the connection, releasing both reading and writing buffers and closing the channel if it is open.
+	 * Closes the connection, releasing all pooled buffers and shutting down the channel.<br>
+	 * Safe to call from multiple threads - only the first invocation performs cleanup.
 	 */
 	public void close()
 	{
-		releaseReadingBuffer();
+		if (!_closed.compareAndSet(false, true))
+		{
+			return;
+		}
+		
+		recycleReadBuffer();
 		releaseWritingBuffer();
+		
 		try
 		{
 			if (_channel.isOpen())
@@ -191,9 +216,9 @@ public class Connection<T extends Client<Connection<T>>>
 				_channel.close();
 			}
 		}
-		catch (IOException e)
+		catch (IOException ignored)
 		{
-			// Placeholder for handling/logging IOException if needed.
+			// Channel was already broken - nothing useful to do.
 		}
 		finally
 		{
@@ -202,15 +227,28 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Retrieves the remote IP address of the client connected to this connection.
-	 * @return The IP address of the remote client as a string, or an empty string if unavailable.
+	 * Returns {@code true} if the underlying channel is still open.
+	 * @return channel open state
+	 */
+	public boolean isOpen()
+	{
+		return _channel.isOpen();
+	}
+	
+	// ------------------------------------------------------------------
+	// Accessors.
+	// ------------------------------------------------------------------
+	
+	/**
+	 * Resolves the remote peer's IP address.
+	 * @return dotted-quad (or IPv6) address string, or {@code ""} if the channel is closed
 	 */
 	public String getRemoteAddress()
 	{
 		try
 		{
-			final InetSocketAddress address = (InetSocketAddress) _channel.getRemoteAddress();
-			return address.getAddress().getHostAddress();
+			final InetSocketAddress remote = (InetSocketAddress) _channel.getRemoteAddress();
+			return remote.getAddress().getHostAddress();
 		}
 		catch (IOException e)
 		{
@@ -219,17 +257,8 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Checks if the connection is open.
-	 * @return {@code true} if the connection is open, {@code false} otherwise.
-	 */
-	public boolean isOpen()
-	{
-		return _channel.isOpen();
-	}
-	
-	/**
-	 * Retrieves the resource pool associated with this connection.
-	 * @return The {@link ResourcePool} used by this connection.
+	 * Returns the {@link ResourcePool} shared by all connections on this acceptor.
+	 * @return the resource pool
 	 */
 	public ResourcePool getResourcePool()
 	{
@@ -237,8 +266,8 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Determines whether packet dropping is enabled for this connection.
-	 * @return {@code true} if packet dropping is enabled, {@code false} otherwise.
+	 * Indicates whether the server is configured to silently drop expendable packets when a client's outbound queue grows too large.
+	 * @return {@code true} if packet dropping is enabled
 	 */
 	public boolean dropPackets()
 	{
@@ -246,11 +275,28 @@ public class Connection<T extends Client<Connection<T>>>
 	}
 	
 	/**
-	 * Retrieves the packet drop threshold for this connection.
-	 * @return The packet drop threshold.
+	 * Returns the queue depth at which expendable packets begin to be dropped.
+	 * @return the drop threshold
 	 */
 	public int dropPacketThreshold()
 	{
 		return _config.dropPacketThreshold;
+	}
+	
+	// ------------------------------------------------------------------
+	// Internal helpers.
+	// ------------------------------------------------------------------
+	
+	/**
+	 * Returns the current reading buffer to the pool and nulls the reference.
+	 */
+	private void recycleReadBuffer()
+	{
+		final ByteBuffer buf = _readingBuffer;
+		if (buf != null)
+		{
+			_readingBuffer = null;
+			_config.resourcePool.recycleBuffer(buf);
+		}
 	}
 }

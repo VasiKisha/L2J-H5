@@ -20,10 +20,10 @@
  */
 package handlers.actions.click;
 
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public class DecoyClick implements IActionClickHandler
@@ -31,7 +31,7 @@ public class DecoyClick implements IActionClickHandler
 	@Override
 	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
-		// Aggression target lock effect
+		// Aggression target lock effect.
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
 		{
 			player.sendPacket(SystemMessageId.FAILED_TO_CHANGE_ATTACK_TARGET);

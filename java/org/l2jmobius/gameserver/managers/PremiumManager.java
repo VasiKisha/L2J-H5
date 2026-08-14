@@ -33,14 +33,15 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.Containers;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.events.Containers;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.ListenersContainer;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
 
 /**
  * @author Mobius
@@ -81,7 +82,7 @@ public class PremiumManager
 	private final Consumer<OnPlayerLogin> _playerLoginEvent = event ->
 	{
 		final Player player = event.getPlayer();
-		final String accountName = player.getAccountName();
+		final String accountName = PremiumSystemConfig.ACCOUNT_WIDE_PREMIUM ? player.getAccountName() : player.getName();
 		loadPremiumData(accountName);
 		final long now = System.currentTimeMillis();
 		final long premiumExpiration = getPremiumExpiration(accountName);
@@ -113,7 +114,7 @@ public class PremiumManager
 	 */
 	private void startExpireTask(Player player, long delay)
 	{
-		_expiretasks.put(player.getAccountName().toLowerCase(), ThreadPool.schedule(new PremiumExpireTask(player), delay));
+		_expiretasks.put(PremiumSystemConfig.ACCOUNT_WIDE_PREMIUM ? player.getAccountName().toLowerCase() : player.getName().toLowerCase(), ThreadPool.schedule(new PremiumExpireTask(player), delay));
 	}
 	
 	/**
@@ -121,11 +122,10 @@ public class PremiumManager
 	 */
 	private void stopExpireTask(Player player)
 	{
-		ScheduledFuture<?> task = _expiretasks.remove(player.getAccountName().toLowerCase());
+		final ScheduledFuture<?> task = _expiretasks.remove(PremiumSystemConfig.ACCOUNT_WIDE_PREMIUM ? player.getAccountName().toLowerCase() : player.getName().toLowerCase());
 		if (task != null)
 		{
 			task.cancel(false);
-			task = null;
 		}
 	}
 	
@@ -159,7 +159,7 @@ public class PremiumManager
 		final long addTime = timeUnit.toMillis(timeValue);
 		final long now = System.currentTimeMillis();
 		
-		// new premium task at least from now
+		// New premium task at least from now.
 		final long oldPremiumExpiration = Math.max(now, getPremiumExpiration(accountName));
 		final long newPremiumExpiration = oldPremiumExpiration + addTime;
 		
@@ -180,7 +180,7 @@ public class PremiumManager
 		_premiumData.put(accountName.toLowerCase(), newPremiumExpiration);
 		
 		// UPDATE PlAYER PREMIUMSTATUS
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			if (accountName.equalsIgnoreCase(player.getAccountName()))
 			{
@@ -199,7 +199,7 @@ public class PremiumManager
 	{
 		if (checkOnline)
 		{
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if (accountName.equalsIgnoreCase(player.getAccountName()) && player.hasPremiumStatus())
 				{

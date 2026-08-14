@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.loginserver.network;
 
-import org.l2jmobius.commons.network.base.BaseWritablePacket;
+import org.l2jmobius.commons.network.packet.SimpleWritablePacket;
 
 /**
  * @author Mobius
@@ -47,7 +47,7 @@ public enum LoginServerPackets
 		_id = id;
 	}
 	
-	public void writeId(BaseWritablePacket packet)
+	public void writeId(SimpleWritablePacket packet)
 	{
 		packet.writeByte(_id);
 	}

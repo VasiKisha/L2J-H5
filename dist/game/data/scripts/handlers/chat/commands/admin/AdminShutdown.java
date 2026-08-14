@@ -20,14 +20,14 @@
  */
 package handlers.chat.commands.admin;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.Shutdown;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
  */
 public class AdminShutdown implements IAdminCommandHandler
 {
+	private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("h:mm a");
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_server_shutdown",
@@ -106,14 +107,11 @@ public class AdminShutdown implements IAdminCommandHandler
 		final int t = GameTimeTaskManager.getInstance().getGameTime();
 		final int h = t / 60;
 		final int m = t % 60;
-		final SimpleDateFormat format = new SimpleDateFormat("h:mm a");
-		final Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, h);
-		cal.set(Calendar.MINUTE, m);
+		final LocalTime time = LocalTime.of(h, m);
 		adminReply.setFile(activeChar, "data/html/admin/shutdown.htm");
-		adminReply.replace("%count%", String.valueOf(World.getInstance().getPlayers().size()));
+		adminReply.replace("%count%", String.valueOf(World.getPlayers().size()));
 		adminReply.replace("%used%", String.valueOf(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
-		adminReply.replace("%time%", format.format(cal.getTime()));
+		adminReply.replace("%time%", TIME_FORMAT.format(time));
 		activeChar.sendPacket(adminReply);
 	}
 	

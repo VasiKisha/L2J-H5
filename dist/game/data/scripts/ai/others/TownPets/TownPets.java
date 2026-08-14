@@ -20,13 +20,12 @@
  */
 package ai.others.TownPets;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Town Pet AI
@@ -72,7 +71,7 @@ public class TownPets extends Script
 				final Location moveLocation = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), locX, locY, npc.getZ(), 0);
 				if (npc.calculateDistance3D(moveLocation) > 20)
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, moveLocation);
+					npc.getAI().setIntentionMoveTo(moveLocation);
 				}
 				
 				startQuestTimer("move", MOVE_INTERVAL, npc, null);

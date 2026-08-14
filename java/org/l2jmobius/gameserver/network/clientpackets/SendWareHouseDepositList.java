@@ -20,19 +20,19 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.ADENA_ID;
+import static org.l2jmobius.gameserver.entity.itemcontainer.Inventory.ADENA_ID;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.ItemContainer;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
@@ -120,13 +120,13 @@ public class SendWareHouseDepositList extends ClientPacket
 			return;
 		}
 		
-		// Alt game - Karma punishment
+		// Alt game - Karma punishment.
 		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getKarma() > 0))
 		{
 			return;
 		}
 		
-		// Freight price from config or normal price per item slot (30)
+		// Freight price from config or normal price per item slot (30).
 		final long fee = _items.size() * 30;
 		long currentAdena = player.getAdena();
 		int slots = 0;
@@ -139,7 +139,7 @@ public class SendWareHouseDepositList extends ClientPacket
 				return;
 			}
 			
-			// Calculate needed adena and slots
+			// Calculate needed adena and slots.
 			if (item.getId() == ADENA_ID)
 			{
 				currentAdena -= itemHolder.getCount();
@@ -155,31 +155,31 @@ public class SendWareHouseDepositList extends ClientPacket
 			}
 		}
 		
-		// Item Max Limit Check
+		// Item Max Limit Check.
 		if (!warehouse.validateCapacity(slots))
 		{
 			player.sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_THE_QUANTITY_THAT_CAN_BE_INPUTTED);
 			return;
 		}
 		
-		// Check if enough adena and charge the fee
+		// Check if enough adena and charge the fee.
 		if ((currentAdena < fee) || !player.reduceAdena(ItemProcessType.FEE, fee, manager, false))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 			return;
 		}
 		
-		// get current tradelist if any
+		// Get current tradelist if any.
 		if (player.getActiveTradeList() != null)
 		{
 			return;
 		}
 		
-		// Proceed to the transfer
+		// Proceed to the transfer.
 		final InventoryUpdate playerIU = new InventoryUpdate();
 		for (ItemHolder itemHolder : _items)
 		{
-			// Check validity of requested item
+			// Check validity of requested item.
 			final Item oldItem = player.checkItemManipulation(itemHolder.getId(), itemHolder.getCount(), "deposit");
 			if (oldItem == null)
 			{
@@ -209,10 +209,10 @@ public class SendWareHouseDepositList extends ClientPacket
 			}
 		}
 		
-		// Send updated item list to the player
+		// Send updated item list to the player.
 		player.sendInventoryUpdate(playerIU);
 		
-		// Update current load status on player
+		// Update current load status on player.
 		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 		player.sendPacket(su);

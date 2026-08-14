@@ -19,13 +19,13 @@ package ai.others;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.interfaces.ILocational;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * @author HorridoJoho, Janiko, FinalDestination, lion
@@ -52,7 +52,7 @@ public class AltarsOfSacrifice extends Script
 				throw new IllegalStateException();
 			}
 			
-			final Spawn spawn = new Spawn(_bossNpcIds[getRandom(_bossNpcIds.length)]);
+			final Spawn spawn = new Spawn(getRandomEntry(_bossNpcIds));
 			spawn.setAmount(1);
 			spawn.setHeading(getRandom(65536));
 			

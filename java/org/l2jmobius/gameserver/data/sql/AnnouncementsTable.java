@@ -26,11 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.announce.Announcement;
-import org.l2jmobius.gameserver.model.announce.AnnouncementType;
-import org.l2jmobius.gameserver.model.announce.AutoAnnouncement;
-import org.l2jmobius.gameserver.model.announce.IAnnouncement;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.announce.Announcement;
+import org.l2jmobius.gameserver.mechanics.announce.AnnouncementType;
+import org.l2jmobius.gameserver.mechanics.announce.AutoAnnouncement;
+import org.l2jmobius.gameserver.mechanics.announce.IAnnouncement;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 

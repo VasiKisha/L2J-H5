@@ -37,7 +37,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
-import org.l2jmobius.gameserver.model.clientstrings.Builder;
+import org.l2jmobius.gameserver.mechanics.clientstrings.Builder;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
 public class NpcStringId
@@ -17994,7 +17994,7 @@ public class NpcStringId
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "getText: ", e);
 		}
 		
 		return text;

@@ -16,14 +16,13 @@
  */
 package ai.areas.Hellbound.AI;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -79,7 +78,7 @@ public class Amaskari extends Script
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[2]);
 			npc.asMonster().clearAggroList();
-			npc.asMonster().getAI().setIntention(Intention.ACTIVE);
+			npc.asMonster().getAI().setIntentionActive();
 			npc.setInvul(false);
 			// npc.doCast(INVINCIBILITY.getSkill())
 		}
@@ -134,7 +133,7 @@ public class Amaskari extends Script
 				else
 				{
 					master.clearAggroList();
-					master.getAI().setIntention(Intention.ACTIVE);
+					master.getAI().setIntentionActive();
 					if (info == null)
 					{
 						master.doCast(BUFF[0].getSkill());

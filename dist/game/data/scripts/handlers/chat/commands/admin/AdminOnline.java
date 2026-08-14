@@ -23,10 +23,10 @@ package handlers.chat.commands.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
@@ -52,7 +52,7 @@ public class AdminOnline implements IAdminCommandHandler
 			int notPeace = 0;
 			int instanced = 0;
 			int combat = 0;
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				final String ip = player.getIPAddress();
 				if ((ip != null) && !ips.contains(ip))
@@ -80,7 +80,7 @@ public class AdminOnline implements IAdminCommandHandler
 					notPeace++;
 				}
 				
-				if (player.getInstanceId() > 0)
+				if (player.isInInstance())
 				{
 					instanced++;
 				}

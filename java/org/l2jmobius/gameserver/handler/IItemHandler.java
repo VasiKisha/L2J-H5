@@ -22,8 +22,8 @@ package org.l2jmobius.gameserver.handler;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 
 /**
  * Mother class of all Item Handlers.

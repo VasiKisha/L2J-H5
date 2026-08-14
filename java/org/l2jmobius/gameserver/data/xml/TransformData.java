@@ -26,15 +26,15 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.transform.AdditionalItemHolder;
-import org.l2jmobius.gameserver.model.actor.transform.AdditionalSkillHolder;
-import org.l2jmobius.gameserver.model.actor.transform.Transform;
-import org.l2jmobius.gameserver.model.actor.transform.TransformLevelData;
-import org.l2jmobius.gameserver.model.actor.transform.TransformTemplate;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.transform.AdditionalItemHolder;
+import org.l2jmobius.gameserver.entity.actor.transform.AdditionalSkillHolder;
+import org.l2jmobius.gameserver.entity.actor.transform.Transform;
+import org.l2jmobius.gameserver.entity.actor.transform.TransformLevelData;
+import org.l2jmobius.gameserver.entity.actor.transform.TransformTemplate;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExBasicActionList;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author UnAfraid

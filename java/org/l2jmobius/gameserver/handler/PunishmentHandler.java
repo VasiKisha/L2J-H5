@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.handler;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 
 /**
  * This class manages handlers of punishments.

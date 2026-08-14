@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.model.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
 
 /**
  * @author Mobius
@@ -69,7 +69,7 @@ public class AttackableThinkTaskManager
 					ai = attackable.getAI();
 					if (ai != null)
 					{
-						ai.onActionThink();
+						ai.notifyActionThink();
 					}
 					else
 					{

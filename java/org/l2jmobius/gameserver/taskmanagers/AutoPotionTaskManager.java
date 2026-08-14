@@ -25,9 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
  * @author Mobius, Gigi
@@ -56,7 +56,7 @@ public class AutoPotionTaskManager implements Runnable
 		{
 			PLAYER: for (Player player : PLAYERS)
 			{
-				if ((player == null) || player.isAlikeDead() || (player.isOnlineInt() != 1) || (!AutoPotionsConfig.AUTO_POTIONS_IN_OLYMPIAD && player.isInOlympiadMode()))
+				if ((player == null) || player.isAlikeDead() || (player.isOnlineInt() == 0) || (!AutoPotionsConfig.AUTO_POTIONS_IN_OLYMPIAD && player.isInOlympiadMode()))
 				{
 					remove(player);
 					continue PLAYER;

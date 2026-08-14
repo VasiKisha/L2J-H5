@@ -20,10 +20,9 @@
  */
 package ai.areas.ForgeOfTheGods;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Forge of the Gods AI
@@ -167,7 +166,7 @@ public class ForgeOfTheGods extends Script
 		if (mob != null)
 		{
 			mob.asAttackable().addDamageHate(killer, 0, 9999);
-			mob.getAI().setIntention(Intention.ATTACK);
+			mob.getAI().setIntentionAttack(killer);
 		}
 	}
 	

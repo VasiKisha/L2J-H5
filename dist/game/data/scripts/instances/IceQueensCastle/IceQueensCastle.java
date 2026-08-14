@@ -16,18 +16,17 @@
  */
 package instances.IceQueensCastle;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -78,12 +77,12 @@ public class IceQueensCastle extends InstanceScript
 		{
 			case "ATTACK_KNIGHT":
 			{
-				World.getInstance().forEachVisibleObject(npc, Creature.class, character ->
+				World.forEachVisibleObject(npc, Creature.class, character ->
 				{
 					if ((character.getId() == ARCHERY_KNIGHT) && !character.isDead() && !character.asAttackable().isDecayed())
 					{
 						npc.setRunning();
-						npc.getAI().setIntention(Intention.ATTACK, character);
+						npc.getAI().setIntentionAttack(character);
 						npc.asAttackable().addDamageHate(character, 0, 999999);
 					}
 				});
@@ -94,7 +93,7 @@ public class IceQueensCastle extends InstanceScript
 			{
 				if (npc != null)
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, FREYA_LOC);
+					npc.getAI().setIntentionMoveTo(FREYA_LOC);
 				}
 				break;
 			}
@@ -119,7 +118,7 @@ public class IceQueensCastle extends InstanceScript
 			case "TIMER_PC_LEAVE":
 			{
 				final QuestState qs = player.getQuestState(Q10285_MeetingSirra.class.getSimpleName());
-				if ((qs != null))
+				if (qs != null)
 				{
 					qs.setMemoState(3);
 					qs.setCond(10, true);
@@ -140,12 +139,12 @@ public class IceQueensCastle extends InstanceScript
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
-			World.getInstance().forEachVisibleObject(npc, Creature.class, character ->
+			World.forEachVisibleObject(npc, Creature.class, character ->
 			{
 				if ((character.getId() == ARCHERY_KNIGHT) && !character.isDead() && !character.asAttackable().isDecayed())
 				{
 					npc.setRunning();
-					npc.getAI().setIntention(Intention.ATTACK, character);
+					npc.getAI().setIntentionAttack(character);
 					npc.asAttackable().addDamageHate(character, 0, 999999);
 					npc.setScriptValue(1);
 					startQuestTimer("ATTACK_KNIGHT", 5000, npc, null);

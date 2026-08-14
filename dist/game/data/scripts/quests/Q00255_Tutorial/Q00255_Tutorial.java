@@ -22,22 +22,22 @@ package quests.Q00255_Tutorial;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSit;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemPickup;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLevelChanged;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerSit;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.inventory.OnPlayerItemPickup;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialEnableClientEvent;
@@ -688,7 +688,7 @@ public class Q00255_Tutorial extends Quest
 					giveItems(talker, TUTORIAL_GUIDE, 1);
 				}
 				
-				startQuestTimer((talker.getObjectId() + 1000000) + "", 30000, null, qs.getPlayer());
+				startQuestTimer(String.valueOf(talker.getObjectId() + 1000000), 30000, null, qs.getPlayer());
 				qs.setMemoStateEx(1, -3);
 				break;
 			}
@@ -733,7 +733,7 @@ public class Q00255_Tutorial extends Quest
 					playTutorialVoice(talker, "tutorial_voice_006");
 					showQuestionMark(talker, 1);
 					playSound(talker, QuestSound.ITEMSOUND_QUEST_TUTORIAL);
-					startQuestTimer((talker.getObjectId() + 1000000) + "", 30000, null, qs.getPlayer());
+					startQuestTimer(String.valueOf(talker.getObjectId() + 1000000), 30000, null, qs.getPlayer());
 					if (qs.getMemoStateEx(1) <= 0)
 					{
 						qs.setMemoStateEx(1, -4);
@@ -2249,7 +2249,7 @@ public class Q00255_Tutorial extends Quest
 			{
 				case 0:
 				{
-					startQuestTimer((talker.getObjectId() + 1000000) + "", 5000, null, qs.getPlayer());
+					startQuestTimer(String.valueOf(talker.getObjectId() + 1000000), 5000, null, qs.getPlayer());
 					memoState = 2147483392 & ~(8388608 | 1048576);
 					qs.setMemoState(1 | memoState);
 					if (qs.getMemoStateEx(1) <= 0)
@@ -2674,7 +2674,7 @@ public class Q00255_Tutorial extends Quest
 						qs.setMemoStateEx(1, 4);
 					}
 					
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					takeItems(talker, RECOMMENDATION_1, 1);
 					showHtmlFile(talker, "30008-002.html");
 				}
@@ -2727,7 +2727,7 @@ public class Q00255_Tutorial extends Quest
 					}
 					
 					takeItems(talker, RECOMMENDATION_2, 1);
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					if (qs.getMemoStateEx(1) <= 3)
 					{
 						qs.setMemoStateEx(1, 4);
@@ -2785,7 +2785,7 @@ public class Q00255_Tutorial extends Quest
 					}
 					
 					takeItems(talker, BLOOD_OF_MITRAELL, 1);
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					if (qs.getMemoStateEx(1) <= 3)
 					{
 						qs.setMemoStateEx(1, 4);
@@ -2835,7 +2835,7 @@ public class Q00255_Tutorial extends Quest
 					}
 					
 					takeItems(talker, LEAF_OF_THE_MOTHER_TREE, 1);
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					if (qs.getMemoStateEx(1) <= 3)
 					{
 						qs.setMemoStateEx(1, 4);
@@ -2885,7 +2885,7 @@ public class Q00255_Tutorial extends Quest
 					}
 					
 					takeItems(talker, LICENSE_OF_MINER, 1);
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					if (qs.getMemoStateEx(1) <= 3)
 					{
 						qs.setMemoStateEx(1, 4);
@@ -2920,7 +2920,7 @@ public class Q00255_Tutorial extends Quest
 				if (hasQuestItems(talker, VOUCHER_OF_FLAME))
 				{
 					takeItems(talker, VOUCHER_OF_FLAME, 1);
-					startQuestTimer(npc.getId() + "", 60000, npc, talker);
+					startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 					if (qs.getMemoStateEx(1) <= 3)
 					{
 						qs.setMemoStateEx(1, 4);
@@ -2966,7 +2966,7 @@ public class Q00255_Tutorial extends Quest
 			}
 			
 			takeItems(talker, DIPLOMA, -1);
-			startQuestTimer(npc.getId() + "", 60000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 60000, npc, talker);
 			addRadar(talker, -119692, 44504, 380);
 			showHtmlFile(talker, "32133-002.html");
 		}
@@ -2997,7 +2997,7 @@ public class Q00255_Tutorial extends Quest
 			if ((talker.getPlayerClass() == PlayerClass.FIGHTER) && (talker.getRace() == Race.HUMAN))
 			{
 				removeRadar(talker, -71424, 258336, -3109);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				qs.setMemoStateEx(1, 0);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
 				showHtmlFile(talker, "30009-001.html");
@@ -3017,7 +3017,7 @@ public class Q00255_Tutorial extends Quest
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, RECOMMENDATION_1, 1);
 			
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if (!talker.isMageClass() && !hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{
@@ -3075,7 +3075,7 @@ public class Q00255_Tutorial extends Quest
 			if ((talker.getPlayerClass() == PlayerClass.MAGE) && (talker.getRace() == Race.HUMAN))
 			{
 				removeRadar(talker, -91036, 248044, -3568);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				qs.setMemoStateEx(1, 0);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
 				showHtmlFile(talker, "30019-001.html");
@@ -3096,7 +3096,7 @@ public class Q00255_Tutorial extends Quest
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, RECOMMENDATION_2, 1);
 			
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if (!talker.isMageClass() && !hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{
@@ -3153,7 +3153,7 @@ public class Q00255_Tutorial extends Quest
 			if (talker.getRace() == Race.DARK_ELF)
 			{
 				removeRadar(talker, 28384, 11056, -4233);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				
 				if (!talker.isMageClass())
 				{
@@ -3198,7 +3198,7 @@ public class Q00255_Tutorial extends Quest
 			takeItems(talker, BLUE_GEMSTONE, -1);
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, BLOOD_OF_MITRAELL, 1);
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			
@@ -3255,7 +3255,7 @@ public class Q00255_Tutorial extends Quest
 			if (talker.getRace() == Race.ELF)
 			{
 				removeRadar(talker, 46112, 41200, -3504);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				qs.setMemoStateEx(1, 0);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
 				if (!talker.isMageClass())
@@ -3288,7 +3288,7 @@ public class Q00255_Tutorial extends Quest
 			takeItems(talker, BLUE_GEMSTONE, -1);
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, LEAF_OF_THE_MOTHER_TREE, 1);
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if (!talker.isMageClass() && !hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{
@@ -3352,7 +3352,7 @@ public class Q00255_Tutorial extends Quest
 			if (talker.getRace() == Race.DWARF)
 			{
 				removeRadar(talker, 108567, -173994, -406);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				
 				qs.setMemoStateEx(1, 0);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
@@ -3379,7 +3379,7 @@ public class Q00255_Tutorial extends Quest
 			takeItems(talker, BLUE_GEMSTONE, -1);
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, LICENSE_OF_MINER, 1);
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if (!talker.isMageClass() && !hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{
@@ -3438,7 +3438,7 @@ public class Q00255_Tutorial extends Quest
 			if (talker.getRace() == Race.ORC)
 			{
 				removeRadar(talker, -56736, -113680, -672);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				qs.setMemoStateEx(1, 0);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
 				if (!talker.isMageClass())
@@ -3480,7 +3480,7 @@ public class Q00255_Tutorial extends Quest
 			takeItems(talker, BLUE_GEMSTONE, -1);
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, VOUCHER_OF_FLAME, 1);
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if (!hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{
@@ -3523,7 +3523,7 @@ public class Q00255_Tutorial extends Quest
 			{
 				removeRadar(talker, -125872, 38016, 1251);
 				qs.setMemoStateEx(1, 0);
-				startQuestTimer(npc.getId() + "", 30000, npc, talker);
+				startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 				enableTutorialEvent(qs, (qs.getMemoState() & 2147483392) | 1048576);
 				showHtmlFile(talker, "32134-001.html");
 			}
@@ -3542,7 +3542,7 @@ public class Q00255_Tutorial extends Quest
 			takeItems(talker, BLUE_GEMSTONE, -1);
 			qs.setMemoStateEx(1, 3);
 			giveItems(talker, DIPLOMA, 1);
-			startQuestTimer(npc.getId() + "", 30000, npc, talker);
+			startQuestTimer(String.valueOf(npc.getId()), 30000, npc, talker);
 			qs.setMemoState((qs.getMemoState() & 2147483392) | 4);
 			if ((talker.getRace() == Race.KAMAEL) && (talker.getPlayerClass().level() == 0) && !hasQuestItems(talker, SOULSHOT_NO_GRADE_FOR_BEGINNERS))
 			{

@@ -16,19 +16,14 @@
  */
 package handlers.skill.effects;
 
-import java.util.List;
-
-import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.stats.Formulas;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Formulas;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Confuse effect implementation.
@@ -68,27 +63,22 @@ public class Confuse extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyAction(Action.THINK);
+			effected.getAI().notifyActionThink();
 		}
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().notifyAction(Action.CONFUSED);
+		effected.getAI().notifyActionConfused();
 		
-		// Getting the possible targets.
-		final List<Creature> targetList = World.getInstance().getVisibleObjects(effected, Creature.class);
-		
-		// If there is no target, exit function.
-		if (!targetList.isEmpty())
+		// Choosing a uniformly-random visible Creature as the new target.
+		final Creature target = World.getRandomVisibleObject(effected, Creature.class);
+		if (target != null)
 		{
-			// Choosing randomly a new target.
-			final Creature target = targetList.get(Rnd.get(targetList.size()));
-			
 			// Attacking the target.
 			effected.setTarget(target);
-			effected.getAI().setIntention(Intention.ATTACK, target);
+			effected.getAI().setIntentionAttack(target);
 		}
 	}
 }

@@ -32,14 +32,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 
 public class CastleManager
 {
@@ -259,7 +259,7 @@ public class CastleManager
 		return 0;
 	}
 	
-	// remove this castle's circlets from the clan
+	// Remove this castle's circlets from the clan.
 	public void removeCirclet(Clan clan, int castleId)
 	{
 		for (ClanMember member : clan.getMembers())
@@ -279,7 +279,7 @@ public class CastleManager
 		final int circletId = getCircletByCastleId(castleId);
 		if (circletId != 0)
 		{
-			// online-player circlet removal
+			// Online-player circlet removal.
 			if (player != null)
 			{
 				try
@@ -298,10 +298,10 @@ public class CastleManager
 				}
 				catch (NullPointerException e)
 				{
-					// continue removing offline
+					// Continue removing offline.
 				}
 			}
-			// else offline-player circlet removal
+			// Else offline-player circlet removal.
 			try (Connection con = DatabaseFactory.getConnection();
 				PreparedStatement ps = con.prepareStatement("DELETE FROM items WHERE owner_id = ? and item_id = ?"))
 			{

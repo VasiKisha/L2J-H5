@@ -12,4 +12,3 @@ CREATE TABLE IF NOT EXISTS `character_subclasses` (
 CREATE INDEX idx_charId_classIndex ON character_subclasses (charId, class_index);
 
 # CharSelectionInfo
-CREATE INDEX idx_charId_classId ON character_subclasses (charId, class_id);

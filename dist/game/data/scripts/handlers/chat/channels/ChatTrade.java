@@ -19,11 +19,11 @@ package handlers.chat.channels;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.ChatBroadcastType;
+import org.l2jmobius.gameserver.entity.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.handler.IChatHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.ChatBroadcastType;
-import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -64,7 +64,7 @@ public class ChatTrade implements IChatHandler
 		if ((GeneralConfig.DEFAULT_TRADE_CHAT == ChatBroadcastType.ON) || ((GeneralConfig.DEFAULT_TRADE_CHAT == ChatBroadcastType.GM) && activeChar.isGM()))
 		{
 			final int region = MapRegionData.getInstance().getMapRegionLocId(activeChar);
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if ((region == MapRegionData.getInstance().getMapRegionLocId(player)) && !BlockList.isBlocked(player, activeChar) && (player.getInstanceId() == activeChar.getInstanceId()))
 				{
@@ -97,7 +97,7 @@ public class ChatTrade implements IChatHandler
 				return;
 			}
 			
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if (!BlockList.isBlocked(player, activeChar))
 				{

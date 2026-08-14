@@ -19,13 +19,13 @@ package ai.areas.Hellbound.AI;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.MinionList;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -58,7 +58,7 @@ public class Ranku extends Script
 			{
 				if ((minion != null) && !minion.isDead() && MY_TRACKING_SET.contains(minion.getObjectId()))
 				{
-					final Player killer = getRandomEntry(World.getInstance().getVisibleObjects(minion, Player.class));
+					final Player killer = getRandomEntry(World.getVisibleObjects(minion, Player.class));
 					minion.reduceCurrentHp(minion.getMaxHp() / 100, killer, null);
 				}
 			}
@@ -91,10 +91,7 @@ public class Ranku extends Script
 	{
 		if (npc.getId() == MINION)
 		{
-			if (MY_TRACKING_SET.contains(npc.getObjectId()))
-			{
-				MY_TRACKING_SET.remove(npc.getObjectId());
-			}
+			MY_TRACKING_SET.remove(npc.getObjectId());
 			
 			final Monster master = npc.asMonster().getLeader();
 			if ((master != null) && !master.isDead())
@@ -107,10 +104,7 @@ public class Ranku extends Script
 		{
 			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
-				if (MY_TRACKING_SET.contains(minion.getObjectId()))
-				{
-					MY_TRACKING_SET.remove(minion.getObjectId());
-				}
+				MY_TRACKING_SET.remove(minion.getObjectId());
 			}
 		}
 	}

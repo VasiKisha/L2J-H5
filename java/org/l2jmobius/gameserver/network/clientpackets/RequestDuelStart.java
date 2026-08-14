@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExDuelAskStart;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -43,12 +43,12 @@ public class RequestDuelStart extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		final Player targetChar = World.getInstance().getPlayer(_player);
 		if (player == null)
 		{
 			return;
 		}
 		
+		final Player targetChar = World.getPlayer(_player);
 		if (targetChar == null)
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
@@ -61,7 +61,7 @@ public class RequestDuelStart extends ClientPacket
 			return;
 		}
 		
-		// Check if duel is possible
+		// Check if duel is possible.
 		if (!player.canDuel())
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_UNABLE_TO_REQUEST_A_DUEL_AT_THIS_TIME);
@@ -72,7 +72,7 @@ public class RequestDuelStart extends ClientPacket
 			player.sendPacket(targetChar.getNoDuelReason());
 			return;
 		}
-		// Players may not be too far apart
+		// Players may not be too far apart.
 		else if (!player.isInsideRadius2D(targetChar, 250))
 		{
 			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_CANNOT_RECEIVE_A_DUEL_CHALLENGE_BECAUSE_C1_IS_TOO_FAR_AWAY);
@@ -81,30 +81,30 @@ public class RequestDuelStart extends ClientPacket
 			return;
 		}
 		
-		// Duel is a party duel
+		// Duel is a party duel.
 		if (_partyDuel == 1)
 		{
-			// Player must be in a party & the party leader
+			// Player must be in a party & the party leader.
 			final Party party = player.getParty();
 			if (!player.isInParty() || !party.isLeader(player))
 			{
 				player.sendMessage("You have to be the leader of a party in order to request a party duel.");
 				return;
 			}
-			// Target must be in a party
+			// Target must be in a party.
 			else if (!targetChar.isInParty())
 			{
 				player.sendPacket(SystemMessageId.SINCE_THE_PERSON_YOU_CHALLENGED_IS_NOT_CURRENTLY_IN_A_PARTY_THEY_CANNOT_DUEL_AGAINST_YOUR_PARTY);
 				return;
 			}
-			// Target may not be of the same party
+			// Target may not be of the same party.
 			else if (party.containsPlayer(targetChar))
 			{
 				player.sendMessage("This player is a member of your own party.");
 				return;
 			}
 			
-			// Check if every player is ready for a duel
+			// Check if every player is ready for a duel.
 			for (Player temp : party.getMembers())
 			{
 				if (!temp.canDuel())
@@ -129,7 +129,7 @@ public class RequestDuelStart extends ClientPacket
 				}
 			}
 			
-			// Send request to targetChar's party leader
+			// Send request to targetChar's party leader.
 			if (partyLeader != null)
 			{
 				if (!partyLeader.isProcessingRequest())

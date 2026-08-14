@@ -21,10 +21,10 @@
 package handlers.chat.commands.admin;
 
 import org.l2jmobius.gameserver.data.xml.AdminData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -71,7 +71,7 @@ public class AdminGmChat implements IAdminCommandHandler
 		WorldObject target = null;
 		if (command.length() > 12)
 		{
-			target = World.getInstance().getPlayer(command.substring(12));
+			target = World.getPlayer(command.substring(12));
 		}
 		
 		if (target == null)

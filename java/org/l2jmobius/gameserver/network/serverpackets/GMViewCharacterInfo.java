@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -51,7 +51,7 @@ public class GMViewCharacterInfo extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.GM_VIEW_CHARACTER_INFO.writeId(this, buffer);
 		buffer.writeInt(_player.getX());
@@ -141,9 +141,9 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeInt(0); // special effects? circles around player...
 		buffer.writeInt(_player.getMaxCp());
 		buffer.writeInt((int) _player.getCurrentCp());
-		buffer.writeByte(_player.isRunning()); // changes the Speed display on Status Window
+		buffer.writeByte(_player.isRunning()); // Changes the Speed display on Status Window.
 		buffer.writeByte(321);
-		buffer.writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
+		buffer.writeInt(_player.getPledgeClass()); // Changes the text above CP on Status Window.
 		buffer.writeByte(_player.isNoble());
 		buffer.writeByte(_player.isHero());
 		buffer.writeInt(appearance.getNameColor());

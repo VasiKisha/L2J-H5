@@ -16,12 +16,12 @@
  */
 package quests.Q00023_LidiasHeart;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -499,7 +499,7 @@ public class Q00023_LidiasHeart extends Quest
 			else if (npc.getId() == TRADER_VIOLET)
 			{
 				final QuestState q24 = player.getQuestState(Q00024_InhabitantsOfTheForestOfTheDead.class.getSimpleName());
-				if ((q24 == null))
+				if (q24 == null)
 				{
 					htmltext = "31386-04.html";
 				}

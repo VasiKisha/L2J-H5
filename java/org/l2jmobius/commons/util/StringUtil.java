@@ -20,8 +20,6 @@
  */
 package org.l2jmobius.commons.util;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.StringJoiner;
 import java.util.StringTokenizer;
 
@@ -75,12 +73,11 @@ public class StringUtil
 	{
 		// Calculate the total length and store converted strings.
 		int totalLength = sb.length();
-		final List<String> strings = new LinkedList<>();
-		for (Object arg : args)
+		final String[] strings = new String[args.length];
+		for (int i = 0; i < args.length; i++)
 		{
-			final String objectAsString = String.valueOf(arg);
-			totalLength += objectAsString.length();
-			strings.add(objectAsString);
+			strings[i] = String.valueOf(args[i]);
+			totalLength += strings[i].length();
 		}
 		
 		sb.ensureCapacity(totalLength);
@@ -125,12 +122,11 @@ public class StringUtil
 	{
 		// Calculate the total length and store converted strings.
 		int totalLength = 0;
-		final List<String> strings = new LinkedList<>();
-		for (Object arg : args)
+		final String[] strings = new String[args.length];
+		for (int i = 0; i < args.length; i++)
 		{
-			final String objectAsString = String.valueOf(arg);
-			totalLength += objectAsString.length();
-			strings.add(objectAsString);
+			strings[i] = String.valueOf(args[i]);
+			totalLength += strings[i].length();
 		}
 		
 		// Append each stored string.
@@ -243,7 +239,7 @@ public class StringUtil
 			char c = name.charAt(i);
 			if (c == '_')
 			{
-				sb.append(" ");
+				sb.append(' ');
 				capitalizeNext = true;
 			}
 			else if (capitalizeNext)

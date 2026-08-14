@@ -21,11 +21,11 @@ import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -56,7 +56,7 @@ public class ChatWhisper implements IChatHandler
 			return;
 		}
 		
-		// Return if no target is set
+		// Return if no target is set.
 		if (target == null)
 		{
 			return;
@@ -84,7 +84,7 @@ public class ChatWhisper implements IChatHandler
 			return;
 		}
 		
-		final Player receiver = World.getInstance().getPlayer(target);
+		final Player receiver = World.getPlayer(target);
 		if ((receiver != null) && !receiver.isSilenceMode(activeChar.getObjectId()))
 		{
 			if (GeneralConfig.JAIL_DISABLE_CHAT && receiver.isJailed() && !activeChar.isGM())
@@ -113,7 +113,7 @@ public class ChatWhisper implements IChatHandler
 			
 			if (!BlockList.isBlocked(receiver, activeChar))
 			{
-				// Allow reciever to send PMs to this char, which is in silence mode.
+				// Allow receiver to send PMs to this char, which is in silence mode.
 				if (PlayerConfig.SILENCE_MODE_EXCLUDE && activeChar.isSilenceMode())
 				{
 					activeChar.addSilenceModeExcluded(receiver.getObjectId());

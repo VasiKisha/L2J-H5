@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 
 /**
  * This class holds parameter, specific to certain NPCs.<br>
@@ -49,7 +49,7 @@ public class NpcPersonalAIData
 	{
 		if ((data != null) && !data.isEmpty())
 		{
-			// check for spawn name. Since spawn name is key for AI Data, generate random name, if spawn name isn't specified
+			// Check for spawn name. Since spawn name is key for AI Data, generate random name, if spawn name isn't specified.
 			if (spawnDat.getName() == null)
 			{
 				spawnDat.setName(Long.toString(Rnd.nextLong()));
@@ -78,7 +78,13 @@ public class NpcPersonalAIData
 	 */
 	public boolean hasAIValue(String spawnName, String paramName)
 	{
-		return (spawnName != null) && _AIData.containsKey(spawnName) && _AIData.get(spawnName).containsKey(paramName);
+		if (spawnName == null)
+		{
+			return false;
+		}
+		
+		final Map<String, Integer> params = _AIData.get(spawnName);
+		return (params != null) && params.containsKey(paramName);
 	}
 	
 	/**
@@ -89,9 +95,9 @@ public class NpcPersonalAIData
 	 */
 	public void initializeNpcParameters(Npc npc, Spawn spawn, String spawnName)
 	{
-		if (_AIData.containsKey(spawnName))
+		final Map<String, Integer> map = _AIData.get(spawnName);
+		if (map != null)
 		{
-			final Map<String, Integer> map = _AIData.get(spawnName);
 			
 			try
 			{
@@ -118,7 +124,7 @@ public class NpcPersonalAIData
 			}
 			catch (Exception e)
 			{
-				// Do nothing
+				// Do nothing.
 			}
 		}
 	}

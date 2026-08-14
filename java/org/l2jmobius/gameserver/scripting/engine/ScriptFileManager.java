@@ -22,11 +22,14 @@ package org.l2jmobius.gameserver.scripting.engine;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.ServiceLoader;
 import java.util.Set;
 
 import javax.tools.FileObject;
@@ -40,7 +43,7 @@ import javax.tools.StandardJavaFileManager;
 public class ScriptFileManager implements StandardJavaFileManager
 {
 	private final StandardJavaFileManager _wrapped;
-	private final List<ScriptClassData> _classOutputs = new LinkedList<>();
+	private final List<ScriptClassData> _classOutputs = new ArrayList<>();
 	
 	public ScriptFileManager(StandardJavaFileManager wrapped)
 	{
@@ -186,5 +189,77 @@ public class ScriptFileManager implements StandardJavaFileManager
 	public Iterable<? extends File> getLocation(Location location)
 	{
 		return _wrapped.getLocation(location);
+	}
+	
+	@Override
+	public Location getLocationForModule(Location location, String moduleName) throws IOException
+	{
+		return _wrapped.getLocationForModule(location, moduleName);
+	}
+	
+	@Override
+	public Location getLocationForModule(Location location, JavaFileObject fo) throws IOException
+	{
+		return _wrapped.getLocationForModule(location, fo);
+	}
+	
+	@Override
+	public <S> ServiceLoader<S> getServiceLoader(Location location, Class<S> service) throws IOException
+	{
+		return _wrapped.getServiceLoader(location, service);
+	}
+	
+	@Override
+	public String inferModuleName(Location location) throws IOException
+	{
+		return _wrapped.inferModuleName(location);
+	}
+	
+	@Override
+	public Iterable<Set<Location>> listLocationsForModules(Location location) throws IOException
+	{
+		return _wrapped.listLocationsForModules(location);
+	}
+	
+	@Override
+	public boolean contains(Location location, FileObject fo) throws IOException
+	{
+		return _wrapped.contains(location, fo);
+	}
+	
+	@Override
+	public void setLocationFromPaths(Location location, Collection<? extends Path> paths) throws IOException
+	{
+		_wrapped.setLocationFromPaths(location, paths);
+	}
+	
+	@Override
+	public void setLocationForModule(Location location, String moduleName, Collection<? extends Path> paths) throws IOException
+	{
+		_wrapped.setLocationForModule(location, moduleName, paths);
+	}
+	
+	@Override
+	public Iterable<? extends Path> getLocationAsPaths(Location location)
+	{
+		return _wrapped.getLocationAsPaths(location);
+	}
+	
+	@Override
+	public Path asPath(FileObject file)
+	{
+		return _wrapped.asPath(file);
+	}
+	
+	@Override
+	public Iterable<? extends JavaFileObject> getJavaFileObjectsFromPaths(Collection<? extends Path> paths)
+	{
+		return _wrapped.getJavaFileObjectsFromPaths(paths);
+	}
+	
+	@Override
+	public Iterable<? extends JavaFileObject> getJavaFileObjects(Path... paths)
+	{
+		return _wrapped.getJavaFileObjects(paths);
 	}
 }

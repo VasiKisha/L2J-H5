@@ -20,17 +20,16 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.ZoneBuildManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMoveRequest;
-import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerMoveRequest;
+import org.l2jmobius.gameserver.mechanics.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -117,9 +116,16 @@ public class MoveToLocation extends ClientPacket
 		}
 		else // 0
 		{
-			if (!PlayerConfig.ENABLE_KEYBOARD_MOVEMENT)
+			if (!PlayerConfig.ENABLE_KEYBOARD_MOVEMENT && !player.inObserverMode())
 			{
 				return;
+			}
+			
+			final int dx = _originX - player.getX();
+			final int dy = _originY - player.getY();
+			if (((dx * dx) + (dy * dy)) < 1000000) // 1000 distance ^2
+			{
+				player.setSyncedXYZ(_originX, _originY, _originZ);
 			}
 			
 			player.setCursorKeyMovement(true);
@@ -156,14 +162,14 @@ public class MoveToLocation extends ClientPacket
 		// Can't move if character is trying to move a huge distance.
 		final double dx = _targetX - player.getX();
 		final double dy = _targetY - player.getY();
-		if (((dx * dx) + (dy * dy)) > 98010000) // 9900*9900
+		if (((dx * dx) + (dy * dy)) > 98010000) // 9900 distance ^2
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		// Finally move to the target location.
-		player.getAI().setIntention(Intention.MOVE_TO, new Location(_targetX, _targetY, _targetZ));
+		player.getAI().setIntentionMoveTo(new Location(_targetX, _targetY, _targetZ));
 		
 		// Mobius: Check spawn protections.
 		player.onActionRequest();

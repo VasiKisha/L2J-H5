@@ -27,12 +27,12 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillGroup;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillLearn;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * This class holds the Enchant Groups information.
@@ -132,10 +132,11 @@ public class EnchantSkillGroupsData implements IXmlReader
 			_enchantSkillTrees.put(skillId, enchantableSkill);
 		}
 		
-		if (_enchantSkillGroups.containsKey(group))
+		final EnchantSkillGroup groupData = _enchantSkillGroups.get(group);
+		if (groupData != null)
 		{
 			enchantableSkill.addNewEnchantRoute(route, group);
-			return _enchantSkillGroups.get(group).getEnchantGroupDetails().size();
+			return groupData.getEnchantGroupDetails().size();
 		}
 		
 		LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error while loading generating enchant skill id: " + skillId + "; route: " + route + "; missing group: " + group);
@@ -149,7 +150,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 	 */
 	public EnchantSkillLearn getSkillEnchantmentForSkill(Skill skill)
 	{
-		// there is enchantment for this skill and we have the required level of it
+		// There is enchantment for this skill and we have the required level of it.
 		final EnchantSkillLearn esl = getSkillEnchantmentBySkillId(skill.getId());
 		return (esl != null) && (skill.getLevel() >= esl.getBaseLevel()) ? esl : null;
 	}

@@ -16,11 +16,12 @@
  */
 package org.l2jmobius.gameserver.data.holders;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 
 /**
  * @author UnAfraid
@@ -48,10 +49,10 @@ public class PunishmentHolder
 	public void stopPunishment(PunishmentTask task)
 	{
 		final String key = String.valueOf(task.getKey());
-		if (_holder.containsKey(key))
+		final Map<PunishmentType, PunishmentTask> punishments = _holder.get(key);
+		if (punishments != null)
 		{
 			task.stopPunishment();
-			final Map<PunishmentType, PunishmentTask> punishments = _holder.get(key);
 			punishments.remove(task.getType());
 			if (punishments.isEmpty())
 			{
@@ -77,11 +78,6 @@ public class PunishmentHolder
 	 */
 	public PunishmentTask getPunishment(String key, PunishmentType type)
 	{
-		if (_holder.containsKey(key))
-		{
-			return _holder.get(key).get(type);
-		}
-		
-		return null;
+		return _holder.getOrDefault(key, Collections.emptyMap()).get(type);
 	}
 }

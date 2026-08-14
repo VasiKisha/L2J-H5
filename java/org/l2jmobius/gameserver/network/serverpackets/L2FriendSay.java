@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -30,15 +30,15 @@ public class L2FriendSay extends ServerPacket
 	private final String _receiver;
 	private final String _message;
 	
-	public L2FriendSay(String sender, String reciever, String message)
+	public L2FriendSay(String sender, String receiver, String message)
 	{
 		_sender = sender;
-		_receiver = reciever;
+		_receiver = receiver;
 		_message = message;
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.L2_FRIEND_SAY.writeId(this, buffer);
 		buffer.writeInt(0); // ??

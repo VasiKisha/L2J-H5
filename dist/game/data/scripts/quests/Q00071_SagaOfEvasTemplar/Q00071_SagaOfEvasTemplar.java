@@ -16,7 +16,7 @@
  */
 package quests.Q00071_SagaOfEvasTemplar;
 
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 import quests.AbstractSagaQuest;
 

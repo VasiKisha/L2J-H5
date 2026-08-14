@@ -20,14 +20,14 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.actor.instance.AirShip;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.actor.instance.AirShip;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExAirShipInfo extends ServerPacket
 {
-	// store some parameters, because they can be changed during broadcast
+	// Store some parameters, because they can be changed during broadcast.
 	private final AirShip _ship;
 	private final int _x;
 	private final int _y;
@@ -52,7 +52,7 @@ public class ExAirShipInfo extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_AIRSHIP_INFO.writeId(this, buffer);
 		buffer.writeInt(_ship.getObjectId());

@@ -21,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 /**
  * @version 0.1, 2005-03-12
@@ -174,7 +174,9 @@ public class PolygonTerritory
 				int zmin = _zMin;
 				for (Point p1 : _points)
 				{
-					final double distance = Math.hypot(p1._x - x, p1._y - y);
+					final double dx = p1._x - x;
+					final double dy = p1._y - y;
+					final double distance = Math.sqrt((dx * dx) + (dy * dy));
 					if ((curdistance == 0) || (distance < curdistance))
 					{
 						curdistance = distance;

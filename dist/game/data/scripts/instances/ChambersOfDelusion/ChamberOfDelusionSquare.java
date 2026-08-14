@@ -16,7 +16,7 @@
  */
 package instances.ChambersOfDelusion;
 
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 /**
  * Chamber of Delusion Square.

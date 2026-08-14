@@ -25,16 +25,17 @@ import java.util.concurrent.Future;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Defender;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Defender;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.interfaces.ILocational;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
@@ -72,15 +73,15 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		super(creature);
 		_selfAnalysis.init();
 		_attackTimeout = Integer.MAX_VALUE;
-		_globalAggro = -10; // 10 seconds timeout of ATTACK after respawn
+		_globalAggro = -10; // 10 seconds timeout of ATTACK after respawn.
 		_attackRange = _actor.getPhysicalAttackRange();
 	}
 	
 	@Override
 	public void run()
 	{
-		// Launch actions corresponding to the Action Think
-		onActionThink();
+		// Launch actions corresponding to the Action Think.
+		notifyActionThink();
 	}
 	
 	/**
@@ -122,19 +123,19 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	 */
 	protected boolean autoAttackCondition(Creature target)
 	{
-		// Check if the target isn't another guard, folk or a door
+		// Check if the target isn't another guard, folk or a door.
 		if ((target == null) || (target instanceof Defender) || target.isNpc() || target.isDoor() || target.isAlikeDead())
 		{
 			return false;
 		}
 		
-		// Check if the target isn't invulnerable
+		// Check if the target isn't invulnerable.
 		if (target.isInvul() && ((target.isPlayer() && target.isGM()) || (target.isSummon() && target.asSummon().getOwner().isGM())))
 		{
 			return false;
 		}
 		
-		// Get the owner if the target is a summon
+		// Get the owner if the target is a summon.
 		Creature currentTarget = target;
 		if (currentTarget.isSummon())
 		{
@@ -145,7 +146,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			}
 		}
 		
-		// Check if the target isn't in silent move mode AND too far (>100)
+		// Check if the target isn't in silent move mode AND too far (>100).
 		if (currentTarget.isPlayable() && currentTarget.asPlayable().isSilentMovingAffected() && !_actor.isInsideRadius2D(currentTarget, 250))
 		{
 			return false;
@@ -155,76 +156,108 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		return (_actor.isAutoAttackable(currentTarget) && GeoEngine.getInstance().canSeeTarget(_actor, currentTarget));
 	}
 	
-	/**
-	 * Set the Intention of this CreatureAI and create an AI Task executed every 1s (call onActionThink method) for this Attackable.<br>
-	 * <font color=#FF0000><b><u>Caution</u>: If actor _knowPlayer isn't EMPTY, IDLE will be change in ACTIVE</b></font>
-	 * @param newIntention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention
-	 * @param arg1 The second parameter of the Intention
-	 */
-	@Override
-	synchronized void changeIntention(Intention newIntention, Object arg0, Object arg1)
+	private void startAITask()
 	{
-		Intention intention = newIntention;
-		if (intention == Intention.IDLE /* || intention == Intention.ACTIVE */) // active becomes idle if only a summon is present
-		{
-			// Check if actor is not dead
-			if (!_actor.isAlikeDead())
-			{
-				final Attackable npc = _actor.asAttackable();
-				
-				// If its _knownPlayer isn't empty set the Intention to ACTIVE
-				if (!World.getInstance().getVisibleObjects(npc, Player.class).isEmpty())
-				{
-					intention = Intention.ACTIVE;
-				}
-				else
-				{
-					intention = Intention.IDLE;
-				}
-			}
-			
-			if (intention == Intention.IDLE)
-			{
-				// Set the Intention of this AttackableAI to IDLE
-				super.changeIntention(Intention.IDLE, null, null);
-				
-				// Stop AI task and detach AI from NPC
-				if (_aiTask != null)
-				{
-					_aiTask.cancel(true);
-					_aiTask = null;
-				}
-				
-				// Cancel the AI
-				_actor.detachAI();
-				return;
-			}
-		}
-		
-		// Set the Intention of this AttackableAI to intention
-		super.changeIntention(intention, arg0, arg1);
-		
-		// If not idle - create an AI task (schedule onActionThink repeatedly)
 		if (_aiTask == null)
 		{
 			_aiTask = ThreadPool.scheduleAtFixedRate(this, 1000, 1000);
 		}
 	}
 	
+	private boolean shouldPromoteIdleToActive()
+	{
+		if (_actor.isAlikeDead())
+		{
+			return false;
+		}
+		
+		return World.getFirstVisibleObject(_actor.asAttackable(), Player.class) != null;
+	}
+	
+	@Override
+	public synchronized void setIntentionIdle()
+	{
+		if (shouldPromoteIdleToActive())
+		{
+			setIntentionActive();
+			return;
+		}
+		
+		super.setIntentionIdle();
+		
+		// Stop AI task and detach AI from NPC.
+		if (_aiTask != null)
+		{
+			_aiTask.cancel(true);
+			_aiTask = null;
+		}
+		
+		// Cancel the AI
+		_actor.detachAI();
+	}
+	
+	@Override
+	public synchronized void setIntentionActive()
+	{
+		super.setIntentionActive();
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionRest()
+	{
+		super.setIntentionRest();
+		startAITask();
+	}
+	
 	/**
 	 * Manage the Attack Intention : Stop current Attack (if necessary), Calculate attack timeout, Start a new Attack and Launch Think Action.
-	 * @param target The Creature to attack
+	 * @param target The WorldObject to attack
 	 */
 	@Override
-	protected void onIntentionAttack(Creature target)
+	public synchronized void setIntentionAttack(WorldObject target)
 	{
-		// Calculate the attack timeout
+		// Calculate the attack timeout.
 		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
 		
-		// Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Action
-		// if (_actor.getTarget() != null)
-		super.onIntentionAttack(target);
+		// Manage the Attack Intention : Stop current Attack (if necessary), Start a new Attack and Launch Think Action.
+		super.setIntentionAttack(target);
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionCast(Skill skill, WorldObject target)
+	{
+		super.setIntentionCast(skill, target);
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionMoveTo(ILocational destination)
+	{
+		super.setIntentionMoveTo(destination);
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionFollow(WorldObject target)
+	{
+		super.setIntentionFollow(target);
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionPickUp(WorldObject item)
+	{
+		super.setIntentionPickUp(item);
+		startAITask();
+	}
+	
+	@Override
+	public synchronized void setIntentionInteract(WorldObject object)
+	{
+		super.setIntentionInteract(object);
+		startAITask();
 	}
 	
 	/**
@@ -241,7 +274,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	{
 		final Attackable npc = _actor.asAttackable();
 		
-		// Update every 1s the _globalAggro counter to come close to 0
+		// Update every 1s the _globalAggro counter to come close to 0.
 		if (_globalAggro != 0)
 		{
 			if (_globalAggro < 0)
@@ -254,11 +287,11 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			}
 		}
 		
-		// Add all autoAttackable Creature in Attackable Aggro Range to its _aggroList with 0 damage and 1 hate
-		// A Attackable isn't aggressive during 10s after its spawn because _globalAggro is set to -10
+		// Add all autoAttackable Creature in Attackable Aggro Range to its _aggroList with 0 damage and 1 hate.
+		// A Attackable isn't aggressive during 10s after its spawn because _globalAggro is set to -10.
 		if (_globalAggro >= 0)
 		{
-			World.getInstance().forEachVisibleObjectInRange(npc, Creature.class, _attackRange, target ->
+			World.forEachVisibleObjectInRange(npc, Creature.class, _attackRange, target ->
 			{
 				if (autoAttackCondition(target) && (npc.getHating(target) == 0)) // check aggression
 				{
@@ -266,31 +299,31 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				}
 			});
 			
-			// Chose a target from its aggroList
+			// Chose a target from its aggroList.
 			final Creature hated = _actor.isConfused() ? getAttackTarget() : npc.getMostHated();
 			
-			// Order to the Attackable to attack the target
+			// Order to the Attackable to attack the target.
 			if (hated != null)
 			{
-				// Get the hate level of the Attackable against this Creature target contained in _aggroList
+				// Get the hate level of the Attackable against this Creature target contained in _aggroList.
 				final long aggro = npc.getHating(hated);
 				if ((aggro + _globalAggro) > 0)
 				{
-					// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
+					// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player.
 					if (!_actor.isRunning())
 					{
 						_actor.setRunning();
 					}
 					
-					// Set the AI Intention to ATTACK
-					setIntention(Intention.ATTACK, hated, null);
+					// Set the AI Intention to ATTACK.
+					setIntentionAttack(hated);
 				}
 				
 				return;
 			}
 		}
 		
-		// Order to the Defender to return to its home location because there's no target to attack
+		// Order to the Defender to return to its home location because there's no target to attack.
 		((Defender) _actor).returnHome();
 	}
 	
@@ -310,30 +343,30 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	{
 		if ((_attackTimeout < GameTimeTaskManager.getInstance().getGameTicks()) && _actor.isRunning())
 		{
-			// Set the actor movement type to walk and send Server->Client packet ChangeMoveType to all others Player
+			// Set the actor movement type to walk and send Server->Client packet ChangeMoveType to all others Player.
 			_actor.setWalking();
 			
-			// Calculate a new attack timeout
+			// Calculate a new attack timeout.
 			_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
 		}
 		
 		final Creature attackTarget = getAttackTarget();
 		
-		// Check if target is dead or if timeout is expired to stop this attack
+		// Check if target is dead or if timeout is expired to stop this attack.
 		if ((attackTarget == null) || attackTarget.isAlikeDead() || (_attackTimeout < GameTimeTaskManager.getInstance().getGameTicks()))
 		{
-			// Stop hating this target after the attack timeout or if target is dead
+			// Stop hating this target after the attack timeout or if target is dead.
 			if (attackTarget != null)
 			{
 				_actor.asAttackable().stopHating(attackTarget);
 			}
 			
-			// Cancel target and timeout
+			// Cancel target and timeout.
 			_attackTimeout = Integer.MAX_VALUE;
 			setAttackTarget(null);
 			
-			// Set the AI Intention to ACTIVE
-			setIntention(Intention.ACTIVE, null, null);
+			// Set the AI Intention to ACTIVE.
+			setIntentionActive();
 			_actor.setWalking();
 			return;
 		}
@@ -346,15 +379,15 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	{
 		final Creature target = getAttackTarget();
 		
-		// Call all WorldObject of its Faction inside the Faction Range
+		// Call all WorldObject of its Faction inside the Faction Range.
 		if ((_actor.asNpc().getTemplate().getClans() == null) || (target == null) || target.isInvul())
 		{
 			return;
 		}
 		
-		// Go through all Creature that belong to its faction
+		// Go through all Creature that belong to its faction.
 		// for (Creature creature : _actor.getKnownList().getKnownCharactersInRadius(_actor.asNpc().getFactionRange()+_actor.getTemplate().collisionRadius))
-		for (Creature creature : World.getInstance().getVisibleObjectsInRange(_actor, Creature.class, 1000))
+		for (Creature creature : World.getVisibleObjectsInRange(_actor, Creature.class, 1000))
 		{
 			if (!(creature instanceof Npc))
 			{
@@ -400,8 +433,8 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			{
 				if (!npc.isDead() && (Math.abs(target.getZ() - npc.getZ()) < 600) && ((npc.getAI()._intention == Intention.IDLE) || (npc.getAI()._intention == Intention.ACTIVE)) && target.isInsideRadius3D(npc, 1500) && GeoEngine.getInstance().canSeeTarget(npc, target))
 				{
-					// Notify the WorldObject AI with AGGRESSION
-					npc.getAI().notifyAction(Action.AGGRESSION, getAttackTarget(), 1);
+					// Notify the WorldObject AI with AGGRESSION.
+					npc.getAI().notifyActionAggression(getAttackTarget(), 1);
 					return;
 				}
 				
@@ -440,7 +473,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	
 	private void attackPrepare()
 	{
-		// Get all information needed to choose between physical or magical attack
+		// Get all information needed to choose between physical or magical attack.
 		Collection<Skill> skills = null;
 		double distance = 0;
 		int range = 0;
@@ -460,7 +493,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		catch (NullPointerException e)
 		{
 			_actor.setTarget(null);
-			setIntention(Intention.IDLE, null, null);
+			setIntentionIdle();
 			return;
 		}
 		
@@ -471,24 +504,24 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			// Cancel the target
 			sGuard.stopHating(attackTarget);
 			_actor.setTarget(null);
-			setIntention(Intention.IDLE, null, null);
+			setIntentionIdle();
 			return;
 		}
 		
 		if (!GeoEngine.getInstance().canSeeTarget(_actor, attackTarget))
 		{
 			// Siege guards differ from normal mobs currently:
-			// If target cannot seen, don't attack any more
+			// If target cannot seen, don't attack any more.
 			sGuard.stopHating(attackTarget);
 			_actor.setTarget(null);
-			setIntention(Intention.IDLE, null, null);
+			setIntentionIdle();
 			return;
 		}
 		
-		// Check if the actor isn't muted and if it is far from target
+		// Check if the actor isn't muted and if it is far from target.
 		if (!_actor.isMuted() && (distance > range))
 		{
-			// check for long ranged skills and heal/buff skills
+			// Check for long ranged skills and heal/buff skills.
 			for (Skill sk : skills)
 			{
 				final int castRange = sk.getCastRange();
@@ -521,12 +554,12 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				}
 			}
 			
-			// Check if the SiegeGuard is attacking, knows the target and can't run
+			// Check if the SiegeGuard is attacking, knows the target and can't run.
 			if (!(_actor.isAttackingNow()) && (_actor.getRunSpeed() == 0) && (_actor.isInSurroundingRegion(attackTarget)))
 			{
 				// Cancel the target
 				_actor.setTarget(null);
-				setIntention(Intention.IDLE, null, null);
+				setIntentionIdle();
 			}
 			else if (sGuard.getSpawn() != null)
 			{
@@ -536,13 +569,13 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				final double homeX = attackTarget.getX() - sGuard.getSpawn().getX();
 				final double homeY = attackTarget.getY() - sGuard.getSpawn().getY();
 				
-				// Check if the SiegeGuard isn't too far from it's home location
+				// Check if the SiegeGuard isn't too far from it's home location.
 				if ((((dx * dx) + (dy * dy)) > 10000) && (((homeX * homeX) + (homeY * homeY)) > 3240000) // 1800 * 1800
 					&& (_actor.isInSurroundingRegion(attackTarget)))
 				{
 					// Cancel the target
 					_actor.setTarget(null);
-					setIntention(Intention.IDLE, null, null);
+					setIntentionIdle();
 				}
 				
 				// Temporary hack for preventing guards jumping off towers,
@@ -587,7 +620,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				final Creature hated = _actor.isConfused() ? attackTarget : _actor.asAttackable().getMostHated();
 				if (hated == null)
 				{
-					setIntention(Intention.ACTIVE, null, null);
+					setIntentionActive();
 					return;
 				}
 				
@@ -634,7 +667,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 					}
 				}
 				
-				// Finally, do the physical attack itself
+				// Finally, do the physical attack itself.
 				if (!_selfAnalysis.isHealer)
 				{
 					_actor.doAttack(attackTarget);
@@ -647,12 +680,12 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	 * Manage AI thinking actions of a Attackable.
 	 */
 	@Override
-	public void onActionThink()
+	public void notifyActionThink()
 	{
 		// if(getIntention() != Intention.IDLE && (!_actor.isSpawned() || !_actor.hasAI() || !_actor.isKnownPlayers()))
-		// setIntention(Intention.IDLE);
+		// setIntentionIdle();
 		
-		// Check if the thinking action is already in progress
+		// Check if the thinking action is already in progress.
 		if (_thinking || _actor.isCastingNow() || _actor.isAllSkillsDisabled())
 		{
 			return;
@@ -663,7 +696,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		
 		try
 		{
-			// Manage AI thinks of a Attackable
+			// Manage AI thinks of a Attackable.
 			if (getIntention() == Intention.ACTIVE)
 			{
 				thinkActive();
@@ -689,36 +722,47 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	 * <li>Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player</li>
 	 * <li>Set the Intention to ATTACK</li>
 	 * </ul>
-	 * @param attacker The Creature that attacks the actor
+	 * @param attackerObj The WorldObject that attacks the actor
 	 */
 	@Override
-	protected void onActionAttacked(Creature attacker)
+	public void notifyActionAttacked(WorldObject attackerObj)
 	{
-		// Calculate the attack timeout
+		if (attackerObj == null)
+		{
+			return;
+		}
+		
+		final Creature attacker = attackerObj.asCreature();
+		if (attacker == null)
+		{
+			return;
+		}
+		
+		// Calculate the attack timeout.
 		_attackTimeout = MAX_ATTACK_TIMEOUT + GameTimeTaskManager.getInstance().getGameTicks();
 		
-		// Set the _globalAggro to 0 to permit attack even just after spawn
+		// Set the _globalAggro to 0 to permit attack even just after spawn.
 		if (_globalAggro < 0)
 		{
 			_globalAggro = 0;
 		}
 		
-		// Add the attacker to the _aggroList of the actor
+		// Add the attacker to the _aggroList of the actor.
 		_actor.asAttackable().addDamageHate(attacker, 0, 1);
 		
-		// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
+		// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player.
 		if (!_actor.isRunning())
 		{
 			_actor.setRunning();
 		}
 		
-		// Set the Intention to ATTACK
+		// Set the Intention to ATTACK.
 		if (getIntention() != Intention.ATTACK)
 		{
-			setIntention(Intention.ATTACK, attacker, null);
+			setIntentionAttack(attacker);
 		}
 		
-		super.onActionAttacked(attacker);
+		super.notifyActionAttacked(attacker);
 	}
 	
 	/**
@@ -732,35 +776,36 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	 * @param aggro The value of hate to add to the actor against the target
 	 */
 	@Override
-	protected void onActionAggression(Creature target, int aggro)
+	public void notifyActionAggression(WorldObject targetObj, int aggro)
 	{
 		if (_actor == null)
 		{
 			return;
 		}
 		
+		final Creature target = targetObj == null ? null : targetObj.asCreature();
 		final Attackable me = _actor.asAttackable();
 		if (target != null)
 		{
-			// Add the target to the actor _aggroList or update hate if already present
+			// Add the target to the actor _aggroList or update hate if already present.
 			me.addDamageHate(target, 0, aggro);
 			
-			// Get the hate of the actor against the target
+			// Get the hate of the actor against the target.
 			if (me.getHating(target) <= 0)
 			{
 				if (me.getMostHated() == null)
 				{
 					_globalAggro = -25;
 					me.clearAggroList();
-					setIntention(Intention.IDLE, null, null);
+					setIntentionIdle();
 				}
 				return;
 			}
 			
-			// Set the actor AI Intention to ATTACK
+			// Set the actor AI Intention to ATTACK.
 			if (getIntention() != Intention.ATTACK)
 			{
-				// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
+				// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player.
 				if (!_actor.isRunning())
 				{
 					_actor.setRunning();
@@ -770,16 +815,16 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				final double homeX = target.getX() - sGuard.getSpawn().getX();
 				final double homeY = target.getY() - sGuard.getSpawn().getY();
 				
-				// Check if the SiegeGuard is not too far from its home location
+				// Check if the SiegeGuard is not too far from its home location.
 				if (((homeX * homeX) + (homeY * homeY)) < 3240000)
 				{
-					setIntention(Intention.ATTACK, target, null);
+					setIntentionAttack(target);
 				}
 			}
 		}
 		else
 		{
-			// currently only for setting lower general aggro
+			// Currently only for setting lower general aggro.
 			if (aggro >= 0)
 			{
 				return;
@@ -801,7 +846,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			{
 				_globalAggro = -25;
 				me.clearAggroList();
-				setIntention(Intention.IDLE, null, null);
+				setIntentionIdle();
 			}
 		}
 	}

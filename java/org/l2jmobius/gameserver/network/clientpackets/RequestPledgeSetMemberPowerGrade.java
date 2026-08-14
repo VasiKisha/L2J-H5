@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanAccess;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanAccess;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
 
 /**
  * Format: (ch) Sd
@@ -70,7 +70,7 @@ public class RequestPledgeSetMemberPowerGrade extends ClientPacket
 		
 		if (member.getPledgeType() == Clan.SUBUNIT_ACADEMY)
 		{
-			// also checked from client side
+			// Also checked from client side.
 			player.sendMessage("You cannot change academy member grade");
 			return;
 		}

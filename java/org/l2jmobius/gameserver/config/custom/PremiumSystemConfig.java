@@ -39,6 +39,7 @@ public class PremiumSystemConfig
 	
 	// Constants
 	public static boolean PREMIUM_SYSTEM_ENABLED;
+	public static boolean ACCOUNT_WIDE_PREMIUM;
 	public static boolean PC_CAFE_ENABLED;
 	public static boolean PC_CAFE_ONLY_PREMIUM;
 	public static boolean PC_CAFE_RETAIL_LIKE;
@@ -66,6 +67,7 @@ public class PremiumSystemConfig
 	{
 		final ConfigReader config = new ConfigReader(PREMIUM_SYSTEM_CONFIG_FILE);
 		PREMIUM_SYSTEM_ENABLED = config.getBoolean("EnablePremiumSystem", false);
+		ACCOUNT_WIDE_PREMIUM = config.getBoolean("AccountWidePremium", true);
 		PC_CAFE_ENABLED = config.getBoolean("PcCafeEnabled", false);
 		PC_CAFE_ONLY_PREMIUM = config.getBoolean("PcCafeOnlyPremium", false);
 		PC_CAFE_RETAIL_LIKE = config.getBoolean("PcCafeRetailLike", true);

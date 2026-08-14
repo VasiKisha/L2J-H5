@@ -33,14 +33,18 @@ public class BankingConfig
 	
 	// Constants
 	public static boolean BANKING_SYSTEM_ENABLED;
-	public static int BANKING_SYSTEM_GOLDBARS;
-	public static int BANKING_SYSTEM_ADENA;
+	public static int BANKING_SYSTEM_GOLDBAR_COUNT;
+	public static int BANKING_SYSTEM_ADENA_COUNT;
+	public static boolean BANKING_SYSTEM_AUTO_CONVERT_ENABLED;
+	public static long BANKING_SYSTEM_AUTO_CONVERT_ADENA_LIMIT;
 	
 	public static void load()
 	{
 		final ConfigReader config = new ConfigReader(BANKING_CONFIG_FILE);
 		BANKING_SYSTEM_ENABLED = config.getBoolean("BankingEnabled", false);
-		BANKING_SYSTEM_GOLDBARS = config.getInt("BankingGoldbarCount", 1);
-		BANKING_SYSTEM_ADENA = config.getInt("BankingAdenaCount", 500000000);
+		BANKING_SYSTEM_GOLDBAR_COUNT = config.getInt("BankingGoldbarCount", 1);
+		BANKING_SYSTEM_ADENA_COUNT = config.getInt("BankingAdenaCount", 1000000000);
+		BANKING_SYSTEM_AUTO_CONVERT_ENABLED = config.getBoolean("BankingAutoConvert", false);
+		BANKING_SYSTEM_AUTO_CONVERT_ADENA_LIMIT = config.getLong("BankingAutoConvertAdenaLimit", 51000000000L);
 	}
 }

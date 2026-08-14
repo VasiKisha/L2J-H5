@@ -16,11 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchWaitingList;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchWaitingList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExManagePartyRoomMember;
 import org.l2jmobius.gameserver.network.serverpackets.ExPartyRoomMember;
@@ -58,7 +58,7 @@ public class AnswerJoinPartyRoom extends ClientPacket
 			player.setActiveRequester(null);
 			return;
 		}
-		else if (World.getInstance().getPlayer(partner.getObjectId()) == null)
+		else if (World.getPlayer(partner.getObjectId()) == null)
 		{
 			// Partner hasn't been found, cancel the invitation
 			player.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);

@@ -25,31 +25,30 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.time.TimeUtil;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.zone.type.BossZone;
+import org.l2jmobius.gameserver.entity.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.type.BossZone;
-import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.util.LocationUtil;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Valakas grand boss AI handler.<br>
@@ -245,7 +244,7 @@ public class Valakas extends Script
 			{
 				_valakas.teleToLocation(LOC_VALAKAS_HIDE);
 				_valakas.setInvul(true);
-				_valakas.getAI().setIntention(Intention.IDLE);
+				_valakas.getAI().setIntentionIdle();
 				
 				if (status == STATUS_WAITING)
 				{
@@ -521,7 +520,7 @@ public class Valakas extends Script
 		_valakas.teleToLocation(LOC_VALAKAS_HIDE);
 		_valakas.setInvul(true);
 		_valakas.setRunning();
-		_valakas.getAI().setIntention(Intention.IDLE);
+		_valakas.getAI().setIntentionIdle();
 		
 		final GrandBossManager bossManager = GrandBossManager.getInstance();
 		bossManager.addBoss(_valakas);
@@ -559,7 +558,7 @@ public class Valakas extends Script
 		final GrandBossManager bossManager = GrandBossManager.getInstance();
 		if ((bossManager.getStatus(VALAKAS) == STATUS_FIGHTING) && ((_lastAttackTime + INACTIVITY_TIMEOUT) < System.currentTimeMillis()))
 		{
-			npc.getAI().setIntention(Intention.IDLE);
+			npc.getAI().setIntentionIdle();
 			npc.teleToLocation(LOC_VALAKAS_REGEN);
 			bossManager.setStatus(VALAKAS, STATUS_DORMANT);
 			npc.setCurrentHpMp(npc.getMaxHp(), npc.getMaxMp());
@@ -791,7 +790,7 @@ public class Valakas extends Script
 				
 				if (GeoEngine.getInstance().canMoveToTarget(currentX, currentY, currentZ, nextX, nextY, currentZ, npc.getInstanceId()))
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, new Location(nextX, nextY, currentZ, 0));
+					npc.getAI().setIntentionMoveTo(new Location(nextX, nextY, currentZ));
 				}
 			}
 			return;
@@ -808,14 +807,14 @@ public class Valakas extends Script
 		final int effectiveRange = (baseRange < 600) ? 600 : baseRange;
 		if (LocationUtil.checkIfInRange(effectiveRange, npc, _currentTarget, true))
 		{
-			npc.getAI().setIntention(Intention.IDLE);
+			npc.getAI().setIntentionIdle();
 			npc.setCastingNow(true);
 			npc.setTarget(_currentTarget);
 			npc.doCast(chosenSkill);
 		}
 		else
 		{
-			npc.getAI().setIntention(Intention.FOLLOW, _currentTarget, null);
+			npc.getAI().setIntentionFollow(_currentTarget);
 			npc.setCastingNow(false);
 		}
 	}
@@ -840,7 +839,7 @@ public class Valakas extends Script
 			return SKILL_LAVA_SKIN;
 		}
 		
-		final int nearbyPlayers = World.getInstance().getVisibleObjectsInRange(npc, Player.class, 1200).size();
+		final int nearbyPlayers = World.getVisibleObjectsInRange(npc, Player.class, 1200).size();
 		if (nearbyPlayers >= 20)
 		{
 			return getRandomEntry(SKILL_TABLE_AOE);
@@ -867,7 +866,7 @@ public class Valakas extends Script
 		}
 		
 		final List<Playable> candidates = new ArrayList<>();
-		World.getInstance().forEachVisibleObject(npc, Playable.class, playable ->
+		World.forEachVisibleObject(npc, Playable.class, playable ->
 		{
 			if ((playable != null) && !playable.isDead() && !playable.isInvisible() && !playable.isPet() && playable.isPlayable())
 			{

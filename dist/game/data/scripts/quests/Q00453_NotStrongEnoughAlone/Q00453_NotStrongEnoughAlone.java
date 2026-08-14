@@ -17,14 +17,14 @@
 package quests.Q00453_NotStrongEnoughAlone;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.QuestType;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.QuestType;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.ExQuestNpcLogList;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
@@ -306,7 +306,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 					}
 					case 5:
 					{
-						giveItems(player, REWARD[getRandom(REWARD.length)][getRandom(REWARD[0].length)], 1);
+						giveItems(player, getRandomEntry(REWARD)[getRandom(REWARD[0].length)], 1);
 						qs.exitQuest(QuestType.DAILY, true);
 						htmltext = "32734-14.html";
 						break;

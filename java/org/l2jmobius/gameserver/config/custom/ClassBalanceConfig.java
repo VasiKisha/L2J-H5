@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 import org.l2jmobius.commons.util.ConfigReader;
 import org.l2jmobius.commons.util.StringUtil;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 
 /**
  * This class loads all the custom class balance related configurations.

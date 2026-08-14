@@ -34,13 +34,13 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.zone.type.BossZone;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.zone.type.BossZone;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Grand Boss manager.
@@ -77,7 +77,7 @@ public class GrandBossManager
 		{
 			while (rs.next())
 			{
-				// Read all info from DB, and store it for AI to read and decide what to do
+				// Read all info from DB, and store it for AI to read and decide what to do.
 				// faster than accessing DB in real time
 				final StatSet info = new StatSet();
 				final int bossId = rs.getInt("boss_id");

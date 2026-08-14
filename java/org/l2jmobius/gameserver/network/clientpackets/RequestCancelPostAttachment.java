@@ -17,15 +17,15 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.ItemContainer;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangePostState;
@@ -159,7 +159,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 			return;
 		}
 		
-		// Proceed to the transfer
+		// Proceed to the transfer.
 		final InventoryUpdate playerIU = new InventoryUpdate();
 		for (Item item : attachments.getItems())
 		{
@@ -192,18 +192,18 @@ public class RequestCancelPostAttachment extends ClientPacket
 		
 		msg.removeAttachments();
 		
-		// Send updated item list to the player
+		// Send updated item list to the player.
 		player.sendInventoryUpdate(playerIU);
 		
 		// Send full list to avoid duplicates.
 		player.sendItemList(false);
 		
-		// Update current load status on player
+		// Update current load status on player.
 		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 		player.sendPacket(su);
 		
-		final Player receiver = World.getInstance().getPlayer(msg.getReceiverId());
+		final Player receiver = World.getPlayer(msg.getReceiverId());
 		if (receiver != null)
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANCELED_THE_SENT_MAIL);

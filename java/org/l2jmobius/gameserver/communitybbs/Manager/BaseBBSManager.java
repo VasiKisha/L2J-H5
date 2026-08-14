@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.communitybbs.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ShowBoard;
 
 public abstract class BaseBBSManager

@@ -22,15 +22,15 @@ package handlers.chat.commands.admin;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 
 /**
  * @author Mobius
@@ -63,7 +63,7 @@ public class AdminDelete implements IAdminCommandHandler
 	{
 		if (range > 0)
 		{
-			World.getInstance().forEachVisibleObjectInRange(player, Npc.class, range, target -> deleteNpc(player, target));
+			World.forEachVisibleObjectInRange(player, Npc.class, range, target -> deleteNpc(player, target));
 			return;
 		}
 		
@@ -142,7 +142,7 @@ public class AdminDelete implements IAdminCommandHandler
 					SpawnData.getInstance().deleteSpawn(spawn);
 				}
 				
-				for (WorldObject wo : World.getInstance().getVisibleObjects())
+				for (WorldObject wo : World.getVisibleObjects())
 				{
 					if (!wo.isNpc())
 					{

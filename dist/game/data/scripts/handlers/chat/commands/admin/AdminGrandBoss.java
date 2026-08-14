@@ -20,20 +20,22 @@
  */
 package handlers.chat.commands.admin;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 import ai.bosses.Antharas.Antharas;
 import ai.bosses.Baium.Baium;
@@ -43,6 +45,8 @@ import ai.bosses.Baium.Baium;
  */
 public class AdminGrandBoss implements IAdminCommandHandler
 {
+	private static final DateTimeFormatter RESPAWN_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	
 	private static final int ANTHARAS = 29068; // Antharas
 	private static final int ANTHARAS_ZONE = 70050; // Antharas Nest
 	private static final int VALAKAS = 29028; // Valakas
@@ -320,7 +324,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 			}
 			
 			final StatSet info = GrandBossManager.getInstance().getStatSet(grandBossId);
-			final String bossRespawn = TimeUtil.getDateTimeString(info.getLong("respawn_time"));
+			final String bossRespawn = RESPAWN_FORMAT.format(Instant.ofEpochMilli(info.getLong("respawn_time")).atZone(ZoneId.systemDefault()));
 			final NpcHtmlMessage html = new NpcHtmlMessage(0, 1);
 			html.setHtml(HtmCache.getInstance().getHtm(activeChar, htmlPatch));
 			html.replace("%bossStatus%", text);

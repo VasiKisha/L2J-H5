@@ -20,11 +20,11 @@
  */
 package handlers.actions.shiftclick;
 
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 
 public class PlayerShiftClick implements IActionShiftHandler
 {
@@ -33,10 +33,10 @@ public class PlayerShiftClick implements IActionShiftHandler
 	{
 		if (player.isGM())
 		{
-			// Check if the GM already target this l2pcinstance
+			// Check if the GM already target this l2pcinstance.
 			if (player.getTarget() != target)
 			{
-				// Set the target of the Player player
+				// Set the target of the Player player.
 				player.setTarget(target);
 			}
 			

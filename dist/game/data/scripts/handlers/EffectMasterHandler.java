@@ -23,7 +23,7 @@ package handlers;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.handler.EffectHandler;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
 
 import handlers.skill.effects.*;
 

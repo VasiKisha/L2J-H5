@@ -22,9 +22,9 @@ package org.l2jmobius.gameserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.PacketHandler;
-import org.l2jmobius.commons.network.ReadableBuffer;
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.packet.PacketHandler;
+import org.l2jmobius.commons.network.packet.ReadablePacket;
 import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.network.clientpackets.RequestBookMarkSlotInfo;
 import org.l2jmobius.gameserver.network.clientpackets.RequestChangeBookMarkSlot;
@@ -41,7 +41,7 @@ public class GamePacketHandler implements PacketHandler<GameClient>
 	private static final Logger LOGGER = Logger.getLogger(GamePacketHandler.class.getName());
 	
 	@Override
-	public ReadablePacket<GameClient> handlePacket(ReadableBuffer buffer, GameClient client)
+	public ReadablePacket<GameClient> handle(ReadBuffer buffer, GameClient client)
 	{
 		// Read packet id.
 		final int packetId;

@@ -16,14 +16,13 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
  * Special event info packet.
- * @author Kerberos
- * @author mrTJO
+ * @author Kerberos, mrTJO
  */
 public class ExBrBroadcastEventState extends ServerPacket
 {
@@ -63,7 +62,7 @@ public class ExBrBroadcastEventState extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_BR_BROADCAST_EVENT_STATE.writeId(this, buffer);
 		buffer.writeInt(_eventId);

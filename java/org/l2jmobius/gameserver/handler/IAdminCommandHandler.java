@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.handler;
 
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Player;
 
 public interface IAdminCommandHandler
 {

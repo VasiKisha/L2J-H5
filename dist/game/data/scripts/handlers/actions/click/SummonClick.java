@@ -20,14 +20,13 @@
  */
 package handlers.actions.click;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerSummonTalk;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
@@ -37,7 +36,7 @@ public class SummonClick implements IActionClickHandler
 	@Override
 	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
-		// Aggression target lock effect
+		// Aggression target lock effect.
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
 		{
 			player.sendPacket(SystemMessageId.FAILED_TO_CHANGE_ATTACK_TARGET);
@@ -64,12 +63,12 @@ public class SummonClick implements IActionClickHandler
 		{
 			if (target.isAutoAttackable(player))
 			{
-				player.getAI().setIntention(Intention.ATTACK, target);
+				player.getAI().setIntentionAttack(target);
 				player.onActionRequest();
 			}
 			else
 			{
-				// This Action Failed packet avoids player getting stuck when clicking three or more times
+				// This Action Failed packet avoids player getting stuck when clicking three or more times.
 				player.sendPacket(ActionFailed.STATIC_PACKET);
 				if (target.asSummon().isInsideRadius2D(player, 150))
 				{
@@ -78,7 +77,7 @@ public class SummonClick implements IActionClickHandler
 				
 				// else if (GeoEngine.getInstance().canMoveToTarget(player, target))
 				// {
-				player.getAI().setIntention(Intention.FOLLOW, target);
+				player.getAI().setIntentionFollow(target);
 				// }
 			}
 		}

@@ -33,11 +33,11 @@ import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
 import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
 import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.AutoUseSettingsHolder;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.AutoUseSettingsHolder;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.groups.PartyDistributionType;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.taskmanagers.AutoPlayTaskManager;
@@ -205,7 +205,7 @@ public class OfflinePlayTable
 				while (result.next())
 				{
 					final int leaderId = result.getInt("leaderId");
-					final Player leader = World.getInstance().getPlayer(leaderId);
+					final Player leader = World.getPlayer(leaderId);
 					if (leader != null)
 					{
 						nParties++;
@@ -221,7 +221,7 @@ public class OfflinePlayTable
 								while (members.next())
 								{
 									final int charId = members.getInt("charId");
-									final Player member = World.getInstance().getPlayer(charId);
+									final Player member = World.getPlayer(charId);
 									if (member != null)
 									{
 										if (party == null)
@@ -358,7 +358,7 @@ public class OfflinePlayTable
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement(SAVE_GROUP_MEMBER))
 		{
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if (player.isAutoPlaying())
 				{

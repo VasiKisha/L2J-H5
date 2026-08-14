@@ -39,20 +39,20 @@ import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.krateisCube.KrateiArena;
-import org.l2jmobius.gameserver.model.krateisCube.KrateiCubePlayer;
-import org.l2jmobius.gameserver.model.krateisCube.KrateiMsgType;
-import org.l2jmobius.gameserver.model.krateisCube.KrateisReward;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.krateisCube.KrateiArena;
+import org.l2jmobius.gameserver.mechanics.krateisCube.KrateiCubePlayer;
+import org.l2jmobius.gameserver.mechanics.krateisCube.KrateiMsgType;
+import org.l2jmobius.gameserver.mechanics.krateisCube.KrateisReward;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author LordWinter

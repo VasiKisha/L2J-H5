@@ -21,12 +21,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -587,44 +588,44 @@ public class Q00386_StolenDignity extends Quest
 		int found = 0;
 		
 		// Horizontal
-		if ((q[0] + q[1] + q[2]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[0] + q[1] + q[2]))
 		{
 			found++;
 		}
 		
-		if ((q[3] + q[4] + q[5]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[3] + q[4] + q[5]))
 		{
 			found++;
 		}
 		
-		if ((q[6] + q[7] + q[8]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[6] + q[7] + q[8]))
 		{
 			found++;
 		}
 		
 		// Vertical
-		if ((q[0] + q[3] + q[6]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[0] + q[3] + q[6]))
 		{
 			found++;
 		}
 		
-		if ((q[1] + q[4] + q[7]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[1] + q[4] + q[7]))
 		{
 			found++;
 		}
 		
-		if ((q[2] + q[5] + q[8]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[2] + q[5] + q[8]))
 		{
 			found++;
 		}
 		
 		// Diagonal
-		if ((q[0] + q[4] + q[8]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[0] + q[4] + q[8]))
 		{
 			found++;
 		}
 		
-		if ((q[2] + q[4] + q[6]).matches("\\d+"))
+		if (StringUtil.isNumeric(q[2] + q[4] + q[6]))
 		{
 			found++;
 		}

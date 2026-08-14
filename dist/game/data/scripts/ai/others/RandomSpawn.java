@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Manages spawn of NPCs having several random spawn points.
@@ -85,7 +85,7 @@ public class RandomSpawn extends Script
 	public void onSpawn(Npc npc)
 	{
 		final Location[] spawnlist = SPAWN_POINTS.get(npc.getId());
-		final Location loc = spawnlist[getRandom(spawnlist.length)];
+		final Location loc = getRandomEntry(spawnlist);
 		if (!npc.isInsideRadius2D(loc, 200))
 		{
 			npc.getSpawn().setLocation(loc);

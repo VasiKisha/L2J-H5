@@ -29,27 +29,27 @@ import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.entity.item.EtcItem;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.type.ArmorType;
+import org.l2jmobius.gameserver.entity.item.type.EtcItemType;
+import org.l2jmobius.gameserver.entity.item.type.WeaponType;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
 import org.l2jmobius.gameserver.managers.FortSiegeManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.item.EtcItem;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.Weapon;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.type.ArmorType;
-import org.l2jmobius.gameserver.model.item.type.EtcItemType;
-import org.l2jmobius.gameserver.model.item.type.WeaponType;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -119,15 +119,15 @@ public class UseItem extends ClientPacket
 			return;
 		}
 		
-		// No UseItem is allowed while the player is in special conditions
-		if (player.isStunned() || player.isParalyzed() || player.isSleeping() || player.isAfraid() || player.isAlikeDead())
+		// No UseItem is allowed while the player is in special conditions.
+		if (player.isStunned() || player.isParalyzed() || player.isSleeping() || player.isControlBlocked() || player.isAlikeDead())
 		{
 			return;
 		}
 		
 		_itemId = item.getId();
 		
-		// Char cannot use item when dead
+		// Char cannot use item when dead.
 		if (player.isDead() || !player.getInventory().canManipulateWithItemId(_itemId))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
@@ -143,7 +143,7 @@ public class UseItem extends ClientPacket
 		
 		if (player.isFishing() && ((_itemId < 6535) || (_itemId > 6540)))
 		{
-			// You cannot do anything else while fishing
+			// You cannot do anything else while fishing.
 			player.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_FISHING_3);
 			return;
 		}
@@ -205,10 +205,10 @@ public class UseItem extends ClientPacket
 				return;
 			}
 			
-			// Equip or unEquip
+			// Equip or unEquip.
 			if (FortSiegeManager.getInstance().isCombat(_itemId))
 			{
-				return; // no message
+				return; // No message.
 			}
 			
 			if (player.isCombatFlagEquipped())
@@ -380,7 +380,7 @@ public class UseItem extends ClientPacket
 			}
 			
 			// Item reuse time should be added if the item is successfully used.
-			// Skill reuse delay is done at handlers.itemhandlers.ItemSkillsTemplate;
+			// Skill reuse delay is done at handlers.itemhandlers.ItemSkillsTemplate.
 			if (handler.onItemUse(player, item, _ctrlPressed) && (reuseDelay > 0))
 			{
 				player.addTimeStampItem(item, reuseDelay);

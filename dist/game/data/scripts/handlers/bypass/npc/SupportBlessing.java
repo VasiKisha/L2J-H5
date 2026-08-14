@@ -20,11 +20,11 @@
  */
 package handlers.bypass.npc;
 
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.skill.CommonSkill;
+import org.l2jmobius.gameserver.mechanics.skill.CommonSkill;
 
 public class SupportBlessing implements IBypassHandler
 {
@@ -43,7 +43,7 @@ public class SupportBlessing implements IBypassHandler
 		
 		final Npc npc = target.asNpc();
 		
-		// If the player is too high level, display a message and return
+		// If the player is too high level, display a message and return.
 		if ((player.getLevel() > 39) || (player.getPlayerClass().level() >= 2))
 		{
 			npc.showChatWindow(player, "data/html/default/SupportBlessingHighLevel.htm");

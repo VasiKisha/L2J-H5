@@ -21,13 +21,13 @@
 package quests.Q00246_PossessorOfAPreciousSoul3;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00242_PossessorOfAPreciousSoul2.Q00242_PossessorOfAPreciousSoul2;
@@ -243,7 +243,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 			default:
 			{
 				st = player.getQuestState(getName());
-				if ((st == null))
+				if (st == null)
 				{
 					return;
 				}
@@ -269,11 +269,12 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 	public String onTalk(Npc npc, Player player)
 	{
 		final QuestState st = getQuestState(player, true);
-		String htmltext = getNoQuestMsg(player);
 		if (st.isStarted() && !player.isSubClassActive())
 		{
 			return "no_sub.html";
 		}
+		
+		String htmltext = getNoQuestMsg(player);
 		
 		switch (npc.getId())
 		{

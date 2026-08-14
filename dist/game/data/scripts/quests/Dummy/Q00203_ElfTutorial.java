@@ -16,7 +16,7 @@
  */
 package quests.Dummy;
 
-import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
 
 /**
  * @author Zealar

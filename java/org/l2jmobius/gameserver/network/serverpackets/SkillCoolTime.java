@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.creature.TimeStamp;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.TimeStamp;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -35,7 +35,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class SkillCoolTime extends ServerPacket
 {
-	private final List<TimeStamp> _reuseTimestamps = new LinkedList<>();
+	private final List<TimeStamp> _reuseTimestamps = new ArrayList<>();
 	
 	public SkillCoolTime(Player player)
 	{
@@ -49,7 +49,7 @@ public class SkillCoolTime extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.SKILL_COOL_TIME.writeId(this, buffer);
 		buffer.writeInt(_reuseTimestamps.size());

@@ -22,14 +22,14 @@ import java.sql.ResultSet;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.ScriptManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowQuestMark;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -66,7 +66,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 		val[0] = null;
 		if (cmdParams.length > 1)
 		{
-			target = World.getInstance().getPlayer(cmdParams[1]);
+			target = World.getPlayer(cmdParams[1]);
 			if (cmdParams.length > 2)
 			{
 				if (cmdParams[2].equals("0"))

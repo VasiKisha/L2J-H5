@@ -27,15 +27,15 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.config.ConquerableHallSiegeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
-import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.zone.type.ClanHallZone;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author BiggBoss

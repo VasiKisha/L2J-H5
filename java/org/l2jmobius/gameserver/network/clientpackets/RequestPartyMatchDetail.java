@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
-import org.l2jmobius.gameserver.model.groups.matching.PartyMatchWaitingList;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.entity.groups.matching.PartyMatchWaitingList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExManagePartyRoomMember;
 import org.l2jmobius.gameserver.network.serverpackets.ExPartyRoomMember;

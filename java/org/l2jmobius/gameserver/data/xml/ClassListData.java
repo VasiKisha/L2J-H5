@@ -29,8 +29,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.actor.holders.player.ClassInfoHolder;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.holders.player.ClassInfoHolder;
 
 /**
  * Loads and manages the list of player classes and their associated information.

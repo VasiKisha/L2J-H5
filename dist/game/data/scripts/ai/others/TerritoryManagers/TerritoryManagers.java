@@ -17,18 +17,18 @@
 package ai.others.TerritoryManagers;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -225,11 +225,8 @@ public class TerritoryManagers extends Script
 			}
 			case "ReceiveRewards":
 			{
-				int badgeId = 57;
-				if (TerritoryWarManager.TERRITORY_ITEM_IDS.containsKey(territoryId))
-				{
-					badgeId = TerritoryWarManager.TERRITORY_ITEM_IDS.get(territoryId);
-				}
+				final Integer mappedBadge = TerritoryWarManager.TERRITORY_ITEM_IDS.get(territoryId);
+				final int badgeId = (mappedBadge != null) ? mappedBadge : 57;
 				
 				final int[] reward = TerritoryWarManager.getInstance().calcReward(player);
 				final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());

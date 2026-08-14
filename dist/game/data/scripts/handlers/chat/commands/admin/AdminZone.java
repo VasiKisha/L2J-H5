@@ -24,14 +24,14 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
+import org.l2jmobius.gameserver.entity.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
@@ -68,7 +68,7 @@ public class AdminZone implements IAdminCommandHandler
 			activeChar.sendSysMessage("Closest Town: " + MapRegionData.getInstance().getClosestTownName(activeChar));
 			
 			// Prevent exit instance variable deletion.
-			if (activeChar.getInstanceId() == 0)
+			if (!activeChar.isInInstance())
 			{
 				Location loc;
 				loc = MapRegionData.getInstance().getTeleToLocation(activeChar, TeleportWhereType.CASTLE);
@@ -145,7 +145,7 @@ public class AdminZone implements IAdminCommandHandler
 				{
 					zones.append(" (");
 					zones.append(zone.getId());
-					zones.append(")");
+					zones.append(')');
 				}
 				zones.append("<br1>");
 			}
@@ -153,7 +153,7 @@ public class AdminZone implements IAdminCommandHandler
 			{
 				zones.append(zone.getId());
 			}
-			zones.append(" ");
+			zones.append(' ');
 		}
 		
 		for (NpcSpawnTerritory territory : ZoneManager.getInstance().getSpawnTerritories(activeChar))
@@ -172,7 +172,7 @@ public class AdminZone implements IAdminCommandHandler
 		final int worldY = activeChar.getY();
 		final int geoX = (((worldX - -327680) >> 4) >> 11) + 10;
 		final int geoY = (((worldY - -262144) >> 4) >> 11) + 10;
-		activeChar.sendSysMessage("GeoRegion: " + geoX + "_" + geoY + "");
+		activeChar.sendSysMessage("GeoRegion: " + geoX + "_" + geoY);
 	}
 	
 	@Override

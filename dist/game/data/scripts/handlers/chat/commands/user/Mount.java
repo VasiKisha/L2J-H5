@@ -16,8 +16,8 @@
  */
 package handlers.chat.commands.user;
 
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * Mount user command.

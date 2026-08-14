@@ -19,14 +19,15 @@ package handlers.bypass.communityboard;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IParseBoardHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * Favorite board.
@@ -34,6 +35,8 @@ import org.l2jmobius.gameserver.model.actor.Player;
  */
 public class FavoriteBoard implements IParseBoardHandler
 {
+	private static final DateTimeFormatter FAVORITE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	
 	// SQL Queries
 	private static final String SELECT_FAVORITES = "SELECT * FROM `bbs_favorites` WHERE `playerId`=? ORDER BY `favAddDate` DESC";
 	private static final String DELETE_FAVORITE = "DELETE FROM `bbs_favorites` WHERE `playerId`=? AND `favId`=?";
@@ -71,8 +74,7 @@ public class FavoriteBoard implements IParseBoardHandler
 					{
 						String link = list.replace("%fav_bypass%", rs.getString("favBypass"));
 						link = link.replace("%fav_title%", rs.getString("favTitle"));
-						final SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						link = link.replace("%fav_add_date%", date.format(rs.getTimestamp("favAddDate")));
+						link = link.replace("%fav_add_date%", FAVORITE_FORMAT.format(rs.getTimestamp("favAddDate").toInstant().atZone(ZoneId.systemDefault())));
 						link = link.replace("%fav_id%", String.valueOf(rs.getInt("favId")));
 						sb.append(link);
 					}

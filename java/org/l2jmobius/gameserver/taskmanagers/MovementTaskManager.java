@@ -27,8 +27,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.TraceUtil;
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 
 /**
  * Movement task manager class.
@@ -71,17 +70,22 @@ public class MovementTaskManager
 			while (iterator.hasNext())
 			{
 				creature = iterator.next();
+				boolean removed = false;
 				try
 				{
 					if (creature.updatePosition())
 					{
 						iterator.remove();
-						creature.getAI().notifyAction(Action.ARRIVED);
+						removed = true;
+						creature.getAI().notifyActionArrived();
 					}
 				}
 				catch (Exception e)
 				{
-					iterator.remove();
+					if (!removed)
+					{
+						iterator.remove();
+					}
 					LOGGER.warning("MovementTaskManager: Problem updating position of " + creature);
 					LOGGER.warning(TraceUtil.getStackTrace(e));
 				}
@@ -145,7 +149,7 @@ public class MovementTaskManager
 		}
 	}
 	
-	public static final MovementTaskManager getInstance()
+	public static MovementTaskManager getInstance()
 	{
 		return SingletonHolder.INSTANCE;
 	}

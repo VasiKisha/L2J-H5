@@ -34,5 +34,8 @@
 			<location name="Evil Hunting Grounds" x="-6989" y="109503" z="-3040" feeCount="1000" />
 			<location name="Coliseum" x="146440" y="46723" z="-3400" feeCount="1000" />
 		</teleport>
+		<teleport type="OTHER">
+			<location x="-149406" y="255247" z="-80" /> <!-- Talking Island -> Airship dock -->
+		</teleport>
 	</npc>
 </list>

@@ -24,6 +24,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
@@ -42,20 +45,23 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.ui.DarkTheme;
 import org.l2jmobius.commons.ui.LineLimitListener;
 import org.l2jmobius.commons.ui.SplashScreen;
-import org.l2jmobius.loginserver.GameServerTable;
-import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
-import org.l2jmobius.loginserver.LoginController;
 import org.l2jmobius.loginserver.LoginServer;
-import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.data.GameServerTable;
+import org.l2jmobius.loginserver.data.GameServerTable.GameServerInfo;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ServerStatus;
 
 /**
  * @author Mobius
@@ -98,6 +104,9 @@ public class Gui
 		_txtrConsole.setDropMode(DropMode.INSERT);
 		_txtrConsole.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		_txtrConsole.getDocument().addDocumentListener(new LineLimitListener(500));
+		
+		// Add right-click copy functionality.
+		addRightClickCopyMenu();
 		
 		// Initialize menu items.
 		final JMenuBar menuBar = new JMenuBar();
@@ -272,7 +281,85 @@ public class Gui
 		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 5000, frame);
 	}
 	
-	// Set where the text is redirected. In this case, txtrConsole.
+	/**
+	 * Adds right-click copy functionality to the console text area.<br>
+	 * Shows a popup menu with "Copy selection" or "Copy all messages" depending on whether text is selected.
+	 */
+	private void addRightClickCopyMenu()
+	{
+		final JPopupMenu popupMenu = new JPopupMenu();
+		final JMenuItem copyItem = new JMenuItem("Copy all messages"); // Set as initial text.
+		copyItem.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		
+		// Calculate width based on the longer text.
+		popupMenu.addPopupMenuListener(new PopupMenuListener()
+		{
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e)
+			{
+				// Update text before menu becomes visible.
+				updateCopyMenuItemText(copyItem);
+				
+				// Set preferred width based on the current text.
+				popupMenu.pack();
+			}
+			
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e)
+			{
+			}
+			
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e)
+			{
+			}
+		});
+		
+		copyItem.addActionListener(_ ->
+		{
+			String textToCopy = _txtrConsole.getSelectedText();
+			if ((textToCopy == null) || textToCopy.isEmpty())
+			{
+				// No selection, copy all text.
+				textToCopy = _txtrConsole.getText();
+			}
+			
+			if ((textToCopy != null) && !textToCopy.isEmpty())
+			{
+				// Use StringSelection to copy to clipboard.
+				final StringSelection selection = new StringSelection(textToCopy);
+				final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				clipboard.setContents(selection, selection);
+			}
+		});
+		
+		popupMenu.add(copyItem);
+		
+		// Also set as component popup menu for compatibility.
+		_txtrConsole.setComponentPopupMenu(popupMenu);
+	}
+	
+	/**
+	 * Updates the copy menu item text based on whether text is selected.
+	 * @param copyItem the menu item to update
+	 */
+	private void updateCopyMenuItemText(JMenuItem copyItem)
+	{
+		final String selectedText = _txtrConsole.getSelectedText();
+		if ((selectedText != null) && !selectedText.isEmpty())
+		{
+			copyItem.setText("Copy selection");
+		}
+		else
+		{
+			copyItem.setText("Copy all messages");
+		}
+	}
+	
+	/**
+	 * Set where the text is redirected. In this case, txtrConsole.
+	 * @param text the String text
+	 */
 	void updateTextArea(String text)
 	{
 		SwingUtilities.invokeLater(() ->
@@ -282,7 +369,9 @@ public class Gui
 		});
 	}
 	
-	// Method that manages the redirect.
+	/**
+	 * Method that manages the redirect.
+	 */
 	private void redirectSystemStreams()
 	{
 		final OutputStream out = new OutputStream()

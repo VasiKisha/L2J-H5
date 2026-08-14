@@ -16,14 +16,13 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Betray effect implementation.
@@ -57,12 +56,12 @@ public class Betray extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(Intention.IDLE);
+		effected.getAI().setIntentionIdle();
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(Intention.ATTACK, effected.asPlayer());
+		effected.getAI().setIntentionAttack(effected.asPlayer());
 	}
 }

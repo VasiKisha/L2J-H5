@@ -24,21 +24,21 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.tasks.player.TeleportTask;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.zone.type.JailZone;
 import org.l2jmobius.gameserver.handler.IPunishmentHandler;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.tasks.player.TeleportTask;
-import org.l2jmobius.gameserver.model.events.Containers;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.model.zone.type.JailZone;
+import org.l2jmobius.gameserver.mechanics.events.Containers;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentAffect;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -97,7 +97,7 @@ public class JailHandler implements IPunishmentHandler
 			case CHARACTER:
 			{
 				final int objectId = Integer.parseInt(String.valueOf(task.getKey()));
-				final Player player = World.getInstance().getPlayer(objectId);
+				final Player player = World.getPlayer(objectId);
 				if (player != null)
 				{
 					applyToPlayer(task, player);
@@ -121,7 +121,7 @@ public class JailHandler implements IPunishmentHandler
 			case IP:
 			{
 				final String ip = String.valueOf(task.getKey());
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					if (player.getIPAddress().equals(ip))
 					{
@@ -133,7 +133,7 @@ public class JailHandler implements IPunishmentHandler
 			case HWID:
 			{
 				final String hwid = String.valueOf(task.getKey());
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					final GameClient client = player.getClient();
 					if ((client != null) && client.getHardwareInfo().getMacAddress().equals(hwid))
@@ -154,7 +154,7 @@ public class JailHandler implements IPunishmentHandler
 			case CHARACTER:
 			{
 				final int objectId = Integer.parseInt(String.valueOf(task.getKey()));
-				final Player player = World.getInstance().getPlayer(objectId);
+				final Player player = World.getPlayer(objectId);
 				if (player != null)
 				{
 					removeFromPlayer(player);
@@ -178,7 +178,7 @@ public class JailHandler implements IPunishmentHandler
 			case IP:
 			{
 				final String ip = String.valueOf(task.getKey());
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					if (player.getIPAddress().equals(ip))
 					{
@@ -190,7 +190,7 @@ public class JailHandler implements IPunishmentHandler
 			case HWID:
 			{
 				final String hwid = String.valueOf(task.getKey());
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					final GameClient client = player.getClient();
 					if ((client != null) && client.getHardwareInfo().getMacAddress().equals(hwid))
@@ -262,7 +262,7 @@ public class JailHandler implements IPunishmentHandler
 	{
 		ThreadPool.schedule(new TeleportTask(player, JailZone.getLocationOut()), 2000);
 		
-		// Open a Html message to inform the player
+		// Open a Html message to inform the player.
 		final NpcHtmlMessage msg = new NpcHtmlMessage();
 		final String content = HtmCache.getInstance().getHtm(player, "data/html/jail_out.htm");
 		if (content != null)

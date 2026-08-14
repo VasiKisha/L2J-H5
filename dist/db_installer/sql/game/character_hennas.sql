@@ -8,6 +8,3 @@ CREATE TABLE IF NOT EXISTS `character_hennas` (
 
 # RESTORE_CHAR_HENNAS, ADD_CHAR_HENNA, DELETE_CHAR_HENNAS
 CREATE INDEX idx_charId_classIndex ON character_hennas (charId, class_index);
-
-# DELETE_CHAR_HENNA
-CREATE INDEX idx_charId_slot_classIndex ON character_hennas (charId, slot, class_index);

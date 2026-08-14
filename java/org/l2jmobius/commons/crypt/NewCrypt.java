@@ -20,6 +20,8 @@
  */
 package org.l2jmobius.commons.crypt;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Blowfish cipher implementation with ECB processing for L2J packet encryption.<br>
  * Provides checksum validation and XOR encryption for secure server communication.
@@ -64,7 +66,7 @@ public class NewCrypt
 	 */
 	public NewCrypt(String key)
 	{
-		this(key.getBytes());
+		this(key.getBytes(StandardCharsets.UTF_8));
 	}
 	
 	/**

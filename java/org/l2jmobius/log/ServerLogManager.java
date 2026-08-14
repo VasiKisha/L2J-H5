@@ -31,7 +31,7 @@ public class ServerLogManager extends LogManager
 	@Override
 	public void reset()
 	{
-		// do nothing
+		// Do nothing.
 	}
 	
 	public void doReset()

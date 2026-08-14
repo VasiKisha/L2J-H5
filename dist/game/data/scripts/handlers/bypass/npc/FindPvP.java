@@ -27,11 +27,11 @@ import java.util.Map.Entry;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.PvpConfig;
 import org.l2jmobius.gameserver.config.custom.FindPvpConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
@@ -56,7 +56,7 @@ public class FindPvP implements IBypassHandler
 		
 		Player mostPvP = null;
 		int max = -1;
-		for (Player plr : World.getInstance().getPlayers())
+		for (Player plr : World.getPlayers())
 		{
 			if ((plr == null) //
 				|| (plr.getPvpFlag() == 0) //
@@ -70,7 +70,7 @@ public class FindPvP implements IBypassHandler
 			}
 			
 			int count = 0;
-			for (Player pl : World.getInstance().getVisibleObjects(plr, Player.class))
+			for (Player pl : World.getVisibleObjects(plr, Player.class))
 			{
 				if ((pl.getPvpFlag() > 0) && !pl.isInsideZone(ZoneId.PEACE))
 				{
@@ -87,7 +87,7 @@ public class FindPvP implements IBypassHandler
 		
 		if (mostPvP != null)
 		{
-			// Check if the player's clan is already outnumbering the PvP
+			// Check if the player's clan is already outnumbering the PvP.
 			if (player.getClan() != null)
 			{
 				final Map<Integer, Integer> clanNumbers = new HashMap<>();
@@ -98,7 +98,7 @@ public class FindPvP implements IBypassHandler
 				}
 				
 				clanNumbers.put(allyId, 1);
-				for (Player known : World.getInstance().getVisibleObjects(mostPvP, Player.class))
+				World.forEachVisibleObject(mostPvP, Player.class, known ->
 				{
 					int knownAllyId = known.getAllyId();
 					if (knownAllyId == 0)
@@ -108,16 +108,9 @@ public class FindPvP implements IBypassHandler
 					
 					if (knownAllyId != 0)
 					{
-						if (clanNumbers.containsKey(knownAllyId))
-						{
-							clanNumbers.put(knownAllyId, clanNumbers.get(knownAllyId) + 1);
-						}
-						else
-						{
-							clanNumbers.put(knownAllyId, 1);
-						}
+						clanNumbers.merge(knownAllyId, 1, Integer::sum);
 					}
-				}
+				});
 				
 				int biggestAllyId = 0;
 				int biggestAmount = 2;

@@ -33,10 +33,11 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 public class LotteryManager
 {
@@ -117,7 +118,7 @@ public class LotteryManager
 	{
 		protected startLottery()
 		{
-			// Do nothing
+			// Do nothing.
 		}
 		
 		@Override
@@ -166,7 +167,7 @@ public class LotteryManager
 			
 			_isSellingTickets = true;
 			_isStarted = true;
-			Broadcast.toAllOnlinePlayers("Lottery tickets are now available for Lucky Lottery #" + _number + ".");
+			World.broadcastToAllOnlinePlayers("Lottery tickets are now available for Lucky Lottery #" + _number + ".");
 			final Calendar finishtime = Calendar.getInstance();
 			finishtime.setTimeInMillis(_enddate);
 			finishtime.set(Calendar.MINUTE, 0);
@@ -209,14 +210,14 @@ public class LotteryManager
 	{
 		protected stopSellingTickets()
 		{
-			// Do nothing
+			// Do nothing.
 		}
 		
 		@Override
 		public void run()
 		{
 			_isSellingTickets = false;
-			Broadcast.toAllOnlinePlayers(new SystemMessage(SystemMessageId.LOTTERY_TICKET_SALES_HAVE_BEEN_TEMPORARILY_SUSPENDED));
+			World.broadcastToAllOnlinePlayers(new SystemMessage(SystemMessageId.LOTTERY_TICKET_SALES_HAVE_BEEN_TEMPORARILY_SUSPENDED));
 		}
 	}
 	
@@ -224,7 +225,7 @@ public class LotteryManager
 	{
 		protected finishLottery()
 		{
-			// Do nothing
+			// Do nothing.
 		}
 		
 		@Override
@@ -258,11 +259,11 @@ public class LotteryManager
 			{
 				if (luckynums[i] < 17)
 				{
-					enchant += Math.pow(2, luckynums[i] - 1);
+					enchant += MathUtil.pow(2, luckynums[i] - 1);
 				}
 				else
 				{
-					type2 += Math.pow(2, luckynums[i] - 17);
+					type2 += MathUtil.pow(2, luckynums[i] - 17);
 				}
 			}
 			
@@ -366,7 +367,7 @@ public class LotteryManager
 				sm.addLong(_prize);
 			}
 			
-			Broadcast.toAllOnlinePlayers(sm);
+			World.broadcastToAllOnlinePlayers(sm);
 			
 			try (Connection con = DatabaseFactory.getConnection();
 				PreparedStatement ps = con.prepareStatement(UPDATE_LOTTERY))

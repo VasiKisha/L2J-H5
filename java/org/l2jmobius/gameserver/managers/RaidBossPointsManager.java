@@ -37,8 +37,8 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 
 /**
  * @author Kerberos, JIV
@@ -239,13 +239,7 @@ public class RaidBossPointsManager
 	
 	public int calculateRanking(int playerObjId)
 	{
-		final Map<Integer, Integer> rank = getRankList();
-		if (rank.containsKey(playerObjId))
-		{
-			return rank.get(playerObjId);
-		}
-		
-		return 0;
+		return getRankList().getOrDefault(playerObjId, 0);
 	}
 	
 	public Map<Integer, Integer> getRankList()
@@ -261,7 +255,7 @@ public class RaidBossPointsManager
 		}
 		
 		final List<Entry<Integer, Integer>> list = new ArrayList<>(tmpPoints.entrySet());
-		list.sort(Comparator.comparing(Entry<Integer, Integer>::getValue).reversed());
+		list.sort(Comparator.comparingInt(Entry<Integer, Integer>::getValue).reversed());
 		int ranking = 1;
 		final Map<Integer, Integer> tmpRanking = new HashMap<>();
 		for (Entry<Integer, Integer> entry : list)

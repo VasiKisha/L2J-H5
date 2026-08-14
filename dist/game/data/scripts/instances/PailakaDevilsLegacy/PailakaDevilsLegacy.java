@@ -19,20 +19,19 @@ package instances.PailakaDevilsLegacy;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
 import quests.Q00129_PailakaDevilsLegacy.Q00129_PailakaDevilsLegacy;
@@ -197,7 +196,7 @@ public class PailakaDevilsLegacy extends InstanceScript
 					if (!npc.isDead() && npc.isScriptValue(1))
 					{
 						npc.setRunning();
-						npc.getAI().setIntention(Intention.MOVE_TO, LEMATAN_PORT_POINT);
+						npc.getAI().setIntentionMoveTo(LEMATAN_PORT_POINT);
 						startQuestTimer("LEMATAN_MOVE_RETRY", 5000, npc, null);
 					}
 					break;
@@ -258,10 +257,10 @@ public class PailakaDevilsLegacy extends InstanceScript
 				{
 					if ((damage > 0) && npc.isScriptValue(0))
 					{
-						World.getInstance().forEachVisibleObjectInRange(npc, Monster.class, 600, monster ->
+						World.forEachVisibleObjectInRange(npc, Monster.class, 600, monster ->
 						{
 							monster.addDamageHate(npc, 0, 999);
-							monster.getAI().setIntention(Intention.ATTACK, npc);
+							monster.getAI().setIntentionAttack(npc);
 							monster.reduceCurrentHp(500 + getRandom(0, 200), npc, BOOM.getSkill());
 						});
 						npc.doCast(BOOM.getSkill());
@@ -282,7 +281,7 @@ public class PailakaDevilsLegacy extends InstanceScript
 						npc.disableCoreAI(true);
 						npc.setScriptValue(1);
 						npc.setRunning();
-						npc.getAI().setIntention(Intention.MOVE_TO, LEMATAN_PORT_POINT);
+						npc.getAI().setIntentionMoveTo(LEMATAN_PORT_POINT);
 						startQuestTimer("LEMATAN_MOVE_RETRY", 5000, npc, null);
 					}
 					break;

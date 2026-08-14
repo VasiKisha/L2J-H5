@@ -17,13 +17,13 @@
 package ai.others.NpcBuffers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.TamedBeast;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -81,7 +81,7 @@ public class NpcBufferAI implements Runnable
 			}
 			case RANGE:
 			{
-				for (Creature target : World.getInstance().getVisibleObjectsInRange(_npc, Creature.class, skill.getAffectRange()))
+				World.forEachVisibleObjectInRange(_npc, Creature.class, skill.getAffectRange(), target ->
 				{
 					switch (_skillData.getAffectObject())
 					{
@@ -108,7 +108,7 @@ public class NpcBufferAI implements Runnable
 							break;
 						}
 					}
-				}
+				});
 				break;
 			}
 		}

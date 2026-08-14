@@ -27,8 +27,8 @@ import org.w3c.dom.Node;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.data.holders.PetData;
 import org.l2jmobius.gameserver.data.holders.PetLevelData;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.entity.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author Zoey76
@@ -61,7 +61,7 @@ public class PetDataTable implements IXmlReader
 				final int npcId = parseInteger(d.getAttributes(), "id");
 				final int itemId = parseInteger(d.getAttributes(), "itemId");
 				
-				// index ignored for now
+				// Index ignored for now.
 				final PetData data = new PetData(npcId, itemId);
 				for (Node p = d.getFirstChild(); p != null; p = p.getNextSibling())
 				{

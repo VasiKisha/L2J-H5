@@ -26,18 +26,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.l2jmobius.gameserver.data.xml.SpawnData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.html.PageBuilder;
-import org.l2jmobius.gameserver.model.html.PageResult;
-import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
-import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
-import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.html.PageBuilder;
+import org.l2jmobius.gameserver.mechanics.html.PageResult;
+import org.l2jmobius.gameserver.mechanics.html.formatters.BypassParserFormatter;
+import org.l2jmobius.gameserver.mechanics.html.pagehandlers.NextPrevPageHandler;
+import org.l2jmobius.gameserver.mechanics.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.FormatUtil;
 
@@ -83,7 +83,7 @@ public class AdminScan implements IAdminCommandHandler
 					return false;
 				}
 				
-				final WorldObject target = World.getInstance().findObject(objectId);
+				final WorldObject target = World.findObject(objectId);
 				final Npc npc = target instanceof Npc ? target.asNpc() : null;
 				if (npc == null)
 				{
@@ -145,7 +145,7 @@ public class AdminScan implements IAdminCommandHandler
 		html.setFile(activeChar, "data/html/admin/scan.htm");
 		
 		// @formatter:off
-		final PageResult result = PageBuilder.newBuilder(World.getInstance().getVisibleObjectsInRange(activeChar, Npc.class, radius, condition), 15, "bypass -h admin_scan")
+		final PageResult result = PageBuilder.newBuilder(World.getVisibleObjectsInRange(activeChar, Npc.class, radius, condition), 15, "bypass -h admin_scan")
 			.currentPage(page)
 			.pageHandler(NextPrevPageHandler.INSTANCE)
 			.formatter(BypassParserFormatter.INSTANCE)

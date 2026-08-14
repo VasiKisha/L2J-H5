@@ -23,17 +23,16 @@ package ai.bosses.SeerUgoros;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -307,10 +306,10 @@ public class SeerUgoros extends Script
 		}
 		
 		final NpcSay npcSay = new NpcSay(npc.getObjectId(), ChatType.NPC_SHOUT, npc.getId(), npcString);
-		for (Player player : World.getInstance().getVisibleObjectsInRange(npc, Player.class, 6000))
+		World.forEachVisibleObjectInRange(npc, Player.class, 6000, player ->
 		{
 			player.sendPacket(npcSay);
-		}
+		});
 	}
 	
 	private class ThinkTask implements Runnable
@@ -331,17 +330,13 @@ public class SeerUgoros extends Script
 				else if (getRandom(10) < 6)
 				{
 					_weed = null;
-					for (Attackable attackable : World.getInstance().getVisibleObjectsInRange(_ugoros, Attackable.class, 2000))
+					World.forFirstVisibleObjectInRange(_ugoros, Attackable.class, 2000, attackable -> !attackable.isDead() && (attackable.getId() == WEED_ID), attackable ->
 					{
-						if (!attackable.isDead() && (attackable.getId() == WEED_ID))
-						{
-							_weedAttack = true;
-							_weed = attackable;
-							changeAttackTarget(_weed);
-							startQuestTimer("weed_check", 1000, null, null);
-							break;
-						}
-					}
+						_weedAttack = true;
+						_weed = attackable;
+						changeAttackTarget(_weed);
+						startQuestTimer("weed_check", 1000, null, null);
+					});
 					
 					if (_weed == null)
 					{
@@ -368,7 +363,7 @@ public class SeerUgoros extends Script
 	
 	protected void changeAttackTarget(Creature attacker)
 	{
-		_ugoros.getAI().setIntention(Intention.IDLE);
+		_ugoros.getAI().setIntentionIdle();
 		_ugoros.clearAggroList();
 		_ugoros.setTarget(attacker);
 		
@@ -386,7 +381,7 @@ public class SeerUgoros extends Script
 			_ugoros.setWalking();
 		}
 		
-		_ugoros.getAI().setIntention(Intention.ATTACK, attacker);
+		_ugoros.getAI().setIntentionAttack(attacker);
 	}
 	
 	public static void main(String[] args)

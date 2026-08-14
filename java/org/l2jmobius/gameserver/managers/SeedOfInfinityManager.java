@@ -27,8 +27,8 @@ import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Player;
 
 public class SeedOfInfinityManager
 {

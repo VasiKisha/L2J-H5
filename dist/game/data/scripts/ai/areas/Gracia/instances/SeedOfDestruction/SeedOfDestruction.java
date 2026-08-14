@@ -26,26 +26,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.groups.CommandChannel;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.groups.CommandChannel;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.Movie;
@@ -892,91 +891,90 @@ public class SeedOfDestruction extends Script
 	
 	protected int enterInstance(Player player, teleCoord teleto)
 	{
-		InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		final int inst = checkworld(player);
 		if (inst == 0)
 		{
 			player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 			return 0;
 		}
-		else if (inst == 1)
+		
+		InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
+		if (inst == 1)
 		{
 			teleto.instanceId = world.getInstanceId();
 			teleportplayer(player, teleto, (SODWorld) world);
 			return world.getInstanceId();
 		}
+		
 		// New instance
-		else
+		if (!checkConditions(player))
 		{
-			if (!checkConditions(player))
+			return 0;
+		}
+		
+		world = new SODWorld(System.currentTimeMillis() + 5400000);
+		world.setInstance(InstanceManager.getInstance().createDynamicInstance(INSTANCE_ID));
+		InstanceManager.getInstance().addWorld(world);
+		spawnState((SODWorld) world);
+		final int instanceId = world.getInstanceId();
+		for (Door door : InstanceManager.getInstance().getInstance(instanceId).getDoors())
+		{
+			if (ArrayUtil.contains(ATTACKABLE_DOORS, door.getId()))
 			{
-				return 0;
+				door.setIsAttackableDoor(true);
+			}
+		}
+		
+		LOGGER.info("Seed of Destruction started " + INSTANCE_ID + " Instance: " + instanceId + " created by player: " + player.getName());
+		
+		((SODWorld) world).ZoneWaitForTP = true;
+		teleto.instanceId = instanceId;
+		
+		final Party party = player.getParty();
+		if (party == null)
+		{
+			player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
+			InstanceManager.getInstance().setInstanceTime(player.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
+			teleportplayer(player, teleto, (SODWorld) world);
+			if (InstanceManager.getInstance().getInstance(instanceId).isRemoveBuffEnabled())
+			{
+				removeBuffs(player);
 			}
 			
-			world = new SODWorld(System.currentTimeMillis() + 5400000);
-			world.setInstance(InstanceManager.getInstance().createDynamicInstance(INSTANCE_ID));
-			InstanceManager.getInstance().addWorld(world);
-			spawnState((SODWorld) world);
-			final int instanceId = world.getInstanceId();
-			for (Door door : InstanceManager.getInstance().getInstance(instanceId).getDoors())
-			{
-				if (ArrayUtil.contains(ATTACKABLE_DOORS, door.getId()))
-				{
-					door.setIsAttackableDoor(true);
-				}
-			}
-			
-			LOGGER.info("Seed of Destruction started " + INSTANCE_ID + " Instance: " + instanceId + " created by player: " + player.getName());
-			
-			((SODWorld) world).ZoneWaitForTP = true;
-			teleto.instanceId = instanceId;
-			
-			final Party party = player.getParty();
-			if (party == null)
+			world.addAllowed(player);
+		}
+		else if (party.getCommandChannel() != null)
+		{
+			for (Player channelMember : party.getCommandChannel().getMembers())
 			{
 				player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
-				InstanceManager.getInstance().setInstanceTime(player.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
-				teleportplayer(player, teleto, (SODWorld) world);
+				InstanceManager.getInstance().setInstanceTime(channelMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
+				teleportplayer(channelMember, teleto, (SODWorld) world);
 				if (InstanceManager.getInstance().getInstance(instanceId).isRemoveBuffEnabled())
 				{
-					removeBuffs(player);
+					removeBuffs(channelMember);
 				}
 				
-				world.addAllowed(player);
+				world.addAllowed(channelMember);
 			}
-			else if (party.getCommandChannel() != null)
-			{
-				for (Player channelMember : party.getCommandChannel().getMembers())
-				{
-					player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
-					InstanceManager.getInstance().setInstanceTime(channelMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
-					teleportplayer(channelMember, teleto, (SODWorld) world);
-					if (InstanceManager.getInstance().getInstance(instanceId).isRemoveBuffEnabled())
-					{
-						removeBuffs(channelMember);
-					}
-					
-					world.addAllowed(channelMember);
-				}
-			}
-			else
-			{
-				for (Player partyMember : party.getMembers())
-				{
-					player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
-					InstanceManager.getInstance().setInstanceTime(partyMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
-					teleportplayer(partyMember, teleto, (SODWorld) world);
-					if (InstanceManager.getInstance().getInstance(instanceId).isRemoveBuffEnabled())
-					{
-						removeBuffs(partyMember);
-					}
-					
-					world.addAllowed(partyMember);
-				}
-			}
-			
-			return instanceId;
 		}
+		else
+		{
+			for (Player partyMember : party.getMembers())
+			{
+				player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
+				InstanceManager.getInstance().setInstanceTime(partyMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
+				teleportplayer(partyMember, teleto, (SODWorld) world);
+				if (InstanceManager.getInstance().getInstance(instanceId).isRemoveBuffEnabled())
+				{
+					removeBuffs(partyMember);
+				}
+				
+				world.addAllowed(partyMember);
+			}
+		}
+		
+		return instanceId;
 	}
 	
 	private void removeBuffs(Creature creature)
@@ -994,14 +992,14 @@ public class SeedOfDestruction extends Script
 	
 	private void teleportplayerEnergy(Player player, teleCoord teleto)
 	{
-		player.getAI().setIntention(Intention.IDLE);
+		player.getAI().setIntentionIdle();
 		player.setInstanceId(teleto.instanceId);
 		player.teleToLocation(teleto.x, teleto.y, teleto.z);
 	}
 	
 	private void teleportplayer(Player player, teleCoord teleto, SODWorld world)
 	{
-		player.getAI().setIntention(Intention.IDLE);
+		player.getAI().setIntentionIdle();
 		player.setInstanceId(teleto.instanceId);
 		player.teleToLocation(teleto.x, teleto.y, teleto.z);
 		final Summon pet = player.getSummon();
@@ -1285,11 +1283,11 @@ public class SeedOfDestruction extends Script
 						final Player target = world.getAllowed().stream().findAny().get();
 						if ((world.deviceSpawnedMobCount < MAX_DEVICE_SPAWNED_MOB_COUNT) && (target != null) && ((npc != null) && (target.getInstanceId() == npc.getInstanceId())) && !target.isDead())
 						{
-							final Attackable mob = addSpawn(SPAWN_MOB_IDS[getRandom(SPAWN_MOB_IDS.length)], npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId()).asAttackable();
+							final Attackable mob = addSpawn(getRandomEntry(SPAWN_MOB_IDS), npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId()).asAttackable();
 							world.deviceSpawnedMobCount++;
 							mob.setSeeThroughSilentMove(true);
 							mob.setRunning();
-							mob.getAI().setIntention(Intention.MOVE_TO, MOVE_TO_TIAT);
+							mob.getAI().setIntentionMoveTo(MOVE_TO_TIAT);
 						}
 					}
 					break;

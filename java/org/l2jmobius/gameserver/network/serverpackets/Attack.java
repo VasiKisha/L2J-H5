@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.holders.creature.Hit;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.Hit;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -89,7 +89,7 @@ public class Attack extends ServerPacket
 	 * @param hit
 	 * @param buffer
 	 */
-	private void writeHit(Hit hit, WritableBuffer buffer)
+	private void writeHit(Hit hit, WriteBuffer buffer)
 	{
 		buffer.writeInt(hit.getTargetId());
 		buffer.writeInt(hit.getDamage());
@@ -97,7 +97,7 @@ public class Attack extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		final Iterator<Hit> it = _hits.iterator();
 		ServerPackets.ATTACK.writeId(this, buffer);

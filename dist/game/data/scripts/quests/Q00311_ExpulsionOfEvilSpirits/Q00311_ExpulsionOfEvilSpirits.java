@@ -21,20 +21,19 @@ import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
@@ -143,7 +142,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				
 				final Player targetPlayer = _varangka.getTarget().asPlayer();
 				_varangkaMinion1.asAttackable().addDamageHate(targetPlayer, 1, 99999);
-				_varangkaMinion1.getAI().setIntention(Intention.ATTACK, targetPlayer);
+				_varangkaMinion1.getAI().setIntentionAttack(targetPlayer);
 			}
 			
 			return null;
@@ -157,7 +156,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				
 				final Player targetPlayer = _varangka.getTarget().asPlayer();
 				_varangkaMinion2.asAttackable().addDamageHate(targetPlayer, 1, 99999);
-				_varangkaMinion2.getAI().setIntention(Intention.ATTACK, targetPlayer);
+				_varangkaMinion2.getAI().setIntentionAttack(targetPlayer);
 			}
 			
 			return null;
@@ -337,7 +336,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 					{
 						creature.setRunning();
 						creature.asAttackable().addDamageHate(player, 1, 99999);
-						creature.getAI().setIntention(Intention.ATTACK, player);
+						creature.getAI().setIntentionAttack(player);
 					}
 				}
 			}

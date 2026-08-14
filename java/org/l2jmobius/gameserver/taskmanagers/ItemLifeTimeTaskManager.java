@@ -26,7 +26,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 
 /**
  * @author Mobius
@@ -73,10 +73,7 @@ public class ItemLifeTimeTaskManager implements Runnable
 	
 	public void add(Item item, long endTime)
 	{
-		if (!ITEMS.containsKey(item))
-		{
-			ITEMS.put(item, endTime);
-		}
+		ITEMS.putIfAbsent(item, endTime);
 	}
 	
 	public void remove(Item item)

@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
@@ -65,7 +65,7 @@ public class RequestLinkHtml extends ClientPacket
 		
 		if ((htmlObjectId > 0) && !LocationUtil.isInsideRangeOfObjectId(player, htmlObjectId, Npc.INTERACTION_DISTANCE))
 		{
-			// No logging here, this could be a common case
+			// No logging here, this could be a common case.
 			return;
 		}
 		

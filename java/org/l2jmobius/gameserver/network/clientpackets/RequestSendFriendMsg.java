@@ -19,13 +19,13 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.L2FriendSay;
 
 /**
- * Recieve Private (Friend) Message - 0xCC Format: c SS S: Message S: Receiving Player
+ * Receive Private (Friend) Message - 0xCC Format: c SS S: Message S: Receiving Player
  * @author Tempy
  */
 public class RequestSendFriendMsg extends ClientPacket
@@ -33,13 +33,13 @@ public class RequestSendFriendMsg extends ClientPacket
 	private static Logger LOGGER_CHAT = Logger.getLogger("chat");
 	
 	private String _message;
-	private String _reciever;
+	private String _receiver;
 	
 	@Override
 	protected void readImpl()
 	{
 		_message = readString();
-		_reciever = readString();
+		_receiver = readString();
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class RequestSendFriendMsg extends ClientPacket
 			return;
 		}
 		
-		final Player targetPlayer = World.getInstance().getPlayer(_reciever);
+		final Player targetPlayer = World.getPlayer(_receiver);
 		if ((targetPlayer == null) || !targetPlayer.getFriendList().contains(player.getObjectId()))
 		{
 			player.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);
@@ -75,6 +75,6 @@ public class RequestSendFriendMsg extends ClientPacket
 			LOGGER_CHAT.info(sb.toString());
 		}
 		
-		targetPlayer.sendPacket(new L2FriendSay(player.getName(), _reciever, _message));
+		targetPlayer.sendPacket(new L2FriendSay(player.getName(), _receiver, _message));
 	}
 }

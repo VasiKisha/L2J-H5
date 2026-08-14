@@ -28,18 +28,17 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.entity.actor.holders.player.ArenaParticipantsHolder;
+import org.l2jmobius.gameserver.entity.actor.instance.Block;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerInventory;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.managers.HandysBlockCheckerManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
-import org.l2jmobius.gameserver.model.actor.holders.player.ArenaParticipantsHolder;
-import org.l2jmobius.gameserver.model.actor.instance.Block;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExBasicActionList;
@@ -57,14 +56,14 @@ public class BlockCheckerManager
 {
 	protected static final Logger LOGGER = Logger.getLogger(BlockCheckerManager.class.getName());
 	
-	// The object which holds all basic members info
+	// The object which holds all basic members info.
 	protected ArenaParticipantsHolder _holder;
 	
-	// Maps to hold player of each team and his points
+	// Maps to hold player of each team and his points.
 	protected Map<Player, Integer> _redTeamPoints = new ConcurrentHashMap<>();
 	protected Map<Player, Integer> _blueTeamPoints = new ConcurrentHashMap<>();
 	
-	// The initial points of the event
+	// The initial points of the event.
 	protected int _redPoints = 15;
 	protected int _bluePoints = 15;
 	
@@ -74,10 +73,10 @@ public class BlockCheckerManager
 	// All blocks
 	protected Collection<Spawn> _spawns = ConcurrentHashMap.newKeySet();
 	
-	// Sets if the red team won the event at the end of this (used for packets)
+	// Sets if the red team won the event at the end of this (used for packets).
 	protected boolean _isRedWinner;
 	
-	// Time when the event starts. Used on packet sending
+	// Time when the event starts. Used on packet sending.
 	protected long _startedTime;
 	
 	// The needed arena coordinates
@@ -125,7 +124,7 @@ public class BlockCheckerManager
 	// Common z coordinate
 	private static final int Z_COORD = -2405;
 	
-	// List of dropped items in event (for later deletion)
+	// List of dropped items in event (for later deletion).
 	protected Collection<Item> _drops = ConcurrentHashMap.newKeySet();
 	
 	// Default arena
@@ -137,7 +136,7 @@ public class BlockCheckerManager
 	// Event end
 	protected ScheduledFuture<?> _task;
 	
-	// Preserve from exploit reward by logging out
+	// Preserve from exploit reward by logging out.
 	protected boolean _abnormalEnd = false;
 	
 	public BlockCheckerManager(ArenaParticipantsHolder holder, int arena)
@@ -341,7 +340,7 @@ public class BlockCheckerManager
 		
 		public StartEvent()
 		{
-			// Initialize all used skills
+			// Initialize all used skills.
 			_freeze = SkillData.getInstance().getSkill(6034, 1);
 			_transformationRed = SkillData.getInstance().getSkill(6035, 1);
 			_transformationBlue = SkillData.getInstance().getSkill(6036, 1);
@@ -352,10 +351,10 @@ public class BlockCheckerManager
 		 */
 		private void setUpPlayers()
 		{
-			// Set current arena as being used
+			// Set current arena as being used.
 			HandysBlockCheckerManager.getInstance().setArenaBeingUsed(_arena);
 			
-			// Initialize packets avoiding create a new one per player
+			// Initialize packets avoiding create a new one per player.
 			_redPoints = _spawns.size() / 2;
 			_bluePoints = _spawns.size() / 2;
 			final ExCubeGameChangePoints initialPoints = new ExCubeGameChangePoints(300, _bluePoints, _redPoints);
@@ -367,24 +366,24 @@ public class BlockCheckerManager
 					continue;
 				}
 				
-				// Send the secret client packet set up
+				// Send the secret client packet set up.
 				final boolean isRed = _holder.getRedPlayers().contains(player);
 				clientSetUp = new ExCubeGameExtendedChangePoints(300, _bluePoints, _redPoints, isRed, player, 0);
 				player.sendPacket(clientSetUp);
 				
 				player.sendPacket(ActionFailed.STATIC_PACKET);
 				
-				// Teleport Player - Array access
+				// Teleport Player - Array access.
 				// Team 0 * 2 = 0; 0 = 0, 0 + 1 = 1.
 				// Team 1 * 2 = 2; 2 = 2, 2 + 1 = 3
 				final int tc = _holder.getPlayerTeam(player) * 2;
 				
-				// Get x and y coordinates
+				// Get x and y coordinates.
 				final int x = _arenaCoordinates[_arena][tc];
 				final int y = _arenaCoordinates[_arena][tc + 1];
 				player.teleToLocation(x, y, Z_COORD);
 				
-				// Set the player team
+				// Set the player team.
 				if (isRed)
 				{
 					_redTeamPoints.put(player, 0);
@@ -403,7 +402,7 @@ public class BlockCheckerManager
 					player.getSummon().unSummon(player);
 				}
 				
-				// Give the player start up effects
+				// Give the player start up effects.
 				// Freeze
 				_freeze.applyEffects(player, player);
 				
@@ -417,7 +416,7 @@ public class BlockCheckerManager
 					_transformationBlue.applyEffects(player, player);
 				}
 				
-				// Set the current player arena
+				// Set the current player arena.
 				player.setBlockCheckerArena((byte) _arena);
 				player.setInsideZone(ZoneId.PVP, true);
 				
@@ -434,7 +433,7 @@ public class BlockCheckerManager
 		@Override
 		public void run()
 		{
-			// Wrong arena passed, stop event
+			// Wrong arena passed, stop event.
 			if (_arena == -1)
 			{
 				LOGGER.severe("Could not set up the arena Id for the Block Checker event, cancelling event...");
@@ -446,10 +445,10 @@ public class BlockCheckerManager
 			// Spawn the blocks
 			ThreadPool.execute(new SpawnRound(16, 1));
 			
-			// Start up player parameters
+			// Start up player parameters.
 			setUpPlayers();
 			
-			// Set the started time
+			// Set the started time.
 			_startedTime = System.currentTimeMillis() + 300000;
 		}
 	}
@@ -526,7 +525,7 @@ public class BlockCheckerManager
 				LOGGER.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			}
 			
-			// Spawn the block carrying girl
+			// Spawn the block carrying girl.
 			if ((_round == 1) || (_round == 2))
 			{
 				try
@@ -539,7 +538,7 @@ public class BlockCheckerManager
 					SpawnTable.getInstance().addSpawn(girlSpawn);
 					girlSpawn.init();
 					
-					// Schedule his deletion after 9 secs of spawn
+					// Schedule his deletion after 9 secs of spawn.
 					ThreadPool.schedule(new CarryingGirlUnspawn(girlSpawn), 9000);
 				}
 				catch (Exception e)
@@ -589,7 +588,7 @@ public class BlockCheckerManager
 	 */
 	protected class EndEvent implements Runnable
 	{
-		// Garbage collector and arena free setter
+		// Garbage collector and arena free setter.
 		private void clearMe()
 		{
 			HandysBlockCheckerManager.getInstance().clearPaticipantQueueByArenaId(_arena);
@@ -622,7 +621,7 @@ public class BlockCheckerManager
 				}
 				
 				item.decayMe();
-				World.getInstance().removeObject(item);
+				// World.removeObject(item); // redundant - decayMe() already calls World.removeObject
 			}
 			
 			_drops.clear();
@@ -764,7 +763,7 @@ public class BlockCheckerManager
 				// Untransform.
 				player.untransform();
 				
-				// Remove the event items
+				// Remove the event items.
 				final PlayerInventory inv = player.getInventory();
 				if (inv.getItemByItemId(13787) != null)
 				{

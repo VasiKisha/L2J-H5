@@ -19,13 +19,13 @@ package handlers.skill.effects;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Resist Skill effect implementation.
@@ -42,12 +42,12 @@ public class ResistSkill extends AbstractEffect
 		for (int i = 1;; i++)
 		{
 			final int skillId = params.getInt("skillId" + i, 0);
-			final int skillLevel = params.getInt("skillLevel" + i, 0);
 			if (skillId == 0)
 			{
 				break;
 			}
 			
+			final int skillLevel = params.getInt("skillLevel" + i, 0);
 			_skills.add(new SkillHolder(skillId, skillLevel));
 		}
 		

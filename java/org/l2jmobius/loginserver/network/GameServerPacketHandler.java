@@ -22,20 +22,20 @@ package org.l2jmobius.loginserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.base.BaseReadablePacket;
+import org.l2jmobius.commons.network.packet.SimpleReadablePacket;
 import org.l2jmobius.loginserver.GameServerThread;
-import org.l2jmobius.loginserver.network.gameserverpackets.BlowFishKey;
-import org.l2jmobius.loginserver.network.gameserverpackets.ChangeAccessLevel;
-import org.l2jmobius.loginserver.network.gameserverpackets.ChangePassword;
-import org.l2jmobius.loginserver.network.gameserverpackets.GameServerAuth;
-import org.l2jmobius.loginserver.network.gameserverpackets.PlayerAuthRequest;
-import org.l2jmobius.loginserver.network.gameserverpackets.PlayerInGame;
-import org.l2jmobius.loginserver.network.gameserverpackets.PlayerLogout;
-import org.l2jmobius.loginserver.network.gameserverpackets.PlayerTracert;
-import org.l2jmobius.loginserver.network.gameserverpackets.ReplyCharacters;
-import org.l2jmobius.loginserver.network.gameserverpackets.RequestTempBan;
-import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
-import org.l2jmobius.loginserver.network.loginserverpackets.LoginServerFail;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.BlowFishKey;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ChangeAccessLevel;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ChangePassword;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.GameServerAuth;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.PlayerAuthRequest;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.PlayerInGame;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.PlayerLogout;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.PlayerTracert;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ReplyCharacters;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.RequestTempBan;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ServerStatus;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.LoginServerFail;
 
 /**
  * Handles routing of packets received from game server connections.
@@ -56,7 +56,7 @@ public class GameServerPacketHandler
 	{
 	}
 	
-	public static BaseReadablePacket handlePacket(byte[] data, GameServerThread server)
+	public static SimpleReadablePacket handle(byte[] data, GameServerThread server)
 	{
 		if ((data == null) || (data.length == 0))
 		{

@@ -26,25 +26,25 @@ import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.QuestGuard;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -249,14 +249,14 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 		}
 		else if (event.equalsIgnoreCase("buff"))
 		{
-			for (Player pl : World.getInstance().getVisibleObjects(npc, Player.class))
+			World.forEachVisibleObject(npc, Player.class, pl ->
 			{
 				if ((pl != null) && LocationUtil.checkIfInRange(75, npc, pl, false) && (NPC_BUFFS.get(npc.getId()) != null))
 				{
 					npc.setTarget(pl);
 					npc.doCast(NPC_BUFFS.get(npc.getId()).getSkill());
 				}
-			}
+			});
 			
 			startQuestTimer("buff", 120000, npc, null);
 			return null;
@@ -265,14 +265,14 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 		{
 			if (npc.getAI().getIntention() != Intention.ATTACK)
 			{
-				for (Creature foe : World.getInstance().getVisibleObjectsInRange(npc, Creature.class, npc.getAggroRange()))
+				World.forEachVisibleObjectInRange(npc, Creature.class, npc.getAggroRange(), foe ->
 				{
 					if (foe.isAttackable() && !(foe instanceof QuestGuard))
 					{
 						((QuestGuard) npc).addDamageHate(foe, 0, 999);
-						npc.getAI().setIntention(Intention.ATTACK, foe, null);
+						npc.getAI().setIntentionAttack(foe);
 					}
-				}
+				});
 			}
 			
 			startQuestTimer("check_for_foes", 5000, npc, null);

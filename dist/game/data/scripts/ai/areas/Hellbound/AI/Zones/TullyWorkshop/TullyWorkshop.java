@@ -30,23 +30,23 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.npc.RaidBossStatus;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.holders.npc.MinionList;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -774,7 +774,7 @@ public class TullyWorkshop extends Script
 		}
 		else if (event.equalsIgnoreCase("despawn_agent_7"))
 		{
-			World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 300, pl ->
+			World.forEachVisibleObjectInRange(npc, Player.class, 300, pl ->
 			{
 				if (pl != null)
 				{
@@ -788,7 +788,7 @@ public class TullyWorkshop extends Script
 		}
 		else if (event.equalsIgnoreCase("cube_68_despawn"))
 		{
-			World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 500, pl ->
+			World.forEachVisibleObjectInRange(npc, Player.class, 500, pl ->
 			{
 				if (pl != null)
 				{
@@ -1031,7 +1031,7 @@ public class TullyWorkshop extends Script
 						if ((target != null) && !target.isDead())
 						{
 							monster.addDamageHate(target, 0, 999);
-							monster.getAI().setIntention(Intention.ATTACK, target, null);
+							monster.getAI().setIntentionAttack(target);
 						}
 					}
 				}
@@ -1154,7 +1154,7 @@ public class TullyWorkshop extends Script
 			if ((actor != null) && (victim != null) && !actor.isDead() && !victim.isDead() && (getRandom(1000) > 333))
 			{
 				actor.clearAggroList();
-				actor.getAI().setIntention(Intention.ACTIVE);
+				actor.getAI().setIntentionActive();
 				actor.setTarget(victim);
 				actor.doCast(SkillData.getInstance().getSkill(4065, 11));
 				victim.setCurrentHp(victim.getCurrentHp() + (victim.getMaxHp() * 0.03)); // FIXME: not retail, it should be done after spell is finished, but it cannot be tracked now

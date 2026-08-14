@@ -31,12 +31,12 @@ import org.l2jmobius.gameserver.data.holders.PetData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.actor.instance.Servitor;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Pet;
+import org.l2jmobius.gameserver.entity.actor.instance.Servitor;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.PetItemList;
 
 /**
@@ -187,10 +187,6 @@ public class CharSummonTable
 				Skill skill;
 				while (rs.next())
 				{
-					final int curHp = rs.getInt("curHp");
-					final int curMp = rs.getInt("curMp");
-					final int time = rs.getInt("time");
-					
 					skill = SkillData.getInstance().getSkill(skillId, player.getSkillLevel(skillId));
 					if (skill == null)
 					{
@@ -202,6 +198,9 @@ public class CharSummonTable
 					
 					if (player.hasServitor())
 					{
+						final int curHp = rs.getInt("curHp");
+						final int curMp = rs.getInt("curMp");
+						final int time = rs.getInt("time");
 						final Servitor summon = player.getSummon().asServitor();
 						summon.setCurrentHp(curHp);
 						summon.setCurrentMp(curMp);

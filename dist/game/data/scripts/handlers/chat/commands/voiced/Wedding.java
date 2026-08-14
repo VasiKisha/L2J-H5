@@ -25,22 +25,21 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerAction;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.managers.CoupleManager;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.SiegeManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalVisualEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
@@ -105,7 +104,7 @@ public class Wedding implements IVoicedCommandHandler
 			activeChar.sendMessage("You have broken up as a couple.");
 		}
 		
-		final Player partner = World.getInstance().getPlayer(partnerId);
+		final Player partner = World.getPlayer(partnerId);
 		if (partner != null)
 		{
 			partner.setPartnerId(0);
@@ -148,7 +147,7 @@ public class Wedding implements IVoicedCommandHandler
 			{
 				activeChar.startAbnormalVisualEffect(true, AbnormalVisualEffect.BIG_HEAD); // give player a Big Head
 				
-				// lets recycle the sevensigns debuffs
+				// Lets recycle the sevensigns debuffs.
 				int skillId;
 				int skillLevel = 1;
 				if (activeChar.getLevel() > 40)
@@ -348,7 +347,7 @@ public class Wedding implements IVoicedCommandHandler
 			return false;
 		}
 		
-		final Player partner = World.getInstance().getPlayer(activeChar.getPartnerId());
+		final Player partner = World.getPlayer(activeChar.getPartnerId());
 		
 		if ((partner == null) || !partner.isOnline())
 		{
@@ -460,7 +459,7 @@ public class Wedding implements IVoicedCommandHandler
 		String formattedTime = TimeUtil.formatDuration(teleportTimer);
 		activeChar.sendMessage("You will be teleported to your partner in " + formattedTime + ".");
 		
-		activeChar.getAI().setIntention(Intention.IDLE);
+		activeChar.getAI().setIntentionIdle();
 		
 		// SoE Animation section.
 		activeChar.setTarget(activeChar);

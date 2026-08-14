@@ -20,12 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -494,9 +494,10 @@ public class Q00620_FourGoblets extends Quest
 				if (qs != null)
 				{
 					final int npcId = npc.getId();
-					if (MOB1.containsKey(npcId))
+					final Double mob1Chance = MOB1.get(npcId);
+					if (mob1Chance != null)
 					{
-						giveItemRandomly(qs.getPlayer(), npc, SEALED_BOX, 1, 0, MOB1.get(npcId), true);
+						giveItemRandomly(qs.getPlayer(), npc, SEALED_BOX, 1, 0, mob1Chance, true);
 					}
 					else if (MOB2.containsKey(npcId))
 					{

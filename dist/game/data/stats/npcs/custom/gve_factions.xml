@@ -51,7 +51,7 @@
 			<skill id="4416" level="15" /> <!-- Elves -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="500" clanHelpRange="300">
+		<ai type="ARCHER" aggroRange="500" clanHelpRange="300">
 			<clanList>
 				<clan>Good</clan>
 			</clanList>
@@ -94,7 +94,7 @@
 			<skill id="4416" level="17" /> <!-- Orcs -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="500" clanHelpRange="300">
+		<ai type="ARCHER" aggroRange="500" clanHelpRange="300">
 			<clanList>
 				<clan>Evil</clan>
 			</clanList>

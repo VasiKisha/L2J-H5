@@ -18,15 +18,15 @@ package handlers.chat.commands.admin;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Boat;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Boat;
 import org.l2jmobius.gameserver.network.serverpackets.AdminForgePacket;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -56,7 +56,7 @@ public class AdminPForge implements IAdminCommandHandler
 			
 			if (opCodes == null)
 			{
-				opCodes = new LinkedList<>();
+				opCodes = new ArrayList<>();
 			}
 			
 			opCodes.add(token);
@@ -67,7 +67,7 @@ public class AdminPForge implements IAdminCommandHandler
 			return null;
 		}
 		
-		return opCodes.toArray(new String[opCodes.size()]);
+		return opCodes.toArray(new String[0]);
 	}
 	
 	private boolean validateOpCodes(String[] opCodes)
@@ -585,7 +585,7 @@ public class AdminPForge implements IAdminCommandHandler
 					// TODO: Implement me!
 					// @formatter:off
 					/*bb.flip();
-					GameClientPacket p = (GameClientPacket) GameServer.gameServer.getGamePacketHandler().handlePacket(bb, activeChar.getClient());
+					GameClientPacket p = (GameClientPacket) GameServer.gameServer.getGamePacketHandler().handle(bb, activeChar.getClient());
 					if (p != null)
 					{
 						p.setBuffers(bb, activeChar.getClient(), new NioNetStringBuffer(2000));

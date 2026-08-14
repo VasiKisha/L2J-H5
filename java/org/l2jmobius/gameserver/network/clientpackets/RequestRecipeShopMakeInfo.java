@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeShopItemInfo;
 
 /**
@@ -49,7 +49,7 @@ public class RequestRecipeShopMakeInfo extends ClientPacket
 			return;
 		}
 		
-		final Player shop = World.getInstance().getPlayer(_playerObjectId);
+		final Player shop = World.getPlayer(_playerObjectId);
 		if ((shop == null) || (shop.getPrivateStoreType() != PrivateStoreType.MANUFACTURE))
 		{
 			return;

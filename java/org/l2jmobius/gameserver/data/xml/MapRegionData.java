@@ -38,26 +38,26 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.residences.ClanHall;
+import org.l2jmobius.gameserver.entity.zone.type.ClanHallZone;
+import org.l2jmobius.gameserver.entity.zone.type.RespawnZone;
+import org.l2jmobius.gameserver.interfaces.ILocational;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.residences.ClanHall;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
-import org.l2jmobius.gameserver.model.zone.type.RespawnZone;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
 
 /**
  * Manages map regions, spawn points and teleportation locations across the game world.<br>
@@ -553,7 +553,7 @@ public class MapRegionData implements IXmlReader
 			}
 			
 			// Instance exit location.
-			if (player.getInstanceId() > 0)
+			if (player.isInInstance())
 			{
 				final Instance inst = InstanceManager.getInstance().getInstance(player.getInstanceId());
 				if (inst != null)
@@ -735,13 +735,13 @@ public class MapRegionData implements IXmlReader
 	{
 		try
 		{
-			final Player player = creature.asPlayer();
 			RegionData region = _regions.get(point);
 			if (region == null)
 			{
 				region = _defaultRespawnRegion;
 			}
 			
+			final Player player = creature.asPlayer();
 			if ((region.bannedRaces != null) && region.bannedRaces.containsKey(player.getRace()))
 			{
 				return getRestartRegionChaoticSpawnLoc(player, region.bannedRaces.get(player.getRace()));
@@ -771,13 +771,13 @@ public class MapRegionData implements IXmlReader
 	{
 		try
 		{
-			final Player player = creature.asPlayer();
 			RegionData region = _regions.get(point);
 			if (region == null)
 			{
 				return _defaultRespawnRegion != null ? _defaultRespawnRegion.locId : 0;
 			}
 			
+			final Player player = creature.asPlayer();
 			if ((region.bannedRaces != null) && region.bannedRaces.containsKey(player.getRace()))
 			{
 				return getRestartRegionLocId(player, region.bannedRaces.get(player.getRace()));

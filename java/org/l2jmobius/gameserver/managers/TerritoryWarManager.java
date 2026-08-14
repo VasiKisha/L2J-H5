@@ -24,10 +24,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,26 +44,25 @@ import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.siege.Siegable;
-import org.l2jmobius.gameserver.model.siege.SiegeClan;
-import org.l2jmobius.gameserver.model.siege.TerritoryWard;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillLearn;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.siege.Siegable;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClan;
+import org.l2jmobius.gameserver.mechanics.siege.TerritoryWard;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class TerritoryWarManager implements Siegable
@@ -240,7 +239,7 @@ public class TerritoryWarManager implements Siegable
 	
 	public List<Territory> getAllTerritories()
 	{
-		final List<Territory> ret = new LinkedList<>();
+		final List<Territory> ret = new ArrayList<>();
 		for (Territory t : _territoryList.values())
 		{
 			if (t.getOwnerClan() != null)
@@ -336,9 +335,8 @@ public class TerritoryWarManager implements Siegable
 	
 	public void removeClan(int castleId, Clan clan)
 	{
-		if ((clan != null) && (_registeredClans.get(castleId) != null) && _registeredClans.get(castleId).contains(clan))
+		if ((clan != null) && (_registeredClans.get(castleId) != null) && _registeredClans.get(castleId).remove(clan))
 		{
-			_registeredClans.get(castleId).remove(clan);
 			changeRegistration(castleId, clan.getId(), true);
 		}
 	}
@@ -415,9 +413,9 @@ public class TerritoryWarManager implements Siegable
 				}
 			}
 			
-			if (_territoryList.containsKey(oldOwnerId))
+			final Territory terOld = _territoryList.get(oldOwnerId);
+			if (terOld != null)
 			{
-				final Territory terOld = _territoryList.get(oldOwnerId);
 				terOld.removeWard(territoryId);
 				updateTerritoryData(terOld);
 				updateTerritoryData(terNew);
@@ -842,10 +840,7 @@ public class TerritoryWarManager implements Siegable
 				final int npcId = rs.getInt("npcId");
 				final Location loc = new Location(rs.getInt("x"), rs.getInt("y"), rs.getInt("z"), rs.getInt("heading"));
 				final int spawnType = rs.getInt("spawnType");
-				if (!_territoryList.containsKey(castleId))
-				{
-					_territoryList.put(castleId, new Territory(castleId));
-				}
+				_territoryList.computeIfAbsent(castleId, k -> new Territory(castleId));
 				
 				switch (spawnType)
 				{
@@ -952,7 +947,7 @@ public class TerritoryWarManager implements Siegable
 			return;
 		}
 		
-		final List<Territory> activeTerritoryList = new LinkedList<>();
+		final List<Territory> activeTerritoryList = new ArrayList<>();
 		for (Territory t : _territoryList.values())
 		{
 			final Castle castle = CastleManager.getInstance().getCastleById(t.getCastleId());
@@ -1042,7 +1037,7 @@ public class TerritoryWarManager implements Siegable
 			}
 		}
 		
-		Broadcast.toAllOnlinePlayers(new SystemMessage(SystemMessageId.TERRITORY_WAR_HAS_BEGUN));
+		World.broadcastToAllOnlinePlayers(new SystemMessage(SystemMessageId.TERRITORY_WAR_HAS_BEGUN));
 	}
 	
 	protected void endTerritoryWar()
@@ -1054,7 +1049,7 @@ public class TerritoryWarManager implements Siegable
 			return;
 		}
 		
-		final List<Territory> activeTerritoryList = new LinkedList<>();
+		final List<Territory> activeTerritoryList = new ArrayList<>();
 		for (Territory t : _territoryList.values())
 		{
 			final Castle castle = CastleManager.getInstance().getCastleById(t.getCastleId());
@@ -1159,7 +1154,7 @@ public class TerritoryWarManager implements Siegable
 		
 		// Change next TW date.
 		setNextTWDate();
-		Broadcast.toAllOnlinePlayers(new SystemMessage(SystemMessageId.TERRITORY_WAR_HAS_ENDED));
+		World.broadcastToAllOnlinePlayers(new SystemMessage(SystemMessageId.TERRITORY_WAR_HAS_ENDED));
 	}
 	
 	public void setNextTWDate()
@@ -1240,7 +1235,7 @@ public class TerritoryWarManager implements Siegable
 		{
 			for (int objId : _registeredMercenaries.get(castleId))
 			{
-				final Player player = World.getInstance().getPlayer(objId);
+				final Player player = World.getPlayer(objId);
 				if (player == null)
 				{
 					continue;
@@ -1315,7 +1310,7 @@ public class TerritoryWarManager implements Siegable
 		{
 			if (_isTWInProgress)
 			{
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					if ((player != null) && (player.getSiegeSide() > 0))
 					{
@@ -1349,14 +1344,14 @@ public class TerritoryWarManager implements Siegable
 				else if ((timeRemaining <= 7200000) && (timeRemaining > 1200000))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_TERRITORY_WAR_REQUEST_PERIOD_HAS_ENDED);
-					Broadcast.toAllOnlinePlayers(sm);
+					World.broadcastToAllOnlinePlayers(sm);
 					_isRegistrationOver = true;
 					_scheduledStartTWTask = ThreadPool.schedule(new ScheduleStartTWTask(), timeRemaining - 1200000); // Prepare task for 20 mins left before TW start.
 				}
 				else if ((timeRemaining <= 1200000) && (timeRemaining > 600000))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_TERRITORY_WAR_WILL_BEGIN_IN_20_MINUTES_TERRITORY_RELATED_FUNCTIONS_I_E_BATTLEFIELD_CHANNEL_DISGUISE_SCROLLS_TRANSFORMATIONS_ETC_CAN_NOW_BE_USED);
-					Broadcast.toAllOnlinePlayers(sm);
+					World.broadcastToAllOnlinePlayers(sm);
 					_isTWChannelOpen = true;
 					_isRegistrationOver = true;
 					updatePlayerTWStateFlags(false);
@@ -1365,7 +1360,7 @@ public class TerritoryWarManager implements Siegable
 				else if ((timeRemaining <= 600000) && (timeRemaining > 300000))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_TERRITORY_WAR_BEGINS_IN_10_MINUTES);
-					Broadcast.toAllOnlinePlayers(sm);
+					World.broadcastToAllOnlinePlayers(sm);
 					_isTWChannelOpen = true;
 					_isRegistrationOver = true;
 					updatePlayerTWStateFlags(false);
@@ -1374,7 +1369,7 @@ public class TerritoryWarManager implements Siegable
 				else if ((timeRemaining <= 300000) && (timeRemaining > 60000))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_TERRITORY_WAR_BEGINS_IN_5_MINUTES);
-					Broadcast.toAllOnlinePlayers(sm);
+					World.broadcastToAllOnlinePlayers(sm);
 					_isTWChannelOpen = true;
 					_isRegistrationOver = true;
 					updatePlayerTWStateFlags(false);
@@ -1383,7 +1378,7 @@ public class TerritoryWarManager implements Siegable
 				else if ((timeRemaining <= 60000) && (timeRemaining > 0))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_TERRITORY_WAR_BEGINS_IN_1_MINUTE);
-					Broadcast.toAllOnlinePlayers(sm);
+					World.broadcastToAllOnlinePlayers(sm);
 					_isTWChannelOpen = true;
 					_isRegistrationOver = true;
 					updatePlayerTWStateFlags(false);
@@ -1522,7 +1517,7 @@ public class TerritoryWarManager implements Siegable
 		{
 			for (int objId : list)
 			{
-				final Player player = World.getInstance().getPlayer(objId);
+				final Player player = World.getPlayer(objId);
 				if ((player != null) && ((player.getClan() == null) || !checkIsRegistered(-1, player.getClan())))
 				{
 					player.sendPacket(sm);
@@ -1600,7 +1595,7 @@ public class TerritoryWarManager implements Siegable
 		private final int _castleId; // territory Castle
 		protected int _fortId; // territory Fortress
 		private Clan _ownerClan;
-		private final List<TerritoryNPCSpawn> _spawnList = new LinkedList<>();
+		private final List<TerritoryNPCSpawn> _spawnList = new ArrayList<>();
 		private final TerritoryNPCSpawn[] _territoryWardSpawnPlaces;
 		private boolean _isInProgress = false;
 		private SiegeFlag _territoryHQ = null;
@@ -1756,7 +1751,7 @@ public class TerritoryWarManager implements Siegable
 		
 		public List<Integer> getOwnedWardIds()
 		{
-			final List<Integer> ret = new LinkedList<>();
+			final List<Integer> ret = new ArrayList<>();
 			for (TerritoryNPCSpawn wardSpawn : _territoryWardSpawnPlaces)
 			{
 				if (wardSpawn.getId() > 0)

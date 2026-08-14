@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.BlockList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.FriendAddRequest;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -46,7 +46,7 @@ public class RequestFriendInvite extends ClientPacket
 			return;
 		}
 		
-		final Player friend = World.getInstance().getPlayer(_name);
+		final Player friend = World.getPlayer(_name);
 		
 		// Target is not found in the game.
 		if ((friend == null) || !friend.isOnline() || friend.isInvisible())

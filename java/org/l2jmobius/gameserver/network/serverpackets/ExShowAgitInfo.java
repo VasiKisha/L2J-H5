@@ -18,10 +18,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Map;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.residences.AuctionableHall;
+import org.l2jmobius.gameserver.entity.residences.AuctionableHall;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExShowAgitInfo extends ServerPacket
 {
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_SHOW_AGIT_INFO.writeId(this, buffer);
 		final Map<Integer, AuctionableHall> clannhalls = ClanHallTable.getInstance().getAllAuctionableClanHalls();

@@ -23,13 +23,13 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.BotReportTable;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.BlockList;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.BlockList;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SendTradeRequest;
@@ -78,7 +78,7 @@ public class TradeRequest extends ClientPacket
 			}
 		}
 		
-		final WorldObject target = World.getInstance().findObject(_objectId);
+		final WorldObject target = World.findObject(_objectId);
 		
 		// If there is no target, target is far away or
 		// they are in different instances (except multiverse)
@@ -88,7 +88,7 @@ public class TradeRequest extends ClientPacket
 			return;
 		}
 		
-		// If target and acting player are the same, trade request is ignored
+		// If target and acting player are the same, trade request is ignored.
 		// and the following system message is sent to acting player.
 		if (target.getObjectId() == player.getObjectId())
 		{
@@ -125,7 +125,7 @@ public class TradeRequest extends ClientPacket
 			}
 		}
 		
-		// L2J Customs: Karma punishment
+		// L2J Customs: Karma punishment.
 		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getKarma() > 0))
 		{
 			player.sendMessage("You cannot trade while you are in a chaotic state.");

@@ -22,11 +22,11 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.DoorData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
 public class ValidatePosition extends ClientPacket
@@ -56,8 +56,6 @@ public class ValidatePosition extends ClientPacket
 		}
 		
 		final int realX = player.getX();
-		final int realY = player.getY();
-		int realZ = player.getZ();
 		if ((_x == 0) && (_y == 0) && (realX != 0))
 		{
 			return;
@@ -90,6 +88,8 @@ public class ValidatePosition extends ClientPacket
 			player.untransform();
 		}
 		
+		final int realY = player.getY();
+		int realZ = player.getZ();
 		final int dx = _x - realX;
 		final int dy = _y - realY;
 		final int dz = _z - realZ;
@@ -140,6 +140,14 @@ public class ValidatePosition extends ClientPacket
 		if (!DoorData.getInstance().checkIfDoorsBetween(realX, realY, realZ, _x, _y, _z, player.getInstanceId(), false))
 		{
 			player.setLastServerPosition(realX, realY, realZ);
+		}
+		
+		if (player.isCursorKeyMovement())
+		{
+			// Use setSyncedXYZ so the active MoveData's xAccurate/yAccurate are updated alongside _location.
+			// Plain setXYZ would let the next MovementTaskManager tick snap the player back to the stale xAccurate / yAccurate that MovementTaskManager tracks independently of getX() / getY().
+			player.setSyncedXYZ(_x, _y, _z);
+			player.broadcastPacket(new ValidateLocation(player));
 		}
 	}
 }

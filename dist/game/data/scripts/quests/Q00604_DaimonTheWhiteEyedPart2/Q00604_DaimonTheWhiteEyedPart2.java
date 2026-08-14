@@ -18,14 +18,14 @@ package quests.Q00604_DaimonTheWhiteEyedPart2;
 
 import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -299,7 +299,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	{
 		if (System.currentTimeMillis() > GlobalVariablesManager.getInstance().getLong(DAIMON_THE_WHITE_EYED_RESPAWN_TIME, 0))
 		{
-			return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == DAIMON_THE_WHITE_EYED);
+			return World.getVisibleObjects().stream().anyMatch(object -> object.getId() == DAIMON_THE_WHITE_EYED);
 		}
 		
 		return true;

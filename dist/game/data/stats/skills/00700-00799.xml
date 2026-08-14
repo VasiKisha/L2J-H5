@@ -2206,9 +2206,6 @@
 				<cubicMaxCount>50</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>2106</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>
@@ -2233,9 +2230,6 @@
 				<cubicMaxCount>50</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>2106</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>
@@ -2260,9 +2254,6 @@
 				<cubicMaxCount>50</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>2106</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>
@@ -2287,9 +2278,6 @@
 				<cubicMaxCount>50</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>2106</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>
@@ -2314,9 +2302,6 @@
 				<cubicMaxCount>50</cubicMaxCount>
 				<cubicSkillChance>30</cubicSkillChance>
 				<cubicPower>2106</cubicPower>
-				<cubicSkill1Chance>33</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>33</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>

@@ -18,13 +18,13 @@ package ai.areas.Hellbound;
 
 import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Hellbound Engine.
@@ -293,7 +293,7 @@ public class HellboundEngine extends Script
 		
 		if (_cachedLevel > 0)
 		{
-			Broadcast.toAllOnlinePlayers(ANNOUNCEMENT.replace("%lvl%", String.valueOf(newLevel)));
+			World.broadcastToAllOnlinePlayers(ANNOUNCEMENT.replace("%lvl%", String.valueOf(newLevel)));
 			LOGGER.info(HellboundEngine.class.getSimpleName() + ": New level: " + newLevel);
 		}
 		

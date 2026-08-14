@@ -24,10 +24,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.GMAudit;
 
@@ -51,7 +51,7 @@ public class AdminInstanceZone implements IAdminCommandHandler
 			{
 				final StringTokenizer st = new StringTokenizer(command, " ");
 				st.nextToken();
-				final Player player = World.getInstance().getPlayer(st.nextToken());
+				final Player player = World.getPlayer(st.nextToken());
 				final int instanceId = Integer.parseInt(st.nextToken());
 				final String name = InstanceManager.getInstance().getInstanceIdName(instanceId);
 				InstanceManager.getInstance().deleteInstanceTime(player.getObjectId(), instanceId);
@@ -77,7 +77,7 @@ public class AdminInstanceZone implements IAdminCommandHandler
 				
 				try
 				{
-					player = World.getInstance().getPlayer(playername);
+					player = World.getPlayer(playername);
 				}
 				catch (Exception e)
 				{

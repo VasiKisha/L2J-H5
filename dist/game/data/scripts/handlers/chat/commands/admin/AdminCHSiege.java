@@ -21,13 +21,13 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeInfo;
 

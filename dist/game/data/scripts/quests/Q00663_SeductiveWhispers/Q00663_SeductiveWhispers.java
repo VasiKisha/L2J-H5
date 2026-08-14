@@ -16,19 +16,19 @@
  */
 package quests.Q00663_SeductiveWhispers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -732,7 +732,7 @@ public class Q00663_SeductiveWhispers extends Quest
 	@Override
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		final List<Player> players = new LinkedList<>();
+		final List<Player> players = new ArrayList<>();
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted() && (qs.getMemoState() >= 1) && (qs.getMemoState() <= 4))
 		{

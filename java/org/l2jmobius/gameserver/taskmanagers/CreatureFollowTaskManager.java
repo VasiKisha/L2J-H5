@@ -27,9 +27,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
 
 /**
  * @author Mobius
@@ -112,7 +111,7 @@ public class CreatureFollowTaskManager
 							creature.asSummon().setFollowStatus(false);
 						}
 						
-						ai.setIntention(Intention.IDLE);
+						ai.setIntentionIdle();
 						return;
 					}
 					
@@ -127,7 +126,7 @@ public class CreatureFollowTaskManager
 								creature.asSummon().setFollowStatus(false);
 							}
 							
-							ai.setIntention(Intention.IDLE);
+							ai.setIntentionIdle();
 							return;
 						}
 						

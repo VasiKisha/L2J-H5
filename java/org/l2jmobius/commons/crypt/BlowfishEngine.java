@@ -1195,7 +1195,7 @@ public class BlowfishEngine
 				}
 			}
 			
-			// XOR the newly created 32 bit chunk onto the P-array
+			// XOR the newly created 32 bit chunk onto the P-array.
 			P[i] ^= data;
 		}
 		/**

@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeShopSellList;
 
@@ -38,7 +38,7 @@ public class RequestRecipeShopManagePrev extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null))
+		if (player == null)
 		{
 			return;
 		}

@@ -35,17 +35,17 @@ import org.l2jmobius.gameserver.data.holders.RecipeHolder;
 import org.l2jmobius.gameserver.data.holders.RecipeStatHolder;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.recipe.ManufactureItem;
-import org.l2jmobius.gameserver.model.item.recipe.RecipeItemInfo;
-import org.l2jmobius.gameserver.model.item.recipe.RecipeList;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.CommonSkill;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.stats.Stat;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.recipe.ManufactureItem;
+import org.l2jmobius.gameserver.entity.item.recipe.RecipeItemInfo;
+import org.l2jmobius.gameserver.entity.item.recipe.RecipeList;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.skill.CommonSkill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -142,7 +142,7 @@ public class RecipeManager
 			return;
 		}
 		
-		// Check if player is busy (possible if alt game creation is enabled)
+		// Check if player is busy (possible if alt game creation is enabled).
 		if (PlayerConfig.ALT_GAME_CREATION && _activeMakers.containsKey(player.getObjectId()))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S2_S1);
@@ -225,7 +225,7 @@ public class RecipeManager
 				return;
 			}
 			
-			// validate recipe list
+			// Validate recipe list.
 			if (_recipeList.getRecipes().length == 0)
 			{
 				_player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -233,7 +233,7 @@ public class RecipeManager
 				return;
 			}
 			
-			// validate skill level
+			// Validate skill level.
 			if (_recipeList.getLevel() > _skillLevel)
 			{
 				_player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -241,7 +241,7 @@ public class RecipeManager
 				return;
 			}
 			
-			// check that customer can afford to pay for creation services
+			// Check that customer can afford to pay for creation services.
 			if (_player != _target)
 			{
 				final ManufactureItem item = _player.getManufactureItems().get(_recipeList.getId());
@@ -257,7 +257,7 @@ public class RecipeManager
 				}
 			}
 			
-			// make temporary items
+			// Make temporary items.
 			_items = listItems(false);
 			if (_items == null)
 			{
@@ -270,14 +270,14 @@ public class RecipeManager
 				_totalItems += i.getQuantity();
 			}
 			
-			// initial statUse checks
+			// Initial statUse checks.
 			if (!calculateStatUse(false, false))
 			{
 				abort();
 				return;
 			}
 			
-			// initial AltStatChange checks
+			// Initial AltStatChange checks.
 			if (PlayerConfig.ALT_GAME_CREATION)
 			{
 				calculateAltStatChange();
@@ -338,10 +338,10 @@ public class RecipeManager
 					return; // check stat use
 				}
 				
-				updateCurMp(); // update craft window mp bar
-				grabSomeItems(); // grab (equip) some more items with a nice msg to player
+				updateCurMp(); // Update craft window mp bar.
+				grabSomeItems(); // Grab (equip) some more items with a nice msg to player.
 				
-				// if still not empty, schedule another pass
+				// If still not empty, schedule another pass.
 				if (!_items.isEmpty())
 				{
 					_delay = (int) (PlayerConfig.ALT_GAME_CREATION_SPEED * _player.getMReuseRate(_skill) * GameTimeTaskManager.TICKS_PER_SECOND * GameTimeTaskManager.MILLIS_IN_TICK);
@@ -353,7 +353,7 @@ public class RecipeManager
 				}
 				else
 				{
-					// for alt mode, sleep delay msec before finishing
+					// For alt mode, sleep delay msec before finishing.
 					_player.sendPacket(new SetupGauge(_player.getObjectId(), 0, _delay));
 					
 					try
@@ -370,7 +370,7 @@ public class RecipeManager
 					}
 				}
 				
-			} // for old craft mode just finish
+			} // For old craft mode just finish.
 			else
 			{
 				finishCrafting();
@@ -384,15 +384,15 @@ public class RecipeManager
 				calculateStatUse(false, true);
 			}
 			
-			// first take adena for manufacture
-			if ((_target != _player) && (_price > 0) && (_target.transferItem(ItemProcessType.TRANSFER, _target.getInventory().getAdenaInstance().getObjectId(), _price, _player.getInventory(), _player) == null)) // customer must pay for services
+			// First take adena for manufacture.
+			if ((_target != _player) && (_price > 0) && (_target.transferItem(ItemProcessType.TRANSFER, _target.getInventory().getAdenaInstance().getObjectId(), _price, _player.getInventory(), _player) == null)) // Customer must pay for services.
 			{
 				_target.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 				abort();
 				return;
 			}
 			
-			_items = listItems(true); // this line actually takes materials from inventory
+			_items = listItems(true); // This line actually takes materials from inventory.
 			if (_items != null)
 			{
 				if (Rnd.get(100) < _recipeList.getSuccessRate())
@@ -490,7 +490,7 @@ public class RecipeManager
 			}
 		}
 		
-		// AltStatChange parameters make their effect here
+		// AltStatChange parameters make their effect here.
 		private void calculateAltStatChange()
 		{
 			_itemGrab = _skillLevel;
@@ -510,7 +510,7 @@ public class RecipeManager
 				}
 			}
 			
-			// determine number of creation passes needed
+			// Determine number of creation passes needed.
 			_creationPasses = (_totalItems / _itemGrab) + ((_totalItems % _itemGrab) != 0 ? 1 : 0);
 			if (_creationPasses < 1)
 			{

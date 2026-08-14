@@ -20,8 +20,8 @@
  */
 package handlers.chat.commands.voiced;
 
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * @author xban1x, Mobius

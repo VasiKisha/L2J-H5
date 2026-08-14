@@ -69,7 +69,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.ui.DarkTheme;
 import org.l2jmobius.commons.ui.SplashScreen;
 import org.l2jmobius.commons.util.HexUtil;
-import org.l2jmobius.loginserver.GameServerTable;
+import org.l2jmobius.loginserver.data.GameServerTable;
 
 /**
  * @author Skache
@@ -429,7 +429,7 @@ public class GameServerRegister extends JFrame
 					{
 						removeServer(id);
 						JOptionPane.showMessageDialog(null, "Game Server ID: " + id + " (" + serverName + ") has been successfully removed.", "Success", JOptionPane.INFORMATION_MESSAGE);
-						serversList(); // Refresh the server list
+						serversList(); // Refresh the server list.
 					}
 				}
 				else
@@ -491,7 +491,7 @@ public class GameServerRegister extends JFrame
 		try (OutputStream out = new FileOutputStream(file))
 		{
 			hexSetting.setProperty("ServerID", String.valueOf(id));
-			hexSetting.setProperty("HexID", new BigInteger(hexId).toString(16)); // Store the Hex ID as a string in the properties file
+			hexSetting.setProperty("HexID", new BigInteger(hexId).toString(16)); // Store the Hex ID as a string in the properties file.
 			hexSetting.store(out, "The HexId to Auth into LoginServer");
 		}
 	}

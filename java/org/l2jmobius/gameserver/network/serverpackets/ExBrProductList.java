@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.holders.PrimeShopProductHolder;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -36,7 +36,7 @@ public class ExBrProductList extends ServerPacket
 	private final Collection<PrimeShopProductHolder> _itemList = PrimeShopData.getInstance().getAllItems();
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_BR_PRODUCT_LIST.writeId(this, buffer);
 		buffer.writeInt(_itemList.size());

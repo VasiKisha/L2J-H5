@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.managers;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -33,7 +33,7 @@ public class PcCafePointsManager
 {
 	public void run(Player player)
 	{
-		// PC-points only premium accounts
+		// PC-points only premium accounts.
 		if (!PremiumSystemConfig.PC_CAFE_ENABLED || !PremiumSystemConfig.PC_CAFE_RETAIL_LIKE || (!player.hasEnteredWorld()))
 		{
 			return;
@@ -91,7 +91,7 @@ public class PcCafePointsManager
 			return;
 		}
 		
-		// PC-points only premium accounts
+		// PC-points only premium accounts.
 		if (PremiumSystemConfig.PC_CAFE_ONLY_PREMIUM && !player.hasPremiumStatus())
 		{
 			return;

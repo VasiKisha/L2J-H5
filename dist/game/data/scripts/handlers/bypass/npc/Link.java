@@ -24,10 +24,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Teleporter;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Teleporter;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 public class Link implements IBypassHandler

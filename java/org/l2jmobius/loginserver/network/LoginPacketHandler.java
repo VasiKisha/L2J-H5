@@ -22,9 +22,9 @@ package org.l2jmobius.loginserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.PacketHandler;
-import org.l2jmobius.commons.network.ReadableBuffer;
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.packet.PacketHandler;
+import org.l2jmobius.commons.network.packet.ReadablePacket;
 import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 
@@ -36,7 +36,7 @@ public class LoginPacketHandler implements PacketHandler<LoginClient>
 	private static final Logger LOGGER = Logger.getLogger(LoginPacketHandler.class.getName());
 	
 	@Override
-	public ReadablePacket<LoginClient> handlePacket(ReadableBuffer buffer, LoginClient client)
+	public ReadablePacket<LoginClient> handle(ReadBuffer buffer, LoginClient client)
 	{
 		// Read packet id.
 		final int packetId;

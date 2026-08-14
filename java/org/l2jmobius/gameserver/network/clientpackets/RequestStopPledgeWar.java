@@ -21,10 +21,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanAccess;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanAccess;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
@@ -69,7 +69,7 @@ public class RequestStopPledgeWar extends ClientPacket
 			return;
 		}
 		
-		// Check if player who does the request has the correct rights to do it
+		// Check if player who does the request has the correct rights to do it.
 		if (!player.hasAccess(ClanAccess.WAR_DECLARATION))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
@@ -79,7 +79,7 @@ public class RequestStopPledgeWar extends ClientPacket
 		// LOGGER.info("RequestStopPledgeWar: By leader or authorized player: " + playerClan.getLeaderName() + " of clan: "
 		// + playerClan.getName() + " to clan: " + _pledgeName);
 		
-		// Player leader = World.getInstance().getPlayer(clan.getLeaderName());
+		// Player leader = World.getPlayer(clan.getLeaderName());
 		// if(leader != null && leader.isOnline() == 0)
 		// {
 		// player.sendMessage("Clan leader isn't online.");

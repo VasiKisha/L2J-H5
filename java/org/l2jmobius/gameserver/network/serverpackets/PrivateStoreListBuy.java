@@ -22,8 +22,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.holders.TradeItem;
@@ -38,12 +38,12 @@ public class PrivateStoreListBuy extends AbstractItemPacket
 	{
 		_objId = storePlayer.getObjectId();
 		_playerAdena = player.getAdena();
-		storePlayer.getSellList().updateItems(); // Update SellList for case inventory content has changed
+		storePlayer.getSellList().updateItems(); // Update SellList for case inventory content has changed.
 		_items = storePlayer.getBuyList().getAvailableItems(player.getInventory());
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.PRIVATE_STORE_BUY_LIST.writeId(this, buffer);
 		buffer.writeInt(_objId);

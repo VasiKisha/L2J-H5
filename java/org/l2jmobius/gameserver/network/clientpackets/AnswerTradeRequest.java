@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -59,15 +59,15 @@ public class AnswerTradeRequest extends ClientPacket
 		final Player partner = player.getActiveRequester();
 		if (partner == null)
 		{
-			// Trade partner not found, cancel trade
+			// Trade partner not found, cancel trade.
 			player.sendPacket(new TradeDone(0));
 			player.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);
 			player.setActiveRequester(null);
 			return;
 		}
-		else if (World.getInstance().getPlayer(partner.getObjectId()) == null)
+		else if (World.getPlayer(partner.getObjectId()) == null)
 		{
-			// Trade partner not found, cancel trade
+			// Trade partner not found, cancel trade.
 			player.sendPacket(new TradeDone(0));
 			player.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);
 			player.setActiveRequester(null);

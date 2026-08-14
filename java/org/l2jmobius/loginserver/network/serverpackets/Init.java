@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.loginserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
@@ -57,7 +57,7 @@ public class Init extends LoginServerPacket
 	}
 	
 	@Override
-	protected void writeImpl(LoginClient client, WritableBuffer buffer)
+	protected void writeImpl(LoginClient client, WriteBuffer buffer)
 	{
 		buffer.writeByte(0x00); // Init packet id.
 		

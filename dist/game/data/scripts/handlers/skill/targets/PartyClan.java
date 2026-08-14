@@ -16,16 +16,16 @@
  */
 package handlers.skill.targets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
 /**
  * @author UnAfraid
@@ -35,7 +35,7 @@ public class PartyClan implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		final List<WorldObject> targetList = new LinkedList<>();
+		final List<WorldObject> targetList = new ArrayList<>();
 		final Player player = creature.asPlayer();
 		if (player == null)
 		{
@@ -65,7 +65,7 @@ public class PartyClan implements ITargetTypeHandler
 		
 		// Get all visible objects in a spherical area near the Creature
 		final int maxTargets = skill.getAffectLimit();
-		for (Player obj : World.getInstance().getVisibleObjectsInRange(creature, Player.class, radius))
+		for (Player obj : World.getVisibleObjectsInRange(creature, Player.class, radius))
 		{
 			if (obj == null)
 			{

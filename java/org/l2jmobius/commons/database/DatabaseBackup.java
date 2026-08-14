@@ -23,10 +23,9 @@ package org.l2jmobius.commons.database;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.config.DatabaseConfig;
@@ -36,6 +35,8 @@ import org.l2jmobius.commons.config.DatabaseConfig;
  */
 public class DatabaseBackup
 {
+	private static final DateTimeFormatter BACKUP_FORMAT = DateTimeFormatter.ofPattern("_yyyy_MM_dd_HH_mm'.sql'");
+	
 	public static void performBackup(String description)
 	{
 		// Delete old files.
@@ -79,9 +80,9 @@ public class DatabaseBackup
 		{
 			// Java 17
 			// final Process process = Runtime.getRuntime().exec(mysqldumpPath + "mysqldump -u " + Config.DATABASE_LOGIN + (Config.DATABASE_PASSWORD.trim().isEmpty() ? "" : " -p" + Config.DATABASE_PASSWORD) + " "
-			// + Config.DATABASE_URL.replace("jdbc:mysql://", "").replaceAll(".*\\/|\\?.*", "") + " -r " + Config.BACKUP_PATH + description + new SimpleDateFormat("_yyyy_MM_dd_HH_mm'.sql'").format(new Date()));
+			// + Config.DATABASE_URL.replace("jdbc:mysql://", "").replaceAll(".*\\/|\\?.*", "") + " -r " + Config.BACKUP_PATH + description + BACKUP_FORMAT.format(LocalDateTime.now()));
 			// Java 18
-			final String backupFileName = DatabaseConfig.BACKUP_PATH + description + new SimpleDateFormat("_yyyy_MM_dd_HH_mm'.sql'").format(new Date());
+			final String backupFileName = DatabaseConfig.BACKUP_PATH + description + BACKUP_FORMAT.format(LocalDateTime.now());
 			final String databaseName = DatabaseConfig.DATABASE_URL.replace("jdbc:mysql://", "").replaceAll(".*\\/|\\?.*", "");
 			final String[] command =
 			{

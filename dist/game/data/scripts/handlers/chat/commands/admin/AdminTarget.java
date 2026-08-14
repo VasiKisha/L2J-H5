@@ -20,9 +20,9 @@
  */
 package handlers.chat.commands.admin;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * This class handles following admin commands: - target name = sets player with respective name as target
@@ -57,7 +57,7 @@ public class AdminTarget implements IAdminCommandHandler
 		try
 		{
 			final String targetName = command.substring(13);
-			final Player player = World.getInstance().getPlayer(targetName);
+			final Player player = World.getPlayer(targetName);
 			if (player != null)
 			{
 				player.onAction(activeChar);

@@ -16,15 +16,14 @@
  */
 package ai.areas.PlainsOfLizardman;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 /**
  * Plains of Lizardmen AI.
@@ -103,7 +102,7 @@ public class PlainsOfLizardman extends Script
 		if (event.equals("fantasy_mushroom") && (npc != null) && (player != null))
 		{
 			npc.doCast(FANTASY_MUSHROOM_SKILL.getSkill());
-			World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, 200, monster ->
+			World.forEachVisibleObjectInRange(npc, Attackable.class, 200, monster ->
 			{
 				npc.setTarget(monster);
 				npc.doCast(STUN_EFFECT.getSkill());
@@ -152,12 +151,12 @@ public class PlainsOfLizardman extends Script
 				{
 					npc.setScriptValue(1);
 					npc.setInvul(true);
-					World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, 1000, monster ->
+					World.forEachVisibleObjectInRange(npc, Attackable.class, 1000, monster ->
 					{
 						if ((monster.getId() == TANTA_MAGICIAN) || (monster.getId() == TANTA_SCOUT))
 						{
 							monster.setRunning();
-							monster.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getX(), npc.getY(), npc.getZ(), 0));
+							monster.getAI().setIntentionMoveTo(new Location(npc.getX(), npc.getY(), npc.getZ()));
 						}
 					});
 					startQuestTimer("fantasy_mushroom", 4000, npc, attacker);

@@ -27,7 +27,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.model.buylist.Product;
+import org.l2jmobius.gameserver.mechanics.buylist.Product;
 
 /**
  * @author Mobius
@@ -108,10 +108,7 @@ public class BuyListTaskManager
 	
 	public void add(Product product, long endTime)
 	{
-		if (!PRODUCTS.containsKey(product))
-		{
-			PRODUCTS.put(product, endTime);
-		}
+		PRODUCTS.putIfAbsent(product, endTime);
 	}
 	
 	public void update(Product product, long endTime)

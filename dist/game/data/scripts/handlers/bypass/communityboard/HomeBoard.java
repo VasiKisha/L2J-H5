@@ -23,7 +23,8 @@ package handlers.bypass.communityboard;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,16 +43,16 @@ import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IParseBoardHandler;
 import org.l2jmobius.gameserver.managers.PcCafePointsManager;
 import org.l2jmobius.gameserver.managers.PremiumManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.BuyList;
 import org.l2jmobius.gameserver.network.serverpackets.ExBuySellList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -63,6 +64,8 @@ import org.l2jmobius.gameserver.network.serverpackets.ShowBoard;
  */
 public class HomeBoard implements IParseBoardHandler
 {
+	private static final DateTimeFormatter PREMIUM_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+	
 	// SQL Queries
 	private static final String COUNT_FAVORITES = "SELECT COUNT(*) AS favorites FROM `bbs_favorites` WHERE `playerId`=?";
 	private static final String NAVIGATION_PATH = "data/html/CommunityBoard/Custom/navigation.html";
@@ -114,7 +117,7 @@ public class HomeBoard implements IParseBoardHandler
 	@Override
 	public boolean onCommand(String command, Player player)
 	{
-		// Old custom conditions check move to here
+		// Old custom conditions check move to here.
 		if (CommunityBoardConfig.COMMUNITYBOARD_COMBAT_DISABLED && COMBAT_CHECK.test(command, player))
 		{
 			player.sendMessage("You can't use the Community Board right now.");
@@ -157,7 +160,7 @@ public class HomeBoard implements IParseBoardHandler
 		{
 			final String customPath = CommunityBoardConfig.CUSTOM_CB_ENABLED ? "Custom/" : "";
 			final String path = command.replace("_bbstop;", "");
-			if ((path.length() > 0) && path.endsWith(".html"))
+			if (!path.isEmpty() && path.endsWith(".html"))
 			{
 				returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/" + customPath + path);
 			}
@@ -313,9 +316,10 @@ public class HomeBoard implements IParseBoardHandler
 			}
 			else
 			{
+				final String premiumKey = PremiumSystemConfig.ACCOUNT_WIDE_PREMIUM ? player.getAccountName() : player.getName();
 				player.destroyItemByItemId(ItemProcessType.FEE, CommunityBoardConfig.COMMUNITY_PREMIUM_COIN_ID, CommunityBoardConfig.COMMUNITY_PREMIUM_PRICE_PER_DAY * premiumDays, player, true);
-				PremiumManager.getInstance().addPremiumTime(player.getAccountName(), premiumDays, TimeUnit.DAYS);
-				player.sendMessage("Your account will now have premium status until " + new SimpleDateFormat("dd.MM.yyyy HH:mm").format(PremiumManager.getInstance().getPremiumExpiration(player.getAccountName())) + ".");
+				PremiumManager.getInstance().addPremiumTime(premiumKey, premiumDays, TimeUnit.DAYS);
+				player.sendMessage("You will now have premium status until " + PREMIUM_FORMAT.format(Instant.ofEpochMilli(PremiumManager.getInstance().getPremiumExpiration(premiumKey)).atZone(java.time.ZoneId.systemDefault())) + ".");
 				if (PremiumSystemConfig.PC_CAFE_RETAIL_LIKE)
 				{
 					PcCafePointsManager.getInstance().run(player);

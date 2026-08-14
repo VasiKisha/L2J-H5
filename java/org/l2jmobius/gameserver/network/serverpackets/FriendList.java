@@ -19,10 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -55,7 +55,7 @@ public class FriendList extends ServerPacket
 		for (int objId : player.getFriendList())
 		{
 			final String name = CharInfoTable.getInstance().getNameById(objId);
-			final Player player1 = World.getInstance().getPlayer(objId);
+			final Player player1 = World.getPlayer(objId);
 			boolean online = false;
 			if ((player1 != null) && player1.isOnline())
 			{
@@ -67,7 +67,7 @@ public class FriendList extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.L2_FRIEND_LIST.writeId(this, buffer);
 		buffer.writeInt(_info.size());

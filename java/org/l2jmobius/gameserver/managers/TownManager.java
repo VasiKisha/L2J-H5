@@ -21,9 +21,9 @@
 package org.l2jmobius.gameserver.managers;
 
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.model.zone.type.TownZone;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
+import org.l2jmobius.gameserver.entity.zone.type.TownZone;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 
 public class TownManager
 {

@@ -16,7 +16,7 @@
  */
 package quests.Q00085_SagaOfTheCardinal;
 
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 import quests.AbstractSagaQuest;
 

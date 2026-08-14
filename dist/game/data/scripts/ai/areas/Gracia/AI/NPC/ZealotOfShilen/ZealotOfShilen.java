@@ -20,12 +20,11 @@
  */
 package ai.areas.Gracia.AI.NPC.ZealotOfShilen;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Zealot of Shilen AI.
@@ -58,23 +57,12 @@ public class ZealotOfShilen extends Script
 		
 		if (!npc.isAttackingNow() && !npc.isAlikeDead())
 		{
-			Npc nearby = null;
-			double maxDistance = Double.MAX_VALUE;
-			for (Monster obj : World.getInstance().getVisibleObjects(npc, Monster.class))
-			{
-				final double distance = npc.calculateDistance2D(obj);
-				if ((distance < maxDistance) && !obj.isDead() && !obj.isDecayed())
-				{
-					maxDistance = distance;
-					nearby = obj;
-				}
-			}
-			
+			final Monster nearby = World.getNearestVisibleObject(npc, Monster.class, m -> !m.isDead() && !m.isDecayed());
 			if (nearby != null)
 			{
 				npc.setRunning();
 				npc.asAttackable().addDamageHate(nearby, 0, 999);
-				npc.getAI().setIntention(Intention.ATTACK, nearby, null);
+				npc.getAI().setIntentionAttack(nearby);
 			}
 		}
 		

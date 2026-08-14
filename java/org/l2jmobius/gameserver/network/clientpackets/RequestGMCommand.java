@@ -21,9 +21,9 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.GMHennaInfo;
 import org.l2jmobius.gameserver.network.serverpackets.GMViewCharacterInfo;
@@ -52,14 +52,14 @@ public class RequestGMCommand extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		// prevent non GM or low level GMs from vieweing player stuff
+		// Prevent non GM or low level GMs from vieweing player stuff.
 		final GameClient client = getClient();
 		if (!client.getPlayer().isGM() || !client.getPlayer().getAccessLevel().allowAltG())
 		{
 			return;
 		}
 		
-		final Player player = World.getInstance().getPlayer(_targetName);
+		final Player player = World.getPlayer(_targetName);
 		final Clan clan = ClanTable.getInstance().getClanByName(_targetName);
 		
 		// player name was incorrect?
@@ -102,7 +102,7 @@ public class RequestGMCommand extends ClientPacket
 			}
 			case 6: // player warehouse
 			{
-				// GM warehouse view to be implemented
+				// GM warehouse view to be implemented.
 				if (player != null)
 				{
 					client.sendPacket(new GMViewWarehouseWithdrawList(player));

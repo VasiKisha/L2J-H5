@@ -35,20 +35,20 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.config.custom.TransmogConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.Containers;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemAdd;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.item.EtcItem;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.EtcItem;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.events.Containers;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.inventory.OnPlayerItemAdd;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -178,7 +178,6 @@ public class Transmog extends Script
 		{
 			final String[] split = event.split("!");
 			final String slot = split[0];
-			final int page = split.length > 1 ? Integer.parseInt(split[1]) : 1;
 			
 			final Map<Integer, Set<Integer>> playerTransmogs = PLAYER_TRANSMOGS.getOrDefault(player.getObjectId(), Collections.emptyMap());
 			final Set<Integer> itemIds = playerTransmogs.getOrDefault(getBodypart(slot).getMask(), Collections.emptySet());
@@ -187,9 +186,10 @@ public class Transmog extends Script
 				return "900009-02.html";
 			}
 			
+			final int page = split.length > 1 ? Integer.parseInt(split[1]) : 1;
 			int total = 0;
 			int counter = 0;
-			final int pages = (int) Math.ceil((double) itemIds.size() / 16);
+			final int pages = Math.ceilDiv(itemIds.size(), 16);
 			final int maxItem = page * 16;
 			final int minItem = maxItem - 16;
 			String content = HtmCache.getInstance().getHtm(player, "data/scripts/custom/Transmog/900009-03.html");
@@ -247,12 +247,10 @@ public class Transmog extends Script
 		
 		final Player player = event.getPlayer();
 		final Integer playerObjectId = player.getObjectId();
-		final Map<Integer, Set<Integer>> playerTransmogs = PLAYER_TRANSMOGS.getOrDefault(playerObjectId, new HashMap<>());
-		final Set<Integer> itemIds = playerTransmogs.getOrDefault(bodypart, new HashSet<>());
+		final Map<Integer, Set<Integer>> playerTransmogs = PLAYER_TRANSMOGS.computeIfAbsent(playerObjectId, _ -> new HashMap<>());
+		final Set<Integer> itemIds = playerTransmogs.computeIfAbsent(bodypart, _ -> new HashSet<>());
 		if (itemIds.add(itemTemplate.getDisplayId()))
 		{
-			playerTransmogs.putIfAbsent(bodypart, itemIds);
-			PLAYER_TRANSMOGS.putIfAbsent(playerObjectId, playerTransmogs);
 			player.sendPacket(new CreatureSay(null, ChatType.WHISPER, "[Transmog]", itemTemplate.getName() + " has been added to your appearance collection."));
 		}
 	}
@@ -276,9 +274,7 @@ public class Transmog extends Script
 					if (itemTemplate != null)
 					{
 						final Integer bodypart = itemTemplate.getBodyPart().getMask();
-						final Set<Integer> itemIds = playerTransmogs.getOrDefault(bodypart, new HashSet<>());
-						itemIds.add(itemId);
-						playerTransmogs.putIfAbsent(bodypart, itemIds);
+						playerTransmogs.computeIfAbsent(bodypart, _ -> new HashSet<>()).add(itemId);
 					}
 				}
 			}

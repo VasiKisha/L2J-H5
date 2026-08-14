@@ -31,10 +31,10 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.entity.actor.instance.Merchant;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 
 /**
  * @author KenM
@@ -185,9 +185,6 @@ public class MerchantPriceConfigTable
 		}
 	}
 	
-	/**
-	 * @author KenM
-	 */
 	public static class MerchantPriceConfig
 	{
 		private final int _id;

@@ -20,23 +20,23 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
 import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.actor.instance.Trap;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.zone.type.TownZone;
 import org.l2jmobius.gameserver.managers.TownManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.actor.instance.Trap;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.model.zone.type.TownZone;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -133,7 +133,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		}
 		
 		@Override
-		public void writeImpl(GameClient client, WritableBuffer buffer)
+		public void writeImpl(GameClient client, WriteBuffer buffer)
 		{
 			if (_npc.isDecayed())
 			{
@@ -304,7 +304,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		}
 		
 		@Override
-		public void writeImpl(GameClient client, WritableBuffer buffer)
+		public void writeImpl(GameClient client, WriteBuffer buffer)
 		{
 			ServerPackets.NPC_INFO.writeId(this, buffer);
 			buffer.writeInt(_trap.getObjectId());
@@ -391,7 +391,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		}
 		
 		@Override
-		public void writeImpl(GameClient client, WritableBuffer buffer)
+		public void writeImpl(GameClient client, WriteBuffer buffer)
 		{
 			ServerPackets.NPC_INFO.writeId(this, buffer);
 			buffer.writeInt(_summon.getObjectId());

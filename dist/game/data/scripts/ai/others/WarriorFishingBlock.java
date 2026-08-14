@@ -16,11 +16,10 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -91,7 +90,7 @@ public class WarriorFishingBlock extends Script
 					final Player target = obj.asPlayer();
 					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_SPAWN), target.getName());
 					npc.asAttackable().addDamageHate(target, 0, 2000);
-					npc.getAI().notifyAction(Action.ATTACKED, target);
+					npc.getAI().notifyActionAttacked(target);
 					npc.addAttackerToAttackByList(target);
 					
 					startQuestTimer("DESPAWN", DESPAWN_TIME * 1000, npc, target);

@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.ai;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.instance.Defender;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.instance.Defender;
 
 /**
  * @author BiggBoss

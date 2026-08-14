@@ -22,8 +22,7 @@ CREATE TABLE `herb_droplist_groups` (
   `max` smallint(2) unsigned NOT NULL DEFAULT '0',
   `category` smallint(3) NOT NULL DEFAULT '0',
   `chance` mediumint(7) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`groupId`,`itemId`,`category`),
-  KEY `key_mobId` (`groupId`)
+  PRIMARY KEY (`groupId`,`itemId`,`category`)
 ) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 INSERT INTO `herb_droplist_groups` VALUES

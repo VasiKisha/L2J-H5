@@ -21,17 +21,17 @@
 package handlers.items;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.Dice;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class RollingDice implements IItemHandler
@@ -70,7 +70,7 @@ public class RollingDice implements IItemHandler
 		final int y = player.getY() + y1;
 		final int z = player.getZ();
 		final Location destination = GeoEngine.getInstance().getValidLocation(player.getX(), player.getY(), player.getZ(), x, y, z, player.getInstanceId());
-		Broadcast.toSelfAndKnownPlayers(player, new Dice(player.getObjectId(), itemId, number, destination.getX(), destination.getY(), destination.getZ()));
+		World.broadcastToSelfAndVisiblePlayers(player, new Dice(player.getObjectId(), itemId, number, destination.getX(), destination.getY(), destination.getZ()));
 		
 		final SystemMessage sm = new SystemMessage(SystemMessageId.C1_HAS_ROLLED_A_S2);
 		sm.addString(player.getName());
@@ -79,7 +79,7 @@ public class RollingDice implements IItemHandler
 		player.sendPacket(sm);
 		if (player.isInsideZone(ZoneId.PEACE))
 		{
-			Broadcast.toKnownPlayers(player, sm);
+			World.broadcastToVisiblePlayers(player, sm);
 		}
 		else if (player.isInParty()) // TODO: Verify this!
 		{
@@ -91,7 +91,7 @@ public class RollingDice implements IItemHandler
 	
 	private int rollDice(Player player)
 	{
-		// Check if the dice is ready
+		// Check if the dice is ready.
 		if (!player.getClient().getFloodProtectors().canRollDice())
 		{
 			return 0;

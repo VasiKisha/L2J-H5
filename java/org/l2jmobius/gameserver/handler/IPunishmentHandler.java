@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.handler;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
 
 /**
  * @author UnAfraid

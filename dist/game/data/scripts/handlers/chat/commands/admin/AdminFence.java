@@ -24,15 +24,15 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.FenceData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.FenceState;
+import org.l2jmobius.gameserver.entity.actor.instance.Fence;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
-import org.l2jmobius.gameserver.model.actor.instance.Fence;
-import org.l2jmobius.gameserver.model.html.PageBuilder;
-import org.l2jmobius.gameserver.model.html.PageResult;
-import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
+import org.l2jmobius.gameserver.mechanics.html.PageBuilder;
+import org.l2jmobius.gameserver.mechanics.html.PageResult;
+import org.l2jmobius.gameserver.mechanics.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
@@ -76,7 +76,7 @@ public class AdminFence implements IAdminCommandHandler
 					}
 					
 					FenceData.getInstance().spawnFence(activeChar.getX(), activeChar.getY(), activeChar.getZ(), width, length, height, activeChar.getInstanceId(), FenceState.CLOSED);
-					activeChar.sendSysMessage("Fence added succesfully.");
+					activeChar.sendSysMessage("Fence added successfully.");
 				}
 				catch (NoSuchElementException | NumberFormatException e)
 				{
@@ -96,7 +96,7 @@ public class AdminFence implements IAdminCommandHandler
 					}
 					else
 					{
-						final WorldObject obj = World.getInstance().findObject(objId);
+						final WorldObject obj = World.findObject(objId);
 						if (obj instanceof Fence)
 						{
 							final Fence fence = (Fence) obj;
@@ -121,11 +121,11 @@ public class AdminFence implements IAdminCommandHandler
 				try
 				{
 					final int objId = Integer.parseInt(st.nextToken());
-					final WorldObject obj = World.getInstance().findObject(objId);
+					final WorldObject obj = World.findObject(objId);
 					if (obj instanceof Fence)
 					{
 						((Fence) obj).deleteMe();
-						activeChar.sendSysMessage("Fence removed succesfully.");
+						activeChar.sendSysMessage("Fence removed successfully.");
 					}
 					else
 					{
@@ -156,7 +156,7 @@ public class AdminFence implements IAdminCommandHandler
 				try
 				{
 					final int objId = Integer.parseInt(st.nextToken());
-					final WorldObject obj = World.getInstance().findObject(objId);
+					final WorldObject obj = World.findObject(objId);
 					if (obj != null)
 					{
 						activeChar.teleToLocation(obj);

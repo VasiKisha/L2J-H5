@@ -37,21 +37,21 @@ import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.actor.templates.PlayerTemplate;
-import org.l2jmobius.gameserver.model.events.Containers;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.InitialEquipment;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.holders.SkillLearn;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.entity.actor.stat.PlayerStat;
+import org.l2jmobius.gameserver.entity.actor.templates.PlayerTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.InitialEquipment;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.events.Containers;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerCreate;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillLearn;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -98,7 +98,7 @@ public class CharacterCreate extends ClientPacket
 		final GameClient client = getClient();
 		
 		// Last Verified: May 30, 2009 - Gracia Final - Players are able to create characters with names consisting of as little as 1,2,3 letter/number combinations.
-		if ((_name.length() < 1) || (_name.length() > 16))
+		if (_name.isEmpty() || (_name.length() > 16))
 		{
 			client.sendPacket(new CharCreateFail(CharCreateFail.REASON_16_ENG_CHARS));
 			return;
@@ -122,7 +122,7 @@ public class CharacterCreate extends ClientPacket
 			return;
 		}
 		
-		// Last Verified: May 30, 2009 - Gracia Final
+		// Last Verified: May 30, 2009 - Gracia Final.
 		if (!StringUtil.isAlphaNumeric(_name) || !isValidName(_name))
 		{
 			client.sendPacket(new CharCreateFail(CharCreateFail.REASON_INCORRECT_NAME));
@@ -177,7 +177,7 @@ public class CharacterCreate extends ClientPacket
 			}
 			
 			// Custom Feature: Disallow a race to be created.
-			// Example: Humans can not be created if AllowHuman = False in Custom.properties
+			// Example: Humans can not be created if AllowHuman = False in Custom.properties.
 			switch (template.getRace())
 			{
 				case HUMAN:
@@ -257,7 +257,7 @@ public class CharacterCreate extends ClientPacket
 	
 	private void initNewChar(GameClient client, Player newChar)
 	{
-		World.getInstance().addObject(newChar);
+		World.addObject(newChar);
 		
 		if (PlayerConfig.STARTING_ADENA > 0)
 		{

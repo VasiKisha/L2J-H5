@@ -21,8 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,8 +30,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExNoticePostArrived;
 import org.l2jmobius.gameserver.taskmanagers.MessageDeletionTaskManager;
@@ -128,7 +128,7 @@ public class MailManager
 	
 	public List<MailMessage> getInbox(int objectId)
 	{
-		final List<MailMessage> inbox = new LinkedList<>();
+		final List<MailMessage> inbox = new ArrayList<>();
 		for (MailMessage msg : _messages.values())
 		{
 			if ((msg != null) && (msg.getReceiverId() == objectId) && !msg.isDeletedByReceiver())
@@ -142,7 +142,7 @@ public class MailManager
 	
 	public List<MailMessage> getOutbox(int objectId)
 	{
-		final List<MailMessage> outbox = new LinkedList<>();
+		final List<MailMessage> outbox = new ArrayList<>();
 		for (MailMessage msg : _messages.values())
 		{
 			if ((msg != null) && (msg.getSenderId() == objectId) && !msg.isDeletedBySender())
@@ -167,7 +167,7 @@ public class MailManager
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Error saving message:", e);
 		}
 		
-		final Player receiver = World.getInstance().getPlayer(msg.getReceiverId());
+		final Player receiver = World.getPlayer(msg.getReceiverId());
 		if (receiver != null)
 		{
 			receiver.sendPacket(ExNoticePostArrived.valueOf(true));

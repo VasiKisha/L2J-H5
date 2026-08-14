@@ -36,11 +36,11 @@ import org.w3c.dom.Document;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.data.holders.AccessLevel;
 import org.l2jmobius.gameserver.data.holders.AccessRight;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Loads administrator access levels and commands.
@@ -121,12 +121,7 @@ public class AdminData implements IXmlReader
 			return _accessLevels.get(-1);
 		}
 		
-		if (!_accessLevels.containsKey(accessLevel))
-		{
-			_accessLevels.put(accessLevel, new AccessLevel());
-		}
-		
-		return _accessLevels.get(accessLevel);
+		return _accessLevels.computeIfAbsent(accessLevel, k -> new AccessLevel());
 	}
 	
 	/**

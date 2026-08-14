@@ -19,12 +19,12 @@ package ai.others.DelusionTeleport;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.zone.type.TownZone;
 import org.l2jmobius.gameserver.managers.TownManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.zone.type.TownZone;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Chambers of Delusion teleport AI.

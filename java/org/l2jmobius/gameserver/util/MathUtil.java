@@ -192,7 +192,7 @@ public class MathUtil
 	 */
 	public static int clamp(int value, int min, int max)
 	{
-		return Math.max(min, Math.min(max, value));
+		return max(min, min(max, value));
 	}
 	
 	/**
@@ -204,7 +204,19 @@ public class MathUtil
 	 */
 	public static long clamp(long value, long min, long max)
 	{
-		return Math.max(min, Math.min(max, value));
+		return max(min, min(max, value));
+	}
+	
+	/**
+	 * Clamps a float to a specified range.
+	 * @param value the float value to clamp
+	 * @param min the minimum allowable value
+	 * @param max the maximum allowable value
+	 * @return the clamped value, ensuring it is within the range [{@code min}, {@code max}]
+	 */
+	public static float clamp(float value, float min, float max)
+	{
+		return max(min, min(max, value));
 	}
 	
 	/**
@@ -216,7 +228,7 @@ public class MathUtil
 	 */
 	public static double clamp(double value, double min, double max)
 	{
-		return Math.max(min, Math.min(max, value));
+		return max(min, min(max, value));
 	}
 	
 	/**
@@ -379,6 +391,44 @@ public class MathUtil
 	}
 	
 	/**
+	 * Finds the minimum value in an array of floats.
+	 * @param values the array of floats
+	 * @return the minimum value in the array
+	 */
+	public static float min(float... values)
+	{
+		float minValue = values[0];
+		for (float value : values)
+		{
+			if (Float.isNaN(value) || (value < minValue))
+			{
+				minValue = value;
+			}
+		}
+		
+		return minValue;
+	}
+	
+	/**
+	 * Finds the maximum value in an array of floats.
+	 * @param values the array of floats
+	 * @return the maximum value in the array
+	 */
+	public static float max(float... values)
+	{
+		float maxValue = values[0];
+		for (float value : values)
+		{
+			if (Float.isNaN(value) || (value > maxValue))
+			{
+				maxValue = value;
+			}
+		}
+		
+		return maxValue;
+	}
+	
+	/**
 	 * Finds the minimum value in an array of doubles.
 	 * @param values the array of doubles
 	 * @return the minimum value in the array
@@ -388,7 +438,7 @@ public class MathUtil
 		double minValue = values[0];
 		for (double value : values)
 		{
-			if (value < minValue)
+			if (Double.isNaN(value) || (value < minValue))
 			{
 				minValue = value;
 			}
@@ -407,12 +457,99 @@ public class MathUtil
 		double maxValue = values[0];
 		for (double value : values)
 		{
-			if (value > maxValue)
+			if (Double.isNaN(value) || (value > maxValue))
 			{
 				maxValue = value;
 			}
 		}
 		
 		return maxValue;
+	}
+	
+	/**
+	 * Computes {@code base} raised to the power of an integer {@code exp} using exponentiation by squaring.<br>
+	 * Performs O(log n) multiplications and avoids the {@link Math#pow(double, double)} transcendental slow path,<br>
+	 * which is required for arbitrary fractional exponents but unnecessary when the exponent is known to be integral.
+	 * @param base the base value
+	 * @param exp the integer exponent (may be negative)
+	 * @return {@code base} raised to {@code exp}
+	 */
+	public static double pow(double base, int exp)
+	{
+		if (exp == 0)
+		{
+			return 1.0;
+		}
+		
+		if (exp < 0)
+		{
+			return 1.0 / pow(base, -exp);
+		}
+		
+		double result = 1.0;
+		while (exp != 0)
+		{
+			if ((exp & 1) != 0)
+			{
+				result *= base;
+			}
+			base *= base;
+			exp >>= 1;
+		}
+		return result;
+	}
+	
+	/**
+	 * Computes the 2D hypotenuse {@code sqrt(dx*dx + dy*dy)} without the IEEE 754 overflow scaling that {@link Math#hypot(double, double)} performs.<br>
+	 * Faster than {@code Math.hypot} (a JNI call into fdlibm) when overflow scaling is not required.
+	 * @param dx the X delta
+	 * @param dy the Y delta
+	 * @return {@code sqrt(dx*dx + dy*dy)}
+	 */
+	public static double hypot(double dx, double dy)
+	{
+		return Math.sqrt((dx * dx) + (dy * dy));
+	}
+	
+	/**
+	 * Computes the 3D hypotenuse {@code sqrt(dx*dx + dy*dy + dz*dz)}.
+	 * @param dx the X delta
+	 * @param dy the Y delta
+	 * @param dz the Z delta
+	 * @return {@code sqrt(dx*dx + dy*dy + dz*dz)}
+	 */
+	public static double hypot(double dx, double dy, double dz)
+	{
+		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
+	}
+	
+	/**
+	 * Computes the 2D hypotenuse for int deltas.<br>
+	 * Widens to double before squaring to avoid int overflow (game-coordinate deltas up to ±250000 squared exceed {@link Integer#MAX_VALUE}).
+	 * @param dx the X delta
+	 * @param dy the Y delta
+	 * @return {@code sqrt(dx*dx + dy*dy)}
+	 */
+	public static double hypot(int dx, int dy)
+	{
+		final double dxd = dx;
+		final double dyd = dy;
+		return Math.sqrt((dxd * dxd) + (dyd * dyd));
+	}
+	
+	/**
+	 * Computes the 3D hypotenuse for int deltas.<br>
+	 * Widens to double before squaring to avoid int overflow.
+	 * @param dx the X delta
+	 * @param dy the Y delta
+	 * @param dz the Z delta
+	 * @return {@code sqrt(dx*dx + dy*dy + dz*dz)}
+	 */
+	public static double hypot(int dx, int dy, int dz)
+	{
+		final double dxd = dx;
+		final double dyd = dy;
+		final double dzd = dz;
+		return Math.sqrt((dxd * dxd) + (dyd * dyd) + (dzd * dzd));
 	}
 }

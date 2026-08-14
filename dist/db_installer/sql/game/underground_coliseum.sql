@@ -3,4 +3,4 @@ CREATE TABLE IF NOT EXISTS `underground_coliseum` (
   `leader` varchar(16) NOT NULL,
   `wins` int(5) NOT NULL DEFAULT 0,
   PRIMARY KEY (`arenaId`)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

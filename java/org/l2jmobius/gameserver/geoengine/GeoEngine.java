@@ -34,16 +34,16 @@ import java.util.logging.Logger;
 import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
 import org.l2jmobius.gameserver.geoengine.geodata.regions.NullRegion;
 import org.l2jmobius.gameserver.geoengine.geodata.regions.Region;
 import org.l2jmobius.gameserver.geoengine.util.GridLineIterator2D;
 import org.l2jmobius.gameserver.geoengine.util.GridLineIterator3D;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.interfaces.ILocational;
 import org.l2jmobius.gameserver.util.GeoUtils;
 
 /**
@@ -78,6 +78,8 @@ public class GeoEngine
 	private static final int COORDINATE_OFFSET = 8;
 	private static final int HEIGHT_INCREASE_LIMIT = 40;
 	private static final int SPAWN_HEIGHT_OFFSET = 20;
+	/** When the height check in pathing fails on a single cell, accept the move if any NSWE neighbour of that cell has a layer within this many game units of the source Z - the cell is then treated as a continuous-surface gap. */
+	private static final int PATH_CONTINUITY_TOLERANCE = 16;
 	
 	// Region Management.
 	private static final AtomicReferenceArray<IRegion> REGIONS = new AtomicReferenceArray<>(GEO_REGIONS);
@@ -154,7 +156,6 @@ public class GeoEngine
 	 */
 	public boolean reloadRegion(int regionX, int regionY)
 	{
-		final int regionOffset = (regionX * GEO_REGIONS_Y) + regionY;
 		final Path geoFilePath = GeoEngineConfig.GEODATA_PATH.resolve(String.format(FILE_NAME_FORMAT, regionX, regionY));
 		if (!Files.exists(geoFilePath))
 		{
@@ -162,6 +163,7 @@ public class GeoEngine
 			return false;
 		}
 		
+		final int regionOffset = (regionX * GEO_REGIONS_Y) + regionY;
 		try
 		{
 			final IRegion region = REGIONS.get(regionOffset);
@@ -526,8 +528,8 @@ public class GeoEngine
 			return !hasGeoPos(targetGeoX, targetGeoY) || (nearestFromZ == nearestToZ);
 		}
 		
-		int fromX = targetX;
-		int fromY = targetY;
+		int fromX = x;
+		int fromY = y;
 		int toX = targetX;
 		int toY = targetY;
 		if (nearestToZ > nearestFromZ)
@@ -629,6 +631,36 @@ public class GeoEngine
 	}
 	
 	/**
+	 * Returns {@code true} if any of the four NSWE neighbours of {@code (geoX, geoY)} has a layer within {@code tolerance} game units of {@code worldZ}.<br>
+	 * Used to detect single-cell layer gaps where the surface is continuous through a neighbour even though the cell itself lacks the matching layer.<br>
+	 * Cells without geodata are not considered matches.
+	 * @param geoX the cell X
+	 * @param geoY the cell Y
+	 * @param worldZ the source Z value to match
+	 * @param tolerance maximum {@code |neighbourLayerZ - worldZ|} for a neighbour to be considered "the same surface"
+	 * @return {@code true} if at least one geo-bearing NSWE neighbour has a near match
+	 */
+	private boolean hasNeighbourLayerNear(int geoX, int geoY, int worldZ, int tolerance)
+	{
+		// @formatter:off
+		final int[] dx = { 1, -1, 0, 0 };
+		final int[] dy = { 0, 0, 1, -1 };
+		// @formatter:on
+		
+		for (int i = 0; i < 4; i++)
+		{
+			final int nx = geoX + dx[i];
+			final int ny = geoY + dy[i];
+			if (hasGeoPos(nx, ny) && (Math.abs(getNearestZ(nx, ny, worldZ) - worldZ) <= tolerance))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Verifies if there is a path between origin and destination locations.<br>
 	 * Returns the destination if there is a path or the closest valid location.
 	 * @param origin The origin
@@ -684,11 +716,23 @@ public class GeoEngine
 		{
 			final int currentX = pointIterator.x();
 			final int currentY = pointIterator.y();
-			final int currentZ = getNearestZ(currentX, currentY, previousZ);
-			if ((currentZ - previousZ) > HEIGHT_INCREASE_LIMIT) // Check for sudden height increase.
+			final int rawCurrentZ = getNearestZ(currentX, currentY, previousZ);
+			final int currentZ;
+			if ((rawCurrentZ - previousZ) > HEIGHT_INCREASE_LIMIT) // Check for sudden height increase.
 			{
-				// Can't move, return previous location.
-				return new Location(getWorldX(previousX), getWorldY(previousY), previousZ);
+				// Single-cell layer-gap fallback: if any NSWE neighbour of this cell has a layer near previousZ, the surface is continuous through this cell even though its own nearest layer is far.
+				// Step over the gap by treating the current cell as if it had a layer at previousZ.
+				if (!hasNeighbourLayerNear(currentX, currentY, previousZ, PATH_CONTINUITY_TOLERANCE))
+				{
+					// Genuine wall, return previous location.
+					return new Location(getWorldX(previousX), getWorldY(previousY), previousZ);
+				}
+				
+				currentZ = previousZ;
+			}
+			else
+			{
+				currentZ = rawCurrentZ;
 			}
 			
 			if (hasGeoPos(previousX, previousY))
@@ -758,20 +802,32 @@ public class GeoEngine
 		{
 			final int currentX = pointIterator.x();
 			final int currentY = pointIterator.y();
-			final int currentZ = getNearestZ(currentX, currentY, previousZ);
-			if ((currentZ - previousZ) > HEIGHT_INCREASE_LIMIT) // Check for sudden height increase.
+			final int rawCurrentZ = getNearestZ(currentX, currentY, previousZ);
+			final int currentZ;
+			if ((rawCurrentZ - previousZ) > HEIGHT_INCREASE_LIMIT) // Check for sudden height increase.
 			{
-				return false;
-			}
-			
-			if (hasGeoPos(previousX, previousY))
-			{
-				if (GeoEngineConfig.AVOID_OBSTRUCTED_PATH_NODES && !checkNearestNswe(currentX, currentY, currentZ, Cell.NSWE_ALL))
+				// Single-cell layer-gap fallback (mirrors getValidLocation): treat as continuous surface if any NSWE neighbour of the current cell has a layer near previousZ.
+				if (!hasNeighbourLayerNear(currentX, currentY, previousZ, PATH_CONTINUITY_TOLERANCE))
 				{
 					return false;
 				}
 				
-				if (!checkNearestNsweAntiCornerCut(previousX, previousY, previousZ, GeoUtils.computeNswe(previousX, previousY, currentX, currentY)))
+				currentZ = previousZ;
+			}
+			else
+			{
+				currentZ = rawCurrentZ;
+			}
+			
+			if (hasGeoPos(previousX, previousY))
+			{
+				final int nswe = GeoUtils.computeNswe(previousX, previousY, currentX, currentY);
+				if (GeoEngineConfig.AVOID_OBSTRUCTED_PATH_NODES && !checkNearestNswe(previousX, previousY, previousZ, nswe))
+				{
+					return false;
+				}
+				
+				if (!checkNearestNsweAntiCornerCut(previousX, previousY, previousZ, nswe))
 				{
 					return false;
 				}

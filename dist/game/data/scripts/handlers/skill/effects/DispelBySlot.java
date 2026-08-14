@@ -21,16 +21,16 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.holders.creature.EffectList;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.EffectList;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Dispel By Slot effect implementation.
@@ -88,7 +88,7 @@ public class DispelBySlot extends AbstractEffect
 		// Operation of O(n) for the amount of slots to dispel (which is usually small) and O(1) to get the buff.
 		for (Entry<AbnormalType, Short> entry : _dispelAbnormals.entrySet())
 		{
-			// Dispel transformations (buff and by GM)
+			// Dispel transformations (buff and by GM).
 			if ((entry.getKey() == AbnormalType.TRANSFORM) && (effected.isTransformed() || (effected.isPlayer() || (entry.getValue() == effected.asPlayer().getTransformationId()) || (entry.getValue() < 0))))
 			{
 				effected.stopTransformation(true);

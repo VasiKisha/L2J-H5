@@ -25,15 +25,15 @@ import java.util.StringTokenizer;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.serverpackets.GMViewItemList;
 
 /**
@@ -209,7 +209,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 				return false;
 			}
 			
-			for (Player onlinePlayer : World.getInstance().getPlayers())
+			for (Player onlinePlayer : World.getPlayers())
 			{
 				if ((activeChar != onlinePlayer) && onlinePlayer.isOnline() && ((onlinePlayer.getClient() != null) && !onlinePlayer.getClient().isDetached()))
 				{
@@ -241,11 +241,11 @@ public class AdminCreateItem implements IAdminCommandHandler
 				numval = 1;
 			}
 			
-			final Item item = (Item) World.getInstance().findObject(idval);
+			final Item item = (Item) World.findObject(idval);
 			final int ownerId = item.getOwnerId();
 			if (ownerId > 0)
 			{
-				final Player player = World.getInstance().getPlayer(ownerId);
+				final Player player = World.getPlayer(ownerId);
 				if (player == null)
 				{
 					activeChar.sendSysMessage("Player is not online.");
@@ -271,11 +271,11 @@ public class AdminCreateItem implements IAdminCommandHandler
 		{
 			final String val = command.substring(15);
 			final int idval = Integer.parseInt(val);
-			final Item item = (Item) World.getInstance().findObject(idval);
+			final Item item = (Item) World.findObject(idval);
 			final int ownerId = item.getOwnerId();
 			if (ownerId > 0)
 			{
-				final Player player = World.getInstance().getPlayer(ownerId);
+				final Player player = World.getPlayer(ownerId);
 				if (player == null)
 				{
 					activeChar.sendSysMessage("Player is not online.");

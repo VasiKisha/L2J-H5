@@ -20,7 +20,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.network.GameClient;
 
 /**
@@ -44,7 +44,7 @@ public class AdminForgePacket extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		for (Part p : _parts)
 		{
@@ -58,7 +58,7 @@ public class AdminForgePacket extends ServerPacket
 	 * @param buffer
 	 * @return
 	 */
-	public boolean generate(byte type, String value, WritableBuffer buffer)
+	public boolean generate(byte type, String value, WriteBuffer buffer)
 	{
 		if ((type == 'C') || (type == 'c'))
 		{

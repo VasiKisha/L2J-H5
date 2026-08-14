@@ -29,9 +29,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.Crest;
-import org.l2jmobius.gameserver.model.clan.enums.CrestType;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.Crest;
+import org.l2jmobius.gameserver.entity.clan.enums.CrestType;
 
 /**
  * Loads and saves crests from database.
@@ -83,7 +83,7 @@ public class CrestTable
 					_nextId.set(id + 1);
 				}
 				
-				// delete all unused crests except the last one we do not want to reuse
+				// Delete all unused crests except the last one we do not want to reuse.
 				// a crest id because client will display wrong crest if it is reused
 				if (!crestsInUse.contains(id) && (id != (_nextId.get() - 1)))
 				{
@@ -180,7 +180,7 @@ public class CrestTable
 		_crests.remove(crestId);
 		
 		// avoid removing last crest id we do not want to lose index...
-		// because client will display wrong crest if it is reused
+		// Because client will display wrong crest if it is reused.
 		if (crestId == (_nextId.get() - 1))
 		{
 			return;

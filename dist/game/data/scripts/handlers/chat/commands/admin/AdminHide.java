@@ -18,8 +18,8 @@ package handlers.chat.commands.admin;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * @author lord_rex

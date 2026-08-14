@@ -22,15 +22,14 @@ package quests.Q00457_LostAndFound;
 
 import java.util.Set;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.QuestType;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.QuestType;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -87,7 +86,7 @@ public class Q00457_LostAndFound extends Quest
 				qs.startQuest();
 				npc.setTarget(player);
 				npc.setWalking();
-				npc.getAI().setIntention(Intention.FOLLOW, player);
+				npc.getAI().setIntentionFollow(player);
 				startQuestTimer("CHECK", 1000, npc, player, true);
 				startQuestTimer("TIME_LIMIT", 600000, npc, player);
 				startQuestTimer("TALK_TIME", 120000, npc, player);
@@ -164,7 +163,7 @@ public class Q00457_LostAndFound extends Quest
 			{
 				npc.setTarget(null);
 				npc.getAI().stopFollow();
-				npc.getAI().setIntention(Intention.IDLE);
+				npc.getAI().setIntentionIdle();
 				cancelQuestTimer("CHECK", npc, player);
 				cancelQuestTimer("TIME_LIMIT", npc, player);
 				cancelQuestTimer("TALK_TIME", npc, player);

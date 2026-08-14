@@ -29,11 +29,11 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.holders.RangeChanceHolder;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enchant.EnchantItemGroup;
-import org.l2jmobius.gameserver.model.item.enchant.EnchantRateItem;
-import org.l2jmobius.gameserver.model.item.enchant.EnchantScrollGroup;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enchant.EnchantItemGroup;
+import org.l2jmobius.gameserver.entity.item.enchant.EnchantRateItem;
+import org.l2jmobius.gameserver.entity.item.enchant.EnchantScrollGroup;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
 
 /**
  * @author UnAfraid

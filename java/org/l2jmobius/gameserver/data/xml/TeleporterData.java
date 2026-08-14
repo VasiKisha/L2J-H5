@@ -27,9 +27,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
-import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportType;
+import org.l2jmobius.gameserver.entity.teleporter.TeleportHolder;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author UnAfraid
@@ -60,7 +60,7 @@ public class TeleporterData implements IXmlReader
 		{
 			final Map<String, TeleportHolder> teleList = new HashMap<>();
 			
-			// Parse npc node child
+			// Parse npc node child.
 			final int npcId = parseInteger(npc.getAttributes(), "id");
 			forEach(npc, node ->
 			{

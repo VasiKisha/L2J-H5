@@ -24,9 +24,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,10 +38,10 @@ import org.w3c.dom.Node;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.data.holders.StringStringHolder;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 
 /**
  * Instance manager.
@@ -55,7 +55,7 @@ public class InstanceManager implements IXmlReader
 	
 	// InstanceId Names
 	private static final Map<Integer, String> _instanceIdNames = new HashMap<>();
-	private final List<StringStringHolder> _instanceTemplateNames = new LinkedList<>(); // Id, Name.
+	private final List<StringStringHolder> _instanceTemplateNames = new ArrayList<>(); // Id, Name.
 	
 	// Instance templates
 	private final Map<Integer, String> _instanceTemplates = new ConcurrentHashMap<>();
@@ -85,7 +85,7 @@ public class InstanceManager implements IXmlReader
 		parseDatapackFile("data/InstanceNames.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _instanceIdNames.size() + " instance names.");
 		
-		// Load instance templates
+		// Load instance templates.
 		_instanceTemplates.clear();
 		parseDatapackDirectory("data/instances", true);
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _instanceTemplates.size() + " instance templates.");
@@ -217,12 +217,7 @@ public class InstanceManager implements IXmlReader
 	 */
 	public String getInstanceIdName(int id)
 	{
-		if (_instanceIdNames.containsKey(id))
-		{
-			return _instanceIdNames.get(id);
-		}
-		
-		return ("UnknownInstance");
+		return _instanceIdNames.getOrDefault(id, "UnknownInstance");
 	}
 	
 	/**

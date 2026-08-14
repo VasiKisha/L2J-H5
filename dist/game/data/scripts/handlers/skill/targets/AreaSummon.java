@@ -16,16 +16,16 @@
  */
 package handlers.skill.targets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
 /**
  * @author UnAfraid
@@ -35,7 +35,7 @@ public class AreaSummon implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		final List<WorldObject> targetList = new LinkedList<>();
+		final List<WorldObject> targetList = new ArrayList<>();
 		final Creature targetCreature = creature.isPlayer() ? creature.asPlayer().getSummon() : null;
 		if ((targetCreature == null) || !targetCreature.isServitor() || targetCreature.isDead())
 		{
@@ -50,7 +50,7 @@ public class AreaSummon implements ITargetTypeHandler
 		
 		final boolean srcInArena = (creature.isInsideZone(ZoneId.PVP) && !creature.isInsideZone(ZoneId.SIEGE));
 		final int maxTargets = skill.getAffectLimit();
-		World.getInstance().forEachVisibleObjectInRange(targetCreature, Creature.class, skill.getAffectRange(), obj ->
+		World.forEachVisibleObjectInRange(targetCreature, Creature.class, skill.getAffectRange(), obj ->
 		{
 			if (obj == creature)
 			{

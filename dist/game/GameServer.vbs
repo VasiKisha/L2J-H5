@@ -44,6 +44,25 @@ exitcode = 0
 Do
 	exitcode = shell.Run(command, window, True)
 	If exitcode <> 0 And exitcode <> 2 Then	'0 Terminated - 2 Restarted
-		MsgBox "Game Server terminated abnormally!", vbOKOnly, "Game Server"
+		hint = ""
+		Select Case exitcode
+			Case 1
+				hint = "Uncaught Java exception or wrong Java version."
+			Case 130
+				hint = "Interrupted by Ctrl+C."
+			Case 137
+				hint = "Killed by the OS (out of memory?)."
+			Case 143
+				hint = "Terminated by SIGTERM."
+		End Select
+		If hint = "" And exitcode < 0 Then
+			hint = "JVM or native crash (access violation)."
+		End If
+		msg = "Game Server terminated abnormally!" & vbCrLf & vbCrLf & "Exit code: " & exitcode
+		If hint <> "" Then
+			msg = msg & "  (" & hint & ")"
+		End If
+		msg = msg & vbCrLf & "Check log\error0.log and log\java0.log for details."
+		MsgBox msg, vbOKOnly + vbExclamation, "Game Server"
 	End If
 Loop While exitcode = 2

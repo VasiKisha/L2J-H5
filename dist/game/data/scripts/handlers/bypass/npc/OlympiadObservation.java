@@ -18,14 +18,14 @@ package handlers.bypass.npc;
 
 import java.util.logging.Level;
 
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.OlympiadManager;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.OlympiadManager;
-import org.l2jmobius.gameserver.model.olympiad.Olympiad;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTask;
+import org.l2jmobius.gameserver.mechanics.olympiad.Olympiad;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadGameManager;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadGameTask;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExOlympiadMatchList;
 
@@ -68,7 +68,7 @@ public class OlympiadObservation implements IBypassHandler
 					return false;
 				}
 				
-				if (org.l2jmobius.gameserver.model.olympiad.OlympiadManager.getInstance().isRegisteredInComp(player))
+				if (org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager.getInstance().isRegisteredInComp(player))
 				{
 					player.sendPacket(SystemMessageId.YOU_MAY_NOT_OBSERVE_A_GRAND_OLYMPIAD_GAMES_MATCH_WHILE_YOU_ARE_ON_THE_WAITING_LIST);
 					return false;

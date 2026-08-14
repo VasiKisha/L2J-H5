@@ -20,21 +20,16 @@
  */
 package org.l2jmobius.loginserver.network;
 
-import java.io.IOException;
-
-import org.l2jmobius.commons.network.Buffer;
+import org.l2jmobius.commons.crypt.NewCrypt;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.loginserver.crypt.NewCrypt;
 
 /**
- * Handles login protocol encryption for a single connection.<br>
- * Manages the transition from the static bootstrap key to the session-specific key and provides helpers for computing and applying packet-level encryption.
- * <ul>
- * <li>Uses a shared static Blowfish key for the initial handshake.</li>
- * <li>Switches to a per-session Blowfish key after the first encrypted packet.</li>
- * <li>Handles checksum or XOR header according to protocol phase.</li>
- * </ul>
- * @author BazookaRpm
+ * Blowfish cipher used by the login protocol.<br>
+ * Uses a 16-byte static key for initial handshake, then switches to session-specific key.<br>
+ * Handles XOR headers for static phase and checksums for session phase.
+ * @author BazookaRpm, Mobius
  */
 public class LoginEncryption
 {
@@ -84,17 +79,35 @@ public class LoginEncryption
 	}
 	
 	/**
-	 * Decrypts a packet using the session-specific Blowfish key and verifies its checksum.
+	 * Decrypts in place using session key and verifies checksum.
 	 * @param data the backing buffer
 	 * @param offset the start offset of the packet
 	 * @param size the packet size in bytes
 	 * @return {@code true} if the checksum is valid, {@code false} otherwise
-	 * @throws IOException if the underlying buffer operations fail
 	 */
-	public boolean decrypt(Buffer data, int offset, int size) throws IOException
+	public boolean decrypt(ReadBuffer data, int offset, int size)
 	{
-		_sessionCrypt.decrypt(data, offset, size);
-		return NewCrypt.verifyChecksum(data, offset, size);
+		// Extract to byte array.
+		final byte[] raw = new byte[size];
+		for (int i = 0; i < size; i++)
+		{
+			raw[i] = data.readByte(offset + i);
+		}
+		
+		// Decrypt and verify.
+		_sessionCrypt.decrypt(raw, 0, size);
+		final boolean valid = NewCrypt.verifyChecksum(raw, 0, size);
+		
+		// Write back to buffer if valid.
+		if (valid)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				data.writeByte(offset + i, raw[i]);
+			}
+		}
+		
+		return valid;
 	}
 	
 	/**
@@ -102,7 +115,7 @@ public class LoginEncryption
 	 * @param dataSize the plaintext payload size
 	 * @return the encrypted packet size including headers, padding and checksum/XOR data
 	 */
-	public int encryptedSize(int dataSize)
+	private int encryptedSize(int dataSize)
 	{
 		final int headerSize = _usingStaticKey ? STATIC_HEADER_SIZE : DYNAMIC_HEADER_SIZE;
 		int sizeWithHeader = dataSize + headerSize;
@@ -116,56 +129,44 @@ public class LoginEncryption
 	}
 	
 	/**
-	 * Encrypts the packet currently stored in the buffer using either the static bootstrap key or the session-specific key depending on the internal state.
+	 * Encrypts in place using static or session key.<br>
+	 * First call uses static key with XOR pass.
 	 * @param data the backing buffer
 	 * @param offset the start offset of the plaintext payload
 	 * @param size the plaintext payload size
 	 * @return {@code true} once encryption is completed
-	 * @throws IOException if the underlying buffer operations fail
 	 */
-	public boolean encrypt(Buffer data, int offset, int size) throws IOException
+	public boolean encrypt(WriteBuffer data, int offset, int size)
 	{
 		final int packetSize = encryptedSize(size);
-		final int packetEndOffset = offset + packetSize;
 		
-		data.limit(packetEndOffset);
+		// Extract to byte array.
+		final byte[] raw = new byte[packetSize];
+		for (int i = 0; i < size; i++)
+		{
+			raw[i] = data.readByte(offset + i);
+		}
 		
+		// Encrypt.
 		if (_usingStaticKey)
 		{
-			encryptWithStaticKey(data, offset, packetEndOffset);
+			NewCrypt.encXORPass(raw, 0, packetSize, Rnd.nextInt());
+			STATIC_CRYPT.crypt(raw, 0, packetSize);
 			_usingStaticKey = false;
 		}
 		else
 		{
-			encryptWithSessionKey(data, offset, packetEndOffset);
+			NewCrypt.appendChecksum(raw, 0, packetSize);
+			_sessionCrypt.crypt(raw, 0, packetSize);
+		}
+		
+		// Write back to buffer.
+		data.limit(offset + packetSize);
+		for (int i = 0; i < packetSize; i++)
+		{
+			data.writeByte(offset + i, raw[i]);
 		}
 		
 		return true;
-	}
-	
-	/**
-	 * Encrypts the packet using the static Blowfish key and XOR header.
-	 * @param data the backing buffer
-	 * @param offset the start offset of the packet
-	 * @param packetEndOffset the offset immediately after the last byte of the packet
-	 * @throws IOException if the underlying buffer operations fail
-	 */
-	private void encryptWithStaticKey(Buffer data, int offset, int packetEndOffset) throws IOException
-	{
-		NewCrypt.encXORPass(data, offset, packetEndOffset, Rnd.nextInt());
-		STATIC_CRYPT.crypt(data, offset, packetEndOffset);
-	}
-	
-	/**
-	 * Encrypts the packet using the session-specific Blowfish key and checksum.
-	 * @param data the backing buffer
-	 * @param offset the start offset of the packet
-	 * @param packetEndOffset the offset immediately after the last byte of the packet
-	 * @throws IOException if the underlying buffer operations fail
-	 */
-	private void encryptWithSessionKey(Buffer data, int offset, int packetEndOffset) throws IOException
-	{
-		NewCrypt.appendChecksum(data, offset, packetEndOffset);
-		_sessionCrypt.crypt(data, offset, packetEndOffset);
 	}
 }

@@ -29,8 +29,8 @@ import java.util.logging.Logger;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.taskmanagers.ItemsAutoDestroyTaskManager;
 
 /**
@@ -55,7 +55,7 @@ public class ItemsOnGroundManager implements Runnable
 	
 	private void load()
 	{
-		// If SaveDroppedItem is false, may want to delete all items previously stored to avoid add old items on reactivate
+		// If SaveDroppedItem is false, may want to delete all items previously stored to avoid add old items on reactivate.
 		if (!GeneralConfig.SAVE_DROPPED_ITEM && GeneralConfig.CLEAR_DROPPED_ITEM_TABLE)
 		{
 			emptyTable();
@@ -66,18 +66,18 @@ public class ItemsOnGroundManager implements Runnable
 			return;
 		}
 		
-		// if DestroyPlayerDroppedItem was previously false, items currently protected will be added to ItemsAutoDestroy
+		// If DestroyPlayerDroppedItem was previously false, items currently protected will be added to ItemsAutoDestroy.
 		if (GeneralConfig.DESTROY_DROPPED_PLAYER_ITEM)
 		{
 			String str = null;
 			if (!GeneralConfig.DESTROY_EQUIPABLE_PLAYER_ITEM)
 			{
-				// Recycle misc. items only
+				// Recycle misc. items only.
 				str = "UPDATE itemsonground SET drop_time = ? WHERE drop_time = -1 AND equipable = 0";
 			}
 			else if (GeneralConfig.DESTROY_EQUIPABLE_PLAYER_ITEM)
 			{
-				// Recycle all items including equip-able
+				// Recycle all items including equip-able.
 				str = "UPDATE itemsonground SET drop_time = ? WHERE drop_time = -1";
 			}
 			
@@ -93,7 +93,7 @@ public class ItemsOnGroundManager implements Runnable
 			}
 		}
 		
-		// Add items to world
+		// Add items to world.
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement("SELECT object_id,item_id,count,enchant_level,x,y,z,drop_time,equipable FROM itemsonground"))
 		{
@@ -104,7 +104,7 @@ public class ItemsOnGroundManager implements Runnable
 				while (rs.next())
 				{
 					item = new Item(rs.getInt(1), rs.getInt(2));
-					World.getInstance().addObject(item);
+					World.addObject(item);
 					
 					// this check and..
 					if (item.isStackable() && (rs.getInt(3) > 1))
@@ -112,24 +112,24 @@ public class ItemsOnGroundManager implements Runnable
 						item.setCount(rs.getInt(3));
 					}
 					
-					// this, are really necessary?
+					// This, are really necessary?
 					if (rs.getInt(4) > 0)
 					{
 						item.setEnchantLevel(rs.getInt(4));
 					}
 					
 					item.setXYZ(rs.getInt(5), rs.getInt(6), rs.getInt(7));
-					item.setWorldRegion(World.getInstance().getRegion(item));
+					item.setWorldRegion(World.getRegion(item));
 					item.getWorldRegion().addVisibleObject(item);
 					final long dropTime = rs.getLong(8);
 					item.setDropTime(dropTime);
 					item.setProtected(dropTime == -1);
 					item.setSpawned(true);
-					World.getInstance().addVisibleObject(item, item.getWorldRegion());
+					World.addVisibleObject(item, item.getWorldRegion());
 					_items.add(item);
 					count++;
 					
-					// add to ItemsAutoDestroy only items not protected
+					// Add to ItemsAutoDestroy only items not protected.
 					if (!GeneralConfig.LIST_PROTECTED_ITEMS.contains(item.getId()) && (dropTime > -1) && (((GeneralConfig.AUTODESTROY_ITEM_AFTER > 0) && !item.getTemplate().hasExImmediateEffect()) || ((GeneralConfig.HERB_AUTO_DESTROY_TIME > 0) && item.getTemplate().hasExImmediateEffect())))
 					{
 						ItemsAutoDestroyTaskManager.getInstance().addItem(item);
@@ -213,7 +213,7 @@ public class ItemsOnGroundManager implements Runnable
 			{
 				if ((item == null) || CursedWeaponsManager.getInstance().isCursed(item.getId()))
 				{
-					continue; // Cursed Items not saved to ground, prevent double save
+					continue; // Cursed Items not saved to ground, prevent double save.
 				}
 				
 				try
@@ -225,7 +225,7 @@ public class ItemsOnGroundManager implements Runnable
 					ps.setInt(5, item.getX());
 					ps.setInt(6, item.getY());
 					ps.setInt(7, item.getZ());
-					ps.setLong(8, item.isProtected() ? -1 : item.getDropTime()); // item is protected or AutoDestroyed
+					ps.setLong(8, item.isProtected() ? -1 : item.getDropTime()); // Item is protected or AutoDestroyed.
 					ps.setLong(9, item.isEquipable() ? 1 : 0); // set equip-able
 					ps.execute();
 					ps.clearParameters();

@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.commons.util.StringUtil;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Echo Crystals AI.
@@ -105,12 +105,13 @@ public class EchoCrystals extends Script
 		if ((qs != null) && StringUtil.isNumeric(event))
 		{
 			final int score = Integer.parseInt(event);
-			if (SCORES.containsKey(score))
+			final ScoreData scoreEntry = SCORES.get(score);
+			if (scoreEntry != null)
 			{
-				final int crystal = SCORES.get(score).getCrystalId();
-				final String ok = SCORES.get(score).getOkMsg();
-				final String noadena = SCORES.get(score).getNoAdenaMsg();
-				final String noscore = SCORES.get(score).getNoScoreMsg();
+				final int crystal = scoreEntry.getCrystalId();
+				final String ok = scoreEntry.getOkMsg();
+				final String noadena = scoreEntry.getNoAdenaMsg();
+				final String noscore = scoreEntry.getNoScoreMsg();
 				if (!hasQuestItems(player, score))
 				{
 					htmltext = npc.getId() + "-" + noscore + ".htm";

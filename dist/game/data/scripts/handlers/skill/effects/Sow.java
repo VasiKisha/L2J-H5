@@ -17,18 +17,17 @@
 package handlers.skill.effects;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.siege.manor.Seed;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.siege.manor.Seed;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Sow effect implementation.
@@ -91,7 +90,7 @@ public class Sow extends AbstractEffect
 		}
 		
 		// TODO: Mob should not aggro on player, this way doesn't work really nice
-		target.getAI().setIntention(Intention.IDLE);
+		target.getAI().setIntentionIdle();
 	}
 	
 	private static boolean calcSuccess(Creature creature, Creature target, Seed seed)
@@ -114,7 +113,7 @@ public class Sow extends AbstractEffect
 			basicSuccess -= 5 * (levelTarget - maxlevelSeed);
 		}
 		
-		// 5% decrease in chance if player level
+		// 5% decrease in chance if player level.
 		// is more than +/- 5 levels to _target's_ level
 		int diff = (levelPlayer - levelTarget);
 		if (diff < 0)

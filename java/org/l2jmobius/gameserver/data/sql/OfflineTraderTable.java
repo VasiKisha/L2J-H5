@@ -33,14 +33,14 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
 import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.data.holders.SellBuffHolder;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.entity.item.recipe.ManufactureItem;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
-import org.l2jmobius.gameserver.model.item.recipe.ManufactureItem;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.holders.TradeItem;
@@ -76,7 +76,7 @@ public class OfflineTraderTable
 		{
 			stm1.execute();
 			stm2.execute();
-			for (Player pc : World.getInstance().getPlayers())
+			for (Player pc : World.getPlayers())
 			{
 				try
 				{
@@ -357,7 +357,7 @@ public class OfflineTraderTable
 			stm1.setInt(1, trader.getObjectId()); // Char Id
 			stm1.execute();
 			
-			// Trade is done - clear info
+			// Trade is done - clear info.
 			if (finished)
 			{
 				stm2.setInt(1, trader.getObjectId()); // Char Id
@@ -561,7 +561,7 @@ public class OfflineTraderTable
 		player.leaveParty();
 		OlympiadManager.getInstance().unRegisterNoble(player);
 		
-		// If the Player has Pet, unsummon it
+		// If the Player has Pet, unsummon it.
 		Summon pet = player.getSummon();
 		if (pet != null)
 		{
@@ -569,7 +569,7 @@ public class OfflineTraderTable
 			pet.unSummon(player);
 			pet = player.getSummon();
 			
-			// Dead pet wasn't unsummoned, broadcast npcinfo changes (pet will be without owner name - means owner offline)
+			// Dead pet wasn't unsummoned, broadcast npcinfo changes (pet will be without owner name - means owner offline).
 			if (pet != null)
 			{
 				pet.broadcastNpcInfo(0);

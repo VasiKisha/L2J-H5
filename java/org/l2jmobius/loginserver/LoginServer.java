@@ -39,9 +39,11 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.loginserver.config.LoginConfig;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.data.GameServerTable;
 import org.l2jmobius.loginserver.network.LoginClient;
 import org.l2jmobius.loginserver.network.LoginPacketHandler;
-import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
+import org.l2jmobius.loginserver.network.gameserverpackets.receive.ServerStatus;
 import org.l2jmobius.loginserver.ui.Gui;
 
 /**

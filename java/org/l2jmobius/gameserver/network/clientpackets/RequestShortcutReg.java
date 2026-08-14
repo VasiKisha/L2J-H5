@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.ShortcutType;
-import org.l2jmobius.gameserver.model.actor.holders.player.Shortcut;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.ShortcutType;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Shortcut;
 import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 
 public class RequestShortcutReg extends ClientPacket

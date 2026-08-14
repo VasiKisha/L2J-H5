@@ -20,15 +20,14 @@
  */
 package ai.areas.MonasteryOfSilence;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 
 /**
  * Etis van Etina's Phantom AI (Seven Signs SSQ2 boss decoy).
@@ -89,7 +88,7 @@ public class EtisVanEtinaPhantom extends Script
 			if ((mostHated != null) && !mostHated.isDead())
 			{
 				npc.setRunning();
-				npc.getAI().setIntention(Intention.ATTACK, mostHated);
+				npc.getAI().setIntentionAttack(mostHated);
 			}
 		}
 		else if (event.equals(DF_THINK) && (npc.getId() == PHANTOM_FAKE))
@@ -103,7 +102,7 @@ public class EtisVanEtinaPhantom extends Script
 			else
 			{
 				final Player[] found = new Player[1];
-				World.getInstance().forEachVisibleObjectInRange(npc, Player.class, DF_BLAST_RANGE, p ->
+				World.forEachVisibleObjectInRange(npc, Player.class, DF_BLAST_RANGE, p ->
 				{
 					if ((found[0] == null) && !p.isDead() && !p.isInvisible())
 					{
@@ -171,7 +170,7 @@ public class EtisVanEtinaPhantom extends Script
 		final int targetId = npc.getVariables().getInt("etisTargetId", 0);
 		if (targetId > 0)
 		{
-			final Player p = World.getInstance().getPlayer(targetId);
+			final Player p = World.getPlayer(targetId);
 			if ((p != null) && !p.isDead())
 			{
 				target[0] = p;
@@ -180,7 +179,7 @@ public class EtisVanEtinaPhantom extends Script
 		
 		if (target[0] == null)
 		{
-			World.getInstance().forEachVisibleObjectInRange(npc, Player.class, TARGET_SCAN_RANGE, p ->
+			World.forEachVisibleObjectInRange(npc, Player.class, TARGET_SCAN_RANGE, p ->
 			{
 				if ((target[0] == null) && !p.isDead() && !p.isInvisible())
 				{

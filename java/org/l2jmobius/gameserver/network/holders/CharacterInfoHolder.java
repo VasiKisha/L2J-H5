@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.holders;
 
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerInventory;
 
 /**
  * Used to Store data sent to Client for Character.<br>

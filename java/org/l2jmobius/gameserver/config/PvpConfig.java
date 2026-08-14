@@ -47,6 +47,9 @@ public class PvpConfig
 	public static int ANTIFEED_INTERVAL;
 	public static int PVP_NORMAL_TIME;
 	public static int PVP_PVP_TIME;
+	public static boolean FLAG_PLAYER_ON_RAID_ATTACK;
+	public static boolean FLAG_PLAYER_ON_CHAMPION_ATTACK;
+	public static boolean FLAG_PLAYER_ON_SUMMON_PET_RAID_CHAMPION_ATTACK;
 	
 	public static void load()
 	{
@@ -76,5 +79,8 @@ public class PvpConfig
 		ANTIFEED_INTERVAL = config.getInt("AntiFeedInterval", 120) * 1000;
 		PVP_NORMAL_TIME = config.getInt("PvPVsNormalTime", 120000);
 		PVP_PVP_TIME = config.getInt("PvPVsPvPTime", 60000);
+		FLAG_PLAYER_ON_RAID_ATTACK = config.getBoolean("FlagPlayerOnRaidAttack", true);
+		FLAG_PLAYER_ON_CHAMPION_ATTACK = config.getBoolean("FlagPlayerOnChampionAttack", true);
+		FLAG_PLAYER_ON_SUMMON_PET_RAID_CHAMPION_ATTACK = config.getBoolean("FlagPlayerOnSummonPetRaidChampionAttack", true);
 	}
 }

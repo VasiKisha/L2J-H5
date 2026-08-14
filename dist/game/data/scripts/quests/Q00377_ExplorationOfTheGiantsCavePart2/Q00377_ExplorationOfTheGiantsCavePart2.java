@@ -23,10 +23,10 @@ package quests.Q00377_ExplorationOfTheGiantsCavePart2;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 
 /**
  * Exploration of the Giants' Cave Part 2 (377)<br>
@@ -115,9 +115,10 @@ public class Q00377_ExplorationOfTheGiantsCavePart2 extends Quest
 		if (qs != null)
 		{
 			final int npcId = npc.getId();
-			if (MOBS1.containsKey(npcId))
+			final Integer mobs1Chance = MOBS1.get(npcId);
+			if (mobs1Chance != null)
 			{
-				giveItemRandomly(qs.getPlayer(), npc, TITAN_ANCIENT_BOOK, (getRandom(1000) < MOBS1.get(npcId)) ? 3 : 2, 0, 1, true);
+				giveItemRandomly(qs.getPlayer(), npc, TITAN_ANCIENT_BOOK, (getRandom(1000) < mobs1Chance) ? 3 : 2, 0, 1, true);
 			}
 			else
 			{

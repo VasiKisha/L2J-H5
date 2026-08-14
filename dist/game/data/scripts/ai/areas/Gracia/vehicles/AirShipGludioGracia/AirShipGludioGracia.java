@@ -17,14 +17,14 @@
 package ai.areas.Gracia.vehicles.AirShipGludioGracia;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.VehiclePathPoint;
+import org.l2jmobius.gameserver.entity.actor.instance.AirShip;
 import org.l2jmobius.gameserver.managers.AirShipManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
-import org.l2jmobius.gameserver.model.actor.instance.AirShip;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -146,21 +146,20 @@ public class AirShipGludioGracia extends Script implements Runnable
 		}
 	}
 	
-	private final Npc findController()
+	private Npc findController()
 	{
 		// check objects around the ship
-		for (Npc obj : World.getInstance().getVisibleObjectsInRange(_ship, Npc.class, 600))
+		return World.getFirstVisibleObjectInRange(_ship, Npc.class, 600, obj ->
 		{
 			for (int id : CONTROLLERS)
 			{
 				if (obj.getId() == id)
 				{
-					return obj;
+					return true;
 				}
 			}
-		}
-		
-		return null;
+			return false;
+		});
 	}
 	
 	@Override
@@ -221,7 +220,7 @@ public class AirShipGludioGracia extends Script implements Runnable
 			player.sendPacket(SystemMessageId.YOU_CANNOT_BOARD_AN_AIRSHIP_WHILE_A_PET_OR_A_SERVITOR_IS_SUMMONED);
 			return null;
 		}
-		else if (_ship.isInDock() && World.getInstance().getVisibleObjects(player, AirShip.class).contains(_ship))
+		else if (_ship.isInDock() && (World.getFirstVisibleObject(player, AirShip.class, it -> it == _ship) != null))
 		{
 			_ship.addPassenger(player);
 		}

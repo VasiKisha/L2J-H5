@@ -28,12 +28,12 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.options.OptionSkillHolder;
-import org.l2jmobius.gameserver.model.options.OptionSkillType;
-import org.l2jmobius.gameserver.model.options.Options;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.stats.Stat;
-import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
+import org.l2jmobius.gameserver.mechanics.options.OptionSkillHolder;
+import org.l2jmobius.gameserver.mechanics.options.OptionSkillType;
+import org.l2jmobius.gameserver.mechanics.options.Options;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.FuncTemplate;
 
 /**
  * Item Option data.

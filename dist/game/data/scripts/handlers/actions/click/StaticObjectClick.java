@@ -20,14 +20,13 @@
  */
 package handlers.actions.click;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.entity.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 public class StaticObjectClick implements IActionClickHandler
@@ -41,19 +40,19 @@ public class StaticObjectClick implements IActionClickHandler
 			LOGGER.info("StaticObject: StaticObject with invalid type! StaticObjectId: " + staticObject.getId());
 		}
 		
-		// Check if the Player already target the Npc
+		// Check if the Player already target the Npc.
 		if (player.getTarget() != staticObject)
 		{
-			// Set the target of the Player player
+			// Set the target of the Player player.
 			player.setTarget(staticObject);
 		}
 		else if (interact)
 		{
-			// Calculate the distance between the Player and the Npc
+			// Calculate the distance between the Player and the Npc.
 			if (!player.isInsideRadius2D(staticObject, Npc.INTERACTION_DISTANCE))
 			{
-				// Notify the Player AI with INTERACT
-				player.getAI().setIntention(Intention.INTERACT, staticObject);
+				// Notify the Player AI with INTERACT.
+				player.getAI().setIntentionInteract(staticObject);
 			}
 			else
 			{

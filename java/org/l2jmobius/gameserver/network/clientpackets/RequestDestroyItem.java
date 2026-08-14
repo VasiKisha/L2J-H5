@@ -25,12 +25,12 @@ import java.sql.PreparedStatement;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -86,21 +86,21 @@ public class RequestDestroyItem extends ClientPacket
 		
 		final Item itemToRemove = player.getInventory().getItemByObjectId(_objectId);
 		
-		// if we can't find the requested item, it is actually a cheat
+		// If we can't find the requested item, it is actually a cheat.
 		if (itemToRemove == null)
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_DISCARDED);
 			return;
 		}
 		
-		// Cannot discard item that the skill is consuming
+		// Cannot discard item that the skill is consuming.
 		if (player.isCastingNow() && (player.getCurrentSkill() != null) && (player.getCurrentSkill().getSkill().getItemConsumeId() == itemToRemove.getId()))
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_DISCARDED);
 			return;
 		}
 		
-		// Cannot discard item that the skill is consuming
+		// Cannot discard item that the skill is consuming.
 		if (player.isCastingSimultaneouslyNow() && (player.getLastSimultaneousSkillCast() != null) && (player.getLastSimultaneousSkillCast().getItemConsumeId() == itemToRemove.getId()))
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_DISCARDED);

@@ -25,8 +25,8 @@ import java.sql.PreparedStatement;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.FriendPacket;
@@ -82,7 +82,7 @@ public class RequestFriendDel extends ClientPacket
 			statement.setInt(4, player.getObjectId());
 			statement.execute();
 			
-			// Player deleted from your friend list
+			// Player deleted from your friend list.
 			sm = new SystemMessage(SystemMessageId.S1_HAS_BEEN_DELETED_FROM_YOUR_FRIENDS_LIST);
 			sm.addString(_name);
 			player.sendPacket(sm);
@@ -90,7 +90,7 @@ public class RequestFriendDel extends ClientPacket
 			player.getFriendList().remove(Integer.valueOf(id));
 			player.sendPacket(new FriendPacket(false, id));
 			
-			final Player target = World.getInstance().getPlayer(_name);
+			final Player target = World.getPlayer(_name);
 			if (target != null)
 			{
 				target.getFriendList().remove(Integer.valueOf(player.getObjectId()));

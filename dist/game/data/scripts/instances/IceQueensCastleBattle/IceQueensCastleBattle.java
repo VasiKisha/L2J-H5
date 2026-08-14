@@ -20,29 +20,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.entity.actor.instance.QuestGuard;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.entity.groups.CommandChannel;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
-import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.groups.CommandChannel;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.variables.NpcVariables;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.variables.NpcVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -54,6 +52,7 @@ import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 import org.l2jmobius.gameserver.util.LocationUtil;
+import org.l2jmobius.gameserver.util.StatSet;
 
 import quests.Q10286_ReunionWithSirra.Q10286_ReunionWithSirra;
 
@@ -408,7 +407,7 @@ public class IceQueensCastleBattle extends InstanceScript
 							if (!freya.isInCombat())
 							{
 								freya.setRunning();
-								freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
+								freya.getAI().setIntentionMoveTo(MIDDLE_POINT);
 							}
 						}
 						break;
@@ -635,7 +634,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						}
 						else
 						{
-							npc.getAI().setIntention(Intention.FOLLOW, freya);
+							npc.getAI().setIntentionFollow(freya);
 							startQuestTimer("ATTACK_FREYA", 5000, npc, null);
 						}
 						break;
@@ -649,7 +648,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						
 						for (Player players : params.getList("playersInside", Player.class))
 						{
-							if ((players != null))
+							if (players != null)
 							{
 								players.broadcastPacket(ExChangeClientEffectInfo.STATIC_FREYA_DEFAULT);
 							}
@@ -676,7 +675,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						final Attackable mob = npc.asAttackable();
 						mob.clearAggroList();
 						
-						World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 1000, character -> mob.addDamageHate(character, 0, getRandom(10000, 20000)));
+						World.forEachVisibleObjectInRange(npc, Player.class, 1000, character -> mob.addDamageHate(character, 0, getRandom(10000, 20000)));
 						startQuestTimer("LEADER_RANDOMIZE", 25000, npc, null);
 						break;
 					}
@@ -724,7 +723,7 @@ public class IceQueensCastleBattle extends InstanceScript
 										final Attackable breath = addSpawn(BREATH, npc.getLocation(), true, 0, false, world.getInstanceId()).asAttackable();
 										breath.setRunning();
 										breath.addDamageHate(mob.getMostHated(), 0, 999);
-										breath.getAI().setIntention(Intention.ATTACK, mob.getMostHated());
+										breath.getAI().setIntentionAttack(mob.getMostHated());
 										startQuestTimer("BLIZZARD", 20000, breath, null);
 									}
 									break;
@@ -813,7 +812,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntentionMoveTo(MIDDLE_POINT);
 						}
 					}
 					
@@ -889,7 +888,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						if (!freya.isInCombat())
 						{
 							freya.setRunning();
-							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntentionMoveTo(MIDDLE_POINT);
 						}
 					}
 					
@@ -1109,7 +1108,7 @@ public class IceQueensCastleBattle extends InstanceScript
 							{
 								breath.setRunning();
 								breath.addDamageHate(player, 0, 999);
-								breath.getAI().setIntention(Intention.ATTACK, player);
+								breath.getAI().setIntentionAttack(player);
 							}
 							else
 							{
@@ -1185,7 +1184,7 @@ public class IceQueensCastleBattle extends InstanceScript
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntentionMoveTo(MIDDLE_POINT);
 						}
 					}
 					
@@ -1264,42 +1263,45 @@ public class IceQueensCastleBattle extends InstanceScript
 		}
 		else
 		{
-			teleportPlayer(player, world.isStatus(4) ? BATTLE_PORT : ENTER_LOC[getRandom(ENTER_LOC.length)], world.getInstanceId());
+			teleportPlayer(player, world.isStatus(4) ? BATTLE_PORT : getRandomEntry(ENTER_LOC), world.getInstanceId());
 		}
 	}
 	
 	private void managePlayerEnter(Player player, InstanceWorld world)
 	{
 		world.addAllowed(player);
-		teleportPlayer(player, ENTER_LOC[getRandom(ENTER_LOC.length)], world.getInstanceId(), false);
+		teleportPlayer(player, getRandomEntry(ENTER_LOC), world.getInstanceId(), false);
 	}
 	
 	@Override
 	protected boolean checkConditions(Player player)
 	{
-		final Party party = player.getParty();
-		final CommandChannel channel = party != null ? party.getCommandChannel() : null;
 		if (player.isGM())
 		{
 			return true;
 		}
 		
+		final Party party = player.getParty();
 		if (party == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return false;
 		}
-		else if (channel == null)
+		
+		final CommandChannel channel = party.getCommandChannel();
+		if (channel == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_BECAUSE_YOU_ARE_NOT_ASSOCIATED_WITH_THE_CURRENT_COMMAND_CHANNEL);
 			return false;
 		}
-		else if (player != channel.getLeader())
+		
+		if (player != channel.getLeader())
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return false;
 		}
-		else if ((channel.getMemberCount() < MIN_PLAYERS) || (channel.getMemberCount() > MAX_PLAYERS))
+		
+		if ((channel.getMemberCount() < MIN_PLAYERS) || (channel.getMemberCount() > MAX_PLAYERS))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_DUE_TO_THE_PARTY_HAVING_EXCEEDED_THE_LIMIT);
 			return false;
@@ -1357,7 +1359,7 @@ public class IceQueensCastleBattle extends InstanceScript
 		{
 			mob.addDamageHate(target, 0, 999);
 			mob.setRunning();
-			mob.getAI().setIntention(Intention.ATTACK, target);
+			mob.getAI().setIntentionAttack(target);
 		}
 		else
 		{

@@ -23,24 +23,24 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.residences.ClanHall;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.residences.ClanHall;
-import org.l2jmobius.gameserver.model.script.Event;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.siege.SiegeClan;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.listeners.AbstractEventListener;
+import org.l2jmobius.gameserver.mechanics.script.Event;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClan;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
@@ -113,7 +113,7 @@ public class RequestRestartPoint extends ClientPacket
 		final Castle castle = CastleManager.getInstance().getCastle(player.getX(), player.getY(), player.getZ());
 		if ((castle != null) && castle.getSiege().isInProgress() && (player.getClan() != null) && castle.getSiege().checkIsAttacker(player.getClan()))
 		{
-			// Schedule respawn delay for attacker
+			// Schedule respawn delay for attacker.
 			ThreadPool.schedule(new DeathTask(player), castle.getSiege().getAttackerRespawnDelay());
 			if (castle.getSiege().getAttackerRespawnDelay() > 0)
 			{
@@ -240,7 +240,7 @@ public class RequestRestartPoint extends ClientPacket
 				
 				if (((siegeClan == null) || siegeClan.getFlag().isEmpty()) && (flag == null))
 				{
-					// Check if clan hall has inner spawns loc
+					// Check if clan hall has inner spawns loc.
 					if (hall != null)
 					{
 						loc = hall.getSiege().getInnerSpawnLoc(player);
@@ -257,7 +257,7 @@ public class RequestRestartPoint extends ClientPacket
 				loc = MapRegionData.getInstance().getTeleToLocation(player, TeleportWhereType.SIEGEFLAG);
 				break;
 			}
-			case 5: // Fixed or Player is a festival participant
+			case 5: // Fixed or Player is a festival participant.
 			{
 				if (!player.isGM() && !player.isFestivalParticipant() && !player.getInventory().haveItemForSelfResurrection())
 				{

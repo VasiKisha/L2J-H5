@@ -32,17 +32,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.crypt.NewCrypt;
-import org.l2jmobius.commons.network.base.BaseWritablePacket;
+import org.l2jmobius.commons.network.packet.SimpleWritablePacket;
 import org.l2jmobius.commons.util.TraceUtil;
-import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.controller.ScrambledKeyPair;
+import org.l2jmobius.loginserver.data.GameServerTable;
+import org.l2jmobius.loginserver.data.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler.GameServerState;
-import org.l2jmobius.loginserver.network.ScrambledKeyPair;
-import org.l2jmobius.loginserver.network.loginserverpackets.ChangePasswordResponse;
-import org.l2jmobius.loginserver.network.loginserverpackets.InitLS;
-import org.l2jmobius.loginserver.network.loginserverpackets.KickPlayer;
-import org.l2jmobius.loginserver.network.loginserverpackets.LoginServerFail;
-import org.l2jmobius.loginserver.network.loginserverpackets.RequestCharacters;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.ChangePasswordResponse;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.InitLS;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.KickPlayer;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.LoginServerFail;
+import org.l2jmobius.loginserver.network.gameserverpackets.send.RequestCharacters;
 
 /**
  * Handles connection and communication between login server and game server.<br>
@@ -200,7 +202,7 @@ public class GameServerThread extends Thread
 				}
 				
 				// Forward the validated packet to the packet handler.
-				GameServerPacketHandler.handlePacket(packetData, this);
+				GameServerPacketHandler.handle(packetData, this);
 			}
 		}
 		catch (IOException e)
@@ -317,7 +319,7 @@ public class GameServerThread extends Thread
 	 * The packet is automatically encrypted using Blowfish cipher and padded to the required block size. A checksum is appended for integrity verification.
 	 * @param packet the packet to send to the game server
 	 */
-	public void sendPacket(BaseWritablePacket packet)
+	public void sendPacket(SimpleWritablePacket packet)
 	{
 		// Verify connection is still valid.
 		if ((_blowfishCipher == null) || (_socket == null) || _socket.isClosed())

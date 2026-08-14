@@ -20,12 +20,12 @@ import java.util.List;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.RatesConfig;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 
 import ai.areas.Hellbound.HellboundEngine;
 
@@ -77,7 +77,7 @@ public class Chimeras extends Script
 	{
 		if (HellboundEngine.getInstance().getLevel() == 7) // Have random spawn points only in 7 level
 		{
-			final Location loc = LOCATIONS[getRandom(LOCATIONS.length)];
+			final Location loc = getRandomEntry(LOCATIONS);
 			if (!npc.isInsideRadius2D(loc, 200))
 			{
 				npc.getSpawn().setLocation(loc);

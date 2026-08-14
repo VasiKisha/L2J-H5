@@ -23,16 +23,16 @@ package org.l2jmobius.gameserver.taskmanagers;
 import java.util.Calendar;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.managers.DayNightSpawnManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.OnDayNightChange;
-import org.l2jmobius.gameserver.model.skill.CommonSkill;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.OnDayNightChange;
+import org.l2jmobius.gameserver.mechanics.skill.CommonSkill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -85,7 +85,7 @@ public class GameTimeTaskManager extends Thread
 				_isNight = !_isNight;
 				
 				// Shadow Sense skill for Dark Elf players.
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					if (player.getRace() == Race.DARK_ELF)
 					{
@@ -155,7 +155,7 @@ public class GameTimeTaskManager extends Thread
 		return _gameTime % 60;
 	}
 	
-	public static final GameTimeTaskManager getInstance()
+	public static GameTimeTaskManager getInstance()
 	{
 		return SingletonHolder.INSTANCE;
 	}

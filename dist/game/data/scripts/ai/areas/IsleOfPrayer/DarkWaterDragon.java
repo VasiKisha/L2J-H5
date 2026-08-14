@@ -24,13 +24,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Dark Water Dragon's AI.
@@ -236,7 +235,7 @@ public class DarkWaterDragon extends Script
 		final Npc shade = addSpawn(npcId, x, y, z, 0, false, 0);
 		shade.setRunning();
 		shade.asAttackable().addDamageHate(attacker, 0, 999);
-		shade.getAI().setIntention(Intention.ATTACK, attacker);
+		shade.getAI().setIntentionAttack(attacker);
 	}
 	
 	public static void main(String[] args)

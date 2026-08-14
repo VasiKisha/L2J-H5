@@ -16,15 +16,16 @@
  */
 package ai.areas.FantasyIsle;
 
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
@@ -36,6 +37,8 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
  */
 public class TalentShow extends Script
 {
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+	
 	private static int MC = 32433;
 	// @formatter:off
 	private static int[] SINGERS =
@@ -304,7 +307,7 @@ public class TalentShow extends Script
 		hourDiff *= 3600000;
 		minDiff *= 60000;
 		diff = hourDiff + minDiff;
-		LOGGER.info("Fantasy Isle: MC show script starting at " + (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")).format(System.currentTimeMillis() + diff) + " and is scheduled each next 4 hours.");
+		LOGGER.info("Fantasy Isle: MC show script starting at " + DATE_FORMAT.format(Instant.ofEpochMilli(System.currentTimeMillis() + diff).atZone(ZoneId.systemDefault())) + " and is scheduled each next 4 hours.");
 		startQuestTimer("Start", diff, null, null); // first start
 	}
 	
@@ -323,7 +326,7 @@ public class TalentShow extends Script
 				}
 				case 32431:
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56657, -56338, -2008, 33102));
+					npc.getAI().setIntentionMoveTo(new Location(-56657, -56338, -2008, 33102));
 					startQuestTimer("social1", 6000, npc, null, true);
 					startQuestTimer("7", 215000, npc, null);
 					break;
@@ -379,7 +382,7 @@ public class TalentShow extends Script
 			if (event.equalsIgnoreCase("6"))
 			{
 				npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[6]);
-				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56511, -56647, -2008, 36863));
+				npc.getAI().setIntentionMoveTo(new Location(-56511, -56647, -2008, 36863));
 				npc.broadcastPacket(new PlaySound(1, "NS22_F", 0, 0, 0, 0, 0));
 				addSpawn(SINGERS[0], -56344, -56328, -2008, 32768, false, 224000);
 				addSpawn(SINGERS[1], -56552, -56245, -2008, 36863, false, 224000);
@@ -397,21 +400,21 @@ public class TalentShow extends Script
 					case 32433:
 					{
 						npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[7]);
-						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntentionMoveTo(new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("8", 12000, npc, null);
 						break;
 					}
 					default:
 					{
 						cancelQuestTimer("social1", npc, null);
-						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56594, -56064, -2008, 32768));
+						npc.getAI().setIntentionMoveTo(new Location(-56594, -56064, -2008, 32768));
 						break;
 					}
 				}
 			}
 			else if (event.equalsIgnoreCase("10"))
 			{
-				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56483, -56665, -2034, 32768));
+				npc.getAI().setIntentionMoveTo(new Location(-56483, -56665, -2034, 32768));
 				npc.broadcastPacket(new PlaySound(1, "TP05_F", 0, 0, 0, 0, 0));
 				startQuestTimer("npc1_1", 3000, addSpawn(CIRCUS[0], -56495, -56375, -2008, 32768, false, 101000), null);
 				startQuestTimer("npc2_1", 3000, addSpawn(CIRCUS[0], -56491, -56289, -2008, 32768, false, 101000), null);
@@ -431,13 +434,13 @@ public class TalentShow extends Script
 					case 32433:
 					{
 						npc.broadcastSay(ChatType.NPC_SHOUT, MESSAGES[11]);
-						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56698, -56430, -2008, 32768));
+						npc.getAI().setIntentionMoveTo(new Location(-56698, -56430, -2008, 32768));
 						startQuestTimer("12", 5000, npc, null);
 						break;
 					}
 					default:
 					{
-						npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56343, -56330, -2008, 32768));
+						npc.getAI().setIntentionMoveTo(new Location(-56343, -56330, -2008, 32768));
 						break;
 					}
 				}
@@ -460,7 +463,7 @@ public class TalentShow extends Script
 			}
 			else if (event.equalsIgnoreCase("23"))
 			{
-				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56702, -56340, -2008, 32768));
+				npc.getAI().setIntentionMoveTo(new Location(-56702, -56340, -2008, 32768));
 				startQuestTimer("24", 2800, npc, null);
 				addSpawn(SHOWSTUFF[0], -56672, -56406, -2000, 32768, false, 20900);
 				addSpawn(SHOWSTUFF[1], -56648, -56368, -2000, 32768, false, 20900);
@@ -475,7 +478,7 @@ public class TalentShow extends Script
 			}
 			else if (event.equalsIgnoreCase("29"))
 			{
-				npc.getAI().setIntention(Intention.MOVE_TO, new Location(-56730, -56340, -2008, 32768));
+				npc.getAI().setIntentionMoveTo(new Location(-56730, -56340, -2008, 32768));
 				startQuestTimer("clean_npc", 4100, npc, null);
 				startQuestTimer("timer_check", 60000, null, null, true);
 			}
@@ -502,7 +505,7 @@ public class TalentShow extends Script
 				final WalkInfo wi = WALKS.get(event);
 				if (wi != null)
 				{
-					npc.getAI().setIntention(Intention.MOVE_TO, wi.getCharPos());
+					npc.getAI().setIntentionMoveTo(wi.getCharPos());
 					startQuestTimer(wi.getNextEvent(), wi.getTime(), npc, null);
 				}
 			}

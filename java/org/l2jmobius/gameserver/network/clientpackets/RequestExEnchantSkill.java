@@ -23,13 +23,13 @@ import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillLearn;
-import org.l2jmobius.gameserver.model.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillGroup.EnchantSkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.EnchantSkillLearn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
@@ -108,12 +108,13 @@ public class RequestExEnchantSkill extends ClientPacket
 			return;
 		}
 		
-		final EnchantSkillHolder esd = s.getEnchantSkillHolder(_skillLevel);
 		final int beforeEnchantSkillLevel = player.getSkillLevel(_skillId);
 		if (beforeEnchantSkillLevel != s.getMinSkillLevel(_skillLevel))
 		{
 			return;
 		}
+		
+		final EnchantSkillHolder esd = s.getEnchantSkillHolder(_skillLevel);
 		
 		final int costMultiplier = EnchantSkillGroupsData.NORMAL_ENCHANT_COST_MULTIPLIER;
 		final int requiredSp = esd.getSpCost() * costMultiplier;

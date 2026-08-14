@@ -17,19 +17,18 @@
 package custom.events.Wedding;
 
 import org.l2jmobius.gameserver.config.custom.WeddingConfig;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Couple;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.CoupleManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.Couple;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.CommonSkill;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.CommonSkill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * Wedding AI.
@@ -58,7 +57,7 @@ public class Wedding extends Script
 			return "NoPartner.html";
 		}
 		
-		final Player partner = World.getInstance().getPlayer(player.getPartnerId());
+		final Player partner = World.getPlayer(player.getPartnerId());
 		if ((partner == null) || !partner.isOnline())
 		{
 			return "NotFound.html";
@@ -126,7 +125,7 @@ public class Wedding extends Script
 					player.reduceAdena(ItemProcessType.FEE, WeddingConfig.WEDDING_PRICE, player.getLastFolkNPC(), true);
 					partner.reduceAdena(ItemProcessType.FEE, WeddingConfig.WEDDING_PRICE, player.getLastFolkNPC(), true);
 					
-					// Accept the wedding request
+					// Accept the wedding request.
 					player.setMarryAccepted(true);
 					final Couple couple = CoupleManager.getInstance().getCouple(player.getCoupleId());
 					couple.marry();
@@ -151,7 +150,7 @@ public class Wedding extends Script
 						partner.doCast(skill);
 					}
 					
-					Broadcast.toAllOnlinePlayers("Congratulations to " + player.getName() + " and " + partner.getName() + "! They have been married.");
+					World.broadcastToAllOnlinePlayers("Congratulations to " + player.getName() + " and " + partner.getName() + "! They have been married.");
 					htmltext = sendHtml(partner, "Accepted.html", null, null);
 				}
 				break;
@@ -177,7 +176,7 @@ public class Wedding extends Script
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final String htmltext = getHtm(player, "Start.html");
-		return htmltext.replaceAll("%fee%", String.valueOf(WeddingConfig.WEDDING_PRICE));
+		return htmltext.replace("%fee%", String.valueOf(WeddingConfig.WEDDING_PRICE));
 	}
 	
 	private String sendHtml(Player player, String fileName, String regex, String replacement)

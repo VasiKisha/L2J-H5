@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.FishingChampionshipManager;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * Format: (ch) just a trigger

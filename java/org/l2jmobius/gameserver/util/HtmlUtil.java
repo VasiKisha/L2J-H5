@@ -25,7 +25,7 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.DevelopmentConfig;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractHtmlPacket;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -187,14 +187,14 @@ public class HtmlUtil
 		sb.append((long) (((double) current / max) * width));
 		sb.append(" height=");
 		sb.append(imageHeight);
-		sb.append(">");
+		sb.append('>');
 		sb.append("</td>");
 		sb.append("</tr>");
 		sb.append("<tr>");
 		sb.append("<td align=center>");
 		sb.append("<table cellpadding=0 cellspacing=");
 		sb.append(top);
-		sb.append(">");
+		sb.append('>');
 		sb.append("<tr>");
 		sb.append("<td>");
 		if (displayAsPercentage)
@@ -218,7 +218,7 @@ public class HtmlUtil
 			sb.append("<td width=10 align=center>/</td>");
 			sb.append("<td width=");
 			sb.append(tdWidth);
-			sb.append(">");
+			sb.append('>');
 			sb.append(max);
 			sb.append("</td>");
 			sb.append("</tr>");
@@ -320,7 +320,7 @@ public class HtmlUtil
 				LOGGER.info("Cached html link(" + scope + "): '" + htmlLink + "'");
 			}
 			
-			// let's keep an action cache with "link " lowercase literal kept
+			// Let's keep an action cache with "link " lowercase literal kept.
 			player.addHtmlAction(scope, "link " + htmlLink);
 			linkStart = htmlLower.indexOf("=\"link ", linkEnd);
 		}

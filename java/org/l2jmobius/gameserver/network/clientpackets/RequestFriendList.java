@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -60,7 +60,7 @@ public class RequestFriendList extends ClientPacket
 				continue;
 			}
 			
-			friend = World.getInstance().getPlayer(friendName);
+			friend = World.getPlayer(friendName);
 			if ((friend == null) || !friend.isOnline())
 			{
 				// (Currently: Offline)

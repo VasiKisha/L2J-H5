@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Map;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -36,7 +36,7 @@ public class ShopPreviewInfo extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.SHOP_PREVIEW_INFO.writeId(this, buffer);
 		buffer.writeInt(Inventory.PAPERDOLL_TOTALSLOTS);
@@ -65,6 +65,6 @@ public class ShopPreviewInfo extends ServerPacket
 	
 	private int getFromList(int key)
 	{
-		return (_itemlist.containsKey(key) ? _itemlist.get(key) : 0);
+		return (_itemlist.getOrDefault(key, 0));
 	}
 }

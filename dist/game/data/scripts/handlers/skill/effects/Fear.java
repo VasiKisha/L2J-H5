@@ -16,18 +16,17 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.instance.Defender;
-import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
-import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.instance.Defender;
+import org.l2jmobius.gameserver.entity.actor.instance.FortCommander;
+import org.l2jmobius.gameserver.entity.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Fear effect implementation.
@@ -69,7 +68,7 @@ public class Fear extends AbstractEffect
 	@Override
 	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().notifyAction(Action.AFRAID, effector, false);
+		effected.getAI().notifyActionAfraid(effector, false);
 		return false;
 	}
 	
@@ -81,6 +80,6 @@ public class Fear extends AbstractEffect
 			effected.abortCast();
 		}
 		
-		effected.getAI().notifyAction(Action.AFRAID, effector, true);
+		effected.getAI().notifyActionAfraid(effector, true);
 	}
 }

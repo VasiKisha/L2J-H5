@@ -17,15 +17,15 @@
 package ai.areas.Hellbound.AI.NPC.Quarry;
 
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.QuestGuard;
+import org.l2jmobius.gameserver.entity.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
-import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -75,7 +75,7 @@ public class Quarry extends Script
 		{
 			case "FollowMe":
 			{
-				npc.getAI().setIntention(Intention.FOLLOW, player);
+				npc.getAI().setIntentionFollow(player);
 				npc.setTarget(player);
 				npc.setAutoAttackable(true);
 				npc.setRHandId(9136);
@@ -96,7 +96,7 @@ public class Quarry extends Script
 					if (zone.getId() == 40108)
 					{
 						npc.setTarget(null);
-						npc.getAI().setIntention(Intention.ACTIVE);
+						npc.getAI().setIntentionActive();
 						npc.setAutoAttackable(false);
 						npc.setRHandId(0);
 						npc.teleToLocation(npc.getSpawn().getLocation());

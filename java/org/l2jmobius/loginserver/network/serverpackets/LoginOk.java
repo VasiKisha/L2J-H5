@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.loginserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.loginserver.SessionKey;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.loginserver.controller.SessionKey;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
@@ -63,7 +63,7 @@ public class LoginOk extends LoginServerPacket
 	 * @param buffer
 	 */
 	@Override
-	protected void writeImpl(LoginClient client, WritableBuffer buffer)
+	protected void writeImpl(LoginClient client, WriteBuffer buffer)
 	{
 		buffer.writeByte(OPCODE_LOGIN_OK);
 		buffer.writeInt(_loginOkPart1);

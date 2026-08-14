@@ -31,14 +31,13 @@ import javax.management.ObjectName;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.Shutdown;
 import org.l2jmobius.gameserver.config.ServerConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
 
 /**
  * @author Mobius
@@ -70,7 +69,7 @@ public class PrecautionaryRestartManager
 				
 				LOGGER.info("PrecautionaryRestartManager: CPU usage over " + ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
 				LOGGER.info("PrecautionaryRestartManager: Server is using " + getCpuLoad(PROCESS_CPU_LOAD_VAR) + "%.");
-				Broadcast.toAllOnlinePlayers("Server will restart in 10 minutes.", false);
+				World.broadcastToAllOnlinePlayers("Server will restart in 10 minutes.", false);
 				Shutdown.getInstance().startShutdown(null, 600, true);
 			}
 			
@@ -82,7 +81,7 @@ public class PrecautionaryRestartManager
 				}
 				
 				LOGGER.info("PrecautionaryRestartManager: Memory usage over " + ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
-				Broadcast.toAllOnlinePlayers("Server will restart in 10 minutes.", false);
+				World.broadcastToAllOnlinePlayers("Server will restart in 10 minutes.", false);
 				Shutdown.getInstance().startShutdown(null, 600, true);
 			}
 		}, ServerConfig.PRECAUTIONARY_RESTART_DELAY, ServerConfig.PRECAUTIONARY_RESTART_DELAY);
@@ -146,7 +145,7 @@ public class PrecautionaryRestartManager
 			}
 		}
 		
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			if ((player == null) || player.isInOfflineMode())
 			{
@@ -163,7 +162,7 @@ public class PrecautionaryRestartManager
 				return true;
 			}
 			
-			if (player.getInstanceId() > 0)
+			if (player.isInInstance())
 			{
 				return true;
 			}

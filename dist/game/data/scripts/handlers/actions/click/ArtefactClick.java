@@ -20,11 +20,10 @@
  */
 package handlers.actions.click;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 
 public class ArtefactClick implements IActionClickHandler
 {
@@ -51,10 +50,10 @@ public class ArtefactClick implements IActionClickHandler
 		{
 			player.setTarget(target);
 		}
-		else if (interact && !target.asNpc().canInteract(player)) // Calculate the distance between the Player and the Npc
+		else if (interact && !target.asNpc().canInteract(player)) // Calculate the distance between the Player and the Npc.
 		{
-			// Notify the Player AI with INTERACT
-			player.getAI().setIntention(Intention.INTERACT, target);
+			// Notify the Player AI with INTERACT.
+			player.getAI().setIntentionInteract(target);
 		}
 		
 		return true;

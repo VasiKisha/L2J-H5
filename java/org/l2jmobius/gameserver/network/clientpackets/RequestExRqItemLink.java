@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.network.serverpackets.ExRpItemLink;
 
 /**
@@ -44,7 +44,7 @@ public class RequestExRqItemLink extends ClientPacket
 			return;
 		}
 		
-		final WorldObject object = World.getInstance().findObject(_objectId);
+		final WorldObject object = World.findObject(_objectId);
 		if ((object != null) && object.isItem())
 		{
 			final Item item = (Item) object;

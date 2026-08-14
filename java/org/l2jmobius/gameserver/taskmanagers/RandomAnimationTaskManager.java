@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Npc;
 
 /**
  * @author Mobius

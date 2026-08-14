@@ -22,16 +22,16 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.ClanAccess;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.ClanWarehouse;
+import org.l2jmobius.gameserver.entity.itemcontainer.ItemContainer;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanAccess;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.ClanWarehouse;
-import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
@@ -118,7 +118,7 @@ public class SendWareHouseWithDrawList extends ClientPacket
 			return;
 		}
 		
-		// Alt game - Karma punishment
+		// Alt game - Karma punishment.
 		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getKarma() > 0))
 		{
 			return;
@@ -163,7 +163,7 @@ public class SendWareHouseWithDrawList extends ClientPacket
 			}
 		}
 		
-		// Item Max Limit Check
+		// Item Max Limit Check.
 		if (!player.getInventory().validateCapacity(slots))
 		{
 			player.sendPacket(SystemMessageId.YOUR_INVENTORY_IS_FULL);
@@ -177,7 +177,7 @@ public class SendWareHouseWithDrawList extends ClientPacket
 			return;
 		}
 		
-		// Proceed to the transfer
+		// Proceed to the transfer.
 		final InventoryUpdate playerIU = new InventoryUpdate();
 		for (ItemHolder i : _items)
 		{
@@ -205,10 +205,10 @@ public class SendWareHouseWithDrawList extends ClientPacket
 			}
 		}
 		
-		// Send updated item list to the player
+		// Send updated item list to the player.
 		player.sendInventoryUpdate(playerIU);
 		
-		// Update current load status on player
+		// Update current load status on player.
 		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 		player.sendPacket(su);

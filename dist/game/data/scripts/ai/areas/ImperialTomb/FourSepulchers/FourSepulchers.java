@@ -35,23 +35,22 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
+import org.l2jmobius.gameserver.entity.zone.type.EffectZone;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
-import org.l2jmobius.gameserver.model.zone.type.EffectZone;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -334,7 +333,7 @@ public class FourSepulchers extends Script implements IXmlReader
 					final Location destination = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), npc.getSpawn().getLocation().getX() + getRandom(-400, 400), npc.getSpawn().getLocation().getY() + getRandom(-400, 400), npc.getZ(), npc.getInstanceId());
 					if (LocationUtil.calculateDistance(npc, npc.getSpawn().getLocation(), false, false) < 600)
 					{
-						npc.getAI().setIntention(Intention.MOVE_TO, destination);
+						npc.getAI().setIntentionMoveTo(destination);
 					}
 					
 					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(VICTIM_MSG));
@@ -394,7 +393,7 @@ public class FourSepulchers extends Script implements IXmlReader
 			{
 				for (int managerId : MANAGER_ZONES.keySet())
 				{
-					Npc manager = World.getInstance().getNpc(managerId);
+					Npc manager = World.getNpc(managerId);
 					if (manager != null)
 					{
 						for (NpcStringId message : MANAGER_MESSAGES)

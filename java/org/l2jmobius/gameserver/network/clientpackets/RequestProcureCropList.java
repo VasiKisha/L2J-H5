@@ -22,15 +22,15 @@ import java.util.List;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Merchant;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.UniqueItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.UniqueItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.siege.manor.CropProcure;
+import org.l2jmobius.gameserver.mechanics.siege.manor.CropProcure;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -146,7 +146,7 @@ public class RequestProcureCropList extends ClientPacket
 			return;
 		}
 		
-		// Used when Config.ALT_MANOR_SAVE_ALL_ACTIONS == true
+		// Used when Config.ALT_MANOR_SAVE_ALL_ACTIONS == true.
 		final int updateListSize = GeneralConfig.ALT_MANOR_SAVE_ALL_ACTIONS ? _items.size() : 0;
 		final List<CropProcure> updateList = new ArrayList<>(updateListSize);
 		
@@ -169,7 +169,7 @@ public class RequestProcureCropList extends ClientPacket
 				continue;
 			}
 			
-			// Fee for selling to other manors
+			// Fee for selling to other manors.
 			final long fee = (castleId == i.getManorId()) ? 0 : ((long) (i.getPrice() * 0.05));
 			if ((fee != 0) && (player.getAdena() < fee))
 			{

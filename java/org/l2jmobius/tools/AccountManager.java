@@ -50,6 +50,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -380,7 +381,7 @@ public class AccountManager extends JFrame
 		// Add the label to the panel.
 		topPanel.add(_selectedAccount);
 		
-		// Create _accountCount (static and only updated when necessary)
+		// Create _accountCount (static and only updated when necessary).
 		_accountCount = new JLabel("", SwingConstants.LEFT);
 		_accountCount.setFont(new Font("Arial", Font.BOLD, 14));
 		topPanel.add(_accountCount);
@@ -388,7 +389,7 @@ public class AccountManager extends JFrame
 		// Add the topPanel to the main panel at the top.
 		panel.add(topPanel, BorderLayout.NORTH);
 		
-		// Create the center panel for other components (search, account select, etc.)
+		// Create the center panel for other components (search, account select, etc.).
 		final JPanel centerPanel = new JPanel(new GridBagLayout());
 		final GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5);
@@ -429,7 +430,7 @@ public class AccountManager extends JFrame
 			// Helper method to check the search field length and enable/disable the search button.
 			private void toggleSearchButton()
 			{
-				if (_searchAccount.getText().length() >= 1)
+				if (!_searchAccount.getText().isEmpty())
 				{
 					_searchButton.setEnabled(true);
 				}
@@ -676,7 +677,7 @@ public class AccountManager extends JFrame
 						model.addRow(row);
 					}
 					
-					// Update total accounts label
+					// Update total accounts label.
 					final int totalAccounts = getTotalAccountsCount();
 					_totalAccounts.setText("<html><b>Total Accounts: " + totalAccounts + "</b></html>");
 				}
@@ -736,7 +737,7 @@ public class AccountManager extends JFrame
 	private int getTotalPages()
 	{
 		final int totalAccounts = getTotalAccountsCount();
-		return (int) Math.ceil((double) totalAccounts / PAGE_SIZE);
+		return Math.ceilDiv(totalAccounts, PAGE_SIZE);
 	}
 	
 	private int getTotalAccountsCount()
@@ -786,8 +787,8 @@ public class AccountManager extends JFrame
 						result.getString("hop2") != null ? result.getString("hop2") : "N/A",
 						result.getString("hop3") != null ? result.getString("hop3") : "N/A",
 						result.getString("hop4") != null ? result.getString("hop4") : "N/A",
-						TimeUtil.getDateTimeString(new Date(result.getTimestamp("created_time").getTime())),
-						TimeUtil.getDateTimeString(new Date(result.getLong("lastactive")))
+						TimeUtil.getDateTimeString(result.getTimestamp("created_time")),
+						TimeUtil.getDateTimeString(new Timestamp(result.getLong("lastactive")))
 					});
 				}
 			}
@@ -819,7 +820,7 @@ public class AccountManager extends JFrame
 					final String email = result.getString("email") != null ? result.getString("email") : "N/A";
 					final String lastIP = result.getString("lastIP") != null ? result.getString("lastIP") : "Unknown";
 					final String createdTime = result.getTimestamp("created_time") != null ? TimeUtil.getDateTimeString(new Date(result.getTimestamp("created_time").getTime())) : "Unknown";
-					final String lastActive = result.getLong("lastactive") > 0 ? TimeUtil.getDateTimeString(new Date(result.getLong("lastactive"))) : "Never";
+					final String lastActive = result.getLong("lastactive") > 0 ? TimeUtil.getDateTimeString(new Timestamp(result.getLong("lastactive"))) : "Never";
 					
 					final String message = String.format("<html><b>🔹 Account Name:</b> %s<br>" + "<b>🔐 Access Level:</b> %d<br>" + "<b>📧 Email:</b> %s<br>" + "<b>🌐 Last IP:</b> %s<br>" + "<b>📅 Created:</b> %s<br>" + "<b>🕒 Last Active:</b> %s</html>", login, accessLevel, email, lastIP, createdTime, lastActive);
 					
@@ -891,7 +892,7 @@ public class AccountManager extends JFrame
 				if (selectedAccount != null)
 				{
 					// Update _selectedAccount label to show the selected account.
-					_selectedAccount.setText("" + selectedAccount);
+					_selectedAccount.setText(selectedAccount);
 				}
 			});
 		}
@@ -914,8 +915,6 @@ public class AccountManager extends JFrame
 	{
 		final String username = _usernameField.getText().trim();
 		final String password = new String(((JPasswordField) _passwordField).getPassword()).trim();
-		final int accessLevel = _accessLevelCheckBox.isSelected() ? Integer.parseInt(((String) _addAccessLevelBox.getSelectedItem()).split(" - ")[0]) : 0;
-		
 		// Validate username and password.
 		if (username.isEmpty() || password.isEmpty())
 		{
@@ -945,6 +944,7 @@ public class AccountManager extends JFrame
 				final byte[] raw = password.getBytes(StandardCharsets.UTF_8);
 				final String hashBase64 = Base64.getEncoder().encodeToString(md.digest(raw));
 				
+				final int accessLevel = _accessLevelCheckBox.isSelected() ? Integer.parseInt(((String) _addAccessLevelBox.getSelectedItem()).split(" - ")[0]) : 0;
 				try (PreparedStatement statement = con.prepareStatement("INSERT INTO accounts (login, password, accessLevel) VALUES (?, ?, ?)"))
 				{
 					statement.setString(1, username);
@@ -973,10 +973,7 @@ public class AccountManager extends JFrame
 	
 	private void updateAccount(ActionEvent event)
 	{
-		final String password = new String(_changePassword.getPassword()).trim();
-		final String selectedUsername = (String) _accuntSelcet.getSelectedItem();
-		
-		// Ensure a valid access level is selected
+		// Ensure a valid access level is selected.
 		final String accessLevelStr = (String) _changeAccessLevelBox.getSelectedItem();
 		if ((accessLevelStr == null) || !accessLevelStr.contains(" - "))
 		{
@@ -984,7 +981,7 @@ public class AccountManager extends JFrame
 			return;
 		}
 		
-		final int accessLevel = Integer.parseInt(accessLevelStr.split(" - ")[0]);
+		final String selectedUsername = (String) _accuntSelcet.getSelectedItem();
 		if ((selectedUsername == null) || selectedUsername.isEmpty())
 		{
 			JOptionPane.showMessageDialog(this, "No account selected!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -996,6 +993,9 @@ public class AccountManager extends JFrame
 		{
 			return;
 		}
+		
+		final String password = new String(_changePassword.getPassword()).trim();
+		final int accessLevel = Integer.parseInt(accessLevelStr.split(" - ")[0]);
 		
 		try (Connection con = DatabaseFactory.getConnection())
 		{
@@ -1014,20 +1014,20 @@ public class AccountManager extends JFrame
 					params.add(hashBase64);
 				}
 				
-				// Only add access level if it's changed
-				if (_changeAccessLevelBox.isEnabled()) // Check if access level change is allowed
+				// Only add access level if it's changed.
+				if (_changeAccessLevelBox.isEnabled()) // Check if access level change is allowed.
 				{
 					sql.append("accessLevel = ?, ");
 					params.add(accessLevel);
 				}
 				
-				if (params.isEmpty()) // Ensure at least one field is updated
+				if (params.isEmpty()) // Ensure at least one field is updated.
 				{
 					JOptionPane.showMessageDialog(this, "Nothing to update!", "Warning", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				
-				// Remove the last ", " from the query
+				// Remove the last ", " from the query.
 				sql.setLength(sql.length() - 2);
 				sql.append(" WHERE login = ?");
 				params.add(selectedUsername);
@@ -1271,10 +1271,10 @@ public class AccountManager extends JFrame
 		}
 		finally
 		{
-			// Cleanup resources when exiting console mode
+			// Cleanup resources when exiting console mode.
 			System.out.println("[INFO] Cleaning up resources...");
 			
-			// Close any open resources, like database connections
+			// Close any open resources, like database connections.
 			DatabaseFactory.close();
 		}
 	}
@@ -1523,7 +1523,7 @@ public class AccountManager extends JFrame
 					}
 				}
 				
-				// Get new password (optional)
+				// Get new password (optional).
 				System.out.print("Enter new password (or leave empty to keep current password): ");
 				final String newPassword = reader.readLine().trim();
 				String hashBase64 = null;
@@ -1535,7 +1535,7 @@ public class AccountManager extends JFrame
 					hashBase64 = Base64.getEncoder().encodeToString(md.digest(raw));
 				}
 				
-				// Get new access level (optional)
+				// Get new access level (optional).
 				Integer newAccessLevel = null;
 				while (true)
 				{

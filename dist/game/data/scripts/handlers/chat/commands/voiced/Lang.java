@@ -25,10 +25,10 @@ import java.util.StringTokenizer;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo.NpcInfo;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -71,7 +71,7 @@ public class Lang implements IVoicedCommandHandler
 			{
 				msg.setFile(activeChar, "data/html/mods/Lang/Ok.htm");
 				activeChar.sendPacket(msg);
-				for (WorldObject obj : World.getInstance().getVisibleObjects())
+				for (WorldObject obj : World.getVisibleObjects())
 				{
 					if (obj.isNpc() && NpcNameLocalisationData.getInstance().hasLocalisation(obj.getId()))
 					{

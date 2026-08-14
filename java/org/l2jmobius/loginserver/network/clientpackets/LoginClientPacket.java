@@ -24,7 +24,7 @@ package org.l2jmobius.loginserver.network.clientpackets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.packet.ReadablePacket;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
@@ -48,7 +48,7 @@ public abstract class LoginClientPacket extends ReadablePacket<LoginClient>
 	 * @return {@code true} if the packet was read successfully, {@code false} otherwise.
 	 */
 	@Override
-	protected boolean read()
+	public boolean read()
 	{
 		try
 		{

@@ -37,21 +37,21 @@ import org.w3c.dom.Node;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.CursedWeapon;
-import org.l2jmobius.gameserver.model.actor.instance.Defender;
-import org.l2jmobius.gameserver.model.actor.instance.FeedableBeast;
-import org.l2jmobius.gameserver.model.actor.instance.FestivalMonster;
-import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.actor.instance.Guard;
-import org.l2jmobius.gameserver.model.actor.instance.RiftInvader;
-import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.CursedWeapon;
+import org.l2jmobius.gameserver.entity.actor.instance.Defender;
+import org.l2jmobius.gameserver.entity.actor.instance.FeedableBeast;
+import org.l2jmobius.gameserver.entity.actor.instance.FestivalMonster;
+import org.l2jmobius.gameserver.entity.actor.instance.FortCommander;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.entity.actor.instance.Guard;
+import org.l2jmobius.gameserver.entity.actor.instance.RiftInvader;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * @author Micht
@@ -168,7 +168,7 @@ public class CursedWeaponsManager
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("SELECT itemId, charId, playerKarma, playerPkKills, nbKills, endTime FROM cursed_weapons"))
 		{
-			// Retrieve the Player from the characters table of the database
+			// Retrieve the Player from the characters table of the database.
 			CursedWeapon cw;
 			while (rs.next())
 			{
@@ -196,7 +196,7 @@ public class CursedWeaponsManager
 		// Undesired effects result otherwise, such as player with no zariche but with karma
 		// or a lost-child entry in the cursed weapons table, without a corresponding one in items...
 		
-		// Retrieve the Player from the characters table of the database
+		// Retrieve the Player from the characters table of the database.
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement("SELECT owner_id FROM items WHERE item_id=?"))
 		{
@@ -318,7 +318,7 @@ public class CursedWeaponsManager
 	
 	public static void announce(SystemMessage sm)
 	{
-		Broadcast.toAllOnlinePlayers(sm);
+		World.broadcastToAllOnlinePlayers(sm);
 	}
 	
 	public void checkPlayer(Player player)

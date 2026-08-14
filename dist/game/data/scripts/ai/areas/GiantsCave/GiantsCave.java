@@ -16,11 +16,11 @@
  */
 package ai.areas.GiantsCave;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -57,7 +57,7 @@ public class GiantsCave extends Script
 				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.OH_GIANTS_AN_INTRUDER_HAS_BEEN_DISCOVERED);
 			}
 			
-			World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, 450, characters ->
+			World.forEachVisibleObjectInRange(npc, Attackable.class, 450, characters ->
 			{
 				if ((getRandomBoolean()))
 				{

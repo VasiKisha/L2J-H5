@@ -20,7 +20,9 @@
  */
 package org.l2jmobius.gameserver.managers;
 
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -35,6 +37,8 @@ import org.l2jmobius.gameserver.config.ServerConfig;
 public class ServerRestartManager
 {
 	static final Logger LOGGER = Logger.getLogger(ServerRestartManager.class.getName());
+	
+	private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 	
 	private String nextRestartTime = "unknown";
 	
@@ -86,11 +90,11 @@ public class ServerRestartManager
 			{
 				if (ServerConfig.SERVER_RESTART_DAYS.isEmpty() || (ServerConfig.SERVER_RESTART_DAYS.size() == 7))
 				{
-					nextRestartTime = new SimpleDateFormat("HH:mm").format(lastRestart.getTime());
+					nextRestartTime = TIME_FORMAT.format(Instant.ofEpochMilli(lastRestart.getTimeInMillis()).atZone(ZoneId.systemDefault()));
 				}
 				else
 				{
-					nextRestartTime = new SimpleDateFormat("MMMM d'" + getDayNumberSuffix(lastRestart.get(Calendar.DAY_OF_MONTH)) + "' HH:mm", Locale.UK).format(lastRestart.getTime());
+					nextRestartTime = DateTimeFormatter.ofPattern("MMMM d'" + getDayNumberSuffix(lastRestart.get(Calendar.DAY_OF_MONTH)) + "' HH:mm", Locale.UK).format(Instant.ofEpochMilli(lastRestart.getTimeInMillis()).atZone(ZoneId.systemDefault()));
 				}
 				
 				ThreadPool.schedule(new ServerRestartTask(), lastDelay - (ServerConfig.SERVER_RESTART_SCHEDULE_COUNTDOWN * 1000));

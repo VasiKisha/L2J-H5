@@ -25,18 +25,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -379,12 +378,12 @@ public abstract class AbstractSagaQuest extends Quest
 			}
 			case "Mob_3 Timer 1":
 			{
-				final Npc mob2 = findSpawn(player, World.getInstance().findObject(st.getInt("Mob_2")).asNpc());
-				if (World.getInstance().getVisibleObjects(npc, Npc.class).contains(mob2))
+				final Npc mob2 = findSpawn(player, World.findObject(st.getInt("Mob_2")).asNpc());
+				if ((World.getFirstVisibleObject(npc, Npc.class, it -> it == mob2) != null))
 				{
 					npc.asAttackable().addDamageHate(mob2, 0, 99999);
-					npc.getAI().setIntention(Intention.ATTACK, mob2, null);
-					mob2.getAI().setIntention(Intention.ATTACK, npc, null);
+					npc.getAI().setIntentionAttack(mob2);
+					mob2.getAI().setIntentionAttack(npc);
 					autoChat(npc, _text[14].replace("PLAYERNAME", player.getName()));
 					cancelQuestTimer("Mob_3 Timer 1", npc, player);
 				}
@@ -563,7 +562,7 @@ public abstract class AbstractSagaQuest extends Quest
 			}
 		}
 		
-		if (htmltext.equals(""))
+		if (htmltext.isEmpty())
 		{
 			npc.showChatWindow(player);
 		}
@@ -731,7 +730,7 @@ public abstract class AbstractSagaQuest extends Quest
 	{
 		if (SPAWN_LIST.containsKey(npc) && (SPAWN_LIST.get(npc) != player.getObjectId()))
 		{
-			final Player questPlayer = World.getInstance().findObject(SPAWN_LIST.get(npc)).asPlayer();
+			final Player questPlayer = World.findObject(SPAWN_LIST.get(npc)).asPlayer();
 			if (questPlayer == null)
 			{
 				return;
@@ -1075,9 +1074,8 @@ public abstract class AbstractSagaQuest extends Quest
 	
 	private void deleteSpawn(Npc npc)
 	{
-		if (SPAWN_LIST.containsKey(npc))
+		if (SPAWN_LIST.remove(npc) != null)
 		{
-			SPAWN_LIST.remove(npc);
 			npc.deleteMe();
 		}
 	}
@@ -1086,9 +1084,10 @@ public abstract class AbstractSagaQuest extends Quest
 	{
 		Player player = null;
 		QuestState st = null;
-		if (SPAWN_LIST.containsKey(npc))
+		final Integer spawned = SPAWN_LIST.get(npc);
+		if (spawned != null)
 		{
-			player = World.getInstance().getPlayer(SPAWN_LIST.get(npc));
+			player = World.getPlayer(spawned);
 			if (player != null)
 			{
 				st = player.getQuestState(getName());
@@ -1140,7 +1139,7 @@ public abstract class AbstractSagaQuest extends Quest
 				startQuestTimer("Archon Hellisha has despawned", 600000, archon, player);
 				autoChat(archon, _text[13].replace("PLAYERNAME", st.getPlayer().getName()));
 				archon.asAttackable().addDamageHate(st.getPlayer(), 0, 99999);
-				archon.getAI().setIntention(Intention.ATTACK, st.getPlayer(), null);
+				archon.getAI().setIntentionAttack(st.getPlayer());
 			}
 			else
 			{

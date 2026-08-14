@@ -16,12 +16,12 @@
  */
 package handlers.bypass.npc;
 
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerFreight;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerFreight;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PackageToList;
 import org.l2jmobius.gameserver.network.serverpackets.WareHouseWithdrawalList;
@@ -71,7 +71,7 @@ public class Freight implements IBypassHandler
 		}
 		else if (command.equalsIgnoreCase(COMMANDS[1]))
 		{
-			if (player.getAccountChars().size() < 1)
+			if (player.getAccountChars().isEmpty())
 			{
 				player.sendPacket(SystemMessageId.THAT_CHARACTER_DOES_NOT_EXIST);
 			}

@@ -24,11 +24,11 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Merchant;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 
@@ -131,12 +131,12 @@ public class RentPet implements IBypassHandler
 		}
 		
 		price *= cost[value - 1];
-		final int time = ridetime[value - 1];
 		if (!player.reduceAdena(ItemProcessType.FEE, (long) price, player.getLastFolkNPC(), true))
 		{
 			return;
 		}
 		
+		final int time = ridetime[value - 1];
 		player.mount(petId, 0, false);
 		player.sendPacket(new SetupGauge(player.getObjectId(), 3, time * 1000));
 		player.startRentPet(time);

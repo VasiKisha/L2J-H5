@@ -16,16 +16,16 @@
  */
 package quests.Q00711_PathToBecomingALordInnadril;
 
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -144,14 +144,14 @@ public class Q00711_PathToBecomingALordInnadril extends Quest
 	@Override
 	public String onTalk(Npc npc, Player talker)
 	{
-		final QuestState qs = getQuestState(talker, true);
-		String htmltext = getNoQuestMsg(talker);
 		final Castle castle = CastleManager.getInstance().getCastleById(INNADRIL_CASTLE);
 		if (castle.getOwner() == null)
 		{
 			return "Castle has no lord.";
 		}
 		
+		final QuestState qs = getQuestState(talker, true);
+		String htmltext = getNoQuestMsg(talker);
 		final Player castleOwner = castle.getOwner().getLeader().getPlayer();
 		
 		switch (npc.getId())

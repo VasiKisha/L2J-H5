@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.loginserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.commons.network.packet.WritablePacket;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
@@ -28,7 +28,7 @@ public abstract class LoginServerPacket extends WritablePacket<LoginClient>
 	// public static final Logger LOGGER = Logger.getLogger(LoginServerPacket.class.getName());
 	
 	@Override
-	protected boolean write(LoginClient client, WritableBuffer buffer)
+	protected boolean write(LoginClient client, WriteBuffer buffer)
 	{
 		try
 		{
@@ -43,5 +43,5 @@ public abstract class LoginServerPacket extends WritablePacket<LoginClient>
 		return false;
 	}
 	
-	protected abstract void writeImpl(LoginClient client, WritableBuffer buffer);
+	protected abstract void writeImpl(LoginClient client, WriteBuffer buffer);
 }

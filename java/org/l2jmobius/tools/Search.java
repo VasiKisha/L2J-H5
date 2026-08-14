@@ -339,7 +339,7 @@ public class Search extends JFrame
 			return Integer.compare(matches1, matches2);
 		});
 		
-		// Create the summary labels
+		// Create the summary labels.
 		_summaryPanel = new JPanel(new GridLayout(2, 1)); // Two rows for summary and time labels.
 		_summaryLabel = new JLabel("");
 		_timeLabel = new JLabel();
@@ -422,7 +422,7 @@ public class Search extends JFrame
 						}
 						
 						// Update the selected file paths.
-						_selectedFilePaths = Arrays.stream(resultTable.getSelectedRows()).mapToObj(selectedRow -> (String) _tableModel.getValueAt(resultTable.convertRowIndexToModel(selectedRow), 0)).collect(Collectors.toList());
+						_selectedFilePaths = Arrays.stream(resultTable.getSelectedRows()).mapToObj(selectedRow -> (String) _tableModel.getValueAt(resultTable.convertRowIndexToModel(selectedRow), 0)).toList();
 						popupMenu.show(resultTable, event.getX(), event.getY()); // Show the context menu.
 					}
 				}
@@ -518,7 +518,7 @@ public class Search extends JFrame
 	private void copyFile(List<String> filePaths)
 	{
 		// Create a list of File objects from the file paths.
-		final List<File> files = filePaths.stream().map(File::new).collect(Collectors.toList());
+		final List<File> files = filePaths.stream().map(File::new).toList();
 		
 		// Check if all files exist.
 		for (File file : files)

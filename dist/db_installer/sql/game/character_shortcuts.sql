@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `character_shortcuts` (
   `class_index` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`charId`,`slot`,`page`,`class_index`),
   KEY `shortcut_id` (`shortcut_id`)
-) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

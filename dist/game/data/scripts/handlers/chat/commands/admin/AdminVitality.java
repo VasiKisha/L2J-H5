@@ -19,9 +19,9 @@ package handlers.chat.commands.admin;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 
 /**
  * @author Psychokiller1888

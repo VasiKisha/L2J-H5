@@ -20,19 +20,19 @@
  */
 package handlers.skill.targets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
 /**
  * Aura Friendly target handler implementation.
@@ -43,10 +43,10 @@ public class AuraFriendly implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		final List<WorldObject> targetList = new LinkedList<>();
+		final List<WorldObject> targetList = new ArrayList<>();
 		final Player player = creature.asPlayer();
 		final int maxTargets = skill.getAffectLimit();
-		World.getInstance().forEachVisibleObject(player, Creature.class, obj ->
+		World.forEachVisibleObject(player, Creature.class, obj ->
 		{
 			if ((obj == creature) || !checkTarget(player, obj))
 			{
@@ -78,7 +78,6 @@ public class AuraFriendly implements ITargetTypeHandler
 		
 		if (target.isPlayable())
 		{
-			final Player targetPlayer = target.asPlayer();
 			if (player.isInDuelWith(target))
 			{
 				return false;
@@ -99,6 +98,7 @@ public class AuraFriendly implements ITargetTypeHandler
 				return true;
 			}
 			
+			final Player targetPlayer = target.asPlayer();
 			if ((targetPlayer.getPvpFlag() > 0) || (targetPlayer.getKarma() > 0))
 			{
 				return false;

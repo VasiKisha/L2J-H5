@@ -35,9 +35,9 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Folk;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Folk;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -465,7 +465,7 @@ public class FishingChampionshipManager
 	{
 		protected finishChamp()
 		{
-			// Do nothing
+			// Do nothing.
 		}
 		
 		@Override
@@ -493,7 +493,7 @@ public class FishingChampionshipManager
 	{
 		protected needRefresh()
 		{
-			// Do nothing
+			// Do nothing.
 		}
 		
 		@Override

@@ -20,17 +20,20 @@
  */
 package org.l2jmobius.gameserver.network;
 
-import org.l2jmobius.commons.network.Buffer;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 
 /**
  * Stateful XOR cipher used by the game protocol.<br>
  * Uses a 16-byte session key and advances a rolling offset stored in key bytes [8..11].
  * <ul>
  * <li>{@link #setKey(byte[])} seeds inbound and outbound keys.</li>
- * <li>First {@link #encrypt(Buffer, int, int)} call only enables the cipher.</li>
- * <li>{@link #decrypt(Buffer, int, int)} mirrors encryption with running XOR.</li>
+ * <li>First {@link #encrypt(WriteBuffer, int, int)} call only enables the cipher.</li>
+ * <li>{@link #decrypt(ReadBuffer, int, int)} mirrors encryption with running XOR.</li>
  * </ul>
- * @author BazookaRpm
+ * <br>
+ * The key bytes are mirrored in {@code _inKeyMasked} / {@code _outKeyMasked} as pre-zero-extended {@code int}s so the hot encrypt / decrypt loops avoid the byte->int sign-extend per byte. The masked mirror of bytes [8..11] is refreshed by {@link #advanceOffset} after every call.
+ * @author BazookaRpm, Mobius
  */
 public class Encryption
 {
@@ -48,6 +51,10 @@ public class Encryption
 	// Session keys (references are immutable; contents are intentionally mutable).
 	private final byte[] _inKey = new byte[KEY_LENGTH];
 	private final byte[] _outKey = new byte[KEY_LENGTH];
+	
+	// Pre-zero-extended mirrors of _inKey / _outKey for the hot XOR loops.
+	private final int[] _inKeyMasked = new int[KEY_LENGTH];
+	private final int[] _outKeyMasked = new int[KEY_LENGTH];
 	
 	// Enabled state.
 	private boolean _isEnabled;
@@ -67,6 +74,12 @@ public class Encryption
 		
 		System.arraycopy(key, 0, _inKey, 0, KEY_LENGTH);
 		System.arraycopy(key, 0, _outKey, 0, KEY_LENGTH);
+		for (int i = 0; i < KEY_LENGTH; i++)
+		{
+			final int v = key[i] & BYTE_MASK;
+			_inKeyMasked[i] = v;
+			_outKeyMasked[i] = v;
+		}
 	}
 	
 	/**
@@ -76,7 +89,7 @@ public class Encryption
 	 * @param offset
 	 * @param size
 	 */
-	public void encrypt(Buffer data, int offset, int size)
+	public void encrypt(WriteBuffer data, int offset, int size)
 	{
 		if (!_isEnabled)
 		{
@@ -89,15 +102,16 @@ public class Encryption
 			return;
 		}
 		
+		final int[] key = _outKeyMasked;
 		int prev = 0;
 		for (int i = 0; i < size; i++)
 		{
-			final int raw = Byte.toUnsignedInt(data.readByte(offset + i));
-			prev = raw ^ (_outKey[i & NIBBLE_MASK] & BYTE_MASK) ^ prev;
+			final int raw = data.readByte(offset + i) & BYTE_MASK;
+			prev = raw ^ key[i & NIBBLE_MASK] ^ prev;
 			data.writeByte(offset + i, (byte) prev);
 		}
 		
-		advanceOffset(_outKey, size);
+		advanceOffset(_outKey, _outKeyMasked, size);
 	}
 	
 	/**
@@ -106,7 +120,7 @@ public class Encryption
 	 * @param offset
 	 * @param size
 	 */
-	public void decrypt(Buffer data, int offset, int size)
+	public void decrypt(ReadBuffer data, int offset, int size)
 	{
 		if (!_isEnabled)
 		{
@@ -118,18 +132,19 @@ public class Encryption
 			return;
 		}
 		
+		final int[] key = _inKeyMasked;
 		int last = 0;
 		for (int i = 0; i < size; i++)
 		{
-			final int enc = Byte.toUnsignedInt(data.readByte(offset + i));
-			data.writeByte(offset + i, (byte) (enc ^ (_inKey[i & NIBBLE_MASK] & BYTE_MASK) ^ last));
+			final int enc = data.readByte(offset + i) & BYTE_MASK;
+			data.writeByte(offset + i, (byte) (enc ^ key[i & NIBBLE_MASK] ^ last));
 			last = enc;
 		}
 		
-		advanceOffset(_inKey, size);
+		advanceOffset(_inKey, _inKeyMasked, size);
 	}
 	
-	private static void advanceOffset(byte[] key, int size)
+	private static void advanceOffset(byte[] key, int[] keyMasked, int size)
 	{
 		// Advance rolling offset at key[8..11] by size (little-endian int).
 		int old = (key[OFFSET_INDEX] & BYTE_MASK);
@@ -139,9 +154,20 @@ public class Encryption
 		
 		old += size;
 		
-		key[OFFSET_INDEX] = (byte) (old & BYTE_MASK);
-		key[OFFSET_INDEX + 1] = (byte) ((old >> SHIFT_8) & BYTE_MASK);
-		key[OFFSET_INDEX + 2] = (byte) ((old >> SHIFT_16) & BYTE_MASK);
-		key[OFFSET_INDEX + 3] = (byte) ((old >> SHIFT_24) & BYTE_MASK);
+		final byte b0 = (byte) (old & BYTE_MASK);
+		final byte b1 = (byte) ((old >> SHIFT_8) & BYTE_MASK);
+		final byte b2 = (byte) ((old >> SHIFT_16) & BYTE_MASK);
+		final byte b3 = (byte) ((old >> SHIFT_24) & BYTE_MASK);
+		
+		key[OFFSET_INDEX] = b0;
+		key[OFFSET_INDEX + 1] = b1;
+		key[OFFSET_INDEX + 2] = b2;
+		key[OFFSET_INDEX + 3] = b3;
+		
+		// Keep the masked mirror in sync - only [8..11] change.
+		keyMasked[OFFSET_INDEX] = b0 & BYTE_MASK;
+		keyMasked[OFFSET_INDEX + 1] = b1 & BYTE_MASK;
+		keyMasked[OFFSET_INDEX + 2] = b2 & BYTE_MASK;
+		keyMasked[OFFSET_INDEX + 3] = b3 & BYTE_MASK;
 	}
 }

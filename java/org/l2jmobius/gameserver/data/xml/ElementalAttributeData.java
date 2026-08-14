@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.data.holders.ElementalItemHolder;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.item.enums.ElementalItemType;
-import org.l2jmobius.gameserver.model.item.holders.Elementals;
+import org.l2jmobius.gameserver.entity.item.enums.ElementalItemType;
+import org.l2jmobius.gameserver.entity.item.holders.Elementals;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author Mobius
@@ -107,7 +107,7 @@ public class ElementalAttributeData implements IXmlReader
 	
 	public ElementalItemHolder getElementalItem(int itemId)
 	{
-		return ELEMENTAL_ITEMS.getOrDefault(itemId, null);
+		return ELEMENTAL_ITEMS.get(itemId);
 	}
 	
 	public static ElementalAttributeData getInstance()

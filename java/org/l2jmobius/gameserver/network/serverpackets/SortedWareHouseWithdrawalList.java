@@ -22,20 +22,19 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.WarehouseItem;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.recipe.RecipeList;
-import org.l2jmobius.gameserver.model.item.type.CrystalType;
-import org.l2jmobius.gameserver.model.item.type.EtcItemType;
-import org.l2jmobius.gameserver.model.item.type.MaterialType;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.WarehouseItem;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.recipe.RecipeList;
+import org.l2jmobius.gameserver.entity.item.type.CrystalType;
+import org.l2jmobius.gameserver.entity.item.type.EtcItemType;
+import org.l2jmobius.gameserver.entity.item.type.MaterialType;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -162,15 +161,15 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				case A2Z:
 				case Z2A:
 				{
-					Collections.sort(_objects, new WarehouseItemNameComparator(sortorder));
+					_objects.sort(new WarehouseItemNameComparator(sortorder));
 					break;
 				}
 				case GRADE:
 				{
 					if ((itemtype == WarehouseListType.ARMOR) || (itemtype == WarehouseListType.WEAPON))
 					{
-						Collections.sort(_objects, new WarehouseItemNameComparator(A2Z));
-						Collections.sort(_objects, new WarehouseItemGradeComparator(A2Z));
+						_objects.sort(new WarehouseItemNameComparator(A2Z));
+						_objects.sort(new WarehouseItemGradeComparator(A2Z));
 					}
 					break;
 				}
@@ -178,8 +177,8 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				{
 					if (itemtype == WarehouseListType.RECIPE)
 					{
-						Collections.sort(_objects, new WarehouseItemNameComparator(A2Z));
-						Collections.sort(_objects, new WarehouseItemRecipeComparator(A2Z));
+						_objects.sort(new WarehouseItemNameComparator(A2Z));
+						_objects.sort(new WarehouseItemRecipeComparator(A2Z));
 					}
 					break;
 				}
@@ -187,8 +186,8 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				{
 					if (itemtype == WarehouseListType.MATERIAL)
 					{
-						Collections.sort(_objects, new WarehouseItemNameComparator(A2Z));
-						Collections.sort(_objects, new WarehouseItemTypeComparator(A2Z));
+						_objects.sort(new WarehouseItemNameComparator(A2Z));
+						_objects.sort(new WarehouseItemTypeComparator(A2Z));
 					}
 					break;
 				}
@@ -196,8 +195,8 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				{
 					if (itemtype == WarehouseListType.ARMOR)
 					{
-						Collections.sort(_objects, new WarehouseItemNameComparator(A2Z));
-						Collections.sort(_objects, new WarehouseItemBodypartComparator(A2Z));
+						_objects.sort(new WarehouseItemNameComparator(A2Z));
+						_objects.sort(new WarehouseItemBodypartComparator(A2Z));
 					}
 					break;
 				}
@@ -316,12 +315,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				try
 				{
 					final RecipeList rp1 = rd.getRecipeByItemId(o1.getItemId());
-					final RecipeList rp2 = rd.getRecipeByItemId(o2.getItemId());
 					if (rp1 == null)
 					{
 						return (order == A2Z ? A2Z : Z2A);
 					}
 					
+					final RecipeList rp2 = rd.getRecipeByItemId(o2.getItemId());
 					if (rp2 == null)
 					{
 						return (order == A2Z ? Z2A : A2Z);
@@ -717,7 +716,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.WAREHOUSE_WITHDRAW_LIST.writeId(this, buffer);
 		/*

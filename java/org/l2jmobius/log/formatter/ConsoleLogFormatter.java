@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.log.formatter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
@@ -30,13 +31,13 @@ import org.l2jmobius.commons.util.TraceUtil;
 
 public class ConsoleLogFormatter extends Formatter
 {
-	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd/MM HH:mm:ss");
+	private static final DateTimeFormatter _dateFormat = DateTimeFormatter.ofPattern("dd/MM HH:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final StringBuilder output = new StringBuilder(128);
-		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] " + record.getMessage(), System.lineSeparator());
+		StringUtil.append(output, "[", _dateFormat.format(Instant.ofEpochMilli(record.getMillis()).atZone(ZoneId.systemDefault())), "] " + record.getMessage(), System.lineSeparator());
 		
 		if (record.getThrown() != null)
 		{

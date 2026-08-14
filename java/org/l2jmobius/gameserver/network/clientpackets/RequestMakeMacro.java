@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.MacroType;
-import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
-import org.l2jmobius.gameserver.model.actor.holders.player.MacroCmd;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.MacroType;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.entity.actor.holders.player.MacroCmd;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public class RequestMakeMacro extends ClientPacket

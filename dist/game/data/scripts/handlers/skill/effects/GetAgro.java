@@ -23,16 +23,15 @@ package handlers.skill.effects;
 import java.util.Set;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Get Agro effect implementation.
@@ -72,19 +71,19 @@ public class GetAgro extends AbstractEffect
 	{
 		if ((effected != null) && effected.isAttackable())
 		{
-			effected.getAI().setIntention(Intention.ATTACK, effector);
+			effected.getAI().setIntentionAttack(effector);
 			
 			// Monsters from the same clan should assist.
 			final NpcTemplate template = effected.asAttackable().getTemplate();
 			final Set<Integer> clans = template.getClans();
 			if (clans != null)
 			{
-				World.getInstance().forEachVisibleObjectInRange(effected, Attackable.class, template.getClanHelpRange(), nearby ->
+				World.forEachVisibleObjectInRange(effected, Attackable.class, template.getClanHelpRange(), nearby ->
 				{
 					if (!nearby.isMovementDisabled() && nearby.getTemplate().isClan(clans))
 					{
 						nearby.addDamageHate(effector, 1, 200);
-						nearby.getAI().setIntention(Intention.ATTACK, effector);
+						nearby.getAI().setIntentionAttack(effector);
 						nearby.setRunning();
 					}
 				});

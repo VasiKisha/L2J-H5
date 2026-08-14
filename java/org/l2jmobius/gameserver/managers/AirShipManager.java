@@ -31,13 +31,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.creature.VehiclePathPoint;
-import org.l2jmobius.gameserver.model.actor.instance.AirShip;
-import org.l2jmobius.gameserver.model.actor.instance.ControllableAirShip;
-import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.creature.VehiclePathPoint;
+import org.l2jmobius.gameserver.entity.actor.instance.AirShip;
+import org.l2jmobius.gameserver.entity.actor.instance.ControllableAirShip;
+import org.l2jmobius.gameserver.entity.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.ExAirShipTeleportList;
+import org.l2jmobius.gameserver.util.StatSet;
 
 public class AirShipManager
 {
@@ -140,10 +140,9 @@ public class AirShipManager
 			return null;
 		}
 		
-		final AirShip airShip;
-		if (_airShips.containsKey(ownerId))
+		AirShip airShip = _airShips.get(ownerId);
+		if (airShip != null)
 		{
-			airShip = _airShips.get(ownerId);
 			airShip.refreshId();
 		}
 		else

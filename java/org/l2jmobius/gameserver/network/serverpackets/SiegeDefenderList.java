@@ -16,11 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.SiegeClan;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClan;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -57,7 +57,7 @@ public class SiegeDefenderList extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.CASTLE_SIEGE_DEFENDER_LIST.writeId(this, buffer);
 		buffer.writeInt(_castle.getResidenceId());
@@ -71,7 +71,7 @@ public class SiegeDefenderList extends ServerPacket
 			buffer.writeInt(size);
 			buffer.writeInt(size);
 			
-			// Listing the Lord and the approved clans
+			// Listing the Lord and the approved clans.
 			for (SiegeClan siegeclan : _castle.getSiege().getDefenderClans())
 			{
 				clan = ClanTable.getInstance().getClan(siegeclan.getClanId());

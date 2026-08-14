@@ -19,10 +19,10 @@ package quests.Q00358_IllegitimateChildOfTheGoddess;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 
 /**
  * Illegitimate Child of the Goddess (358)
@@ -126,7 +126,7 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 			}
 			else
 			{
-				rewardItems(player, REWARDS[getRandom(REWARDS.length)], 1);
+				rewardItems(player, getRandomEntry(REWARDS), 1);
 				qs.exitQuest(true, true);
 				htmltext = "30862-07.html";
 			}

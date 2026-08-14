@@ -24,20 +24,18 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.Action;
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.AutoAttackStart;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
@@ -549,14 +547,14 @@ public class PailakaInjuredDragon extends InstanceScript
 				final int[] zoneTeleport = NOEXIT_ZONES.get(zone.getId());
 				if (zoneTeleport != null)
 				{
-					for (Npc npc : World.getInstance().getVisibleObjectsInRange(creature, Npc.class, 700))
+					for (Npc npc : World.getVisibleObjectsInRange(creature, Npc.class, 700))
 					{
 						if (npc.isDead() || npc.isInvisible() || !npc.isMonster())
 						{
 							continue;
 						}
 						
-						creature.getAI().setIntention(Intention.IDLE);
+						creature.getAI().setIntentionIdle();
 						creature.setInstanceId(world.getInstanceId());
 						creature.teleToLocation(zoneTeleport[0], zoneTeleport[1], zoneTeleport[2], true);
 						break;
@@ -811,13 +809,13 @@ public class PailakaInjuredDragon extends InstanceScript
 		final int mageX = (int) (npc.getX() + (150 * Math.cos(rads)));
 		final int mageY = (int) (npc.getY() + (150 * Math.sin(rads)));
 		final Npc mageBack = addSpawn(mageId, mageX, mageY, npc.getZ(), npc.getSpawn().getHeading(), false, 0, true, npc.getInstanceId());
-		mageBack.getAI().notifyAction(Action.AGGRESSION, player, 1000);
+		mageBack.getAI().notifyActionAggression(player, 1000);
 	}
 	
 	// This will check if there is other mob alive in this wall of mobs. If all mobs in the first row are dead then despawn the second row mobs, the mages.
 	private void checkIfLastInWall(Npc npc)
 	{
-		final Collection<Npc> knowns = World.getInstance().getVisibleObjectsInRange(npc, Npc.class, 700);
+		final Collection<Npc> knowns = World.getVisibleObjectsInRange(npc, Npc.class, 700);
 		for (Npc npcs : knowns)
 		{
 			if (npcs.isDead())

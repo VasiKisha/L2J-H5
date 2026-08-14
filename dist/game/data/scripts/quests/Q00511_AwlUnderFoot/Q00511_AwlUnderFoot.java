@@ -20,21 +20,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
@@ -92,15 +92,15 @@ public class Q00511_AwlUnderFoot extends Quest
 				int spawnId;
 				if (_world.getStatus() == 0)
 				{
-					spawnId = RAIDS1[getRandom(RAIDS1.length)];
+					spawnId = getRandomEntry(RAIDS1);
 				}
 				else if (_world.getStatus() == 1)
 				{
-					spawnId = RAIDS2[getRandom(RAIDS2.length)];
+					spawnId = getRandomEntry(RAIDS2);
 				}
 				else
 				{
-					spawnId = RAIDS3[getRandom(RAIDS3.length)];
+					spawnId = getRandomEntry(RAIDS3);
 				}
 				
 				final Npc raid = addSpawn(spawnId, 53319, 245814, -6576, 0, false, 0, false, _world.getInstanceId());
@@ -423,14 +423,15 @@ public class Q00511_AwlUnderFoot extends Quest
 	@Override
 	public String onTalk(Npc npc, Player player)
 	{
-		final QuestState qs = getQuestState(player, true);
 		final String ret = checkFortCondition(player, npc, false);
-		String htmltext = getNoQuestMsg(player);
 		if (ret != null)
 		{
 			return ret;
 		}
-		else if (qs != null)
+		
+		final QuestState qs = getQuestState(player, true);
+		String htmltext = getNoQuestMsg(player);
+		if (qs != null)
 		{
 			final int npcId = npc.getId();
 			final int cond = qs.getCond();

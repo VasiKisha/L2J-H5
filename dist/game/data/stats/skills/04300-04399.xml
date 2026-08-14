@@ -556,9 +556,6 @@
 				<cubicDelay>13</cubicDelay>
 				<cubicDuration>3600</cubicDuration>
 				<cubicMaxCount>20</cubicMaxCount>
-				<cubicSkill1Chance>13</cubicSkill1Chance>
-				<cubicSkill2Chance>33</cubicSkill2Chance>
-				<cubicSkill3Chance>53</cubicSkill3Chance>
 			</effect>
 		</effects>
 	</skill>

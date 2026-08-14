@@ -16,12 +16,11 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -106,7 +105,7 @@ public class ShadowSummoner extends Script
 		{
 			if (!npc.getVariables().getBoolean(LIMIT_FLAG, false))
 			{
-				npc.getAI().setIntention(Intention.ATTACK);
+				npc.getAI().setIntentionAttack(player);
 				startQuestTimer(FEED_TIMER, 30000, npc, player);
 			}
 		}

@@ -19,9 +19,9 @@ package org.l2jmobius.gameserver.data.holders;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.interfaces.ILocational;
 
 /**
  * Holds depending between NPC's spawn point and route
@@ -55,7 +55,7 @@ public class NpcRoutesHolder
 		if (npc.getSpawn() != null)
 		{
 			final String key = getUniqueKey(npc.getSpawn().getLocation());
-			return _correspondences.containsKey(key) ? _correspondences.get(key) : "";
+			return _correspondences.getOrDefault(key, "");
 		}
 		
 		return "";

@@ -25,10 +25,11 @@ import java.util.StringTokenizer;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.loginserverpackets.game.ServerStatus;
+import org.l2jmobius.gameserver.network.loginserverpackets.send.ServerStatus;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * This class handles the admin commands that acts on the login
@@ -187,7 +188,7 @@ public class AdminLogin implements IAdminCommandHandler
 		String nameType = "";
 		for (int i = 0; i < 7; i++)
 		{
-			final int currentType = serverType & (int) Math.pow(2, i);
+			final int currentType = serverType & (int) MathUtil.pow(2, i);
 			if (currentType > 0)
 			{
 				if (!nameType.isEmpty())

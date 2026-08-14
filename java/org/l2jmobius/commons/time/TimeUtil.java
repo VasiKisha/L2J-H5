@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.commons.time;
 
-import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -173,7 +174,7 @@ public class TimeUtil
 	 */
 	public static String formatDate(Date date, String format)
 	{
-		return date == null ? null : new SimpleDateFormat(format).format(date);
+		return date == null ? null : DateTimeFormatter.ofPattern(format).format(date.toInstant().atZone(ZoneId.systemDefault()));
 	}
 	
 	/**

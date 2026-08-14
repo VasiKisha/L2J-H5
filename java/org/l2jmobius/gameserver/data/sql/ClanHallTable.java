@@ -27,15 +27,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.residences.AuctionableHall;
+import org.l2jmobius.gameserver.entity.residences.ClanHall;
+import org.l2jmobius.gameserver.entity.zone.type.ClanHallZone;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
 import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.residences.AuctionableHall;
-import org.l2jmobius.gameserver.model.residences.ClanHall;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
-import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegableHall;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author Steuf
@@ -285,7 +285,7 @@ public class ClanHallTable
 	
 	public ClanHall getAbstractHallByOwner(Clan clan)
 	{
-		// Separate loops to avoid iterating over free clan halls
+		// Separate loops to avoid iterating over free clan halls.
 		for (Entry<Integer, AuctionableHall> ch : _clanHall.entrySet())
 		{
 			if (clan.getId() == ch.getValue().getOwnerId())

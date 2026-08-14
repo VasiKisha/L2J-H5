@@ -24,7 +24,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +35,12 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IWriteBoardHandler;
 import org.l2jmobius.gameserver.managers.CastleManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
 
 /**
  * Region board.
@@ -46,6 +48,8 @@ import org.l2jmobius.gameserver.model.siege.Castle;
  */
 public class RegionBoard implements IWriteBoardHandler
 {
+	private static final DateTimeFormatter SIEGE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+	
 	private static final String CLAN_HALL_QUERY = "SELECT id, name, ownerId, location FROM clanhall WHERE location = ?";
 	
 	// Region data
@@ -131,7 +135,7 @@ public class RegionBoard implements IWriteBoardHandler
 			final Castle castle = castles.get(regionId);
 			final Clan clan = ClanTable.getInstance().getClan(castle.getOwnerId());
 			String html = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/region_show.html");
-			html = html.replace("%regionName%", castle.getName()).replace("%tax%", (castle.getTaxRate() * 100) + "%").replace("%lord%", clan != null ? clan.getLeaderName() : "NPC").replace("%clanName%", (clan != null ? "<a action=\"bypass _bbsclan_clanhome;" + clan.getId() + "\">" + clan.getName() + "</a>" : "NPC")).replace("%allyName%", ((clan != null) && (clan.getAllyName() != null) ? clan.getAllyName() : "None")).replace("%siegeDate%", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(castle.getSiegeDate().getTimeInMillis()));
+			html = html.replace("%regionName%", castle.getName()).replace("%tax%", (castle.getTaxRate() * 100) + "%").replace("%lord%", clan != null ? clan.getLeaderName() : "NPC").replace("%clanName%", (clan != null ? "<a action=\"bypass _bbsclan_clanhome;" + clan.getId() + "\">" + clan.getName() + "</a>" : "NPC")).replace("%allyName%", ((clan != null) && (clan.getAllyName() != null) ? clan.getAllyName() : "None")).replace("%siegeDate%", SIEGE_FORMAT.format(Instant.ofEpochMilli(castle.getSiegeDate().getTimeInMillis()).atZone(ZoneId.systemDefault())));
 			
 			final StringBuilder hallsList = new StringBuilder();
 			hallsList.append("<br><br><table width=610 bgcolor=A7A19A><tr><td width=5></td><td width=200>Clan Hall Name</td><td width=200>Owning Clan</td><td width=200>Clan Leader Name</td><td width=5></td></tr></table><br1>");

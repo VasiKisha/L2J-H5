@@ -38,45 +38,45 @@ import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.entity.actor.instance.Door;
+import org.l2jmobius.gameserver.entity.groups.CommandChannel;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.groups.PartyDistributionType;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.zone.ZoneType;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
-import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.groups.CommandChannel;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.script.Event;
-import org.l2jmobius.gameserver.model.script.QuestTimer;
-import org.l2jmobius.gameserver.model.skill.CommonSkill;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.annotations.RegisterEvent;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.mechanics.events.listeners.AbstractEventListener;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager;
+import org.l2jmobius.gameserver.mechanics.script.Event;
+import org.l2jmobius.gameserver.mechanics.script.QuestTimer;
+import org.l2jmobius.gameserver.mechanics.skill.CommonSkill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchCCRecord;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.MapUtil;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Team vs Team event.
@@ -265,7 +265,7 @@ public class TvT extends Event
 					return null;
 				}
 				
-				// Remove the player from the IP count
+				// Remove the player from the IP count.
 				if (DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
 				{
 					AntiFeedManager.getInstance().removePlayer(AntiFeedManager.L2EVENT_ID, player);
@@ -318,7 +318,7 @@ public class TvT extends Event
 			}
 			case "TeleportToArena":
 			{
-				// Set state to STARTING
+				// Set state to STARTING.
 				setState(EventState.STARTING);
 				
 				TEAM_FORFEIT = false;
@@ -336,7 +336,7 @@ public class TvT extends Event
 				// Check if there are enough players to start the event.
 				if (PLAYER_LIST.size() < MINIMUM_PARTICIPANT_COUNT)
 				{
-					Broadcast.toAllOnlinePlayers("TvT Event: Event was canceled, not enough participants.");
+					World.broadcastToAllOnlinePlayers("TvT Event: Event was canceled, not enough participants.");
 					for (Player participant : PLAYER_LIST)
 					{
 						removeListeners(participant);
@@ -758,7 +758,7 @@ public class TvT extends Event
 		if (event.startsWith("RegistrationWarn:"))
 		{
 			final int minutesLeft = Integer.parseInt(event.split(":")[1]);
-			Broadcast.toAllOnlinePlayers("TvT Event: Registration opened for " + minutesLeft + " minutes.");
+			World.broadcastToAllOnlinePlayers("TvT Event: Registration opened for " + minutesLeft + " minutes.");
 		}
 		
 		return htmltext;
@@ -777,7 +777,7 @@ public class TvT extends Event
 		if (PLAYER_LIST.contains(player))
 		{
 			// Npc is in instance.
-			if (npc.getInstanceId() > 0)
+			if (npc.isInInstance())
 			{
 				return "manager-buffheal.html";
 			}
@@ -919,7 +919,7 @@ public class TvT extends Event
 			return false;
 		}
 		
-		if (player.getInstanceId() > 0)
+		if (player.isInInstance())
 		{
 			player.sendMessage("You cannot register while in an instance.");
 			return false;
@@ -1076,7 +1076,7 @@ public class TvT extends Event
 		// Set state PARTICIPATING
 		setState(EventState.PARTICIPATING);
 		
-		// Cancel timers. (In case event started immediately after another event was canceled.)
+		// Cancel timers. (In case event started immediately after another event was canceled.).
 		for (List<QuestTimer> timers : getQuestTimers().values())
 		{
 			for (QuestTimer timer : timers)
@@ -1085,7 +1085,7 @@ public class TvT extends Event
 			}
 		}
 		
-		// Register the event at AntiFeedManager and clean it for just in case if the event is already registered
+		// Register the event at AntiFeedManager and clean it for just in case if the event is already registered.
 		if (DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
 		{
 			AntiFeedManager.getInstance().registerEvent(AntiFeedManager.L2EVENT_ID);
@@ -1103,8 +1103,8 @@ public class TvT extends Event
 		startQuestTimer("TeleportToArena", REGISTRATION_TIME * 60000, null, null);
 		
 		// Send message to players.
-		Broadcast.toAllOnlinePlayers("TvT Event: Registration opened for " + REGISTRATION_TIME + " minutes.");
-		Broadcast.toAllOnlinePlayers("TvT Event: You can register at Giran TvT Event Manager.");
+		World.broadcastToAllOnlinePlayers("TvT Event: Registration opened for " + REGISTRATION_TIME + " minutes.");
+		World.broadcastToAllOnlinePlayers("TvT Event: You can register at Giran TvT Event Manager.");
 		
 		// @formatter:off
 		final int[] warnings = {10, 5, 4, 3, 2, 1};
@@ -1172,7 +1172,7 @@ public class TvT extends Event
 		}
 		
 		// Send message to players.
-		Broadcast.toAllOnlinePlayers("TvT Event: Event was canceled.");
+		World.broadcastToAllOnlinePlayers("TvT Event: Event was canceled.");
 		
 		// Set state PARTICIPATING
 		setState(EventState.INACTIVE);

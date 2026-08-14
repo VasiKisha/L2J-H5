@@ -20,22 +20,22 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
+import static org.l2jmobius.gameserver.entity.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.entity.item.recipe.ManufactureItem;
+import org.l2jmobius.gameserver.entity.item.recipe.RecipeList;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
-import org.l2jmobius.gameserver.model.item.recipe.ManufactureItem;
-import org.l2jmobius.gameserver.model.item.recipe.RecipeList;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeShopMsg;
 import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * RequestRecipeShopListSet client packet class.
@@ -129,6 +129,6 @@ public class RequestRecipeShopListSet extends ClientPacket
 		player.setPrivateStoreType(PrivateStoreType.MANUFACTURE);
 		player.sitDown();
 		player.broadcastUserInfo();
-		Broadcast.toSelfAndKnownPlayers(player, new RecipeShopMsg(player));
+		World.broadcastToSelfAndVisiblePlayers(player, new RecipeShopMsg(player));
 	}
 }

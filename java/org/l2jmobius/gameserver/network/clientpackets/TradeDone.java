@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.holders.TradeList;
 
@@ -66,9 +66,9 @@ public class TradeDone extends ClientPacket
 		
 		if (_response == 1)
 		{
-			if ((trade.getPartner() == null) || (World.getInstance().getPlayer(trade.getPartner().getObjectId()) == null))
+			if ((trade.getPartner() == null) || (World.getPlayer(trade.getPartner().getObjectId()) == null))
 			{
-				// Trade partner not found, cancel trade
+				// Trade partner not found, cancel trade.
 				player.cancelActiveTrade();
 				player.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);
 				return;

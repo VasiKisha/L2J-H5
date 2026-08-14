@@ -20,7 +20,6 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.LoginServerThread.SessionKey;
 import org.l2jmobius.gameserver.network.GameClient;

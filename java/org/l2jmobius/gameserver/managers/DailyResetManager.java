@@ -31,17 +31,17 @@ import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.OnDailyReset;
-import org.l2jmobius.gameserver.model.olympiad.Olympiad;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.OnDailyReset;
+import org.l2jmobius.gameserver.mechanics.olympiad.Olympiad;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.mechanics.sevensigns.SevenSignsFestival;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ExNevitAdventTimeChange;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 
@@ -117,7 +117,7 @@ public class DailyResetManager
 		}
 		
 		// Store player variables.
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			player.getVariables().storeMe();
 			player.getAccountVariables().storeMe();
@@ -187,7 +187,7 @@ public class DailyResetManager
 			final Skill skill = SkillData.getInstance().getSkill(skillId, 1 /* No known need for more levels */);
 			if (skill != null)
 			{
-				for (Player player : World.getInstance().getPlayers())
+				for (Player player : World.getPlayers())
 				{
 					if (player.hasSkillReuse(skill.getReuseHashCode()))
 					{
@@ -207,7 +207,7 @@ public class DailyResetManager
 			return;
 		}
 		
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			if ((player == null) || !player.isOnline())
 			{
@@ -242,7 +242,7 @@ public class DailyResetManager
 			LOGGER.severe(getClass().getSimpleName() + ": Could not reset Recommendations System: " + e);
 		}
 		
-		for (Player player : World.getInstance().getPlayers())
+		for (Player player : World.getPlayers())
 		{
 			player.setRecomLeft(0);
 			player.setRecomHave(player.getRecomHave() - 20);
@@ -253,7 +253,7 @@ public class DailyResetManager
 		// Refresh reco bonus for online players.
 		if (PlayerConfig.NEVIT_ENABLED)
 		{
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if (player != null)
 				{

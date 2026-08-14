@@ -11,8 +11,5 @@ CREATE TABLE IF NOT EXISTS `character_skills_save` (
   PRIMARY KEY (`charId`,`skill_id`,`skill_level`,`class_index`)
 ) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
-# ADD_SKILL_SAVE, DELETE_SKILL_SAVE
-CREATE INDEX idx_charId_classIndex ON character_skills_save (charId, class_index);
-
 # RESTORE_SKILL_SAVE
 CREATE INDEX idx_charId_classIndex_buffIndex ON character_skills_save (charId, class_index, buff_index);

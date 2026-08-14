@@ -23,15 +23,15 @@ package handlers.items;
 import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.config.OlympiadConfig;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.enums.ShotType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.type.ActionType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.Weapon;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.enums.ShotType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.type.ActionType;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
@@ -46,16 +46,14 @@ public class BlessedSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.asPlayer();
-		final Item weaponInst = player.getActiveWeaponInstance();
-		final Weapon weaponItem = player.getActiveWeaponItem();
 		final SkillHolder[] skills = item.getTemplate().getSkills();
-		final int itemId = item.getId();
 		if (skills == null)
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": is missing skills!");
 			return false;
 		}
+		
+		final Player player = playable.asPlayer();
 		
 		// Disable Blessed SpiritShots in Olympiad.
 		if (player.isInOlympiadMode() && OlympiadConfig.OLYMPIAD_DISABLE_BLESSED_SPIRITSHOTS)
@@ -64,7 +62,11 @@ public class BlessedSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		// Check if Blessed SpiritShot can be used
+		final Item weaponInst = player.getActiveWeaponInstance();
+		final Weapon weaponItem = player.getActiveWeaponItem();
+		final int itemId = item.getId();
+		
+		// Check if Blessed SpiritShot can be used.
 		if ((weaponInst == null) || (weaponItem == null) || (weaponItem.getSpiritShotCount() == 0))
 		{
 			if (!player.getAutoSoulShot().contains(itemId))
@@ -75,7 +77,7 @@ public class BlessedSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		// Check if Blessed SpiritShot is already active (it can be charged over SpiritShot)
+		// Check if Blessed SpiritShot is already active (it can be charged over SpiritShot).
 		if (player.isChargedShot(ShotType.BLESSED_SPIRITSHOTS))
 		{
 			return false;
@@ -93,7 +95,7 @@ public class BlessedSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		// Consume Blessed SpiritShot if player has enough of them
+		// Consume Blessed SpiritShot if player has enough of them.
 		if (!player.destroyItem(ItemProcessType.NONE, item.getObjectId(), weaponItem.getSpiritShotCount(), null, false))
 		{
 			if (!player.disableAutoShot(itemId))
@@ -104,7 +106,7 @@ public class BlessedSpiritShot implements IItemHandler
 			return false;
 		}
 		
-		// Send message to client
+		// Send message to client.
 		player.sendPacket(SystemMessageId.YOUR_SPIRITSHOT_HAS_BEEN_ENABLED);
 		player.setChargedShot(ShotType.BLESSED_SPIRITSHOTS, true);
 		player.broadcastSkillPacket(new MagicSkillUse(player, player, skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), player);

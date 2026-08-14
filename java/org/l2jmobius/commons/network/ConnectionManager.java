@@ -28,17 +28,23 @@ import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.CompletionHandler;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import org.l2jmobius.commons.network.internal.MMOThreadFactory;
+import org.l2jmobius.commons.network.handler.ReadHandler;
+import org.l2jmobius.commons.network.handler.WriteHandler;
+import org.l2jmobius.commons.network.packet.PacketExecutor;
+import org.l2jmobius.commons.network.packet.PacketHandler;
+import org.l2jmobius.commons.network.packet.PacketThreadFactory;
+import org.l2jmobius.commons.network.packet.ReadablePacket;
 
 /**
- * Manages network connections for clients.<br>
- * This class handles the creation and management of server socket channels, and processes incoming client connections.
- * @param <T> The type of Client associated with this connection manager.
+ * Binds a server socket, accepts incoming TCP connections and initialises a {@link Client} for each one via a caller-supplied factory.<br>
+ * <br>
+ * The underlying {@link AsynchronousChannelGroup} uses a bounded thread pool sized by {@link ConnectionConfig#threadPoolSize}. A {@link LinkedBlockingQueue} work queue allows the pool to buffer short bursts of connection-accept events without spawning unbounded threads.
+ * @param <T> the concrete client type created for each accepted connection
  * @author Mobius
  */
 public class ConnectionManager<T extends Client<Connection<T>>>
@@ -51,11 +57,11 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 	private final Function<Connection<T>, T> _clientFactory;
 	
 	/**
-	 * Initializes the connection manager with the specified address, client factory, and packet handler.
-	 * @param address The address to bind the server socket.
-	 * @param clientFactory Factory function to create clients.
-	 * @param packetHandler The handler for processing packets.
-	 * @throws IOException If an I/O error occurs when opening the socket channel.
+	 * Binds the server to {@code address} and starts accepting connections.
+	 * @param address the local address and port to listen on
+	 * @param clientFactory function that creates a {@link Client} for a given {@link Connection}
+	 * @param packetHandler handler that maps incoming bytes to concrete {@link ReadablePacket}s
+	 * @throws IOException if the server socket cannot be opened or bound
 	 */
 	public ConnectionManager(InetSocketAddress address, Function<Connection<T>, T> clientFactory, PacketHandler<T> packetHandler) throws IOException
 	{
@@ -64,20 +70,23 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 		_readHandler = new ReadHandler<>(packetHandler, new PacketExecutor<>(_config));
 		_writeHandler = new WriteHandler<>();
 		
-		// Initialize channel group with a custom thread pool.
-		_group = AsynchronousChannelGroup.withCachedThreadPool(new ThreadPoolExecutor(_config.threadPoolSize, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new SynchronousQueue<>(), new MMOThreadFactory("Server", _config.threadPriority)), 0);
+		// Bounded thread pool: core == max == threadPoolSize; idle threads kept alive for 1 minute.
+		// LinkedBlockingQueue buffers short accept bursts without spawning extra threads.
+		final ThreadPoolExecutor threadPool = new ThreadPoolExecutor(_config.threadPoolSize, _config.threadPoolSize, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new PacketThreadFactory("Server", _config.threadPriority));
+		threadPool.allowCoreThreadTimeOut(true);
 		
-		// Configure and bind server socket.
+		_group = AsynchronousChannelGroup.withThreadPool(threadPool);
 		_socketChannel = _group.provider().openAsynchronousServerSocketChannel(_group);
 		_socketChannel.setOption(StandardSocketOptions.SO_REUSEADDR, true);
 		_socketChannel.bind(_config.address);
 		
-		// Start accepting connections.
+		// Begin the accept loop.
 		_socketChannel.accept(null, new AcceptConnectionHandler());
 	}
 	
 	/**
-	 * Shuts down the connection manager, including the socket channel and associated resources.
+	 * Stops accepting new connections and shuts down the channel group.<br>
+	 * Waits up to {@link ConnectionConfig#shutdownWaitTime} ms for in-flight I/O to complete.
 	 */
 	public void shutdown()
 	{
@@ -90,11 +99,11 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 		}
 		catch (InterruptedException e)
 		{
-			Thread.currentThread().interrupt(); // Restore interrupted status.
+			Thread.currentThread().interrupt();
 		}
 		catch (Exception e)
 		{
-			// Placeholder for exception handling/logging if needed.
+			// Best-effort shutdown; errors here are not actionable.
 		}
 	}
 	
@@ -103,7 +112,7 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 		@Override
 		public void completed(AsynchronousSocketChannel clientChannel, Void attachment)
 		{
-			// Accept the next connection.
+			// Re-arm the accept loop before processing the new channel so that further connections are not delayed by client initialisation.
 			if (_socketChannel.isOpen())
 			{
 				_socketChannel.accept(null, this);
@@ -115,7 +124,7 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 		@Override
 		public void failed(Throwable t, Void attachment)
 		{
-			// Re-accept connections on failure if the listener is open.
+			// Re-arm even on failure so transient errors do not kill the accept loop.
 			if (_socketChannel.isOpen())
 			{
 				_socketChannel.accept(null, this);
@@ -124,37 +133,35 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 		
 		private void processNewConnection(AsynchronousSocketChannel channel)
 		{
-			if ((channel != null) && channel.isOpen())
+			if ((channel == null) || !channel.isOpen())
+			{
+				return;
+			}
+			
+			try
+			{
+				channel.setOption(StandardSocketOptions.TCP_NODELAY, !_config.useNagle);
+				
+				final Connection<T> connection = new Connection<>(channel, _readHandler, _writeHandler, _config);
+				final T client = _clientFactory.apply(connection);
+				connection.setClient(client);
+				
+				client.onConnected();
+				client.read();
+			}
+			catch (ClosedChannelException e)
+			{
+				// Channel was closed between accept and setup - nothing to do.
+			}
+			catch (Exception e)
 			{
 				try
 				{
-					// Set TCP_NODELAY based on Nagle's algorithm usage in the configuration.
-					channel.setOption(StandardSocketOptions.TCP_NODELAY, !_config.useNagle);
-					
-					// Establish connection with the new client.
-					final Connection<T> connection = new Connection<>(channel, _readHandler, _writeHandler, _config);
-					final T client = _clientFactory.apply(connection);
-					connection.setClient(client);
-					
-					// Notify the client of connection establishment and start reading.
-					client.onConnected();
-					client.read();
+					channel.close();
 				}
-				catch (ClosedChannelException e)
+				catch (IOException ioe)
 				{
-					// Placeholder for handling/logging ClosedChannelException if needed.
-				}
-				catch (Exception e)
-				{
-					// Close the channel on exception during setup.
-					try
-					{
-						channel.close();
-					}
-					catch (IOException ioe)
-					{
-						// Placeholder for handling/logging IOException if needed.
-					}
+					// Ignore; channel is already unusable.
 				}
 			}
 		}

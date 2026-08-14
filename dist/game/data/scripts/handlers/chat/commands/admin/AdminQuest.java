@@ -29,15 +29,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.ScriptManager;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
-import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestTimer;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.ListenerRegisterType;
+import org.l2jmobius.gameserver.mechanics.events.listeners.AbstractEventListener;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestTimer;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.scripting.ScriptEngine;
 
@@ -86,7 +86,7 @@ public class AdminQuest implements IAdminCommandHandler
 			}
 			
 			quest.reload();
-			activeChar.sendSysMessage("Script successful reloaded.");
+			activeChar.sendSysMessage("Script successfully reloaded.");
 		}
 		else if (command.startsWith("admin_script_load"))
 		{
@@ -102,7 +102,7 @@ public class AdminQuest implements IAdminCommandHandler
 			try
 			{
 				ScriptEngine.getInstance().executeScript(Paths.get(script));
-				activeChar.sendSysMessage("Script loaded seccessful!");
+				activeChar.sendSysMessage("Script loaded successfully!");
 			}
 			catch (Exception e)
 			{
@@ -129,7 +129,7 @@ public class AdminQuest implements IAdminCommandHandler
 			}
 			
 			quest.unload();
-			activeChar.sendSysMessage("Script successful unloaded!");
+			activeChar.sendSysMessage("Script successfully unloaded!");
 		}
 		else if (command.startsWith("admin_show_quests"))
 		{

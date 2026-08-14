@@ -20,66 +20,141 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
-import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.Duel;
+import org.l2jmobius.gameserver.entity.actor.instance.StaticObject;
+import org.l2jmobius.gameserver.interfaces.ILocational;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 public class PlayerAI extends PlayableAI
 {
-	private boolean _thinking; // to prevent recursive thinking
+	private boolean _thinking; // To prevent recursive thinking.
 	
-	private IntentionCommand _nextIntention = null;
+	// Saved intention to replay after a CAST completes (typed fields — no IntentionCommand).
+	private Intention _savedIntention = null;
+	private WorldObject _savedAttackTarget = null;
+	private ILocational _savedMoveTo = null;
+	private WorldObject _savedFollowTarget = null;
+	private WorldObject _savedPickUpTarget = null;
+	private WorldObject _savedInteractTarget = null;
+	private Skill _savedCastSkill = null;
+	private WorldObject _savedCastTarget = null;
 	
 	public PlayerAI(Player player)
 	{
 		super(player);
 	}
 	
-	private void saveNextIntention(Intention intention, Object arg0, Object arg1)
+	@Override
+	public Intention getNextIntention()
 	{
-		_nextIntention = new IntentionCommand(intention, arg0, arg1);
+		return _savedIntention;
 	}
 	
-	@Override
-	public IntentionCommand getNextIntention()
+	private void clearSavedIntention()
 	{
-		return _nextIntention;
+		_savedIntention = null;
+		_savedAttackTarget = null;
+		_savedMoveTo = null;
+		_savedFollowTarget = null;
+		_savedPickUpTarget = null;
+		_savedInteractTarget = null;
+		_savedCastSkill = null;
+		_savedCastTarget = null;
 	}
 	
 	/**
-	 * Saves the current Intention for this PlayerAI if necessary and calls changeIntention in AbstractAI.
-	 * @param intention The new Intention to set to the AI
-	 * @param arg0 The first parameter of the Intention
-	 * @param arg1 The second parameter of the Intention
+	 * Saves the current intention so it can be replayed once the upcoming CAST resolves.
 	 */
-	@Override
-	protected synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
+	private void saveCurrentIntentionForCast()
 	{
-		// Forget next if it's not cast or it's cast and skill is toggle.
-		if ((intention != Intention.CAST) || ((arg0 != null) && !((Skill) arg0).isToggle()))
+		_savedIntention = _intention;
+		_savedAttackTarget = getAttackTarget();
+		_savedCastSkill = _skill;
+		_savedCastTarget = getCastTarget();
+		// Other typed targets are restored on replay via the same getters when possible.
+		_savedMoveTo = null;
+		_savedFollowTarget = getFollowTarget();
+		_savedPickUpTarget = null;
+		_savedInteractTarget = null;
+	}
+	
+	private void replaySavedIntention()
+	{
+		if (_savedIntention == null)
 		{
-			_nextIntention = null;
-			super.changeIntention(intention, arg0, arg1);
 			return;
 		}
 		
-		// do nothing if next intention is same as current one.
-		if ((intention == _intention) && (arg0 == _intentionArg0) && (arg1 == _intentionArg1))
-		{
-			super.changeIntention(intention, arg0, arg1);
-			return;
-		}
+		final Intention intention = _savedIntention;
+		final WorldObject attackTarget = _savedAttackTarget;
+		final ILocational moveToLoc = _savedMoveTo;
+		final WorldObject followTarget = _savedFollowTarget;
+		final WorldObject pickUpTarget = _savedPickUpTarget;
+		final WorldObject interactTarget = _savedInteractTarget;
+		final Skill castSkill = _savedCastSkill;
+		final WorldObject castTarget = _savedCastTarget;
+		clearSavedIntention();
 		
-		// save current intention so it can be used after cast
-		saveNextIntention(_intention, _intentionArg0, _intentionArg1);
-		super.changeIntention(intention, arg0, arg1);
+		switch (intention)
+		{
+			case IDLE:
+			{
+				setIntentionIdle();
+				break;
+			}
+			case ACTIVE:
+			{
+				setIntentionActive();
+				break;
+			}
+			case REST:
+			{
+				setIntentionRest();
+				break;
+			}
+			case ATTACK:
+			{
+				setIntentionAttack(attackTarget);
+				break;
+			}
+			case CAST:
+			{
+				if (castSkill != null)
+				{
+					setIntentionCast(castSkill, castTarget);
+				}
+				break;
+			}
+			case MOVE_TO:
+			{
+				if (moveToLoc != null)
+				{
+					setIntentionMoveTo(moveToLoc);
+				}
+				break;
+			}
+			case FOLLOW:
+			{
+				setIntentionFollow(followTarget);
+				break;
+			}
+			case PICK_UP:
+			{
+				setIntentionPickUp(pickUpTarget);
+				break;
+			}
+			case INTERACT:
+			{
+				setIntentionInteract(interactTarget);
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -91,27 +166,26 @@ public class PlayerAI extends PlayableAI
 	 * </ul>
 	 */
 	@Override
-	protected void onActionReadyToAct()
+	public void notifyActionReadyToAct()
 	{
-		// Launch actions corresponding to the Action Think
-		if (_nextIntention != null)
+		// Replay any saved intention from before a CAST.
+		if (_savedIntention != null)
 		{
-			setIntention(_nextIntention._intention, _nextIntention._arg0, _nextIntention._arg1);
-			_nextIntention = null;
+			replaySavedIntention();
 		}
 		
-		super.onActionReadyToAct();
+		super.notifyActionReadyToAct();
 	}
 	
 	@Override
-	protected void onActionForgetObject(WorldObject object)
+	public void notifyActionForgetObject(WorldObject object)
 	{
-		if (object.isPlayer())
+		if ((object != null) && object.isPlayer())
 		{
 			getActor().getKnownRelations().remove(object.getObjectId());
 		}
 		
-		super.onActionForgetObject(object);
+		super.notifyActionForgetObject(object);
 	}
 	
 	/**
@@ -124,10 +198,10 @@ public class PlayerAI extends PlayableAI
 	 * </ul>
 	 */
 	@Override
-	protected void onActionCancel()
+	public void notifyActionCancel()
 	{
-		_nextIntention = null;
-		super.onActionCancel();
+		clearSavedIntention();
+		super.notifyActionCancel();
 	}
 	
 	/**
@@ -136,39 +210,43 @@ public class PlayerAI extends PlayableAI
 	 * Check if actual intention is set to CAST and, if so, retrieves latest intention before the actual CAST and set it as the current intention for the player.
 	 */
 	@Override
-	protected void onActionFinishCasting()
+	public void notifyActionFinishCasting()
 	{
 		if (getIntention() == Intention.CAST)
 		{
-			// run interrupted or next intention
-			if (_nextIntention != null)
+			// Run interrupted or next intention.
+			if (_savedIntention != null)
 			{
-				if (_nextIntention._intention != Intention.CAST)
+				if (_savedIntention != Intention.CAST)
 				{
-					setIntention(_nextIntention._intention, _nextIntention._arg0, _nextIntention._arg1);
+					replaySavedIntention();
 				}
 				else
 				{
-					setIntention(Intention.IDLE);
+					clearSavedIntention();
+					setIntentionIdle();
 				}
 			}
 			else
 			{
-				// set intention to idle if skill doesn't change intention.
-				setIntention(Intention.IDLE);
+				// Set intention to idle if skill doesn't change intention.
+				setIntentionIdle();
 			}
 		}
+		
+		super.notifyActionFinishCasting();
 	}
 	
 	@Override
-	protected void onIntentionRest()
+	public void setIntentionRest()
 	{
 		if (getIntention() == Intention.REST)
 		{
 			return;
 		}
 		
-		changeIntention(Intention.REST, null, null);
+		clearSavedIntention();
+		_intention = Intention.REST;
 		setTarget(null);
 		if (getAttackTarget() != null)
 		{
@@ -179,9 +257,9 @@ public class PlayerAI extends PlayableAI
 	}
 	
 	@Override
-	protected void onIntentionActive()
+	public void setIntentionActive()
 	{
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 	}
 	
 	/**
@@ -195,11 +273,11 @@ public class PlayerAI extends PlayableAI
 	 * </ul>
 	 */
 	@Override
-	protected void onIntentionMoveTo(ILocational loc)
+	public void setIntentionMoveTo(ILocational loc)
 	{
 		if (getIntention() == Intention.REST)
 		{
-			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
+			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor.
 			clientActionFailed();
 			return;
 		}
@@ -215,21 +293,42 @@ public class PlayerAI extends PlayableAI
 		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow() || _actor.isAttackingNow())
 		{
 			clientActionFailed();
-			saveNextIntention(Intention.MOVE_TO, loc, null);
+			// Save the move-to as the next intention to replay once ready.
+			_savedIntention = Intention.MOVE_TO;
+			_savedMoveTo = loc;
 			return;
 		}
 		
-		// Set the Intention of this AbstractAI to MOVE_TO
-		changeIntention(Intention.MOVE_TO, loc, null);
+		stopFollow();
 		
-		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
+		// Set the Intention of this AbstractAI to MOVE_TO.
+		clearSavedIntention();
+		_intention = Intention.MOVE_TO;
+		
+		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast).
 		clientStopAutoAttack();
 		
-		// Abort the attack of the Creature and send Server->Client ActionFailed packet
+		// Abort the attack of the Creature and send Server->Client ActionFailed packet.
 		_actor.abortAttack();
 		
-		// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)
+		// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast).
 		moveTo(loc.getX(), loc.getY(), loc.getZ());
+	}
+	
+	@Override
+	public void setIntentionCast(Skill skill, WorldObject target)
+	{
+		// Forget next if it's not cast or it's cast and skill is toggle.
+		if ((skill == null) || !skill.isToggle())
+		{
+			// New non-toggle cast: clear any stale saved intention and remember the current one if it differs.
+			if (_intention != Intention.CAST)
+			{
+				saveCurrentIntentionForCast();
+			}
+		}
+		
+		super.setIntentionCast(skill, target);
 	}
 	
 	@Override
@@ -326,7 +425,7 @@ public class PlayerAI extends PlayableAI
 			return;
 		}
 		
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 		_actor.asPlayer().doPickupItem(target);
 	}
 	
@@ -348,11 +447,11 @@ public class PlayerAI extends PlayableAI
 			_actor.asPlayer().doInteract(target.asCreature());
 		}
 		
-		setIntention(Intention.IDLE);
+		setIntentionIdle();
 	}
 	
 	@Override
-	public void onActionThink()
+	public void notifyActionThink()
 	{
 		if (_thinking && (getIntention() != Intention.CAST))
 		{

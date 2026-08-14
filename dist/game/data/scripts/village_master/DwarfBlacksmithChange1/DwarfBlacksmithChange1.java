@@ -17,10 +17,10 @@
 package village_master.DwarfBlacksmithChange1;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Dwarf class transfer AI.
@@ -120,7 +120,7 @@ public class DwarfBlacksmithChange1 extends Script
 				player.setPlayerClass(ARTISAN);
 				player.setBaseClass(ARTISAN);
 				
-				// SystemMessage and cast skill is done by setClassId
+				// SystemMessage and cast skill is done by setClassId.
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_D_GRADE, 15);
 				htmltext = npc.getId() + "-10.htm"; // fnAfterClassChange11

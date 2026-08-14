@@ -24,7 +24,8 @@ import java.net.SocketAddress;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.l2jmobius.commons.network.internal.BufferPool;
+import org.l2jmobius.commons.network.pool.BufferPool;
+import org.l2jmobius.commons.network.pool.ResourcePool;
 import org.l2jmobius.commons.util.ConfigReader;
 
 /**

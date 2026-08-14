@@ -16,14 +16,14 @@
  */
 package quests.Q00458_PerfectForm;
 
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.QuestType;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.QuestType;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.ExQuestNpcLogList;
 
 /**
@@ -192,11 +192,11 @@ public class Q00458_PerfectForm extends Quest
 					final int overhitsConsecutive = qs.getInt("overhitsConsecutive");
 					if (overhitsConsecutive >= 20)
 					{
-						rewardItems(player, ICARUS_WEAPON_RECIPES[getRandom(ICARUS_WEAPON_RECIPES.length)], 1);
+						rewardItems(player, getRandomEntry(ICARUS_WEAPON_RECIPES), 1);
 					}
 					else if (overhitsConsecutive >= 7)
 					{
-						rewardItems(player, ICARUS_WEAPON_PIECES[getRandom(ICARUS_WEAPON_PIECES.length)], 5);
+						rewardItems(player, getRandomEntry(ICARUS_WEAPON_PIECES), 5);
 					}
 					else
 					{

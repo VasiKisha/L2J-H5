@@ -16,10 +16,10 @@
  */
 package events.MasterOfEnchanting;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.script.LongTimeEvent;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.script.LongTimeEvent;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -88,14 +88,14 @@ public class MasterOfEnchanting extends LongTimeEvent
 		}
 		else if (event.equalsIgnoreCase("buy_scroll_24"))
 		{
-			final long curTime = System.currentTimeMillis();
-			final String value = player.getVariables().getString("MasterOfEnchanting", "");
-			final long reuse = value.equals("") ? 0 : Long.parseLong(value);
 			if (player.getCreateDate().after(getStartDate()))
 			{
 				return "32599-birth.htm";
 			}
 			
+			final String value = player.getVariables().getString("MasterOfEnchanting", "");
+			final long reuse = value.isEmpty() ? 0 : Long.parseLong(value);
+			final long curTime = System.currentTimeMillis();
 			if (curTime > reuse)
 			{
 				if (getQuestItemsCount(player, Inventory.ADENA_ID) > SCROLL_24_PRICE)

@@ -20,12 +20,12 @@
  */
 package handlers.chat.commands.user;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.l2jmobius.gameserver.config.custom.ServerTimeConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
@@ -40,7 +40,7 @@ public class Time implements IUserCommandHandler
 		77
 	};
 	
-	private static final SimpleDateFormat SDF = new SimpleDateFormat("H:mm.");
+	private static final DateTimeFormatter SDF = DateTimeFormatter.ofPattern("H:mm.");
 	
 	@Override
 	public boolean onCommand(int id, Player player)
@@ -79,7 +79,7 @@ public class Time implements IUserCommandHandler
 		player.sendPacket(sm);
 		if (ServerTimeConfig.DISPLAY_SERVER_TIME)
 		{
-			player.sendMessage("Server time is " + SDF.format(new Date(System.currentTimeMillis())));
+			player.sendMessage("Server time is " + SDF.format(LocalDateTime.now()));
 		}
 		
 		return true;

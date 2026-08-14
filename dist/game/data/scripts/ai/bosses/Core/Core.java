@@ -33,19 +33,19 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.config.GrandBossConfig;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Core grand boss AI handler.<br>
@@ -422,10 +422,8 @@ public class Core extends Script
 			// Cancel legacy spawn_minion timers as well.
 			cancelQuestTimers(EVENT_SPAWN_MINION_LEGACY);
 		}
-		else if ((GrandBossManager.getInstance().getStatus(CORE_NPC_ID) == STATUS_ALIVE) && _minions.contains(npc))
+		else if ((GrandBossManager.getInstance().getStatus(CORE_NPC_ID) == STATUS_ALIVE) && _minions.remove(npc))
 		{
-			_minions.remove(npc);
-			
 			final int respawnId = _respawnIdGenerator.getAndIncrement();
 			final Location respawnLocation = new Location(npc.getX(), npc.getY(), npc.getZ());
 			

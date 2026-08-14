@@ -17,13 +17,13 @@
 package handlers.skill.effects;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Hide effect implementation.
@@ -44,12 +44,12 @@ public class Hide extends AbstractEffect
 			final Player player = effected.asPlayer();
 			player.setInvisible(true);
 			
-			if ((player.getAI().getNextIntention() != null) && (player.getAI().getNextIntention().getIntention() == Intention.ATTACK))
+			if (player.getAI().getNextIntention() == Intention.ATTACK)
 			{
-				player.getAI().setIntention(Intention.IDLE);
+				player.getAI().setIntentionIdle();
 			}
 			
-			World.getInstance().forEachVisibleObject(player, Creature.class, target ->
+			World.forEachVisibleObject(player, Creature.class, target ->
 			{
 				if ((target != null) && (target.getTarget() == player))
 				{
@@ -60,7 +60,7 @@ public class Hide extends AbstractEffect
 					target.setTarget(null);
 					target.abortAttack();
 					target.abortCast();
-					target.getAI().setIntention(Intention.IDLE);
+					target.getAI().setIntentionIdle();
 				}
 			});
 		}

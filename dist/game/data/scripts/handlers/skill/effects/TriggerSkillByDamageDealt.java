@@ -17,21 +17,22 @@
 package handlers.skill.effects;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.type.WeaponType;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.handler.TargetHandler;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageDealt;
-import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.item.type.WeaponType;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureDamageDealt;
+import org.l2jmobius.gameserver.mechanics.events.listeners.ConsumerEventListener;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Trigger skill by damage dealt effect implementation.
@@ -50,13 +51,6 @@ public class TriggerSkillByDamageDealt extends AbstractEffect
 	private final boolean _isCritical;
 	private final boolean _allowNormalAttack;
 	private final boolean _allowSkillAttack;
-	
-	/**
-	 * @param attachCond
-	 * @param applyCond
-	 * @param set
-	 * @param params
-	 */
 	
 	public TriggerSkillByDamageDealt(Condition attachCond, Condition applyCond, StatSet set, StatSet params)
 	{
@@ -133,9 +127,13 @@ public class TriggerSkillByDamageDealt extends AbstractEffect
 			return;
 		}
 		
-		if ((_allowWeapons > 0) && ((event.getAttacker().getActiveWeaponItem() == null) || ((event.getAttacker().getActiveWeaponItem().getItemType().mask() & _allowWeapons) == 0)))
+		if (_allowWeapons > 0)
 		{
-			return;
+			final Weapon weapon = event.getAttacker().getActiveWeaponItem();
+			if ((weapon == null) || ((weapon.getItemType().mask() & _allowWeapons) == 0))
+			{
+				return;
+			}
 		}
 		
 		final Skill triggerSkill = _skill.getSkill();

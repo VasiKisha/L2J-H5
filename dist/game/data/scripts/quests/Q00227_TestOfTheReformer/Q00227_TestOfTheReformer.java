@@ -19,16 +19,15 @@ package quests.Q00227_TestOfTheReformer;
 import java.util.Arrays;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -207,7 +206,7 @@ public class Q00227_TestOfTheReformer extends Quest
 					final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, -9282, -89975, -2331, 0, false, 0);
 					final Npc wolf = addSpawn(CRIMSON_WEREWOLF, -9382, -89852, -2333, 0, false, 0);
 					wolf.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-					wolf.getAI().setIntention(Intention.ATTACK, pilgrim);
+					wolf.getAI().setIntentionAttack(pilgrim);
 				}
 				
 				htmltext = event;
@@ -221,7 +220,7 @@ public class Q00227_TestOfTheReformer extends Quest
 					final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, 125947, -180049, -1778, 0, false, 0);
 					final Npc lizard = addSpawn(KRUDEL_LIZARDMAN, 126019, -179983, -1781, 0, false, 0);
 					lizard.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-					lizard.getAI().setIntention(Intention.ATTACK, pilgrim);
+					lizard.getAI().setIntentionAttack(pilgrim);
 				}
 				
 				htmltext = event;
@@ -576,7 +575,7 @@ public class Q00227_TestOfTheReformer extends Quest
 							final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, -4015, 40141, -3664, 0, false, 0);
 							final Npc inspector = addSpawn(OL_MAHUM_INSPECTOR, -4034, 40201, -3665, 0, false, 0);
 							inspector.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-							inspector.getAI().setIntention(Intention.ATTACK, pilgrim);
+							inspector.getAI().setIntentionAttack(pilgrim);
 						}
 						
 						htmltext = "30668-01.html";
@@ -698,7 +697,7 @@ public class Q00227_TestOfTheReformer extends Quest
 			{
 				startQuestTimer("DESPAWN", 5000, npc, null, true);
 				npc.setRunning();
-				npc.getAI().setIntention(Intention.MOVE_TO, MOVE_TO);
+				npc.getAI().setIntentionMoveTo(MOVE_TO);
 				npc.getVariables().set("SPAWNED", 0);
 				break;
 			}

@@ -23,10 +23,10 @@ package handlers.chat.commands.admin;
 import java.util.List;
 
 import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 public class AdminPathNode implements IAdminCommandHandler
 {

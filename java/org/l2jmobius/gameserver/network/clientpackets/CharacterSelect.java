@@ -30,18 +30,18 @@ import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.OfflinePlayTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.Containers;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSelect;
-import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
-import org.l2jmobius.gameserver.model.variables.PlayerVariables;
+import org.l2jmobius.gameserver.mechanics.events.Containers;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.player.OnPlayerSelect;
+import org.l2jmobius.gameserver.mechanics.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentAffect;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -96,14 +96,14 @@ public class CharacterSelect extends ClientPacket
 			return;
 		}
 		
-		// We should always be able to acquire the lock
-		// But if we can't lock then nothing should be done (i.e. repeated packet)
+		// We should always be able to acquire the lock.
+		// But if we can't lock then nothing should be done (i.e. repeated packet).
 		if (client.getPlayerLock().tryLock())
 		{
 			try
 			{
-				// should always be null
-				// but if not then this is repeated packet and nothing should be done here
+				// Should always be null.
+				// But if not then this is repeated packet and nothing should be done here.
 				if (client.getPlayer() == null)
 				{
 					final CharacterInfoHolder info = client.getCharSelection(_charSlot);
@@ -113,7 +113,7 @@ public class CharacterSelect extends ClientPacket
 					}
 					
 					// Disconnect offline trader.
-					final Player player = World.getInstance().getPlayer(info.getObjectId());
+					final Player player = World.getPlayer(info.getObjectId());
 					if (player != null)
 					{
 						if (OfflinePlayConfig.RESTORE_AUTO_PLAY_OFFLINERS && player.isAutoPlaying())
@@ -162,7 +162,7 @@ public class CharacterSelect extends ClientPacket
 					
 					if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS)
 					{
-						if (info.isGood() && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+						if (info.isGood() && (World.getAllGoodPlayers().size() >= (World.getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/Faction/ExceededOnlineLimit.htm");
@@ -172,7 +172,7 @@ public class CharacterSelect extends ClientPacket
 							return;
 						}
 						
-						if (info.isEvil() && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+						if (info.isEvil() && (World.getAllEvilPlayers().size() >= (World.getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/Faction/ExceededOnlineLimit.htm");
@@ -183,7 +183,7 @@ public class CharacterSelect extends ClientPacket
 						}
 					}
 					
-					// load up character from disk
+					// Load up character from disk.
 					final Player cha = client.load(_charSlot);
 					if (cha == null)
 					{

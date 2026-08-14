@@ -17,12 +17,12 @@
 package ai.others;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
@@ -83,7 +83,7 @@ public class TurekOrcs extends Script
 			npc.broadcastSay(ChatType.GENERAL, NpcStringId.getNpcStringId(getRandom(1000007, 1000027)));
 			npc.disableCoreAI(true); // to avoid attacking behaviour, while flee
 			npc.setRunning();
-			npc.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
+			npc.getAI().setIntentionMoveTo(new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
 			npc.getVariables().set("state", 1);
 			npc.getVariables().set("attacker", attacker.getObjectId());
 		}
@@ -100,7 +100,7 @@ public class TurekOrcs extends Script
 				receiver.getVariables().set("state", 3);
 				receiver.setRunning();
 				receiver.asAttackable().addDamageHate(player, 0, 99999);
-				receiver.getAI().setIntention(Intention.ATTACK, player);
+				receiver.getAI().setIntentionAttack(player);
 			}
 		}
 		
@@ -118,11 +118,11 @@ public class TurekOrcs extends Script
 				npc.disableCoreAI(false);
 				startQuestTimer("checkState", 15000, npc, null);
 				npc.getVariables().set("state", 2);
-				npc.broadcastEvent("WARNING", 400, World.getInstance().getPlayer(npc.getVariables().getInt("attacker")));
+				npc.broadcastEvent("WARNING", 400, World.getPlayer(npc.getVariables().getInt("attacker")));
 			}
 			else
 			{
-				npc.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
+				npc.getAI().setIntentionMoveTo(new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
 			}
 		}
 		else if ((npc.getVariables().getInt("state") == 3) && npc.staysInSpawnLoc())

@@ -16,12 +16,11 @@
  */
 package ai.areas.Gracia.AI.NPC.Nemo;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.ScriptManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
 import ai.areas.Gracia.AI.Maguen;
@@ -88,7 +87,7 @@ public class Nemo extends Script
 					player.getVariables().set("TEST_MAGUEN", 1);
 					maguen.setTitle(player.getName());
 					maguen.setRunning();
-					maguen.getAI().setIntention(Intention.FOLLOW, player);
+					maguen.getAI().setIntentionFollow(player);
 					maguen.broadcastStatusUpdate();
 					showOnScreenMsg(player, NpcStringId.MAGUEN_APPEARANCE, 2, 4000);
 					maguenAi().startQuestTimer("DIST_CHECK_TIMER", 1000, maguen, player);
@@ -124,4 +123,5 @@ public class Nemo extends Script
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		return npc.getId() + ".html";
-	}}
+	}
+}

@@ -27,10 +27,10 @@ import java.sql.SQLException;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.holders.AccessLevel;
 import org.l2jmobius.gameserver.data.xml.AdminData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
@@ -73,7 +73,7 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 		{
 			final String name = parts[1];
 			final int lvl = Integer.parseInt(parts[2]);
-			final Player player = World.getInstance().getPlayer(name);
+			final Player player = World.getPlayer(name);
 			if (player != null)
 			{
 				onlineChange(activeChar, player, lvl);

@@ -20,13 +20,13 @@
  */
 package quests.Q00247_PossessorOfAPreciousSoul4;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
 import quests.Q00246_PossessorOfAPreciousSoul3.Q00246_PossessorOfAPreciousSoul3;
@@ -114,12 +114,12 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 	public String onTalk(Npc npc, Player player)
 	{
 		final QuestState st = getQuestState(player, true);
-		String htmltext = getNoQuestMsg(player);
-		
 		if (st.isStarted() && !player.isSubClassActive())
 		{
 			return "no_sub.html";
 		}
+		
+		String htmltext = getNoQuestMsg(player);
 		
 		switch (npc.getId())
 		{

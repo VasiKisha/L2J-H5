@@ -20,11 +20,10 @@
  */
 package handlers.actions.click;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -52,40 +51,40 @@ public class PlayerClick implements IActionClickHandler
 	@Override
 	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
-		// Check if the Player is confused
+		// Check if the Player is confused.
 		if (player.isOutOfControl())
 		{
 			return false;
 		}
 		
-		// Aggression target lock effect
+		// Aggression target lock effect.
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
 		{
 			player.sendPacket(SystemMessageId.FAILED_TO_CHANGE_ATTACK_TARGET);
 			return false;
 		}
 		
-		// Check if the player already target this Player
+		// Check if the player already target this Player.
 		if (player.getTarget() != target)
 		{
-			// Set the target of the player
+			// Set the target of the player.
 			player.setTarget(target);
 		}
 		else if (interact)
 		{
-			// Check if this Player has a Private Store
+			// Check if this Player has a Private Store.
 			final Player targetPlayer = target.asPlayer();
 			if (targetPlayer.isInStoreMode())
 			{
-				player.getAI().setIntention(Intention.INTERACT, target);
+				player.getAI().setIntentionInteract(target);
 			}
 			else
 			{
-				// Check if this Player is autoAttackable
+				// Check if this Player is autoAttackable.
 				if (target.isAutoAttackable(player))
 				{
-					// Player with level < 21 can't attack a cursed weapon holder
-					// And a cursed weapon holder can't attack players with level < 21
+					// Player with level < 21 can't attack a cursed weapon holder.
+					// And a cursed weapon holder can't attack players with level < 21.
 					if ((targetPlayer.isCursedWeaponEquipped() && (player.getLevel() < CURSED_WEAPON_VICTIM_MIN_LEVEL)) //
 						|| (player.isCursedWeaponEquipped() && (targetPlayer.getLevel() < CURSED_WEAPON_VICTIM_MIN_LEVEL)))
 					{
@@ -93,18 +92,18 @@ public class PlayerClick implements IActionClickHandler
 					}
 					else
 					{
-						player.getAI().setIntention(Intention.ATTACK, target);
+						player.getAI().setIntentionAttack(target);
 						player.onActionRequest();
 					}
 				}
 				else
 				{
-					// This Action Failed packet avoids player getting stuck when clicking three or more times
+					// This Action Failed packet avoids player getting stuck when clicking three or more times.
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					
 					// if (GeoEngine.getInstance().canMoveToTarget(player, target))
 					// {
-					player.getAI().setIntention(Intention.FOLLOW, target);
+					player.getAI().setIntentionFollow(target);
 					// }
 				}
 			}

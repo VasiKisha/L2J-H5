@@ -21,9 +21,9 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
 import java.lang.management.ThreadMXBean;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -33,9 +33,9 @@ import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
@@ -44,7 +44,7 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
  */
 public class AdminServerInfo implements IAdminCommandHandler
 {
-	private static final SimpleDateFormat SDF = new SimpleDateFormat("hh:mm a");
+	private static final DateTimeFormatter SDF = DateTimeFormatter.ofPattern("hh:mm a");
 	private static final MemoryMXBean MEMORY_MX_BEAN = ManagementFactory.getMemoryMXBean();
 	private static final ThreadMXBean THREAD_MX_BEAN = ManagementFactory.getThreadMXBean();
 	
@@ -74,7 +74,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 			html.replace("%gameTime%", GameTimeTaskManager.getInstance().getGameHour() + ":" + GameTimeTaskManager.getInstance().getGameMinute());
 			html.replace("%dayNight%", GameTimeTaskManager.getInstance().isNight() ? "Night" : "Day");
 			html.replace("%geodata%", GeoEngineConfig.PATHFINDING > 0 ? "Enabled" : "Disabled");
-			html.replace("%serverTime%", SDF.format(new Date(System.currentTimeMillis())));
+			html.replace("%serverTime%", SDF.format(LocalDateTime.now()));
 			html.replace("%serverUpTime%", getServerUpTime());
 			html.replace("%onlineAll%", getPlayersCount("ALL"));
 			html.replace("%offlineTrade%", getPlayersCount("OFF_TRADE"));
@@ -118,13 +118,13 @@ public class AdminServerInfo implements IAdminCommandHandler
 		{
 			case "ALL":
 			{
-				return World.getInstance().getPlayers().size();
+				return World.getPlayers().size();
 			}
 			case "OFF_TRADE":
 			{
 				int offlineCount = 0;
 				
-				final Collection<Player> objs = World.getInstance().getPlayers();
+				final Collection<Player> objs = World.getPlayers();
 				for (Player player : objs)
 				{
 					if ((player.getClient() == null) || player.getClient().isDetached())
@@ -151,7 +151,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 			case "ALL_REAL":
 			{
 				final Set<String> realPlayers = new HashSet<>();
-				for (Player onlinePlayer : World.getInstance().getPlayers())
+				for (Player onlinePlayer : World.getPlayers())
 				{
 					if ((onlinePlayer != null) && (onlinePlayer.getClient() != null) && !onlinePlayer.getClient().isDetached())
 					{

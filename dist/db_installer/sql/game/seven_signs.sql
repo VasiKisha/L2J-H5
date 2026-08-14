@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `seven_signs` (
   `ancient_adena_amount` DECIMAL(20,0) NOT NULL DEFAULT 0,
   `contribution_score` DECIMAL(20,0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`charId`)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -21,11 +21,11 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Pet;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
@@ -63,7 +63,6 @@ public class RequestGetItemFromPet extends ClientPacket
 			return;
 		}
 		
-		final Pet pet = player.getSummon().asPet();
 		if (player.getActiveEnchantItemId() != Player.ID_NONE)
 		{
 			player.setActiveEnchantItemId(Player.ID_NONE);
@@ -72,6 +71,7 @@ public class RequestGetItemFromPet extends ClientPacket
 			return;
 		}
 		
+		final Pet pet = player.getSummon().asPet();
 		final Item item = pet.getInventory().getItemByObjectId(_objectId);
 		if (item == null)
 		{

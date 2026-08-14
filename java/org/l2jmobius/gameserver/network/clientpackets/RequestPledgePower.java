@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.serverpackets.ManagePledgePower;
 
 public class RequestPledgePower extends ClientPacket
@@ -61,7 +61,7 @@ public class RequestPledgePower extends ClientPacket
 				if (_rank == 9)
 				{
 					// The rights below cannot be bestowed upon Academy members:
-					// Join a clan or be dismissed
+					// Join a clan or be dismissed.
 					// Title management, crest management, master management, level management,
 					// bulletin board administration
 					// Clan war, right to dismiss, set functions

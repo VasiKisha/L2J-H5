@@ -807,7 +807,7 @@
 			<skill id="4416" level="14" /> <!-- Humans -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="24" />
@@ -848,7 +848,7 @@
 			<skill id="4416" level="14" /> <!-- Humans -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="24" />
@@ -3438,7 +3438,7 @@
 			<skill id="4416" level="14" /> <!-- Humans -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="24" />
@@ -3520,7 +3520,7 @@
 			<skill id="4416" level="14" /> <!-- Humans -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai aggroRange="1000" clanHelpRange="300" />
+		<ai type="ARCHER" aggroRange="1000" clanHelpRange="300" />
 		<collision>
 			<radius normal="8" />
 			<height normal="24" />

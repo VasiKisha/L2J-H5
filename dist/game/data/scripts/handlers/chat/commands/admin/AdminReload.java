@@ -1,22 +1,28 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.chat.commands.admin;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,33 +33,67 @@ import org.l2jmobius.gameserver.config.ConfigLoader;
 import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
+import org.l2jmobius.gameserver.data.xml.ArmorSetData;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
+import org.l2jmobius.gameserver.data.xml.CategoryData;
+import org.l2jmobius.gameserver.data.xml.ClassListData;
+import org.l2jmobius.gameserver.data.xml.CubicData;
 import org.l2jmobius.gameserver.data.xml.DoorData;
+import org.l2jmobius.gameserver.data.xml.DynamicExpRateData;
+import org.l2jmobius.gameserver.data.xml.ElementalAttributeData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
+import org.l2jmobius.gameserver.data.xml.EnchantItemHPBonusData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
+import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
+import org.l2jmobius.gameserver.data.xml.ExperienceData;
+import org.l2jmobius.gameserver.data.xml.ExperienceLossData;
+import org.l2jmobius.gameserver.data.xml.FenceData;
+import org.l2jmobius.gameserver.data.xml.FishData;
+import org.l2jmobius.gameserver.data.xml.FishingMonstersData;
+import org.l2jmobius.gameserver.data.xml.FishingRodsData;
+import org.l2jmobius.gameserver.data.xml.HennaData;
+import org.l2jmobius.gameserver.data.xml.HitConditionBonusData;
+import org.l2jmobius.gameserver.data.xml.InitialEquipmentData;
+import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.data.xml.KarmaLossData;
+import org.l2jmobius.gameserver.data.xml.LevelUpCrystalData;
+import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
+import org.l2jmobius.gameserver.data.xml.OptionData;
+import org.l2jmobius.gameserver.data.xml.PetDataTable;
+import org.l2jmobius.gameserver.data.xml.PetSkillData;
+import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
+import org.l2jmobius.gameserver.data.xml.RecipeData;
+import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
 import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
+import org.l2jmobius.gameserver.data.xml.SiegeScheduleData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.data.xml.SkillLearnData;
+import org.l2jmobius.gameserver.data.xml.SkillTreeData;
+import org.l2jmobius.gameserver.data.xml.SpawnData;
+import org.l2jmobius.gameserver.data.xml.StaticObjectData;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.scripting.ScriptEngine;
 
 /**
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class AdminReload implements IAdminCommandHandler
 {
@@ -61,76 +101,211 @@ public class AdminReload implements IAdminCommandHandler
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
-		"admin_reload"
+		"admin_reload",
+		"admin_reload_menu",
+		"admin_reload_menu_page"
 	};
 	
-	private static final String RELOAD_USAGE = "Usage: //reload <config|access|npc|quest [quest_id|quest_name]|walker|htm[l] [file|directory]|multisell|buylist|teleport|skill|item|door|effect|handler|enchant>";
+	private static final String RELOAD_USAGE = "Usage: //reload <type> [parameters]";
 	
 	@Override
 	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String actualCommand = st.nextToken();
+		// //reload_menu - Opens the reload panel.
+		if (actualCommand.equalsIgnoreCase("admin_reload_menu"))
+		{
+			showReloadMenu(activeChar, 0);
+			return true;
+		}
+		
+		// //reload_menu_page <n> - Pagination nav from menu buttons.
+		if (actualCommand.equalsIgnoreCase("admin_reload_menu_page"))
+		{
+			final int page = st.hasMoreTokens() ? Integer.parseInt(st.nextToken()) : 0;
+			showReloadMenu(activeChar, page);
+			return true;
+		}
+		
+		// //reload <type> [value] - Actual reload, confirmDlg="true" set in admincommands.xml file.
 		if (actualCommand.equalsIgnoreCase("admin_reload"))
 		{
 			if (!st.hasMoreTokens())
 			{
-				AdminHtml.showAdminHtml(activeChar, "reload.htm");
-				activeChar.sendMessage(RELOAD_USAGE);
+				showReloadMenu(activeChar, 0);
 				return true;
 			}
 			
 			final String type = st.nextToken();
 			switch (type.toLowerCase())
 			{
-				case "config":
-				{
-					ConfigLoader.init();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Configs.");
-					break;
-				}
 				case "access":
 				{
 					AdminData.getInstance().load();
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Access.");
 					break;
 				}
-				case "npc":
+				case "buylist":
 				{
-					NpcData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Npcs.");
+					BuyListData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Buylists.");
 					break;
 				}
-				case "quest":
+				case "category":
 				{
-					if (st.hasMoreElements())
+					CategoryData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Category data.");
+					break;
+				}
+				case "classlist":
+				{
+					ClassListData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Class List data.");
+					break;
+				}
+				case "config":
+				{
+					ConfigLoader.init();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Configs.");
+					break;
+				}
+				case "crest":
+				{
+					CrestTable.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Crests.");
+					break;
+				}
+				case "cubic":
+				{
+					CubicData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Cubic data.");
+					break;
+				}
+				case "cw":
+				{
+					CursedWeaponsManager.getInstance().reload();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Cursed Weapons.");
+					break;
+				}
+				case "door":
+				{
+					DoorData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Doors.");
+					break;
+				}
+				case "dynamicexprate":
+				{
+					DynamicExpRateData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Dynamic Exp Rate data.");
+					break;
+				}
+				case "effect":
+				{
+					try
 					{
-						final String value = st.nextToken();
-						if (!StringUtil.isNumeric(value))
-						{
-							ScriptManager.getInstance().reload(value);
-							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest Name:" + value + ".");
-						}
-						else
-						{
-							final int questId = Integer.parseInt(value);
-							ScriptManager.getInstance().reload(questId);
-							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest ID:" + questId + ".");
-						}
+						ScriptEngine.getInstance().executeScript(ScriptEngine.EFFECT_MASTER_HANDLER_FILE);
+						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded effect master handler.");
 					}
-					else
+					catch (Exception e)
 					{
-						ScriptManager.getInstance().reloadAllScripts();
-						activeChar.sendSysMessage("All scripts have been reloaded.");
-						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quests.");
+						LOGGER.log(Level.WARNING, "Failed executing effect master handler!", e);
+						activeChar.sendSysMessage("Error reloading effect master handler!");
 					}
 					break;
 				}
-				case "walker":
+				case "elementalattribute":
 				{
-					WalkingManager.getInstance().load();
-					activeChar.sendSysMessage("All walkers have been reloaded");
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Walkers.");
+					ElementalAttributeData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Elemental Attribute data.");
+					break;
+				}
+				case "enchant":
+				{
+					EnchantItemOptionsData.getInstance().load();
+					EnchantItemGroupsData.getInstance().load();
+					EnchantItemData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded item enchanting data.");
+					break;
+				}
+				case "enchantitemhpbonus":
+				{
+					EnchantItemHPBonusData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Enchant Item HPBonus data.");
+					break;
+				}
+				case "enchantskillgroups":
+				{
+					EnchantSkillGroupsData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Enchant Skill Groups data.");
+					break;
+				}
+				case "experience":
+				{
+					ExperienceData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Experience data.");
+					break;
+				}
+				case "experienceloss":
+				{
+					ExperienceLossData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Experience Loss data.");
+					break;
+				}
+				case "fakeplayerchat":
+				{
+					FakePlayerChatManager.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fake Player Chat data.");
+					break;
+				}
+				case "fence":
+				{
+					FenceData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fence data.");
+					break;
+				}
+				case "fish":
+				{
+					FishData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fish data.");
+					break;
+				}
+				case "fishingmonsters":
+				{
+					FishingMonstersData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fishing Monsters data.");
+					break;
+				}
+				case "fishingrods":
+				{
+					FishingRodsData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fishing Rods data.");
+					break;
+				}
+				case "handler":
+				{
+					try
+					{
+						ScriptEngine.getInstance().executeScript(ScriptEngine.MASTER_HANDLER_FILE);
+						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded master handler.");
+					}
+					catch (Exception e)
+					{
+						LOGGER.log(Level.WARNING, "Failed executing master handler!", e);
+						activeChar.sendSysMessage("Error reloading master handler!");
+					}
+					break;
+				}
+				case "henna":
+				{
+					HennaData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Henna data.");
+					break;
+				}
+				case "hitconditionbonus":
+				{
+					HitConditionBonusData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Hit Condition Bonus data.");
 					break;
 				}
 				case "htm":
@@ -158,100 +333,28 @@ public class AdminReload implements IAdminCommandHandler
 					}
 					break;
 				}
-				case "multisell":
+				case "initialequipment":
 				{
-					MultisellData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Multisells.");
+					InitialEquipmentData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Initial Equipment data.");
 					break;
 				}
-				case "buylist":
+				case "initialshortcut":
 				{
-					BuyListData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Buylists.");
+					InitialShortcutData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Initial Shortcut data.");
 					break;
 				}
-				case "teleport":
+				case "instance":
 				{
-					TeleporterData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Teleports.");
-					break;
-				}
-				case "skill":
-				{
-					SkillData.getInstance().reload();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Skills.");
+					InstanceManager.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Instances data.");
 					break;
 				}
 				case "item":
 				{
 					ItemData.getInstance().reload();
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Items.");
-					break;
-				}
-				case "door":
-				{
-					DoorData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Doors.");
-					break;
-				}
-				case "zone":
-				{
-					ZoneManager.getInstance().reload();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Zones.");
-					break;
-				}
-				case "cw":
-				{
-					CursedWeaponsManager.getInstance().reload();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Cursed Weapons.");
-					break;
-				}
-				case "crest":
-				{
-					CrestTable.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Crests.");
-					break;
-				}
-				case "effect":
-				{
-					try
-					{
-						ScriptEngine.getInstance().executeScript(ScriptEngine.EFFECT_MASTER_HANDLER_FILE);
-						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded effect master handler.");
-					}
-					catch (Exception e)
-					{
-						LOGGER.log(Level.WARNING, "Failed executing effect master handler!", e);
-						activeChar.sendSysMessage("Error reloading effect master handler!");
-					}
-					break;
-				}
-				case "handler":
-				{
-					try
-					{
-						ScriptEngine.getInstance().executeScript(ScriptEngine.MASTER_HANDLER_FILE);
-						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded master handler.");
-					}
-					catch (Exception e)
-					{
-						LOGGER.log(Level.WARNING, "Failed executing master handler!", e);
-						activeChar.sendSysMessage("Error reloading master handler!");
-					}
-					break;
-				}
-				case "enchant":
-				{
-					EnchantItemOptionsData.getInstance().load();
-					EnchantItemGroupsData.getInstance().load();
-					EnchantItemData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded item enchanting data.");
-					break;
-				}
-				case "transform":
-				{
-					TransformData.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded transform data.");
 					break;
 				}
 				case "itemmall":
@@ -261,10 +364,16 @@ public class AdminReload implements IAdminCommandHandler
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded item mall data.");
 					break;
 				}
-				case "fakeplayerchat":
+				case "karmaloss":
 				{
-					FakePlayerChatManager.getInstance().load();
-					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Fake Player Chat data.");
+					KarmaLossData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Karma Loss data.");
+					break;
+				}
+				case "levelupcrystal":
+				{
+					LevelUpCrystalData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Level Up Crystal data.");
 					break;
 				}
 				case "localisations":
@@ -274,6 +383,152 @@ public class AdminReload implements IAdminCommandHandler
 					SendMessageLocalisationData.getInstance().load();
 					NpcNameLocalisationData.getInstance().load();
 					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Localisation data.");
+					break;
+				}
+				case "mapregion":
+				{
+					MapRegionData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Map Region data.");
+					break;
+				}
+				case "multisell":
+				{
+					MultisellData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Multisells.");
+					break;
+				}
+				case "npc":
+				{
+					NpcData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Npcs.");
+					break;
+				}
+				case "options":
+				{
+					OptionData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Options data.");
+					break;
+				}
+				case "petdata":
+				{
+					PetDataTable.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Pet Data data.");
+					break;
+				}
+				case "petskill":
+				{
+					PetSkillData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Pet Skill data.");
+					break;
+				}
+				case "playertemplate":
+				{
+					PlayerTemplateData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Player Template data.");
+					break;
+				}
+				case "quest":
+				{
+					if (st.hasMoreElements())
+					{
+						final String value = st.nextToken();
+						if (!StringUtil.isNumeric(value))
+						{
+							ScriptManager.getInstance().reload(value);
+							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest Name:" + value + ".");
+						}
+						else
+						{
+							final int questId = Integer.parseInt(value);
+							ScriptManager.getInstance().reload(questId);
+							AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quest ID:" + questId + ".");
+						}
+					}
+					else
+					{
+						ScriptManager.getInstance().reloadAllScripts();
+						activeChar.sendSysMessage("All scripts have been reloaded.");
+						AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Quests.");
+					}
+					break;
+				}
+				case "recipe":
+				{
+					RecipeData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Recipe data.");
+					break;
+				}
+				case "secondaryauth":
+				{
+					SecondaryAuthData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Secondary Auth data.");
+					break;
+				}
+				case "sets":
+				{
+					ArmorSetData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Armor sets data.");
+					break;
+				}
+				case "siegeschedule":
+				{
+					SiegeScheduleData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Siege Schedule data.");
+					break;
+				}
+				case "skill":
+				{
+					SkillData.getInstance().reload();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Skills.");
+					break;
+				}
+				case "skilllearn":
+				{
+					SkillLearnData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Skill Learn data.");
+					break;
+				}
+				case "skilltree":
+				{
+					SkillTreeData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Skill Tree data.");
+					break;
+				}
+				case "spawn":
+				{
+					SpawnData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Spawn data.");
+					break;
+				}
+				case "staticobject":
+				{
+					StaticObjectData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Static Object data.");
+					break;
+				}
+				case "teleport":
+				{
+					TeleporterData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Teleports.");
+					break;
+				}
+				case "transform":
+				{
+					TransformData.getInstance().load();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded transform data.");
+					break;
+				}
+				case "walker":
+				{
+					WalkingManager.getInstance().load();
+					activeChar.sendSysMessage("All walkers have been reloaded");
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Walkers.");
+					break;
+				}
+				case "zone":
+				{
+					ZoneManager.getInstance().reload();
+					AdminData.getInstance().broadcastMessageToGMs(activeChar.getName() + ": Reloaded Zones.");
 					break;
 				}
 				default:
@@ -287,6 +542,153 @@ public class AdminReload implements IAdminCommandHandler
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Builds and sends the reload panel HTML with pagination. Commands are sorted A-Z. Two columns, ITEMS_PER_PAGE rows per page.
+	 */
+	private static final int ITEMS_PER_PAGE = 16; // 2 cols x 8 rows.
+	
+	// @formatter:off
+	private static final List<String[]> RELOAD_COMMANDS = Arrays.asList(
+		new String[]{"Access", "admin_reload access"},
+		new String[]{"Armor Sets", "admin_reload sets"},
+		new String[]{"BuyList", "admin_reload buylist"},
+		new String[]{"Category", "admin_reload category"},
+		new String[]{"Class List", "admin_reload classlist"},
+		new String[]{"Config", "admin_reload config"},
+		new String[]{"Crests", "admin_reload crest"},
+		new String[]{"Cubic", "admin_reload cubic"},
+		new String[]{"Cursed Weapons", "admin_reload cw"},
+		new String[]{"Doors", "admin_reload door"},
+		new String[]{"Dynamic Exp Rate", "admin_reload dynamicexprate"},
+		new String[]{"Effects", "admin_reload effect"},
+		new String[]{"Elem. Attribute", "admin_reload elementalattribute"},
+		new String[]{"Ench Item HP Bonus", "admin_reload enchantitemhpbonus"},
+		new String[]{"Ench Skill Groups", "admin_reload enchantskillgroups"},
+		new String[]{"Enchant", "admin_reload enchant"},
+		new String[]{"Experience", "admin_reload experience"},
+		new String[]{"Experience Loss", "admin_reload experienceloss"},
+		new String[]{"Fake Player Chat", "admin_reload fakeplayerchat"},
+		new String[]{"Fence", "admin_reload fence"},
+		new String[]{"Fish", "admin_reload fish"},
+		new String[]{"Fishing Monsters", "admin_reload fishingmonsters"},
+		new String[]{"Fishing Rods", "admin_reload fishingrods"},
+		new String[]{"Handler", "admin_reload handler"},
+		new String[]{"Henna", "admin_reload henna"},
+		new String[]{"Hit Condition Bonus", "admin_reload hitconditionbonus"},
+		new String[]{"HTM (path/x.htm)", "admin_reload htm $value"},
+		new String[]{"HTML (path/x.htm)", "admin_reload html $value"},
+		new String[]{"Initial Equipment", "admin_reload initialequipment"},
+		new String[]{"Initial Shortcut", "admin_reload initialshortcut"},
+		new String[]{"Instance", "admin_reload instance"},
+		new String[]{"Item", "admin_reload item"},
+		new String[]{"Item Mall", "admin_reload itemmall"},
+		new String[]{"Karma Loss", "admin_reload karmaloss"},
+		new String[]{"L2Store", "admin_reload primeshop"},
+		new String[]{"LevelUp Crystal", "admin_reload levelupcrystal"},
+		new String[]{"Localisations", "admin_reload localisations"},
+		new String[]{"Map Region", "admin_reload mapregion"},
+		new String[]{"Multisell", "admin_reload multisell"},
+		new String[]{"NPC", "admin_reload npc $value"},
+		new String[]{"Options", "admin_reload options"},
+		new String[]{"Pet Data", "admin_reload petdata"},
+		new String[]{"Pet Skill", "admin_reload petskill"},
+		new String[]{"Player Template", "admin_reload playertemplate"},
+		new String[]{"Quest", "admin_reload quest $value"},
+		new String[]{"Recipe", "admin_reload recipe"},
+		new String[]{"Secondary Auth", "admin_reload secondaryauth"},
+		new String[]{"Siege Schedule", "admin_reload siegeschedule"},
+		new String[]{"Skill", "admin_reload skill"},
+		new String[]{"Skill Learn", "admin_reload skilllearn"},
+		new String[]{"Skill Tree", "admin_reload skilltree"},
+		new String[]{"Spawn", "admin_reload spawn"},
+		new String[]{"Static Objects", "admin_reload staticobject"},
+		new String[]{"Teleport", "admin_reload teleport"},
+		new String[]{"Transform", "admin_reload transform"},
+		new String[]{"Walker", "admin_reload walker"},
+		new String[]{"Zone", "admin_reload zone"}
+	);
+	// @formatter:on
+	
+	private void showReloadMenu(Player activeChar, int page)
+	{
+		String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/reload.htm");
+		final String buttons = generateReloadButtons(page);
+		content = content.replace("%buttons%", buttons);
+		activeChar.sendPacket(new NpcHtmlMessage(0, 1, content));
+	}
+	
+	private String generateReloadButtons(int page)
+	{
+		final int total = RELOAD_COMMANDS.size();
+		final int totalPages = (int) Math.ceil((double) total / ITEMS_PER_PAGE);
+		final int start = page * ITEMS_PER_PAGE;
+		final int end = Math.min(start + ITEMS_PER_PAGE, total);
+		
+		final StringBuilder html = new StringBuilder();
+		
+		// Value input field.
+		html.append("<table width=260 cellspacing=0 cellpadding=0><tr>");
+		html.append("<td fixwidth=50>Value:</td>");
+		html.append("<td fixwidth=150 height=25><edit var=\"value\" width=148></td>");
+		html.append("</tr></table><br>");
+		
+		// 2-column button grid.
+		html.append("<table width=260>");
+		for (int i = start; i < end; i += 2)
+		{
+			html.append("<tr>");
+			for (int j = i; j < Math.min(i + 2, end); j++)
+			{
+				final String[] cmd = RELOAD_COMMANDS.get(j);
+				html.append("<td><button value=\"").append(cmd[0]).append("\" ");
+				html.append("action=\"bypass ").append(cmd[1]).append("\" ");
+				html.append("width=125 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
+			}
+			if ((((end - start) % 2) != 0) && ((i + 2) > end))
+			{
+				html.append("<td></td>");
+			}
+			html.append("</tr>");
+		}
+		html.append("</table>");
+		
+		// Pagination bar.
+		if (totalPages > 1)
+		{
+			html.append("<table width=260><tr>");
+			
+			html.append("<td width=80 align=center>");
+			if (page > 0)
+			{
+				html.append("<button value=\"◄ Prev\" action=\"bypass -h admin_reload_menu_page ").append(page - 1);
+				html.append("\" width=75 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+			}
+			else
+			{
+				html.append("<button value=\"◄ Prev\" action=\"\" width=75 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+			}
+			html.append("</td>");
+			
+			html.append("<td width=100 align=center><font color=\"LEVEL\">Page ").append(page + 1).append(" / ").append(totalPages).append("</font></td>");
+			
+			html.append("<td width=80 align=center>");
+			if (page < (totalPages - 1))
+			{
+				html.append("<button value=\"Next ►\" action=\"bypass -h admin_reload_menu_page ").append(page + 1);
+				html.append("\" width=75 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+			}
+			else
+			{
+				html.append("<button value=\"Next ►\" action=\"\" width=75 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">");
+			}
+			html.append("</td>");
+			
+			html.append("</tr></table>");
+		}
+		
+		return html.toString();
 	}
 	
 	@Override

@@ -34,16 +34,16 @@ import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
 import org.l2jmobius.gameserver.config.custom.CaptchaConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.captcha.Captcha;
-import org.l2jmobius.gameserver.model.captcha.ImageData;
-import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
-import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
-import org.l2jmobius.gameserver.model.punishment.PunishmentType;
-import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.captcha.Captcha;
+import org.l2jmobius.gameserver.mechanics.captcha.ImageData;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentAffect;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentTask;
+import org.l2jmobius.gameserver.mechanics.punishment.PunishmentType;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -52,6 +52,7 @@ import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeCrest;
 import org.l2jmobius.gameserver.util.DDSConverter;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * @author Skache
@@ -314,7 +315,7 @@ public class CaptchaManager
 				else
 				{
 					// Double the previous jail time, capped at maximum jail time.
-					jailTime = Math.min((int) Math.pow(2, previousJailCount) * CaptchaConfig.JAIL_TIME, MAX_JAIL_TIME);
+					jailTime = Math.min((int) MathUtil.pow(2, previousJailCount) * CaptchaConfig.JAIL_TIME, MAX_JAIL_TIME);
 				}
 				
 				// Increment the jail count for the player.
@@ -502,7 +503,7 @@ public class CaptchaManager
 		}
 	}
 	
-	public static final CaptchaManager getInstance()
+	public static CaptchaManager getInstance()
 	{
 		return SingletonHolder.INSTANCE;
 	}

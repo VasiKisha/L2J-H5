@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
+import static org.l2jmobius.gameserver.entity.itemcontainer.Inventory.MAX_ADENA;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,17 +26,17 @@ import java.util.Map;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Merchant;
+import org.l2jmobius.gameserver.entity.item.ItemTemplate;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -179,19 +179,19 @@ public class RequestBuySeed extends ClientPacket
 			final SeedProduction sp = productInfo.get(i.getId());
 			final long price = sp.getPrice() * i.getCount();
 			
-			// Take Adena and decrease seed amount
+			// Take Adena and decrease seed amount.
 			if (!sp.decreaseAmount(i.getCount()) || !player.reduceAdena(ItemProcessType.BUY, price, player, false))
 			{
-				// failed buy, reduce total price
+				// Failed buy, reduce total price.
 				totalPrice -= price;
 				continue;
 			}
 			
-			// Add item to player's inventory
+			// Add item to player's inventory.
 			player.addItem(ItemProcessType.BUY, i.getId(), i.getCount(), manager, true);
 		}
 		
-		// Adding to treasury for Manor Castle
+		// Adding to treasury for Manor Castle.
 		if (totalPrice > 0)
 		{
 			castle.addToTreasuryNoTax(totalPrice);

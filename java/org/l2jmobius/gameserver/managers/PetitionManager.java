@@ -16,17 +16,18 @@
  */
 package org.l2jmobius.gameserver.managers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.petition.Petition;
-import org.l2jmobius.gameserver.model.petition.PetitionState;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.petition.Petition;
+import org.l2jmobius.gameserver.mechanics.petition.PetitionState;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -40,6 +41,8 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class PetitionManager
 {
 	protected static final Logger LOGGER = Logger.getLogger(PetitionManager.class.getName());
+	
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 	
 	private final Map<Integer, Petition> _pendingPetitions;
 	private final Map<Integer, Petition> _completedPetitions;
@@ -80,10 +83,10 @@ public class PetitionManager
 		currPetition.setResponder(respondingAdmin);
 		currPetition.setState(PetitionState.IN_PROCESS);
 		
-		// Petition application accepted. (Send to Petitioner)
+		// Petition application accepted. (Send to Petitioner).
 		currPetition.sendPetitionerPacket(new SystemMessage(SystemMessageId.PETITION_APPLICATION_ACCEPTED));
 		
-		// Petition application accepted. Reciept No. is <ID>
+		// Petition application accepted. Reciept No. is <ID>.
 		SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PETITION_APPLICATION_HAS_BEEN_ACCEPTED_N_RECEIPT_NO_IS_S1);
 		sm.addInt(currPetition.getId());
 		currPetition.sendResponderPacket(sm);
@@ -93,7 +96,7 @@ public class PetitionManager
 		sm.addString(currPetition.getPetitioner().getName());
 		currPetition.sendResponderPacket(sm);
 		
-		// Set responder name on petitioner instance
+		// Set responder name on petitioner instance.
 		currPetition.getPetitioner().setLastPetitionGmName(currPetition.getResponder().getName());
 		return true;
 	}
@@ -348,7 +351,6 @@ public class PetitionManager
 		final StringBuilder htmlContent = new StringBuilder(600 + (_pendingPetitions.size() * 300));
 		htmlContent.append("<html><body><center><table width=270><tr><td width=45><button value=\"Main\" action=\"bypass admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center>Petition Menu</center></td><td width=45><button value=\"Back\" action=\"bypass admin_admin7\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br><table width=\"270\"><tr><td><table width=\"270\"><tr><td><button value=\"Reset\" action=\"bypass -h admin_reset_petitions\" width=\"80\" height=\"21\" back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td align=right><button value=\"Refresh\" action=\"bypass -h admin_view_petitions\" width=\"80\" height=\"21\" back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br></td></tr>");
 		
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		if (_pendingPetitions.isEmpty())
 		{
 			htmlContent.append("<tr><td>There are no currently pending petitions.</td></tr>");
@@ -367,7 +369,7 @@ public class PetitionManager
 				continue;
 			}
 			
-			htmlContent.append("<tr><td width=\"270\"><table width=\"270\" cellpadding=\"2\" bgcolor=" + (color ? "131210" : "444444") + "><tr><td width=\"130\">" + dateFormat.format(new Date(currPetition.getSubmitTime())));
+			htmlContent.append("<tr><td width=\"270\"><table width=\"270\" cellpadding=\"2\" bgcolor=" + (color ? "131210" : "444444") + "><tr><td width=\"130\">" + DATE_FORMAT.format(Instant.ofEpochMilli(currPetition.getSubmitTime()).atZone(ZoneId.systemDefault())));
 			htmlContent.append("</td><td width=\"140\" align=right><font color=\"" + (currPetition.getPetitioner().isOnline() ? "00FF00" : "999999") + "\">" + currPetition.getPetitioner().getName() + "</font></td></tr>");
 			htmlContent.append("<tr><td width=\"130\">");
 			if (currPetition.getState() != PetitionState.IN_PROCESS)
@@ -416,11 +418,10 @@ public class PetitionManager
 		}
 		
 		final Petition currPetition = _pendingPetitions.get(petitionId);
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		final NpcHtmlMessage html = new NpcHtmlMessage();
 		html.setFile(player, "data/html/admin/petition.htm");
 		html.replace("%petition%", String.valueOf(currPetition.getId()));
-		html.replace("%time%", dateFormat.format(new Date(currPetition.getSubmitTime())));
+		html.replace("%time%", DATE_FORMAT.format(Instant.ofEpochMilli(currPetition.getSubmitTime()).atZone(ZoneId.systemDefault())));
 		html.replace("%type%", currPetition.getTypeAsString());
 		html.replace("%petitioner%", currPetition.getPetitioner().getName());
 		html.replace("%online%", currPetition.getPetitioner().isOnline() ? "00FF00" : "999999");

@@ -20,10 +20,10 @@
  */
 package ai.areas.FantasyIsle;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.krateisCube.KrateiArena;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.krateisCube.KrateiArena;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Kratei's Cube AI

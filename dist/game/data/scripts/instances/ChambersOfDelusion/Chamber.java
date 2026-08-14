@@ -21,19 +21,18 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -201,15 +200,15 @@ public abstract class Chamber extends InstanceScript
 			return;
 		}
 		
-		int newRoom = world.getParameters().getInt("currentRoom", 0);
-		
 		// Do nothing, if there are raid room of Sqare or Tower Chamber
 		if (isBigChamber() && isBossRoom(world))
 		{
 			return;
 		}
+		
+		int newRoom = world.getParameters().getInt("currentRoom", 0);
 		// Teleport to raid room 10 min or lesser before instance end time for Tower and Square Chambers
-		else if (isBigChamber() && ((instance.getInstanceEndTime() - System.currentTimeMillis()) < 600000))
+		if (isBigChamber() && ((instance.getInstanceEndTime() - System.currentTimeMillis()) < 600000))
 		{
 			newRoom = ROOM_ENTER_POINTS.length - 1;
 		}
@@ -230,7 +229,7 @@ public abstract class Chamber extends InstanceScript
 		{
 			if (world.getInstanceId() == partyMember.getInstanceId())
 			{
-				partyMember.getAI().setIntention(Intention.IDLE);
+				partyMember.getAI().setIntentionIdle();
 				teleportPlayer(partyMember, ROOM_ENTER_POINTS[newRoom], world.getInstanceId());
 			}
 		}
@@ -319,7 +318,7 @@ public abstract class Chamber extends InstanceScript
 	
 	protected void exitInstance(Player player)
 	{
-		if ((player == null) || !player.isOnline() || (player.getInstanceId() == 0))
+		if ((player == null) || !player.isOnline() || !player.isInInstance())
 		{
 			return;
 		}
@@ -350,7 +349,7 @@ public abstract class Chamber extends InstanceScript
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
 		{
-			world.removeAllowed((player));
+			world.removeAllowed(player);
 		}
 	}
 	
@@ -595,7 +594,7 @@ public abstract class Chamber extends InstanceScript
 			{
 				for (int objId : instance.getPlayers())
 				{
-					final Player pl = World.getInstance().getPlayer(objId);
+					final Player pl = World.getPlayer(objId);
 					if ((pl != null) && pl.isOnline())
 					{
 						final Party party = _world.getParameters().getObject("PartyInside", Party.class);

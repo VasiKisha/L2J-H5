@@ -19,10 +19,10 @@ package quests.Q00370_AnElderSowsSeeds;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
@@ -136,9 +136,10 @@ public class Q00370_AnElderSowsSeeds extends Quest
 		if (qs != null)
 		{
 			final int npcId = npc.getId();
-			if (MOBS1.containsKey(npcId))
+			final Integer mobs1Chance = MOBS1.get(npcId);
+			if (mobs1Chance != null)
 			{
-				if (getRandom(100) < MOBS1.get(npcId))
+				if (getRandom(100) < mobs1Chance)
 				{
 					final Player luckyPlayer = getRandomPartyMember(player, npc);
 					if (luckyPlayer != null)
@@ -171,7 +172,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 		return htmltext;
 	}
 	
-	private final boolean exchangeChapters(Player player, boolean takeAllItems)
+	private boolean exchangeChapters(Player player, boolean takeAllItems)
 	{
 		final long waterChapters = getQuestItemsCount(player, CHAPTER_OF_WATER);
 		final long earthChapters = getQuestItemsCount(player, CHAPTER_OF_EARTH);

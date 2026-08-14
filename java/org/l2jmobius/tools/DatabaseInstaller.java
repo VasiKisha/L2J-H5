@@ -35,11 +35,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -77,6 +77,7 @@ import org.l2jmobius.commons.util.ConfigReader;
 public class DatabaseInstaller extends JFrame
 {
 	public static final String INTERFACE_CONFIG_FILE = "./config/Interface.ini";
+	private static final DateTimeFormatter DUMP_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH-mm");
 	
 	private JTextField _hostField;
 	private JTextField _portField;
@@ -540,7 +541,7 @@ public class DatabaseInstaller extends JFrame
 					line = line.split("--")[0].trim();
 				}
 				
-				sb.append(line).append(" ");
+				sb.append(line).append(' ');
 				
 				if (line.endsWith(";"))
 				{
@@ -622,7 +623,7 @@ public class DatabaseInstaller extends JFrame
 		new SwingWorker<Void, Void>()
 		{
 			@Override
-			protected final Void doInBackground()
+			protected Void doInBackground()
 			{
 				final String host = _hostField.getText().trim();
 				final String port = _portField.getText().trim();
@@ -822,7 +823,7 @@ public class DatabaseInstaller extends JFrame
 					line = line.split("--")[0].trim();
 				}
 				
-				sb.append(line).append(" ");
+				sb.append(line).append(' ');
 				
 				// Execute SQL when a semicolon is reached.
 				if (line.endsWith(";"))
@@ -870,20 +871,18 @@ public class DatabaseInstaller extends JFrame
 	// Method to create the database.
 	private boolean createDatabase()
 	{
-		final String host = _hostField.getText().trim();
-		final String port = _portField.getText().trim();
-		final String user = _userField.getText().trim();
-		final String password = new String(_passField.getPassword()).trim();
 		final String dbName = _dbNameField.getText().trim();
-		
-		final String dbUrl = "jdbc:mysql://" + host + ":" + port;
-		
 		if (dbName.isEmpty())
 		{
 			installationProgress("Error: Database name cannot be empty." + System.lineSeparator(), "Error");
 			return false;
 		}
 		
+		final String host = _hostField.getText().trim();
+		final String port = _portField.getText().trim();
+		final String user = _userField.getText().trim();
+		final String password = new String(_passField.getPassword()).trim();
+		final String dbUrl = "jdbc:mysql://" + host + ":" + port;
 		try (Connection connection = DriverManager.getConnection(dbUrl, user, password);
 			Statement statement = connection.createStatement())
 		{
@@ -958,7 +957,7 @@ public class DatabaseInstaller extends JFrame
 		ensureDumpsDirectoryExists();
 		
 		// Generate filename with timestamp.
-		final String timestamp = new SimpleDateFormat("dd.MM.yyyy_HH-mm").format(new Date());
+		final String timestamp = LocalDateTime.now().format(DUMP_TIMESTAMP_FORMATTER);
 		final String filename = "dumps/" + dbName + "_dump_" + timestamp + ".sql"; // Set the file path.
 		
 		installationProgress("Writing dump " + timestamp + System.lineSeparator(), "Info");
@@ -1124,7 +1123,7 @@ public class DatabaseInstaller extends JFrame
 		});
 	}
 	
-	// Method to check both checkboxes and enable/disable the Install button
+	// Method to check both checkboxes and enable/disable the Install button.
 	private void checkCheckboxesAndUpdateButtonState()
 	{
 		_installButton.setEnabled(_loginDbCheckBox.isSelected() || _gameDbCheckBox.isSelected()); // Enable button if at least one checkbox is selected.

@@ -26,9 +26,9 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.managers.MailManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.holders.MailMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -79,8 +79,8 @@ public class MessageDeletionTaskManager implements Runnable
 					
 					if (message.hasAttachments())
 					{
-						final Player sender = World.getInstance().getPlayer(message.getSenderId());
-						final Player receiver = World.getInstance().getPlayer(message.getReceiverId());
+						final Player sender = World.getPlayer(message.getSenderId());
+						final Player receiver = World.getPlayer(message.getReceiverId());
 						if (sender != null)
 						{
 							message.getAttachments().returnToWh(sender.getWarehouse());

@@ -30,8 +30,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.communitybbs.BB.Forum;
 import org.l2jmobius.gameserver.communitybbs.BB.Post;
 import org.l2jmobius.gameserver.communitybbs.BB.Topic;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 public class PostBBSManager extends BaseBBSManager
 {

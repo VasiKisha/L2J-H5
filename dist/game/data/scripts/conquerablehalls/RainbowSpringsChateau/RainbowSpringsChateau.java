@@ -23,7 +23,9 @@ package conquerablehalls.RainbowSpringsChateau;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,20 +40,20 @@ import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.MapRegionData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.siege.SiegeClan;
-import org.l2jmobius.gameserver.model.siege.SiegeClanType;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegeStatus;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.groups.Party;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClan;
+import org.l2jmobius.gameserver.mechanics.siege.SiegeClanType;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.mechanics.siege.clanhalls.SiegeStatus;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -59,7 +61,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -67,7 +68,7 @@ import org.l2jmobius.gameserver.util.LocationUtil;
  */
 public class RainbowSpringsChateau extends ClanHallSiegeEngine
 {
-	private static final SimpleDateFormat SIMPLE_FORMAT = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+	private static final DateTimeFormatter SIMPLE_FORMAT = DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy");
 	
 	private static final int WAR_DECREES = 8034;
 	private static final int RAINBOW_NECTAR = 8030;
@@ -556,7 +557,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 		{
 			final String main = (_hall.getOwnerId() > 0) ? "35604-01.htm" : "35604-00.htm";
 			html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/" + main);
-			html.replace("%nextSiege%", SIMPLE_FORMAT.format(_hall.getSiegeDate().getTime()));
+			html.replace("%nextSiege%", Instant.ofEpochMilli(_hall.getSiegeDate().getTimeInMillis()).atZone(ZoneId.systemDefault()).format(SIMPLE_FORMAT));
 			if (_hall.getOwnerId() > 0)
 			{
 				html.replace("%owner%", ClanTable.getInstance().getClan(_hall.getOwnerId()).getName());
@@ -674,19 +675,17 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Clan clan = killer.getClan();
-		final int index = _acceptedClans.indexOf(clan);
 		if ((clan == null) || !_acceptedClans.contains(clan))
 		{
 			return;
 		}
 		
+		final int index = _acceptedClans.indexOf(clan);
+		
 		if (npc.getId() == CHEST)
 		{
 			chestDie(npc);
-			if (chests.contains(npc))
-			{
-				chests.remove(npc);
-			}
+			chests.remove(npc);
 			
 			final int chance = Rnd.get(100);
 			if (chance <= 5)
@@ -785,7 +784,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 				{
 					for (int id : _playersOnArena)
 					{
-						final Player pl = World.getInstance().getPlayer(id);
+						final Player pl = World.getPlayer(id);
 						if (pl != null)
 						{
 							pl.teleToLocation(TeleportWhereType.TOWN);
@@ -823,7 +822,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			_hall.updateNextSiege();
 			final SystemMessage sm = new SystemMessage(SystemMessageId.THE_SIEGE_OF_S1_HAS_BEEN_CANCELED_DUE_TO_LACK_OF_INTEREST);
 			sm.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
-			Broadcast.toAllOnlinePlayers(sm);
+			World.broadcastToAllOnlinePlayers(sm);
 			return;
 		}
 		
@@ -842,7 +841,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 		_hall.banishForeigners();
 		final SystemMessage msg = new SystemMessage(SystemMessageId.THE_REGISTRATION_TERM_FOR_S1_HAS_ENDED);
 		msg.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
-		Broadcast.toAllOnlinePlayers(msg);
+		World.broadcastToAllOnlinePlayers(msg);
 		_hall.updateSiegeStatus(SiegeStatus.WAITING_BATTLE);
 		_siegeTask = ThreadPool.schedule(new SiegeStarts(), 3600000);
 	}
@@ -1244,7 +1243,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			final Word word = WORLD_LIST[_generated];
 			final ExShowScreenMessage msg = new ExShowScreenMessage(word.getName(), 5000);
 			final int region = MapRegionData.getInstance().getMapRegionLocId(_npc.getX(), _npc.getY());
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if ((region == MapRegionData.getInstance().getMapRegionLocId(player.getX(), player.getY())) && LocationUtil.checkIfInRange(750, _npc, player, false))
 				{

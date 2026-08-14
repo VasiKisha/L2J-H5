@@ -19,10 +19,10 @@ package ai.areas.DragonValley.SeparatedSoul;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Separated Soul teleport AI.
@@ -74,11 +74,12 @@ public class SeparatedSoul extends Script
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (LOCATIONS.containsKey(event))
+		final Location loc = LOCATIONS.get(event);
+		if (loc != null)
 		{
 			if (player.getLevel() >= MIN_LEVEL)
 			{
-				player.teleToLocation(LOCATIONS.get(event), true);
+				player.teleToLocation(loc, true);
 			}
 			else
 			{

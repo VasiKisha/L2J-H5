@@ -20,11 +20,11 @@
  */
 package handlers.chat.commands.admin;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
@@ -80,7 +80,7 @@ public class AdminRes implements IAdminCommandHandler
 		if (resParam != null)
 		{
 			// Check if a player name was specified as a param.
-			final Player plyr = World.getInstance().getPlayer(resParam);
+			final Player plyr = World.getPlayer(resParam);
 			if (plyr != null)
 			{
 				obj = plyr;
@@ -91,7 +91,7 @@ public class AdminRes implements IAdminCommandHandler
 				try
 				{
 					final int radius = Integer.parseInt(resParam);
-					World.getInstance().forEachVisibleObjectInRange(activeChar, Player.class, radius, this::doResurrect);
+					World.forEachVisibleObjectInRange(activeChar, Player.class, radius, this::doResurrect);
 					activeChar.sendSysMessage("Resurrected all players within a " + radius + " unit radius.");
 					return;
 				}
@@ -126,7 +126,7 @@ public class AdminRes implements IAdminCommandHandler
 			if (!radiusStr.isEmpty())
 			{
 				radius = Integer.parseInt(radiusStr);
-				World.getInstance().forEachVisibleObjectInRange(activeChar, Creature.class, radius, knownChar ->
+				World.forEachVisibleObjectInRange(activeChar, Creature.class, radius, knownChar ->
 				{
 					if (!knownChar.isPlayer())
 					{

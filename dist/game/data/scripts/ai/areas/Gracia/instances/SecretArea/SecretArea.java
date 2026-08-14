@@ -16,11 +16,11 @@
  */
 package ai.areas.Gracia.instances.SecretArea;
 
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.mechanics.script.InstanceScript;
 
 /**
  * Secret Area in the Keucereus Fortress instance zone.
@@ -65,18 +65,18 @@ public class SecretArea extends InstanceScript
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		final String htmltext = getNoQuestMsg(player);
 		if ((npc.getId() == GINBY) && event.equalsIgnoreCase("enter"))
 		{
 			enterInstance(player, TEMPLATE_ID);
 			return "32566-01.html";
 		}
-		else if ((npc.getId() == LELRIKIA) && event.equalsIgnoreCase("exit"))
+		
+		if ((npc.getId() == LELRIKIA) && event.equalsIgnoreCase("exit"))
 		{
 			teleportPlayer(player, TELEPORTS[EXIT], 0);
 			return "32567-01.html";
 		}
 		
-		return htmltext;
+		return getNoQuestMsg(player);
 	}
 }

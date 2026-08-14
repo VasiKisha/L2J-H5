@@ -20,19 +20,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -470,7 +470,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_1ST) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHHIISSHH));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHHIISSHH));
 								takeItems(attacker, CRYSTAL_OF_STARTING_1ST, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_1ST, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -486,7 +486,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_1ST) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_1ST) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_1ST, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_1ST, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_1ST, -1);
@@ -515,7 +515,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_3RD) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.START_DUEL));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.START_DUEL));
 								takeItems(attacker, CRYSTAL_OF_STARTING_3RD, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_3RD, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -531,7 +531,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_3RD) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_3RD) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_3RD, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_3RD, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_3RD, -1);
@@ -560,7 +560,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_5TH) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.SO_SHALL_WE_START));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.SO_SHALL_WE_START));
 								takeItems(attacker, CRYSTAL_OF_STARTING_5TH, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_5TH, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -576,7 +576,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_5TH) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_5TH) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_5TH, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_5TH, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_5TH, -1);
@@ -605,7 +605,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_2ND) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHISH_FIGHT));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHISH_FIGHT));
 								takeItems(attacker, CRYSTAL_OF_STARTING_2ND, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_2ND, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -621,7 +621,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_2ND) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_2ND) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_2ND, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_2ND, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_2ND, -1);
@@ -650,7 +650,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_4TH) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.START_DUEL));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.START_DUEL));
 								takeItems(attacker, CRYSTAL_OF_STARTING_4TH, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_4TH, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -666,7 +666,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_4TH) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_4TH) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_4TH, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_4TH, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_4TH, -1);
@@ -695,7 +695,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							final QuestState qs = getQuestState(attacker, false);
 							if (hasQuestItems(attacker, CRYSTAL_OF_STARTING_6TH) && (qs != null) && qs.isStarted())
 							{
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.I_LL_WALK_ALL_OVER_YOU));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.I_LL_WALK_ALL_OVER_YOU));
 								takeItems(attacker, CRYSTAL_OF_STARTING_6TH, -1);
 								giveItems(attacker, CRYSTAL_OF_INPROGRESS_6TH, 1);
 								addAttackDesire(npc, attacker.getSummon(), 100000);
@@ -711,7 +711,7 @@ public class Q00230_TestOfTheSummoner extends Quest
 							if (!hasQuestItems(attacker, CRYSTAL_OF_STARTING_6TH) && hasQuestItems(attacker, CRYSTAL_OF_INPROGRESS_6TH) && (qs != null) && qs.isStarted())
 							{
 								npc.setScriptValue(2);
-								Broadcast.toKnownPlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
+								World.broadcastToVisiblePlayers(npc, new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.RULE_VIOLATION));
 								takeItems(attacker, CRYSTAL_OF_INPROGRESS_6TH, -1);
 								giveItems(attacker, CRYSTAL_OF_FOUL_6TH, 1);
 								takeItems(attacker, CRYSTAL_OF_STARTING_6TH, -1);

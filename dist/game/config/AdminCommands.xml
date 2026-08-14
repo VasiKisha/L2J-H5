@@ -448,7 +448,9 @@
 	<admin command="regionsclear" description="Hide world regions." accessLevel="100" />
 
 	<!-- ADMIN RELOAD -->
-	<admin command="reload" description="Reload Panel." accessLevel="100" confirmDlg="true" />
+	<admin command="reload_menu" description="Reload Menu." accessLevel="100" />
+	<admin command="reload_menu_page" description="Reload Menu page." accessLevel="100" />
+	<admin command="reload" description="Reload command." accessLevel="100" confirmDlg="true" />
 
 	<!-- ADMIN REPAIR CHAR -->
 	<admin command="restore" description="Restores character to default position and inventory." accessLevel="100" />

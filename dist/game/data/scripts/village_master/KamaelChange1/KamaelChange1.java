@@ -18,12 +18,12 @@ package village_master.KamaelChange1;
 
 import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 import quests.Q00062_PathOfTheTrooper.Q00062_PathOfTheTrooper;
 import quests.Q00063_PathOfTheWarder.Q00063_PathOfTheWarder;
@@ -101,7 +101,7 @@ public class KamaelChange1 extends Script
 			{
 				htmltext = "32191-12.htm"; // master_all_kamael100a
 			}
-			else if ((classId == 125) && (player.getPlayerClass() == PlayerClass.MALE_SOLDIER))
+			else if ((classId == PlayerClass.TROOPER.getId()) && (player.getPlayerClass() == PlayerClass.MALE_SOLDIER))
 			{
 				final QuestState qs = player.getQuestState(Q00062_PathOfTheTrooper.class.getSimpleName());
 				if (player.getLevel() < 20)
@@ -122,8 +122,8 @@ public class KamaelChange1 extends Script
 				else
 				{
 					takeItems(player, GWAINS_RECOMMENDATION, -1);
-					player.setPlayerClass(125);
-					player.setBaseClass(125);
+					player.setPlayerClass(PlayerClass.TROOPER.getId());
+					player.setBaseClass(PlayerClass.TROOPER.getId());
 					
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
@@ -131,7 +131,7 @@ public class KamaelChange1 extends Script
 					htmltext = "32191-16.htm"; // master_all_kamael011ma
 				}
 			}
-			else if ((classId == 126) && (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER))
+			else if ((classId == PlayerClass.WARDER.getId()) && (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER))
 			{
 				final QuestState qs = player.getQuestState(Q00063_PathOfTheWarder.class.getSimpleName());
 				if (player.getLevel() < 20)
@@ -152,8 +152,8 @@ public class KamaelChange1 extends Script
 				else
 				{
 					takeItems(player, STEELRAZOR_EVALUATION, -1);
-					player.setPlayerClass(126);
-					player.setBaseClass(126);
+					player.setPlayerClass(PlayerClass.WARDER.getId());
+					player.setBaseClass(PlayerClass.WARDER.getId());
 					
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();

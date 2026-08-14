@@ -21,19 +21,19 @@ import java.util.logging.Level;
 import org.l2jmobius.gameserver.data.holders.PetData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.item.holders.PetItemHolder;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Pet;
+import org.l2jmobius.gameserver.entity.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.entity.item.holders.PetItemHolder;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PetItemList;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Summon Pet effect implementation.
@@ -95,6 +95,12 @@ public class SummonPet extends AbstractEffect
 		
 		final NpcTemplate npcTemplate = NpcData.getInstance().getTemplate(petData.getNpcId());
 		final Pet pet = Pet.spawnPet(npcTemplate, player, item);
+		if (pet == null)
+		{
+			LOGGER.log(Level.WARNING, "Could not spawn pet for player: " + player + " using item: " + item);
+			return;
+		}
+		
 		pet.setShowSummonAnimation(true);
 		if (!pet.isRespawned())
 		{

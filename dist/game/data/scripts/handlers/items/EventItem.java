@@ -20,16 +20,16 @@
  */
 package handlers.items;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.holders.player.ArenaParticipantsHolder;
+import org.l2jmobius.gameserver.entity.actor.instance.Block;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.managers.HandysBlockCheckerManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.holders.player.ArenaParticipantsHolder;
-import org.l2jmobius.gameserver.model.actor.instance.Block;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -69,7 +69,7 @@ public class EventItem implements IItemHandler
 		return used;
 	}
 	
-	private final boolean useBlockCheckerItem(Player caster, Item item)
+	private boolean useBlockCheckerItem(Player caster, Item item)
 	{
 		final int blockCheckerArena = caster.getBlockCheckerArena();
 		if (blockCheckerArena == -1)
@@ -96,7 +96,7 @@ public class EventItem implements IItemHandler
 		if (holder != null)
 		{
 			final int team = holder.getPlayerTeam(caster);
-			World.getInstance().forEachVisibleObjectInRange(block, Player.class, sk.getEffectRange(), pc ->
+			World.forEachVisibleObjectInRange(block, Player.class, sk.getEffectRange(), pc ->
 			{
 				final int enemyTeam = holder.getPlayerTeam(pc);
 				if ((enemyTeam != -1) && (enemyTeam != team))

@@ -16,41 +16,36 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Cubic;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.data.xml.CubicData;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.Cubic;
+import org.l2jmobius.gameserver.entity.actor.templates.CubicTemplate;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
- * Summon Cubic effect implementation.
+ * Summons a cubic from XML template data.<br>
+ * Keeps High Five skill parameters as runtime overrides.
  * @author Zoey76
  */
 public class SummonCubic extends AbstractEffect
 {
-	/** Cubic ID. */
 	private final int _cubicId;
-	/** Cubic power. */
+	private final int _cubicLevel;
 	private final int _cubicPower;
-	/** Cubic duration. */
 	private final int _cubicDuration;
-	/** Cubic activation delay. */
 	private final int _cubicDelay;
-	/** Cubic maximum casts before going idle. */
 	private final int _cubicMaxCount;
-	/** Cubic activation chance. */
 	private final int _cubicSkillChance;
 	
 	public SummonCubic(Condition attachCond, Condition applyCond, StatSet set, StatSet params)
 	{
 		super(attachCond, applyCond, set, params);
-		
 		_cubicId = params.getInt("cubicId", -1);
-		
-		// Custom AI data.
+		_cubicLevel = params.getInt("cubicLvl", params.getInt("cubicSkillLevel", 0));
 		_cubicPower = params.getInt("cubicPower", 0);
 		_cubicDuration = params.getInt("cubicDuration", 0);
 		_cubicDelay = params.getInt("cubicDelay", 0);
@@ -74,7 +69,7 @@ public class SummonCubic extends AbstractEffect
 		
 		if (_cubicId < 0)
 		{
-			LOGGER.warning(SummonCubic.class.getSimpleName() + ": Invalid Cubic ID:" + _cubicId + " in skill ID: " + skill.getId());
+			LOGGER.warning(getClass().getSimpleName() + ": Invalid cubic id: " + _cubicId + " skillId: " + skill.getId());
 			return;
 		}
 		
@@ -84,45 +79,37 @@ public class SummonCubic extends AbstractEffect
 			return;
 		}
 		
-		// Gnacik: TODO: Make better method of calculation.
-		// If skill is enchanted calculate cubic skill level based on enchant
-		// 8 at 101 (+1 Power)
-		// 12 at 130 (+30 Power)
-		// Because 12 is max 5115-5117 skills
-		int cubicSkillLevel = skill.getLevel();
-		if (cubicSkillLevel > 100)
+		int cubicTemplateLevel = _cubicLevel > 0 ? _cubicLevel : skill.getLevel();
+		if ((_cubicLevel <= 0) && (cubicTemplateLevel > 100))
 		{
-			cubicSkillLevel = ((skill.getLevel() - 100) / 7) + 8;
+			cubicTemplateLevel = ((skill.getLevel() - 100) / 7) + 8;
 		}
 		
-		// If cubic is already present, it's replaced.
+		final CubicTemplate template = CubicData.getInstance().getCubicTemplate(_cubicId, cubicTemplateLevel);
+		if (template == null)
+		{
+			LOGGER.warning(getClass().getSimpleName() + ": Missing cubic template. cubicId: " + _cubicId + " level: " + cubicTemplateLevel + " skillId: " + skill.getId());
+			return;
+		}
+		
 		final Cubic cubic = player.getCubicById(_cubicId);
 		if (cubic != null)
 		{
-			cubic.stopAction();
-			cubic.cancelDisappear();
-			player.getCubics().remove(_cubicId);
+			player.removeCubic(_cubicId);
 		}
 		else
 		{
-			// If maximum amount is reached, random cubic is removed.
-			// Players with no mastery can have only one cubic.
-			final int allowedCubicCount = player.getStat().getMaxCubicCount();
-			final int currentCubicCount = player.getCubics().size();
-			
-			// Extra cubics are removed, one by one, randomly.
-			for (int i = 0; i <= (currentCubicCount - allowedCubicCount); i++)
+			final int allowedCubicCount = Math.max(1, player.getStat().getMaxCubicCount());
+			while (player.getCubics().size() >= allowedCubicCount)
 			{
-				final int removedCubicId = (int) player.getCubics().keySet().toArray()[Rnd.get(currentCubicCount)];
-				final Cubic removedCubic = player.getCubicById(removedCubicId);
-				removedCubic.stopAction();
-				removedCubic.cancelDisappear();
-				player.getCubics().remove(removedCubic.getId());
+				if (player.removeFirstCubic() == null)
+				{
+					break;
+				}
 			}
 		}
 		
-		// Adding a new cubic.
-		player.addCubic(_cubicId, cubicSkillLevel, _cubicPower, _cubicDelay, _cubicSkillChance, _cubicMaxCount, _cubicDuration, effected != effector);
+		player.addCubic(_cubicId, template.getLevel(), _cubicPower, _cubicDelay, _cubicSkillChance, _cubicMaxCount, _cubicDuration, effected != effector);
 		player.broadcastUserInfo();
 	}
 }

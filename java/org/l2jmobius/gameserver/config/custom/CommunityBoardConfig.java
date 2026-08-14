@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.l2jmobius.commons.util.ConfigReader;
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 /**
  * This class loads all the custom community board related configurations.

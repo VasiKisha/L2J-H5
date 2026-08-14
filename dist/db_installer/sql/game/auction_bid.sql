@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `auction_bid` (
   `time_bid` bigint(13) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY  (`auctionId`,`bidderId`),
   KEY `id` (`id`)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

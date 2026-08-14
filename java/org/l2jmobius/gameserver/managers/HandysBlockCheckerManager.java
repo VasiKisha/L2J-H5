@@ -24,13 +24,13 @@ import java.util.Set;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.GeneralConfig;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
-import org.l2jmobius.gameserver.model.actor.holders.player.ArenaParticipantsHolder;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
-import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.entity.actor.holders.player.ArenaParticipantsHolder;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.itemcontainer.PlayerInventory;
+import org.l2jmobius.gameserver.entity.zone.ZoneId;
+import org.l2jmobius.gameserver.mechanics.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExCubeGameAddPlayer;
 import org.l2jmobius.gameserver.network.serverpackets.ExCubeGameChangeTeam;
@@ -44,10 +44,10 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  */
 public class HandysBlockCheckerManager
 {
-	// All the participants and their team classified by arena
+	// All the participants and their team classified by arena.
 	private static final ArenaParticipantsHolder[] _arenaPlayers = new ArenaParticipantsHolder[4];
 	
-	// Arena votes to start the game
+	// Arena votes to start the game.
 	private static final Map<Integer, Integer> _arenaVotes = new HashMap<>();
 	
 	// Arena Status, True = is being used, otherwise, False
@@ -233,7 +233,7 @@ public class HandysBlockCheckerManager
 			holder.removePlayer(player, team);
 			holder.broadCastPacketToTeam(new ExCubeGameRemovePlayer(player, isRed));
 			
-			// End event if theres an empty team
+			// End event if theres an empty team.
 			final int teamSize = isRed ? holder.getRedTeamSize() : holder.getBlueTeamSize();
 			if (teamSize == 0)
 			{
@@ -343,7 +343,7 @@ public class HandysBlockCheckerManager
 			// Remove team aura
 			player.setTeam(Team.NONE);
 			
-			// Remove the event items
+			// Remove the event items.
 			final PlayerInventory inv = player.getInventory();
 			
 			if (inv.getItemByItemId(13787) != null)

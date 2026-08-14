@@ -16,21 +16,20 @@
  */
 package ai.areas.PrimevalIsle;
 
-import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.util.ArrayUtil;
@@ -142,12 +141,12 @@ public class PrimevalIsle extends Script
 				if (skill.getId() == SELFBUFF1.getSkillId())
 				{
 					npc.setScriptValue(3);
-					if ((target != null))
+					if (target != null)
 					{
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(Intention.ATTACK, target);
+						mob.getAI().setIntentionAttack(target);
 					}
 				}
 			}
@@ -156,23 +155,23 @@ public class PrimevalIsle extends Script
 				if (skill.getId() == SELFBUFF1.getSkillId())
 				{
 					npc.setScriptValue(1);
-					if ((target != null))
+					if (target != null)
 					{
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(Intention.ATTACK, target);
+						mob.getAI().setIntentionAttack(target);
 					}
 				}
 				else if (skill.getId() == SELFBUFF2.getSkillId())
 				{
 					npc.setScriptValue(5);
-					if ((target != null))
+					if (target != null)
 					{
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(Intention.ATTACK, target);
+						mob.getAI().setIntentionAttack(target);
 					}
 				}
 			}
@@ -273,7 +272,7 @@ public class PrimevalIsle extends Script
 					final int newX = (int) (npc.getX() + (cos * distance));
 					final int newY = (int) (npc.getY() + (sin * distance));
 					final Location loc = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), newX, newY, npc.getZ(), npc.getInstanceId());
-					npc.getAI().setIntention(Intention.MOVE_TO, loc, 0);
+					npc.getAI().setIntentionMoveTo(loc);
 				}
 				else if (ag_type == 1)
 				{
@@ -298,7 +297,7 @@ public class PrimevalIsle extends Script
 			npc.setTarget(creature);
 			npc.doCast(CREW_SKILL.getSkill());
 			npc.setRunning();
-			npc.getAI().setIntention(Intention.ATTACK, creature);
+			npc.getAI().setIntentionAttack(creature);
 		}
 	}
 	
@@ -323,7 +322,7 @@ public class PrimevalIsle extends Script
 			{
 				npc.setScriptValue(1);
 				final Playable playable = isSummon ? attacker.getSummon() : attacker;
-				World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, 500, monster ->
+				World.forEachVisibleObjectInRange(npc, Attackable.class, 500, monster ->
 				{
 					if ((getRandomBoolean()))
 					{
@@ -419,7 +418,7 @@ public class PrimevalIsle extends Script
 					npc.getVariables().set("SELFBUFF_USED", 1);
 					npc.doCast(selfRangeBuff1.getSkill());
 					npc.setRunning();
-					npc.getAI().setIntention(Intention.ATTACK, target);
+					npc.getAI().setIntentionAttack(target);
 				}
 			}
 			

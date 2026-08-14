@@ -66,7 +66,7 @@ public class LoginConfig
 		PORT_LOGIN = config.getInt("LoginserverPort", 2106);
 		try
 		{
-			DATAPACK_ROOT = new File(config.getString("DatapackRoot", ".").replaceAll("\\\\", "/")).getCanonicalFile();
+			DATAPACK_ROOT = new File(config.getString("DatapackRoot", ".").replace('\\', '/')).getCanonicalFile();
 		}
 		catch (IOException e)
 		{

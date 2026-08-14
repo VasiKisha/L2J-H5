@@ -22,9 +22,9 @@ package handlers.chat.commands.admin;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 
@@ -46,7 +46,7 @@ public class AdminKick implements IAdminCommandHandler
 			{
 				st.nextToken();
 				final String player = st.nextToken();
-				final Player plyr = World.getInstance().getPlayer(player);
+				final Player plyr = World.getPlayer(player);
 				if (plyr != null)
 				{
 					Disconnection.of(plyr).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
@@ -58,7 +58,7 @@ public class AdminKick implements IAdminCommandHandler
 		if (command.startsWith("admin_kick_non_gm"))
 		{
 			int counter = 0;
-			for (Player player : World.getInstance().getPlayers())
+			for (Player player : World.getPlayers())
 			{
 				if (!player.isGM())
 				{

@@ -31,18 +31,18 @@ import java.util.StringTokenizer;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.html.PageBuilder;
-import org.l2jmobius.gameserver.model.html.PageResult;
-import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.html.PageBuilder;
+import org.l2jmobius.gameserver.mechanics.html.PageResult;
+import org.l2jmobius.gameserver.mechanics.html.styles.ButtonsStyle;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
@@ -123,7 +123,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			if (st.hasMoreTokens())
 			{
 				final String playername = st.nextToken();
-				final Player player = World.getInstance().getPlayer(playername);
+				final Player player = World.getPlayer(playername);
 				if (player != null)
 				{
 					int page = 0;
@@ -240,7 +240,7 @@ public class AdminBuffs implements IAdminCommandHandler
 				{
 					0
 				};
-				World.getInstance().forEachVisibleObjectInRange(activeChar, Player.class, radius, player ->
+				World.forEachVisibleObjectInRange(activeChar, Player.class, radius, player ->
 				{
 					player.stopAllEffects();
 					affected[0]++;
@@ -267,7 +267,7 @@ public class AdminBuffs implements IAdminCommandHandler
 				
 				try
 				{
-					player = World.getInstance().getPlayer(playername);
+					player = World.getPlayer(playername);
 				}
 				catch (Exception e)
 				{
@@ -329,7 +329,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		final Collection<Skill> skills = toAuraSkills ? SkillTreeData.getInstance().getGMSkillTree().values() : SkillTreeData.getInstance().getGMAuraSkillTree().values();
 		for (Skill skill : skills)
 		{
-			gmchar.removeSkill(skill, false); // Don't Save GM skills to database
+			gmchar.removeSkill(skill, false); // Don't Save GM skills to database.
 		}
 		
 		SkillTreeData.getInstance().addSkills(gmchar, toAuraSkills);
@@ -353,9 +353,10 @@ public class AdminBuffs implements IAdminCommandHandler
 			final Skill skill = info.getSkill();
 			if (skill != null)
 			{
-				if (skills.containsKey(skill))
+				final Integer existing = skills.get(skill);
+				if (existing != null)
 				{
-					skills.put(skill, Math.max(info.getAbnormalTime(), skills.get(skill)));
+					skills.put(skill, Math.max(info.getAbnormalTime(), existing));
 				}
 				else
 				{
@@ -376,9 +377,9 @@ public class AdminBuffs implements IAdminCommandHandler
 			sb.append("><font color=\"B09878\">");
 			sb.append(passive ? "<a action=\"bypass admin_viewskilleffects_ps " : "<a action=\"bypass admin_viewskilleffects ");
 			sb.append(target.getObjectId());
-			sb.append(" ");
+			sb.append(' ');
 			sb.append(skill.getId());
-			sb.append(" ");
+			sb.append(' ');
 			sb.append(skill.getLevel());
 			sb.append("\">");
 			sb.append(skill.getName());
@@ -395,7 +396,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			sb.append(skill.isPassive() ? "" : skill.isToggle() ? "T" : (skills.get(skill)) + "s");
 			sb.append("</td><td><table><tr><td height=5></td></tr><tr><td fixwidth=360><button value=\"X\" action=\"bypass admin_stopbuff ");
 			sb.append(target.getObjectId());
-			sb.append(" ");
+			sb.append(' ');
 			sb.append(skill.getId());
 			sb.append("\" width=30 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table></td></tr></table><img src=\"L2UI.SquareGray\" width=295 height=1>");
 		}).build();
@@ -431,7 +432,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		Creature target = null;
 		try
 		{
-			target = World.getInstance().findObject(objectId).asCreature();
+			target = World.findObject(objectId).asCreature();
 		}
 		catch (Exception e)
 		{
@@ -480,13 +481,13 @@ public class AdminBuffs implements IAdminCommandHandler
 				sb.append(info.getSkill().getLevel());
 				sb.append(" (");
 				sb.append(effect.getClass().getSimpleName());
-				sb.append(")");
+				sb.append(')');
 				sb.append(!info.isInUse() ? FONT_RED2 : "");
 				sb.append("</td><td width=180><center>");
 				sb.append(info.getSkill().isToggle() ? "T" : info.getSkill().isPassive() ? "P" : info.getTime() + "s");
 				sb.append("</center></td><td width=200><button value=\"X\" action=\"bypass admin_stopbuff ");
 				sb.append(objectId);
-				sb.append(" ");
+				sb.append(' ');
 				sb.append(info.getSkill().getId());
 				sb.append("\" width=30 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table>");
 				sb.append("<img src=\"L2UI.SquareGray\" width=295 height=1>");
@@ -520,7 +521,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		Creature target = null;
 		try
 		{
-			target = World.getInstance().findObject(objId).asCreature();
+			target = World.findObject(objId).asCreature();
 		}
 		catch (Exception e)
 		{
@@ -548,7 +549,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		Creature target = null;
 		try
 		{
-			target = World.getInstance().findObject(objId).asCreature();
+			target = World.findObject(objId).asCreature();
 		}
 		catch (Exception e)
 		{
@@ -572,7 +573,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		Creature target = null;
 		try
 		{
-			target = World.getInstance().findObject(objId).asCreature();
+			target = World.findObject(objId).asCreature();
 		}
 		catch (Exception e)
 		{

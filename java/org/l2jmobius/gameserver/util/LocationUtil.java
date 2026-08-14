@@ -21,10 +21,10 @@
 package org.l2jmobius.gameserver.util;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.interfaces.ILocational;
 
 /**
  * Utility class providing a set of methods for spatial calculations between locations and objects.
@@ -133,7 +133,10 @@ public class LocationUtil
 	 */
 	public static double calculateDistance(double x1, double y1, double z1, double x2, double y2, double z2, boolean includeZ, boolean squared)
 	{
-		final double distance = Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + (includeZ ? Math.pow(z1 - z2, 2) : 0);
+		final double dx = x1 - x2;
+		final double dy = y1 - y2;
+		final double dz = z1 - z2;
+		final double distance = (dx * dx) + (dy * dy) + (includeZ ? (dz * dz) : 0);
 		return squared ? distance : Math.sqrt(distance);
 	}
 	
@@ -188,7 +191,7 @@ public class LocationUtil
 	 */
 	public static boolean isInsideRangeOfObjectId(WorldObject obj, int targetObjId, int radius)
 	{
-		final WorldObject target = World.getInstance().findObject(targetObjId);
+		final WorldObject target = World.findObject(targetObjId);
 		return (target != null) && (obj.calculateDistance3D(target) <= radius);
 	}
 	

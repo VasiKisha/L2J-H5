@@ -20,22 +20,18 @@
  */
 package handlers.skill.effects;
 
-import java.util.List;
-
-import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.AttackableAI;
 import org.l2jmobius.gameserver.ai.DistrustAI;
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.instance.Chest;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.instance.Chest;
+import org.l2jmobius.gameserver.entity.actor.instance.Monster;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author Naker
@@ -57,14 +53,8 @@ public class Distrust extends AbstractEffect
 		}
 		
 		final Monster targetMonster = effected.asMonster();
-		final List<Monster> targets = World.getInstance().getVisibleObjectsInRange(targetMonster, Monster.class, 1100, m -> (m != targetMonster) && !m.isDead() && m.isAttackable() && !(m instanceof Chest) && !m.isRaid() && !m.isRaidMinion());
-		if (targets.isEmpty())
-		{
-			return;
-		}
-		
-		final Monster newTarget = targets.get(Rnd.get(targets.size()));
-		if ((newTarget == null) || (newTarget == effected))
+		final Monster newTarget = World.getRandomVisibleObjectInRange(targetMonster, Monster.class, 1100, m -> (m != targetMonster) && !m.isDead() && m.isAttackable() && !(m instanceof Chest) && !m.isRaid() && !m.isRaidMinion());
+		if (newTarget == null)
 		{
 			return;
 		}
@@ -84,6 +74,6 @@ public class Distrust extends AbstractEffect
 		monster.setAI(new AttackableAI(monster));
 		monster.setTarget(null);
 		monster.setWalking();
-		monster.getAI().setIntention(Intention.ACTIVE);
+		monster.getAI().setIntentionActive();
 	}
 }

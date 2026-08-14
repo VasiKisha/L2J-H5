@@ -16,12 +16,12 @@
  */
 package quests.Q00289_NoMoreSoupForYou;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestSound;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestSound;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00252_ItSmellsDelicious.Q00252_ItSmellsDelicious;
@@ -221,12 +221,12 @@ public class Q00289_NoMoreSoupForYou extends Quest
 	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		final int npcId = npc.getId();
 		if ((qs == null) || (qs.getState() != State.STARTED))
 		{
 			return;
 		}
 		
+		final int npcId = npc.getId();
 		if (ArrayUtil.contains(MOBS, npcId))
 		{
 			giveItems(player, SOUP, 1 * RATE);

@@ -17,10 +17,10 @@
 package custom.SellBuff;
 
 import org.l2jmobius.gameserver.config.custom.SellBuffsConfig;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
 import org.l2jmobius.gameserver.managers.SellBuffsManager;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * Sell Buffs voiced commands.

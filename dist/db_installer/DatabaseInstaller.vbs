@@ -34,3 +34,24 @@ End If
 
 'Run the Database Installer.
 exitcode = shell.Run(command, window, True)
+If exitcode <> 0 Then
+	hint = ""
+	Select Case exitcode
+		Case 1
+			hint = "Uncaught Java exception or wrong Java version."
+		Case 130
+			hint = "Interrupted by Ctrl+C."
+		Case 137
+			hint = "Killed by the OS (out of memory?)."
+		Case 143
+			hint = "Terminated by SIGTERM."
+	End Select
+	If hint = "" And exitcode < 0 Then
+		hint = "JVM or native crash (access violation)."
+	End If
+	msg = "Database Installer terminated abnormally!" & vbCrLf & vbCrLf & "Exit code: " & exitcode
+	If hint <> "" Then
+		msg = msg & "  (" & hint & ")"
+	End If
+	MsgBox msg, vbOKOnly + vbExclamation, "Database Installer"
+End If

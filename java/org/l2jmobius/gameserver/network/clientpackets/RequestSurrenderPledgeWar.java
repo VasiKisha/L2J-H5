@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -75,7 +75,7 @@ public class RequestSurrenderPledgeWar extends ClientPacket
 		ClanTable.getInstance().deleteClanWars(playerClan.getId(), clan.getId());
 		
 		// Zoey76: TODO: Implement or cleanup.
-		// Player leader = World.getInstance().getPlayer(clan.getLeaderName());
+		// Player leader = World.getPlayer(clan.getLeaderName());
 		// if ((leader != null) && (leader.isOnline() == 0))
 		// {
 		// player.sendMessage("Clan leader isn't online.");

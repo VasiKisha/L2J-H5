@@ -32,22 +32,22 @@ import org.l2jmobius.gameserver.data.BotReportTable;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Summon;
+import org.l2jmobius.gameserver.entity.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.entity.actor.instance.BabyPet;
+import org.l2jmobius.gameserver.entity.actor.instance.Pet;
+import org.l2jmobius.gameserver.entity.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.entity.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.managers.AirShipManager;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
-import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
-import org.l2jmobius.gameserver.model.actor.instance.BabyPet;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
-import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -98,7 +98,7 @@ public class RequestActionUse extends ClientPacket
 			return;
 		}
 		
-		// Don't do anything if player is dead or confused
+		// Don't do anything if player is dead or confused.
 		if ((player.isFakeDeath() && (_actionId != 0)) || player.isDead() || player.isOutOfControl())
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -119,7 +119,7 @@ public class RequestActionUse extends ClientPacket
 			}
 		}
 		
-		// Don't allow to do some action if player is transformed
+		// Don't allow to do some action if player is transformed.
 		if (player.isTransformed())
 		{
 			final int[] allowedActions = player.isTransformed() ? ExBasicActionList.ACTIONS_ON_TRANSFORM : ExBasicActionList.DEFAULT_ACTION_LIST;
@@ -366,7 +366,7 @@ public class RequestActionUse extends ClientPacket
 			}
 			case 51: // General Manufacture
 			{
-				// Player shouldn't be able to set stores if he/she is alike dead (dead or fake death)
+				// Player shouldn't be able to set stores if he/she is alike dead (dead or fake death).
 				if (player.isAlikeDead())
 				{
 					player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -412,7 +412,7 @@ public class RequestActionUse extends ClientPacket
 				if (validateSummon(player, summon, false) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
-					summon.getAI().setIntention(Intention.MOVE_TO, target.getLocation());
+					summon.getAI().setIntentionMoveTo(target.getLocation());
 				}
 				break;
 			}
@@ -421,7 +421,7 @@ public class RequestActionUse extends ClientPacket
 				if (validateSummon(player, summon, true) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
-					summon.getAI().setIntention(Intention.MOVE_TO, target.getLocation());
+					summon.getAI().setIntentionMoveTo(target.getLocation());
 				}
 				break;
 			}

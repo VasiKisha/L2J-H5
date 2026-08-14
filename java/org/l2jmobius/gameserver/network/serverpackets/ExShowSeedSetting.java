@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
-import org.l2jmobius.gameserver.model.siege.manor.Seed;
-import org.l2jmobius.gameserver.model.siege.manor.SeedProduction;
+import org.l2jmobius.gameserver.mechanics.siege.manor.Seed;
+import org.l2jmobius.gameserver.mechanics.siege.manor.SeedProduction;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -61,7 +61,7 @@ public class ExShowSeedSetting extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.EX_SHOW_SEED_SETTING.writeId(this, buffer);
 		buffer.writeInt(_manorId); // manor id

@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.config.custom;
 
 import org.l2jmobius.commons.util.ConfigReader;
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.entity.Location;
 
 /**
  * This class loads all the custom faction system related configurations.

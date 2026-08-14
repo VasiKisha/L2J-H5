@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 
 public class RequestRecordInfo extends ClientPacket
 {
@@ -42,7 +42,7 @@ public class RequestRecordInfo extends ClientPacket
 		}
 		
 		player.updateUserInfo();
-		World.getInstance().forEachVisibleObject(player, WorldObject.class, object ->
+		World.forEachVisibleObject(player, WorldObject.class, object ->
 		{
 			if (object.isVisibleFor(player))
 			{

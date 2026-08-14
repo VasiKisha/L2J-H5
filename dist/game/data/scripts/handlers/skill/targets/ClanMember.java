@@ -16,16 +16,16 @@
  */
 package handlers.skill.targets;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.skill.targets.TargetType;
 
 /**
  * @author UnAfraid
@@ -35,7 +35,7 @@ public class ClanMember implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		final List<WorldObject> targetList = new LinkedList<>();
+		final List<WorldObject> targetList = new ArrayList<>();
 		if (creature.isNpc())
 		{
 			// for buff purposes, returns friendly mobs nearby and mob itself
@@ -46,14 +46,10 @@ public class ClanMember implements ITargetTypeHandler
 				return targetList;
 			}
 			
-			for (Npc newTarget : World.getInstance().getVisibleObjectsInRange(creature, Npc.class, skill.getCastRange()))
+			World.forFirstVisibleObjectInRange(creature, Npc.class, skill.getCastRange(), newTarget -> newTarget.isNpc() && npc.isInMyClan(newTarget), newTarget ->
 			{
-				if (newTarget.isNpc() && npc.isInMyClan(newTarget))
-				{
-					targetList.add(newTarget);
-					break;
-				}
-			}
+				targetList.add(newTarget);
+			});
 			
 			if (targetList.isEmpty())
 			{

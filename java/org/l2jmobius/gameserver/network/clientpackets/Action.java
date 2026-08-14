@@ -21,12 +21,12 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.config.NpcConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.skill.AbnormalType;
+import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -49,7 +49,7 @@ public class Action extends ClientPacket
 		_originX = readInt();
 		_originY = readInt();
 		_originZ = readInt();
-		_actionId = readByte(); // Action identifier : 0-Simple click, 1-Shift click
+		_actionId = readByte(); // Action identifier : 0-Simple click, 1-Shift click.
 	}
 	
 	@Override
@@ -60,7 +60,7 @@ public class Action extends ClientPacket
 			return;
 		}
 		
-		// Get the current Player of the player
+		// Get the current Player of the player.
 		final Player player = getPlayer();
 		if (player == null)
 		{
@@ -99,13 +99,13 @@ public class Action extends ClientPacket
 		}
 		else
 		{
-			obj = World.getInstance().findObject(_objectId);
+			obj = World.findObject(_objectId);
 		}
 		
-		// If object requested does not exist, add warn msg into logs
+		// If object requested does not exist, add warn msg into logs.
 		if (obj == null)
 		{
-			// pressing e.g. pickup many times quickly would get you here
+			// Pressing e.g. pickup many times quickly would get you here.
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -116,24 +116,24 @@ public class Action extends ClientPacket
 			return;
 		}
 		
-		// Players can't interact with objects in the other instances, except from multiverse
+		// Players can't interact with objects in the other instances, except from multiverse.
 		if ((obj.getInstanceId() != player.getInstanceId()) && (player.getInstanceId() != -1))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		// Only GMs can directly interact with invisible characters
+		// Only GMs can directly interact with invisible characters.
 		if (!obj.isVisibleFor(player))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		// Check if the target is valid, if the player haven't a shop or isn't the requester of a transaction (ex : FriendInvite, JoinAlly, JoinParty...)
+		// Check if the target is valid, if the player haven't a shop or isn't the requester of a transaction (ex : FriendInvite, JoinAlly, JoinParty...).
 		if (player.getActiveRequester() != null)
 		{
-			// Actions prohibited when in trade
+			// Actions prohibited when in trade.
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -161,7 +161,7 @@ public class Action extends ClientPacket
 			}
 			default:
 			{
-				// Invalid action detected (probably client cheating), log this
+				// Invalid action detected (probably client cheating), log this.
 				PacketLogger.warning("[C] Action: Character: " + player.getName() + " requested invalid action: " + _actionId);
 				player.sendPacket(ActionFailed.STATIC_PACKET);
 				break;

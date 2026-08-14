@@ -21,17 +21,16 @@
 package handlers.actions.click;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionClickHandler;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.npc.OnNpcFirstTalk;
 import org.l2jmobius.gameserver.network.serverpackets.MoveToPawn;
 
 public class NpcClick implements IActionClickHandler
@@ -66,13 +65,13 @@ public class NpcClick implements IActionClickHandler
 		
 		player.setLastFolkNPC(npc);
 		
-		// Check if the Player already target the Npc
+		// Check if the Player already target the Npc.
 		if (target != player.getTarget())
 		{
-			// Set the target of the Player player
+			// Set the target of the Player player.
 			player.setTarget(target);
 			
-			// Check if the player is attackable (without a forced attack)
+			// Check if the player is attackable (without a forced attack).
 			if (target.isAutoAttackable(player))
 			{
 				npc.getAI(); // wake up ai
@@ -80,24 +79,24 @@ public class NpcClick implements IActionClickHandler
 		}
 		else if (interact)
 		{
-			// Check if the player is attackable (without a forced attack) and isn't dead
+			// Check if the player is attackable (without a forced attack) and isn't dead.
 			if (target.isAutoAttackable(player) && !target.asCreature().isAlikeDead())
 			{
-				player.getAI().setIntention(Intention.ATTACK, target);
+				player.getAI().setIntentionAttack(target);
 			}
 			else if (!target.isAutoAttackable(player))
 			{
-				// Calculate the distance between the Player and the Npc
+				// Calculate the distance between the Player and the Npc.
 				if (!npc.canInteract(player))
 				{
-					player.getAI().setIntention(Intention.INTERACT, target);
+					player.getAI().setIntentionInteract(target);
 				}
 				else
 				{
 					// If player is moving and NPC is in interaction distance, change the intention to stop moving.
 					if (player.isMoving() && npc.isInsideRadius3D(player, Npc.INTERACTION_DISTANCE))
 					{
-						player.getAI().setIntention(Intention.ACTIVE);
+						player.getAI().setIntentionActive();
 					}
 					
 					// Turn NPC to the player.
@@ -113,7 +112,7 @@ public class NpcClick implements IActionClickHandler
 						player.stopMove(null);
 					}
 					
-					// Open a chat window on client with the text of the Npc
+					// Open a chat window on client with the text of the Npc.
 					if (npc.hasListener(EventType.ON_NPC_QUEST_START))
 					{
 						player.setLastQuestNpcObject(target.getObjectId());
@@ -135,7 +134,7 @@ public class NpcClick implements IActionClickHandler
 					
 					if (npc.isFakePlayer() && GeoEngine.getInstance().canSeeTarget(player, npc))
 					{
-						player.getAI().setIntention(Intention.FOLLOW, npc);
+						player.getAI().setIntentionFollow(npc);
 					}
 				}
 			}

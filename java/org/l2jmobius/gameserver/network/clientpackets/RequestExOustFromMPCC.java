@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.groups.Party;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -39,7 +39,7 @@ public class RequestExOustFromMPCC extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final Player target = World.getInstance().getPlayer(_name);
+		final Player target = World.getPlayer(_name);
 		final Player player = getPlayer();
 		final Party party = player.getParty();
 		if ((target != null) && target.isInParty() && (party != null) && party.isInCommandChannel() && target.getParty().isInCommandChannel() && party.getCommandChannel().getLeader().equals(player) && party.getCommandChannel().equals(target.getParty().getCommandChannel()))
@@ -54,7 +54,7 @@ public class RequestExOustFromMPCC extends ClientPacket
 			SystemMessage sm = new SystemMessage(SystemMessageId.YOU_WERE_DISMISSED_FROM_THE_COMMAND_CHANNEL);
 			target.getParty().broadcastPacket(sm);
 			
-			// check if CC has not been canceled
+			// Check if CC has not been canceled.
 			if (party.isInCommandChannel())
 			{
 				sm = new SystemMessage(SystemMessageId.C1_S_PARTY_HAS_BEEN_DISMISSED_FROM_THE_COMMAND_CHANNEL);

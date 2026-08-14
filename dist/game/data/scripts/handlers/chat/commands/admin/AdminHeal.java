@@ -20,11 +20,11 @@
  */
 package handlers.chat.commands.admin;
 
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -77,7 +77,7 @@ public class AdminHeal implements IAdminCommandHandler
 		WorldObject obj = activeChar.getTarget();
 		if (player != null)
 		{
-			final Player plyr = World.getInstance().getPlayer(player);
+			final Player plyr = World.getPlayer(player);
 			if (plyr != null)
 			{
 				obj = plyr;
@@ -87,7 +87,7 @@ public class AdminHeal implements IAdminCommandHandler
 				try
 				{
 					final int radius = Integer.parseInt(player);
-					World.getInstance().forEachVisibleObject(activeChar, Creature.class, character ->
+					World.forEachVisibleObject(activeChar, Creature.class, character ->
 					{
 						character.setCurrentHpMp(character.getMaxHp(), character.getMaxMp());
 						if (character.isPlayer())

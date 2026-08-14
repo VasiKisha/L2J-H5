@@ -19,10 +19,10 @@ package quests.Q00619_RelicsOfTheOldEmpire;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
@@ -252,7 +252,7 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 			{
 				if (getQuestItemsCount(player, BROKEN_RELIC_PART) >= REQUIRED_RELIC_COUNT)
 				{
-					rewardItems(player, RECIPES[getRandom(RECIPES.length)], 1);
+					rewardItems(player, getRandomEntry(RECIPES), 1);
 					takeItems(player, BROKEN_RELIC_PART, REQUIRED_RELIC_COUNT);
 					htmltext = event;
 				}

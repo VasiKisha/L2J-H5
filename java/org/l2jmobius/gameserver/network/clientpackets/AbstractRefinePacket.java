@@ -25,13 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.item.Armor;
-import org.l2jmobius.gameserver.model.item.Weapon;
-import org.l2jmobius.gameserver.model.item.enums.BodyPart;
-import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.item.type.CrystalType;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.Armor;
+import org.l2jmobius.gameserver.entity.item.Weapon;
+import org.l2jmobius.gameserver.entity.item.enums.BodyPart;
+import org.l2jmobius.gameserver.entity.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.item.type.CrystalType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public abstract class AbstractRefinePacket extends ClientPacket
@@ -217,7 +217,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			return false;
 		}
 		
-		// GemStones must belong to owner
+		// GemStones must belong to owner.
 		if (gemStones.getOwnerId() != player.getObjectId())
 		{
 			return false;
@@ -230,15 +230,14 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		}
 		
 		final CrystalType grade = item.getTemplate().getCrystalType();
-		final LifeStone ls = _lifeStones.get(refinerItem.getId());
-		
-		// Check for item id
+		// Check for item id.
 		if (getGemStoneId(grade) != gemStones.getId())
 		{
 			return false;
 		}
 		
-		// Count must be greater or equal of required number
+		// Count must be greater or equal of required number.
+		final LifeStone ls = _lifeStones.get(refinerItem.getId());
 		if (getGemStoneCount(grade, ls.getGrade()) > gemStones.getCount())
 		{
 			return false;
@@ -261,13 +260,13 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			return false;
 		}
 		
-		// Item must belong to owner
+		// Item must belong to owner.
 		if (refinerItem.getOwnerId() != player.getObjectId())
 		{
 			return false;
 		}
 		
-		// Lifestone must be located in inventory
+		// Lifestone must be located in inventory.
 		if (refinerItem.getItemLocation() != ItemLocation.INVENTORY)
 		{
 			return false;
@@ -313,7 +312,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			return false;
 		}
 		
-		// Item must belong to owner
+		// Item must belong to owner.
 		if (item.getOwnerId() != player.getObjectId())
 		{
 			return false;
@@ -359,7 +358,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			return false;
 		}
 		
-		// Source item can be equipped or in inventory
+		// Source item can be equipped or in inventory.
 		switch (item.getItemLocation())
 		{
 			case INVENTORY:

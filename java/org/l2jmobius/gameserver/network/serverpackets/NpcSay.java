@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.NpcStringId.NSLocalisation;
@@ -112,7 +112,7 @@ public class NpcSay extends ServerPacket
 			
 			for (String item : params)
 			{
-				if ((item != null) && (item.length() > 0))
+				if ((item != null) && !item.isEmpty())
 				{
 					_parameters.add(item);
 				}
@@ -123,7 +123,7 @@ public class NpcSay extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		ServerPackets.NPC_SAY.writeId(this, buffer);
 		buffer.writeInt(_objectId);

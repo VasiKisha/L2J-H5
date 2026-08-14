@@ -26,9 +26,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
-import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
+import org.l2jmobius.gameserver.entity.actor.instance.StaticObject;
+import org.l2jmobius.gameserver.entity.actor.templates.CreatureTemplate;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * @author UnAfraid

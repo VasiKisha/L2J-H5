@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 public class GMAudit
 {
 	private static final Logger LOGGER = Logger.getLogger("gmaudit");
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm:ss");
 	static
 	{
 		new File("log/GMAudit").mkdirs();
@@ -57,8 +58,7 @@ public class GMAudit
 	 */
 	public static void logAction(String gmName, String action, String target, String params)
 	{
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
-		final String timestamp = dateFormat.format(new Date());
+		final String timestamp = DATE_FORMAT.format(LocalDateTime.now());
 		
 		// Sanitize the GM's name for the filename.
 		String sanitizedGmName = sanitizeFileName(gmName);

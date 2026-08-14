@@ -25,9 +25,9 @@ import java.util.concurrent.ScheduledFuture;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
+import org.l2jmobius.gameserver.entity.itemcontainer.Mail;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.MailManager;
-import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.network.enums.MessageSenderType;
 
 /**
@@ -370,7 +370,7 @@ public class MailMessage
 		return _attachments;
 	}
 	
-	protected final synchronized void unloadAttachments()
+	protected synchronized void unloadAttachments()
 	{
 		if (_attachments == null)
 		{

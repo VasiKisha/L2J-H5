@@ -20,28 +20,26 @@
  */
 package quests.Q00454_CompletelyLost;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
-import org.l2jmobius.gameserver.model.events.annotations.Id;
-import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.script.Quest;
-import org.l2jmobius.gameserver.model.script.QuestState;
-import org.l2jmobius.gameserver.model.script.QuestType;
-import org.l2jmobius.gameserver.model.script.State;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.ListenerRegisterType;
+import org.l2jmobius.gameserver.mechanics.events.annotations.Id;
+import org.l2jmobius.gameserver.mechanics.events.annotations.RegisterEvent;
+import org.l2jmobius.gameserver.mechanics.events.annotations.RegisterType;
+import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.mechanics.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.mechanics.script.Quest;
+import org.l2jmobius.gameserver.mechanics.script.QuestState;
+import org.l2jmobius.gameserver.mechanics.script.QuestType;
+import org.l2jmobius.gameserver.mechanics.script.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -298,7 +296,7 @@ public class Q00454_CompletelyLost extends Quest
 				if (leader != null)
 				{
 					receiver.setTarget(leader);
-					receiver.getAI().setIntention(Intention.FOLLOW, leader);
+					receiver.getAI().setIntentionFollow(leader);
 				}
 				
 				startQuestTimer("CHECK_TIMER", 1000, receiver, null);
@@ -395,19 +393,15 @@ public class Q00454_CompletelyLost extends Quest
 	{
 		if (npc.isScriptValue(2))
 		{
-			for (Npc nearby : World.getInstance().getVisibleObjectsInRange(npc, Npc.class, 300))
+			World.forFirstVisibleObjectInRange(npc, Npc.class, 300, nearby -> nearby.getId() == ERMIAN, nearby ->
 			{
-				if (nearby.getId() == ERMIAN)
-				{
-					npc.setScriptValue(3);
-					npc.getAI().setIntention(Intention.IDLE);
-					addMoveToDesire(npc, MOVE_TO, 10000000);
-					npc.sendScriptEvent("SCE_A_SEED_ESCORT_QUEST_SUCCESS", npc, null);
-					npc.setHeading(LocationUtil.calculateHeadingFrom(npc, nearby));
-					startQuestTimer("SAY_TIMER2", 2000, npc, null);
-					break;
-				}
-			}
+				npc.setScriptValue(3);
+				npc.getAI().setIntentionIdle();
+				addMoveToDesire(npc, MOVE_TO, 10000000);
+				npc.sendScriptEvent("SCE_A_SEED_ESCORT_QUEST_SUCCESS", npc, null);
+				npc.setHeading(LocationUtil.calculateHeadingFrom(npc, nearby));
+				startQuestTimer("SAY_TIMER2", 2000, npc, null);
+			});
 		}
 	}
 	
@@ -764,8 +758,8 @@ public class Q00454_CompletelyLost extends Quest
 	{
 		final Npc npc = event.getTarget().asNpc();
 		npc.setScriptValue(1);
-		npc.getAI().setIntention(Intention.IDLE);
-		npc.getAI().setIntention(Intention.ACTIVE);
+		npc.getAI().setIntentionIdle();
+		npc.getAI().setIntentionActive();
 		startQuestTimer("SAY_TIMER1", 2000, npc, null);
 		return new TerminateReturn(true, false, false);
 	}
@@ -777,7 +771,7 @@ public class Q00454_CompletelyLost extends Quest
 	 */
 	private void broadcastNpcSay(Npc npc, NpcStringId stringId)
 	{
-		Broadcast.toKnownPlayers(npc, new NpcSay(npc, ChatType.NPC_GENERAL, stringId));
+		World.broadcastToVisiblePlayers(npc, new NpcSay(npc, ChatType.NPC_GENERAL, stringId));
 	}
 	
 	/**

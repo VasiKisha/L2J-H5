@@ -21,45 +21,48 @@
 package org.l2jmobius.gameserver.geoengine.pathfinding;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.model.World;
 
 /**
+ * Entry point for pathfinding.<br>
+ * Buffers are owned per-thread via {@link ThreadLocal} - no shared pool, no locks.<br>
+ * Each thread lazily allocates one {@link NodeBuffer} per configured size class on first use; subsequent calls of compatible size reuse the same instance via {@link NodeBuffer#free()}.
  * @author Mobius
  */
 public class PathFinding
 {
 	private static final Logger LOGGER = Logger.getLogger(PathFinding.class.getName());
 	
-	private BufferInfo[] _allBuffers;
+	private final int[] _sizeClasses;
+	private final ThreadLocal<NodeBuffer[]> _tlBuffers;
 	
 	protected PathFinding()
 	{
 		try
 		{
 			final String[] array = GeoEngineConfig.PATHFIND_BUFFERS.split(";");
-			
-			_allBuffers = new BufferInfo[array.length];
-			
-			String buffer;
-			String[] args;
+			final int[] parsed = new int[array.length];
 			for (int i = 0; i < array.length; i++)
 			{
-				buffer = array[i];
-				args = buffer.split("x");
-				if (args.length != 2)
+				final String[] args = array[i].split("x");
+				if (args.length < 1)
 				{
-					throw new Exception("Invalid buffer definition: " + buffer);
+					throw new Exception("Invalid buffer definition: " + array[i]);
 				}
 				
-				_allBuffers[i] = new BufferInfo(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+				parsed[i] = Integer.parseInt(args[0]);
 			}
+			
+			Arrays.sort(parsed);
+			_sizeClasses = parsed;
+			_tlBuffers = ThreadLocal.withInitial(() -> new NodeBuffer[_sizeClasses.length]);
 		}
 		catch (Exception e)
 		{
@@ -154,38 +157,32 @@ public class PathFinding
 	public List<GeoLocation> findPath(int x, int y, int z, int tx, int ty, int tz, int instanceId, boolean playable)
 	{
 		final GeoEngine geoEngine = GeoEngine.getInstance();
-		final int gx = GeoEngine.getGeoX(x);
-		final int gy = GeoEngine.getGeoY(y);
 		if (!geoEngine.hasGeo(x, y))
 		{
 			return null;
 		}
 		
-		final int gz = geoEngine.getHeight(x, y, z);
-		final int gtx = GeoEngine.getGeoX(tx);
-		final int gty = GeoEngine.getGeoY(ty);
 		if (!geoEngine.hasGeo(tx, ty))
 		{
 			return null;
 		}
 		
-		final int gtz = geoEngine.getHeight(tx, ty, tz);
+		final int gx = GeoEngine.getGeoX(x);
+		final int gy = GeoEngine.getGeoY(y);
+		final int gtx = GeoEngine.getGeoX(tx);
+		final int gty = GeoEngine.getGeoY(ty);
 		final NodeBuffer buffer = alloc(64 + (2 * Math.max(Math.abs(gx - gtx), Math.abs(gy - gty))));
 		if (buffer == null)
 		{
 			return null;
 		}
 		
-		List<GeoLocation> path = null;
+		final int gz = geoEngine.getHeight(x, y, z);
+		final int gtz = geoEngine.getHeight(tx, ty, tz);
+		List<GeoLocation> path;
 		try
 		{
-			final GeoNode result = buffer.findPath(gx, gy, gz, gtx, gty, gtz);
-			if (result == null)
-			{
-				return null;
-			}
-			
-			path = constructPath(result);
+			path = buffer.findPath(gx, gy, gz, gtx, gty, gtz);
 		}
 		catch (Exception e)
 		{
@@ -197,15 +194,17 @@ public class PathFinding
 			buffer.free();
 		}
 		
+		if (path == null)
+		{
+			return null;
+		}
+		
 		if ((path.size() < 3) || (GeoEngineConfig.MAX_POSTFILTER_PASSES <= 0))
 		{
 			return path;
 		}
 		
-		// Enhanced post-filtering with configurable passes.
-		path = applyPostFiltering(path, x, y, z, instanceId, playable);
-		
-		return path;
+		return applyPostFiltering(path, x, y, z, instanceId, playable);
 	}
 	
 	/**
@@ -269,114 +268,29 @@ public class PathFinding
 	}
 	
 	/**
-	 * Constructs a path from a given node by traversing its parent nodes.
-	 * @param node the starting node
-	 * @return the constructed path as a list of node locations
-	 */
-	private List<GeoLocation> constructPath(GeoNode node)
-	{
-		final List<GeoLocation> path = new ArrayList<>();
-		int previousDirectionX = Integer.MIN_VALUE;
-		int previousDirectionY = Integer.MIN_VALUE;
-		int directionX;
-		int directionY;
-		
-		GeoNode tempNode = node;
-		while (tempNode.getParent() != null)
-		{
-			if (!GeoEngineConfig.ADVANCED_DIAGONAL_STRATEGY && (tempNode.getParent().getParent() != null))
-			{
-				final int tmpX = tempNode.getLocation().getNodeX() - tempNode.getParent().getParent().getLocation().getNodeX();
-				final int tmpY = tempNode.getLocation().getNodeY() - tempNode.getParent().getParent().getLocation().getNodeY();
-				if (Math.abs(tmpX) == Math.abs(tmpY))
-				{
-					directionX = tmpX;
-					directionY = tmpY;
-				}
-				else
-				{
-					directionX = tempNode.getLocation().getNodeX() - tempNode.getParent().getLocation().getNodeX();
-					directionY = tempNode.getLocation().getNodeY() - tempNode.getParent().getLocation().getNodeY();
-				}
-			}
-			else
-			{
-				directionX = tempNode.getLocation().getNodeX() - tempNode.getParent().getLocation().getNodeX();
-				directionY = tempNode.getLocation().getNodeY() - tempNode.getParent().getLocation().getNodeY();
-			}
-			
-			// Only add a new route point if moving direction changes.
-			if ((directionX != previousDirectionX) || (directionY != previousDirectionY))
-			{
-				previousDirectionX = directionX;
-				previousDirectionY = directionY;
-				
-				path.addFirst(tempNode.getLocation());
-				tempNode.setLoc(null);
-			}
-			
-			tempNode = tempNode.getParent();
-		}
-		
-		return path;
-	}
-	
-	/**
-	 * Allocates a buffer for pathfinding based on the specified size.
-	 * @param size the required size of the buffer
-	 * @return a locked buffer, or {@code null} if no suitable buffer is available
+	 * Returns a per-thread buffer whose map size is at least {@code size}. Lazily allocates one buffer per size class per thread; never blocks.
+	 * @param size the minimum map size required
+	 * @return a usable buffer, or {@code null} when {@code size} exceeds the largest configured class
 	 */
 	private NodeBuffer alloc(int size)
 	{
-		NodeBuffer current = null;
-		
-		for (BufferInfo info : _allBuffers)
+		final NodeBuffer[] perThread = _tlBuffers.get();
+		for (int i = 0; i < _sizeClasses.length; i++)
 		{
-			if (info.mapSize >= size)
+			if (_sizeClasses[i] >= size)
 			{
-				for (NodeBuffer buffer : info.buffers)
+				NodeBuffer buffer = perThread[i];
+				if (buffer == null)
 				{
-					if (buffer.lock())
-					{
-						current = buffer;
-						break;
-					}
+					buffer = new NodeBuffer(_sizeClasses[i]);
+					perThread[i] = buffer;
 				}
 				
-				if (current != null)
-				{
-					break;
-				}
-				
-				// Not found, allocate temporary buffer.
-				current = new NodeBuffer(info.mapSize);
-				current.lock();
-				if (info.buffers.size() < info.count)
-				{
-					info.buffers.add(current);
-					break;
-				}
+				return buffer;
 			}
 		}
 		
-		return current;
-	}
-	
-	/**
-	 * Represents buffer information for managing pathfinding buffers.
-	 */
-	private static class BufferInfo
-	{
-		final int mapSize;
-		final int count;
-		final List<NodeBuffer> buffers;
-		
-		public BufferInfo(int size, int cnt)
-		{
-			mapSize = size;
-			count = cnt;
-			buffers = Collections.synchronizedList(new ArrayList<>(count));
-		}
+		return null;
 	}
 	
 	public static PathFinding getInstance()

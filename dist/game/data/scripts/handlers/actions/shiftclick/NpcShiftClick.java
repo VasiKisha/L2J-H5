@@ -25,14 +25,14 @@ import java.util.Set;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
+import org.l2jmobius.gameserver.entity.Location;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.entity.item.holders.Elementals;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
 import org.l2jmobius.gameserver.managers.WalkingManager;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.item.holders.Elementals;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 import handlers.bypass.npc.NpcViewMod;
@@ -55,10 +55,10 @@ public class NpcShiftClick implements IActionShiftHandler
 	@Override
 	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
-		// Check if the Player is a GM
+		// Check if the Player is a GM.
 		if (player.isGM())
 		{
-			// Set the target of the Player player
+			// Set the target of the Player player.
 			player.setTarget(target);
 			
 			final NpcHtmlMessage html = new NpcHtmlMessage();

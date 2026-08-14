@@ -31,19 +31,19 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.config.PlayerConfig;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.EventMonster;
-import org.l2jmobius.gameserver.model.events.EventDispatcher;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.holders.item.OnItemCreate;
-import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Attackable;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.instance.EventMonster;
+import org.l2jmobius.gameserver.entity.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.mechanics.events.EventDispatcher;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.holders.item.OnItemCreate;
 import org.l2jmobius.gameserver.util.GMAudit;
 
 /**
@@ -92,7 +92,7 @@ public class ItemManager
 			ScheduledFuture<?> itemLootShedule;
 			if ((reference instanceof Attackable) && ((Attackable) reference).isRaid()) // Loot privilege for raids.
 			{
-				// if in CommandChannel and was killing a World/RaidBoss.
+				// If in CommandChannel and was killing a World/RaidBoss.
 				final Attackable raid = (Attackable) reference;
 				if ((raid.getFirstCommandChannelAttacked() != null) && !PlayerConfig.AUTO_LOOT_RAIDS)
 				{
@@ -110,7 +110,7 @@ public class ItemManager
 		}
 		
 		// Add the Item object to the World.
-		World.getInstance().addObject(item);
+		World.addObject(item);
 		
 		// Set Item parameters.
 		if (item.isStackable() && (count > 1))
@@ -173,7 +173,7 @@ public class ItemManager
 			item.setItemLocation(ItemLocation.VOID);
 			item.setLastChange(Item.REMOVED);
 			
-			World.getInstance().removeObject(item);
+			World.removeObject(item);
 			IdManager.getInstance().releaseId(item.getObjectId());
 			
 			if ((process != null) && (process != ItemProcessType.NONE))

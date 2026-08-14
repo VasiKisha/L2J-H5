@@ -16,8 +16,8 @@
  */
 package ai.others.Servitors;
 
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
  * Golem Trader AI.

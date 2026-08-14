@@ -21,10 +21,10 @@
 package handlers.chat.commands.admin;
 
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * @author Mobius
@@ -48,7 +48,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				return false;
 			}
 			
-			final Player player = World.getInstance().getPlayer(words[0]);
+			final Player player = World.getPlayer(words[0]);
 			if (player == null)
 			{
 				activeChar.sendSysMessage("Player not found.");

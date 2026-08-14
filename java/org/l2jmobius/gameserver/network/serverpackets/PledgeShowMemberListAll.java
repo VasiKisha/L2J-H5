@@ -22,11 +22,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.Clan.SubPledge;
-import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.clan.Clan;
+import org.l2jmobius.gameserver.entity.clan.Clan.SubPledge;
+import org.l2jmobius.gameserver.entity.clan.ClanMember;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -45,7 +45,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 	}
 	
 	@Override
-	public void writeImpl(GameClient client, WritableBuffer buffer)
+	public void writeImpl(GameClient client, WriteBuffer buffer)
 	{
 		_pledgeType = 0;
 		
@@ -70,7 +70,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 		_player.updateUserInfo();
 	}
 	
-	private void writePledge(int mainOrSubpledge, WritableBuffer buffer)
+	private void writePledge(int mainOrSubpledge, WriteBuffer buffer)
 	{
 		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_ALL.writeId(this, buffer);
 		buffer.writeInt(mainOrSubpledge);

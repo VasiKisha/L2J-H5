@@ -34,10 +34,10 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
-import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.entity.actor.enums.npc.RaidBossStatus;
+import org.l2jmobius.gameserver.entity.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Raid Boss spawn manager.
@@ -385,9 +385,9 @@ public class RaidBossSpawnManager
 	public String getRaidBossStatus(int bossId)
 	{
 		String msg = "RaidBoss Status..." + System.lineSeparator();
-		if (_bosses.containsKey(bossId))
+		final RaidBoss boss = _bosses.get(bossId);
+		if (boss != null)
 		{
-			final RaidBoss boss = _bosses.get(bossId);
 			msg += boss.getName() + ": " + boss.getRaidStatus().name();
 		}
 		
@@ -401,9 +401,10 @@ public class RaidBossSpawnManager
 	 */
 	public RaidBossStatus getRaidBossStatusId(int bossId)
 	{
-		if (_bosses.containsKey(bossId))
+		final RaidBoss boss = _bosses.get(bossId);
+		if (boss != null)
 		{
-			return _bosses.get(bossId).getRaidStatus();
+			return boss.getRaidStatus();
 		}
 		else if (_schedules.containsKey(bossId))
 		{

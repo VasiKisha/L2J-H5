@@ -20,17 +20,18 @@
  */
 package org.l2jmobius.loginserver.network;
 
-import java.io.IOException;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.commons.network.Buffer;
 import org.l2jmobius.commons.network.Client;
 import org.l2jmobius.commons.network.Connection;
+import org.l2jmobius.commons.network.buffer.ReadBuffer;
+import org.l2jmobius.commons.network.buffer.WriteBuffer;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.loginserver.LoginController;
-import org.l2jmobius.loginserver.SessionKey;
+import org.l2jmobius.loginserver.controller.LoginController;
+import org.l2jmobius.loginserver.controller.ScrambledKeyPair;
+import org.l2jmobius.loginserver.controller.SessionKey;
 import org.l2jmobius.loginserver.enums.AccountKickedReason;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.enums.PlayFailReason;
@@ -93,32 +94,15 @@ public class LoginClient extends Client<Connection<LoginClient>>
 	}
 	
 	@Override
-	public boolean encrypt(Buffer data, int offset, int size)
+	public boolean encrypt(WriteBuffer data, int offset, int size)
 	{
-		try
-		{
-			return _encryption.encrypt(data, offset, size);
-		}
-		catch (IOException e)
-		{
-			return false;
-		}
+		return _encryption.encrypt(data, offset, size);
 	}
 	
 	@Override
-	public boolean decrypt(Buffer data, int offset, int size)
+	public boolean decrypt(ReadBuffer data, int offset, int size)
 	{
-		boolean decrypted;
-		try
-		{
-			decrypted = _encryption.decrypt(data, offset, size);
-		}
-		catch (IOException e)
-		{
-			close();
-			return false;
-		}
-		
+		final boolean decrypted = _encryption.decrypt(data, offset, size);
 		if (!decrypted)
 		{
 			close();
@@ -308,7 +292,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 			sb.append("IP: ");
 			sb.append(ip.isEmpty() ? "disconnected" : ip);
 		}
-		sb.append("]");
+		sb.append(']');
 		return sb.toString();
 	}
 }

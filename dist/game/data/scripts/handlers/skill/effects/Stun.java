@@ -16,14 +16,13 @@
  */
 package handlers.skill.effects;
 
-import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.mechanics.conditions.Condition;
+import org.l2jmobius.gameserver.mechanics.effects.AbstractEffect;
+import org.l2jmobius.gameserver.mechanics.effects.EffectFlag;
+import org.l2jmobius.gameserver.mechanics.effects.EffectType;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.util.StatSet;
 
 /**
  * Stun effect implementation.
@@ -63,7 +62,7 @@ public class Stun extends AbstractEffect
 			{
 				if (effector.isPlayable() && (effected.asPlayer().getPvpFlag() == 0))
 				{
-					effected.getAI().setIntention(Intention.MOVE_TO, effected.asPlayer());
+					effected.getAI().setIntentionMoveTo(effected.asPlayer());
 				}
 				else
 				{
@@ -72,7 +71,7 @@ public class Stun extends AbstractEffect
 			}
 			else
 			{
-				effected.getAI().setIntention(Intention.MOVE_TO, effected.asPlayer());
+				effected.getAI().setIntentionMoveTo(effected.asPlayer());
 			}
 		}
 	}

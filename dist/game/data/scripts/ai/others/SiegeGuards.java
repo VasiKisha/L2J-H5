@@ -24,27 +24,27 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.entity.World;
+import org.l2jmobius.gameserver.entity.WorldObject;
+import org.l2jmobius.gameserver.entity.actor.Creature;
+import org.l2jmobius.gameserver.entity.actor.Npc;
+import org.l2jmobius.gameserver.entity.actor.Playable;
+import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.item.type.WeaponType;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
-import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
-import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.holders.sieges.fort.OnFortSiegeFinish;
-import org.l2jmobius.gameserver.model.item.type.WeaponType;
-import org.l2jmobius.gameserver.model.script.Script;
-import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.model.spawns.Spawn;
+import org.l2jmobius.gameserver.mechanics.events.EventType;
+import org.l2jmobius.gameserver.mechanics.events.ListenerRegisterType;
+import org.l2jmobius.gameserver.mechanics.events.annotations.RegisterEvent;
+import org.l2jmobius.gameserver.mechanics.events.annotations.RegisterType;
+import org.l2jmobius.gameserver.mechanics.events.holders.sieges.castle.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.mechanics.events.holders.sieges.fort.OnFortSiegeFinish;
+import org.l2jmobius.gameserver.mechanics.script.Script;
+import org.l2jmobius.gameserver.mechanics.siege.Castle;
+import org.l2jmobius.gameserver.mechanics.siege.Fort;
+import org.l2jmobius.gameserver.mechanics.skill.Skill;
 
 /**
  * @author Mobius
@@ -190,26 +190,16 @@ public class SiegeGuards extends Script
 					continue;
 				}
 				
-				// Iterate all players/summons within aggro range...
-				for (Playable nearby : World.getInstance().getVisibleObjectsInRange(guard, Playable.class, guard.getAggroRange()))
+				// Find first valid target within aggro range and start attacking it.
+				World.forFirstVisibleObjectInRange(guard, Playable.class, guard.getAggroRange(), nearby ->
 				{
-					// Do not attack players/summons who are dead/invis/invul or cannot be seen.
 					if (nearby.isDead() || nearby.isInvisible() || nearby.isInvul() || !GeoEngine.getInstance().canSeeTarget(guard, nearby))
 					{
-						continue;
+						return false;
 					}
-					
-					// Do not attack defenders who are registered to this castle.
 					final Player player = nearby.asPlayer();
-					if ((player.getSiegeState() == 2) && player.isRegisteredOnThisSiegeField(guard.getScriptValue()))
-					{
-						continue;
-					}
-					
-					// Attack the target and stop searching.
-					guard.asAttackable().addDamageHate(nearby, 0, 999);
-					break;
-				}
+					return !((player.getSiegeState() == 2) && player.isRegisteredOnThisSiegeField(guard.getScriptValue()));
+				}, nearby -> guard.asAttackable().addDamageHate(nearby, 0, 999));
 			}
 			
 			synchronized (RESIDENCE_WORKING)
