@@ -27,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 
@@ -131,6 +132,17 @@ public class CreatureFollowTaskManager
 						}
 						
 						ai.moveToPawn(followTarget, followRange);
+						// GeoEngine can reject or truncate a route without ever raising ARRIVED.
+						//  Revalidate rather than leave the action waiting on an event that never comes.
+						if (!creature.isMoving() && ((ai.getIntention() == Intention.ATTACK) || (ai.getIntention() == Intention.CAST)))
+						{
+							ai.notifyActionArrived();
+						}
+					}
+					else if (!creature.isMoving() && ((ai.getIntention() == Intention.ATTACK) || (ai.getIntention() == Intention.CAST)))
+					{
+						// This task can observe arrival before the movement manager does.
+						ai.notifyActionArrived();
 					}
 				}
 				else

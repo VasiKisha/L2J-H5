@@ -167,8 +167,16 @@ public class AutoPlayTaskManager
 									player.getAI().setIntentionAttack(creature);
 								}
 							}
-							else if (creature.hasAI() && !creature.getAI().isAutoAttacking())
+							else
 							{
+								// Re-submitting the same attack revalidates a move to target that stalled.
+								player.getAI().setIntentionAttack(creature);
+								if (player.isAttackingNow() || player.isCastingNow() || player.isMoving())
+								{
+									IDLE_COUNT.remove(player);
+									continue PLAY;
+								}
+								
 								final Weapon weapon = player.getActiveWeaponItem();
 								if (weapon != null)
 								{

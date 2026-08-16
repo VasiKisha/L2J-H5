@@ -272,7 +272,10 @@ public class CreatureAI extends AbstractAI
 				}
 				else
 				{
-					clientActionFailed(); // else client freezes until cancel target
+					// A repeated attack on the same target revalidates a move that ended without arriving.
+					//  Sending only ActionFailed leaves the intention waiting on an event that never comes.
+					stopFollow();
+					notifyActionThink();
 				}
 			}
 			else
