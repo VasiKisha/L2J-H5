@@ -22,7 +22,6 @@ import java.util.Map;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
-import org.l2jmobius.gameserver.mechanics.script.QuestState;
 import org.l2jmobius.gameserver.mechanics.script.Script;
 
 /**
@@ -101,8 +100,7 @@ public class EchoCrystals extends Script
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = "";
-		final QuestState qs = player.getQuestState(EchoCrystals.class.getSimpleName());
-		if ((qs != null) && StringUtil.isNumeric(event))
+		if (StringUtil.isNumeric(event))
 		{
 			final int score = Integer.parseInt(event);
 			final ScoreData scoreEntry = SCORES.get(score);
