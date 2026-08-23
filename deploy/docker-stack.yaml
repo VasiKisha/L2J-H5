@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.11
+    command: --max_allowed_packet=128M
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: l2jmobius
+      MYSQL_USER: l2j
+      MYSQL_PASSWORD: l2jpassword
+      TZ: Europe/Prague
+    volumes:
+      - db_data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    environment:
+      TZ: Europe/Prague
+    ports:
+      - "8085:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  loginserver:
+    image: eclipse-temurin:25-jdk-jammy
+    working_dir: /server/login
+    environment:
+      TZ: Europe/Prague
+      JAVA_TOOL_OPTIONS: "-Duser.timezone=Europe/Prague"
+    volumes:
+      - /opt/l2j/l2j-server:/server
+      - /etc/localtime:/etc/localtime:ro
+    # DOČASNÝ PŘÍKAZ, aby kontejner zůstal běžet a mohli jsme instalovat
+    # command: tail -f /dev/null 
+    command: bash -c "chmod +x *.sh && ./LoginServerTask.sh"
+    ports:
+      - "2106:2106"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  gameserver:
+    image: eclipse-temurin:25-jdk-jammy
+    working_dir: /server/game
+    environment:
+      TZ: Europe/Prague
+      JAVA_TOOL_OPTIONS: "-Duser.timezone=Europe/Prague"
+    volumes:
+      - /opt/l2j/l2j-server:/server
+      - /etc/localtime:/etc/localtime:ro
+    # DOČASNÝ PŘÍKAZ, aby kontejner zůstal běžet a mohli jsme instalovat
+    # command: tail -f /dev/null 
+    command: bash -c "chmod +x *.sh && ./GameServerTask.sh"
+    ports:
+      - "7777:7777"
+    depends_on:
+      - db
+      - loginserver
+    restart: unless-stopped
+
+volumes:
+  db_data:
