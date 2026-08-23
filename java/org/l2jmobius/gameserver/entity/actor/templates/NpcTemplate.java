@@ -1041,72 +1041,84 @@ public class NpcTemplate extends CreatureTemplate
 		final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 		final boolean champion = victim.isChampion();
 		
-		// calculate if item will drop
-		if ((Rnd.nextDouble() * 100) < chance)
+		// Transformation: Výpočet počtu úspěšných hodů (garantované + zbytek)
+		int dropCount = (int) (chance / 100);
+		if ((Rnd.nextDouble() * 100) < (chance % 100))
 		{
-			// amount is calculated after chance returned success
-			double rateAmount = 1;
-			if (RatesConfig.RATE_DROP_AMOUNT_BY_ID.get(itemId) != null)
-			{
-				rateAmount *= RatesConfig.RATE_DROP_AMOUNT_BY_ID.get(itemId);
-				if (champion && (itemId == Inventory.ADENA_ID))
-				{
-					rateAmount *= ChampionMonstersConfig.CHAMPION_ADENAS_REWARDS_AMOUNT;
-				}
-			}
-			else if (item.hasExImmediateEffect())
-			{
-				rateAmount *= RatesConfig.RATE_HERB_DROP_AMOUNT_MULTIPLIER;
-			}
-			else if (victim.isRaid())
-			{
-				rateAmount *= RatesConfig.RATE_RAID_DROP_AMOUNT_MULTIPLIER;
-			}
-			else
-			{
-				rateAmount *= RatesConfig.RATE_DEATH_DROP_AMOUNT_MULTIPLIER * (champion ? ChampionMonstersConfig.CHAMPION_REWARDS_AMOUNT : 1);
-			}
-			
-			// premium amount
-			final Player player = killer.asPlayer();
-			if (player != null)
-			{
-				if (PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED && player.hasPremiumStatus())
-				{
-					if (PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT_BY_ID.get(itemId) != null)
-					{
-						rateAmount *= PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT_BY_ID.get(itemId);
-					}
-					else if (item.hasExImmediateEffect())
-					{
-						// TODO: Premium herb amount? :)
-					}
-					else if (victim.isRaid())
-					{
-						// TODO: Premium raid amount? :)
-					}
-					else
-					{
-						rateAmount *= PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT;
-					}
-				}
-				
-				// bonus drop amount effect
-				final PlayerStat stat = player.getStat();
-				rateAmount *= stat.getBonusDropAmountMultiplier();
-				if (itemId == Inventory.ADENA_ID)
-				{
-					rateAmount *= stat.getBonusDropAdenaMultiplier();
-				}
-			}
-			
-			// finally
-			return new ItemHolder(itemId, (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount));
+			dropCount++;
 		}
 		
-		return null;
-	}
-	
+		if (dropCount <= 0)
+		{
+			return null;
+		}
+
+		// Standard processing applied pro výpočet rateAmount (zachováno)
+		double rateAmount = 1;
+		if (RatesConfig.RATE_DROP_AMOUNT_BY_ID.get(itemId) != null)
+		{
+			rateAmount *= RatesConfig.RATE_DROP_AMOUNT_BY_ID.get(itemId);
+			if (champion && (itemId == Inventory.ADENA_ID))
+			{
+				rateAmount *= ChampionMonstersConfig.CHAMPION_ADENAS_REWARDS_AMOUNT;
+			}
+		}
+		else if (item.hasExImmediateEffect())
+		{
+			rateAmount *= RatesConfig.RATE_HERB_DROP_AMOUNT_MULTIPLIER;
+		}
+		else if (victim.isRaid())
+		{
+			rateAmount *= RatesConfig.RATE_RAID_DROP_AMOUNT_MULTIPLIER;
+		}
+		else
+		{
+			rateAmount *= RatesConfig.RATE_DEATH_DROP_AMOUNT_MULTIPLIER * (champion ? ChampionMonstersConfig.CHAMPION_REWARDS_AMOUNT : 1);
+		}
+		
+		// premium amount
+		final Player player = killer.asPlayer();
+		if (player != null)
+		{
+			if (PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED && player.hasPremiumStatus())
+			{
+				if (PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT_BY_ID.get(itemId) != null)
+				{
+					rateAmount *= PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT_BY_ID.get(itemId);
+				}
+				else if (item.hasExImmediateEffect())
+				{
+					// TODO: Premium herb amount? :)
+				}
+				else if (victim.isRaid())
+				{
+					// TODO: Premium raid amount? :)
+				}
+				else
+				{
+					rateAmount *= PremiumSystemConfig.PREMIUM_RATE_DROP_AMOUNT;
+				}
+			}
+			
+			// bonus drop amount effect
+			final PlayerStat stat = player.getStat();
+			rateAmount *= stat.getBonusDropAmountMultiplier();
+			if (itemId == Inventory.ADENA_ID)
+			{
+				rateAmount *= stat.getBonusDropAdenaMultiplier();
+			}
+		}
+		
+		// Akumulace celkového množství za všechny úspěšné hody
+		int totalAmount = 0;
+		for (int i = 0; i < dropCount; i++)
+		{
+			totalAmount += (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount);
+		}
+		
+		return new ItemHolder(itemId, totalAmount);
+	}	
+
 	/**
 	 * @param dropItem
 	 * @param victim
@@ -1179,8 +1191,15 @@ public class NpcTemplate extends CreatureTemplate
 					rateChance *= player.getStat().getBonusDropRateMultiplier();
 				}
 				
-				// calculate if item will drop
-				if ((Rnd.nextDouble() * 100) < (dropItem.getChance() * rateChance))
+				// ÚPRAVA PRO DROP > 100%
+				double totalChance = dropItem.getChance() * rateChance;
+				int dropCount = (int) (totalChance / 100);
+				if ((Rnd.nextDouble() * 100) < (totalChance % 100))
+				{
+					dropCount++;
+				}
+				
+				if (dropCount > 0)
 				{
 					// amount is calculated after chance returned success
 					double rateAmount = 1;
@@ -1237,8 +1256,14 @@ public class NpcTemplate extends CreatureTemplate
 						}
 					}
 					
-					// finally
-					return new ItemHolder(itemId, (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount));
+					// Akumulace množství za všechny garantované + náhodné hody
+					int totalAmount = 0;
+					for (int i = 0; i < dropCount; i++)
+					{
+						totalAmount += (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount);
+					}
+					
+					return new ItemHolder(itemId, totalAmount);
 				}
 				break;
 			}
@@ -1260,8 +1285,15 @@ public class NpcTemplate extends CreatureTemplate
 					rateChance *= player.getStat().getBonusSpoilRateMultiplier();
 				}
 				
-				// calculate if item will be rewarded
-				if ((Rnd.nextDouble() * 100) < (dropItem.getChance() * rateChance))
+				// ÚPRAVA PRO SPOIL > 100%
+				double totalChance = dropItem.getChance() * rateChance;
+				int dropCount = (int) (totalChance / 100);
+				if ((Rnd.nextDouble() * 100) < (totalChance % 100))
+				{
+					dropCount++;
+				}
+				
+				if (dropCount > 0)
 				{
 					// amount is calculated after chance returned success
 					double rateAmount = RatesConfig.RATE_SPOIL_DROP_AMOUNT_MULTIPLIER;
@@ -1272,8 +1304,14 @@ public class NpcTemplate extends CreatureTemplate
 						rateAmount *= PremiumSystemConfig.PREMIUM_RATE_SPOIL_AMOUNT;
 					}
 					
-					// finally
-					return new ItemHolder(dropItem.getItemId(), (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount));
+					// Akumulace množství za všechny garantované + náhodné hody
+					int totalAmount = 0;
+					for (int i = 0; i < dropCount; i++)
+					{
+						totalAmount += (long) (Rnd.get(dropItem.getMin(), dropItem.getMax()) * rateAmount);
+					}
+					
+					return new ItemHolder(dropItem.getItemId(), totalAmount);
 				}
 				break;
 			}
