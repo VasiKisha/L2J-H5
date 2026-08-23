@@ -6,17 +6,16 @@ set -e
 # ==========================================
 BASE_DIR="/opt/l2j"
 SRC_DIR="$BASE_DIR/src"
-TARGET_BRANCH="main" # volba větne pro testování
-BUILD_DIR="$SRC_DIR/L2J_Mobius_CT_0_Interlude"
-DEPLOY_DIR="$BASE_DIR/l2j-server"
-BUILD_ZIP="$SRC_DIR/build/L2J_Mobius_CT_0_Interlude.zip"
+TARGET_BRANCH="master" # volba větne pro testování
+DEPLOY_DIR="$BASE_DIR/l2j-h5"
+BUILD_ZIP="$BASE_DIR/build/L2J_Mobius_CT_2.6_HighFive.zip"
 TMP_DIR="$BASE_DIR/build_tmp"
 JAVA_PATH="$BASE_DIR/jdk-25.0.4"
-GIT_REPO_URL="https://VasiKisha:xxxtokenxxx@github.com/VasiKisha/L2J-Interlude.git"
+GIT_REPO_URL="https://VasiKisha:xxxtokenxxx@https://github.com/VasiKisha/L2J-H5.git"
 
 # Název Docker kontejnerů podle Portaineru
-GAMESERVER_CONTAINER="l2j_mobius_interlude-gameserver-1"
-LOGINSERVER_CONTAINER="l2j_mobius_interlude-loginserver-1"
+GAMESERVER_CONTAINER="l2j_mobius_h5-gameserver-1"
+LOGINSERVER_CONTAINER="l2j_mobius_h5-loginserver-1"
 
 echo "=========================================="
 echo " Starting L2J Deployment Pipeline"
@@ -44,7 +43,7 @@ fi
 
 # 3. Kompilace přes Ant
 echo "[3/6] Compiling project with Ant..."
-cd "$BUILD_DIR"
+cd "$SRC_DIR"
 ant
 
 # 4. Rozbalení nově zkompilovaného buildu do dočasné složky

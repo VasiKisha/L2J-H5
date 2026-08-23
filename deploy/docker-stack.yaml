@@ -6,12 +6,12 @@ services:
     command: --max_allowed_packet=128M
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: l2jmobius
+      MYSQL_DATABASE: l2jmobiush5
       MYSQL_USER: l2j
       MYSQL_PASSWORD: l2jpassword
       TZ: Europe/Prague
     volumes:
-      - db_data:/var/lib/mysql
+      - db_l2jH5:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3306:3306"
@@ -34,7 +34,7 @@ services:
       TZ: Europe/Prague
       JAVA_TOOL_OPTIONS: "-Duser.timezone=Europe/Prague"
     volumes:
-      - /opt/l2j/l2j-server:/server
+      - /opt/l2j/L2J-H5:/server
       - /etc/localtime:/etc/localtime:ro
     # DOČASNÝ PŘÍKAZ, aby kontejner zůstal běžet a mohli jsme instalovat
     # command: tail -f /dev/null 
@@ -52,7 +52,7 @@ services:
       TZ: Europe/Prague
       JAVA_TOOL_OPTIONS: "-Duser.timezone=Europe/Prague"
     volumes:
-      - /opt/l2j/l2j-server:/server
+      - /opt/l2j/L2J-H5:/server
       - /etc/localtime:/etc/localtime:ro
     # DOČASNÝ PŘÍKAZ, aby kontejner zůstal běžet a mohli jsme instalovat
     # command: tail -f /dev/null 
@@ -65,4 +65,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  db_data:
+  db_l2jH5:
